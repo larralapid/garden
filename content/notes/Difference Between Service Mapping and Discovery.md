@@ -3,7 +3,7 @@ tags:
   - servicenow
 title: Service Mapping v. Discovery
 ---
-topic: [[notes/servicenow/index]]
+
 ## Discovery
 
 - **Horizontal discovery** of infrastructure and applications connected to TCP/IP networks.
