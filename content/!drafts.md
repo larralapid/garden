@@ -2,7 +2,7 @@
 draft: true
 ---
 - instaclean vs chuck 
--  [[servicenow/index]] topics
+-  [[notes/servicenow/index]] topics
 	- csdm --> cmdb 
 	- when to clone 
 	- clone profiles 
