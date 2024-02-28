@@ -1,0 +1,3 @@
+- [[noteplan]]
+- [[raycast]]
+- [[dotfiles]]
