@@ -1,4 +1,6 @@
 ---
 title: Digital Garden
+tags:
+  - todo
+draft: "true"
 ---
-- My [[digital garden]] setup 
