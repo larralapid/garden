@@ -2,12 +2,12 @@
 title: braindump garden
 ---
 
-# current focus
+#### current focus
 
 - [ ] [[noteplan]] calendar note cleanup
   - left off at april 2023
 
-# some notes
+#### some notes
 
 - [[20230405]]
 - [[dendron]]
