@@ -1,6 +1,7 @@
 ---
 title: Digital Garden
-tags:
-  - todo
-draft: "true"
+tags: []
+draft: false
 ---
+
+- deployed with vercel

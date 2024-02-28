@@ -1,5 +1,6 @@
 ---
-title: Digital Garden
+title: braindump
 ---
-- My [[digital garden]] setup 
+
+- My [[digital garden]] setup
 - [[my setup]]
