@@ -32,11 +32,6 @@ export const defaultContentPageLayout: PageLayout = {
       folderDefaultState: "collapsed", // default state of folders ("collapsed" or "open")
 
       useSavedState: true, // whether to use local storage to save "state" (which folders are opened) of explorer
-
-      filterFn: (node) => {
-        // exclude files with the tag "explorerexclude"
-        return node.file?.frontmatter?.tags?.includes("nav-bar") == true
-      },
     })),
     //Component.MobileOnly(Component.Spacer()),
   ],
