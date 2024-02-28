@@ -1,0 +1,18 @@
+- virtual publicist/one stop shop for social media management 
+- digitize my #handwritten #diaries 
+- [[servicenow]]
+	- obsidian in servicenow
+	- create github repo from instance 
+	- Developer Comments
+		- if there is a comment on the customer update associated with the application file, display it.
+		- when application file updated, prompt user to add developer comment 
+	- logout script to prompt to commit to source control 
+- qr codes 
+	- little free library for spotify playlists
+- APIs
+	- [x] [[spotify]]
+		- https://github.com/larralapid/disqo
+	- [ ] gmail
+	- [ ] custom search 
+	- [ ] word associations 
+	- [ ] ynab 

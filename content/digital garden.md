@@ -4,4 +4,5 @@ tags: []
 draft: false
 ---
 
-- deployed with vercel
+- deployed with [[vercel]]
+- larralapid.dev domain registered with [[wordpress]]

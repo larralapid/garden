@@ -1,0 +1,6 @@
+- i can't not have at least 10 tabs open in 6 different windows among 3 different profiles. 
+- search engines 
+	- wishes
+		- group by domain 
+		- advanced query builder
+		- thumbs up/down icons for visited search results 

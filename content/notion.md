@@ -1,0 +1,3 @@
+- not packageable enough; for data transportation 
+- record limit 
+- confined to its ui 

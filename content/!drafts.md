@@ -1,0 +1,12 @@
+---
+draft: true
+---
+- instaclean vs chuck 
+-  [[servicenow]] topics
+	- csdm --> cmdb 
+	- when to clone 
+	- clone profiles 
+	- moving into use of service mapping
+	- how to take advantage of our current licensing
+	- automating subscription management
+	- using service catalog to allow process owners/service owners to define their automations in the platform without relying solely on dev team 

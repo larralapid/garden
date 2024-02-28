@@ -1,0 +1,1 @@
+- [Take Your Selfie Seriously: The Advanced Selfie Handbook](https://www.amazon.com/Take-Your-Selfie-Seriously-Advanced/dp/1786279045) 
