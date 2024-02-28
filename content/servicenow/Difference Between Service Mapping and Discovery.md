@@ -1,9 +1,9 @@
 ---
 tags:
   - servicenow
-title: Difference Between Service Mapping and Discovery
+title: Service Mapping v. Discovery
 ---
-topic: [[servicenow]]
+topic: [[servicenow/index]]
 ## Discovery
 
 - **Horizontal discovery** of infrastructure and applications connected to TCP/IP networks.

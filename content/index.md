@@ -1,26 +1,18 @@
----
-title: braindump garden
----
-
-#### current focus
-
-- [ ] [[noteplan]] calendar note cleanup
-  - left off at april 2023
-
-#### some notes
-
-- [[20230405]]
-- [[dendron]]
-- [[to read]] #list
-- "don't queue it, do it"
-- [[spotify habits]]
-- [[projects to dick around with]]
-- don't like [[notion]]
-- still haven't found the perfect [[mindmap]] tool
-- wish there were a chrome extension (that satisfied my requirements) for a better search experience. See [[qualms]]
-- when using [[vim]] in the terminal, hit "i" on keyboard to begin inserting text #til
-- [[shell scripts]]
-- My [[digital garden]] setup
-  - quartz documentation wasn't clicking for me for deploying with [[vercel]]
-    - forgot to create the vercel.json file
-- [[my setup]]
+- 2024-02-28 at 07h31 · [[spotify]]
+- 2024-02-28 at 07h25 · [[202402280725]]
+- 2024-02-28 at 05h42 · [[Ecosystem]]
+- 2024-02-28 at 05h41 · [[digital garden]]
+- 2024-02-28 at 05h39 · [[💡]]
+- 2024-02-28 at 05h35 · [[index]]
+- 2024-02-28 at 05h35 · [[Difference Between Service Mapping and Discovery]]
+- 2024-02-28 at 05h35 · [[!drafts]]
+- 2024-02-28 at 05h34 · [[index]]
+- 2024-02-28 at 00h10 · [[20230405]]
+- 2024-02-28 at 00h08 · [[dendron]]
+- 2024-02-27 at 23h56 · [[to read]]
+- 2024-02-27 at 23h42 · [[alfred]]
+- 2024-02-27 at 23h03 · [[spotify habits]]
+- 2024-02-27 at 23h00 · [[notion]]
+- 2024-02-27 at 22h58 · [[qualms]]
+- 2024-02-27 at 22h27 · [[shell scripts]]
+- 2024-02-27 at 22h17 · [[vercel]]

@@ -1,3 +1,10 @@
+---
+title: ecosystem
+aliases:
+  - my setup
+tags:
+  - nav-bar
+---
 - [[noteplan]]
 - [[raycast]]
 - [[dotfiles]]
