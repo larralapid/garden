@@ -1,0 +1,1 @@
+- root directory can't be "./"
