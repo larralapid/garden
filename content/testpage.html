@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Untitled</title>
+</head>
+
+<body>
+    <div id="recent-notes"></div>
+
+    <script src="./quartz/components/RecentNotes.tsx"></script>
+    <script>
+        const recentNotes = new RecentNotes({
+            allFiles: [],
+            fileData: {},
+            displayClass: '',
+            cfg: {},
+        })
+
+        recentNotes.render(document.getElementById('recent-notes'))
+    </script>
+</body>
+
+</html>
