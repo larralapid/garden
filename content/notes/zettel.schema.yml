@@ -1,0 +1,8 @@
+version: 1
+imports: []
+schemas:
+  - id: zettel
+    title: zettel
+    parent: root
+    children:
+      - pattern: '*'

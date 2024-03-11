@@ -14,18 +14,17 @@ commands:
     randomNote: {}
     insertNoteLink:
         aliasMode: none
-        enableMultiSelect: false
+        enableMultiSelect: true
     insertNoteIndex:
-        enableMarker: false
+        enableMarker: true
     copyNoteLink:
         aliasMode: title
     templateHierarchy: template
 workspace:
     vaults:
-        -
-            fsPath: .
-            selfContained: true
-            name: content
+        - fsPath: .
+          selfContained: true
+          name: content
     journal:
         dailyDomain: daily
         name: journal
@@ -40,7 +39,7 @@ workspace:
         dateFormat: y.MM.dd
         addBehavior: asOwnDomain
         statusSymbols:
-            '': ' '
+            "": " "
             wip: w
             done: x
             assigned: a
@@ -48,7 +47,7 @@ workspace:
             blocked: b
             delegated: l
             dropped: d
-            pending: 'y'
+            pending: "y"
         taskCompleteStatus:
             - done
             - x
@@ -56,7 +55,7 @@ workspace:
             H: high
             M: medium
             L: low
-        todoIntegration: false
+        todoIntegration: true
         createTaskSelectionType: selection2link
     graph:
         zoomSpeed: 1
