@@ -1,11 +1,11 @@
 ---
 up: 
-id: igkltelh510tcw15z4aooz1
-title: zettel.20230929
-desc: ""
-updated: Monday, March 11th 2024, 6:21:10 pm
-created: Monday, March 11th 2024, 12:44:11 pm
 tags: daily
+id: igkltelh510tcw15z4aooz1
+title: uml
+desc: ""
+created: Monday, March 11th 2024, 12:44:11 pm
+updated: Monday, March 11th 2024, 6:47:53 pm
 ---
 ### the day 
 ok how am i only now finding out about how nifty uml is?? 
@@ -58,10 +58,3 @@ skinparam stereotypeCBackgroundColor OrangeRed
 @enduml
 ```
 
-and then it looks like this 
-![image](<braindump/notes/Pasted image 20230929233417.png>)
-
-
-dose.land canada drugs 
-- [>] [[planetscale]] >2023-12-16
-- [>] [[hashnode?]] >2023-12-16

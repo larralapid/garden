@@ -1,13 +1,12 @@
 ---
 up: 
-id: 46wfr68apm0esitjpdinvdg
-title: zettel.20230918
+tags: 
+id: uzzwsurzpj4jl3238kf85js
+title: legal resources
 desc: ""
-updated: Monday, March 11th 2024, 6:21:10 pm
-created: Monday, March 11th 2024, 12:44:11 pm
-tags: daily
+created: Monday, March 11th 2024, 6:50:58 pm
+updated: Monday, March 11th 2024, 6:51:09 pm
 ---
-legal resources
 - - https://www.wagnerandbloch.com/giving-back (look at the clermont county family law clinic)
 - https://www.cincybar.org/
 - https://lascinti.org/
@@ -18,5 +17,3 @@ legal resources
 	- probono partnership of ohio 
 	- volunteer lawyers for the poor 
 - https://www.communitylegalaid.org/
-
-
