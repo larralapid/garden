@@ -19,7 +19,7 @@ site:
     copyAssets: true
     siteHierarchies:
         - root
-    siteRootDir: docs
+    siteRootDir: root
     usePrettyRefs: true
     title: Dendron
     description: Personal knowledge space
