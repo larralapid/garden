@@ -1,4 +1,9 @@
 ---
+id: cuax3m3d7qt84n9m30bsg8k
+title: Dendron
+desc: ''
+updated: 1710175659924
+created: 1710175659924
 tags:
   - note-taking
   - linked-notes

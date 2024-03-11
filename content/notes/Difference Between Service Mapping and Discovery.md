@@ -1,7 +1,11 @@
 ---
+id: s4r2u0ua4xy6wf9m23b8wxj
+title: Service Mapping v. Discovery
+desc: ''
+updated: 1710175659795
+created: 1710175659795
 tags:
   - servicenow
-title: Service Mapping v. Discovery
 ---
 
 ## Discovery

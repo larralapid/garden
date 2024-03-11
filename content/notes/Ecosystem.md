@@ -1,9 +1,13 @@
 ---
+id: ynsdwm44mxnfnll87tgrfbf
 title: ecosystem
-aliases:
-  - my setup
+desc: ''
+updated: 1710175659826
+created: 1710175659826
 tags:
   - nav-bar
+aliases:
+  - my setup
 ---
 - [[noteplan]]
 - [[raycast]]
