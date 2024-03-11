@@ -1,8 +1,8 @@
 ---
 id: s4r2u0ua4xy6wf9m23b8wxj
 title: Service Mapping v. Discovery
-desc: ''
-updated: 1710175659795
+desc: ""
+updated: 2024-03-11T13:19
 created: 1710175659795
 tags:
   - servicenow

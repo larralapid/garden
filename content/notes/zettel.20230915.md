@@ -1,7 +1,7 @@
 ---
 id: ub3qvypkqv1alqdzc2d1vog
-title: '20230915'
-desc: ''
+title: "20230915"
+desc: ""
 updated: 1710177569461
 created: 1710177569461
 tags: daily

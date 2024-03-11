@@ -1,7 +1,7 @@
 ---
 id: 8a3dhgfotjxpqqrdwlxt3uq
-title: '20230715'
-desc: ''
+title: "20230715"
+desc: ""
 updated: 1710177569377
 created: 1710177569378
 tags: daily

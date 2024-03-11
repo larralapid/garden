@@ -1,7 +1,7 @@
 ---
 id: mf0wmx9redsk8gax9fqcdpd
-title: '20230914'
-desc: ''
+title: "20230914"
+desc: ""
 updated: 1710177569457
 created: 1710177569457
 tags: daily

@@ -1,8 +1,8 @@
 ---
 id: cuax3m3d7qt84n9m30bsg8k
 title: Dendron
-desc: ''
-updated: 1710175659924
+desc: ""
+updated: 2024-03-11T13:19
 created: 1710175659924
 tags:
   - note-taking

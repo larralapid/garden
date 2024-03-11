@@ -1,7 +1,7 @@
 ---
 id: 46wfr68apm0esitjpdinvdg
-title: '20230918'
-desc: ''
+title: "20230918"
+desc: ""
 updated: 1710177569467
 created: 1710177569467
 tags: daily

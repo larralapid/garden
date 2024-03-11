@@ -1,7 +1,7 @@
 ---
 id: 1vqu7t13taxe8blrkanpqml
 title: Shell Scripts
-desc: ''
+desc: ""
 updated: 1710177569514
 created: 1710177569514
 ---
