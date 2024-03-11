@@ -1,9 +1,11 @@
 ---
+up: 
+tags: 
 id: ko17eui8p10j100s04glbjd
-title: "202402280932"
+title: zettel.202402280932
 desc: ""
-updated: 1710177569489
-created: 1710177569489
+updated: Monday, March 11th 2024, 6:21:09 pm
+created: Monday, March 11th 2024, 12:44:11 pm
 ---
 prevent duplicate retrieved update sets in [[servicenow]] 
 - before cloning, in the source instance, go to local update sets. 

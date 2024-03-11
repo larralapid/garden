@@ -1,9 +1,10 @@
 ---
+up: 
 id: igkltelh510tcw15z4aooz1
-title: "20230929"
+title: zettel.20230929
 desc: ""
-updated: 1710177569474
-created: 1710177569474
+updated: Monday, March 11th 2024, 6:21:10 pm
+created: Monday, March 11th 2024, 12:44:11 pm
 tags: daily
 ---
 ### the day 

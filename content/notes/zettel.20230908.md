@@ -1,9 +1,10 @@
 ---
+up: 
 id: e2p8y6oplmpfwdtm261o9d1
-title: "20230908"
+title: zettel.20230908
 desc: ""
-updated: 1710177569420
-created: 1710177569420
+updated: Monday, March 11th 2024, 6:21:10 pm
+created: Monday, March 11th 2024, 12:44:11 pm
 tags: daily
 ---
 [[ai landscape]]

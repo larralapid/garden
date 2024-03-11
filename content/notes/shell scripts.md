@@ -1,9 +1,11 @@
 ---
+up: 
+tags: 
 id: 1vqu7t13taxe8blrkanpqml
-title: Shell Scripts
+title: shell scripts
 desc: ""
-updated: 1710177569514
-created: 1710177569514
+updated: Monday, March 11th 2024, 6:21:10 pm
+created: Monday, March 11th 2024, 12:44:11 pm
 ---
 -  make a script executable by running `chmod +x myfirstscript` #til 
 -  to run a shell script with arguments, append it right after the script file name #til 

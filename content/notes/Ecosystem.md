@@ -1,13 +1,15 @@
 ---
+up: 
 id: ynsdwm44mxnfnll87tgrfbf
-title: ecosystem
+title: Ecosystem
 desc: ""
-updated: 2024-03-11T13:19
-created: 1710175659826
+updated: Monday, March 11th 2024, 6:21:10 pm
+created: Monday, March 11th 2024, 12:44:11 pm
 tags:
   - nav-bar
 aliases:
   - my setup
+sibling: "[[infra.apps]]"
 ---
 - [[noteplan]]
 - [[raycast]]

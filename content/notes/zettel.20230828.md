@@ -1,9 +1,10 @@
 ---
+up: 
 id: 33u0sl6255qtpno8ny7ttf7
-title: "20230828"
+title: zettel.20230828
 desc: ""
-updated: 1710177569405
-created: 1710177569405
+updated: Monday, March 11th 2024, 6:21:10 pm
+created: Monday, March 11th 2024, 12:44:11 pm
 tags: daily
 ---
 i need a new mouse

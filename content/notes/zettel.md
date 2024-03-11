@@ -1,7 +1,9 @@
 ---
+up: 
+tags: 
 id: duppfyganzgifguffxeqbir
-title: Zettel
+title: zettel
 desc: ""
-updated: 1710184942991
-created: 1710183954522
+updated: Monday, March 11th 2024, 6:21:09 pm
+created: Monday, March 11th 2024, 3:05:54 pm
 ---

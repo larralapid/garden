@@ -1,9 +1,10 @@
 ---
+up: 
 id: 8a3dhgfotjxpqqrdwlxt3uq
-title: "20230715"
+title: zettel.20230715
 desc: ""
-updated: 1710177569377
-created: 1710177569378
+updated: Monday, March 11th 2024, 6:21:10 pm
+created: Monday, March 11th 2024, 12:44:11 pm
 tags: daily
 ---
 [[twilio]] phone number for [[ai in real estate]] +18445071978

@@ -1,9 +1,11 @@
 ---
+up: 
+tags: 
 id: ybpt1te83dpe89qred69d6x
-title: "202402280817"
+title: zettel.202402280817
 desc: ""
-updated: 1710177569487
-created: 1710177569487
+updated: Monday, March 11th 2024, 6:21:09 pm
+created: Monday, March 11th 2024, 12:44:11 pm
 ---
 
 ```mermaid

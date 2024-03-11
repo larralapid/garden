@@ -1,9 +1,10 @@
 ---
+up: 
 id: riqwtaid04r9rerw3u7iyfb
-title: "20230501"
+title: zettel.20230501
 desc: ""
-updated: 2024-03-11T15:46
-created: 1710177569302
+updated: Monday, March 11th 2024, 6:21:10 pm
+created: Monday, March 11th 2024, 12:44:11 pm
 tags: daily
 ---
 found a cool new fashion design software called [[seamly]]. download to app is in gmail archive

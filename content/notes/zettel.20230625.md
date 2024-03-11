@@ -1,9 +1,10 @@
 ---
+up: 
 id: 0x9owv4y074gyorl4qzc2a4
-title: "20230625"
+title: zettel.20230625
 desc: ""
-updated: 1710177569329
-created: 1710177569329
+updated: Monday, March 11th 2024, 6:21:10 pm
+created: Monday, March 11th 2024, 12:44:11 pm
 tags: daily
 ---
 [[NLC june]]

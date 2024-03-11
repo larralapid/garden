@@ -1,9 +1,10 @@
 ---
+up: 
 id: i55g3dez410izt7y6kl7yzz
-title: "202403051233"
+title: zettel.202403051233
 desc: ""
-updated: 2024-03-11T13:19
-created: 1710176306174
+updated: Monday, March 11th 2024, 6:21:09 pm
+created: Monday, March 11th 2024, 12:44:11 pm
 tags:
   - apple
   - photos

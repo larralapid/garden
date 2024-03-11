@@ -1,9 +1,10 @@
 ---
+up: 
 id: hthfpbgbcmqj7g40w2ximu1
-title: "20230829"
+title: zettel.20230829
 desc: ""
-updated: 2024-03-11T15:42
-created: 1710177569414
+updated: Monday, March 11th 2024, 6:21:10 pm
+created: Monday, March 11th 2024, 3:42:15 pm
 tags: daily
 ---
 

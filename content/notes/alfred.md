@@ -1,9 +1,12 @@
 ---
+tags: 
 id: yu3mr9s5v68gqy6q30ulevc
-title: Alfred
+title: alfred
 desc: ""
-updated: 1710177569503
-created: 1710177569503
+updated: Monday, March 11th 2024, 6:21:10 pm
+created: Monday, March 11th 2024, 12:44:11 pm
+up: "[[infra.apps]]"
 ---
 - keywords
-	- ? --> show shortcuts 
+	- ? --> show shortcuts #keyboard-shortcut #hotkey
+	

@@ -1,9 +1,11 @@
 ---
+tags: 
 id: cso1xxe9v87ez3ev1t2jbvz
-title: Notion
+title: notion
 desc: ""
-updated: 1710177569507
-created: 1710177569507
+updated: Monday, March 11th 2024, 6:21:10 pm
+created: Monday, March 11th 2024, 12:44:11 pm
+up: "[[infra.apps]]"
 ---
 - not packageable enough; for data transportation 
 - record limit 

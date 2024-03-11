@@ -1,9 +1,10 @@
 ---
+up: 
 id: mfqil1jbwxpg39ihfvzmxxj
-title: "20230426"
+title: zettel.20230426
 desc: ""
-updated: 1710177569295
-created: 1710177569295
+updated: Monday, March 11th 2024, 6:21:10 pm
+created: Monday, March 11th 2024, 12:44:11 pm
 tags: daily
 ---
 while building [[super volunteer]] i ran into an issue with the tinder pile element ([[bubble.io]]). 

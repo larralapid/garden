@@ -1,11 +1,12 @@
 ---
 id: s4r2u0ua4xy6wf9m23b8wxj
-title: Service Mapping v. Discovery
+title: Difference Between Service Mapping and Discovery
 desc: ""
-updated: 2024-03-11T13:19
-created: 1710175659795
+updated: Monday, March 11th 2024, 5:51:47 pm
+created: Monday, March 11th 2024, 12:44:11 pm
 tags:
   - servicenow
+up: "[[ServiceNow]]"
 ---
 
 ## Discovery

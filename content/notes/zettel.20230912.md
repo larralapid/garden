@@ -1,9 +1,10 @@
 ---
+up: 
 id: rc8kr2sbj0ofwncozad9h90
-title: "20230912"
+title: zettel.20230912
 desc: ""
-updated: 1710177569452
-created: 1710177569452
+updated: Monday, March 11th 2024, 6:21:10 pm
+created: Monday, March 11th 2024, 12:44:11 pm
 tags: daily
 ---
 From an early age, technology has sparked joy. The thrill of imagining ideas and breathing life into them started as a bad habit and an ADHD diagnosis later redefined as a gift. The variety of experiences I've had in my professional life thus far have allowed me to practice effectively turning innovative visions into game-changing business realities in different contexts, engage in many scenarios that required me to be quick on my feet, and refine my diplomatic abilities. Today, with Somastack, I'm leveraging this deep-seated tech intuition and my drive to create, aiming for breakthroughs that uplift organizations and resonate with broader societal values. My journey, from a childhood tech enthusiast to a visionary leader, fuels my commitment to propel Somastack's mission forward.

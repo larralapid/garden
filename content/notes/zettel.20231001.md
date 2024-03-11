@@ -1,9 +1,10 @@
 ---
+up: 
 id: inqec77wu4t3ask4neu8xej
-title: "20231001"
+title: zettel.20231001
 desc: ""
-updated: 2024-03-11T16:00
-created: 1710177569480
+updated: Monday, March 11th 2024, 6:21:10 pm
+created: Monday, March 11th 2024, 4:00:49 pm
 tags: daily
 ---
 thinking about this ideal life eases my anxiety: 

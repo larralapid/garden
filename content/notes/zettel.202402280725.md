@@ -1,7 +1,9 @@
 ---
+up: 
+tags: 
 id: nfyx0r2k17aggiifp9wf3hb
-title: "202402280725"
+title: zettel.202402280725
 desc: ""
-updated: 1710177569486
-created: 1710177569486
+updated: Monday, March 11th 2024, 6:21:09 pm
+created: Monday, March 11th 2024, 12:44:11 pm
 ---

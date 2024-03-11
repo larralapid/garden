@@ -1,6 +1,8 @@
 ---
+up: 
+tags: 
 title: zettel.2024.03.11.162740
-created: 2024-03-11T16:27
-updated: 2024-03-11T16:28
+created: Monday, March 11th 2024, 4:27:40 pm
+updated: Monday, March 11th 2024, 6:21:09 pm
 ---
 not sure if i like [[dendron]] so much. v convoluted. 

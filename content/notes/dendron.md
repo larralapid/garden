@@ -1,13 +1,14 @@
 ---
 id: cuax3m3d7qt84n9m30bsg8k
-title: Dendron
+title: dendron
 desc: ""
-updated: 2024-03-11T13:19
-created: 1710175659924
+updated: Monday, March 11th 2024, 5:50:38 pm
+created: Monday, March 11th 2024, 12:44:11 pm
 tags:
   - note-taking
   - linked-notes
   - vscode
+up: "[[infra.apps]]"
 ---
 - tried in 2023, didn't stick
 ### Updating Dendron for GitHub Pages Deployment

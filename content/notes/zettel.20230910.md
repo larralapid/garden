@@ -1,9 +1,10 @@
 ---
+up: 
 id: s0gg66dziqdavbslamrwzl6
-title: "20230910"
+title: zettel.20230910
 desc: ""
-updated: 1710177569437
-created: 1710177569437
+updated: Monday, March 11th 2024, 6:21:10 pm
+created: Monday, March 11th 2024, 12:44:11 pm
 tags: daily
 ---
 - DagsHub is the official ML platform for Hacktoberfest 

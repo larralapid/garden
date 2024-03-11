@@ -1,9 +1,10 @@
 ---
+up: 
 id: rhh257tfv6hx6wlra6x9f6v
-title: "20230905"
+title: zettel.20230905
 desc: ""
-updated: 1710177569416
-created: 1710177569416
+updated: Monday, March 11th 2024, 6:21:10 pm
+created: Monday, March 11th 2024, 12:44:11 pm
 tags: daily
 ---
 tried [[auto-gpt]] and it's okay but i'm gonna move on to the next thing now 

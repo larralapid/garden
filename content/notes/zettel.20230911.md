@@ -1,9 +1,10 @@
 ---
+up: 
 id: nmshjzge0cpzw96f2z4rsed
-title: "20230911"
+title: zettel.20230911
 desc: ""
-updated: 1710177569442
-created: 1710177569442
+updated: Monday, March 11th 2024, 6:21:10 pm
+created: Monday, March 11th 2024, 12:44:11 pm
 tags: daily
 ---
 - clickhouse #open-source #database #paid 

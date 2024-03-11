@@ -1,11 +1,12 @@
 ---
 id: iciy2bxppgenoawl4ggz08b
-title: Digital Garden
+title: digital garden
 desc: ""
-updated: 2024-03-11T13:19
-created: 1710175659932
-tags: []
+updated: Monday, March 11th 2024, 6:02:12 pm
+created: Monday, March 11th 2024, 12:44:11 pm
+tags: 
 draft: false
+up: "[[infra]]"
 ---
 - deployed with [[vercel]]
 - larralapid.dev domain registered with [[wordpress]]

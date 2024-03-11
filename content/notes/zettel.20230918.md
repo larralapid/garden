@@ -1,9 +1,10 @@
 ---
+up: 
 id: 46wfr68apm0esitjpdinvdg
-title: "20230918"
+title: zettel.20230918
 desc: ""
-updated: 1710177569467
-created: 1710177569467
+updated: Monday, March 11th 2024, 6:21:10 pm
+created: Monday, March 11th 2024, 12:44:11 pm
 tags: daily
 ---
 legal resources
