@@ -1,7 +1,11 @@
-version: 1
-imports: []
-schemas:
-  - id: root
-    children: []
-    title: root
-    parent: root
+- id: root
+  title: root
+  desc: ""
+  type: schema
+  body: ""
+  fname: root.schema
+  data: {}
+  stub: false
+  custom: {}
+  parent: root
+  children: []
