@@ -28,11 +28,15 @@ workspace:
     journal:
         dailyDomain: daily
         name: journal
-        dateFormat: y.MM.dd
+        dateFormat: y.MM.dd:HHmmss
         addBehavior: childOfDomain
     scratch:
         name: scratch
         dateFormat: y.MM.dd.HHmmss
+        addBehavior: asOwnDomain
+    zettel:
+        name: zettel
+        dateFormat: yMMddHHmmss
         addBehavior: asOwnDomain
     task:
         name: task
@@ -59,8 +63,8 @@ workspace:
         createTaskSelectionType: selection2link
     graph:
         zoomSpeed: 1
-        createStub: false
-    enableAutoCreateOnDefinition: false
+        createStub: true
+    enableAutoCreateOnDefinition: true
     enableXVaultWikiLink: false
     enableRemoteVaultInit: true
     enableUserTags: true
