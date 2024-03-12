@@ -7,6 +7,6 @@ desc: ""
 updated: Monday, March 11th 2024, 7:01:14 pm
 created: Monday, March 11th 2024, 12:44:11 pm
 ---
-see [[root]]
+
 
 [["life" life]]
