@@ -141,6 +141,6 @@
     "parentsParentsIsParent": false,
     "cousinsIsSibling": false
   },
-  "refreshOnNoteSave": true,
+  "refreshOnNoteSave": false,
   "showUpInJuggl": true
 }

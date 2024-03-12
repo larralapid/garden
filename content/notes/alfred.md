@@ -1,4 +1,5 @@
 ---
+fileClass: tool
 tags: 
 id: yu3mr9s5v68gqy6q30ulevc
 title: alfred

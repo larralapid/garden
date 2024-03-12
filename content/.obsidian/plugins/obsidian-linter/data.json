@@ -67,7 +67,7 @@
       "format": "YYYY-MM-DD hh:mm:ss A"
     },
     "yaml-title": {
-      "enabled": true,
+      "enabled": false,
       "title-key": "title",
       "mode": "first-h1-or-filename-if-h1-missing"
     },
@@ -258,7 +258,7 @@
       "enabled": false
     }
   },
-  "lintOnSave": true,
+  "lintOnSave": false,
   "recordLintOnSaveLogs": false,
   "displayChanged": true,
   "lintOnFileChange": true,

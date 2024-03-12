@@ -1,16 +1,18 @@
 ---
 up: 
-id: ybpt1te83dpe89qred69d6x
-title: hardware
-desc: ""
-updated: 2024-03-11
-created: 2024-03-11
+title: ecosystem
+desc: my tool suite and how i do stuff
+updated: 2024-03-12 02:11:12 AM
+created: 2024-03-12 12:55:18 AM
 tags:
   - nav-bar
 aliases:
   - my setup
 sibling: "[[infra.apps]]"
 ---
+#### reference maps & standardization
+- [[frontmatter attributes]]
+#### toolsuite
 - [[noteplan]]
 - [[raycast]]
 - [[dotfiles]]
