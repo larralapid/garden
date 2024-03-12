@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+    <channel>
+      <title>🪴</title>
+      <link>https://larralapid.dev</link>
+      <description>Last 10 notes on 🪴</description>
+      <generator>Quartz -- quartz.jzhao.xyz</generator>
+      <item>
+    <title>_Index_of_content</title>
+    <link>https://larralapid.dev/_Index_of_content</link>
+    <guid>https://larralapid.dev/_Index_of_content</guid>
+    <description>📄 index 🗂️ _Index_of_notes.</description>
+    <pubDate>Tue, 12 Mar 2024 00:32:04 GMT</pubDate>
+  </item><item>
+    <title>index</title>
+    <link>https://larralapid.dev/</link>
+    <guid>https://larralapid.dev/</guid>
+    <description>🗂️ _Index_of_notes.</description>
+    <pubDate>Tue, 12 Mar 2024 00:22:06 GMT</pubDate>
+  </item><item>
+    <title>index</title>
+    <link>https://larralapid.dev/notes/</link>
+    <guid>https://larralapid.dev/notes/</guid>
+    <description>“life” life.</description>
+    <pubDate>Mon, 11 Mar 2024 23:08:48 GMT</pubDate>
+  </item><item>
+    <title>zettel</title>
+    <link>https://larralapid.dev/notes/zettel</link>
+    <guid>https://larralapid.dev/notes/zettel</guid>
+    <description>Fleeting thoughts and other miscellaneous unflied braindump items will be prefaced with “zettel” and refactored/filed away the next time doing so seems like the most important task because i’m procrastinating on something.</description>
+    <pubDate>Mon, 11 Mar 2024 23:06:08 GMT</pubDate>
+  </item><item>
+    <title>dendron</title>
+    <link>https://larralapid.dev/notes/dendron</link>
+    <guid>https://larralapid.dev/notes/dendron</guid>
+    <description> tried in 2023, didn’t stick tried again in 2024 and i still don’t love it especially for digital garden #instead will use obsidian with the git#plugin Updating Dendron for GitHub Pages Deployment When attempting to update Dendron so that it updates GitHub Pages, the following sequence does not work as an appropriate next step: git commit dendron: site build Next, the following command was tried: npx dendron buildSite --stage prod followed by git commit This worked.</description>
+    <pubDate>Mon, 11 Mar 2024 23:04:43 GMT</pubDate>
+  </item><item>
+    <title>hardware</title>
+    <link>https://larralapid.dev/notes/Ecosystem</link>
+    <guid>https://larralapid.dev/notes/Ecosystem</guid>
+    <description> noteplan raycast dotfiles devon devonsphere express devonthink 3 pro bettertouchtool setapp streamdeck macbook vscode github typingmind hammerspoon alfred graph TD NP(NotePlan) --&gt; RPN(Review Previous Day&#039;s Notes) NP --&gt; MT(Manage Tasks) MT --&gt; CT(Complete Tasks) MT --&gt; CaT(Cancelled Tasks) MT --&gt; ST(Scheduled Tasks) NP --&gt; AD(Analog Diary) Setapp -.</description>
+    <pubDate>Mon, 11 Mar 2024 23:03:23 GMT</pubDate>
+  </item><item>
+    <title>somastack</title>
+    <link>https://larralapid.dev/notes/somastack</link>
+    <guid>https://larralapid.dev/notes/somastack</guid>
+    <description> “enablers of digital workflow transformation” ServiceNow areas of expertise ITSM Request management Service Catalog Change management Incident Management Problement Management accounting process business planning plan #gmail/ll zapier#not-implemented why do i need this? novo domain names somastack.</description>
+    <pubDate>Mon, 11 Mar 2024 23:02:58 GMT</pubDate>
+  </item><item>
+    <title>macos</title>
+    <link>https://larralapid.dev/notes/macos</link>
+    <guid>https://larralapid.dev/notes/macos</guid>
+    <description>Hold down the option key and double click the photos app from the applications folder. opening photos this way will prompt you to select the photos library to open.</description>
+    <pubDate>Mon, 11 Mar 2024 23:02:18 GMT</pubDate>
+  </item><item>
+    <title>drugs</title>
+    <link>https://larralapid.dev/notes/drugs</link>
+    <guid>https://larralapid.dev/notes/drugs</guid>
+    <description> dose.land rick simpson oil &gt;&gt;&gt;&gt;&gt;&gt; .</description>
+    <pubDate>Mon, 11 Mar 2024 23:01:39 GMT</pubDate>
+  </item><item>
+    <title>&quot;life&quot; life</title>
+    <link>https://larralapid.dev/notes/%22life%22-life</link>
+    <guid>https://larralapid.dev/notes/%22life%22-life</guid>
+    <description> drugs .</description>
+    <pubDate>Mon, 11 Mar 2024 23:01:26 GMT</pubDate>
+  </item>
+    </channel>
+  </rss>
