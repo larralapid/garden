@@ -3,8 +3,8 @@ tags:
 id: qktbwcl5l1b7zzfik9tndkt
 title: keep it
 desc: ""
-created: Monday, March 11th 2024, 6:25:45 pm
-updated: Monday, March 11th 2024, 6:26:17 pm
+created: 2024-03-11
+updated: 2024-03-11
 up: "[[Ecosystem]]"
 sibling: "[[infra.apps]]"
 ---

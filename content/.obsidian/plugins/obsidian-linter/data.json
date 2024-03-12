@@ -64,7 +64,7 @@
       "force-retention-of-create-value": false,
       "date-modified": true,
       "date-modified-key": "updated",
-      "format": "dddd, MMMM Do YYYY, h:mm:ss a"
+      "format": "YYYY-MM-DD hh:mm:ss A"
     },
     "yaml-title": {
       "enabled": true,
@@ -264,7 +264,10 @@
   "lintOnFileChange": true,
   "displayLintOnFileChangeNotice": false,
   "settingsConvertedToConfigKeyValues": true,
-  "foldersToIgnore": [],
+  "foldersToIgnore": [
+    "templates",
+    "_settings"
+  ],
   "linterLocale": "system-default",
   "logLevel": "ERROR",
   "lintCommands": [],

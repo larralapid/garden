@@ -4,8 +4,8 @@ tags:
 id: 0cy5kxskfaf2oy3run40pqq
 title: somastack
 desc: ""
-created: Monday, March 11th 2024, 6:15:59 pm
-updated: Monday, March 11th 2024, 7:02:58 pm
+created: 2024-03-11
+updated: 2024-03-11
 ---
 - "enablers of digital workflow transformation"
 - [[ServiceNow]] areas of expertise

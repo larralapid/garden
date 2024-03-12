@@ -3,8 +3,8 @@ tags:
 id: cso1xxe9v87ez3ev1t2jbvz
 title: notion
 desc: ""
-updated: Monday, March 11th 2024, 6:21:10 pm
-created: Monday, March 11th 2024, 12:44:11 pm
+updated: 2024-03-11
+created: 2024-03-11
 up: "[[infra.apps]]"
 ---
 - not packageable enough; for data transportation 

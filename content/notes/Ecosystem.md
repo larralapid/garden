@@ -3,8 +3,8 @@ up:
 id: ybpt1te83dpe89qred69d6x
 title: hardware
 desc: ""
-updated: Monday, March 11th 2024, 7:03:23 pm
-created: Monday, March 11th 2024, 12:44:11 pm
+updated: 2024-03-11
+created: 2024-03-11
 tags:
   - nav-bar
 aliases:

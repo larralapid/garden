@@ -268,7 +268,7 @@
     "layout": "force-directed",
     "limit": 10000,
     "mergeEdges": true,
-    "mode": "workspace",
+    "mode": "local",
     "navigator": true,
     "openWithShift": true,
     "readContent": true,

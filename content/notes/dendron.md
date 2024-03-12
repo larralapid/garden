@@ -2,8 +2,8 @@
 id: cuax3m3d7qt84n9m30bsg8k
 title: dendron
 desc: ""
-updated: Monday, March 11th 2024, 7:04:43 pm
-created: Monday, March 11th 2024, 12:44:11 pm
+updated: 2024-03-11
+created: 2024-03-11
 tags:
   - note-taking
   - linked-notes

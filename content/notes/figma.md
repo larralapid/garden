@@ -4,8 +4,8 @@ tags:
 id: sf63pko6uj2a6xxa5vefq6r
 title: figma
 desc: ""
-created: Monday, March 11th 2024, 6:57:32 pm
-updated: Monday, March 11th 2024, 6:57:53 pm
+created: 2024-03-11
+updated: 2024-03-11
 ---
 - plugins using #ai
 	- sprouts.design

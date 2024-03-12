@@ -4,8 +4,8 @@ tags:
 id: 6gflu650o4ooxpqd760fnco
 title: donotpay.com
 desc: ""
-created: Monday, March 11th 2024, 6:53:53 pm
-updated: Monday, March 11th 2024, 6:54:15 pm
+created: 2024-03-11
+updated: 2024-03-11
 ---
 - favorite services 
 	- robo revenge: generate an instant use card to give to spammers. And you can get cash. 

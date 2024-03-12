@@ -3,8 +3,8 @@ up:
 id: em34jspzi3j856n93p7tqy0
 title: ServiceNow
 desc: ""
-updated: Monday, March 11th 2024, 6:54:48 pm
-created: Monday, March 11th 2024, 12:44:11 pm
+updated: 2024-03-11
+created: 2024-03-11
 tags: daily
 ---
 - Protected global application files can be unlocked when moving it to a globally scoped app 

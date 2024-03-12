@@ -4,8 +4,8 @@ tags:
 id: uzzwsurzpj4jl3238kf85js
 title: legal resources
 desc: ""
-created: Monday, March 11th 2024, 6:50:58 pm
-updated: Monday, March 11th 2024, 6:51:09 pm
+created: 2024-03-11
+updated: 2024-03-11
 ---
 - - https://www.wagnerandbloch.com/giving-back (look at the clermont county family law clinic)
 - https://www.cincybar.org/

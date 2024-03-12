@@ -4,8 +4,8 @@ tags: daily
 id: igkltelh510tcw15z4aooz1
 title: uml
 desc: ""
-created: Monday, March 11th 2024, 12:44:11 pm
-updated: Monday, March 11th 2024, 6:47:53 pm
+created: 2024-03-11
+updated: 2024-03-11
 ---
 ### the day 
 ok how am i only now finding out about how nifty uml is?? 

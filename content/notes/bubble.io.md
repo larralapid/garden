@@ -4,8 +4,8 @@ tags: daily
 id: mfqil1jbwxpg39ihfvzmxxj
 title: bubble.io
 desc: ""
-created: Monday, March 11th 2024, 12:44:11 pm
-updated: Monday, March 11th 2024, 6:34:14 pm
+created: 2024-03-11
+updated: 2024-03-11
 ---
 while building [[super volunteer]] i ran into an issue with the tinder pile element
 - filtering to show users that don't have the same user type as the current user 

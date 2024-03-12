@@ -2,8 +2,8 @@
 id: iciy2bxppgenoawl4ggz08b
 title: digital garden
 desc: ""
-updated: Monday, March 11th 2024, 6:02:12 pm
-created: Monday, March 11th 2024, 12:44:11 pm
+updated: 2024-03-11
+created: 2024-03-11
 tags: 
 draft: false
 up: "[[infra]]"

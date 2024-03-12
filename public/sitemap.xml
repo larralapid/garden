@@ -1,7 +1,4 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml"><url>
-    <loc>https://larralapid.dev/_Index_of_content</loc>
-    <lastmod>2024-03-12T00:32:04.307Z</lastmod>
-  </url><url>
     <loc>https://larralapid.dev/</loc>
     <lastmod>2024-03-12T00:22:06.776Z</lastmod>
   </url><url>
@@ -22,9 +19,6 @@
   </url><url>
     <loc>https://larralapid.dev/notes/ServiceNow</loc>
     <lastmod>2024-03-11T22:54:48.321Z</lastmod>
-  </url><url>
-    <loc>https://larralapid.dev/notes/_Index_of_notes</loc>
-    <lastmod>2024-03-11T22:48:58.256Z</lastmod>
   </url><url>
     <loc>https://larralapid.dev/notes/alfred</loc>
     <lastmod>2024-03-11T22:21:10.250Z</lastmod>
@@ -92,9 +86,6 @@
     <loc>https://larralapid.dev/notes/spotify</loc>
     <lastmod>2024-03-11T22:21:10.220Z</lastmod>
   </url><url>
-    <loc>https://larralapid.dev/notes/templates/Zettel-Template</loc>
-    <lastmod>2024-03-11T22:21:10.161Z</lastmod>
-  </url><url>
     <loc>https://larralapid.dev/notes/to-read</loc>
     <lastmod>2024-03-11T22:21:10.220Z</lastmod>
   </url><url>
@@ -112,4 +103,22 @@
   </url><url>
     <loc>https://larralapid.dev/notes/%F0%9F%92%A1</loc>
     <lastmod>2024-03-11T22:21:10.163Z</lastmod>
+  </url><url>
+    <loc>https://larralapid.dev/templates/Zettel-Template</loc>
+    <lastmod>2024-03-11T22:21:10.161Z</lastmod>
+  </url><url>
+    <loc>https://larralapid.dev/templates/Decision</loc>
+    <lastmod>2024-03-12T02:30:08.052Z</lastmod>
+  </url><url>
+    <loc>https://larralapid.dev/excalibrain</loc>
+    <lastmod>2024-03-12T02:32:14.877Z</lastmod>
+  </url><url>
+    <loc>https://larralapid.dev/templates/DQL-Code-Block</loc>
+    <lastmod>2024-03-12T02:55:47.331Z</lastmod>
+  </url><url>
+    <loc>https://larralapid.dev/notes/cheatsheet</loc>
+    <lastmod>2024-03-12T03:16:12.797Z</lastmod>
+  </url><url>
+    <loc>https://larralapid.dev/notes/20240311.112321PM</loc>
+    <lastmod>2024-03-12T03:23:21.100Z</lastmod>
   </url></urlset>

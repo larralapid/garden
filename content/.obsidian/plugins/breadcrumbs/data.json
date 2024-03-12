@@ -1,5 +1,5 @@
 {
-  "addDendronNotes": true,
+  "addDendronNotes": false,
   "addDateNotes": false,
   "aliasesInIndex": false,
   "alphaSortAsc": true,
@@ -41,7 +41,7 @@
   "namingSystemRegex": "",
   "namingSystemSplit": ".",
   "namingSystemEndsWithDelimiter": false,
-  "refreshOnNoteChange": true,
+  "refreshOnNoteChange": false,
   "useAllMetadata": true,
   "openMatrixOnLoad": true,
   "openDuckOnLoad": false,
@@ -98,7 +98,7 @@
     "next": "",
     "prev": ""
   },
-  "threadUnderCursor": false,
+  "threadUnderCursor": true,
   "trailSeperator": "→",
   "treatCurrNodeAsImpliedSibling": false,
   "trimDendronNotes": true,

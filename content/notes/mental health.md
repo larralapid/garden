@@ -4,8 +4,8 @@ tags:
 id: ovmvzpyi6dsjc8ai49mbb2i
 title: mental health
 desc: ""
-created: Monday, March 11th 2024, 6:44:08 pm
-updated: Monday, March 11th 2024, 6:46:20 pm
+created: 2024-03-11
+updated: 2024-03-11
 ---
 - [[2023]] thoughts
 - thinking about this ideal life eases my anxiety: 

@@ -4,8 +4,8 @@ title: jupyter
 tags:
   - tools
   - code
-created: Monday, March 11th 2024, 4:35:12 pm
-updated: Monday, March 11th 2024, 6:21:09 pm
+created: 2024-03-11
+updated: 2024-03-11
 up: "[[infra.apps]]"
 ---
 - alternatives 
