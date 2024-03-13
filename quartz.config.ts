@@ -16,8 +16,8 @@ const config: QuartzConfig = {
     },
     locale: "en-US",
     baseUrl: "larralapid.dev",
-    ignorePatterns: ["private", "templates", ".obsidian", ".vscode", ".dendron"],
-    defaultDateType: "created",
+    ignorePatterns: ["private", "templates", ".obsidian", ".vscode", ".dendron", "_settings", "**/private"],
+    defaultDateType: "modified",
     theme: {
       cdnCaching: true,
       typography: {
@@ -53,7 +53,7 @@ const config: QuartzConfig = {
     transformers: [
       Plugin.FrontMatter(),
       Plugin.CreatedModifiedDate({
-        priority: ["frontmatter", "filesystem"],
+        priority: ["filesystem", "frontmatter"],
       }),
       Plugin.Latex({ renderEngine: "katex" }),
       Plugin.SyntaxHighlighting({

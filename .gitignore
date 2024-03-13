@@ -1,7 +1,5 @@
-*.obsidian
 *.node_modules
 *.DS_Store
-.obsidian
 content/.DS_Store
 node_modules
 content/.DS_Store
