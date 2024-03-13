@@ -1,5 +1,5 @@
 {
   "numberOfFilesToShow": 200,
   "changelogFilePath": "changelog.md",
-  "watchVaultChange": true
+  "watchVaultChange": false
 }

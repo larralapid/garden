@@ -1,12 +1,6 @@
-content/.obsidian/app.json
-content/.obsidian/appearance.json
-content/.obsidian/community-plugins.json
-content/.obsidian/core-plugins-migration.json
-content/.obsidian/core-plugins.json
-content/.obsidian/hotkeys.json
-content/.obsidian/workspace.json
-content/.obsidian/plugins/obsidian-git/data.json
-content/.obsidian/plugins/obsidian-git/main.js
-content/.obsidian/plugins/obsidian-git/manifest.json
-content/.obsidian/plugins/obsidian-git/styles.css
+*.node_modules
+*.DS_Store
+content/.DS_Store
 node_modules
+content/.DS_Store
+content/notes/.DS_Store
