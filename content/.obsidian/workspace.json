@@ -11,7 +11,7 @@
             "id": "4d0f0ce30bfa9d42",
             "type": "leaf",
             "state": {
-              "type": "empty",
+              "type": "graph",
               "state": {}
             }
           }
@@ -200,6 +200,7 @@
   },
   "active": "4d0f0ce30bfa9d42",
   "lastOpenFiles": [
+    "notes/20240314181511.md",
     "index.md",
     "private/202402281113.md",
     "notes/2024-02.md",
@@ -225,7 +226,6 @@
     "notes/Is it possible for ServiceNow to read emails from a Shared Office 365 Mailbox - Support and Troubleshooting.md",
     "private/202402281033.md",
     "notes/drugs.md",
-    "private/202402281028.md",
     "templates/scripts",
     "private/daddy.canvas",
     "private",
