@@ -18,17 +18,11 @@
     <description>downloaded and configured chrome extension Obsidian web uses obsidian#plugin local rest api .</description>
     <pubDate>Thu, 14 Mar 2024 02:09:56 GMT</pubDate>
   </item><item>
-    <title>web dev</title>
-    <link>https://larralapid.dev/private/web-dev</link>
-    <guid>https://larralapid.dev/private/web-dev</guid>
-    <description>web dev move jekyll site to either marvel.larra.me or larra.me/marvel gatsby js seems cool (10:14:30 PM) testing (11:36:15 PM) vercel &gt; netlify i set up vercel but also looking at gatsby cloud now too .</description>
-    <pubDate>Thu, 14 Mar 2024 02:01:09 GMT</pubDate>
-  </item><item>
-    <title>whse.space</title>
-    <link>https://larralapid.dev/private/whse.space</link>
-    <guid>https://larralapid.dev/private/whse.space</guid>
-    <description>whse.space bought through bluehost .</description>
-    <pubDate>Thu, 14 Mar 2024 01:06:23 GMT</pubDate>
+    <title>index</title>
+    <link>https://larralapid.dev/</link>
+    <guid>https://larralapid.dev/</guid>
+    <description> Ecosystem- my ever evolving setup and process .</description>
+    <pubDate>Thu, 14 Mar 2024 02:04:05 GMT</pubDate>
   </item><item>
     <title>20240313.084724PM</title>
     <link>https://larralapid.dev/notes/20240313.084724PM</link>
@@ -41,12 +35,6 @@
     <guid>https://larralapid.dev/notes/20240313.055907PM</guid>
     <description>disabled the obsidian git plugin because concerned about noticed a duplicate note bug happening a few days ago but hasn’t happened since then. idk what did it.</description>
     <pubDate>Thu, 14 Mar 2024 00:51:23 GMT</pubDate>
-  </item><item>
-    <title>Bash Brackets Quick Reference</title>
-    <link>https://larralapid.dev/private/Bash-Brackets-Quick-Reference</link>
-    <guid>https://larralapid.dev/private/Bash-Brackets-Quick-Reference</guid>
-    <description>Bash Brackets Quick Reference Metadata Source URL:: https://dev.to/rpalo/bash-brackets-quick-reference-4eh6 Bash Brackets Quick Reference Bash has lots of brackets and this is a cheat sheet to help you remember which ones to use.</description>
-    <pubDate>Thu, 14 Mar 2024 00:51:16 GMT</pubDate>
   </item><item>
     <title>quartz</title>
     <link>https://larralapid.dev/notes/quartz</link>
@@ -65,6 +53,18 @@
     <guid>https://larralapid.dev/notes/20240313.052951PM</guid>
     <description>disabled obsidian#plugin breadcrumbs. just don’t need rn.</description>
     <pubDate>Wed, 13 Mar 2024 21:30:17 GMT</pubDate>
+  </item><item>
+    <title>20240313.051627PM</title>
+    <link>https://larralapid.dev/notes/20240313.051627PM</link>
+    <guid>https://larralapid.dev/notes/20240313.051627PM</guid>
+    <description>#question updating .gitignore doesn’t reflect changes. is there a command i can run to see the updates reflected in my tracked changes? also, how can i simplify and cleanup the .</description>
+    <pubDate>Wed, 13 Mar 2024 21:29:14 GMT</pubDate>
+  </item><item>
+    <title>20240313.042616PM</title>
+    <link>https://larralapid.dev/notes/20240313.042616PM</link>
+    <guid>https://larralapid.dev/notes/20240313.042616PM</guid>
+    <description>#dicking-around i’m not the only one that thinks this. i think my iphone has an eeg sensor or something similar.</description>
+    <pubDate>Wed, 13 Mar 2024 21:16:27 GMT</pubDate>
   </item>
     </channel>
   </rss>
