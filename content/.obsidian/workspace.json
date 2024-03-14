@@ -4,20 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "d518864740356d01",
+        "id": "b78f712d8385933d",
         "type": "tabs",
         "children": [
           {
-            "id": "fbf26913fa67161f",
+            "id": "4d0f0ce30bfa9d42",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "index.md",
-                "mode": "source",
-                "backlinks": true,
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
         ]
@@ -117,9 +112,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "index.md"
-              }
+              "state": {}
             }
           },
           {
@@ -127,9 +120,7 @@
             "type": "leaf",
             "state": {
               "type": "file-properties",
-              "state": {
-                "file": "index.md"
-              }
+              "state": {}
             }
           },
           {
@@ -162,7 +153,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "index.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -174,7 +164,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "index.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -209,8 +198,9 @@
       "obsidian-excalidraw-plugin:Create new drawing": false
     }
   },
-  "active": "fbf26913fa67161f",
+  "active": "4d0f0ce30bfa9d42",
   "lastOpenFiles": [
+    "index.md",
     "private/202402281113.md",
     "notes/2024-02.md",
     "notes/20240314003342.md",
@@ -236,7 +226,6 @@
     "private/202402281033.md",
     "notes/drugs.md",
     "private/202402281028.md",
-    "notes/20240313.100956PM.md",
     "templates/scripts",
     "private/daddy.canvas",
     "private",
