@@ -1,11 +1,13 @@
 ---
+up: 
+tags: 
 doc_type: hypothesis-highlights
-url: 'https://support.servicenow.com/kb?id=kb_article_view&sysparm_article=KB0953296'
+url: https://support.servicenow.com/kb?id=kb_article_view&sysparm_article=KB0953296
+title: servicenow + shared office 365 mailbox
+created: 2023-11-29 10:58:17 AM
+updated: 2024-03-14 12:16:44 AM
 ---
-# Is it possible for ServiceNow to read emails from a Shared Office 365 Mailbox - Support and Troubleshooting
-
-
-# Is it possible for ServiceNow to read emails from a Shared Office 365 Mailbox - Support and Troubleshooting
+# Is it possible for [[ServiceNow]] to read emails from a Shared [[Office 365]] Mailbox - Support and Troubleshooting
 
 ## Metadata
 - Author: [support.servicenow.com]()

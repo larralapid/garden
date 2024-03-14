@@ -1,3 +1,10 @@
+---
+title:
+up: 
+tags: 
+created: 2023-11-29 08:23:46 PM
+updated: 2024-03-14 12:23:22 AM
+---
 # agi
 * agi to test with building [[TrialTrack]] demo ^22sy3q
 	- superAGI

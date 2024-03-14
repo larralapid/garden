@@ -1,12 +1,18 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml"><url>
     <loc>https://larralapid.dev/</loc>
-    <lastmod>2024-03-14T02:04:05.108Z</lastmod>
+    <lastmod>2024-03-14T04:36:05.938Z</lastmod>
   </url><url>
     <loc>https://larralapid.dev/notes/%22life%22-life</loc>
     <lastmod>2024-03-12T06:32:42.252Z</lastmod>
   </url><url>
+    <loc>https://larralapid.dev/notes/()</loc>
+    <lastmod>2024-03-14T04:05:17.047Z</lastmod>
+  </url><url>
     <loc>https://larralapid.dev/notes/2023</loc>
     <lastmod>2024-03-12T06:32:42.253Z</lastmod>
+  </url><url>
+    <loc>https://larralapid.dev/notes/2024-02</loc>
+    <lastmod>2024-03-14T04:32:20.449Z</lastmod>
   </url><url>
     <loc>https://larralapid.dev/notes/2024-03-10-092710PM</loc>
     <lastmod>2024-03-13T02:25:02.144Z</lastmod>
@@ -45,16 +51,37 @@
     <lastmod>2024-03-14T02:09:56.881Z</lastmod>
   </url><url>
     <loc>https://larralapid.dev/notes/20240313.100956PM</loc>
-    <lastmod>2024-03-14T02:11:30.648Z</lastmod>
+    <lastmod>2024-03-14T04:04:39.671Z</lastmod>
+  </url><url>
+    <loc>https://larralapid.dev/notes/20240314000642</loc>
+    <lastmod>2024-03-14T04:06:48.541Z</lastmod>
+  </url><url>
+    <loc>https://larralapid.dev/notes/20240314001158</loc>
+    <lastmod>2024-03-14T04:12:12.537Z</lastmod>
+  </url><url>
+    <loc>https://larralapid.dev/notes/20240314002337</loc>
+    <lastmod>2024-03-14T04:23:51.916Z</lastmod>
+  </url><url>
+    <loc>https://larralapid.dev/notes/20240314002716</loc>
+    <lastmod>2024-03-14T04:27:35.659Z</lastmod>
+  </url><url>
+    <loc>https://larralapid.dev/notes/20240314002824</loc>
+    <lastmod>2024-03-14T04:31:12.544Z</lastmod>
+  </url><url>
+    <loc>https://larralapid.dev/notes/20240314003342</loc>
+    <lastmod>2024-03-14T04:34:01.414Z</lastmod>
   </url><url>
     <loc>https://larralapid.dev/notes/Difference-Between-Service-Mapping-and-Discovery</loc>
     <lastmod>2024-03-12T06:32:42.256Z</lastmod>
   </url><url>
     <loc>https://larralapid.dev/notes/Ecosystem</loc>
-    <lastmod>2024-03-12T06:32:57.976Z</lastmod>
+    <lastmod>2024-03-14T04:27:16.693Z</lastmod>
   </url><url>
     <loc>https://larralapid.dev/notes/Excalidraw/ExcaliBrain-Snapshot---index.excalidraw</loc>
     <lastmod>2024-03-12T07:39:36.869Z</lastmod>
+  </url><url>
+    <loc>https://larralapid.dev/notes/Is-it-possible-for-ServiceNow-to-read-emails-from-a-Shared-Office-365-Mailbox---Support-and-Troubleshooting</loc>
+    <lastmod>2024-03-14T04:16:44.992Z</lastmod>
   </url><url>
     <loc>https://larralapid.dev/notes/Python</loc>
     <lastmod>2024-03-12T06:32:42.257Z</lastmod>
@@ -77,17 +104,29 @@
     <loc>https://larralapid.dev/notes/coda</loc>
     <lastmod>2024-03-12T06:32:42.262Z</lastmod>
   </url><url>
+    <loc>https://larralapid.dev/notes/deepgram</loc>
+    <lastmod>2024-03-14T04:33:16.752Z</lastmod>
+  </url><url>
     <loc>https://larralapid.dev/notes/dendron</loc>
     <lastmod>2024-03-12T06:32:42.263Z</lastmod>
+  </url><url>
+    <loc>https://larralapid.dev/notes/diagramming</loc>
+    <lastmod>2024-03-14T04:24:29.394Z</lastmod>
   </url><url>
     <loc>https://larralapid.dev/notes/digital-garden</loc>
     <lastmod>2024-03-13T21:30:45.028Z</lastmod>
   </url><url>
+    <loc>https://larralapid.dev/notes/disqo</loc>
+    <lastmod>2024-03-14T04:09:50.125Z</lastmod>
+  </url><url>
     <loc>https://larralapid.dev/notes/donotpay.com</loc>
     <lastmod>2024-03-12T06:32:42.265Z</lastmod>
   </url><url>
+    <loc>https://larralapid.dev/notes/draw.io</loc>
+    <lastmod>2024-03-14T04:24:53.024Z</lastmod>
+  </url><url>
     <loc>https://larralapid.dev/notes/drugs</loc>
-    <lastmod>2024-03-12T06:32:42.266Z</lastmod>
+    <lastmod>2024-03-14T04:17:58.842Z</lastmod>
   </url><url>
     <loc>https://larralapid.dev/notes/excalibrain</loc>
     <lastmod>2024-03-12T07:44:43.210Z</lastmod>
@@ -122,6 +161,9 @@
     <loc>https://larralapid.dev/notes/notion</loc>
     <lastmod>2024-03-12T06:32:42.273Z</lastmod>
   </url><url>
+    <loc>https://larralapid.dev/notes/obsidian</loc>
+    <lastmod>2023-12-15T20:33:22.000Z</lastmod>
+  </url><url>
     <loc>https://larralapid.dev/notes/pagico</loc>
     <lastmod>2024-03-12T06:32:42.275Z</lastmod>
   </url><url>
@@ -141,7 +183,7 @@
     <lastmod>2024-03-12T06:32:42.279Z</lastmod>
   </url><url>
     <loc>https://larralapid.dev/notes/spotify</loc>
-    <lastmod>2024-03-12T06:32:42.280Z</lastmod>
+    <lastmod>2024-03-14T04:21:42.657Z</lastmod>
   </url><url>
     <loc>https://larralapid.dev/notes/to-read</loc>
     <lastmod>2024-03-12T06:32:42.282Z</lastmod>
@@ -156,7 +198,7 @@
     <lastmod>2024-03-12T06:32:42.283Z</lastmod>
   </url><url>
     <loc>https://larralapid.dev/notes/zettel</loc>
-    <lastmod>2024-03-12T06:32:42.283Z</lastmod>
+    <lastmod>2024-03-14T04:33:17.667Z</lastmod>
   </url><url>
     <loc>https://larralapid.dev/notes/%F0%9F%92%A1</loc>
     <lastmod>2024-03-12T06:32:42.285Z</lastmod>

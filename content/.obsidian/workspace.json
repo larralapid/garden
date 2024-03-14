@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "notes/20240313.100956PM.md",
+                "file": "index.md",
                 "mode": "source",
                 "backlinks": true,
                 "source": false
@@ -50,7 +50,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "dataview",
+                "query": "tag:#spotify",
                 "matchingCase": true,
                 "explainSearch": true,
                 "collapseAll": false,
@@ -118,7 +118,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "notes/20240313.100956PM.md"
+                "file": "index.md"
               }
             }
           },
@@ -128,7 +128,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "notes/20240313.100956PM.md"
+                "file": "index.md"
               }
             }
           },
@@ -162,7 +162,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "notes/20240313.100956PM.md",
+                "file": "index.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -174,7 +174,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "notes/20240313.100956PM.md",
+                "file": "index.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -211,33 +211,33 @@
   },
   "active": "fbf26913fa67161f",
   "lastOpenFiles": [
-    "templates/Zettel Template.md",
-    "templates/Decision.md",
-    "templates/scripts",
-    "templates/DQL Code Block.md",
-    "index.md",
-    "notes/\"life\" life.md",
-    "notes/20240313.100404PM.md",
-    "notes/20240313.055907PM.md",
-    "notes/20240312.124230AM.md",
-    "notes/20240313.051627PM.md",
-    "notes/2023.md",
-    "notes/20240313.042616PM.md",
-    "notes/20240313.052951PM.md",
-    "notes/20240313.041541PM.md",
-    "notes/20240313.042527PM.md",
-    "notes/20240313.084724PM.md",
-    "notes/2024-03-10-092710PM.md",
-    "notes/20240312.012823AM.md",
-    "notes/20240311.112321PM.md",
+    "private/202402281113.md",
+    "notes/2024-02.md",
+    "notes/20240314003342.md",
+    "notes/diqo.md",
+    "notes/zettel.md",
+    "notes/Untitled.md",
+    "notes/deepgram.md",
+    "private/agi.md",
+    "private/202402281047.md",
+    "notes/20240314002824.md",
+    "private/202402281057.md",
+    "notes/diagramming.md",
+    "notes/20240314002716.md",
+    "private/202402281104.md",
+    "notes/Ecosystem.md",
+    "notes/draw.io.md",
+    "private/202402281100.md",
+    "notes/20240314002337.md",
+    "notes/spotify.md",
+    "private/202402281105.md",
+    "private/202402281103.md",
+    "notes/Is it possible for ServiceNow to read emails from a Shared Office 365 Mailbox - Support and Troubleshooting.md",
+    "private/202402281033.md",
+    "notes/drugs.md",
+    "private/202402281028.md",
     "notes/20240313.100956PM.md",
-    "private/web dev.md",
-    "private/whse.space.md",
-    "private/Bash Brackets Quick Reference.md",
-    "private/sewing.md",
-    "private/Set up Google Maps API.md",
-    "private/ServiceNow.md",
-    "private/sba.md",
+    "templates/scripts",
     "private/daddy.canvas",
     "private",
     "Spaces/Home",

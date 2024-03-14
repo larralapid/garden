@@ -6,65 +6,65 @@
       <description>Last 10 notes on 🪴</description>
       <generator>Quartz -- quartz.jzhao.xyz</generator>
       <item>
-    <title>20240313.100956PM</title>
-    <link>https://larralapid.dev/notes/20240313.100956PM</link>
-    <guid>https://larralapid.dev/notes/20240313.100956PM</guid>
-    <description>#decision zettelkasten title naming YYYYMMDDHHmmss.</description>
-    <pubDate>Thu, 14 Mar 2024 02:11:30 GMT</pubDate>
-  </item><item>
-    <title>20240313.100404PM</title>
-    <link>https://larralapid.dev/notes/20240313.100404PM</link>
-    <guid>https://larralapid.dev/notes/20240313.100404PM</guid>
-    <description>downloaded and configured chrome extension Obsidian web uses obsidian#plugin local rest api .</description>
-    <pubDate>Thu, 14 Mar 2024 02:09:56 GMT</pubDate>
-  </item><item>
     <title>index</title>
     <link>https://larralapid.dev/</link>
     <guid>https://larralapid.dev/</guid>
-    <description> Ecosystem- my ever evolving setup and process .</description>
-    <pubDate>Thu, 14 Mar 2024 02:04:05 GMT</pubDate>
+    <description> Ecosystem- my ever evolving setup and process some tags #zettel #question #til .</description>
+    <pubDate>Thu, 14 Mar 2024 04:36:05 GMT</pubDate>
   </item><item>
-    <title>20240313.084724PM</title>
-    <link>https://larralapid.dev/notes/20240313.084724PM</link>
-    <guid>https://larralapid.dev/notes/20240313.084724PM</guid>
-    <description>omg#dicking-around with apple#accessibility options. pointer control is cool. i set up an alternate pointer action so that when i stick my tongue out, it does a double click.</description>
-    <pubDate>Thu, 14 Mar 2024 01:01:57 GMT</pubDate>
+    <title>20240314003342</title>
+    <link>https://larralapid.dev/notes/20240314003342</link>
+    <guid>https://larralapid.dev/notes/20240314003342</guid>
+    <description>Weirdspot.fyi is sick#spotify musicbrainz.org is cool too but i dont need it. was gonna use it for disqo project but nah.</description>
+    <pubDate>Thu, 14 Mar 2024 04:34:01 GMT</pubDate>
   </item><item>
-    <title>20240313.055907PM</title>
-    <link>https://larralapid.dev/notes/20240313.055907PM</link>
-    <guid>https://larralapid.dev/notes/20240313.055907PM</guid>
-    <description>disabled the obsidian git plugin because concerned about noticed a duplicate note bug happening a few days ago but hasn’t happened since then. idk what did it.</description>
-    <pubDate>Thu, 14 Mar 2024 00:51:23 GMT</pubDate>
+    <title>zettel</title>
+    <link>https://larralapid.dev/notes/zettel</link>
+    <guid>https://larralapid.dev/notes/zettel</guid>
+    <description>Fleeting thoughts and other miscellaneous unflied braindump items will be prefaced with “zettel” and refactored/filed away the next time doing so seems like the most important task because i’m procrastinating on something.</description>
+    <pubDate>Thu, 14 Mar 2024 04:33:17 GMT</pubDate>
   </item><item>
-    <title>quartz</title>
-    <link>https://larralapid.dev/notes/quartz</link>
-    <guid>https://larralapid.dev/notes/quartz</guid>
-    <description></description>
-    <pubDate>Wed, 13 Mar 2024 21:31:23 GMT</pubDate>
+    <title>deepgram</title>
+    <link>https://larralapid.dev/notes/deepgram</link>
+    <guid>https://larralapid.dev/notes/deepgram</guid>
+    <description>deepgram i have $200 in credits nova-2 is a speech to text api check account(s) do a proper evaluation .</description>
+    <pubDate>Thu, 14 Mar 2024 04:33:16 GMT</pubDate>
   </item><item>
-    <title>digital garden</title>
-    <link>https://larralapid.dev/notes/digital-garden</link>
-    <guid>https://larralapid.dev/notes/digital-garden</guid>
-    <description> deployed with vercel larralapid.dev domain registered with wordpress built w/ quartz .</description>
-    <pubDate>Wed, 13 Mar 2024 21:30:45 GMT</pubDate>
+    <title>2024-02</title>
+    <link>https://larralapid.dev/notes/2024-02</link>
+    <guid>https://larralapid.dev/notes/2024-02</guid>
+    <description>#tried planet scale label box dropbox#using raycast#using zooniverse personal.ai dremio capacities deta.space claimed to have loved this in february but as of 2024-03-14 i don’t use it and i think adding it to my Ecosystem just makes it more convoluted.</description>
+    <pubDate>Thu, 14 Mar 2024 04:32:20 GMT</pubDate>
   </item><item>
-    <title>20240313.052951PM</title>
-    <link>https://larralapid.dev/notes/20240313.052951PM</link>
-    <guid>https://larralapid.dev/notes/20240313.052951PM</guid>
-    <description>disabled obsidian#plugin breadcrumbs. just don’t need rn.</description>
-    <pubDate>Wed, 13 Mar 2024 21:30:17 GMT</pubDate>
+    <title>20240314002824</title>
+    <link>https://larralapid.dev/notes/20240314002824</link>
+    <guid>https://larralapid.dev/notes/20240314002824</guid>
+    <description>#question using noteplan and obsidian in my Ecosystem flow what kind of stuff goes in which? noteplan activity log decisions made active projects out of scope zettels and fleeting thoughts consumption lists (reading list, to watch list) irrelevant research obsidian research zettels incomplete thoughts #til stuff #dicking-around activity logs .</description>
+    <pubDate>Thu, 14 Mar 2024 04:31:12 GMT</pubDate>
   </item><item>
-    <title>20240313.051627PM</title>
-    <link>https://larralapid.dev/notes/20240313.051627PM</link>
-    <guid>https://larralapid.dev/notes/20240313.051627PM</guid>
-    <description>#question updating .gitignore doesn’t reflect changes. is there a command i can run to see the updates reflected in my tracked changes? also, how can i simplify and cleanup the .</description>
-    <pubDate>Wed, 13 Mar 2024 21:29:14 GMT</pubDate>
+    <title>20240314002716</title>
+    <link>https://larralapid.dev/notes/20240314002716</link>
+    <guid>https://larralapid.dev/notes/20240314002716</guid>
+    <description>#question how to transfer chrome tabs across profiles?.</description>
+    <pubDate>Thu, 14 Mar 2024 04:27:35 GMT</pubDate>
   </item><item>
-    <title>20240313.042616PM</title>
-    <link>https://larralapid.dev/notes/20240313.042616PM</link>
-    <guid>https://larralapid.dev/notes/20240313.042616PM</guid>
-    <description>#dicking-around i’m not the only one that thinks this. i think my iphone has an eeg sensor or something similar.</description>
-    <pubDate>Wed, 13 Mar 2024 21:16:27 GMT</pubDate>
+    <title>ecosystem</title>
+    <link>https://larralapid.dev/notes/Ecosystem</link>
+    <guid>https://larralapid.dev/notes/Ecosystem</guid>
+    <description>reference maps &amp; standardization frontmatter attributes toolsuite noteplan raycast dotfiles devon devonsphere express devonthink 3 pro bettertouchtool setapp streamdeck macbook vscode github typingmind hammerspoon alfred graph TD NP(NotePlan) --&gt; RPN(Review Previous Day&#039;s Notes) NP --&gt; MT(Manage Tasks) MT --&gt; CT(Complete Tasks) MT --&gt; CaT(Cancelled Tasks) MT --&gt; ST(Scheduled Tasks) NP --&gt; AD(Analog Diary) Setapp -.</description>
+    <pubDate>Thu, 14 Mar 2024 04:27:16 GMT</pubDate>
+  </item><item>
+    <title>draw.io</title>
+    <link>https://larralapid.dev/notes/draw.io</link>
+    <guid>https://larralapid.dev/notes/draw.io</guid>
+    <description> plugins p1: custom sidebard and placeholders ex: explore from here to the context menu svgdata: metadata and ids in the svg export number: numbers all shapes sql: add from sql update: adds data data driven diagrams web cola flow .</description>
+    <pubDate>Thu, 14 Mar 2024 04:24:53 GMT</pubDate>
+  </item><item>
+    <title>diagramming</title>
+    <link>https://larralapid.dev/notes/diagramming</link>
+    <guid>https://larralapid.dev/notes/diagramming</guid>
+    <description>tldraw excalidraw draw.io.</description>
+    <pubDate>Thu, 14 Mar 2024 04:24:29 GMT</pubDate>
   </item>
     </channel>
   </rss>

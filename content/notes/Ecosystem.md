@@ -2,7 +2,7 @@
 up: 
 title: ecosystem
 desc: my tool suite and how i do stuff
-updated: 2024-03-12 02:32:57 AM
+updated: 2024-03-14 12:27:16 AM
 created: 2024-03-12 12:55:18 AM
 tags:
   - nav-bar
@@ -56,3 +56,15 @@ NP --> MT(Manage Tasks)
 
 # hardware
 - logitech lift vertical mouse
+
+---
+- failed implementations
+	- [[chrome]]
+		- ~~Use browser profiles for "areas"~~ 
+			- ~~testing profile~~
+				- ~~test browser extensions~~ 
+				- ~~test chrome flags~~ 
+			- ~~dev profile~~ 
+				- ~~chrome extension environment~~ 
+			- ~~Research~~
+				- ~~use tab groups per project~~ 
