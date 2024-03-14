@@ -2,7 +2,7 @@
   "compactView": false,
   "compactingFactor": 1.5,
   "minLinkLength": 18,
-  "excalibrainFilepath": "excalibrain.md",
+  "excalibrainFilepath": "notes/excalibrain.md",
   "indexUpdateInterval": 5000,
   "hierarchy": {
     "exclusions": [
@@ -80,7 +80,7 @@
       "hidden"
     ]
   },
-  "inferAllLinksAsFriends": false,
+  "inferAllLinksAsFriends": true,
   "inverseInfer": false,
   "inverseArrowDirection": true,
   "renderAlias": true,

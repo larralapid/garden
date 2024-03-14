@@ -13,25 +13,14 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "notes/20240313.055907PM.md",
+                "file": "notes/20240313.100956PM.md",
                 "mode": "source",
                 "backlinks": true,
                 "source": false
               }
             }
-          },
-          {
-            "id": "6a9e1f26d6932099",
-            "type": "leaf",
-            "state": {
-              "type": "release-notes",
-              "state": {
-                "currentVersion": "1.5.11"
-              }
-            }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -89,22 +78,6 @@
                 "searchQuery": ""
               }
             }
-          },
-          {
-            "id": "3337da1fd932db53",
-            "type": "leaf",
-            "state": {
-              "type": "git-view",
-              "state": {}
-            }
-          },
-          {
-            "id": "e97ea9741bf9858e",
-            "type": "leaf",
-            "state": {
-              "type": "mk-path-view",
-              "state": {}
-            }
           }
         ]
       },
@@ -145,7 +118,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "notes/20240313.055907PM.md"
+                "file": "notes/20240313.100956PM.md"
               }
             }
           },
@@ -155,16 +128,8 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "notes/20240313.055907PM.md"
+                "file": "notes/20240313.100956PM.md"
               }
-            }
-          },
-          {
-            "id": "3e4092b93b6a4ff2",
-            "type": "leaf",
-            "state": {
-              "type": "git-history-view",
-              "state": {}
             }
           },
           {
@@ -184,7 +149,7 @@
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 1
       },
       {
         "id": "c01e9365e6fe7819",
@@ -197,7 +162,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "notes/20240313.055907PM.md",
+                "file": "notes/20240313.100956PM.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -209,7 +174,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "notes/20240313.055907PM.md",
+                "file": "notes/20240313.100956PM.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -235,18 +200,25 @@
       "canvas:Create new canvas": true,
       "zk-prefixer:Create new unique note": false,
       "random-note:Open random note": true,
-      "obsidian-excalidraw-plugin:Create new drawing": false,
       "janitor:Janitor: scan vault": false,
       "vantage-obsidian:Vantage - Advanced search builder": false,
       "mermaid-tools:Open Mermaid Toolbar": false,
       "juggl:Juggl global graph": false,
       "templater-obsidian:Templater": false,
       "vscode-editor:Create Code File": false,
-      "zettelflow:Create a new Zettel Note": false
+      "obsidian-excalidraw-plugin:Create new drawing": false
     }
   },
-  "active": "6a9e1f26d6932099",
+  "active": "fbf26913fa67161f",
   "lastOpenFiles": [
+    "notes/20240313.100404PM.md",
+    "notes/20240313.100956PM.md",
+    "index.md",
+    "private/web dev.md",
+    "private/whse.space.md",
+    "notes/20240313.084724PM.md",
+    "notes/20240313.055907PM.md",
+    "private/Bash Brackets Quick Reference.md",
     "private/sewing.md",
     "private/Set up Google Maps API.md",
     "private/ServiceNow.md",
@@ -265,14 +237,6 @@
     "private/novo.md",
     "private/Notification Preferences are not available on Service Portal - Support and Troubleshooting.md",
     "private/Notary_Manual.pdf.md",
-    "private/NLC.md",
-    "private/NLC june.md",
-    "private/NLC essays.md",
-    "private/modelbit.md",
-    "private/minority certification.md",
-    "private/metaphor.io.md",
-    "private/lunatask.md",
-    "private/Local changes.md",
     "private/daddy.canvas",
     "private",
     "Spaces/Home",
@@ -283,6 +247,6 @@
     "_settings",
     "testpage.html",
     "notes/braindump",
-    "Excalidraw"
+    "notes/Excalidraw"
   ]
 }

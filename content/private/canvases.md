@@ -1,0 +1,4 @@
+# canvases
+```query
+file:.canvas
+```

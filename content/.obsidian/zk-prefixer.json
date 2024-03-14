@@ -1,5 +1,5 @@
 {
-  "format": "yyyyMMDD.hhmmssA",
+  "format": "YYYYMMDDHHmmss",
   "template": "templates/Zettel Template",
   "folder": "notes"
 }

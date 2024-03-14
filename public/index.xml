@@ -6,65 +6,65 @@
       <description>Last 10 notes on 🪴</description>
       <generator>Quartz -- quartz.jzhao.xyz</generator>
       <item>
-    <title>Zettel Template</title>
-    <link>https://larralapid.dev/notes/20240311.112321PM</link>
-    <guid>https://larralapid.dev/notes/20240311.112321PM</guid>
-    <description>dv.list(dv.pages()).</description>
-    <pubDate>Tue, 12 Mar 2024 03:23:21 GMT</pubDate>
+    <title>20240313.100956PM</title>
+    <link>https://larralapid.dev/notes/20240313.100956PM</link>
+    <guid>https://larralapid.dev/notes/20240313.100956PM</guid>
+    <description>#decision zettelkasten title naming YYYYMMDDHHmmss.</description>
+    <pubDate>Thu, 14 Mar 2024 02:11:30 GMT</pubDate>
   </item><item>
-    <title>Summary</title>
-    <link>https://larralapid.dev/notes/cheatsheet</link>
-    <guid>https://larralapid.dev/notes/cheatsheet</guid>
-    <description>Summary This cheatsheet provides a handy reference guide for writing queries using Dataview Query Language (DQL) in the dataview plugin for Obsidian.md note-taking app.</description>
-    <pubDate>Tue, 12 Mar 2024 03:16:12 GMT</pubDate>
-  </item><item>
-    <title>DQL Code Block</title>
-    <link>https://larralapid.dev/templates/DQL-Code-Block</link>
-    <guid>https://larralapid.dev/templates/DQL-Code-Block</guid>
-    <description> Rendered Query meta QueryType:: DQL dataCommands:: TABLE, functions:: tags:: image:: .</description>
-    <pubDate>Tue, 12 Mar 2024 02:55:47 GMT</pubDate>
-  </item><item>
-    <title>Text Elements</title>
-    <link>https://larralapid.dev/excalibrain</link>
-    <guid>https://larralapid.dev/excalibrain</guid>
-    <description>Text Elements Open a document in another pane and click it to get started. For the best experience enable ‘Open in adjacent pane’ in Excalidraw settings under ‘Links and Transclusion’.</description>
-    <pubDate>Tue, 12 Mar 2024 02:32:14 GMT</pubDate>
-  </item><item>
-    <title>❓ Your Questions is</title>
-    <link>https://larralapid.dev/templates/Decision</link>
-    <guid>https://larralapid.dev/templates/Decision</guid>
-    <description>❓ Your Questions is Brief description of the query. ✅ Reasoning for ⛔ Reasoning against 🔀 Alternatives considered 📦 Resources Link to any relevant information 🧮 Pros and Cons calculation Provalue 0-10Convalue 0-10Pro110Con 110Pro110Con 110Pro110Con 110Pro110Con 110Pro110Con 110Pro110Con 110Pro110Con 110Pro110Con 110Pro110Con 110Pro110Con 110Total Pro10Total Con10 ❗❗❗ If the total divided by 100 don’t have at least 20% of difference add more Pros and Cons.</description>
-    <pubDate>Tue, 12 Mar 2024 02:30:08 GMT</pubDate>
+    <title>20240313.100404PM</title>
+    <link>https://larralapid.dev/notes/20240313.100404PM</link>
+    <guid>https://larralapid.dev/notes/20240313.100404PM</guid>
+    <description>downloaded and configured chrome extension Obsidian web uses obsidian#plugin local rest api .</description>
+    <pubDate>Thu, 14 Mar 2024 02:09:56 GMT</pubDate>
   </item><item>
     <title>index</title>
     <link>https://larralapid.dev/</link>
     <guid>https://larralapid.dev/</guid>
+    <description> Ecosystem- my ever evolving setup and process .</description>
+    <pubDate>Thu, 14 Mar 2024 02:04:05 GMT</pubDate>
+  </item><item>
+    <title>web dev</title>
+    <link>https://larralapid.dev/private/web-dev</link>
+    <guid>https://larralapid.dev/private/web-dev</guid>
+    <description>web dev move jekyll site to either marvel.larra.me or larra.me/marvel gatsby js seems cool (10:14:30 PM) testing (11:36:15 PM) vercel &gt; netlify i set up vercel but also looking at gatsby cloud now too .</description>
+    <pubDate>Thu, 14 Mar 2024 02:01:09 GMT</pubDate>
+  </item><item>
+    <title>whse.space</title>
+    <link>https://larralapid.dev/private/whse.space</link>
+    <guid>https://larralapid.dev/private/whse.space</guid>
+    <description>whse.space bought through bluehost .</description>
+    <pubDate>Thu, 14 Mar 2024 01:06:23 GMT</pubDate>
+  </item><item>
+    <title>20240313.084724PM</title>
+    <link>https://larralapid.dev/notes/20240313.084724PM</link>
+    <guid>https://larralapid.dev/notes/20240313.084724PM</guid>
+    <description>omg#dicking-around with apple#accessibility options. pointer control is cool. i set up an alternate pointer action so that when i stick my tongue out, it does a double click.</description>
+    <pubDate>Thu, 14 Mar 2024 01:01:57 GMT</pubDate>
+  </item><item>
+    <title>20240313.055907PM</title>
+    <link>https://larralapid.dev/notes/20240313.055907PM</link>
+    <guid>https://larralapid.dev/notes/20240313.055907PM</guid>
+    <description>disabled the obsidian git plugin because concerned about noticed a duplicate note bug happening a few days ago but hasn’t happened since then. idk what did it.</description>
+    <pubDate>Thu, 14 Mar 2024 00:51:23 GMT</pubDate>
+  </item><item>
+    <title>Bash Brackets Quick Reference</title>
+    <link>https://larralapid.dev/private/Bash-Brackets-Quick-Reference</link>
+    <guid>https://larralapid.dev/private/Bash-Brackets-Quick-Reference</guid>
+    <description>Bash Brackets Quick Reference Metadata Source URL:: https://dev.to/rpalo/bash-brackets-quick-reference-4eh6 Bash Brackets Quick Reference Bash has lots of brackets and this is a cheat sheet to help you remember which ones to use.</description>
+    <pubDate>Thu, 14 Mar 2024 00:51:16 GMT</pubDate>
+  </item><item>
+    <title>quartz</title>
+    <link>https://larralapid.dev/notes/quartz</link>
+    <guid>https://larralapid.dev/notes/quartz</guid>
     <description></description>
-    <pubDate>Tue, 12 Mar 2024 00:22:06 GMT</pubDate>
+    <pubDate>Wed, 13 Mar 2024 21:31:23 GMT</pubDate>
   </item><item>
-    <title>index</title>
-    <link>https://larralapid.dev/notes/</link>
-    <guid>https://larralapid.dev/notes/</guid>
-    <description>“life” life.</description>
-    <pubDate>Mon, 11 Mar 2024 23:08:48 GMT</pubDate>
-  </item><item>
-    <title>zettel</title>
-    <link>https://larralapid.dev/notes/zettel</link>
-    <guid>https://larralapid.dev/notes/zettel</guid>
-    <description>Fleeting thoughts and other miscellaneous unflied braindump items will be prefaced with “zettel” and refactored/filed away the next time doing so seems like the most important task because i’m procrastinating on something.</description>
-    <pubDate>Mon, 11 Mar 2024 23:06:08 GMT</pubDate>
-  </item><item>
-    <title>dendron</title>
-    <link>https://larralapid.dev/notes/dendron</link>
-    <guid>https://larralapid.dev/notes/dendron</guid>
-    <description> tried in 2023, didn’t stick tried again in 2024 and i still don’t love it especially for digital garden #instead will use obsidian with the git#plugin Updating Dendron for GitHub Pages Deployment When attempting to update Dendron so that it updates GitHub Pages, the following sequence does not work as an appropriate next step: git commit dendron: site build Next, the following command was tried: npx dendron buildSite --stage prod followed by git commit This worked.</description>
-    <pubDate>Mon, 11 Mar 2024 23:04:43 GMT</pubDate>
-  </item><item>
-    <title>hardware</title>
-    <link>https://larralapid.dev/notes/Ecosystem</link>
-    <guid>https://larralapid.dev/notes/Ecosystem</guid>
-    <description> noteplan raycast dotfiles devon devonsphere express devonthink 3 pro bettertouchtool setapp streamdeck macbook vscode github typingmind hammerspoon alfred graph TD NP(NotePlan) --&gt; RPN(Review Previous Day&#039;s Notes) NP --&gt; MT(Manage Tasks) MT --&gt; CT(Complete Tasks) MT --&gt; CaT(Cancelled Tasks) MT --&gt; ST(Scheduled Tasks) NP --&gt; AD(Analog Diary) Setapp -.</description>
-    <pubDate>Mon, 11 Mar 2024 23:03:23 GMT</pubDate>
+    <title>digital garden</title>
+    <link>https://larralapid.dev/notes/digital-garden</link>
+    <guid>https://larralapid.dev/notes/digital-garden</guid>
+    <description> deployed with vercel larralapid.dev domain registered with wordpress built w/ quartz .</description>
+    <pubDate>Wed, 13 Mar 2024 21:30:45 GMT</pubDate>
   </item>
     </channel>
   </rss>

@@ -8,7 +8,6 @@
   "obsidian-file-cooker",
   "vantage-obsidian",
   "tag-wrangler",
-  "nldates-obsidian",
   "obsidian-meta-bind-plugin",
   "mermaid-tools",
   "table-checkboxes",
@@ -18,13 +17,8 @@
   "obsidian-linter",
   "metadata-menu",
   "templater-obsidian",
-  "obsidian-tracker",
   "historica",
-  "augmented-canvas",
-  "obsidian-account-linker",
   "obsidian-query-language",
-  "open-plugin-settings",
   "vscode-editor",
-  "various-complements",
-  "zettelflow"
+  "various-complements"
 ]

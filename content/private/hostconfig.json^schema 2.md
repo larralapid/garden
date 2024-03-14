@@ -1,0 +1,1 @@
+# hostconfig.json^schema
