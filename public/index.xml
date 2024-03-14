@@ -6,17 +6,23 @@
       <description>Last 10 notes on 🪴</description>
       <generator>Quartz -- quartz.jzhao.xyz</generator>
       <item>
+    <title>index</title>
+    <link>https://larralapid.dev/</link>
+    <guid>https://larralapid.dev/</guid>
+    <description> Ecosystem- my ever evolving setup and process some tags #zettel #question #til drugs .</description>
+    <pubDate>Thu, 14 Mar 2024 22:48:43 GMT</pubDate>
+  </item><item>
+    <title>20240314183757</title>
+    <link>https://larralapid.dev/notes/20240314183757</link>
+    <guid>https://larralapid.dev/notes/20240314183757</guid>
+    <description> npx quartz build locally pass commit and push pass obsidian plugins? sync process? using obsidian sync and using git in parent directory (no longer using obsidian/git integration) .</description>
+    <pubDate>Thu, 14 Mar 2024 22:44:51 GMT</pubDate>
+  </item><item>
     <title>20240314181511</title>
     <link>https://larralapid.dev/notes/20240314181511</link>
     <guid>https://larralapid.dev/notes/20240314181511</guid>
     <description>you can use emojis in console.log().</description>
     <pubDate>Thu, 14 Mar 2024 22:16:03 GMT</pubDate>
-  </item><item>
-    <title>index</title>
-    <link>https://larralapid.dev/</link>
-    <guid>https://larralapid.dev/</guid>
-    <description> Ecosystem- my ever evolving setup and process some tags #zettel #question #til .</description>
-    <pubDate>Thu, 14 Mar 2024 04:39:40 GMT</pubDate>
   </item><item>
     <title>20240314003342</title>
     <link>https://larralapid.dev/notes/20240314003342</link>
@@ -59,12 +65,6 @@
     <guid>https://larralapid.dev/notes/Ecosystem</guid>
     <description>reference maps &amp; standardization frontmatter attributes toolsuite noteplan raycast dotfiles devon devonsphere express devonthink 3 pro bettertouchtool setapp streamdeck macbook vscode github typingmind hammerspoon alfred graph TD NP(NotePlan) --&gt; RPN(Review Previous Day&#039;s Notes) NP --&gt; MT(Manage Tasks) MT --&gt; CT(Complete Tasks) MT --&gt; CaT(Cancelled Tasks) MT --&gt; ST(Scheduled Tasks) NP --&gt; AD(Analog Diary) Setapp -.</description>
     <pubDate>Thu, 14 Mar 2024 04:27:16 GMT</pubDate>
-  </item><item>
-    <title>draw.io</title>
-    <link>https://larralapid.dev/notes/draw.io</link>
-    <guid>https://larralapid.dev/notes/draw.io</guid>
-    <description> plugins p1: custom sidebard and placeholders ex: explore from here to the context menu svgdata: metadata and ids in the svg export number: numbers all shapes sql: add from sql update: adds data data driven diagrams web cola flow .</description>
-    <pubDate>Thu, 14 Mar 2024 04:24:53 GMT</pubDate>
   </item>
     </channel>
   </rss>
