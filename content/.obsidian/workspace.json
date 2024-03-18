@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "d518864740356d01",
+        "id": "b78f712d8385933d",
         "type": "tabs",
         "children": [
           {
-            "id": "fbf26913fa67161f",
+            "id": "4d0f0ce30bfa9d42",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "notes/20240313.055907PM.md",
+                "file": "notes/20240314183757.md",
                 "mode": "source",
                 "backlinks": true,
                 "source": false
@@ -21,17 +21,19 @@
             }
           },
           {
-            "id": "6a9e1f26d6932099",
+            "id": "c425d4f955090e2e",
             "type": "leaf",
             "state": {
-              "type": "release-notes",
+              "type": "markdown",
               "state": {
-                "currentVersion": "1.5.11"
+                "file": "index.md",
+                "mode": "source",
+                "backlinks": true,
+                "source": false
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -61,7 +63,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "dataview",
+                "query": "tag:#spotify",
                 "matchingCase": true,
                 "explainSearch": true,
                 "collapseAll": false,
@@ -88,22 +90,6 @@
                 "showSearch": false,
                 "searchQuery": ""
               }
-            }
-          },
-          {
-            "id": "3337da1fd932db53",
-            "type": "leaf",
-            "state": {
-              "type": "git-view",
-              "state": {}
-            }
-          },
-          {
-            "id": "e97ea9741bf9858e",
-            "type": "leaf",
-            "state": {
-              "type": "mk-path-view",
-              "state": {}
             }
           }
         ]
@@ -145,7 +131,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "notes/20240313.055907PM.md"
+                "file": "notes/20240314183757.md"
               }
             }
           },
@@ -155,16 +141,8 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "notes/20240313.055907PM.md"
+                "file": "notes/20240314183757.md"
               }
-            }
-          },
-          {
-            "id": "3e4092b93b6a4ff2",
-            "type": "leaf",
-            "state": {
-              "type": "git-history-view",
-              "state": {}
             }
           },
           {
@@ -184,7 +162,7 @@
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 1
       },
       {
         "id": "c01e9365e6fe7819",
@@ -197,7 +175,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "notes/20240313.055907PM.md",
+                "file": "notes/20240314183757.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -209,7 +187,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "notes/20240313.055907PM.md",
+                "file": "notes/20240314183757.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -235,44 +213,44 @@
       "canvas:Create new canvas": true,
       "zk-prefixer:Create new unique note": false,
       "random-note:Open random note": true,
-      "obsidian-excalidraw-plugin:Create new drawing": false,
       "janitor:Janitor: scan vault": false,
       "vantage-obsidian:Vantage - Advanced search builder": false,
       "mermaid-tools:Open Mermaid Toolbar": false,
       "juggl:Juggl global graph": false,
       "templater-obsidian:Templater": false,
       "vscode-editor:Create Code File": false,
-      "zettelflow:Create a new Zettel Note": false
+      "obsidian-excalidraw-plugin:Create new drawing": false
     }
   },
-  "active": "6a9e1f26d6932099",
+  "active": "4d0f0ce30bfa9d42",
   "lastOpenFiles": [
-    "private/sewing.md",
-    "private/Set up Google Maps API.md",
-    "private/ServiceNow.md",
-    "private/sba.md",
-    "private/render.md",
-    "private/product review tasks.md",
-    "private/process canvas.md",
-    "private/praison.ai.md",
-    "private/pinecone.io.md",
-    "private/pathfix.md",
-    "private/PatentsView.md",
-    "private/panda.monthly.md",
-    "private/panda planner.md",
-    "private/openAI.md",
-    "private/obsidian.md",
-    "private/novo.md",
-    "private/Notification Preferences are not available on Service Portal - Support and Troubleshooting.md",
-    "private/Notary_Manual.pdf.md",
-    "private/NLC.md",
-    "private/NLC june.md",
-    "private/NLC essays.md",
-    "private/modelbit.md",
-    "private/minority certification.md",
-    "private/metaphor.io.md",
-    "private/lunatask.md",
-    "private/Local changes.md",
+    "index.md",
+    "notes/20240314183757.md",
+    "notes/20240314181511.md",
+    "private/202402281113.md",
+    "notes/2024-02.md",
+    "notes/20240314003342.md",
+    "notes/diqo.md",
+    "notes/zettel.md",
+    "notes/Untitled.md",
+    "notes/deepgram.md",
+    "private/agi.md",
+    "private/202402281047.md",
+    "notes/20240314002824.md",
+    "private/202402281057.md",
+    "notes/diagramming.md",
+    "notes/20240314002716.md",
+    "private/202402281104.md",
+    "notes/Ecosystem.md",
+    "notes/draw.io.md",
+    "private/202402281100.md",
+    "notes/20240314002337.md",
+    "notes/spotify.md",
+    "private/202402281105.md",
+    "private/202402281103.md",
+    "notes/Is it possible for ServiceNow to read emails from a Shared Office 365 Mailbox - Support and Troubleshooting.md",
+    "private/202402281033.md",
+    "templates/scripts",
     "private/daddy.canvas",
     "private",
     "Spaces/Home",
@@ -282,7 +260,6 @@
     "_settings/fileClass",
     "_settings",
     "testpage.html",
-    "notes/braindump",
-    "Excalidraw"
+    "notes/braindump"
   ]
 }

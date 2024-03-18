@@ -23611,6 +23611,101 @@ var require_dayjs_min = __commonJS({
   }
 });
 
+// src/lib/codemirror.js
+var require_codemirror = __commonJS({
+  "src/lib/codemirror.js"(exports, module2) {
+    module2.exports = CodeMirror;
+  }
+});
+
+// src/mode/historica/historica.js
+var require_historica = __commonJS({
+  "src/mode/historica/historica.js"(exports, module2) {
+    (function(mod) {
+      if (typeof exports == "object" && typeof module2 == "object")
+        mod(require_codemirror());
+      else if (typeof define == "function" && define.amd)
+        define(["../../lib/codemirror"], mod);
+      else
+        mod(CodeMirror);
+    })(function(CodeMirror2) {
+      "use strict";
+      CodeMirror2.defineMode("historica", function() {
+        return {
+          startState: function() {
+            return {
+              inString: false,
+              stringType: "",
+              lhs: true,
+              inArray: 0
+            };
+          },
+          token: function(stream, state) {
+            if (!state.inString && (stream.peek() == '"' || stream.peek() == "'")) {
+              state.stringType = stream.peek();
+              stream.next();
+              state.inString = true;
+            }
+            if (stream.sol() && state.inArray === 0) {
+              state.lhs = true;
+            }
+            if (state.inString) {
+              while (state.inString && !stream.eol()) {
+                if (stream.peek() === state.stringType) {
+                  stream.next();
+                  state.inString = false;
+                } else if (stream.peek() === "\\") {
+                  stream.next();
+                  stream.next();
+                } else {
+                  stream.match(/^.[^\\\"\']*/);
+                }
+              }
+              return state.lhs ? "property string" : "string";
+            } else if (state.inArray && stream.peek() === "]") {
+              stream.next();
+              state.inArray--;
+              return "bracket";
+            } else if (state.lhs && stream.peek() === "[" && stream.skipTo("]")) {
+              stream.next();
+              if (stream.peek() === "]")
+                stream.next();
+              return "atom";
+            } else if (stream.peek() === "#") {
+              stream.skipToEnd();
+              return "comment";
+            } else if (stream.eatSpace()) {
+              return null;
+            } else if (state.lhs && stream.eatWhile(function(c5) {
+              return c5 != "=" && c5 != " ";
+            })) {
+              return "property";
+            } else if (state.lhs && stream.peek() === "=") {
+              stream.next();
+              state.lhs = false;
+              return null;
+            } else if (!state.lhs && stream.match(/^\d\d\d\d[\d\-\:\.T]*Z/)) {
+              return "atom";
+            } else if (!state.lhs && (stream.match("true") || stream.match("false"))) {
+              return "atom";
+            } else if (!state.lhs && stream.peek() === "[") {
+              state.inArray++;
+              stream.next();
+              return "bracket";
+            } else if (!state.lhs && stream.match(/^\-?\d+(?:\.\d+)?/)) {
+              return "number";
+            } else if (!stream.eatSpace()) {
+              stream.next();
+            }
+            return null;
+          }
+        };
+      });
+      CodeMirror2.defineMIME("text/x-historica", "historica");
+    });
+  }
+});
+
 // main.ts
 var main_exports = {};
 __export(main_exports, {
@@ -25680,50 +25775,65 @@ function extractStringBaseOnTag(tags, compromiseNLP, text) {
   }
   return "";
 }
-async function GetTimelineDataFromDocumentArrayWithChrono(documents, customChrono, compromiseNLP, userfulInformationPatternTag, showSummaryTitle) {
+function extractDataToParseResult(parsingResult, isShowSummaryTitle, userfulInformationPatternTag, compromiseNLP, text) {
+  let summaryTitle = "";
+  let startData = null;
+  let endData = null;
+  if (parsingResult.start) {
+    const start2 = parsingResult.start;
+    const parseText = parsingResult.text;
+    if (isShowSummaryTitle) {
+      summaryTitle = extractStringBaseOnTag(userfulInformationPatternTag, compromiseNLP, text);
+    } else {
+      summaryTitle = "";
+    }
+    startData = {
+      importantInformation: summaryTitle,
+      dateString: parseText,
+      date: start2.date().toString(),
+      unixTime: start2.date().getTime() / 1e3,
+      sentence: text.replace(parseText, `<historica-mark>${parseText}</historica-mark>`)
+    };
+  }
+  if (parsingResult.end) {
+    const start2 = parsingResult.end;
+    const parseText = parsingResult.text;
+    if (isShowSummaryTitle) {
+      summaryTitle = extractStringBaseOnTag(userfulInformationPatternTag, compromiseNLP, text);
+    } else {
+      summaryTitle = "";
+    }
+    endData = {
+      importantInformation: summaryTitle,
+      dateString: parseText,
+      date: start2.date().toString(),
+      unixTime: start2.date().getTime() / 1e3,
+      sentence: text.replace(parseText, `<historica-mark>${parseText}</historica-mark>`)
+    };
+  }
+  return [startData, endData];
+}
+async function GetTimelineDataFromDocumentArrayWithChrono(documents, customChrono, compromiseNLP, userfulInformationPatternTag, isShowSummaryTitle) {
   let timelineData = [];
   documents == null ? void 0 : documents.forEach(({ text }) => {
-    const parseResult = customChrono.parse(text);
-    if (!parseResult || parseResult.length === 0) {
+    const parseResults = customChrono.parse(text);
+    if (!parseResults || parseResults.length === 0) {
       return;
     }
-    let summaryTitle = "";
-    if (parseResult[0].start) {
-      const start2 = parseResult[0].start;
-      const parseText = parseResult[0].text;
-      if (showSummaryTitle) {
-        summaryTitle = extractStringBaseOnTag(userfulInformationPatternTag, compromiseNLP, text);
-      } else {
-        summaryTitle = "";
+    parseResults.forEach((parseResult) => {
+      const [startData, endData] = extractDataToParseResult(parseResult, isShowSummaryTitle, userfulInformationPatternTag, compromiseNLP, text);
+      if (startData) {
+        timelineData.push(startData);
       }
-      timelineData.push({
-        importantInformation: summaryTitle,
-        dateString: parseText,
-        date: start2.date().toString(),
-        unixTime: start2.date().getTime() / 1e3,
-        sentence: text.replace(parseText, `<historica-mark>${parseText}</historica-mark>`)
-      });
-    }
-    if (parseResult[0].end) {
-      if (showSummaryTitle) {
-        summaryTitle = extractStringBaseOnTag(userfulInformationPatternTag, compromiseNLP, text);
-      } else {
-        summaryTitle = "";
+      if (endData) {
+        timelineData.push(endData);
       }
-      const end2 = parseResult[0].end;
-      const parseText = parseResult[0].text;
-      timelineData.push({
-        importantInformation: summaryTitle,
-        dateString: parseText,
-        date: end2.date().toString(),
-        unixTime: end2.date().getTime() / 1e3,
-        sentence: text.replace(parseText, `<historica-mark>${parseText}</historica-mark>`)
-      });
-    }
+    });
   });
-  return timelineData.sort((a4, b2) => {
+  const sortTimelineData = timelineData.sort((a4, b2) => {
     return a4.unixTime - b2.unixTime;
   });
+  return sortTimelineData;
 }
 
 // main.ts
@@ -35727,7 +35837,6 @@ async function renderTimelineEntry(currentPlugin, timelineData, style, el) {
     const timelineEl = el.createEl("div", {
       cls: "historica-container-1"
     });
-    console.log(isMobile());
     if (!isMobile().any) {
       timelineEl.addEventListener("contextmenu", async (e3) => {
         e3.preventDefault();
@@ -57803,6 +57912,90 @@ async function setupCustomChrono() {
       };
     }
   });
+  customChrono.parsers.push({
+    pattern: () => {
+      return /\b(\d{4})[\/,-](\d{1,2})[\/,-](\d{1,2})\b/i;
+    },
+    extract: (context, match2) => {
+      return {
+        day: parseInt(match2[3]),
+        month: parseInt(match2[2]),
+        year: parseInt(match2[1])
+      };
+    }
+  });
+  customChrono.parsers.push({
+    pattern: () => {
+      return /\b(\d{1,2})[\/,-](\d{1,2})[\/,-](\d{4})\b/i;
+    },
+    extract: (context, match2) => {
+      return {
+        day: parseInt(match2[2]),
+        month: parseInt(match2[1]),
+        year: parseInt(match2[3])
+      };
+    }
+  });
+  customChrono.parsers.push({
+    pattern: () => {
+      return /\b(\d{1,2})\s+(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+(\d{4})\b/i;
+    },
+    extract: (context, match2) => {
+      return {
+        day: parseInt(match2[1]),
+        month: new Date(Date.parse(match2[2] + " 1, 2000")).getMonth() + 1,
+        year: parseInt(match2[3])
+      };
+    }
+  });
+  customChrono.parsers.push({
+    pattern: () => {
+      return /\b(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+(\d{1,2})\s+(\d{4})\b/i;
+    },
+    extract: (context, match2) => {
+      return {
+        day: parseInt(match2[2]),
+        month: new Date(Date.parse(match2[1] + " 1, 2000")).getMonth() + 1,
+        year: parseInt(match2[3])
+      };
+    }
+  });
+  customChrono.parsers.push({
+    pattern: () => {
+      return /\b(\d{4})[\/,-](\d{1,2})\b/i;
+    },
+    extract: (context, match2) => {
+      return {
+        day: 1,
+        month: parseInt(match2[2]),
+        year: parseInt(match2[1])
+      };
+    }
+  });
+  customChrono.parsers.push({
+    pattern: () => {
+      return /\b(\d{1,2})[\/,-](\d{4})\b/i;
+    },
+    extract: (context, match2) => {
+      return {
+        day: 1,
+        month: parseInt(match2[1]),
+        year: parseInt(match2[2])
+      };
+    }
+  });
+  customChrono.parsers.push({
+    pattern: () => {
+      return /\b(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+(\d{4})\b/i;
+    },
+    extract: (context, match2) => {
+      return {
+        day: 1,
+        month: new Date(Date.parse(match2[1] + " 1, 2000")).getMonth() + 1,
+        year: parseInt(match2[2])
+      };
+    }
+  });
   BCEpattern.forEach((pattern) => {
     customChrono.parsers.push({
       pattern: () => {
@@ -57955,6 +58148,8 @@ var corpus_default = [
 ];
 
 // main.ts
+var import_codemirror = __toESM(require_codemirror());
+var import_historica = __toESM(require_historica());
 var DEFAULT_SETTINGS = {
   latestFile: "",
   showUseFulInformation: false,
@@ -58003,13 +58198,21 @@ async function parseTFileAndUpdateDocuments(currentPlugin, file, documents) {
 }
 var HISTORICA_VIEW_TYPE = "historica-note-location";
 var HistoricaPlugin = class extends import_obsidian4.Plugin {
+  constructor() {
+    super(...arguments);
+    this.modesToKeep = ["hypermd", "markdown", "null", "xml"];
+    this.refreshLeaves = () => {
+      this.app.workspace.iterateCodeMirrors((cm) => cm.setOption("mode", cm.getOption("mode")));
+    };
+  }
   async onload() {
     await this.loadSettings();
+    this.app.workspace.iterateCodeMirrors((cm) => console.log(cm));
+    this.app.workspace.onLayoutReady(() => {
+      this.refreshLeaves();
+    });
     const customChrono = await setupCustomChrono();
     const currentPlugin = this;
-    currentPlugin.registerView("historica-preview", (leaf) => {
-      return new import_obsidian4.MarkdownView(leaf);
-    });
     this.registerMarkdownCodeBlockProcessor("historica", async (source, el, ctx) => {
       let blockConfig = (0, import_toml.parse)(source);
       if (Object.keys(blockConfig).length === 0) {
@@ -58059,6 +58262,12 @@ var HistoricaPlugin = class extends import_obsidian4.Plugin {
   async onunload() {
     const currentPlugin = this;
     await writeLatestFileToData(this, await getCurrentFile(currentPlugin));
+    for (const key in CodeMirror.modes) {
+      if (CodeMirror.modes.hasOwnProperty(key) && !this.modesToKeep.includes(key)) {
+        delete CodeMirror.modes[key];
+      }
+      this.refreshLeaves();
+    }
   }
   async loadSettings() {
     this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData());
