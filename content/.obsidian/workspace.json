@@ -8,25 +8,12 @@
         "type": "tabs",
         "children": [
           {
-            "id": "4d0f0ce30bfa9d42",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "notes/20240314183757.md",
-                "mode": "source",
-                "backlinks": true,
-                "source": false
-              }
-            }
-          },
-          {
             "id": "c425d4f955090e2e",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index.md",
+                "file": "notes/20240318211444.md",
                 "mode": "source",
                 "backlinks": true,
                 "source": false
@@ -114,7 +101,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "75ef105bc8dbb9a9",
@@ -131,7 +119,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "notes/20240314183757.md"
+                "file": "notes/20240318211444.md"
               }
             }
           },
@@ -141,7 +129,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "notes/20240314183757.md"
+                "file": "notes/20240318211444.md"
               }
             }
           },
@@ -175,7 +163,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "notes/20240314183757.md",
+                "file": "notes/20240318211444.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -187,7 +175,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "notes/20240314183757.md",
+                "file": "notes/20240318211444.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -203,7 +191,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -222,9 +211,14 @@
       "obsidian-excalidraw-plugin:Create new drawing": false
     }
   },
-  "active": "4d0f0ce30bfa9d42",
+  "active": "c425d4f955090e2e",
   "lastOpenFiles": [
     "index.md",
+    "notes/20240318211444.md",
+    "notes/20240318210359.md",
+    "notes/Ecosystem.md",
+    "notes/digital garden.md",
+    "notes/ServiceNow.md",
     "notes/20240314183757.md",
     "notes/20240314181511.md",
     "private/202402281113.md",
@@ -241,15 +235,10 @@
     "notes/diagramming.md",
     "notes/20240314002716.md",
     "private/202402281104.md",
-    "notes/Ecosystem.md",
     "notes/draw.io.md",
     "private/202402281100.md",
     "notes/20240314002337.md",
     "notes/spotify.md",
-    "private/202402281105.md",
-    "private/202402281103.md",
-    "notes/Is it possible for ServiceNow to read emails from a Shared Office 365 Mailbox - Support and Troubleshooting.md",
-    "private/202402281033.md",
     "templates/scripts",
     "private/daddy.canvas",
     "private",
