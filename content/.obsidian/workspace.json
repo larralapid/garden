@@ -4,16 +4,78 @@
     "type": "split",
     "children": [
       {
-        "id": "b78f712d8385933d",
+        "id": "c00e90cb9d47dddd",
+        "type": "split",
+        "children": [
+          {
+            "id": "b78f712d8385933d",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "c425d4f955090e2e",
+                "type": "leaf",
+                "state": {
+                  "type": "graph",
+                  "state": {}
+                }
+              },
+              {
+                "id": "3f38feefaa4ea331",
+                "type": "leaf",
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "notes/20240327212150.md",
+                    "mode": "source",
+                    "backlinks": true,
+                    "source": false
+                  }
+                }
+              },
+              {
+                "id": "8f002a6338d549bb",
+                "type": "leaf",
+                "state": {
+                  "type": "empty",
+                  "state": {}
+                }
+              }
+            ],
+            "currentTab": 1
+          },
+          {
+            "id": "0630b8c96009e02c",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "a29b5a76bf2dfc56",
+                "type": "leaf",
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "notes/20240327212150.md",
+                    "mode": "preview",
+                    "backlinks": true,
+                    "source": false
+                  }
+                }
+              }
+            ]
+          }
+        ],
+        "direction": "horizontal"
+      },
+      {
+        "id": "070da589c9e1836b",
         "type": "tabs",
         "children": [
           {
-            "id": "c425d4f955090e2e",
+            "id": "e3788111265f21dc",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "notes/20240318211444.md",
+                "file": "notes/20240327201749.md",
                 "mode": "source",
                 "backlinks": true,
                 "source": false
@@ -101,8 +163,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "75ef105bc8dbb9a9",
@@ -119,7 +180,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "notes/20240318211444.md"
+                "file": "notes/20240327212150.md"
               }
             }
           },
@@ -129,7 +190,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "notes/20240318211444.md"
+                "file": "notes/20240327212150.md"
               }
             }
           },
@@ -148,9 +209,17 @@
               "type": "juggl_style",
               "state": {}
             }
+          },
+          {
+            "id": "e776df666d4bbe7d",
+            "type": "leaf",
+            "state": {
+              "type": "mermaid-toolbar-view",
+              "state": {}
+            }
           }
         ],
-        "currentTab": 1
+        "currentTab": 4
       },
       {
         "id": "c01e9365e6fe7819",
@@ -163,7 +232,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "notes/20240318211444.md",
+                "file": "notes/20240327212150.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -175,7 +244,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "notes/20240318211444.md",
+                "file": "notes/20240327212150.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -191,11 +260,11 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "left-ribbon": {
     "hiddenItems": {
+      "vscode-editor:Create Code File": false,
       "command-palette:Open command palette": false,
       "switcher:Open quick switcher": true,
       "graph:Open graph view": false,
@@ -204,17 +273,24 @@
       "random-note:Open random note": true,
       "janitor:Janitor: scan vault": false,
       "vantage-obsidian:Vantage - Advanced search builder": false,
+      "obsidian-excalidraw-plugin:Create new drawing": false,
       "mermaid-tools:Open Mermaid Toolbar": false,
       "juggl:Juggl global graph": false,
-      "templater-obsidian:Templater": false,
-      "vscode-editor:Create Code File": false,
-      "obsidian-excalidraw-plugin:Create new drawing": false
+      "templater-obsidian:Templater": false
     }
   },
-  "active": "c425d4f955090e2e",
+  "active": "a29b5a76bf2dfc56",
   "lastOpenFiles": [
-    "index.md",
+    "notes/().md",
+    "notes/20240327212150.md",
+    "notes/mermaid-ai-test.mermaid",
+    "notes/20240327181719.md",
+    "notes/20240327201749.md",
+    "notes/20240327193201.md",
+    "notes/20240327165708.md",
+    "notes/20240327124427.md",
     "notes/20240318211444.md",
+    "index.md",
     "notes/20240318210359.md",
     "notes/Ecosystem.md",
     "notes/digital garden.md",
@@ -232,13 +308,6 @@
     "private/202402281047.md",
     "notes/20240314002824.md",
     "private/202402281057.md",
-    "notes/diagramming.md",
-    "notes/20240314002716.md",
-    "private/202402281104.md",
-    "notes/draw.io.md",
-    "private/202402281100.md",
-    "notes/20240314002337.md",
-    "notes/spotify.md",
     "templates/scripts",
     "private/daddy.canvas",
     "private",
@@ -248,7 +317,6 @@
     "_settings/sys_property",
     "_settings/fileClass",
     "_settings",
-    "testpage.html",
-    "notes/braindump"
+    "testpage.html"
   ]
 }

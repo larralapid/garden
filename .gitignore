@@ -1,6 +1,5 @@
 *.node_modules
 *.DS_Store
-content/.DS_Store
 node_modules
+*.obsidian
 content/.DS_Store
-content/notes/.DS_Store
