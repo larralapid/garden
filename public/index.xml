@@ -6,6 +6,12 @@
       <description>Last 10 notes on 🪴</description>
       <generator>Quartz -- quartz.jzhao.xyz</generator>
       <item>
+    <title>ServiceNow</title>
+    <link>https://larralapid.dev/notes/ServiceNow</link>
+    <guid>https://larralapid.dev/notes/ServiceNow</guid>
+    <description> Protected global application files can be unlocked when moving it to a globally scoped app the dispatchers in servicenow are in the sys_declarative_action_payload_definition_listsys_declarative_action_payload_definition prevent duplicate retrieved update sets before cloning, in the source instance, go to local update sets.</description>
+    <pubDate>Thu, 14 Mar 2024 22:54:55 GMT</pubDate>
+  </item><item>
     <title>index</title>
     <link>https://larralapid.dev/</link>
     <guid>https://larralapid.dev/</guid>
@@ -59,12 +65,6 @@
     <guid>https://larralapid.dev/notes/20240314002716</guid>
     <description>#question how to transfer chrome tabs across profiles?.</description>
     <pubDate>Thu, 14 Mar 2024 04:27:35 GMT</pubDate>
-  </item><item>
-    <title>ecosystem</title>
-    <link>https://larralapid.dev/notes/Ecosystem</link>
-    <guid>https://larralapid.dev/notes/Ecosystem</guid>
-    <description>reference maps &amp; standardization frontmatter attributes toolsuite noteplan raycast dotfiles devon devonsphere express devonthink 3 pro bettertouchtool setapp streamdeck macbook vscode github typingmind hammerspoon alfred graph TD NP(NotePlan) --&gt; RPN(Review Previous Day&#039;s Notes) NP --&gt; MT(Manage Tasks) MT --&gt; CT(Complete Tasks) MT --&gt; CaT(Cancelled Tasks) MT --&gt; ST(Scheduled Tasks) NP --&gt; AD(Analog Diary) Setapp -.</description>
-    <pubDate>Thu, 14 Mar 2024 04:27:16 GMT</pubDate>
   </item>
     </channel>
   </rss>
