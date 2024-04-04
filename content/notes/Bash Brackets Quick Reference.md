@@ -1,13 +1,14 @@
 ---
-title:
+title: 
 up: 
 tags: 
 raindrop_id: 462548429
 raindrop_last_update: 2022-12-01T22:10:42.863Z
 created: 2023-11-29 10:58:19 AM
-updated: 2024-03-13 08:51:16 PM
+updated: 2024-04-04 02:34:24 PM
+source: https://dev.to/rpalo/bash-brackets-quick-reference-4eh6
 ---
-# Bash Brackets Quick Reference
+# [[Bash]] Brackets Quick Reference
 
 
 # Metadata

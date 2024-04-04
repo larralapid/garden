@@ -3,10 +3,10 @@ title:
 up: 
 tags: 
 created: 2023-11-29 08:23:46 PM
-updated: 2024-03-14 12:23:22 AM
+updated: 2024-04-04 02:29:22 PM
 ---
 # agi
-* agi to test with building [[TrialTrack]] demo ^22sy3q
+* agi to test with building [[TrialTrack]] demo 
 	- superAGI
 	- 19:47 looking at demogpt.streamlit.app
 	- [larralapid/fk-tddGPT: AutoGPT for Web App Development](https://github.com/larralapid/fk-tddGPT)
@@ -14,7 +14,7 @@ updated: 2024-03-14 12:23:22 AM
 	- looked at, not interested 
 		- demoGPT GitHub repo
 
-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
+
 
 * [ ] Run the following code 
 ```

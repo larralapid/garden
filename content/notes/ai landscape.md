@@ -1,3 +1,10 @@
+---
+title:
+up: 
+tags: 
+created: 2023-11-29 10:58:16 AM
+updated: 2024-04-04 02:29:47 PM
+---
 # ai landscape
 - cohere
 - anthropic
@@ -42,7 +49,6 @@
 - cleargpt 
 
 
-### competitors i think? 
 - dify.ai 
 	- "get started free"
 	- no menu item regarding pricing 
@@ -65,6 +71,3 @@
 	- subdomain only, no custom url 
 	- no collaborators
 	- starts at 8/mo
-- 
-  ![image](notes/Pasted%20image%2020230909021103.png)
-  
