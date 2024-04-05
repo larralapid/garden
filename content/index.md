@@ -3,11 +3,17 @@ title: index
 up: 
 tags: 
 created: 2024-03-12 12:55:18 AM
-updated: 2024-03-14 06:48:43 PM
+updated: 2024-04-04 03:40:33 PM
 ---
+#### some starting points 
 - [[Ecosystem]]- my ever evolving setup and process 
 - some tags
 	- #zettel 
 	- #question 
 	- #til 
-- [[drugs]]
+- [[💡|ideas]]
+- [[obsidian]]
+- [[digital garden]]
+
+### Garden Tending Tasks
+- [ ] dataview objects don't render 
