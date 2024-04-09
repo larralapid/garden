@@ -1,5 +1,5 @@
 ---
-up: '[["life" life]]'
+up: "[[life stuff]]"
 tags: 
 id: ra1myavv1pa16b9nptb74bo
 title: drugs
