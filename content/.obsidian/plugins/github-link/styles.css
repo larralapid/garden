@@ -146,6 +146,10 @@ body.theme-dark {
 	font-size: 3em;
 }
 
+.github-link-sub-setting {
+	padding-left: 2rem;
+}
+
 .github-link-inline {
 	display: inline-flex;
 	background-color: var(--gh-color-canvas-default);
@@ -262,6 +266,15 @@ body.theme-dark {
 .github-link-table-refresh {
 	display: flex;
 	justify-content: flex-end;
+	align-items: center;
+}
+
+.github-link-table-refresh:has(a) {
+	justify-content: space-between;
+}
+
+.github-link-table-refresh-external-link {
+	font-size: 0.75rem;
 }
 
 .github-link-table-refresh > button > svg {

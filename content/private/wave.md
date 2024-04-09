@@ -1,2 +1,0 @@
-# wave
-somastack@wavereceipts.com 

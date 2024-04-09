@@ -1,6 +1,7 @@
 {
   "folder": "notes/Excalidraw",
   "cropFolder": "notes/Excalidraw/cropped",
+  "annotateFolder": "",
   "embedUseExcalidrawFolder": true,
   "templateFilePath": "",
   "scriptFolderPath": "templates/scripts/Excalidraw",
@@ -15,6 +16,7 @@
   "drawingFilenameDateTime": "",
   "useExcalidrawExtension": true,
   "cropPrefix": "cropped_",
+  "annotatePrefix": "annotated_",
   "previewImageType": "SVGIMG",
   "allowImageCache": true,
   "displayExportedImageIfAvailable": false,
@@ -29,6 +31,7 @@
   "matchThemeTrigger": false,
   "defaultMode": "normal",
   "defaultPenMode": "never",
+  "penModeCrosshairVisible": false,
   "allowPinchZoom": false,
   "allowWheelZoom": false,
   "zoomToFitOnOpen": true,
@@ -68,6 +71,7 @@
   "experimentalFileType": true,
   "experimentalFileTag": "✏️",
   "experimentalLivePreview": true,
+  "fadeOutExcalidrawMarkup": false,
   "experimentalEnableFourthFont": false,
   "experimantalFourthFont": "Virgil",
   "fieldSuggester": true,
@@ -77,7 +81,7 @@
   "library2": {
     "type": "excalidrawlib",
     "version": 2,
-    "source": "https://github.com/zsviczian/obsidian-excalidraw-plugin/releases/tag/2.0.23",
+    "source": "https://github.com/zsviczian/obsidian-excalidraw-plugin/releases/tag/2.1.1",
     "libraryItems": []
   },
   "imageElementNotice": true,
@@ -89,7 +93,7 @@
   "mdCSS": "",
   "scriptEngineSettings": {},
   "defaultTrayMode": true,
-  "previousRelease": "2.0.24",
+  "previousRelease": "2.1.1",
   "showReleaseNotes": true,
   "showNewVersionNotification": true,
   "latexBoilerplate": "\\color{blue}",
@@ -729,5 +733,7 @@
     }
   },
   "slidingPanesSupport": false,
-  "areaZoomLimit": 1
+  "areaZoomLimit": 1,
+  "longPressDesktop": 500,
+  "longPressMobile": 500
 }

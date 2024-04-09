@@ -10,11 +10,11 @@ var __getOwnPropNames = Object.getOwnPropertyNames;
 var __getProtoOf = Object.getPrototypeOf;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
 var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-var __esm = (fn, res) => function __init() {
-  return fn && (res = (0, fn[__getOwnPropNames(fn)[0]])(fn = 0)), res;
+var __esm = (fn2, res) => function __init() {
+  return fn2 && (res = (0, fn2[__getOwnPropNames(fn2)[0]])(fn2 = 0)), res;
 };
-var __commonJS = (cb, mod) => function __require() {
-  return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
+var __commonJS = (cb, mod2) => function __require() {
+  return mod2 || (0, cb[__getOwnPropNames(cb)[0]])((mod2 = { exports: {} }).exports, mod2), mod2.exports;
 };
 var __export = (target, all) => {
   for (var name in all)
@@ -28,15 +28,15 @@ var __copyProps = (to, from, except, desc) => {
   }
   return to;
 };
-var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+var __toESM = (mod2, isNodeMode, target) => (target = mod2 != null ? __create(__getProtoOf(mod2)) : {}, __copyProps(
   // If the importer is in node compatibility mode or this is not an ESM
   // file that has been converted to a CommonJS file using a Babel-
   // compatible transform (i.e. "__esModule" has not been set), then set
   // "default" to the CommonJS "module.exports" for node compatibility.
-  isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
-  mod
+  isNodeMode || !mod2 || !mod2.__esModule ? __defProp(target, "default", { value: mod2, enumerable: true }) : target,
+  mod2
 ));
-var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+var __toCommonJS = (mod2) => __copyProps(__defProp({}, "__esModule", { value: true }), mod2);
 var __publicField = (obj, key, value) => {
   __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
   return value;
@@ -334,13 +334,13 @@ var require_directives = __commonJS({
               onError(0, "%YAML directive should contain exactly one part");
               return false;
             }
-            const [version] = parts;
-            if (version === "1.1" || version === "1.2") {
-              this.yaml.version = version;
+            const [version2] = parts;
+            if (version2 === "1.1" || version2 === "1.2") {
+              this.yaml.version = version2;
               return true;
             } else {
-              const isValid = /^\d+\.\d+$/.test(version);
-              onError(6, `Unsupported YAML version ${version}`, isValid);
+              const isValid = /^\d+\.\d+$/.test(version2);
+              onError(6, `Unsupported YAML version ${version2}`, isValid);
               return false;
             }
           }
@@ -508,38 +508,38 @@ var require_applyReviver = __commonJS({
         if (Array.isArray(val)) {
           for (let i2 = 0, len = val.length; i2 < len; ++i2) {
             const v0 = val[i2];
-            const v1 = applyReviver(reviver, val, String(i2), v0);
-            if (v1 === void 0)
+            const v12 = applyReviver(reviver, val, String(i2), v0);
+            if (v12 === void 0)
               delete val[i2];
-            else if (v1 !== v0)
-              val[i2] = v1;
+            else if (v12 !== v0)
+              val[i2] = v12;
           }
         } else if (val instanceof Map) {
-          for (const k2 of Array.from(val.keys())) {
-            const v0 = val.get(k2);
-            const v1 = applyReviver(reviver, val, k2, v0);
-            if (v1 === void 0)
-              val.delete(k2);
-            else if (v1 !== v0)
-              val.set(k2, v1);
+          for (const k3 of Array.from(val.keys())) {
+            const v0 = val.get(k3);
+            const v12 = applyReviver(reviver, val, k3, v0);
+            if (v12 === void 0)
+              val.delete(k3);
+            else if (v12 !== v0)
+              val.set(k3, v12);
           }
         } else if (val instanceof Set) {
           for (const v0 of Array.from(val)) {
-            const v1 = applyReviver(reviver, val, v0, v0);
-            if (v1 === void 0)
+            const v12 = applyReviver(reviver, val, v0, v0);
+            if (v12 === void 0)
               val.delete(v0);
-            else if (v1 !== v0) {
+            else if (v12 !== v0) {
               val.delete(v0);
-              val.add(v1);
+              val.add(v12);
             }
           }
         } else {
-          for (const [k2, v0] of Object.entries(val)) {
-            const v1 = applyReviver(reviver, val, k2, v0);
-            if (v1 === void 0)
-              delete val[k2];
-            else if (v1 !== v0)
-              val[k2] = v1;
+          for (const [k3, v0] of Object.entries(val)) {
+            const v12 = applyReviver(reviver, val, k3, v0);
+            if (v12 === void 0)
+              delete val[k3];
+            else if (v12 !== v0)
+              val[k3] = v12;
           }
         }
       }
@@ -556,7 +556,7 @@ var require_toJS = __commonJS({
     var identity = require_identity();
     function toJS(value, arg, ctx) {
       if (Array.isArray(value))
-        return value.map((v2, i2) => toJS(v2, String(i2), ctx));
+        return value.map((v6, i2) => toJS(v6, String(i2), ctx));
       if (value && typeof value.toJSON === "function") {
         if (!ctx || !identity.hasAnchor(value))
           return value.toJSON(arg, ctx);
@@ -836,18 +836,18 @@ var require_Collection = __commonJS({
     var identity = require_identity();
     var Node = require_Node();
     function collectionFromPath(schema, path2, value) {
-      let v2 = value;
+      let v6 = value;
       for (let i2 = path2.length - 1; i2 >= 0; --i2) {
-        const k2 = path2[i2];
-        if (typeof k2 === "number" && Number.isInteger(k2) && k2 >= 0) {
+        const k3 = path2[i2];
+        if (typeof k3 === "number" && Number.isInteger(k3) && k3 >= 0) {
           const a2 = [];
-          a2[k2] = v2;
-          v2 = a2;
+          a2[k3] = v6;
+          v6 = a2;
         } else {
-          v2 = /* @__PURE__ */ new Map([[k2, v2]]);
+          v6 = /* @__PURE__ */ new Map([[k3, v6]]);
         }
       }
-      return createNode.createNode(v2, void 0, {
+      return createNode.createNode(v6, void 0, {
         aliasDuplicateObjects: false,
         keepUndefined: false,
         onAnchor: () => {
@@ -1483,7 +1483,7 @@ var require_stringify = __commonJS({
         props.push(doc.directives.tagString(tag));
       return props.join(" ");
     }
-    function stringify(item, ctx, onComment, onChompKeep) {
+    function stringify2(item, ctx, onComment, onChompKeep) {
       if (identity.isPair(item))
         return item.toString(ctx, onComment, onChompKeep);
       if (identity.isAlias(item)) {
@@ -1513,7 +1513,7 @@ var require_stringify = __commonJS({
 ${ctx.indent}${str2}`;
     }
     exports2.createStringifyContext = createStringifyContext;
-    exports2.stringify = stringify;
+    exports2.stringify = stringify2;
   }
 });
 
@@ -1523,7 +1523,7 @@ var require_stringifyPair = __commonJS({
     "use strict";
     var identity = require_identity();
     var Scalar = require_Scalar();
-    var stringify = require_stringify();
+    var stringify2 = require_stringify();
     var stringifyComment = require_stringifyComment();
     function stringifyPair({ key, value }, ctx, onComment, onChompKeep) {
       const { allNullValues, doc, indent, indentStep, options: { commentString, indentSeq, simpleKeys } } = ctx;
@@ -1545,7 +1545,7 @@ var require_stringifyPair = __commonJS({
       });
       let keyCommentDone = false;
       let chompKeep = false;
-      let str2 = stringify.stringify(key, ctx, () => keyCommentDone = true, () => chompKeep = true);
+      let str2 = stringify2.stringify(key, ctx, () => keyCommentDone = true, () => chompKeep = true);
       if (!explicitKey && !ctx.inFlow && str2.length > 1024) {
         if (simpleKeys)
           throw new Error("With simple keys, single line scalar must not span more than 1024 characters");
@@ -1597,7 +1597,7 @@ ${indent}:`;
         ctx.indent = ctx.indent.substring(2);
       }
       let valueCommentDone = false;
-      const valueStr = stringify.stringify(value, ctx, () => valueCommentDone = true, () => chompKeep = true);
+      const valueStr = stringify2.stringify(value, ctx, () => valueCommentDone = true, () => chompKeep = true);
       let ws = " ";
       if (keyComment || vsb || vcb) {
         ws = vsb ? "\n" : "";
@@ -1675,8 +1675,8 @@ var require_log = __commonJS({
 var require_addPairToJSMap = __commonJS({
   "node_modules/yaml/dist/nodes/addPairToJSMap.js"(exports2) {
     "use strict";
-    var log = require_log();
-    var stringify = require_stringify();
+    var log2 = require_log();
+    var stringify2 = require_stringify();
     var identity = require_identity();
     var Scalar = require_Scalar();
     var toJS = require_toJS();
@@ -1743,7 +1743,7 @@ var require_addPairToJSMap = __commonJS({
       if (typeof jsKey !== "object")
         return String(jsKey);
       if (identity.isNode(key) && ctx?.doc) {
-        const strCtx = stringify.createStringifyContext(ctx.doc, {});
+        const strCtx = stringify2.createStringifyContext(ctx.doc, {});
         strCtx.anchors = /* @__PURE__ */ new Set();
         for (const node of ctx.anchors.keys())
           strCtx.anchors.add(node.anchor);
@@ -1754,7 +1754,7 @@ var require_addPairToJSMap = __commonJS({
           let jsonStr = JSON.stringify(strKey);
           if (jsonStr.length > 40)
             jsonStr = jsonStr.substring(0, 36) + '..."';
-          log.warn(ctx.doc.options.logLevel, `Keys with collection values will be stringified due to JS Object restrictions: ${jsonStr}. Set mapAsMap: true to use object keys.`);
+          log2.warn(ctx.doc.options.logLevel, `Keys with collection values will be stringified due to JS Object restrictions: ${jsonStr}. Set mapAsMap: true to use object keys.`);
           ctx.mapKeyWarned = true;
         }
         return strKey;
@@ -1774,9 +1774,9 @@ var require_Pair = __commonJS({
     var addPairToJSMap = require_addPairToJSMap();
     var identity = require_identity();
     function createPair(key, value, ctx) {
-      const k2 = createNode.createNode(key, void 0, ctx);
-      const v2 = createNode.createNode(value, void 0, ctx);
-      return new Pair(k2, v2);
+      const k3 = createNode.createNode(key, void 0, ctx);
+      const v6 = createNode.createNode(value, void 0, ctx);
+      return new Pair(k3, v6);
     }
     var Pair = class _Pair {
       constructor(key, value = null) {
@@ -1810,12 +1810,12 @@ var require_stringifyCollection = __commonJS({
   "node_modules/yaml/dist/stringify/stringifyCollection.js"(exports2) {
     "use strict";
     var identity = require_identity();
-    var stringify = require_stringify();
+    var stringify2 = require_stringify();
     var stringifyComment = require_stringifyComment();
     function stringifyCollection(collection, ctx, options) {
       const flow = ctx.inFlow ?? collection.flow;
-      const stringify2 = flow ? stringifyFlowCollection : stringifyBlockCollection;
-      return stringify2(collection, ctx, options);
+      const stringify3 = flow ? stringifyFlowCollection : stringifyBlockCollection;
+      return stringify3(collection, ctx, options);
     }
     function stringifyBlockCollection({ comment, items }, ctx, { blockItemPrefix, flowChars, itemIndent, onChompKeep, onComment }) {
       const { indent, options: { commentString } } = ctx;
@@ -1840,7 +1840,7 @@ var require_stringifyCollection = __commonJS({
           }
         }
         chompKeep = false;
-        let str3 = stringify.stringify(item, itemCtx, () => comment2 = null, () => chompKeep = true);
+        let str3 = stringify2.stringify(item, itemCtx, () => comment2 = null, () => chompKeep = true);
         if (comment2)
           str3 += stringifyComment.lineComment(str3, itemIndent, commentString(comment2));
         if (chompKeep && comment2)
@@ -1907,7 +1907,7 @@ ${indent}${line}` : "\n";
         }
         if (comment)
           reqNewline = true;
-        let str2 = stringify.stringify(item, itemCtx, () => comment = null);
+        let str2 = stringify2.stringify(item, itemCtx, () => comment = null);
         if (i2 < items.length - 1)
           str2 += ",";
         if (comment)
@@ -1960,12 +1960,12 @@ var require_YAMLMap = __commonJS({
     var Pair = require_Pair();
     var Scalar = require_Scalar();
     function findPair(items, key) {
-      const k2 = identity.isScalar(key) ? key.value : key;
+      const k3 = identity.isScalar(key) ? key.value : key;
       for (const it2 of items) {
         if (identity.isPair(it2)) {
-          if (it2.key === key || it2.key === k2)
+          if (it2.key === key || it2.key === k3)
             return it2;
-          if (identity.isScalar(it2.key) && it2.key.value === k2)
+          if (identity.isScalar(it2.key) && it2.key.value === k3)
             return it2;
         }
       }
@@ -2331,8 +2331,8 @@ var require_stringifyNumber = __commonJS({
           i2 = n2.length;
           n2 += ".";
         }
-        let d2 = minFractionDigits - (n2.length - i2 - 1);
-        while (d2-- > 0)
+        let d3 = minFractionDigits - (n2.length - i2 - 1);
+        while (d3-- > 0)
           n2 += "0";
       }
       return n2;
@@ -2814,9 +2814,9 @@ var require_float2 = __commonJS({
         const node = new Scalar.Scalar(parseFloat(str2.replace(/_/g, "")));
         const dot = str2.indexOf(".");
         if (dot !== -1) {
-          const f2 = str2.substring(dot + 1).replace(/_/g, "");
-          if (f2[f2.length - 1] === "0")
-            node.minFractionDigits = f2.length;
+          const f3 = str2.substring(dot + 1).replace(/_/g, "");
+          if (f3[f3.length - 1] === "0")
+            node.minFractionDigits = f3.length;
         }
         return node;
       },
@@ -3069,10 +3069,10 @@ var require_timestamp = __commonJS({
         let date = Date.UTC(year, month - 1, day, hour || 0, minute || 0, second || 0, millisec);
         const tz = match[8];
         if (tz && tz !== "Z") {
-          let d2 = parseSexagesimal(tz, false);
-          if (Math.abs(d2) < 30)
-            d2 *= 60;
-          date -= 6e4 * d2;
+          let d3 = parseSexagesimal(tz, false);
+          if (Math.abs(d3) < 30)
+            d3 *= 60;
+          date -= 6e4 * d3;
         }
         return new Date(date);
       },
@@ -3247,7 +3247,7 @@ var require_stringifyDocument = __commonJS({
   "node_modules/yaml/dist/stringify/stringifyDocument.js"(exports2) {
     "use strict";
     var identity = require_identity();
-    var stringify = require_stringify();
+    var stringify2 = require_stringify();
     var stringifyComment = require_stringifyComment();
     function stringifyDocument(doc, options) {
       const lines = [];
@@ -3262,7 +3262,7 @@ var require_stringifyDocument = __commonJS({
       }
       if (hasDirectives)
         lines.push("---");
-      const ctx = stringify.createStringifyContext(doc, options);
+      const ctx = stringify2.createStringifyContext(doc, options);
       const { commentString } = ctx.options;
       if (doc.commentBefore) {
         if (lines.length !== 1)
@@ -3284,7 +3284,7 @@ var require_stringifyDocument = __commonJS({
           contentComment = doc.contents.comment;
         }
         const onChompKeep = contentComment ? void 0 : () => chompKeep = true;
-        let body = stringify.stringify(doc.contents, ctx, () => contentComment = null, onChompKeep);
+        let body = stringify2.stringify(doc.contents, ctx, () => contentComment = null, onChompKeep);
         if (contentComment)
           body += stringifyComment.lineComment(body, "", commentString(contentComment));
         if ((body[0] === "|" || body[0] === ">") && lines[lines.length - 1] === "---") {
@@ -3292,7 +3292,7 @@ var require_stringifyDocument = __commonJS({
         } else
           lines.push(body);
       } else {
-        lines.push(stringify.stringify(doc.contents, ctx));
+        lines.push(stringify2.stringify(doc.contents, ctx));
       }
       if (doc.directives?.docEnd) {
         if (doc.comment) {
@@ -3361,14 +3361,14 @@ var require_Document = __commonJS({
           version: "1.2"
         }, options);
         this.options = opt;
-        let { version } = opt;
+        let { version: version2 } = opt;
         if (options?._directives) {
           this.directives = options._directives.atDocument();
           if (this.directives.yaml.explicit)
-            version = this.directives.yaml.version;
+            version2 = this.directives.yaml.version;
         } else
-          this.directives = new directives.Directives({ version });
-        this.setSchema(version, options);
+          this.directives = new directives.Directives({ version: version2 });
+        this.setSchema(version2, options);
         this.contents = value === void 0 ? null : this.createNode(value, _replacer, options);
       }
       /**
@@ -3426,7 +3426,7 @@ var require_Document = __commonJS({
           value = replacer.call({ "": value }, "", value);
           _replacer = replacer;
         } else if (Array.isArray(replacer)) {
-          const keyToStr = (v2) => typeof v2 === "number" || v2 instanceof String || v2 instanceof Number;
+          const keyToStr = (v6) => typeof v6 === "number" || v6 instanceof String || v6 instanceof Number;
           const asStr = replacer.filter(keyToStr).map(String);
           if (asStr.length > 0)
             replacer = replacer.concat(asStr);
@@ -3461,9 +3461,9 @@ var require_Document = __commonJS({
        * recursively wrapping all values as `Scalar` or `Collection` nodes.
        */
       createPair(key, value, options = {}) {
-        const k2 = this.createNode(key, null, options);
-        const v2 = this.createNode(value, null, options);
-        return new Pair.Pair(k2, v2);
+        const k3 = this.createNode(key, null, options);
+        const v6 = this.createNode(value, null, options);
+        return new Pair.Pair(k3, v6);
       }
       /**
        * Removes a value from the document.
@@ -3548,11 +3548,11 @@ var require_Document = __commonJS({
        *
        * Overrides all previously set schema options.
        */
-      setSchema(version, options = {}) {
-        if (typeof version === "number")
-          version = String(version);
+      setSchema(version2, options = {}) {
+        if (typeof version2 === "number")
+          version2 = String(version2);
         let opt;
-        switch (version) {
+        switch (version2) {
           case "1.1":
             if (this.directives)
               this.directives.yaml.version = "1.1";
@@ -3563,9 +3563,9 @@ var require_Document = __commonJS({
           case "1.2":
           case "next":
             if (this.directives)
-              this.directives.yaml.version = version;
+              this.directives.yaml.version = version2;
             else
-              this.directives = new directives.Directives({ version });
+              this.directives = new directives.Directives({ version: version2 });
             opt = { merge: false, resolveKnownTags: true, schema: "core" };
             break;
           case null:
@@ -3574,7 +3574,7 @@ var require_Document = __commonJS({
             opt = null;
             break;
           default: {
-            const sv = JSON.stringify(version);
+            const sv = JSON.stringify(version2);
             throw new Error(`Expected '1.1', '1.2' or null as first argument, but found: ${sv}`);
           }
         }
@@ -3635,22 +3635,22 @@ var require_errors = __commonJS({
   "node_modules/yaml/dist/errors.js"(exports2) {
     "use strict";
     var YAMLError = class extends Error {
-      constructor(name, pos, code, message) {
+      constructor(name, pos, code, message2) {
         super();
         this.name = name;
         this.code = code;
-        this.message = message;
+        this.message = message2;
         this.pos = pos;
       }
     };
     var YAMLParseError = class extends YAMLError {
-      constructor(pos, code, message) {
-        super("YAMLParseError", pos, code, message);
+      constructor(pos, code, message2) {
+        super("YAMLParseError", pos, code, message2);
       }
     };
     var YAMLWarning = class extends YAMLError {
-      constructor(pos, code, message) {
-        super("YAMLWarning", pos, code, message);
+      constructor(pos, code, message2) {
+        super("YAMLWarning", pos, code, message2);
       }
     };
     var prettifyError = (src, lc) => (error) => {
@@ -4370,8 +4370,8 @@ var require_resolve_block_scalar = __commonJS({
             trimIndent = indent.length;
         } else {
           if (indent.length < trimIndent) {
-            const message = "Block scalars with more-indented leading empty lines must use an explicit indentation indicator";
-            onError(offset + indent.length, "MISSING_CHAR", message);
+            const message2 = "Block scalars with more-indented leading empty lines must use an explicit indentation indicator";
+            onError(offset + indent.length, "MISSING_CHAR", message2);
           }
           if (header.indent === 0)
             trimIndent = indent.length;
@@ -4397,8 +4397,8 @@ var require_resolve_block_scalar = __commonJS({
           content = content.slice(0, -1);
         if (content && indent.length < trimIndent) {
           const src = header.indent ? "explicit indentation indicator" : "first line";
-          const message = `Block scalar lines must not be less indented than their ${src}`;
-          onError(offset - content.length - (crlf ? 2 : 1), "BAD_INDENT", message);
+          const message2 = `Block scalar lines must not be less indented than their ${src}`;
+          onError(offset - content.length - (crlf ? 2 : 1), "BAD_INDENT", message2);
           indent = "";
         }
         if (type === Scalar.Scalar.BLOCK_LITERAL) {
@@ -4475,8 +4475,8 @@ var require_resolve_block_scalar = __commonJS({
             break;
           case "comment":
             if (strict && !hasSpace) {
-              const message = "Comments must be separated from other tokens by white space characters";
-              onError(token, "MISSING_CHAR", message);
+              const message2 = "Comments must be separated from other tokens by white space characters";
+              onError(token, "MISSING_CHAR", message2);
             }
             length += token.source.length;
             comment = token.source.substring(1);
@@ -4486,8 +4486,8 @@ var require_resolve_block_scalar = __commonJS({
             length += token.source.length;
             break;
           default: {
-            const message = `Unexpected token in block scalar header: ${token.type}`;
-            onError(token, "UNEXPECTED_TOKEN", message);
+            const message2 = `Unexpected token in block scalar header: ${token.type}`;
+            onError(token, "UNEXPECTED_TOKEN", message2);
             const ts = token.source;
             if (ts && typeof ts === "string")
               length += ts.length;
@@ -4867,8 +4867,8 @@ var require_compose_node = __commonJS({
             node.anchor = anchor.source.substring(1);
           break;
         default: {
-          const message = token.type === "error" ? token.message : `Unsupported token (type: ${token.type})`;
-          onError(token, "UNEXPECTED_TOKEN", message);
+          const message2 = token.type === "error" ? token.message : `Unsupported token (type: ${token.type})`;
+          onError(token, "UNEXPECTED_TOKEN", message2);
           node = composeEmptyNode(ctx, token.offset, void 0, null, props, onError);
           isSrcToken = false;
         }
@@ -5017,12 +5017,12 @@ var require_composer = __commonJS({
         this.prelude = [];
         this.errors = [];
         this.warnings = [];
-        this.onError = (source, code, message, warning) => {
+        this.onError = (source, code, message2, warning) => {
           const pos = getErrorPos(source);
           if (warning)
-            this.warnings.push(new errors.YAMLWarning(pos, code, message));
+            this.warnings.push(new errors.YAMLWarning(pos, code, message2));
           else
-            this.errors.push(new errors.YAMLParseError(pos, code, message));
+            this.errors.push(new errors.YAMLParseError(pos, code, message2));
         };
         this.directives = new directives.Directives({ version: options.version || "1.2" });
         this.options = options;
@@ -5090,10 +5090,10 @@ ${cb}` : comment;
           console.dir(token, { depth: null });
         switch (token.type) {
           case "directive":
-            this.directives.add(token.source, (offset, message, warning) => {
+            this.directives.add(token.source, (offset, message2, warning) => {
               const pos = getErrorPos(token);
               pos[0] += offset;
-              this.onError(pos, "BAD_DIRECTIVE", message, warning);
+              this.onError(pos, "BAD_DIRECTIVE", message2, warning);
             });
             this.prelude.push(token.source);
             this.atDirectives = true;
@@ -5182,12 +5182,12 @@ var require_cst_scalar = __commonJS({
     var stringifyString = require_stringifyString();
     function resolveAsScalar(token, strict = true, onError) {
       if (token) {
-        const _onError = (pos, code, message) => {
+        const _onError = (pos, code, message2) => {
           const offset = typeof pos === "number" ? pos : Array.isArray(pos) ? pos[0] : pos.offset;
           if (onError)
-            onError(offset, code, message);
+            onError(offset, code, message2);
           else
-            throw new errors.YAMLParseError([offset, offset + 1], code, message);
+            throw new errors.YAMLParseError([offset, offset + 1], code, message2);
         };
         switch (token.type) {
           case "scalar":
@@ -5361,7 +5361,7 @@ var require_cst_scalar = __commonJS({
 var require_cst_stringify = __commonJS({
   "node_modules/yaml/dist/parse/cst-stringify.js"(exports2) {
     "use strict";
-    var stringify = (cst) => "type" in cst ? stringifyToken(cst) : stringifyItem(cst);
+    var stringify2 = (cst) => "type" in cst ? stringifyToken(cst) : stringifyItem(cst);
     function stringifyToken(token) {
       switch (token.type) {
         case "block-scalar": {
@@ -5414,7 +5414,7 @@ var require_cst_stringify = __commonJS({
         res += stringifyToken(value);
       return res;
     }
-    exports2.stringify = stringify;
+    exports2.stringify = stringify2;
   }
 });
 
@@ -6313,8 +6313,8 @@ var require_parser = __commonJS({
         }
         const type = cst.tokenType(source);
         if (!type) {
-          const message = `Not a YAML token: ${source}`;
-          yield* this.pop({ type: "error", offset: this.offset, message, source });
+          const message2 = `Not a YAML token: ${source}`;
+          yield* this.pop({ type: "error", offset: this.offset, message: message2, source });
           this.offset += source.length;
         } else if (type === "scalar") {
           this.atNewLine = false;
@@ -6404,8 +6404,8 @@ var require_parser = __commonJS({
       *pop(error) {
         const token = error ?? this.stack.pop();
         if (!token) {
-          const message = "Tried to pop an empty stack";
-          yield { type: "error", offset: this.offset, source: "", message };
+          const message2 = "Tried to pop an empty stack";
+          yield { type: "error", offset: this.offset, source: "", message: message2 };
         } else if (this.stack.length === 0) {
           yield token;
         } else {
@@ -7033,7 +7033,7 @@ var require_public_api = __commonJS({
     var composer = require_composer();
     var Document = require_Document();
     var errors = require_errors();
-    var log = require_log();
+    var log2 = require_log();
     var lineCounter = require_line_counter();
     var parser = require_parser();
     function parseOptions(options) {
@@ -7074,7 +7074,7 @@ var require_public_api = __commonJS({
       }
       return doc;
     }
-    function parse2(src, reviver, options) {
+    function parse3(src, reviver, options) {
       let _reviver = void 0;
       if (typeof reviver === "function") {
         _reviver = reviver;
@@ -7084,7 +7084,7 @@ var require_public_api = __commonJS({
       const doc = parseDocument(src, options);
       if (!doc)
         return null;
-      doc.warnings.forEach((warning) => log.warn(doc.options.logLevel, warning));
+      doc.warnings.forEach((warning) => log2.warn(doc.options.logLevel, warning));
       if (doc.errors.length > 0) {
         if (doc.options.logLevel !== "silent")
           throw doc.errors[0];
@@ -7093,7 +7093,7 @@ var require_public_api = __commonJS({
       }
       return doc.toJS(Object.assign({ reviver: _reviver }, options));
     }
-    function stringify(value, replacer, options) {
+    function stringify2(value, replacer, options) {
       let _replacer = null;
       if (typeof replacer === "function" || Array.isArray(replacer)) {
         _replacer = replacer;
@@ -7113,10 +7113,10 @@ var require_public_api = __commonJS({
       }
       return new Document.Document(value, _replacer, options).toString(options);
     }
-    exports2.parse = parse2;
+    exports2.parse = parse3;
     exports2.parseAllDocuments = parseAllDocuments;
     exports2.parseDocument = parseDocument;
-    exports2.stringify = stringify;
+    exports2.stringify = stringify2;
   }
 });
 
@@ -7172,26 +7172,62 @@ var require_dist = __commonJS({
   }
 });
 
+// node_modules/dedent-js/lib/index.js
+var require_lib = __commonJS({
+  "node_modules/dedent-js/lib/index.js"(exports2, module2) {
+    module2.exports = function dedent2(templateStrings) {
+      var values = [];
+      for (var _i = 1; _i < arguments.length; _i++) {
+        values[_i - 1] = arguments[_i];
+      }
+      var matches = [];
+      var strings = typeof templateStrings === "string" ? [templateStrings] : templateStrings.slice();
+      strings[strings.length - 1] = strings[strings.length - 1].replace(/\r?\n([\t ]*)$/, "");
+      for (var i2 = 0; i2 < strings.length; i2++) {
+        var match = void 0;
+        if (match = strings[i2].match(/\n[\t ]+/g)) {
+          matches.push.apply(matches, match);
+        }
+      }
+      if (matches.length) {
+        var size = Math.min.apply(Math, matches.map(function(value) {
+          return value.length - 1;
+        }));
+        var pattern = new RegExp("\n[	 ]{" + size + "}", "g");
+        for (var i2 = 0; i2 < strings.length; i2++) {
+          strings[i2] = strings[i2].replace(pattern, "\n");
+        }
+      }
+      strings[0] = strings[0].replace(/^\r?\n/, "");
+      var string = strings[0];
+      for (var i2 = 0; i2 < values.length; i2++) {
+        string += values[i2] + strings[i2 + 1];
+      }
+      return string;
+    };
+  }
+});
+
 // node_modules/localforage/dist/localforage.js
 var require_localforage = __commonJS({
   "node_modules/localforage/dist/localforage.js"(exports2, module2) {
-    (function(f2) {
+    (function(f3) {
       if (typeof exports2 === "object" && typeof module2 !== "undefined") {
-        module2.exports = f2();
+        module2.exports = f3();
       } else if (typeof define === "function" && define.amd) {
-        define([], f2);
+        define([], f3);
       } else {
-        var g2;
+        var g3;
         if (typeof window !== "undefined") {
-          g2 = window;
+          g3 = window;
         } else if (typeof global !== "undefined") {
-          g2 = global;
+          g3 = global;
         } else if (typeof self !== "undefined") {
-          g2 = self;
+          g3 = self;
         } else {
-          g2 = this;
+          g3 = this;
         }
-        g2.localforage = f2();
+        g3.localforage = f3();
       }
     })(function() {
       var define2, module3, exports3;
@@ -7204,8 +7240,8 @@ var require_localforage = __commonJS({
                 return a2(o3, true);
               if (i2)
                 return i2(o3, true);
-              var f2 = new Error("Cannot find module '" + o3 + "'");
-              throw f2.code = "MODULE_NOT_FOUND", f2;
+              var f3 = new Error("Cannot find module '" + o3 + "'");
+              throw f3.code = "MODULE_NOT_FOUND", f3;
             }
             var l2 = n2[o3] = { exports: {} };
             t2[o3][0].call(l2.exports, function(e3) {
@@ -7907,8 +7943,8 @@ var require_localforage = __commonJS({
           }).then(function(db) {
             dbInfo.db = dbContext.db = db;
             self2._dbInfo = dbInfo;
-            for (var k2 = 0; k2 < forages.length; k2++) {
-              var forage2 = forages[k2];
+            for (var k3 = 0; k3 < forages.length; k3++) {
+              var forage2 = forages[k3];
               if (forage2 !== self2) {
                 forage2._dbInfo.db = dbInfo.db;
                 forage2._dbInfo.version = dbInfo.version;
@@ -8520,13 +8556,13 @@ var require_localforage = __commonJS({
           dbInfo.serializer = localforageSerializer;
           return dbInfoPromise;
         }
-        function tryExecuteSql(t2, dbInfo, sqlStatement, args, callback, errorCallback) {
-          t2.executeSql(sqlStatement, args, callback, function(t3, error) {
+        function tryExecuteSql(t2, dbInfo, sqlStatement, args2, callback, errorCallback) {
+          t2.executeSql(sqlStatement, args2, callback, function(t3, error) {
             if (error.code === error.SYNTAX_ERR) {
               t3.executeSql("SELECT name FROM sqlite_master WHERE type='table' AND name = ?", [dbInfo.storeName], function(t4, results) {
                 if (!results.rows.length) {
                   createDbTable(t4, dbInfo, function() {
-                    t4.executeSql(sqlStatement, args, callback, errorCallback);
+                    t4.executeSql(sqlStatement, args2, callback, errorCallback);
                   }, errorCallback);
                 } else {
                   errorCallback(t4, error);
@@ -9321,7 +9357,7 @@ var require_localforage = __commonJS({
 });
 
 // node_modules/webidl-conversions/lib/index.js
-var require_lib = __commonJS({
+var require_lib2 = __commonJS({
   "node_modules/webidl-conversions/lib/index.js"(exports2, module2) {
     "use strict";
     var conversions = {};
@@ -9432,11 +9468,11 @@ var require_lib = __commonJS({
       return x2;
     };
     conversions["USVString"] = function(V2) {
-      const S2 = String(V2);
-      const n2 = S2.length;
+      const S3 = String(V2);
+      const n2 = S3.length;
       const U2 = [];
       for (let i2 = 0; i2 < n2; ++i2) {
-        const c2 = S2.charCodeAt(i2);
+        const c2 = S3.charCodeAt(i2);
         if (c2 < 55296 || c2 > 57343) {
           U2.push(String.fromCodePoint(c2));
         } else if (56320 <= c2 && c2 <= 57343) {
@@ -9445,10 +9481,10 @@ var require_lib = __commonJS({
           if (i2 === n2 - 1) {
             U2.push(String.fromCodePoint(65533));
           } else {
-            const d2 = S2.charCodeAt(i2 + 1);
-            if (56320 <= d2 && d2 <= 57343) {
+            const d3 = S3.charCodeAt(i2 + 1);
+            if (56320 <= d3 && d3 <= 57343) {
               const a2 = c2 & 1023;
-              const b2 = d2 & 1023;
+              const b2 = d3 & 1023;
               U2.push(String.fromCodePoint((2 << 15) + (2 << 9) * a2 + b2));
               ++i2;
             } else {
@@ -10764,8 +10800,8 @@ var require_URL_impl = __commonJS({
       get href() {
         return usm.serializeURL(this._url);
       }
-      set href(v2) {
-        const parsedURL = usm.basicURLParse(v2);
+      set href(v6) {
+        const parsedURL = usm.basicURLParse(v6);
         if (parsedURL === "failure") {
           throw new TypeError("Invalid URL");
         }
@@ -10777,26 +10813,26 @@ var require_URL_impl = __commonJS({
       get protocol() {
         return this._url.scheme + ":";
       }
-      set protocol(v2) {
-        usm.basicURLParse(v2 + ":", { url: this._url, stateOverride: "scheme start" });
+      set protocol(v6) {
+        usm.basicURLParse(v6 + ":", { url: this._url, stateOverride: "scheme start" });
       }
       get username() {
         return this._url.username;
       }
-      set username(v2) {
+      set username(v6) {
         if (usm.cannotHaveAUsernamePasswordPort(this._url)) {
           return;
         }
-        usm.setTheUsername(this._url, v2);
+        usm.setTheUsername(this._url, v6);
       }
       get password() {
         return this._url.password;
       }
-      set password(v2) {
+      set password(v6) {
         if (usm.cannotHaveAUsernamePasswordPort(this._url)) {
           return;
         }
-        usm.setThePassword(this._url, v2);
+        usm.setThePassword(this._url, v6);
       }
       get host() {
         const url = this._url;
@@ -10808,11 +10844,11 @@ var require_URL_impl = __commonJS({
         }
         return usm.serializeHost(url.host) + ":" + usm.serializeInteger(url.port);
       }
-      set host(v2) {
+      set host(v6) {
         if (this._url.cannotBeABaseURL) {
           return;
         }
-        usm.basicURLParse(v2, { url: this._url, stateOverride: "host" });
+        usm.basicURLParse(v6, { url: this._url, stateOverride: "host" });
       }
       get hostname() {
         if (this._url.host === null) {
@@ -10820,11 +10856,11 @@ var require_URL_impl = __commonJS({
         }
         return usm.serializeHost(this._url.host);
       }
-      set hostname(v2) {
+      set hostname(v6) {
         if (this._url.cannotBeABaseURL) {
           return;
         }
-        usm.basicURLParse(v2, { url: this._url, stateOverride: "hostname" });
+        usm.basicURLParse(v6, { url: this._url, stateOverride: "hostname" });
       }
       get port() {
         if (this._url.port === null) {
@@ -10832,14 +10868,14 @@ var require_URL_impl = __commonJS({
         }
         return usm.serializeInteger(this._url.port);
       }
-      set port(v2) {
+      set port(v6) {
         if (usm.cannotHaveAUsernamePasswordPort(this._url)) {
           return;
         }
-        if (v2 === "") {
+        if (v6 === "") {
           this._url.port = null;
         } else {
-          usm.basicURLParse(v2, { url: this._url, stateOverride: "port" });
+          usm.basicURLParse(v6, { url: this._url, stateOverride: "port" });
         }
       }
       get pathname() {
@@ -10851,12 +10887,12 @@ var require_URL_impl = __commonJS({
         }
         return "/" + this._url.path.join("/");
       }
-      set pathname(v2) {
+      set pathname(v6) {
         if (this._url.cannotBeABaseURL) {
           return;
         }
         this._url.path = [];
-        usm.basicURLParse(v2, { url: this._url, stateOverride: "path start" });
+        usm.basicURLParse(v6, { url: this._url, stateOverride: "path start" });
       }
       get search() {
         if (this._url.query === null || this._url.query === "") {
@@ -10864,13 +10900,13 @@ var require_URL_impl = __commonJS({
         }
         return "?" + this._url.query;
       }
-      set search(v2) {
+      set search(v6) {
         const url = this._url;
-        if (v2 === "") {
+        if (v6 === "") {
           url.query = null;
           return;
         }
-        const input = v2[0] === "?" ? v2.substring(1) : v2;
+        const input = v6[0] === "?" ? v6.substring(1) : v6;
         url.query = "";
         usm.basicURLParse(input, { url, stateOverride: "query" });
       }
@@ -10880,12 +10916,12 @@ var require_URL_impl = __commonJS({
         }
         return "#" + this._url.fragment;
       }
-      set hash(v2) {
-        if (v2 === "") {
+      set hash(v6) {
+        if (v6 === "") {
           this._url.fragment = null;
           return;
         }
-        const input = v2[0] === "#" ? v2.substring(1) : v2;
+        const input = v6[0] === "#" ? v6.substring(1) : v6;
         this._url.fragment = "";
         usm.basicURLParse(input, { url: this._url, stateOverride: "fragment" });
       }
@@ -10900,38 +10936,38 @@ var require_URL_impl = __commonJS({
 var require_URL = __commonJS({
   "node_modules/whatwg-url/lib/URL.js"(exports2, module2) {
     "use strict";
-    var conversions = require_lib();
+    var conversions = require_lib2();
     var utils = require_utils();
     var Impl = require_URL_impl();
     var impl = utils.implSymbol;
-    function URL2(url) {
-      if (!this || this[impl] || !(this instanceof URL2)) {
+    function URL3(url) {
+      if (!this || this[impl] || !(this instanceof URL3)) {
         throw new TypeError("Failed to construct 'URL': Please use the 'new' operator, this DOM object constructor cannot be called as a function.");
       }
       if (arguments.length < 1) {
         throw new TypeError("Failed to construct 'URL': 1 argument required, but only " + arguments.length + " present.");
       }
-      const args = [];
+      const args2 = [];
       for (let i2 = 0; i2 < arguments.length && i2 < 2; ++i2) {
-        args[i2] = arguments[i2];
+        args2[i2] = arguments[i2];
       }
-      args[0] = conversions["USVString"](args[0]);
-      if (args[1] !== void 0) {
-        args[1] = conversions["USVString"](args[1]);
+      args2[0] = conversions["USVString"](args2[0]);
+      if (args2[1] !== void 0) {
+        args2[1] = conversions["USVString"](args2[1]);
       }
-      module2.exports.setup(this, args);
+      module2.exports.setup(this, args2);
     }
-    URL2.prototype.toJSON = function toJSON() {
+    URL3.prototype.toJSON = function toJSON() {
       if (!this || !module2.exports.is(this)) {
         throw new TypeError("Illegal invocation");
       }
-      const args = [];
+      const args2 = [];
       for (let i2 = 0; i2 < arguments.length && i2 < 0; ++i2) {
-        args[i2] = arguments[i2];
+        args2[i2] = arguments[i2];
       }
-      return this[impl].toJSON.apply(this[impl], args);
+      return this[impl].toJSON.apply(this[impl], args2);
     };
-    Object.defineProperty(URL2.prototype, "href", {
+    Object.defineProperty(URL3.prototype, "href", {
       get() {
         return this[impl].href;
       },
@@ -10942,20 +10978,20 @@ var require_URL = __commonJS({
       enumerable: true,
       configurable: true
     });
-    URL2.prototype.toString = function() {
+    URL3.prototype.toString = function() {
       if (!this || !module2.exports.is(this)) {
         throw new TypeError("Illegal invocation");
       }
       return this.href;
     };
-    Object.defineProperty(URL2.prototype, "origin", {
+    Object.defineProperty(URL3.prototype, "origin", {
       get() {
         return this[impl].origin;
       },
       enumerable: true,
       configurable: true
     });
-    Object.defineProperty(URL2.prototype, "protocol", {
+    Object.defineProperty(URL3.prototype, "protocol", {
       get() {
         return this[impl].protocol;
       },
@@ -10966,7 +11002,7 @@ var require_URL = __commonJS({
       enumerable: true,
       configurable: true
     });
-    Object.defineProperty(URL2.prototype, "username", {
+    Object.defineProperty(URL3.prototype, "username", {
       get() {
         return this[impl].username;
       },
@@ -10977,7 +11013,7 @@ var require_URL = __commonJS({
       enumerable: true,
       configurable: true
     });
-    Object.defineProperty(URL2.prototype, "password", {
+    Object.defineProperty(URL3.prototype, "password", {
       get() {
         return this[impl].password;
       },
@@ -10988,7 +11024,7 @@ var require_URL = __commonJS({
       enumerable: true,
       configurable: true
     });
-    Object.defineProperty(URL2.prototype, "host", {
+    Object.defineProperty(URL3.prototype, "host", {
       get() {
         return this[impl].host;
       },
@@ -10999,7 +11035,7 @@ var require_URL = __commonJS({
       enumerable: true,
       configurable: true
     });
-    Object.defineProperty(URL2.prototype, "hostname", {
+    Object.defineProperty(URL3.prototype, "hostname", {
       get() {
         return this[impl].hostname;
       },
@@ -11010,7 +11046,7 @@ var require_URL = __commonJS({
       enumerable: true,
       configurable: true
     });
-    Object.defineProperty(URL2.prototype, "port", {
+    Object.defineProperty(URL3.prototype, "port", {
       get() {
         return this[impl].port;
       },
@@ -11021,7 +11057,7 @@ var require_URL = __commonJS({
       enumerable: true,
       configurable: true
     });
-    Object.defineProperty(URL2.prototype, "pathname", {
+    Object.defineProperty(URL3.prototype, "pathname", {
       get() {
         return this[impl].pathname;
       },
@@ -11032,7 +11068,7 @@ var require_URL = __commonJS({
       enumerable: true,
       configurable: true
     });
-    Object.defineProperty(URL2.prototype, "search", {
+    Object.defineProperty(URL3.prototype, "search", {
       get() {
         return this[impl].search;
       },
@@ -11043,7 +11079,7 @@ var require_URL = __commonJS({
       enumerable: true,
       configurable: true
     });
-    Object.defineProperty(URL2.prototype, "hash", {
+    Object.defineProperty(URL3.prototype, "hash", {
       get() {
         return this[impl].hash;
       },
@@ -11059,7 +11095,7 @@ var require_URL = __commonJS({
         return !!obj && obj[impl] instanceof Impl.implementation;
       },
       create(constructorArgs, privateData) {
-        let obj = Object.create(URL2.prototype);
+        let obj = Object.create(URL3.prototype);
         this.setup(obj, constructorArgs, privateData);
         return obj;
       },
@@ -11070,10 +11106,10 @@ var require_URL = __commonJS({
         obj[impl] = new Impl.implementation(constructorArgs, privateData);
         obj[impl][utils.wrapperSymbol] = obj;
       },
-      interface: URL2,
+      interface: URL3,
       expose: {
-        Window: { URL: URL2 },
-        Worker: { URL: URL2 }
+        Window: { URL: URL3 },
+        Worker: { URL: URL3 }
       }
     };
   }
@@ -11096,7 +11132,7 @@ var require_public_api2 = __commonJS({
 });
 
 // node_modules/node-fetch/lib/index.js
-var require_lib2 = __commonJS({
+var require_lib3 = __commonJS({
   "node_modules/node-fetch/lib/index.js"(exports2, module2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
@@ -11209,9 +11245,9 @@ var require_lib2 = __commonJS({
       enumerable: false,
       configurable: true
     });
-    function FetchError(message, type, systemError) {
-      Error.call(this, message);
-      this.message = message;
+    function FetchError(message2, type, systemError) {
+      Error.call(this, message2);
+      this.message = message2;
       this.type = type;
       if (systemError) {
         this.code = this.errno = systemError.code;
@@ -11770,12 +11806,12 @@ var require_lib2 = __commonJS({
     function getHeaders(headers) {
       let kind2 = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : "key+value";
       const keys = Object.keys(headers[MAP]).sort();
-      return keys.map(kind2 === "key" ? function(k2) {
-        return k2.toLowerCase();
-      } : kind2 === "value" ? function(k2) {
-        return headers[MAP][k2].join(", ");
-      } : function(k2) {
-        return [k2.toLowerCase(), headers[MAP][k2].join(", ")];
+      return keys.map(kind2 === "key" ? function(k3) {
+        return k3.toLowerCase();
+      } : kind2 === "value" ? function(k3) {
+        return headers[MAP][k3].join(", ");
+      } : function(k3) {
+        return [k3.toLowerCase(), headers[MAP][k3].join(", ")];
       });
     }
     var INTERNAL = Symbol("internal");
@@ -11924,12 +11960,12 @@ var require_lib2 = __commonJS({
       configurable: true
     });
     var INTERNALS$2 = Symbol("Request internals");
-    var URL2 = Url.URL || whatwgUrl.URL;
+    var URL3 = Url.URL || whatwgUrl.URL;
     var parse_url = Url.parse;
     var format_url = Url.format;
     function parseURL(urlStr) {
       if (/^[a-zA-Z][a-zA-Z\d+\-.]*:/.exec(urlStr)) {
-        urlStr = new URL2(urlStr).toString();
+        urlStr = new URL3(urlStr).toString();
       }
       return parse_url(urlStr);
     }
@@ -12073,10 +12109,10 @@ var require_lib2 = __commonJS({
         agent
       });
     }
-    function AbortError(message) {
-      Error.call(this, message);
+    function AbortError(message2) {
+      Error.call(this, message2);
       this.type = "aborted";
-      this.message = message;
+      this.message = message2;
       Error.captureStackTrace(this, this.constructor);
     }
     AbortError.prototype = Object.create(Error.prototype);
@@ -12949,20 +12985,20 @@ function Et(e2) {
 function kt(e2, t2, r2, o2, n2, a2) {
   const i2 = e2.getReader(), l2 = t2.getWriter();
   Vt(e2) && (e2._disturbed = true);
-  let s2, _2, g2, w2 = false, S2 = false, v2 = "readable", R2 = "writable", T2 = false, q2 = false;
-  const C2 = u((e3) => {
-    g2 = e3;
+  let s2, _2, g3, w3 = false, S3 = false, v6 = "readable", R2 = "writable", T2 = false, q2 = false;
+  const C3 = u((e3) => {
+    g3 = e3;
   });
   let E2 = Promise.resolve(void 0);
   return u((P2, W2) => {
-    let k2;
+    let k3;
     function O2() {
-      if (w2)
+      if (w3)
         return;
       const e3 = u((e4, t3) => {
         !function r3(o3) {
           o3 ? e4() : f(function() {
-            if (w2)
+            if (w3)
               return c(true);
             return f(l2.ready, () => f(i2.read(), (e5) => !!e5.done || (E2 = l2.write(e5.value), m(E2), false)));
           }(), r3, t3);
@@ -12971,22 +13007,22 @@ function kt(e2, t2, r2, o2, n2, a2) {
       m(e3);
     }
     function B2() {
-      return v2 = "closed", r2 ? L2() : z2(() => (Ge(t2) && (T2 = rt(t2), R2 = t2._state), T2 || "closed" === R2 ? c(void 0) : "erroring" === R2 || "errored" === R2 ? d(_2) : (T2 = true, l2.close())), false, void 0), null;
+      return v6 = "closed", r2 ? L2() : z2(() => (Ge(t2) && (T2 = rt(t2), R2 = t2._state), T2 || "closed" === R2 ? c(void 0) : "erroring" === R2 || "errored" === R2 ? d(_2) : (T2 = true, l2.close())), false, void 0), null;
     }
-    function A2(e3) {
-      return w2 || (v2 = "errored", s2 = e3, o2 ? L2(true, e3) : z2(() => l2.abort(e3), true, e3)), null;
+    function A3(e3) {
+      return w3 || (v6 = "errored", s2 = e3, o2 ? L2(true, e3) : z2(() => l2.abort(e3), true, e3)), null;
     }
     function j2(e3) {
-      return S2 || (R2 = "errored", _2 = e3, n2 ? L2(true, e3) : z2(() => i2.cancel(e3), true, e3)), null;
+      return S3 || (R2 = "errored", _2 = e3, n2 ? L2(true, e3) : z2(() => i2.cancel(e3), true, e3)), null;
     }
-    if (void 0 !== a2 && (k2 = () => {
+    if (void 0 !== a2 && (k3 = () => {
       const e3 = void 0 !== a2.reason ? a2.reason : new Wt("Aborted", "AbortError"), t3 = [];
-      o2 || t3.push(() => "writable" === R2 ? l2.abort(e3) : c(void 0)), n2 || t3.push(() => "readable" === v2 ? i2.cancel(e3) : c(void 0)), z2(() => Promise.all(t3.map((e4) => e4())), true, e3);
-    }, a2.aborted ? k2() : a2.addEventListener("abort", k2)), Vt(e2) && (v2 = e2._state, s2 = e2._storedError), Ge(t2) && (R2 = t2._state, _2 = t2._storedError, T2 = rt(t2)), Vt(e2) && Ge(t2) && (q2 = true, g2()), "errored" === v2)
-      A2(s2);
+      o2 || t3.push(() => "writable" === R2 ? l2.abort(e3) : c(void 0)), n2 || t3.push(() => "readable" === v6 ? i2.cancel(e3) : c(void 0)), z2(() => Promise.all(t3.map((e4) => e4())), true, e3);
+    }, a2.aborted ? k3() : a2.addEventListener("abort", k3)), Vt(e2) && (v6 = e2._state, s2 = e2._storedError), Ge(t2) && (R2 = t2._state, _2 = t2._storedError, T2 = rt(t2)), Vt(e2) && Ge(t2) && (q2 = true, g3()), "errored" === v6)
+      A3(s2);
     else if ("erroring" === R2 || "errored" === R2)
       j2(_2);
-    else if ("closed" === v2)
+    else if ("closed" === v6)
       B2();
     else if (T2 || "closed" === R2) {
       const e3 = new TypeError("the destination writable stream closed before all data could be piped to it");
@@ -13005,18 +13041,18 @@ function kt(e2, t2, r2, o2, n2, a2) {
       function n3() {
         return e3 ? b(e3(), () => F2(t3, r3), (e4) => F2(true, e4)) : F2(t3, r3), null;
       }
-      w2 || (w2 = true, q2 ? o3() : h(C2, o3));
+      w3 || (w3 = true, q2 ? o3() : h(C3, o3));
     }
     function L2(e3, t3) {
       z2(void 0, e3, t3);
     }
     function F2(e3, t3) {
-      return S2 = true, l2.releaseLock(), i2.releaseLock(), void 0 !== a2 && a2.removeEventListener("abort", k2), e3 ? W2(t3) : P2(void 0), null;
+      return S3 = true, l2.releaseLock(), i2.releaseLock(), void 0 !== a2 && a2.removeEventListener("abort", k3), e3 ? W2(t3) : P2(void 0), null;
     }
-    w2 || (b(i2.closed, B2, A2), b(l2.closed, function() {
-      return S2 || (R2 = "closed"), null;
+    w3 || (b(i2.closed, B2, A3), b(l2.closed, function() {
+      return S3 || (R2 = "closed"), null;
     }, j2)), q2 ? O2() : y(() => {
-      q2 = true, g2(), O2();
+      q2 = true, g3(), O2();
     });
   });
 }
@@ -13028,17 +13064,17 @@ function Ot(e2, t2) {
       return false;
     }
   }(e2) ? function(e3) {
-    let t3, r2, o2, n2, a2, i2 = e3.getReader(), l2 = false, s2 = false, d2 = false, f2 = false, h2 = false, p2 = false;
+    let t3, r2, o2, n2, a2, i2 = e3.getReader(), l2 = false, s2 = false, d3 = false, f3 = false, h2 = false, p2 = false;
     const m2 = u((e4) => {
       a2 = e4;
     });
     function y2(e4) {
       _(e4.closed, (t4) => (e4 !== i2 || (o2.error(t4), n2.error(t4), h2 && p2 || a2(void 0)), null));
     }
-    function g2() {
+    function g3() {
       l2 && (i2.releaseLock(), i2 = e3.getReader(), y2(i2), l2 = false), b(i2.read(), (e4) => {
         var t4, r3;
-        if (d2 = false, f2 = false, e4.done)
+        if (d3 = false, f3 = false, e4.done)
           return h2 || o2.close(), p2 || n2.close(), null === (t4 = o2.byobRequest) || void 0 === t4 || t4.respond(0), null === (r3 = n2.byobRequest) || void 0 === r3 || r3.respond(0), h2 && p2 || a2(void 0), null;
         const l3 = e4.value, u2 = l3;
         let c2 = l3;
@@ -13048,15 +13084,15 @@ function Ot(e2, t2) {
           } catch (e5) {
             return o2.error(e5), n2.error(e5), a2(i2.cancel(e5)), null;
           }
-        return h2 || o2.enqueue(u2), p2 || n2.enqueue(c2), s2 = false, d2 ? S2() : f2 && v2(), null;
+        return h2 || o2.enqueue(u2), p2 || n2.enqueue(c2), s2 = false, d3 ? S3() : f3 && v6(), null;
       }, () => (s2 = false, null));
     }
-    function w2(t4, r3) {
+    function w3(t4, r3) {
       l2 || (i2.releaseLock(), i2 = e3.getReader({ mode: "byob" }), y2(i2), l2 = true);
       const u2 = r3 ? n2 : o2, c2 = r3 ? o2 : n2;
       b(i2.read(t4), (e4) => {
         var t5;
-        d2 = false, f2 = false;
+        d3 = false, f3 = false;
         const o3 = r3 ? p2 : h2, n3 = r3 ? h2 : p2;
         if (e4.done) {
           o3 || u2.close(), n3 || c2.close();
@@ -13075,22 +13111,22 @@ function Ot(e2, t2) {
           }
           o3 || u2.byobRequest.respondWithNewView(l3), c2.enqueue(e5);
         }
-        return s2 = false, d2 ? S2() : f2 && v2(), null;
+        return s2 = false, d3 ? S3() : f3 && v6(), null;
       }, () => (s2 = false, null));
     }
-    function S2() {
+    function S3() {
       if (s2)
-        return d2 = true, c(void 0);
+        return d3 = true, c(void 0);
       s2 = true;
       const e4 = o2.byobRequest;
-      return null === e4 ? g2() : w2(e4.view, false), c(void 0);
+      return null === e4 ? g3() : w3(e4.view, false), c(void 0);
     }
-    function v2() {
+    function v6() {
       if (s2)
-        return f2 = true, c(void 0);
+        return f3 = true, c(void 0);
       s2 = true;
       const e4 = n2.byobRequest;
-      return null === e4 ? g2() : w2(e4.view, true), c(void 0);
+      return null === e4 ? g3() : w3(e4.view, true), c(void 0);
     }
     function R2(e4) {
       if (h2 = true, t3 = e4, p2) {
@@ -13108,44 +13144,44 @@ function Ot(e2, t2) {
     }
     const q2 = new ReadableStream2({ type: "bytes", start(e4) {
       o2 = e4;
-    }, pull: S2, cancel: R2 }), C2 = new ReadableStream2({ type: "bytes", start(e4) {
+    }, pull: S3, cancel: R2 }), C3 = new ReadableStream2({ type: "bytes", start(e4) {
       n2 = e4;
-    }, pull: v2, cancel: T2 });
-    return y2(i2), [q2, C2];
+    }, pull: v6, cancel: T2 });
+    return y2(i2), [q2, C3];
   }(e2) : function(e3, t3) {
     const r2 = e3.getReader();
-    let o2, n2, a2, i2, l2, s2 = false, d2 = false, f2 = false, h2 = false;
+    let o2, n2, a2, i2, l2, s2 = false, d3 = false, f3 = false, h2 = false;
     const p2 = u((e4) => {
       l2 = e4;
     });
     function m2() {
-      return s2 ? (d2 = true, c(void 0)) : (s2 = true, b(r2.read(), (e4) => {
-        if (d2 = false, e4.done)
-          return f2 || a2.close(), h2 || i2.close(), f2 && h2 || l2(void 0), null;
+      return s2 ? (d3 = true, c(void 0)) : (s2 = true, b(r2.read(), (e4) => {
+        if (d3 = false, e4.done)
+          return f3 || a2.close(), h2 || i2.close(), f3 && h2 || l2(void 0), null;
         const t4 = e4.value, r3 = t4, o3 = t4;
-        return f2 || a2.enqueue(r3), h2 || i2.enqueue(o3), s2 = false, d2 && m2(), null;
+        return f3 || a2.enqueue(r3), h2 || i2.enqueue(o3), s2 = false, d3 && m2(), null;
       }, () => (s2 = false, null)), c(void 0));
     }
     function y2(e4) {
-      if (f2 = true, o2 = e4, h2) {
+      if (f3 = true, o2 = e4, h2) {
         const e5 = [o2, n2], t4 = r2.cancel(e5);
         l2(t4);
       }
       return p2;
     }
-    function g2(e4) {
-      if (h2 = true, n2 = e4, f2) {
+    function g3(e4) {
+      if (h2 = true, n2 = e4, f3) {
         const e5 = [o2, n2], t4 = r2.cancel(e5);
         l2(t4);
       }
       return p2;
     }
-    const w2 = new ReadableStream2({ start(e4) {
+    const w3 = new ReadableStream2({ start(e4) {
       a2 = e4;
-    }, pull: m2, cancel: y2 }), S2 = new ReadableStream2({ start(e4) {
+    }, pull: m2, cancel: y2 }), S3 = new ReadableStream2({ start(e4) {
       i2 = e4;
-    }, pull: m2, cancel: g2 });
-    return _(r2.closed, (e4) => (a2.error(e4), i2.error(e4), f2 && h2 || l2(void 0), null)), [w2, S2];
+    }, pull: m2, cancel: g3 });
+    return _(r2.closed, (e4) => (a2.error(e4), i2.error(e4), f3 && h2 || l2(void 0), null)), [w3, S3];
   }(e2);
 }
 function Bt(e2) {
@@ -14191,7 +14227,7 @@ var init_ponyfill = __esm({
           throw new RangeError("Invalid readableType specified");
         if (void 0 !== a2.writableType)
           throw new RangeError("Invalid writableType specified");
-        const i2 = $e(n2, 0), l2 = Me(n2), s2 = $e(o2, 1), f2 = Me(o2);
+        const i2 = $e(n2, 0), l2 = Me(n2), s2 = $e(o2, 1), f3 = Me(o2);
         let b2;
         !function(e3, t3, r3, o3, n3, a3) {
           function i3() {
@@ -14227,12 +14263,12 @@ var init_ponyfill = __esm({
               });
             }(e3);
           }
-          function d2() {
+          function d3() {
             return function(e4) {
               return fr(e4, false), e4._backpressureChangePromise;
             }(e3);
           }
-          function f3(t4) {
+          function f4(t4) {
             return dr(e3, t4), c(void 0);
           }
           e3._writableState = "writable", e3._writableStoredError = void 0, e3._writableHasInFlightOperation = false, e3._writableStarted = false, e3._writable = function(e4, t4, r4, o4, n4, a4, i4) {
@@ -14273,10 +14309,10 @@ var init_ponyfill = __esm({
             })), pull: () => (e4._readablePulling = true, r4().catch((t5) => {
               Sr(e4, t5);
             })), cancel: (t5) => (e4._readableState = "closed", o4(t5)) }, { highWaterMark: n4, size: a4 });
-          }(e3, i3, d2, f3, n3, a3), e3._backpressure = void 0, e3._backpressureChangePromise = void 0, e3._backpressureChangePromise_resolve = void 0, fr(e3, true), e3._transformStreamController = void 0;
+          }(e3, i3, d3, f4, n3, a3), e3._backpressure = void 0, e3._backpressureChangePromise = void 0, e3._backpressureChangePromise_resolve = void 0, fr(e3, true), e3._transformStreamController = void 0;
         }(this, u((e3) => {
           b2 = e3;
-        }), s2, f2, i2, l2), function(e3, t3) {
+        }), s2, f3, i2, l2), function(e3, t3) {
           const r3 = Object.create(TransformStreamDefaultController.prototype);
           let o3, n3;
           o3 = void 0 !== t3.transform ? (e4) => t3.transform(e4, r3) : (e4) => {
@@ -14426,21 +14462,21 @@ var init_Blob = __esm({
     init_ponyfill();
     init_isFunction();
     init_blobHelpers();
-    __classPrivateFieldGet = function(receiver, state, kind2, f2) {
-      if (kind2 === "a" && !f2)
+    __classPrivateFieldGet = function(receiver, state, kind2, f3) {
+      if (kind2 === "a" && !f3)
         throw new TypeError("Private accessor was defined without a getter");
-      if (typeof state === "function" ? receiver !== state || !f2 : !state.has(receiver))
+      if (typeof state === "function" ? receiver !== state || !f3 : !state.has(receiver))
         throw new TypeError("Cannot read private member from an object whose class did not declare it");
-      return kind2 === "m" ? f2 : kind2 === "a" ? f2.call(receiver) : f2 ? f2.value : state.get(receiver);
+      return kind2 === "m" ? f3 : kind2 === "a" ? f3.call(receiver) : f3 ? f3.value : state.get(receiver);
     };
-    __classPrivateFieldSet = function(receiver, state, value, kind2, f2) {
+    __classPrivateFieldSet = function(receiver, state, value, kind2, f3) {
       if (kind2 === "m")
         throw new TypeError("Private method is not writable");
-      if (kind2 === "a" && !f2)
+      if (kind2 === "a" && !f3)
         throw new TypeError("Private accessor was defined without a setter");
-      if (typeof state === "function" ? receiver !== state || !f2 : !state.has(receiver))
+      if (typeof state === "function" ? receiver !== state || !f3 : !state.has(receiver))
         throw new TypeError("Cannot write private member to an object whose class did not declare it");
-      return kind2 === "a" ? f2.call(receiver, value) : f2 ? f2.value = value : state.set(receiver, value), value;
+      return kind2 === "a" ? f3.call(receiver, value) : f3 ? f3.value = value : state.set(receiver, value), value;
     };
     Blob3 = class _Blob {
       constructor(blobParts = [], options = {}) {
@@ -14542,21 +14578,21 @@ var __classPrivateFieldSet2, __classPrivateFieldGet2, _File_name, _File_lastModi
 var init_File = __esm({
   "node_modules/formdata-node/lib/esm/File.js"() {
     init_Blob();
-    __classPrivateFieldSet2 = function(receiver, state, value, kind2, f2) {
+    __classPrivateFieldSet2 = function(receiver, state, value, kind2, f3) {
       if (kind2 === "m")
         throw new TypeError("Private method is not writable");
-      if (kind2 === "a" && !f2)
+      if (kind2 === "a" && !f3)
         throw new TypeError("Private accessor was defined without a setter");
-      if (typeof state === "function" ? receiver !== state || !f2 : !state.has(receiver))
+      if (typeof state === "function" ? receiver !== state || !f3 : !state.has(receiver))
         throw new TypeError("Cannot write private member to an object whose class did not declare it");
-      return kind2 === "a" ? f2.call(receiver, value) : f2 ? f2.value = value : state.set(receiver, value), value;
+      return kind2 === "a" ? f3.call(receiver, value) : f3 ? f3.value = value : state.set(receiver, value), value;
     };
-    __classPrivateFieldGet2 = function(receiver, state, kind2, f2) {
-      if (kind2 === "a" && !f2)
+    __classPrivateFieldGet2 = function(receiver, state, kind2, f3) {
+      if (kind2 === "a" && !f3)
         throw new TypeError("Private accessor was defined without a getter");
-      if (typeof state === "function" ? receiver !== state || !f2 : !state.has(receiver))
+      if (typeof state === "function" ? receiver !== state || !f3 : !state.has(receiver))
         throw new TypeError("Cannot read private member from an object whose class did not declare it");
-      return kind2 === "m" ? f2 : kind2 === "a" ? f2.call(receiver) : f2 ? f2.value : state.get(receiver);
+      return kind2 === "m" ? f3 : kind2 === "a" ? f3.call(receiver) : f3 ? f3.value : state.get(receiver);
     };
     File2 = class extends Blob3 {
       constructor(fileBits, name, options = {}) {
@@ -14606,14 +14642,14 @@ var require_ms = __commonJS({
     var s2 = 1e3;
     var m2 = s2 * 60;
     var h2 = m2 * 60;
-    var d2 = h2 * 24;
-    var w2 = d2 * 7;
-    var y2 = d2 * 365.25;
+    var d3 = h2 * 24;
+    var w3 = d3 * 7;
+    var y2 = d3 * 365.25;
     module2.exports = function(val, options) {
       options = options || {};
       var type = typeof val;
       if (type === "string" && val.length > 0) {
-        return parse2(val);
+        return parse3(val);
       } else if (type === "number" && isFinite(val)) {
         return options.long ? fmtLong(val) : fmtShort(val);
       }
@@ -14621,7 +14657,7 @@ var require_ms = __commonJS({
         "val is not a non-empty string or a valid number. val=" + JSON.stringify(val)
       );
     };
-    function parse2(str2) {
+    function parse3(str2) {
       str2 = String(str2);
       if (str2.length > 100) {
         return;
@@ -14644,11 +14680,11 @@ var require_ms = __commonJS({
         case "weeks":
         case "week":
         case "w":
-          return n2 * w2;
+          return n2 * w3;
         case "days":
         case "day":
         case "d":
-          return n2 * d2;
+          return n2 * d3;
         case "hours":
         case "hour":
         case "hrs":
@@ -14679,8 +14715,8 @@ var require_ms = __commonJS({
     }
     function fmtShort(ms) {
       var msAbs = Math.abs(ms);
-      if (msAbs >= d2) {
-        return Math.round(ms / d2) + "d";
+      if (msAbs >= d3) {
+        return Math.round(ms / d3) + "d";
       }
       if (msAbs >= h2) {
         return Math.round(ms / h2) + "h";
@@ -14695,8 +14731,8 @@ var require_ms = __commonJS({
     }
     function fmtLong(ms) {
       var msAbs = Math.abs(ms);
-      if (msAbs >= d2) {
-        return plural(ms, msAbs, d2, "day");
+      if (msAbs >= d3) {
+        return plural(ms, msAbs, d3, "day");
       }
       if (msAbs >= h2) {
         return plural(ms, msAbs, h2, "hour");
@@ -14777,8 +14813,8 @@ var require_agent = __commonJS({
     } else if (majorVersion >= 13) {
       defaultTimeoutListenerCount = 3;
     }
-    function deprecate2(message) {
-      console.log("[agentkeepalive:deprecated] %s", message);
+    function deprecate3(message2) {
+      console.log("[agentkeepalive:deprecated] %s", message2);
     }
     var Agent = class extends OriginalAgent {
       constructor(options) {
@@ -14788,12 +14824,12 @@ var require_agent = __commonJS({
           options.freeSocketTimeout = 4e3;
         }
         if (options.keepAliveTimeout) {
-          deprecate2("options.keepAliveTimeout is deprecated, please use options.freeSocketTimeout instead");
+          deprecate3("options.keepAliveTimeout is deprecated, please use options.freeSocketTimeout instead");
           options.freeSocketTimeout = options.keepAliveTimeout;
           delete options.keepAliveTimeout;
         }
         if (options.freeSocketKeepAliveTimeout) {
-          deprecate2("options.freeSocketKeepAliveTimeout is deprecated, please use options.freeSocketTimeout instead");
+          deprecate3("options.freeSocketKeepAliveTimeout is deprecated, please use options.freeSocketTimeout instead");
           options.freeSocketTimeout = options.freeSocketKeepAliveTimeout;
           delete options.freeSocketKeepAliveTimeout;
         }
@@ -14825,15 +14861,15 @@ var require_agent = __commonJS({
         });
       }
       get freeSocketKeepAliveTimeout() {
-        deprecate2("agent.freeSocketKeepAliveTimeout is deprecated, please use agent.options.freeSocketTimeout instead");
+        deprecate3("agent.freeSocketKeepAliveTimeout is deprecated, please use agent.options.freeSocketTimeout instead");
         return this.options.freeSocketTimeout;
       }
       get timeout() {
-        deprecate2("agent.timeout is deprecated, please use agent.options.timeout instead");
+        deprecate3("agent.timeout is deprecated, please use agent.options.timeout instead");
         return this.options.timeout;
       }
       get socketActiveTTL() {
-        deprecate2("agent.socketActiveTTL is deprecated, please use agent.options.socketActiveTTL instead");
+        deprecate3("agent.socketActiveTTL is deprecated, please use agent.options.socketActiveTTL instead");
         return this.options.socketActiveTTL;
       }
       calcSocketTimeout(socket) {
@@ -14878,10 +14914,10 @@ var require_agent = __commonJS({
         return true;
       }
       // only call on addRequest
-      reuseSocket(...args) {
-        super.reuseSocket(...args);
-        const socket = args[0];
-        const req = args[1];
+      reuseSocket(...args2) {
+        super.reuseSocket(...args2);
+        const socket = args2[0];
+        const req = args2[1];
         req.reusedSocket = true;
         const agentTimeout = this.options.timeout;
         if (getSocketTimeout(socket) !== agentTimeout) {
@@ -15022,7 +15058,7 @@ var require_agent = __commonJS({
           reqTimeoutListenerCount
         );
         if (debug2.enabled) {
-          debug2("timeout listeners: %s", socket.listeners("timeout").map((f2) => f2.name).join(", "));
+          debug2("timeout listeners: %s", socket.listeners("timeout").map((f3) => f3.name).join(", "));
         }
         agent.timeoutSocketCount++;
         const name = agent.getName(options);
@@ -15824,9 +15860,9 @@ var require_ponyfill_es2018 = __commonJS({
         return typeof x2 === "object" && x2 !== null || typeof x2 === "function";
       }
       const rethrowAssertionErrorRejection = noop;
-      function setFunctionName(fn, name) {
+      function setFunctionName(fn2, name) {
         try {
-          Object.defineProperty(fn, "name", {
+          Object.defineProperty(fn2, "name", {
             value: name,
             configurable: true
           });
@@ -15872,15 +15908,15 @@ var require_ponyfill_es2018 = __commonJS({
         }
         return _queueMicrotask(callback);
       };
-      function reflectCall(F2, V2, args) {
+      function reflectCall(F2, V2, args2) {
         if (typeof F2 !== "function") {
           throw new TypeError("Argument is not a function");
         }
-        return Function.prototype.apply.call(F2, V2, args);
+        return Function.prototype.apply.call(F2, V2, args2);
       }
-      function promiseCall(F2, V2, args) {
+      function promiseCall(F2, V2, args2) {
         try {
-          return promiseResolvedWith(reflectCall(F2, V2, args));
+          return promiseResolvedWith(reflectCall(F2, V2, args2));
         } catch (value) {
           return promiseRejectedWith(value);
         }
@@ -16046,8 +16082,8 @@ var require_ponyfill_es2018 = __commonJS({
       const NumberIsFinite = Number.isFinite || function(x2) {
         return typeof x2 === "number" && isFinite(x2);
       };
-      const MathTrunc = Math.trunc || function(v2) {
-        return v2 < 0 ? Math.ceil(v2) : Math.floor(v2);
+      const MathTrunc = Math.trunc || function(v6) {
+        return v6 < 0 ? Math.ceil(v6) : Math.floor(v6);
       };
       function isDictionary(x2) {
         return typeof x2 === "object" || typeof x2 === "function";
@@ -16463,14 +16499,14 @@ var require_ponyfill_es2018 = __commonJS({
       function IteratorValue(iterResult) {
         return iterResult.value;
       }
-      function IsNonNegativeNumber(v2) {
-        if (typeof v2 !== "number") {
+      function IsNonNegativeNumber(v6) {
+        if (typeof v6 !== "number") {
           return false;
         }
-        if (NumberIsNaN(v2)) {
+        if (NumberIsNaN(v6)) {
           return false;
         }
-        if (v2 < 0) {
+        if (v6 < 0) {
           return false;
         }
         return true;
@@ -17416,9 +17452,9 @@ var require_ponyfill_es2018 = __commonJS({
           size: size === void 0 ? void 0 : convertQueuingStrategySize(size, `${context} has member 'size' that`)
         };
       }
-      function convertQueuingStrategySize(fn, context) {
-        assertFunction(fn, context);
-        return (chunk) => convertUnrestrictedDouble(fn(chunk));
+      function convertQueuingStrategySize(fn2, context) {
+        assertFunction(fn2, context);
+        return (chunk) => convertUnrestrictedDouble(fn2(chunk));
       }
       function convertUnderlyingSink(original, context) {
         assertDictionary(original, context);
@@ -17435,21 +17471,21 @@ var require_ponyfill_es2018 = __commonJS({
           type
         };
       }
-      function convertUnderlyingSinkAbortCallback(fn, original, context) {
-        assertFunction(fn, context);
-        return (reason) => promiseCall(fn, original, [reason]);
+      function convertUnderlyingSinkAbortCallback(fn2, original, context) {
+        assertFunction(fn2, context);
+        return (reason) => promiseCall(fn2, original, [reason]);
       }
-      function convertUnderlyingSinkCloseCallback(fn, original, context) {
-        assertFunction(fn, context);
-        return () => promiseCall(fn, original, []);
+      function convertUnderlyingSinkCloseCallback(fn2, original, context) {
+        assertFunction(fn2, context);
+        return () => promiseCall(fn2, original, []);
       }
-      function convertUnderlyingSinkStartCallback(fn, original, context) {
-        assertFunction(fn, context);
-        return (controller) => reflectCall(fn, original, [controller]);
+      function convertUnderlyingSinkStartCallback(fn2, original, context) {
+        assertFunction(fn2, context);
+        return (controller) => reflectCall(fn2, original, [controller]);
       }
-      function convertUnderlyingSinkWriteCallback(fn, original, context) {
-        assertFunction(fn, context);
-        return (chunk, controller) => promiseCall(fn, original, [chunk, controller]);
+      function convertUnderlyingSinkWriteCallback(fn2, original, context) {
+        assertFunction(fn2, context);
+        return (chunk, controller) => promiseCall(fn2, original, [chunk, controller]);
       }
       function assertWritableStream(x2, context) {
         if (!IsWritableStream(x2)) {
@@ -18383,8 +18419,8 @@ var require_ponyfill_es2018 = __commonJS({
         return isDOMExceptionConstructor(ctor) ? ctor : void 0;
       }
       function createPolyfill() {
-        const ctor = function DOMException4(message, name) {
-          this.message = message || "";
+        const ctor = function DOMException4(message2, name) {
+          this.message = message2 || "";
           this.name = name || "Error";
           if (Error.captureStackTrace) {
             Error.captureStackTrace(this, this.constructor);
@@ -19231,17 +19267,17 @@ var require_ponyfill_es2018 = __commonJS({
           type: type === void 0 ? void 0 : convertReadableStreamType(type, `${context} has member 'type' that`)
         };
       }
-      function convertUnderlyingSourceCancelCallback(fn, original, context) {
-        assertFunction(fn, context);
-        return (reason) => promiseCall(fn, original, [reason]);
+      function convertUnderlyingSourceCancelCallback(fn2, original, context) {
+        assertFunction(fn2, context);
+        return (reason) => promiseCall(fn2, original, [reason]);
       }
-      function convertUnderlyingSourcePullCallback(fn, original, context) {
-        assertFunction(fn, context);
-        return (controller) => promiseCall(fn, original, [controller]);
+      function convertUnderlyingSourcePullCallback(fn2, original, context) {
+        assertFunction(fn2, context);
+        return (controller) => promiseCall(fn2, original, [controller]);
       }
-      function convertUnderlyingSourceStartCallback(fn, original, context) {
-        assertFunction(fn, context);
-        return (controller) => reflectCall(fn, original, [controller]);
+      function convertUnderlyingSourceStartCallback(fn2, original, context) {
+        assertFunction(fn2, context);
+        return (controller) => reflectCall(fn2, original, [controller]);
       }
       function convertReadableStreamType(type, context) {
         type = `${type}`;
@@ -19666,21 +19702,21 @@ var require_ponyfill_es2018 = __commonJS({
           writableType
         };
       }
-      function convertTransformerFlushCallback(fn, original, context) {
-        assertFunction(fn, context);
-        return (controller) => promiseCall(fn, original, [controller]);
+      function convertTransformerFlushCallback(fn2, original, context) {
+        assertFunction(fn2, context);
+        return (controller) => promiseCall(fn2, original, [controller]);
       }
-      function convertTransformerStartCallback(fn, original, context) {
-        assertFunction(fn, context);
-        return (controller) => reflectCall(fn, original, [controller]);
+      function convertTransformerStartCallback(fn2, original, context) {
+        assertFunction(fn2, context);
+        return (controller) => reflectCall(fn2, original, [controller]);
       }
-      function convertTransformerTransformCallback(fn, original, context) {
-        assertFunction(fn, context);
-        return (chunk, controller) => promiseCall(fn, original, [chunk, controller]);
+      function convertTransformerTransformCallback(fn2, original, context) {
+        assertFunction(fn2, context);
+        return (chunk, controller) => promiseCall(fn2, original, [chunk, controller]);
       }
-      function convertTransformerCancelCallback(fn, original, context) {
-        assertFunction(fn, context);
-        return (reason) => promiseCall(fn, original, [reason]);
+      function convertTransformerCancelCallback(fn2, original, context) {
+        assertFunction(fn2, context);
+        return (reason) => promiseCall(fn2, original, [reason]);
       }
       class TransformStream2 {
         constructor(rawTransformer = {}, rawWritableStrategy = {}, rawReadableStrategy = {}) {
@@ -20160,21 +20196,21 @@ var init_fileFromPath = __esm({
     init_File();
     init_isPlainObject();
     init_isFile();
-    __classPrivateFieldSet4 = function(receiver, state, value, kind2, f2) {
+    __classPrivateFieldSet4 = function(receiver, state, value, kind2, f3) {
       if (kind2 === "m")
         throw new TypeError("Private method is not writable");
-      if (kind2 === "a" && !f2)
+      if (kind2 === "a" && !f3)
         throw new TypeError("Private accessor was defined without a setter");
-      if (typeof state === "function" ? receiver !== state || !f2 : !state.has(receiver))
+      if (typeof state === "function" ? receiver !== state || !f3 : !state.has(receiver))
         throw new TypeError("Cannot write private member to an object whose class did not declare it");
-      return kind2 === "a" ? f2.call(receiver, value) : f2 ? f2.value = value : state.set(receiver, value), value;
+      return kind2 === "a" ? f3.call(receiver, value) : f3 ? f3.value = value : state.set(receiver, value), value;
     };
-    __classPrivateFieldGet5 = function(receiver, state, kind2, f2) {
-      if (kind2 === "a" && !f2)
+    __classPrivateFieldGet5 = function(receiver, state, kind2, f3) {
+      if (kind2 === "a" && !f3)
         throw new TypeError("Private accessor was defined without a getter");
-      if (typeof state === "function" ? receiver !== state || !f2 : !state.has(receiver))
+      if (typeof state === "function" ? receiver !== state || !f3 : !state.has(receiver))
         throw new TypeError("Cannot read private member from an object whose class did not declare it");
-      return kind2 === "m" ? f2 : kind2 === "a" ? f2.call(receiver) : f2 ? f2.value : state.get(receiver);
+      return kind2 === "m" ? f3 : kind2 === "a" ? f3.call(receiver) : f3 ? f3.value : state.get(receiver);
     };
     MESSAGE = "The requested file could not be read, typically due to permission problems that have occurred after a reference to a file was acquired.";
     FileFromPath = class _FileFromPath {
@@ -20214,44 +20250,16862 @@ var init_fileFromPath = __esm({
   }
 });
 
-// node_modules/dedent-js/lib/index.js
-var require_lib3 = __commonJS({
-  "node_modules/dedent-js/lib/index.js"(exports2, module2) {
-    module2.exports = function dedent2(templateStrings) {
-      var values = [];
-      for (var _i = 1; _i < arguments.length; _i++) {
-        values[_i - 1] = arguments[_i];
+// node_modules/vary/index.js
+var require_vary = __commonJS({
+  "node_modules/vary/index.js"(exports2, module2) {
+    "use strict";
+    module2.exports = vary;
+    module2.exports.append = append;
+    var FIELD_NAME_REGEXP = /^[!#$%&'*+\-.^_`|~0-9A-Za-z]+$/;
+    function append(header, field) {
+      if (typeof header !== "string") {
+        throw new TypeError("header argument is required");
       }
-      var matches = [];
-      var strings = typeof templateStrings === "string" ? [templateStrings] : templateStrings.slice();
-      strings[strings.length - 1] = strings[strings.length - 1].replace(/\r?\n([\t ]*)$/, "");
-      for (var i2 = 0; i2 < strings.length; i2++) {
-        var match = void 0;
-        if (match = strings[i2].match(/\n[\t ]+/g)) {
-          matches.push.apply(matches, match);
+      if (!field) {
+        throw new TypeError("field argument is required");
+      }
+      var fields = !Array.isArray(field) ? parse3(String(field)) : field;
+      for (var j2 = 0; j2 < fields.length; j2++) {
+        if (!FIELD_NAME_REGEXP.test(fields[j2])) {
+          throw new TypeError("field argument contains an invalid header name");
         }
       }
-      if (matches.length) {
-        var size = Math.min.apply(Math, matches.map(function(value) {
-          return value.length - 1;
-        }));
-        var pattern = new RegExp("\n[	 ]{" + size + "}", "g");
-        for (var i2 = 0; i2 < strings.length; i2++) {
-          strings[i2] = strings[i2].replace(pattern, "\n");
+      if (header === "*") {
+        return header;
+      }
+      var val = header;
+      var vals = parse3(header.toLowerCase());
+      if (fields.indexOf("*") !== -1 || vals.indexOf("*") !== -1) {
+        return "*";
+      }
+      for (var i2 = 0; i2 < fields.length; i2++) {
+        var fld = fields[i2].toLowerCase();
+        if (vals.indexOf(fld) === -1) {
+          vals.push(fld);
+          val = val ? val + ", " + fields[i2] : fields[i2];
         }
       }
-      strings[0] = strings[0].replace(/^\r?\n/, "");
-      var string = strings[0];
-      for (var i2 = 0; i2 < values.length; i2++) {
-        string += values[i2] + strings[i2 + 1];
+      return val;
+    }
+    function parse3(header) {
+      var end = 0;
+      var list = [];
+      var start = 0;
+      for (var i2 = 0, len = header.length; i2 < len; i2++) {
+        switch (header.charCodeAt(i2)) {
+          case 32:
+            if (start === end) {
+              start = end = i2 + 1;
+            }
+            break;
+          case 44:
+            list.push(header.substring(start, end));
+            start = end = i2 + 1;
+            break;
+          default:
+            end = i2 + 1;
+            break;
+        }
       }
-      return string;
+      list.push(header.substring(start, end));
+      return list;
+    }
+    function vary(res, field) {
+      if (!res || !res.getHeader || !res.setHeader) {
+        throw new TypeError("res argument is required");
+      }
+      var val = res.getHeader("Vary") || "";
+      var header = Array.isArray(val) ? val.join(", ") : String(val);
+      if (val = append(header, field)) {
+        res.setHeader("Vary", val);
+      }
+    }
+  }
+});
+
+// node_modules/@koa/cors/index.js
+var require_cors = __commonJS({
+  "node_modules/@koa/cors/index.js"(exports2, module2) {
+    var vary = require_vary();
+    module2.exports = function(options) {
+      const defaults = {
+        allowMethods: "GET,HEAD,PUT,POST,DELETE,PATCH",
+        secureContext: false
+      };
+      options = {
+        ...defaults,
+        ...options
+      };
+      if (Array.isArray(options.exposeHeaders)) {
+        options.exposeHeaders = options.exposeHeaders.join(",");
+      }
+      if (Array.isArray(options.allowMethods)) {
+        options.allowMethods = options.allowMethods.join(",");
+      }
+      if (Array.isArray(options.allowHeaders)) {
+        options.allowHeaders = options.allowHeaders.join(",");
+      }
+      if (options.maxAge) {
+        options.maxAge = String(options.maxAge);
+      }
+      options.keepHeadersOnError = options.keepHeadersOnError === void 0 || !!options.keepHeadersOnError;
+      return async function cors2(ctx, next) {
+        const requestOrigin = ctx.get("Origin");
+        ctx.vary("Origin");
+        let origin;
+        if (typeof options.origin === "function") {
+          origin = await options.origin(ctx);
+          if (!origin) {
+            return await next();
+          }
+        } else {
+          origin = options.origin || "*";
+        }
+        let credentials;
+        if (typeof options.credentials === "function") {
+          credentials = await options.credentials(ctx);
+        } else {
+          credentials = !!options.credentials;
+        }
+        if (credentials && origin === "*") {
+          origin = requestOrigin;
+        }
+        const headersSet = {};
+        function set(key, value) {
+          ctx.set(key, value);
+          headersSet[key] = value;
+        }
+        if (ctx.method !== "OPTIONS") {
+          set("Access-Control-Allow-Origin", origin);
+          if (credentials === true) {
+            set("Access-Control-Allow-Credentials", "true");
+          }
+          if (options.exposeHeaders) {
+            set("Access-Control-Expose-Headers", options.exposeHeaders);
+          }
+          if (options.secureContext) {
+            set("Cross-Origin-Opener-Policy", "same-origin");
+            set("Cross-Origin-Embedder-Policy", "require-corp");
+          }
+          if (!options.keepHeadersOnError) {
+            return await next();
+          }
+          try {
+            return await next();
+          } catch (err) {
+            const errHeadersSet = err.headers || {};
+            const varyWithOrigin = vary.append(errHeadersSet.vary || errHeadersSet.Vary || "", "Origin");
+            delete errHeadersSet.Vary;
+            err.headers = {
+              ...errHeadersSet,
+              ...headersSet,
+              ...{ vary: varyWithOrigin }
+            };
+            throw err;
+          }
+        } else {
+          if (!ctx.get("Access-Control-Request-Method")) {
+            return await next();
+          }
+          ctx.set("Access-Control-Allow-Origin", origin);
+          if (credentials === true) {
+            ctx.set("Access-Control-Allow-Credentials", "true");
+          }
+          if (options.maxAge) {
+            ctx.set("Access-Control-Max-Age", options.maxAge);
+          }
+          if (options.privateNetworkAccess && ctx.get("Access-Control-Request-Private-Network")) {
+            ctx.set("Access-Control-Allow-Private-Network", "true");
+          }
+          if (options.allowMethods) {
+            ctx.set("Access-Control-Allow-Methods", options.allowMethods);
+          }
+          if (options.secureContext) {
+            set("Cross-Origin-Opener-Policy", "same-origin");
+            set("Cross-Origin-Embedder-Policy", "require-corp");
+          }
+          let allowHeaders = options.allowHeaders;
+          if (!allowHeaders) {
+            allowHeaders = ctx.get("Access-Control-Request-Headers");
+          }
+          if (allowHeaders) {
+            ctx.set("Access-Control-Allow-Headers", allowHeaders);
+          }
+          ctx.status = 204;
+        }
+      };
     };
   }
 });
 
-// node_modules/obsidian-dataview/lib/index.js
+// node_modules/has-symbols/shams.js
+var require_shams = __commonJS({
+  "node_modules/has-symbols/shams.js"(exports2, module2) {
+    "use strict";
+    module2.exports = function hasSymbols() {
+      if (typeof Symbol !== "function" || typeof Object.getOwnPropertySymbols !== "function") {
+        return false;
+      }
+      if (typeof Symbol.iterator === "symbol") {
+        return true;
+      }
+      var obj = {};
+      var sym = Symbol("test");
+      var symObj = Object(sym);
+      if (typeof sym === "string") {
+        return false;
+      }
+      if (Object.prototype.toString.call(sym) !== "[object Symbol]") {
+        return false;
+      }
+      if (Object.prototype.toString.call(symObj) !== "[object Symbol]") {
+        return false;
+      }
+      var symVal = 42;
+      obj[sym] = symVal;
+      for (sym in obj) {
+        return false;
+      }
+      if (typeof Object.keys === "function" && Object.keys(obj).length !== 0) {
+        return false;
+      }
+      if (typeof Object.getOwnPropertyNames === "function" && Object.getOwnPropertyNames(obj).length !== 0) {
+        return false;
+      }
+      var syms = Object.getOwnPropertySymbols(obj);
+      if (syms.length !== 1 || syms[0] !== sym) {
+        return false;
+      }
+      if (!Object.prototype.propertyIsEnumerable.call(obj, sym)) {
+        return false;
+      }
+      if (typeof Object.getOwnPropertyDescriptor === "function") {
+        var descriptor = Object.getOwnPropertyDescriptor(obj, sym);
+        if (descriptor.value !== symVal || descriptor.enumerable !== true) {
+          return false;
+        }
+      }
+      return true;
+    };
+  }
+});
+
+// node_modules/has-tostringtag/shams.js
+var require_shams2 = __commonJS({
+  "node_modules/has-tostringtag/shams.js"(exports2, module2) {
+    "use strict";
+    var hasSymbols = require_shams();
+    module2.exports = function hasToStringTagShams() {
+      return hasSymbols() && !!Symbol.toStringTag;
+    };
+  }
+});
+
+// node_modules/is-generator-function/index.js
+var require_is_generator_function = __commonJS({
+  "node_modules/is-generator-function/index.js"(exports2, module2) {
+    "use strict";
+    var toStr = Object.prototype.toString;
+    var fnToStr = Function.prototype.toString;
+    var isFnRegex = /^\s*(?:function)?\*/;
+    var hasToStringTag = require_shams2()();
+    var getProto = Object.getPrototypeOf;
+    var getGeneratorFunc = function() {
+      if (!hasToStringTag) {
+        return false;
+      }
+      try {
+        return Function("return function*() {}")();
+      } catch (e2) {
+      }
+    };
+    var GeneratorFunction;
+    module2.exports = function isGeneratorFunction(fn2) {
+      if (typeof fn2 !== "function") {
+        return false;
+      }
+      if (isFnRegex.test(fnToStr.call(fn2))) {
+        return true;
+      }
+      if (!hasToStringTag) {
+        var str2 = toStr.call(fn2);
+        return str2 === "[object GeneratorFunction]";
+      }
+      if (!getProto) {
+        return false;
+      }
+      if (typeof GeneratorFunction === "undefined") {
+        var generatorFunc = getGeneratorFunc();
+        GeneratorFunction = generatorFunc ? getProto(generatorFunc) : false;
+      }
+      return getProto(fn2) === GeneratorFunction;
+    };
+  }
+});
+
+// node_modules/debug/src/common.js
+var require_common = __commonJS({
+  "node_modules/debug/src/common.js"(exports2, module2) {
+    function setup(env) {
+      createDebug.debug = createDebug;
+      createDebug.default = createDebug;
+      createDebug.coerce = coerce;
+      createDebug.disable = disable;
+      createDebug.enable = enable;
+      createDebug.enabled = enabled;
+      createDebug.humanize = require_ms();
+      createDebug.destroy = destroy;
+      Object.keys(env).forEach((key) => {
+        createDebug[key] = env[key];
+      });
+      createDebug.names = [];
+      createDebug.skips = [];
+      createDebug.formatters = {};
+      function selectColor(namespace) {
+        let hash = 0;
+        for (let i2 = 0; i2 < namespace.length; i2++) {
+          hash = (hash << 5) - hash + namespace.charCodeAt(i2);
+          hash |= 0;
+        }
+        return createDebug.colors[Math.abs(hash) % createDebug.colors.length];
+      }
+      createDebug.selectColor = selectColor;
+      function createDebug(namespace) {
+        let prevTime;
+        let enableOverride = null;
+        let namespacesCache;
+        let enabledCache;
+        function debug2(...args2) {
+          if (!debug2.enabled) {
+            return;
+          }
+          const self2 = debug2;
+          const curr = Number(/* @__PURE__ */ new Date());
+          const ms = curr - (prevTime || curr);
+          self2.diff = ms;
+          self2.prev = prevTime;
+          self2.curr = curr;
+          prevTime = curr;
+          args2[0] = createDebug.coerce(args2[0]);
+          if (typeof args2[0] !== "string") {
+            args2.unshift("%O");
+          }
+          let index = 0;
+          args2[0] = args2[0].replace(/%([a-zA-Z%])/g, (match, format) => {
+            if (match === "%%") {
+              return "%";
+            }
+            index++;
+            const formatter = createDebug.formatters[format];
+            if (typeof formatter === "function") {
+              const val = args2[index];
+              match = formatter.call(self2, val);
+              args2.splice(index, 1);
+              index--;
+            }
+            return match;
+          });
+          createDebug.formatArgs.call(self2, args2);
+          const logFn = self2.log || createDebug.log;
+          logFn.apply(self2, args2);
+        }
+        debug2.namespace = namespace;
+        debug2.useColors = createDebug.useColors();
+        debug2.color = createDebug.selectColor(namespace);
+        debug2.extend = extend;
+        debug2.destroy = createDebug.destroy;
+        Object.defineProperty(debug2, "enabled", {
+          enumerable: true,
+          configurable: false,
+          get: () => {
+            if (enableOverride !== null) {
+              return enableOverride;
+            }
+            if (namespacesCache !== createDebug.namespaces) {
+              namespacesCache = createDebug.namespaces;
+              enabledCache = createDebug.enabled(namespace);
+            }
+            return enabledCache;
+          },
+          set: (v6) => {
+            enableOverride = v6;
+          }
+        });
+        if (typeof createDebug.init === "function") {
+          createDebug.init(debug2);
+        }
+        return debug2;
+      }
+      function extend(namespace, delimiter) {
+        const newDebug = createDebug(this.namespace + (typeof delimiter === "undefined" ? ":" : delimiter) + namespace);
+        newDebug.log = this.log;
+        return newDebug;
+      }
+      function enable(namespaces) {
+        createDebug.save(namespaces);
+        createDebug.namespaces = namespaces;
+        createDebug.names = [];
+        createDebug.skips = [];
+        let i2;
+        const split = (typeof namespaces === "string" ? namespaces : "").split(/[\s,]+/);
+        const len = split.length;
+        for (i2 = 0; i2 < len; i2++) {
+          if (!split[i2]) {
+            continue;
+          }
+          namespaces = split[i2].replace(/\*/g, ".*?");
+          if (namespaces[0] === "-") {
+            createDebug.skips.push(new RegExp("^" + namespaces.slice(1) + "$"));
+          } else {
+            createDebug.names.push(new RegExp("^" + namespaces + "$"));
+          }
+        }
+      }
+      function disable() {
+        const namespaces = [
+          ...createDebug.names.map(toNamespace),
+          ...createDebug.skips.map(toNamespace).map((namespace) => "-" + namespace)
+        ].join(",");
+        createDebug.enable("");
+        return namespaces;
+      }
+      function enabled(name) {
+        if (name[name.length - 1] === "*") {
+          return true;
+        }
+        let i2;
+        let len;
+        for (i2 = 0, len = createDebug.skips.length; i2 < len; i2++) {
+          if (createDebug.skips[i2].test(name)) {
+            return false;
+          }
+        }
+        for (i2 = 0, len = createDebug.names.length; i2 < len; i2++) {
+          if (createDebug.names[i2].test(name)) {
+            return true;
+          }
+        }
+        return false;
+      }
+      function toNamespace(regexp) {
+        return regexp.toString().substring(2, regexp.toString().length - 2).replace(/\.\*\?$/, "*");
+      }
+      function coerce(val) {
+        if (val instanceof Error) {
+          return val.stack || val.message;
+        }
+        return val;
+      }
+      function destroy() {
+        console.warn("Instance method `debug.destroy()` is deprecated and no longer does anything. It will be removed in the next major version of `debug`.");
+      }
+      createDebug.enable(createDebug.load());
+      return createDebug;
+    }
+    module2.exports = setup;
+  }
+});
+
+// node_modules/debug/src/browser.js
+var require_browser = __commonJS({
+  "node_modules/debug/src/browser.js"(exports2, module2) {
+    exports2.formatArgs = formatArgs;
+    exports2.save = save;
+    exports2.load = load;
+    exports2.useColors = useColors;
+    exports2.storage = localstorage();
+    exports2.destroy = /* @__PURE__ */ (() => {
+      let warned = false;
+      return () => {
+        if (!warned) {
+          warned = true;
+          console.warn("Instance method `debug.destroy()` is deprecated and no longer does anything. It will be removed in the next major version of `debug`.");
+        }
+      };
+    })();
+    exports2.colors = [
+      "#0000CC",
+      "#0000FF",
+      "#0033CC",
+      "#0033FF",
+      "#0066CC",
+      "#0066FF",
+      "#0099CC",
+      "#0099FF",
+      "#00CC00",
+      "#00CC33",
+      "#00CC66",
+      "#00CC99",
+      "#00CCCC",
+      "#00CCFF",
+      "#3300CC",
+      "#3300FF",
+      "#3333CC",
+      "#3333FF",
+      "#3366CC",
+      "#3366FF",
+      "#3399CC",
+      "#3399FF",
+      "#33CC00",
+      "#33CC33",
+      "#33CC66",
+      "#33CC99",
+      "#33CCCC",
+      "#33CCFF",
+      "#6600CC",
+      "#6600FF",
+      "#6633CC",
+      "#6633FF",
+      "#66CC00",
+      "#66CC33",
+      "#9900CC",
+      "#9900FF",
+      "#9933CC",
+      "#9933FF",
+      "#99CC00",
+      "#99CC33",
+      "#CC0000",
+      "#CC0033",
+      "#CC0066",
+      "#CC0099",
+      "#CC00CC",
+      "#CC00FF",
+      "#CC3300",
+      "#CC3333",
+      "#CC3366",
+      "#CC3399",
+      "#CC33CC",
+      "#CC33FF",
+      "#CC6600",
+      "#CC6633",
+      "#CC9900",
+      "#CC9933",
+      "#CCCC00",
+      "#CCCC33",
+      "#FF0000",
+      "#FF0033",
+      "#FF0066",
+      "#FF0099",
+      "#FF00CC",
+      "#FF00FF",
+      "#FF3300",
+      "#FF3333",
+      "#FF3366",
+      "#FF3399",
+      "#FF33CC",
+      "#FF33FF",
+      "#FF6600",
+      "#FF6633",
+      "#FF9900",
+      "#FF9933",
+      "#FFCC00",
+      "#FFCC33"
+    ];
+    function useColors() {
+      if (typeof window !== "undefined" && window.process && (window.process.type === "renderer" || window.process.__nwjs)) {
+        return true;
+      }
+      if (typeof navigator !== "undefined" && navigator.userAgent && navigator.userAgent.toLowerCase().match(/(edge|trident)\/(\d+)/)) {
+        return false;
+      }
+      return typeof document !== "undefined" && document.documentElement && document.documentElement.style && document.documentElement.style.WebkitAppearance || // Is firebug? http://stackoverflow.com/a/398120/376773
+      typeof window !== "undefined" && window.console && (window.console.firebug || window.console.exception && window.console.table) || // Is firefox >= v31?
+      // https://developer.mozilla.org/en-US/docs/Tools/Web_Console#Styling_messages
+      typeof navigator !== "undefined" && navigator.userAgent && navigator.userAgent.toLowerCase().match(/firefox\/(\d+)/) && parseInt(RegExp.$1, 10) >= 31 || // Double check webkit in userAgent just in case we are in a worker
+      typeof navigator !== "undefined" && navigator.userAgent && navigator.userAgent.toLowerCase().match(/applewebkit\/(\d+)/);
+    }
+    function formatArgs(args2) {
+      args2[0] = (this.useColors ? "%c" : "") + this.namespace + (this.useColors ? " %c" : " ") + args2[0] + (this.useColors ? "%c " : " ") + "+" + module2.exports.humanize(this.diff);
+      if (!this.useColors) {
+        return;
+      }
+      const c2 = "color: " + this.color;
+      args2.splice(1, 0, c2, "color: inherit");
+      let index = 0;
+      let lastC = 0;
+      args2[0].replace(/%[a-zA-Z%]/g, (match) => {
+        if (match === "%%") {
+          return;
+        }
+        index++;
+        if (match === "%c") {
+          lastC = index;
+        }
+      });
+      args2.splice(lastC, 0, c2);
+    }
+    exports2.log = console.debug || console.log || (() => {
+    });
+    function save(namespaces) {
+      try {
+        if (namespaces) {
+          exports2.storage.setItem("debug", namespaces);
+        } else {
+          exports2.storage.removeItem("debug");
+        }
+      } catch (error) {
+      }
+    }
+    function load() {
+      let r2;
+      try {
+        r2 = exports2.storage.getItem("debug");
+      } catch (error) {
+      }
+      if (!r2 && typeof process !== "undefined" && "env" in process) {
+        r2 = process.env.DEBUG;
+      }
+      return r2;
+    }
+    function localstorage() {
+      try {
+        return localStorage;
+      } catch (error) {
+      }
+    }
+    module2.exports = require_common()(exports2);
+    var { formatters } = module2.exports;
+    formatters.j = function(v6) {
+      try {
+        return JSON.stringify(v6);
+      } catch (error) {
+        return "[UnexpectedJSONParseError]: " + error.message;
+      }
+    };
+  }
+});
+
+// node_modules/has-flag/index.js
+var require_has_flag = __commonJS({
+  "node_modules/has-flag/index.js"(exports2, module2) {
+    "use strict";
+    module2.exports = (flag, argv = process.argv) => {
+      const prefix = flag.startsWith("-") ? "" : flag.length === 1 ? "-" : "--";
+      const position = argv.indexOf(prefix + flag);
+      const terminatorPosition = argv.indexOf("--");
+      return position !== -1 && (terminatorPosition === -1 || position < terminatorPosition);
+    };
+  }
+});
+
+// node_modules/supports-color/index.js
+var require_supports_color = __commonJS({
+  "node_modules/supports-color/index.js"(exports2, module2) {
+    "use strict";
+    var os = require("os");
+    var tty = require("tty");
+    var hasFlag = require_has_flag();
+    var { env } = process;
+    var forceColor;
+    if (hasFlag("no-color") || hasFlag("no-colors") || hasFlag("color=false") || hasFlag("color=never")) {
+      forceColor = 0;
+    } else if (hasFlag("color") || hasFlag("colors") || hasFlag("color=true") || hasFlag("color=always")) {
+      forceColor = 1;
+    }
+    if ("FORCE_COLOR" in env) {
+      if (env.FORCE_COLOR === "true") {
+        forceColor = 1;
+      } else if (env.FORCE_COLOR === "false") {
+        forceColor = 0;
+      } else {
+        forceColor = env.FORCE_COLOR.length === 0 ? 1 : Math.min(parseInt(env.FORCE_COLOR, 10), 3);
+      }
+    }
+    function translateLevel(level) {
+      if (level === 0) {
+        return false;
+      }
+      return {
+        level,
+        hasBasic: true,
+        has256: level >= 2,
+        has16m: level >= 3
+      };
+    }
+    function supportsColor(haveStream, streamIsTTY) {
+      if (forceColor === 0) {
+        return 0;
+      }
+      if (hasFlag("color=16m") || hasFlag("color=full") || hasFlag("color=truecolor")) {
+        return 3;
+      }
+      if (hasFlag("color=256")) {
+        return 2;
+      }
+      if (haveStream && !streamIsTTY && forceColor === void 0) {
+        return 0;
+      }
+      const min = forceColor || 0;
+      if (env.TERM === "dumb") {
+        return min;
+      }
+      if (process.platform === "win32") {
+        const osRelease = os.release().split(".");
+        if (Number(osRelease[0]) >= 10 && Number(osRelease[2]) >= 10586) {
+          return Number(osRelease[2]) >= 14931 ? 3 : 2;
+        }
+        return 1;
+      }
+      if ("CI" in env) {
+        if (["TRAVIS", "CIRCLECI", "APPVEYOR", "GITLAB_CI", "GITHUB_ACTIONS", "BUILDKITE"].some((sign) => sign in env) || env.CI_NAME === "codeship") {
+          return 1;
+        }
+        return min;
+      }
+      if ("TEAMCITY_VERSION" in env) {
+        return /^(9\.(0*[1-9]\d*)\.|\d{2,}\.)/.test(env.TEAMCITY_VERSION) ? 1 : 0;
+      }
+      if (env.COLORTERM === "truecolor") {
+        return 3;
+      }
+      if ("TERM_PROGRAM" in env) {
+        const version2 = parseInt((env.TERM_PROGRAM_VERSION || "").split(".")[0], 10);
+        switch (env.TERM_PROGRAM) {
+          case "iTerm.app":
+            return version2 >= 3 ? 3 : 2;
+          case "Apple_Terminal":
+            return 2;
+        }
+      }
+      if (/-256(color)?$/i.test(env.TERM)) {
+        return 2;
+      }
+      if (/^screen|^xterm|^vt100|^vt220|^rxvt|color|ansi|cygwin|linux/i.test(env.TERM)) {
+        return 1;
+      }
+      if ("COLORTERM" in env) {
+        return 1;
+      }
+      return min;
+    }
+    function getSupportLevel(stream) {
+      const level = supportsColor(stream, stream && stream.isTTY);
+      return translateLevel(level);
+    }
+    module2.exports = {
+      supportsColor: getSupportLevel,
+      stdout: translateLevel(supportsColor(true, tty.isatty(1))),
+      stderr: translateLevel(supportsColor(true, tty.isatty(2)))
+    };
+  }
+});
+
+// node_modules/debug/src/node.js
+var require_node = __commonJS({
+  "node_modules/debug/src/node.js"(exports2, module2) {
+    var tty = require("tty");
+    var util = require("util");
+    exports2.init = init;
+    exports2.log = log2;
+    exports2.formatArgs = formatArgs;
+    exports2.save = save;
+    exports2.load = load;
+    exports2.useColors = useColors;
+    exports2.destroy = util.deprecate(
+      () => {
+      },
+      "Instance method `debug.destroy()` is deprecated and no longer does anything. It will be removed in the next major version of `debug`."
+    );
+    exports2.colors = [6, 2, 3, 4, 5, 1];
+    try {
+      const supportsColor = require_supports_color();
+      if (supportsColor && (supportsColor.stderr || supportsColor).level >= 2) {
+        exports2.colors = [
+          20,
+          21,
+          26,
+          27,
+          32,
+          33,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          56,
+          57,
+          62,
+          63,
+          68,
+          69,
+          74,
+          75,
+          76,
+          77,
+          78,
+          79,
+          80,
+          81,
+          92,
+          93,
+          98,
+          99,
+          112,
+          113,
+          128,
+          129,
+          134,
+          135,
+          148,
+          149,
+          160,
+          161,
+          162,
+          163,
+          164,
+          165,
+          166,
+          167,
+          168,
+          169,
+          170,
+          171,
+          172,
+          173,
+          178,
+          179,
+          184,
+          185,
+          196,
+          197,
+          198,
+          199,
+          200,
+          201,
+          202,
+          203,
+          204,
+          205,
+          206,
+          207,
+          208,
+          209,
+          214,
+          215,
+          220,
+          221
+        ];
+      }
+    } catch (error) {
+    }
+    exports2.inspectOpts = Object.keys(process.env).filter((key) => {
+      return /^debug_/i.test(key);
+    }).reduce((obj, key) => {
+      const prop = key.substring(6).toLowerCase().replace(/_([a-z])/g, (_2, k3) => {
+        return k3.toUpperCase();
+      });
+      let val = process.env[key];
+      if (/^(yes|on|true|enabled)$/i.test(val)) {
+        val = true;
+      } else if (/^(no|off|false|disabled)$/i.test(val)) {
+        val = false;
+      } else if (val === "null") {
+        val = null;
+      } else {
+        val = Number(val);
+      }
+      obj[prop] = val;
+      return obj;
+    }, {});
+    function useColors() {
+      return "colors" in exports2.inspectOpts ? Boolean(exports2.inspectOpts.colors) : tty.isatty(process.stderr.fd);
+    }
+    function formatArgs(args2) {
+      const { namespace: name, useColors: useColors2 } = this;
+      if (useColors2) {
+        const c2 = this.color;
+        const colorCode = "\x1B[3" + (c2 < 8 ? c2 : "8;5;" + c2);
+        const prefix = `  ${colorCode};1m${name} \x1B[0m`;
+        args2[0] = prefix + args2[0].split("\n").join("\n" + prefix);
+        args2.push(colorCode + "m+" + module2.exports.humanize(this.diff) + "\x1B[0m");
+      } else {
+        args2[0] = getDate() + name + " " + args2[0];
+      }
+    }
+    function getDate() {
+      if (exports2.inspectOpts.hideDate) {
+        return "";
+      }
+      return (/* @__PURE__ */ new Date()).toISOString() + " ";
+    }
+    function log2(...args2) {
+      return process.stderr.write(util.format(...args2) + "\n");
+    }
+    function save(namespaces) {
+      if (namespaces) {
+        process.env.DEBUG = namespaces;
+      } else {
+        delete process.env.DEBUG;
+      }
+    }
+    function load() {
+      return process.env.DEBUG;
+    }
+    function init(debug2) {
+      debug2.inspectOpts = {};
+      const keys = Object.keys(exports2.inspectOpts);
+      for (let i2 = 0; i2 < keys.length; i2++) {
+        debug2.inspectOpts[keys[i2]] = exports2.inspectOpts[keys[i2]];
+      }
+    }
+    module2.exports = require_common()(exports2);
+    var { formatters } = module2.exports;
+    formatters.o = function(v6) {
+      this.inspectOpts.colors = this.useColors;
+      return util.inspect(v6, this.inspectOpts).split("\n").map((str2) => str2.trim()).join(" ");
+    };
+    formatters.O = function(v6) {
+      this.inspectOpts.colors = this.useColors;
+      return util.inspect(v6, this.inspectOpts);
+    };
+  }
+});
+
+// node_modules/debug/src/index.js
+var require_src = __commonJS({
+  "node_modules/debug/src/index.js"(exports2, module2) {
+    if (typeof process === "undefined" || process.type === "renderer" || process.browser === true || process.__nwjs) {
+      module2.exports = require_browser();
+    } else {
+      module2.exports = require_node();
+    }
+  }
+});
+
+// node_modules/ee-first/index.js
+var require_ee_first = __commonJS({
+  "node_modules/ee-first/index.js"(exports2, module2) {
+    "use strict";
+    module2.exports = first;
+    function first(stuff, done) {
+      if (!Array.isArray(stuff))
+        throw new TypeError("arg must be an array of [ee, events...] arrays");
+      var cleanups = [];
+      for (var i2 = 0; i2 < stuff.length; i2++) {
+        var arr = stuff[i2];
+        if (!Array.isArray(arr) || arr.length < 2)
+          throw new TypeError("each array member must be [ee, events...]");
+        var ee2 = arr[0];
+        for (var j2 = 1; j2 < arr.length; j2++) {
+          var event = arr[j2];
+          var fn2 = listener(event, callback);
+          ee2.on(event, fn2);
+          cleanups.push({
+            ee: ee2,
+            event,
+            fn: fn2
+          });
+        }
+      }
+      function callback() {
+        cleanup();
+        done.apply(null, arguments);
+      }
+      function cleanup() {
+        var x2;
+        for (var i3 = 0; i3 < cleanups.length; i3++) {
+          x2 = cleanups[i3];
+          x2.ee.removeListener(x2.event, x2.fn);
+        }
+      }
+      function thunk(fn3) {
+        done = fn3;
+      }
+      thunk.cancel = cleanup;
+      return thunk;
+    }
+    function listener(event, done) {
+      return function onevent(arg1) {
+        var args2 = new Array(arguments.length);
+        var ee2 = this;
+        var err = event === "error" ? arg1 : null;
+        for (var i2 = 0; i2 < args2.length; i2++) {
+          args2[i2] = arguments[i2];
+        }
+        done(err, ee2, event, args2);
+      };
+    }
+  }
+});
+
+// node_modules/on-finished/index.js
+var require_on_finished = __commonJS({
+  "node_modules/on-finished/index.js"(exports2, module2) {
+    "use strict";
+    module2.exports = onFinished;
+    module2.exports.isFinished = isFinished;
+    var asyncHooks = tryRequireAsyncHooks();
+    var first = require_ee_first();
+    var defer = typeof setImmediate === "function" ? setImmediate : function(fn2) {
+      process.nextTick(fn2.bind.apply(fn2, arguments));
+    };
+    function onFinished(msg, listener) {
+      if (isFinished(msg) !== false) {
+        defer(listener, null, msg);
+        return msg;
+      }
+      attachListener(msg, wrap(listener));
+      return msg;
+    }
+    function isFinished(msg) {
+      var socket = msg.socket;
+      if (typeof msg.finished === "boolean") {
+        return Boolean(msg.finished || socket && !socket.writable);
+      }
+      if (typeof msg.complete === "boolean") {
+        return Boolean(msg.upgrade || !socket || !socket.readable || msg.complete && !msg.readable);
+      }
+      return void 0;
+    }
+    function attachFinishedListener(msg, callback) {
+      var eeMsg;
+      var eeSocket;
+      var finished = false;
+      function onFinish(error) {
+        eeMsg.cancel();
+        eeSocket.cancel();
+        finished = true;
+        callback(error);
+      }
+      eeMsg = eeSocket = first([[msg, "end", "finish"]], onFinish);
+      function onSocket(socket) {
+        msg.removeListener("socket", onSocket);
+        if (finished)
+          return;
+        if (eeMsg !== eeSocket)
+          return;
+        eeSocket = first([[socket, "error", "close"]], onFinish);
+      }
+      if (msg.socket) {
+        onSocket(msg.socket);
+        return;
+      }
+      msg.on("socket", onSocket);
+      if (msg.socket === void 0) {
+        patchAssignSocket(msg, onSocket);
+      }
+    }
+    function attachListener(msg, listener) {
+      var attached = msg.__onFinished;
+      if (!attached || !attached.queue) {
+        attached = msg.__onFinished = createListener(msg);
+        attachFinishedListener(msg, attached);
+      }
+      attached.queue.push(listener);
+    }
+    function createListener(msg) {
+      function listener(err) {
+        if (msg.__onFinished === listener)
+          msg.__onFinished = null;
+        if (!listener.queue)
+          return;
+        var queue = listener.queue;
+        listener.queue = null;
+        for (var i2 = 0; i2 < queue.length; i2++) {
+          queue[i2](err, msg);
+        }
+      }
+      listener.queue = [];
+      return listener;
+    }
+    function patchAssignSocket(res, callback) {
+      var assignSocket = res.assignSocket;
+      if (typeof assignSocket !== "function")
+        return;
+      res.assignSocket = function _assignSocket(socket) {
+        assignSocket.call(this, socket);
+        callback(socket);
+      };
+    }
+    function tryRequireAsyncHooks() {
+      try {
+        return require("async_hooks");
+      } catch (e2) {
+        return {};
+      }
+    }
+    function wrap(fn2) {
+      var res;
+      if (asyncHooks.AsyncResource) {
+        res = new asyncHooks.AsyncResource(fn2.name || "bound-anonymous-fn");
+      }
+      if (!res || !res.runInAsyncScope) {
+        return fn2;
+      }
+      return res.runInAsyncScope.bind(res, fn2, null);
+    }
+  }
+});
+
+// node_modules/safe-buffer/index.js
+var require_safe_buffer = __commonJS({
+  "node_modules/safe-buffer/index.js"(exports2, module2) {
+    var buffer = require("buffer");
+    var Buffer2 = buffer.Buffer;
+    function copyProps(src, dst) {
+      for (var key in src) {
+        dst[key] = src[key];
+      }
+    }
+    if (Buffer2.from && Buffer2.alloc && Buffer2.allocUnsafe && Buffer2.allocUnsafeSlow) {
+      module2.exports = buffer;
+    } else {
+      copyProps(buffer, exports2);
+      exports2.Buffer = SafeBuffer;
+    }
+    function SafeBuffer(arg, encodingOrOffset, length) {
+      return Buffer2(arg, encodingOrOffset, length);
+    }
+    SafeBuffer.prototype = Object.create(Buffer2.prototype);
+    copyProps(Buffer2, SafeBuffer);
+    SafeBuffer.from = function(arg, encodingOrOffset, length) {
+      if (typeof arg === "number") {
+        throw new TypeError("Argument must not be a number");
+      }
+      return Buffer2(arg, encodingOrOffset, length);
+    };
+    SafeBuffer.alloc = function(size, fill, encoding) {
+      if (typeof size !== "number") {
+        throw new TypeError("Argument must be a number");
+      }
+      var buf = Buffer2(size);
+      if (fill !== void 0) {
+        if (typeof encoding === "string") {
+          buf.fill(fill, encoding);
+        } else {
+          buf.fill(fill);
+        }
+      } else {
+        buf.fill(0);
+      }
+      return buf;
+    };
+    SafeBuffer.allocUnsafe = function(size) {
+      if (typeof size !== "number") {
+        throw new TypeError("Argument must be a number");
+      }
+      return Buffer2(size);
+    };
+    SafeBuffer.allocUnsafeSlow = function(size) {
+      if (typeof size !== "number") {
+        throw new TypeError("Argument must be a number");
+      }
+      return buffer.SlowBuffer(size);
+    };
+  }
+});
+
+// node_modules/content-disposition/index.js
+var require_content_disposition = __commonJS({
+  "node_modules/content-disposition/index.js"(exports2, module2) {
+    "use strict";
+    module2.exports = contentDisposition;
+    module2.exports.parse = parse3;
+    var basename2 = require("path").basename;
+    var Buffer2 = require_safe_buffer().Buffer;
+    var ENCODE_URL_ATTR_CHAR_REGEXP = /[\x00-\x20"'()*,/:;<=>?@[\\\]{}\x7f]/g;
+    var HEX_ESCAPE_REGEXP = /%[0-9A-Fa-f]{2}/;
+    var HEX_ESCAPE_REPLACE_REGEXP = /%([0-9A-Fa-f]{2})/g;
+    var NON_LATIN1_REGEXP = /[^\x20-\x7e\xa0-\xff]/g;
+    var QESC_REGEXP = /\\([\u0000-\u007f])/g;
+    var QUOTE_REGEXP = /([\\"])/g;
+    var PARAM_REGEXP = /;[\x09\x20]*([!#$%&'*+.0-9A-Z^_`a-z|~-]+)[\x09\x20]*=[\x09\x20]*("(?:[\x20!\x23-\x5b\x5d-\x7e\x80-\xff]|\\[\x20-\x7e])*"|[!#$%&'*+.0-9A-Z^_`a-z|~-]+)[\x09\x20]*/g;
+    var TEXT_REGEXP = /^[\x20-\x7e\x80-\xff]+$/;
+    var TOKEN_REGEXP = /^[!#$%&'*+.0-9A-Z^_`a-z|~-]+$/;
+    var EXT_VALUE_REGEXP = /^([A-Za-z0-9!#$%&+\-^_`{}~]+)'(?:[A-Za-z]{2,3}(?:-[A-Za-z]{3}){0,3}|[A-Za-z]{4,8}|)'((?:%[0-9A-Fa-f]{2}|[A-Za-z0-9!#$&+.^_`|~-])+)$/;
+    var DISPOSITION_TYPE_REGEXP = /^([!#$%&'*+.0-9A-Z^_`a-z|~-]+)[\x09\x20]*(?:$|;)/;
+    function contentDisposition(filename, options) {
+      var opts = options || {};
+      var type = opts.type || "attachment";
+      var params = createparams(filename, opts.fallback);
+      return format(new ContentDisposition(type, params));
+    }
+    function createparams(filename, fallback) {
+      if (filename === void 0) {
+        return;
+      }
+      var params = {};
+      if (typeof filename !== "string") {
+        throw new TypeError("filename must be a string");
+      }
+      if (fallback === void 0) {
+        fallback = true;
+      }
+      if (typeof fallback !== "string" && typeof fallback !== "boolean") {
+        throw new TypeError("fallback must be a string or boolean");
+      }
+      if (typeof fallback === "string" && NON_LATIN1_REGEXP.test(fallback)) {
+        throw new TypeError("fallback must be ISO-8859-1 string");
+      }
+      var name = basename2(filename);
+      var isQuotedString = TEXT_REGEXP.test(name);
+      var fallbackName = typeof fallback !== "string" ? fallback && getlatin1(name) : basename2(fallback);
+      var hasFallback = typeof fallbackName === "string" && fallbackName !== name;
+      if (hasFallback || !isQuotedString || HEX_ESCAPE_REGEXP.test(name)) {
+        params["filename*"] = name;
+      }
+      if (isQuotedString || hasFallback) {
+        params.filename = hasFallback ? fallbackName : name;
+      }
+      return params;
+    }
+    function format(obj) {
+      var parameters = obj.parameters;
+      var type = obj.type;
+      if (!type || typeof type !== "string" || !TOKEN_REGEXP.test(type)) {
+        throw new TypeError("invalid type");
+      }
+      var string = String(type).toLowerCase();
+      if (parameters && typeof parameters === "object") {
+        var param;
+        var params = Object.keys(parameters).sort();
+        for (var i2 = 0; i2 < params.length; i2++) {
+          param = params[i2];
+          var val = param.substr(-1) === "*" ? ustring(parameters[param]) : qstring(parameters[param]);
+          string += "; " + param + "=" + val;
+        }
+      }
+      return string;
+    }
+    function decodefield(str2) {
+      var match = EXT_VALUE_REGEXP.exec(str2);
+      if (!match) {
+        throw new TypeError("invalid extended field value");
+      }
+      var charset = match[1].toLowerCase();
+      var encoded = match[2];
+      var value;
+      var binary = encoded.replace(HEX_ESCAPE_REPLACE_REGEXP, pdecode);
+      switch (charset) {
+        case "iso-8859-1":
+          value = getlatin1(binary);
+          break;
+        case "utf-8":
+          value = Buffer2.from(binary, "binary").toString("utf8");
+          break;
+        default:
+          throw new TypeError("unsupported charset in extended field");
+      }
+      return value;
+    }
+    function getlatin1(val) {
+      return String(val).replace(NON_LATIN1_REGEXP, "?");
+    }
+    function parse3(string) {
+      if (!string || typeof string !== "string") {
+        throw new TypeError("argument string is required");
+      }
+      var match = DISPOSITION_TYPE_REGEXP.exec(string);
+      if (!match) {
+        throw new TypeError("invalid type format");
+      }
+      var index = match[0].length;
+      var type = match[1].toLowerCase();
+      var key;
+      var names = [];
+      var params = {};
+      var value;
+      index = PARAM_REGEXP.lastIndex = match[0].substr(-1) === ";" ? index - 1 : index;
+      while (match = PARAM_REGEXP.exec(string)) {
+        if (match.index !== index) {
+          throw new TypeError("invalid parameter format");
+        }
+        index += match[0].length;
+        key = match[1].toLowerCase();
+        value = match[2];
+        if (names.indexOf(key) !== -1) {
+          throw new TypeError("invalid duplicate parameter");
+        }
+        names.push(key);
+        if (key.indexOf("*") + 1 === key.length) {
+          key = key.slice(0, -1);
+          value = decodefield(value);
+          params[key] = value;
+          continue;
+        }
+        if (typeof params[key] === "string") {
+          continue;
+        }
+        if (value[0] === '"') {
+          value = value.substr(1, value.length - 2).replace(QESC_REGEXP, "$1");
+        }
+        params[key] = value;
+      }
+      if (index !== -1 && index !== string.length) {
+        throw new TypeError("invalid parameter format");
+      }
+      return new ContentDisposition(type, params);
+    }
+    function pdecode(str2, hex) {
+      return String.fromCharCode(parseInt(hex, 16));
+    }
+    function pencode(char) {
+      return "%" + String(char).charCodeAt(0).toString(16).toUpperCase();
+    }
+    function qstring(val) {
+      var str2 = String(val);
+      return '"' + str2.replace(QUOTE_REGEXP, "\\$1") + '"';
+    }
+    function ustring(val) {
+      var str2 = String(val);
+      var encoded = encodeURIComponent(str2).replace(ENCODE_URL_ATTR_CHAR_REGEXP, pencode);
+      return "UTF-8''" + encoded;
+    }
+    function ContentDisposition(type, parameters) {
+      this.type = type;
+      this.parameters = parameters;
+    }
+  }
+});
+
+// node_modules/mime-db/db.json
+var require_db = __commonJS({
+  "node_modules/mime-db/db.json"(exports2, module2) {
+    module2.exports = {
+      "application/1d-interleaved-parityfec": {
+        source: "iana"
+      },
+      "application/3gpdash-qoe-report+xml": {
+        source: "iana",
+        charset: "UTF-8",
+        compressible: true
+      },
+      "application/3gpp-ims+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/3gpphal+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/3gpphalforms+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/a2l": {
+        source: "iana"
+      },
+      "application/ace+cbor": {
+        source: "iana"
+      },
+      "application/activemessage": {
+        source: "iana"
+      },
+      "application/activity+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/alto-costmap+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/alto-costmapfilter+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/alto-directory+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/alto-endpointcost+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/alto-endpointcostparams+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/alto-endpointprop+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/alto-endpointpropparams+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/alto-error+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/alto-networkmap+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/alto-networkmapfilter+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/alto-updatestreamcontrol+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/alto-updatestreamparams+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/aml": {
+        source: "iana"
+      },
+      "application/andrew-inset": {
+        source: "iana",
+        extensions: ["ez"]
+      },
+      "application/applefile": {
+        source: "iana"
+      },
+      "application/applixware": {
+        source: "apache",
+        extensions: ["aw"]
+      },
+      "application/at+jwt": {
+        source: "iana"
+      },
+      "application/atf": {
+        source: "iana"
+      },
+      "application/atfx": {
+        source: "iana"
+      },
+      "application/atom+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["atom"]
+      },
+      "application/atomcat+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["atomcat"]
+      },
+      "application/atomdeleted+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["atomdeleted"]
+      },
+      "application/atomicmail": {
+        source: "iana"
+      },
+      "application/atomsvc+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["atomsvc"]
+      },
+      "application/atsc-dwd+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["dwd"]
+      },
+      "application/atsc-dynamic-event-message": {
+        source: "iana"
+      },
+      "application/atsc-held+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["held"]
+      },
+      "application/atsc-rdt+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/atsc-rsat+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["rsat"]
+      },
+      "application/atxml": {
+        source: "iana"
+      },
+      "application/auth-policy+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/bacnet-xdd+zip": {
+        source: "iana",
+        compressible: false
+      },
+      "application/batch-smtp": {
+        source: "iana"
+      },
+      "application/bdoc": {
+        compressible: false,
+        extensions: ["bdoc"]
+      },
+      "application/beep+xml": {
+        source: "iana",
+        charset: "UTF-8",
+        compressible: true
+      },
+      "application/calendar+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/calendar+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["xcs"]
+      },
+      "application/call-completion": {
+        source: "iana"
+      },
+      "application/cals-1840": {
+        source: "iana"
+      },
+      "application/captive+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/cbor": {
+        source: "iana"
+      },
+      "application/cbor-seq": {
+        source: "iana"
+      },
+      "application/cccex": {
+        source: "iana"
+      },
+      "application/ccmp+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/ccxml+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["ccxml"]
+      },
+      "application/cdfx+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["cdfx"]
+      },
+      "application/cdmi-capability": {
+        source: "iana",
+        extensions: ["cdmia"]
+      },
+      "application/cdmi-container": {
+        source: "iana",
+        extensions: ["cdmic"]
+      },
+      "application/cdmi-domain": {
+        source: "iana",
+        extensions: ["cdmid"]
+      },
+      "application/cdmi-object": {
+        source: "iana",
+        extensions: ["cdmio"]
+      },
+      "application/cdmi-queue": {
+        source: "iana",
+        extensions: ["cdmiq"]
+      },
+      "application/cdni": {
+        source: "iana"
+      },
+      "application/cea": {
+        source: "iana"
+      },
+      "application/cea-2018+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/cellml+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/cfw": {
+        source: "iana"
+      },
+      "application/city+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/clr": {
+        source: "iana"
+      },
+      "application/clue+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/clue_info+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/cms": {
+        source: "iana"
+      },
+      "application/cnrp+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/coap-group+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/coap-payload": {
+        source: "iana"
+      },
+      "application/commonground": {
+        source: "iana"
+      },
+      "application/conference-info+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/cose": {
+        source: "iana"
+      },
+      "application/cose-key": {
+        source: "iana"
+      },
+      "application/cose-key-set": {
+        source: "iana"
+      },
+      "application/cpl+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["cpl"]
+      },
+      "application/csrattrs": {
+        source: "iana"
+      },
+      "application/csta+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/cstadata+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/csvm+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/cu-seeme": {
+        source: "apache",
+        extensions: ["cu"]
+      },
+      "application/cwt": {
+        source: "iana"
+      },
+      "application/cybercash": {
+        source: "iana"
+      },
+      "application/dart": {
+        compressible: true
+      },
+      "application/dash+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["mpd"]
+      },
+      "application/dash-patch+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["mpp"]
+      },
+      "application/dashdelta": {
+        source: "iana"
+      },
+      "application/davmount+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["davmount"]
+      },
+      "application/dca-rft": {
+        source: "iana"
+      },
+      "application/dcd": {
+        source: "iana"
+      },
+      "application/dec-dx": {
+        source: "iana"
+      },
+      "application/dialog-info+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/dicom": {
+        source: "iana"
+      },
+      "application/dicom+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/dicom+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/dii": {
+        source: "iana"
+      },
+      "application/dit": {
+        source: "iana"
+      },
+      "application/dns": {
+        source: "iana"
+      },
+      "application/dns+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/dns-message": {
+        source: "iana"
+      },
+      "application/docbook+xml": {
+        source: "apache",
+        compressible: true,
+        extensions: ["dbk"]
+      },
+      "application/dots+cbor": {
+        source: "iana"
+      },
+      "application/dskpp+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/dssc+der": {
+        source: "iana",
+        extensions: ["dssc"]
+      },
+      "application/dssc+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["xdssc"]
+      },
+      "application/dvcs": {
+        source: "iana"
+      },
+      "application/ecmascript": {
+        source: "iana",
+        compressible: true,
+        extensions: ["es", "ecma"]
+      },
+      "application/edi-consent": {
+        source: "iana"
+      },
+      "application/edi-x12": {
+        source: "iana",
+        compressible: false
+      },
+      "application/edifact": {
+        source: "iana",
+        compressible: false
+      },
+      "application/efi": {
+        source: "iana"
+      },
+      "application/elm+json": {
+        source: "iana",
+        charset: "UTF-8",
+        compressible: true
+      },
+      "application/elm+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/emergencycalldata.cap+xml": {
+        source: "iana",
+        charset: "UTF-8",
+        compressible: true
+      },
+      "application/emergencycalldata.comment+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/emergencycalldata.control+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/emergencycalldata.deviceinfo+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/emergencycalldata.ecall.msd": {
+        source: "iana"
+      },
+      "application/emergencycalldata.providerinfo+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/emergencycalldata.serviceinfo+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/emergencycalldata.subscriberinfo+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/emergencycalldata.veds+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/emma+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["emma"]
+      },
+      "application/emotionml+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["emotionml"]
+      },
+      "application/encaprtp": {
+        source: "iana"
+      },
+      "application/epp+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/epub+zip": {
+        source: "iana",
+        compressible: false,
+        extensions: ["epub"]
+      },
+      "application/eshop": {
+        source: "iana"
+      },
+      "application/exi": {
+        source: "iana",
+        extensions: ["exi"]
+      },
+      "application/expect-ct-report+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/express": {
+        source: "iana",
+        extensions: ["exp"]
+      },
+      "application/fastinfoset": {
+        source: "iana"
+      },
+      "application/fastsoap": {
+        source: "iana"
+      },
+      "application/fdt+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["fdt"]
+      },
+      "application/fhir+json": {
+        source: "iana",
+        charset: "UTF-8",
+        compressible: true
+      },
+      "application/fhir+xml": {
+        source: "iana",
+        charset: "UTF-8",
+        compressible: true
+      },
+      "application/fido.trusted-apps+json": {
+        compressible: true
+      },
+      "application/fits": {
+        source: "iana"
+      },
+      "application/flexfec": {
+        source: "iana"
+      },
+      "application/font-sfnt": {
+        source: "iana"
+      },
+      "application/font-tdpfr": {
+        source: "iana",
+        extensions: ["pfr"]
+      },
+      "application/font-woff": {
+        source: "iana",
+        compressible: false
+      },
+      "application/framework-attributes+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/geo+json": {
+        source: "iana",
+        compressible: true,
+        extensions: ["geojson"]
+      },
+      "application/geo+json-seq": {
+        source: "iana"
+      },
+      "application/geopackage+sqlite3": {
+        source: "iana"
+      },
+      "application/geoxacml+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/gltf-buffer": {
+        source: "iana"
+      },
+      "application/gml+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["gml"]
+      },
+      "application/gpx+xml": {
+        source: "apache",
+        compressible: true,
+        extensions: ["gpx"]
+      },
+      "application/gxf": {
+        source: "apache",
+        extensions: ["gxf"]
+      },
+      "application/gzip": {
+        source: "iana",
+        compressible: false,
+        extensions: ["gz"]
+      },
+      "application/h224": {
+        source: "iana"
+      },
+      "application/held+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/hjson": {
+        extensions: ["hjson"]
+      },
+      "application/http": {
+        source: "iana"
+      },
+      "application/hyperstudio": {
+        source: "iana",
+        extensions: ["stk"]
+      },
+      "application/ibe-key-request+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/ibe-pkg-reply+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/ibe-pp-data": {
+        source: "iana"
+      },
+      "application/iges": {
+        source: "iana"
+      },
+      "application/im-iscomposing+xml": {
+        source: "iana",
+        charset: "UTF-8",
+        compressible: true
+      },
+      "application/index": {
+        source: "iana"
+      },
+      "application/index.cmd": {
+        source: "iana"
+      },
+      "application/index.obj": {
+        source: "iana"
+      },
+      "application/index.response": {
+        source: "iana"
+      },
+      "application/index.vnd": {
+        source: "iana"
+      },
+      "application/inkml+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["ink", "inkml"]
+      },
+      "application/iotp": {
+        source: "iana"
+      },
+      "application/ipfix": {
+        source: "iana",
+        extensions: ["ipfix"]
+      },
+      "application/ipp": {
+        source: "iana"
+      },
+      "application/isup": {
+        source: "iana"
+      },
+      "application/its+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["its"]
+      },
+      "application/java-archive": {
+        source: "apache",
+        compressible: false,
+        extensions: ["jar", "war", "ear"]
+      },
+      "application/java-serialized-object": {
+        source: "apache",
+        compressible: false,
+        extensions: ["ser"]
+      },
+      "application/java-vm": {
+        source: "apache",
+        compressible: false,
+        extensions: ["class"]
+      },
+      "application/javascript": {
+        source: "iana",
+        charset: "UTF-8",
+        compressible: true,
+        extensions: ["js", "mjs"]
+      },
+      "application/jf2feed+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/jose": {
+        source: "iana"
+      },
+      "application/jose+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/jrd+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/jscalendar+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/json": {
+        source: "iana",
+        charset: "UTF-8",
+        compressible: true,
+        extensions: ["json", "map"]
+      },
+      "application/json-patch+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/json-seq": {
+        source: "iana"
+      },
+      "application/json5": {
+        extensions: ["json5"]
+      },
+      "application/jsonml+json": {
+        source: "apache",
+        compressible: true,
+        extensions: ["jsonml"]
+      },
+      "application/jwk+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/jwk-set+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/jwt": {
+        source: "iana"
+      },
+      "application/kpml-request+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/kpml-response+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/ld+json": {
+        source: "iana",
+        compressible: true,
+        extensions: ["jsonld"]
+      },
+      "application/lgr+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["lgr"]
+      },
+      "application/link-format": {
+        source: "iana"
+      },
+      "application/load-control+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/lost+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["lostxml"]
+      },
+      "application/lostsync+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/lpf+zip": {
+        source: "iana",
+        compressible: false
+      },
+      "application/lxf": {
+        source: "iana"
+      },
+      "application/mac-binhex40": {
+        source: "iana",
+        extensions: ["hqx"]
+      },
+      "application/mac-compactpro": {
+        source: "apache",
+        extensions: ["cpt"]
+      },
+      "application/macwriteii": {
+        source: "iana"
+      },
+      "application/mads+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["mads"]
+      },
+      "application/manifest+json": {
+        source: "iana",
+        charset: "UTF-8",
+        compressible: true,
+        extensions: ["webmanifest"]
+      },
+      "application/marc": {
+        source: "iana",
+        extensions: ["mrc"]
+      },
+      "application/marcxml+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["mrcx"]
+      },
+      "application/mathematica": {
+        source: "iana",
+        extensions: ["ma", "nb", "mb"]
+      },
+      "application/mathml+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["mathml"]
+      },
+      "application/mathml-content+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/mathml-presentation+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/mbms-associated-procedure-description+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/mbms-deregister+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/mbms-envelope+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/mbms-msk+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/mbms-msk-response+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/mbms-protection-description+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/mbms-reception-report+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/mbms-register+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/mbms-register-response+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/mbms-schedule+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/mbms-user-service-description+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/mbox": {
+        source: "iana",
+        extensions: ["mbox"]
+      },
+      "application/media-policy-dataset+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["mpf"]
+      },
+      "application/media_control+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/mediaservercontrol+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["mscml"]
+      },
+      "application/merge-patch+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/metalink+xml": {
+        source: "apache",
+        compressible: true,
+        extensions: ["metalink"]
+      },
+      "application/metalink4+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["meta4"]
+      },
+      "application/mets+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["mets"]
+      },
+      "application/mf4": {
+        source: "iana"
+      },
+      "application/mikey": {
+        source: "iana"
+      },
+      "application/mipc": {
+        source: "iana"
+      },
+      "application/missing-blocks+cbor-seq": {
+        source: "iana"
+      },
+      "application/mmt-aei+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["maei"]
+      },
+      "application/mmt-usd+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["musd"]
+      },
+      "application/mods+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["mods"]
+      },
+      "application/moss-keys": {
+        source: "iana"
+      },
+      "application/moss-signature": {
+        source: "iana"
+      },
+      "application/mosskey-data": {
+        source: "iana"
+      },
+      "application/mosskey-request": {
+        source: "iana"
+      },
+      "application/mp21": {
+        source: "iana",
+        extensions: ["m21", "mp21"]
+      },
+      "application/mp4": {
+        source: "iana",
+        extensions: ["mp4s", "m4p"]
+      },
+      "application/mpeg4-generic": {
+        source: "iana"
+      },
+      "application/mpeg4-iod": {
+        source: "iana"
+      },
+      "application/mpeg4-iod-xmt": {
+        source: "iana"
+      },
+      "application/mrb-consumer+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/mrb-publish+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/msc-ivr+xml": {
+        source: "iana",
+        charset: "UTF-8",
+        compressible: true
+      },
+      "application/msc-mixer+xml": {
+        source: "iana",
+        charset: "UTF-8",
+        compressible: true
+      },
+      "application/msword": {
+        source: "iana",
+        compressible: false,
+        extensions: ["doc", "dot"]
+      },
+      "application/mud+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/multipart-core": {
+        source: "iana"
+      },
+      "application/mxf": {
+        source: "iana",
+        extensions: ["mxf"]
+      },
+      "application/n-quads": {
+        source: "iana",
+        extensions: ["nq"]
+      },
+      "application/n-triples": {
+        source: "iana",
+        extensions: ["nt"]
+      },
+      "application/nasdata": {
+        source: "iana"
+      },
+      "application/news-checkgroups": {
+        source: "iana",
+        charset: "US-ASCII"
+      },
+      "application/news-groupinfo": {
+        source: "iana",
+        charset: "US-ASCII"
+      },
+      "application/news-transmission": {
+        source: "iana"
+      },
+      "application/nlsml+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/node": {
+        source: "iana",
+        extensions: ["cjs"]
+      },
+      "application/nss": {
+        source: "iana"
+      },
+      "application/oauth-authz-req+jwt": {
+        source: "iana"
+      },
+      "application/oblivious-dns-message": {
+        source: "iana"
+      },
+      "application/ocsp-request": {
+        source: "iana"
+      },
+      "application/ocsp-response": {
+        source: "iana"
+      },
+      "application/octet-stream": {
+        source: "iana",
+        compressible: false,
+        extensions: ["bin", "dms", "lrf", "mar", "so", "dist", "distz", "pkg", "bpk", "dump", "elc", "deploy", "exe", "dll", "deb", "dmg", "iso", "img", "msi", "msp", "msm", "buffer"]
+      },
+      "application/oda": {
+        source: "iana",
+        extensions: ["oda"]
+      },
+      "application/odm+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/odx": {
+        source: "iana"
+      },
+      "application/oebps-package+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["opf"]
+      },
+      "application/ogg": {
+        source: "iana",
+        compressible: false,
+        extensions: ["ogx"]
+      },
+      "application/omdoc+xml": {
+        source: "apache",
+        compressible: true,
+        extensions: ["omdoc"]
+      },
+      "application/onenote": {
+        source: "apache",
+        extensions: ["onetoc", "onetoc2", "onetmp", "onepkg"]
+      },
+      "application/opc-nodeset+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/oscore": {
+        source: "iana"
+      },
+      "application/oxps": {
+        source: "iana",
+        extensions: ["oxps"]
+      },
+      "application/p21": {
+        source: "iana"
+      },
+      "application/p21+zip": {
+        source: "iana",
+        compressible: false
+      },
+      "application/p2p-overlay+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["relo"]
+      },
+      "application/parityfec": {
+        source: "iana"
+      },
+      "application/passport": {
+        source: "iana"
+      },
+      "application/patch-ops-error+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["xer"]
+      },
+      "application/pdf": {
+        source: "iana",
+        compressible: false,
+        extensions: ["pdf"]
+      },
+      "application/pdx": {
+        source: "iana"
+      },
+      "application/pem-certificate-chain": {
+        source: "iana"
+      },
+      "application/pgp-encrypted": {
+        source: "iana",
+        compressible: false,
+        extensions: ["pgp"]
+      },
+      "application/pgp-keys": {
+        source: "iana",
+        extensions: ["asc"]
+      },
+      "application/pgp-signature": {
+        source: "iana",
+        extensions: ["asc", "sig"]
+      },
+      "application/pics-rules": {
+        source: "apache",
+        extensions: ["prf"]
+      },
+      "application/pidf+xml": {
+        source: "iana",
+        charset: "UTF-8",
+        compressible: true
+      },
+      "application/pidf-diff+xml": {
+        source: "iana",
+        charset: "UTF-8",
+        compressible: true
+      },
+      "application/pkcs10": {
+        source: "iana",
+        extensions: ["p10"]
+      },
+      "application/pkcs12": {
+        source: "iana"
+      },
+      "application/pkcs7-mime": {
+        source: "iana",
+        extensions: ["p7m", "p7c"]
+      },
+      "application/pkcs7-signature": {
+        source: "iana",
+        extensions: ["p7s"]
+      },
+      "application/pkcs8": {
+        source: "iana",
+        extensions: ["p8"]
+      },
+      "application/pkcs8-encrypted": {
+        source: "iana"
+      },
+      "application/pkix-attr-cert": {
+        source: "iana",
+        extensions: ["ac"]
+      },
+      "application/pkix-cert": {
+        source: "iana",
+        extensions: ["cer"]
+      },
+      "application/pkix-crl": {
+        source: "iana",
+        extensions: ["crl"]
+      },
+      "application/pkix-pkipath": {
+        source: "iana",
+        extensions: ["pkipath"]
+      },
+      "application/pkixcmp": {
+        source: "iana",
+        extensions: ["pki"]
+      },
+      "application/pls+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["pls"]
+      },
+      "application/poc-settings+xml": {
+        source: "iana",
+        charset: "UTF-8",
+        compressible: true
+      },
+      "application/postscript": {
+        source: "iana",
+        compressible: true,
+        extensions: ["ai", "eps", "ps"]
+      },
+      "application/ppsp-tracker+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/problem+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/problem+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/provenance+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["provx"]
+      },
+      "application/prs.alvestrand.titrax-sheet": {
+        source: "iana"
+      },
+      "application/prs.cww": {
+        source: "iana",
+        extensions: ["cww"]
+      },
+      "application/prs.cyn": {
+        source: "iana",
+        charset: "7-BIT"
+      },
+      "application/prs.hpub+zip": {
+        source: "iana",
+        compressible: false
+      },
+      "application/prs.nprend": {
+        source: "iana"
+      },
+      "application/prs.plucker": {
+        source: "iana"
+      },
+      "application/prs.rdf-xml-crypt": {
+        source: "iana"
+      },
+      "application/prs.xsf+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/pskc+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["pskcxml"]
+      },
+      "application/pvd+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/qsig": {
+        source: "iana"
+      },
+      "application/raml+yaml": {
+        compressible: true,
+        extensions: ["raml"]
+      },
+      "application/raptorfec": {
+        source: "iana"
+      },
+      "application/rdap+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/rdf+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["rdf", "owl"]
+      },
+      "application/reginfo+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["rif"]
+      },
+      "application/relax-ng-compact-syntax": {
+        source: "iana",
+        extensions: ["rnc"]
+      },
+      "application/remote-printing": {
+        source: "iana"
+      },
+      "application/reputon+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/resource-lists+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["rl"]
+      },
+      "application/resource-lists-diff+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["rld"]
+      },
+      "application/rfc+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/riscos": {
+        source: "iana"
+      },
+      "application/rlmi+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/rls-services+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["rs"]
+      },
+      "application/route-apd+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["rapd"]
+      },
+      "application/route-s-tsid+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["sls"]
+      },
+      "application/route-usd+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["rusd"]
+      },
+      "application/rpki-ghostbusters": {
+        source: "iana",
+        extensions: ["gbr"]
+      },
+      "application/rpki-manifest": {
+        source: "iana",
+        extensions: ["mft"]
+      },
+      "application/rpki-publication": {
+        source: "iana"
+      },
+      "application/rpki-roa": {
+        source: "iana",
+        extensions: ["roa"]
+      },
+      "application/rpki-updown": {
+        source: "iana"
+      },
+      "application/rsd+xml": {
+        source: "apache",
+        compressible: true,
+        extensions: ["rsd"]
+      },
+      "application/rss+xml": {
+        source: "apache",
+        compressible: true,
+        extensions: ["rss"]
+      },
+      "application/rtf": {
+        source: "iana",
+        compressible: true,
+        extensions: ["rtf"]
+      },
+      "application/rtploopback": {
+        source: "iana"
+      },
+      "application/rtx": {
+        source: "iana"
+      },
+      "application/samlassertion+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/samlmetadata+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/sarif+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/sarif-external-properties+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/sbe": {
+        source: "iana"
+      },
+      "application/sbml+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["sbml"]
+      },
+      "application/scaip+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/scim+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/scvp-cv-request": {
+        source: "iana",
+        extensions: ["scq"]
+      },
+      "application/scvp-cv-response": {
+        source: "iana",
+        extensions: ["scs"]
+      },
+      "application/scvp-vp-request": {
+        source: "iana",
+        extensions: ["spq"]
+      },
+      "application/scvp-vp-response": {
+        source: "iana",
+        extensions: ["spp"]
+      },
+      "application/sdp": {
+        source: "iana",
+        extensions: ["sdp"]
+      },
+      "application/secevent+jwt": {
+        source: "iana"
+      },
+      "application/senml+cbor": {
+        source: "iana"
+      },
+      "application/senml+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/senml+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["senmlx"]
+      },
+      "application/senml-etch+cbor": {
+        source: "iana"
+      },
+      "application/senml-etch+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/senml-exi": {
+        source: "iana"
+      },
+      "application/sensml+cbor": {
+        source: "iana"
+      },
+      "application/sensml+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/sensml+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["sensmlx"]
+      },
+      "application/sensml-exi": {
+        source: "iana"
+      },
+      "application/sep+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/sep-exi": {
+        source: "iana"
+      },
+      "application/session-info": {
+        source: "iana"
+      },
+      "application/set-payment": {
+        source: "iana"
+      },
+      "application/set-payment-initiation": {
+        source: "iana",
+        extensions: ["setpay"]
+      },
+      "application/set-registration": {
+        source: "iana"
+      },
+      "application/set-registration-initiation": {
+        source: "iana",
+        extensions: ["setreg"]
+      },
+      "application/sgml": {
+        source: "iana"
+      },
+      "application/sgml-open-catalog": {
+        source: "iana"
+      },
+      "application/shf+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["shf"]
+      },
+      "application/sieve": {
+        source: "iana",
+        extensions: ["siv", "sieve"]
+      },
+      "application/simple-filter+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/simple-message-summary": {
+        source: "iana"
+      },
+      "application/simplesymbolcontainer": {
+        source: "iana"
+      },
+      "application/sipc": {
+        source: "iana"
+      },
+      "application/slate": {
+        source: "iana"
+      },
+      "application/smil": {
+        source: "iana"
+      },
+      "application/smil+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["smi", "smil"]
+      },
+      "application/smpte336m": {
+        source: "iana"
+      },
+      "application/soap+fastinfoset": {
+        source: "iana"
+      },
+      "application/soap+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/sparql-query": {
+        source: "iana",
+        extensions: ["rq"]
+      },
+      "application/sparql-results+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["srx"]
+      },
+      "application/spdx+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/spirits-event+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/sql": {
+        source: "iana"
+      },
+      "application/srgs": {
+        source: "iana",
+        extensions: ["gram"]
+      },
+      "application/srgs+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["grxml"]
+      },
+      "application/sru+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["sru"]
+      },
+      "application/ssdl+xml": {
+        source: "apache",
+        compressible: true,
+        extensions: ["ssdl"]
+      },
+      "application/ssml+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["ssml"]
+      },
+      "application/stix+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/swid+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["swidtag"]
+      },
+      "application/tamp-apex-update": {
+        source: "iana"
+      },
+      "application/tamp-apex-update-confirm": {
+        source: "iana"
+      },
+      "application/tamp-community-update": {
+        source: "iana"
+      },
+      "application/tamp-community-update-confirm": {
+        source: "iana"
+      },
+      "application/tamp-error": {
+        source: "iana"
+      },
+      "application/tamp-sequence-adjust": {
+        source: "iana"
+      },
+      "application/tamp-sequence-adjust-confirm": {
+        source: "iana"
+      },
+      "application/tamp-status-query": {
+        source: "iana"
+      },
+      "application/tamp-status-response": {
+        source: "iana"
+      },
+      "application/tamp-update": {
+        source: "iana"
+      },
+      "application/tamp-update-confirm": {
+        source: "iana"
+      },
+      "application/tar": {
+        compressible: true
+      },
+      "application/taxii+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/td+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/tei+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["tei", "teicorpus"]
+      },
+      "application/tetra_isi": {
+        source: "iana"
+      },
+      "application/thraud+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["tfi"]
+      },
+      "application/timestamp-query": {
+        source: "iana"
+      },
+      "application/timestamp-reply": {
+        source: "iana"
+      },
+      "application/timestamped-data": {
+        source: "iana",
+        extensions: ["tsd"]
+      },
+      "application/tlsrpt+gzip": {
+        source: "iana"
+      },
+      "application/tlsrpt+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/tnauthlist": {
+        source: "iana"
+      },
+      "application/token-introspection+jwt": {
+        source: "iana"
+      },
+      "application/toml": {
+        compressible: true,
+        extensions: ["toml"]
+      },
+      "application/trickle-ice-sdpfrag": {
+        source: "iana"
+      },
+      "application/trig": {
+        source: "iana",
+        extensions: ["trig"]
+      },
+      "application/ttml+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["ttml"]
+      },
+      "application/tve-trigger": {
+        source: "iana"
+      },
+      "application/tzif": {
+        source: "iana"
+      },
+      "application/tzif-leap": {
+        source: "iana"
+      },
+      "application/ubjson": {
+        compressible: false,
+        extensions: ["ubj"]
+      },
+      "application/ulpfec": {
+        source: "iana"
+      },
+      "application/urc-grpsheet+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/urc-ressheet+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["rsheet"]
+      },
+      "application/urc-targetdesc+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["td"]
+      },
+      "application/urc-uisocketdesc+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vcard+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vcard+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vemmi": {
+        source: "iana"
+      },
+      "application/vividence.scriptfile": {
+        source: "apache"
+      },
+      "application/vnd.1000minds.decision-model+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["1km"]
+      },
+      "application/vnd.3gpp-prose+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.3gpp-prose-pc3ch+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.3gpp-v2x-local-service-information": {
+        source: "iana"
+      },
+      "application/vnd.3gpp.5gnas": {
+        source: "iana"
+      },
+      "application/vnd.3gpp.access-transfer-events+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.3gpp.bsf+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.3gpp.gmop+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.3gpp.gtpc": {
+        source: "iana"
+      },
+      "application/vnd.3gpp.interworking-data": {
+        source: "iana"
+      },
+      "application/vnd.3gpp.lpp": {
+        source: "iana"
+      },
+      "application/vnd.3gpp.mc-signalling-ear": {
+        source: "iana"
+      },
+      "application/vnd.3gpp.mcdata-affiliation-command+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.3gpp.mcdata-info+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.3gpp.mcdata-payload": {
+        source: "iana"
+      },
+      "application/vnd.3gpp.mcdata-service-config+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.3gpp.mcdata-signalling": {
+        source: "iana"
+      },
+      "application/vnd.3gpp.mcdata-ue-config+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.3gpp.mcdata-user-profile+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.3gpp.mcptt-affiliation-command+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.3gpp.mcptt-floor-request+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.3gpp.mcptt-info+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.3gpp.mcptt-location-info+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.3gpp.mcptt-mbms-usage-info+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.3gpp.mcptt-service-config+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.3gpp.mcptt-signed+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.3gpp.mcptt-ue-config+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.3gpp.mcptt-ue-init-config+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.3gpp.mcptt-user-profile+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.3gpp.mcvideo-affiliation-command+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.3gpp.mcvideo-affiliation-info+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.3gpp.mcvideo-info+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.3gpp.mcvideo-location-info+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.3gpp.mcvideo-mbms-usage-info+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.3gpp.mcvideo-service-config+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.3gpp.mcvideo-transmission-request+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.3gpp.mcvideo-ue-config+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.3gpp.mcvideo-user-profile+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.3gpp.mid-call+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.3gpp.ngap": {
+        source: "iana"
+      },
+      "application/vnd.3gpp.pfcp": {
+        source: "iana"
+      },
+      "application/vnd.3gpp.pic-bw-large": {
+        source: "iana",
+        extensions: ["plb"]
+      },
+      "application/vnd.3gpp.pic-bw-small": {
+        source: "iana",
+        extensions: ["psb"]
+      },
+      "application/vnd.3gpp.pic-bw-var": {
+        source: "iana",
+        extensions: ["pvb"]
+      },
+      "application/vnd.3gpp.s1ap": {
+        source: "iana"
+      },
+      "application/vnd.3gpp.sms": {
+        source: "iana"
+      },
+      "application/vnd.3gpp.sms+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.3gpp.srvcc-ext+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.3gpp.srvcc-info+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.3gpp.state-and-event-info+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.3gpp.ussd+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.3gpp2.bcmcsinfo+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.3gpp2.sms": {
+        source: "iana"
+      },
+      "application/vnd.3gpp2.tcap": {
+        source: "iana",
+        extensions: ["tcap"]
+      },
+      "application/vnd.3lightssoftware.imagescal": {
+        source: "iana"
+      },
+      "application/vnd.3m.post-it-notes": {
+        source: "iana",
+        extensions: ["pwn"]
+      },
+      "application/vnd.accpac.simply.aso": {
+        source: "iana",
+        extensions: ["aso"]
+      },
+      "application/vnd.accpac.simply.imp": {
+        source: "iana",
+        extensions: ["imp"]
+      },
+      "application/vnd.acucobol": {
+        source: "iana",
+        extensions: ["acu"]
+      },
+      "application/vnd.acucorp": {
+        source: "iana",
+        extensions: ["atc", "acutc"]
+      },
+      "application/vnd.adobe.air-application-installer-package+zip": {
+        source: "apache",
+        compressible: false,
+        extensions: ["air"]
+      },
+      "application/vnd.adobe.flash.movie": {
+        source: "iana"
+      },
+      "application/vnd.adobe.formscentral.fcdt": {
+        source: "iana",
+        extensions: ["fcdt"]
+      },
+      "application/vnd.adobe.fxp": {
+        source: "iana",
+        extensions: ["fxp", "fxpl"]
+      },
+      "application/vnd.adobe.partial-upload": {
+        source: "iana"
+      },
+      "application/vnd.adobe.xdp+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["xdp"]
+      },
+      "application/vnd.adobe.xfdf": {
+        source: "iana",
+        extensions: ["xfdf"]
+      },
+      "application/vnd.aether.imp": {
+        source: "iana"
+      },
+      "application/vnd.afpc.afplinedata": {
+        source: "iana"
+      },
+      "application/vnd.afpc.afplinedata-pagedef": {
+        source: "iana"
+      },
+      "application/vnd.afpc.cmoca-cmresource": {
+        source: "iana"
+      },
+      "application/vnd.afpc.foca-charset": {
+        source: "iana"
+      },
+      "application/vnd.afpc.foca-codedfont": {
+        source: "iana"
+      },
+      "application/vnd.afpc.foca-codepage": {
+        source: "iana"
+      },
+      "application/vnd.afpc.modca": {
+        source: "iana"
+      },
+      "application/vnd.afpc.modca-cmtable": {
+        source: "iana"
+      },
+      "application/vnd.afpc.modca-formdef": {
+        source: "iana"
+      },
+      "application/vnd.afpc.modca-mediummap": {
+        source: "iana"
+      },
+      "application/vnd.afpc.modca-objectcontainer": {
+        source: "iana"
+      },
+      "application/vnd.afpc.modca-overlay": {
+        source: "iana"
+      },
+      "application/vnd.afpc.modca-pagesegment": {
+        source: "iana"
+      },
+      "application/vnd.age": {
+        source: "iana",
+        extensions: ["age"]
+      },
+      "application/vnd.ah-barcode": {
+        source: "iana"
+      },
+      "application/vnd.ahead.space": {
+        source: "iana",
+        extensions: ["ahead"]
+      },
+      "application/vnd.airzip.filesecure.azf": {
+        source: "iana",
+        extensions: ["azf"]
+      },
+      "application/vnd.airzip.filesecure.azs": {
+        source: "iana",
+        extensions: ["azs"]
+      },
+      "application/vnd.amadeus+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.amazon.ebook": {
+        source: "apache",
+        extensions: ["azw"]
+      },
+      "application/vnd.amazon.mobi8-ebook": {
+        source: "iana"
+      },
+      "application/vnd.americandynamics.acc": {
+        source: "iana",
+        extensions: ["acc"]
+      },
+      "application/vnd.amiga.ami": {
+        source: "iana",
+        extensions: ["ami"]
+      },
+      "application/vnd.amundsen.maze+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.android.ota": {
+        source: "iana"
+      },
+      "application/vnd.android.package-archive": {
+        source: "apache",
+        compressible: false,
+        extensions: ["apk"]
+      },
+      "application/vnd.anki": {
+        source: "iana"
+      },
+      "application/vnd.anser-web-certificate-issue-initiation": {
+        source: "iana",
+        extensions: ["cii"]
+      },
+      "application/vnd.anser-web-funds-transfer-initiation": {
+        source: "apache",
+        extensions: ["fti"]
+      },
+      "application/vnd.antix.game-component": {
+        source: "iana",
+        extensions: ["atx"]
+      },
+      "application/vnd.apache.arrow.file": {
+        source: "iana"
+      },
+      "application/vnd.apache.arrow.stream": {
+        source: "iana"
+      },
+      "application/vnd.apache.thrift.binary": {
+        source: "iana"
+      },
+      "application/vnd.apache.thrift.compact": {
+        source: "iana"
+      },
+      "application/vnd.apache.thrift.json": {
+        source: "iana"
+      },
+      "application/vnd.api+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.aplextor.warrp+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.apothekende.reservation+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.apple.installer+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["mpkg"]
+      },
+      "application/vnd.apple.keynote": {
+        source: "iana",
+        extensions: ["key"]
+      },
+      "application/vnd.apple.mpegurl": {
+        source: "iana",
+        extensions: ["m3u8"]
+      },
+      "application/vnd.apple.numbers": {
+        source: "iana",
+        extensions: ["numbers"]
+      },
+      "application/vnd.apple.pages": {
+        source: "iana",
+        extensions: ["pages"]
+      },
+      "application/vnd.apple.pkpass": {
+        compressible: false,
+        extensions: ["pkpass"]
+      },
+      "application/vnd.arastra.swi": {
+        source: "iana"
+      },
+      "application/vnd.aristanetworks.swi": {
+        source: "iana",
+        extensions: ["swi"]
+      },
+      "application/vnd.artisan+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.artsquare": {
+        source: "iana"
+      },
+      "application/vnd.astraea-software.iota": {
+        source: "iana",
+        extensions: ["iota"]
+      },
+      "application/vnd.audiograph": {
+        source: "iana",
+        extensions: ["aep"]
+      },
+      "application/vnd.autopackage": {
+        source: "iana"
+      },
+      "application/vnd.avalon+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.avistar+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.balsamiq.bmml+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["bmml"]
+      },
+      "application/vnd.balsamiq.bmpr": {
+        source: "iana"
+      },
+      "application/vnd.banana-accounting": {
+        source: "iana"
+      },
+      "application/vnd.bbf.usp.error": {
+        source: "iana"
+      },
+      "application/vnd.bbf.usp.msg": {
+        source: "iana"
+      },
+      "application/vnd.bbf.usp.msg+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.bekitzur-stech+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.bint.med-content": {
+        source: "iana"
+      },
+      "application/vnd.biopax.rdf+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.blink-idb-value-wrapper": {
+        source: "iana"
+      },
+      "application/vnd.blueice.multipass": {
+        source: "iana",
+        extensions: ["mpm"]
+      },
+      "application/vnd.bluetooth.ep.oob": {
+        source: "iana"
+      },
+      "application/vnd.bluetooth.le.oob": {
+        source: "iana"
+      },
+      "application/vnd.bmi": {
+        source: "iana",
+        extensions: ["bmi"]
+      },
+      "application/vnd.bpf": {
+        source: "iana"
+      },
+      "application/vnd.bpf3": {
+        source: "iana"
+      },
+      "application/vnd.businessobjects": {
+        source: "iana",
+        extensions: ["rep"]
+      },
+      "application/vnd.byu.uapi+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.cab-jscript": {
+        source: "iana"
+      },
+      "application/vnd.canon-cpdl": {
+        source: "iana"
+      },
+      "application/vnd.canon-lips": {
+        source: "iana"
+      },
+      "application/vnd.capasystems-pg+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.cendio.thinlinc.clientconf": {
+        source: "iana"
+      },
+      "application/vnd.century-systems.tcp_stream": {
+        source: "iana"
+      },
+      "application/vnd.chemdraw+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["cdxml"]
+      },
+      "application/vnd.chess-pgn": {
+        source: "iana"
+      },
+      "application/vnd.chipnuts.karaoke-mmd": {
+        source: "iana",
+        extensions: ["mmd"]
+      },
+      "application/vnd.ciedi": {
+        source: "iana"
+      },
+      "application/vnd.cinderella": {
+        source: "iana",
+        extensions: ["cdy"]
+      },
+      "application/vnd.cirpack.isdn-ext": {
+        source: "iana"
+      },
+      "application/vnd.citationstyles.style+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["csl"]
+      },
+      "application/vnd.claymore": {
+        source: "iana",
+        extensions: ["cla"]
+      },
+      "application/vnd.cloanto.rp9": {
+        source: "iana",
+        extensions: ["rp9"]
+      },
+      "application/vnd.clonk.c4group": {
+        source: "iana",
+        extensions: ["c4g", "c4d", "c4f", "c4p", "c4u"]
+      },
+      "application/vnd.cluetrust.cartomobile-config": {
+        source: "iana",
+        extensions: ["c11amc"]
+      },
+      "application/vnd.cluetrust.cartomobile-config-pkg": {
+        source: "iana",
+        extensions: ["c11amz"]
+      },
+      "application/vnd.coffeescript": {
+        source: "iana"
+      },
+      "application/vnd.collabio.xodocuments.document": {
+        source: "iana"
+      },
+      "application/vnd.collabio.xodocuments.document-template": {
+        source: "iana"
+      },
+      "application/vnd.collabio.xodocuments.presentation": {
+        source: "iana"
+      },
+      "application/vnd.collabio.xodocuments.presentation-template": {
+        source: "iana"
+      },
+      "application/vnd.collabio.xodocuments.spreadsheet": {
+        source: "iana"
+      },
+      "application/vnd.collabio.xodocuments.spreadsheet-template": {
+        source: "iana"
+      },
+      "application/vnd.collection+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.collection.doc+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.collection.next+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.comicbook+zip": {
+        source: "iana",
+        compressible: false
+      },
+      "application/vnd.comicbook-rar": {
+        source: "iana"
+      },
+      "application/vnd.commerce-battelle": {
+        source: "iana"
+      },
+      "application/vnd.commonspace": {
+        source: "iana",
+        extensions: ["csp"]
+      },
+      "application/vnd.contact.cmsg": {
+        source: "iana",
+        extensions: ["cdbcmsg"]
+      },
+      "application/vnd.coreos.ignition+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.cosmocaller": {
+        source: "iana",
+        extensions: ["cmc"]
+      },
+      "application/vnd.crick.clicker": {
+        source: "iana",
+        extensions: ["clkx"]
+      },
+      "application/vnd.crick.clicker.keyboard": {
+        source: "iana",
+        extensions: ["clkk"]
+      },
+      "application/vnd.crick.clicker.palette": {
+        source: "iana",
+        extensions: ["clkp"]
+      },
+      "application/vnd.crick.clicker.template": {
+        source: "iana",
+        extensions: ["clkt"]
+      },
+      "application/vnd.crick.clicker.wordbank": {
+        source: "iana",
+        extensions: ["clkw"]
+      },
+      "application/vnd.criticaltools.wbs+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["wbs"]
+      },
+      "application/vnd.cryptii.pipe+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.crypto-shade-file": {
+        source: "iana"
+      },
+      "application/vnd.cryptomator.encrypted": {
+        source: "iana"
+      },
+      "application/vnd.cryptomator.vault": {
+        source: "iana"
+      },
+      "application/vnd.ctc-posml": {
+        source: "iana",
+        extensions: ["pml"]
+      },
+      "application/vnd.ctct.ws+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.cups-pdf": {
+        source: "iana"
+      },
+      "application/vnd.cups-postscript": {
+        source: "iana"
+      },
+      "application/vnd.cups-ppd": {
+        source: "iana",
+        extensions: ["ppd"]
+      },
+      "application/vnd.cups-raster": {
+        source: "iana"
+      },
+      "application/vnd.cups-raw": {
+        source: "iana"
+      },
+      "application/vnd.curl": {
+        source: "iana"
+      },
+      "application/vnd.curl.car": {
+        source: "apache",
+        extensions: ["car"]
+      },
+      "application/vnd.curl.pcurl": {
+        source: "apache",
+        extensions: ["pcurl"]
+      },
+      "application/vnd.cyan.dean.root+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.cybank": {
+        source: "iana"
+      },
+      "application/vnd.cyclonedx+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.cyclonedx+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.d2l.coursepackage1p0+zip": {
+        source: "iana",
+        compressible: false
+      },
+      "application/vnd.d3m-dataset": {
+        source: "iana"
+      },
+      "application/vnd.d3m-problem": {
+        source: "iana"
+      },
+      "application/vnd.dart": {
+        source: "iana",
+        compressible: true,
+        extensions: ["dart"]
+      },
+      "application/vnd.data-vision.rdz": {
+        source: "iana",
+        extensions: ["rdz"]
+      },
+      "application/vnd.datapackage+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.dataresource+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.dbf": {
+        source: "iana",
+        extensions: ["dbf"]
+      },
+      "application/vnd.debian.binary-package": {
+        source: "iana"
+      },
+      "application/vnd.dece.data": {
+        source: "iana",
+        extensions: ["uvf", "uvvf", "uvd", "uvvd"]
+      },
+      "application/vnd.dece.ttml+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["uvt", "uvvt"]
+      },
+      "application/vnd.dece.unspecified": {
+        source: "iana",
+        extensions: ["uvx", "uvvx"]
+      },
+      "application/vnd.dece.zip": {
+        source: "iana",
+        extensions: ["uvz", "uvvz"]
+      },
+      "application/vnd.denovo.fcselayout-link": {
+        source: "iana",
+        extensions: ["fe_launch"]
+      },
+      "application/vnd.desmume.movie": {
+        source: "iana"
+      },
+      "application/vnd.dir-bi.plate-dl-nosuffix": {
+        source: "iana"
+      },
+      "application/vnd.dm.delegation+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.dna": {
+        source: "iana",
+        extensions: ["dna"]
+      },
+      "application/vnd.document+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.dolby.mlp": {
+        source: "apache",
+        extensions: ["mlp"]
+      },
+      "application/vnd.dolby.mobile.1": {
+        source: "iana"
+      },
+      "application/vnd.dolby.mobile.2": {
+        source: "iana"
+      },
+      "application/vnd.doremir.scorecloud-binary-document": {
+        source: "iana"
+      },
+      "application/vnd.dpgraph": {
+        source: "iana",
+        extensions: ["dpg"]
+      },
+      "application/vnd.dreamfactory": {
+        source: "iana",
+        extensions: ["dfac"]
+      },
+      "application/vnd.drive+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.ds-keypoint": {
+        source: "apache",
+        extensions: ["kpxx"]
+      },
+      "application/vnd.dtg.local": {
+        source: "iana"
+      },
+      "application/vnd.dtg.local.flash": {
+        source: "iana"
+      },
+      "application/vnd.dtg.local.html": {
+        source: "iana"
+      },
+      "application/vnd.dvb.ait": {
+        source: "iana",
+        extensions: ["ait"]
+      },
+      "application/vnd.dvb.dvbisl+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.dvb.dvbj": {
+        source: "iana"
+      },
+      "application/vnd.dvb.esgcontainer": {
+        source: "iana"
+      },
+      "application/vnd.dvb.ipdcdftnotifaccess": {
+        source: "iana"
+      },
+      "application/vnd.dvb.ipdcesgaccess": {
+        source: "iana"
+      },
+      "application/vnd.dvb.ipdcesgaccess2": {
+        source: "iana"
+      },
+      "application/vnd.dvb.ipdcesgpdd": {
+        source: "iana"
+      },
+      "application/vnd.dvb.ipdcroaming": {
+        source: "iana"
+      },
+      "application/vnd.dvb.iptv.alfec-base": {
+        source: "iana"
+      },
+      "application/vnd.dvb.iptv.alfec-enhancement": {
+        source: "iana"
+      },
+      "application/vnd.dvb.notif-aggregate-root+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.dvb.notif-container+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.dvb.notif-generic+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.dvb.notif-ia-msglist+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.dvb.notif-ia-registration-request+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.dvb.notif-ia-registration-response+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.dvb.notif-init+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.dvb.pfr": {
+        source: "iana"
+      },
+      "application/vnd.dvb.service": {
+        source: "iana",
+        extensions: ["svc"]
+      },
+      "application/vnd.dxr": {
+        source: "iana"
+      },
+      "application/vnd.dynageo": {
+        source: "iana",
+        extensions: ["geo"]
+      },
+      "application/vnd.dzr": {
+        source: "iana"
+      },
+      "application/vnd.easykaraoke.cdgdownload": {
+        source: "iana"
+      },
+      "application/vnd.ecdis-update": {
+        source: "iana"
+      },
+      "application/vnd.ecip.rlp": {
+        source: "iana"
+      },
+      "application/vnd.eclipse.ditto+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.ecowin.chart": {
+        source: "iana",
+        extensions: ["mag"]
+      },
+      "application/vnd.ecowin.filerequest": {
+        source: "iana"
+      },
+      "application/vnd.ecowin.fileupdate": {
+        source: "iana"
+      },
+      "application/vnd.ecowin.series": {
+        source: "iana"
+      },
+      "application/vnd.ecowin.seriesrequest": {
+        source: "iana"
+      },
+      "application/vnd.ecowin.seriesupdate": {
+        source: "iana"
+      },
+      "application/vnd.efi.img": {
+        source: "iana"
+      },
+      "application/vnd.efi.iso": {
+        source: "iana"
+      },
+      "application/vnd.emclient.accessrequest+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.enliven": {
+        source: "iana",
+        extensions: ["nml"]
+      },
+      "application/vnd.enphase.envoy": {
+        source: "iana"
+      },
+      "application/vnd.eprints.data+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.epson.esf": {
+        source: "iana",
+        extensions: ["esf"]
+      },
+      "application/vnd.epson.msf": {
+        source: "iana",
+        extensions: ["msf"]
+      },
+      "application/vnd.epson.quickanime": {
+        source: "iana",
+        extensions: ["qam"]
+      },
+      "application/vnd.epson.salt": {
+        source: "iana",
+        extensions: ["slt"]
+      },
+      "application/vnd.epson.ssf": {
+        source: "iana",
+        extensions: ["ssf"]
+      },
+      "application/vnd.ericsson.quickcall": {
+        source: "iana"
+      },
+      "application/vnd.espass-espass+zip": {
+        source: "iana",
+        compressible: false
+      },
+      "application/vnd.eszigno3+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["es3", "et3"]
+      },
+      "application/vnd.etsi.aoc+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.etsi.asic-e+zip": {
+        source: "iana",
+        compressible: false
+      },
+      "application/vnd.etsi.asic-s+zip": {
+        source: "iana",
+        compressible: false
+      },
+      "application/vnd.etsi.cug+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.etsi.iptvcommand+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.etsi.iptvdiscovery+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.etsi.iptvprofile+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.etsi.iptvsad-bc+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.etsi.iptvsad-cod+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.etsi.iptvsad-npvr+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.etsi.iptvservice+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.etsi.iptvsync+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.etsi.iptvueprofile+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.etsi.mcid+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.etsi.mheg5": {
+        source: "iana"
+      },
+      "application/vnd.etsi.overload-control-policy-dataset+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.etsi.pstn+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.etsi.sci+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.etsi.simservs+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.etsi.timestamp-token": {
+        source: "iana"
+      },
+      "application/vnd.etsi.tsl+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.etsi.tsl.der": {
+        source: "iana"
+      },
+      "application/vnd.eu.kasparian.car+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.eudora.data": {
+        source: "iana"
+      },
+      "application/vnd.evolv.ecig.profile": {
+        source: "iana"
+      },
+      "application/vnd.evolv.ecig.settings": {
+        source: "iana"
+      },
+      "application/vnd.evolv.ecig.theme": {
+        source: "iana"
+      },
+      "application/vnd.exstream-empower+zip": {
+        source: "iana",
+        compressible: false
+      },
+      "application/vnd.exstream-package": {
+        source: "iana"
+      },
+      "application/vnd.ezpix-album": {
+        source: "iana",
+        extensions: ["ez2"]
+      },
+      "application/vnd.ezpix-package": {
+        source: "iana",
+        extensions: ["ez3"]
+      },
+      "application/vnd.f-secure.mobile": {
+        source: "iana"
+      },
+      "application/vnd.familysearch.gedcom+zip": {
+        source: "iana",
+        compressible: false
+      },
+      "application/vnd.fastcopy-disk-image": {
+        source: "iana"
+      },
+      "application/vnd.fdf": {
+        source: "iana",
+        extensions: ["fdf"]
+      },
+      "application/vnd.fdsn.mseed": {
+        source: "iana",
+        extensions: ["mseed"]
+      },
+      "application/vnd.fdsn.seed": {
+        source: "iana",
+        extensions: ["seed", "dataless"]
+      },
+      "application/vnd.ffsns": {
+        source: "iana"
+      },
+      "application/vnd.ficlab.flb+zip": {
+        source: "iana",
+        compressible: false
+      },
+      "application/vnd.filmit.zfc": {
+        source: "iana"
+      },
+      "application/vnd.fints": {
+        source: "iana"
+      },
+      "application/vnd.firemonkeys.cloudcell": {
+        source: "iana"
+      },
+      "application/vnd.flographit": {
+        source: "iana",
+        extensions: ["gph"]
+      },
+      "application/vnd.fluxtime.clip": {
+        source: "iana",
+        extensions: ["ftc"]
+      },
+      "application/vnd.font-fontforge-sfd": {
+        source: "iana"
+      },
+      "application/vnd.framemaker": {
+        source: "iana",
+        extensions: ["fm", "frame", "maker", "book"]
+      },
+      "application/vnd.frogans.fnc": {
+        source: "iana",
+        extensions: ["fnc"]
+      },
+      "application/vnd.frogans.ltf": {
+        source: "iana",
+        extensions: ["ltf"]
+      },
+      "application/vnd.fsc.weblaunch": {
+        source: "iana",
+        extensions: ["fsc"]
+      },
+      "application/vnd.fujifilm.fb.docuworks": {
+        source: "iana"
+      },
+      "application/vnd.fujifilm.fb.docuworks.binder": {
+        source: "iana"
+      },
+      "application/vnd.fujifilm.fb.docuworks.container": {
+        source: "iana"
+      },
+      "application/vnd.fujifilm.fb.jfi+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.fujitsu.oasys": {
+        source: "iana",
+        extensions: ["oas"]
+      },
+      "application/vnd.fujitsu.oasys2": {
+        source: "iana",
+        extensions: ["oa2"]
+      },
+      "application/vnd.fujitsu.oasys3": {
+        source: "iana",
+        extensions: ["oa3"]
+      },
+      "application/vnd.fujitsu.oasysgp": {
+        source: "iana",
+        extensions: ["fg5"]
+      },
+      "application/vnd.fujitsu.oasysprs": {
+        source: "iana",
+        extensions: ["bh2"]
+      },
+      "application/vnd.fujixerox.art-ex": {
+        source: "iana"
+      },
+      "application/vnd.fujixerox.art4": {
+        source: "iana"
+      },
+      "application/vnd.fujixerox.ddd": {
+        source: "iana",
+        extensions: ["ddd"]
+      },
+      "application/vnd.fujixerox.docuworks": {
+        source: "iana",
+        extensions: ["xdw"]
+      },
+      "application/vnd.fujixerox.docuworks.binder": {
+        source: "iana",
+        extensions: ["xbd"]
+      },
+      "application/vnd.fujixerox.docuworks.container": {
+        source: "iana"
+      },
+      "application/vnd.fujixerox.hbpl": {
+        source: "iana"
+      },
+      "application/vnd.fut-misnet": {
+        source: "iana"
+      },
+      "application/vnd.futoin+cbor": {
+        source: "iana"
+      },
+      "application/vnd.futoin+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.fuzzysheet": {
+        source: "iana",
+        extensions: ["fzs"]
+      },
+      "application/vnd.genomatix.tuxedo": {
+        source: "iana",
+        extensions: ["txd"]
+      },
+      "application/vnd.gentics.grd+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.geo+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.geocube+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.geogebra.file": {
+        source: "iana",
+        extensions: ["ggb"]
+      },
+      "application/vnd.geogebra.slides": {
+        source: "iana"
+      },
+      "application/vnd.geogebra.tool": {
+        source: "iana",
+        extensions: ["ggt"]
+      },
+      "application/vnd.geometry-explorer": {
+        source: "iana",
+        extensions: ["gex", "gre"]
+      },
+      "application/vnd.geonext": {
+        source: "iana",
+        extensions: ["gxt"]
+      },
+      "application/vnd.geoplan": {
+        source: "iana",
+        extensions: ["g2w"]
+      },
+      "application/vnd.geospace": {
+        source: "iana",
+        extensions: ["g3w"]
+      },
+      "application/vnd.gerber": {
+        source: "iana"
+      },
+      "application/vnd.globalplatform.card-content-mgt": {
+        source: "iana"
+      },
+      "application/vnd.globalplatform.card-content-mgt-response": {
+        source: "iana"
+      },
+      "application/vnd.gmx": {
+        source: "iana",
+        extensions: ["gmx"]
+      },
+      "application/vnd.google-apps.document": {
+        compressible: false,
+        extensions: ["gdoc"]
+      },
+      "application/vnd.google-apps.presentation": {
+        compressible: false,
+        extensions: ["gslides"]
+      },
+      "application/vnd.google-apps.spreadsheet": {
+        compressible: false,
+        extensions: ["gsheet"]
+      },
+      "application/vnd.google-earth.kml+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["kml"]
+      },
+      "application/vnd.google-earth.kmz": {
+        source: "iana",
+        compressible: false,
+        extensions: ["kmz"]
+      },
+      "application/vnd.gov.sk.e-form+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.gov.sk.e-form+zip": {
+        source: "iana",
+        compressible: false
+      },
+      "application/vnd.gov.sk.xmldatacontainer+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.grafeq": {
+        source: "iana",
+        extensions: ["gqf", "gqs"]
+      },
+      "application/vnd.gridmp": {
+        source: "iana"
+      },
+      "application/vnd.groove-account": {
+        source: "iana",
+        extensions: ["gac"]
+      },
+      "application/vnd.groove-help": {
+        source: "iana",
+        extensions: ["ghf"]
+      },
+      "application/vnd.groove-identity-message": {
+        source: "iana",
+        extensions: ["gim"]
+      },
+      "application/vnd.groove-injector": {
+        source: "iana",
+        extensions: ["grv"]
+      },
+      "application/vnd.groove-tool-message": {
+        source: "iana",
+        extensions: ["gtm"]
+      },
+      "application/vnd.groove-tool-template": {
+        source: "iana",
+        extensions: ["tpl"]
+      },
+      "application/vnd.groove-vcard": {
+        source: "iana",
+        extensions: ["vcg"]
+      },
+      "application/vnd.hal+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.hal+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["hal"]
+      },
+      "application/vnd.handheld-entertainment+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["zmm"]
+      },
+      "application/vnd.hbci": {
+        source: "iana",
+        extensions: ["hbci"]
+      },
+      "application/vnd.hc+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.hcl-bireports": {
+        source: "iana"
+      },
+      "application/vnd.hdt": {
+        source: "iana"
+      },
+      "application/vnd.heroku+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.hhe.lesson-player": {
+        source: "iana",
+        extensions: ["les"]
+      },
+      "application/vnd.hl7cda+xml": {
+        source: "iana",
+        charset: "UTF-8",
+        compressible: true
+      },
+      "application/vnd.hl7v2+xml": {
+        source: "iana",
+        charset: "UTF-8",
+        compressible: true
+      },
+      "application/vnd.hp-hpgl": {
+        source: "iana",
+        extensions: ["hpgl"]
+      },
+      "application/vnd.hp-hpid": {
+        source: "iana",
+        extensions: ["hpid"]
+      },
+      "application/vnd.hp-hps": {
+        source: "iana",
+        extensions: ["hps"]
+      },
+      "application/vnd.hp-jlyt": {
+        source: "iana",
+        extensions: ["jlt"]
+      },
+      "application/vnd.hp-pcl": {
+        source: "iana",
+        extensions: ["pcl"]
+      },
+      "application/vnd.hp-pclxl": {
+        source: "iana",
+        extensions: ["pclxl"]
+      },
+      "application/vnd.httphone": {
+        source: "iana"
+      },
+      "application/vnd.hydrostatix.sof-data": {
+        source: "iana",
+        extensions: ["sfd-hdstx"]
+      },
+      "application/vnd.hyper+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.hyper-item+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.hyperdrive+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.hzn-3d-crossword": {
+        source: "iana"
+      },
+      "application/vnd.ibm.afplinedata": {
+        source: "iana"
+      },
+      "application/vnd.ibm.electronic-media": {
+        source: "iana"
+      },
+      "application/vnd.ibm.minipay": {
+        source: "iana",
+        extensions: ["mpy"]
+      },
+      "application/vnd.ibm.modcap": {
+        source: "iana",
+        extensions: ["afp", "listafp", "list3820"]
+      },
+      "application/vnd.ibm.rights-management": {
+        source: "iana",
+        extensions: ["irm"]
+      },
+      "application/vnd.ibm.secure-container": {
+        source: "iana",
+        extensions: ["sc"]
+      },
+      "application/vnd.iccprofile": {
+        source: "iana",
+        extensions: ["icc", "icm"]
+      },
+      "application/vnd.ieee.1905": {
+        source: "iana"
+      },
+      "application/vnd.igloader": {
+        source: "iana",
+        extensions: ["igl"]
+      },
+      "application/vnd.imagemeter.folder+zip": {
+        source: "iana",
+        compressible: false
+      },
+      "application/vnd.imagemeter.image+zip": {
+        source: "iana",
+        compressible: false
+      },
+      "application/vnd.immervision-ivp": {
+        source: "iana",
+        extensions: ["ivp"]
+      },
+      "application/vnd.immervision-ivu": {
+        source: "iana",
+        extensions: ["ivu"]
+      },
+      "application/vnd.ims.imsccv1p1": {
+        source: "iana"
+      },
+      "application/vnd.ims.imsccv1p2": {
+        source: "iana"
+      },
+      "application/vnd.ims.imsccv1p3": {
+        source: "iana"
+      },
+      "application/vnd.ims.lis.v2.result+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.ims.lti.v2.toolconsumerprofile+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.ims.lti.v2.toolproxy+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.ims.lti.v2.toolproxy.id+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.ims.lti.v2.toolsettings+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.ims.lti.v2.toolsettings.simple+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.informedcontrol.rms+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.informix-visionary": {
+        source: "iana"
+      },
+      "application/vnd.infotech.project": {
+        source: "iana"
+      },
+      "application/vnd.infotech.project+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.innopath.wamp.notification": {
+        source: "iana"
+      },
+      "application/vnd.insors.igm": {
+        source: "iana",
+        extensions: ["igm"]
+      },
+      "application/vnd.intercon.formnet": {
+        source: "iana",
+        extensions: ["xpw", "xpx"]
+      },
+      "application/vnd.intergeo": {
+        source: "iana",
+        extensions: ["i2g"]
+      },
+      "application/vnd.intertrust.digibox": {
+        source: "iana"
+      },
+      "application/vnd.intertrust.nncp": {
+        source: "iana"
+      },
+      "application/vnd.intu.qbo": {
+        source: "iana",
+        extensions: ["qbo"]
+      },
+      "application/vnd.intu.qfx": {
+        source: "iana",
+        extensions: ["qfx"]
+      },
+      "application/vnd.iptc.g2.catalogitem+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.iptc.g2.conceptitem+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.iptc.g2.knowledgeitem+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.iptc.g2.newsitem+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.iptc.g2.newsmessage+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.iptc.g2.packageitem+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.iptc.g2.planningitem+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.ipunplugged.rcprofile": {
+        source: "iana",
+        extensions: ["rcprofile"]
+      },
+      "application/vnd.irepository.package+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["irp"]
+      },
+      "application/vnd.is-xpr": {
+        source: "iana",
+        extensions: ["xpr"]
+      },
+      "application/vnd.isac.fcs": {
+        source: "iana",
+        extensions: ["fcs"]
+      },
+      "application/vnd.iso11783-10+zip": {
+        source: "iana",
+        compressible: false
+      },
+      "application/vnd.jam": {
+        source: "iana",
+        extensions: ["jam"]
+      },
+      "application/vnd.japannet-directory-service": {
+        source: "iana"
+      },
+      "application/vnd.japannet-jpnstore-wakeup": {
+        source: "iana"
+      },
+      "application/vnd.japannet-payment-wakeup": {
+        source: "iana"
+      },
+      "application/vnd.japannet-registration": {
+        source: "iana"
+      },
+      "application/vnd.japannet-registration-wakeup": {
+        source: "iana"
+      },
+      "application/vnd.japannet-setstore-wakeup": {
+        source: "iana"
+      },
+      "application/vnd.japannet-verification": {
+        source: "iana"
+      },
+      "application/vnd.japannet-verification-wakeup": {
+        source: "iana"
+      },
+      "application/vnd.jcp.javame.midlet-rms": {
+        source: "iana",
+        extensions: ["rms"]
+      },
+      "application/vnd.jisp": {
+        source: "iana",
+        extensions: ["jisp"]
+      },
+      "application/vnd.joost.joda-archive": {
+        source: "iana",
+        extensions: ["joda"]
+      },
+      "application/vnd.jsk.isdn-ngn": {
+        source: "iana"
+      },
+      "application/vnd.kahootz": {
+        source: "iana",
+        extensions: ["ktz", "ktr"]
+      },
+      "application/vnd.kde.karbon": {
+        source: "iana",
+        extensions: ["karbon"]
+      },
+      "application/vnd.kde.kchart": {
+        source: "iana",
+        extensions: ["chrt"]
+      },
+      "application/vnd.kde.kformula": {
+        source: "iana",
+        extensions: ["kfo"]
+      },
+      "application/vnd.kde.kivio": {
+        source: "iana",
+        extensions: ["flw"]
+      },
+      "application/vnd.kde.kontour": {
+        source: "iana",
+        extensions: ["kon"]
+      },
+      "application/vnd.kde.kpresenter": {
+        source: "iana",
+        extensions: ["kpr", "kpt"]
+      },
+      "application/vnd.kde.kspread": {
+        source: "iana",
+        extensions: ["ksp"]
+      },
+      "application/vnd.kde.kword": {
+        source: "iana",
+        extensions: ["kwd", "kwt"]
+      },
+      "application/vnd.kenameaapp": {
+        source: "iana",
+        extensions: ["htke"]
+      },
+      "application/vnd.kidspiration": {
+        source: "iana",
+        extensions: ["kia"]
+      },
+      "application/vnd.kinar": {
+        source: "iana",
+        extensions: ["kne", "knp"]
+      },
+      "application/vnd.koan": {
+        source: "iana",
+        extensions: ["skp", "skd", "skt", "skm"]
+      },
+      "application/vnd.kodak-descriptor": {
+        source: "iana",
+        extensions: ["sse"]
+      },
+      "application/vnd.las": {
+        source: "iana"
+      },
+      "application/vnd.las.las+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.las.las+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["lasxml"]
+      },
+      "application/vnd.laszip": {
+        source: "iana"
+      },
+      "application/vnd.leap+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.liberty-request+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.llamagraphics.life-balance.desktop": {
+        source: "iana",
+        extensions: ["lbd"]
+      },
+      "application/vnd.llamagraphics.life-balance.exchange+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["lbe"]
+      },
+      "application/vnd.logipipe.circuit+zip": {
+        source: "iana",
+        compressible: false
+      },
+      "application/vnd.loom": {
+        source: "iana"
+      },
+      "application/vnd.lotus-1-2-3": {
+        source: "iana",
+        extensions: ["123"]
+      },
+      "application/vnd.lotus-approach": {
+        source: "iana",
+        extensions: ["apr"]
+      },
+      "application/vnd.lotus-freelance": {
+        source: "iana",
+        extensions: ["pre"]
+      },
+      "application/vnd.lotus-notes": {
+        source: "iana",
+        extensions: ["nsf"]
+      },
+      "application/vnd.lotus-organizer": {
+        source: "iana",
+        extensions: ["org"]
+      },
+      "application/vnd.lotus-screencam": {
+        source: "iana",
+        extensions: ["scm"]
+      },
+      "application/vnd.lotus-wordpro": {
+        source: "iana",
+        extensions: ["lwp"]
+      },
+      "application/vnd.macports.portpkg": {
+        source: "iana",
+        extensions: ["portpkg"]
+      },
+      "application/vnd.mapbox-vector-tile": {
+        source: "iana",
+        extensions: ["mvt"]
+      },
+      "application/vnd.marlin.drm.actiontoken+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.marlin.drm.conftoken+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.marlin.drm.license+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.marlin.drm.mdcf": {
+        source: "iana"
+      },
+      "application/vnd.mason+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.maxar.archive.3tz+zip": {
+        source: "iana",
+        compressible: false
+      },
+      "application/vnd.maxmind.maxmind-db": {
+        source: "iana"
+      },
+      "application/vnd.mcd": {
+        source: "iana",
+        extensions: ["mcd"]
+      },
+      "application/vnd.medcalcdata": {
+        source: "iana",
+        extensions: ["mc1"]
+      },
+      "application/vnd.mediastation.cdkey": {
+        source: "iana",
+        extensions: ["cdkey"]
+      },
+      "application/vnd.meridian-slingshot": {
+        source: "iana"
+      },
+      "application/vnd.mfer": {
+        source: "iana",
+        extensions: ["mwf"]
+      },
+      "application/vnd.mfmp": {
+        source: "iana",
+        extensions: ["mfm"]
+      },
+      "application/vnd.micro+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.micrografx.flo": {
+        source: "iana",
+        extensions: ["flo"]
+      },
+      "application/vnd.micrografx.igx": {
+        source: "iana",
+        extensions: ["igx"]
+      },
+      "application/vnd.microsoft.portable-executable": {
+        source: "iana"
+      },
+      "application/vnd.microsoft.windows.thumbnail-cache": {
+        source: "iana"
+      },
+      "application/vnd.miele+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.mif": {
+        source: "iana",
+        extensions: ["mif"]
+      },
+      "application/vnd.minisoft-hp3000-save": {
+        source: "iana"
+      },
+      "application/vnd.mitsubishi.misty-guard.trustweb": {
+        source: "iana"
+      },
+      "application/vnd.mobius.daf": {
+        source: "iana",
+        extensions: ["daf"]
+      },
+      "application/vnd.mobius.dis": {
+        source: "iana",
+        extensions: ["dis"]
+      },
+      "application/vnd.mobius.mbk": {
+        source: "iana",
+        extensions: ["mbk"]
+      },
+      "application/vnd.mobius.mqy": {
+        source: "iana",
+        extensions: ["mqy"]
+      },
+      "application/vnd.mobius.msl": {
+        source: "iana",
+        extensions: ["msl"]
+      },
+      "application/vnd.mobius.plc": {
+        source: "iana",
+        extensions: ["plc"]
+      },
+      "application/vnd.mobius.txf": {
+        source: "iana",
+        extensions: ["txf"]
+      },
+      "application/vnd.mophun.application": {
+        source: "iana",
+        extensions: ["mpn"]
+      },
+      "application/vnd.mophun.certificate": {
+        source: "iana",
+        extensions: ["mpc"]
+      },
+      "application/vnd.motorola.flexsuite": {
+        source: "iana"
+      },
+      "application/vnd.motorola.flexsuite.adsi": {
+        source: "iana"
+      },
+      "application/vnd.motorola.flexsuite.fis": {
+        source: "iana"
+      },
+      "application/vnd.motorola.flexsuite.gotap": {
+        source: "iana"
+      },
+      "application/vnd.motorola.flexsuite.kmr": {
+        source: "iana"
+      },
+      "application/vnd.motorola.flexsuite.ttc": {
+        source: "iana"
+      },
+      "application/vnd.motorola.flexsuite.wem": {
+        source: "iana"
+      },
+      "application/vnd.motorola.iprm": {
+        source: "iana"
+      },
+      "application/vnd.mozilla.xul+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["xul"]
+      },
+      "application/vnd.ms-3mfdocument": {
+        source: "iana"
+      },
+      "application/vnd.ms-artgalry": {
+        source: "iana",
+        extensions: ["cil"]
+      },
+      "application/vnd.ms-asf": {
+        source: "iana"
+      },
+      "application/vnd.ms-cab-compressed": {
+        source: "iana",
+        extensions: ["cab"]
+      },
+      "application/vnd.ms-color.iccprofile": {
+        source: "apache"
+      },
+      "application/vnd.ms-excel": {
+        source: "iana",
+        compressible: false,
+        extensions: ["xls", "xlm", "xla", "xlc", "xlt", "xlw"]
+      },
+      "application/vnd.ms-excel.addin.macroenabled.12": {
+        source: "iana",
+        extensions: ["xlam"]
+      },
+      "application/vnd.ms-excel.sheet.binary.macroenabled.12": {
+        source: "iana",
+        extensions: ["xlsb"]
+      },
+      "application/vnd.ms-excel.sheet.macroenabled.12": {
+        source: "iana",
+        extensions: ["xlsm"]
+      },
+      "application/vnd.ms-excel.template.macroenabled.12": {
+        source: "iana",
+        extensions: ["xltm"]
+      },
+      "application/vnd.ms-fontobject": {
+        source: "iana",
+        compressible: true,
+        extensions: ["eot"]
+      },
+      "application/vnd.ms-htmlhelp": {
+        source: "iana",
+        extensions: ["chm"]
+      },
+      "application/vnd.ms-ims": {
+        source: "iana",
+        extensions: ["ims"]
+      },
+      "application/vnd.ms-lrm": {
+        source: "iana",
+        extensions: ["lrm"]
+      },
+      "application/vnd.ms-office.activex+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.ms-officetheme": {
+        source: "iana",
+        extensions: ["thmx"]
+      },
+      "application/vnd.ms-opentype": {
+        source: "apache",
+        compressible: true
+      },
+      "application/vnd.ms-outlook": {
+        compressible: false,
+        extensions: ["msg"]
+      },
+      "application/vnd.ms-package.obfuscated-opentype": {
+        source: "apache"
+      },
+      "application/vnd.ms-pki.seccat": {
+        source: "apache",
+        extensions: ["cat"]
+      },
+      "application/vnd.ms-pki.stl": {
+        source: "apache",
+        extensions: ["stl"]
+      },
+      "application/vnd.ms-playready.initiator+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.ms-powerpoint": {
+        source: "iana",
+        compressible: false,
+        extensions: ["ppt", "pps", "pot"]
+      },
+      "application/vnd.ms-powerpoint.addin.macroenabled.12": {
+        source: "iana",
+        extensions: ["ppam"]
+      },
+      "application/vnd.ms-powerpoint.presentation.macroenabled.12": {
+        source: "iana",
+        extensions: ["pptm"]
+      },
+      "application/vnd.ms-powerpoint.slide.macroenabled.12": {
+        source: "iana",
+        extensions: ["sldm"]
+      },
+      "application/vnd.ms-powerpoint.slideshow.macroenabled.12": {
+        source: "iana",
+        extensions: ["ppsm"]
+      },
+      "application/vnd.ms-powerpoint.template.macroenabled.12": {
+        source: "iana",
+        extensions: ["potm"]
+      },
+      "application/vnd.ms-printdevicecapabilities+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.ms-printing.printticket+xml": {
+        source: "apache",
+        compressible: true
+      },
+      "application/vnd.ms-printschematicket+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.ms-project": {
+        source: "iana",
+        extensions: ["mpp", "mpt"]
+      },
+      "application/vnd.ms-tnef": {
+        source: "iana"
+      },
+      "application/vnd.ms-windows.devicepairing": {
+        source: "iana"
+      },
+      "application/vnd.ms-windows.nwprinting.oob": {
+        source: "iana"
+      },
+      "application/vnd.ms-windows.printerpairing": {
+        source: "iana"
+      },
+      "application/vnd.ms-windows.wsd.oob": {
+        source: "iana"
+      },
+      "application/vnd.ms-wmdrm.lic-chlg-req": {
+        source: "iana"
+      },
+      "application/vnd.ms-wmdrm.lic-resp": {
+        source: "iana"
+      },
+      "application/vnd.ms-wmdrm.meter-chlg-req": {
+        source: "iana"
+      },
+      "application/vnd.ms-wmdrm.meter-resp": {
+        source: "iana"
+      },
+      "application/vnd.ms-word.document.macroenabled.12": {
+        source: "iana",
+        extensions: ["docm"]
+      },
+      "application/vnd.ms-word.template.macroenabled.12": {
+        source: "iana",
+        extensions: ["dotm"]
+      },
+      "application/vnd.ms-works": {
+        source: "iana",
+        extensions: ["wps", "wks", "wcm", "wdb"]
+      },
+      "application/vnd.ms-wpl": {
+        source: "iana",
+        extensions: ["wpl"]
+      },
+      "application/vnd.ms-xpsdocument": {
+        source: "iana",
+        compressible: false,
+        extensions: ["xps"]
+      },
+      "application/vnd.msa-disk-image": {
+        source: "iana"
+      },
+      "application/vnd.mseq": {
+        source: "iana",
+        extensions: ["mseq"]
+      },
+      "application/vnd.msign": {
+        source: "iana"
+      },
+      "application/vnd.multiad.creator": {
+        source: "iana"
+      },
+      "application/vnd.multiad.creator.cif": {
+        source: "iana"
+      },
+      "application/vnd.music-niff": {
+        source: "iana"
+      },
+      "application/vnd.musician": {
+        source: "iana",
+        extensions: ["mus"]
+      },
+      "application/vnd.muvee.style": {
+        source: "iana",
+        extensions: ["msty"]
+      },
+      "application/vnd.mynfc": {
+        source: "iana",
+        extensions: ["taglet"]
+      },
+      "application/vnd.nacamar.ybrid+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.ncd.control": {
+        source: "iana"
+      },
+      "application/vnd.ncd.reference": {
+        source: "iana"
+      },
+      "application/vnd.nearst.inv+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.nebumind.line": {
+        source: "iana"
+      },
+      "application/vnd.nervana": {
+        source: "iana"
+      },
+      "application/vnd.netfpx": {
+        source: "iana"
+      },
+      "application/vnd.neurolanguage.nlu": {
+        source: "iana",
+        extensions: ["nlu"]
+      },
+      "application/vnd.nimn": {
+        source: "iana"
+      },
+      "application/vnd.nintendo.nitro.rom": {
+        source: "iana"
+      },
+      "application/vnd.nintendo.snes.rom": {
+        source: "iana"
+      },
+      "application/vnd.nitf": {
+        source: "iana",
+        extensions: ["ntf", "nitf"]
+      },
+      "application/vnd.noblenet-directory": {
+        source: "iana",
+        extensions: ["nnd"]
+      },
+      "application/vnd.noblenet-sealer": {
+        source: "iana",
+        extensions: ["nns"]
+      },
+      "application/vnd.noblenet-web": {
+        source: "iana",
+        extensions: ["nnw"]
+      },
+      "application/vnd.nokia.catalogs": {
+        source: "iana"
+      },
+      "application/vnd.nokia.conml+wbxml": {
+        source: "iana"
+      },
+      "application/vnd.nokia.conml+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.nokia.iptv.config+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.nokia.isds-radio-presets": {
+        source: "iana"
+      },
+      "application/vnd.nokia.landmark+wbxml": {
+        source: "iana"
+      },
+      "application/vnd.nokia.landmark+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.nokia.landmarkcollection+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.nokia.n-gage.ac+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["ac"]
+      },
+      "application/vnd.nokia.n-gage.data": {
+        source: "iana",
+        extensions: ["ngdat"]
+      },
+      "application/vnd.nokia.n-gage.symbian.install": {
+        source: "iana",
+        extensions: ["n-gage"]
+      },
+      "application/vnd.nokia.ncd": {
+        source: "iana"
+      },
+      "application/vnd.nokia.pcd+wbxml": {
+        source: "iana"
+      },
+      "application/vnd.nokia.pcd+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.nokia.radio-preset": {
+        source: "iana",
+        extensions: ["rpst"]
+      },
+      "application/vnd.nokia.radio-presets": {
+        source: "iana",
+        extensions: ["rpss"]
+      },
+      "application/vnd.novadigm.edm": {
+        source: "iana",
+        extensions: ["edm"]
+      },
+      "application/vnd.novadigm.edx": {
+        source: "iana",
+        extensions: ["edx"]
+      },
+      "application/vnd.novadigm.ext": {
+        source: "iana",
+        extensions: ["ext"]
+      },
+      "application/vnd.ntt-local.content-share": {
+        source: "iana"
+      },
+      "application/vnd.ntt-local.file-transfer": {
+        source: "iana"
+      },
+      "application/vnd.ntt-local.ogw_remote-access": {
+        source: "iana"
+      },
+      "application/vnd.ntt-local.sip-ta_remote": {
+        source: "iana"
+      },
+      "application/vnd.ntt-local.sip-ta_tcp_stream": {
+        source: "iana"
+      },
+      "application/vnd.oasis.opendocument.chart": {
+        source: "iana",
+        extensions: ["odc"]
+      },
+      "application/vnd.oasis.opendocument.chart-template": {
+        source: "iana",
+        extensions: ["otc"]
+      },
+      "application/vnd.oasis.opendocument.database": {
+        source: "iana",
+        extensions: ["odb"]
+      },
+      "application/vnd.oasis.opendocument.formula": {
+        source: "iana",
+        extensions: ["odf"]
+      },
+      "application/vnd.oasis.opendocument.formula-template": {
+        source: "iana",
+        extensions: ["odft"]
+      },
+      "application/vnd.oasis.opendocument.graphics": {
+        source: "iana",
+        compressible: false,
+        extensions: ["odg"]
+      },
+      "application/vnd.oasis.opendocument.graphics-template": {
+        source: "iana",
+        extensions: ["otg"]
+      },
+      "application/vnd.oasis.opendocument.image": {
+        source: "iana",
+        extensions: ["odi"]
+      },
+      "application/vnd.oasis.opendocument.image-template": {
+        source: "iana",
+        extensions: ["oti"]
+      },
+      "application/vnd.oasis.opendocument.presentation": {
+        source: "iana",
+        compressible: false,
+        extensions: ["odp"]
+      },
+      "application/vnd.oasis.opendocument.presentation-template": {
+        source: "iana",
+        extensions: ["otp"]
+      },
+      "application/vnd.oasis.opendocument.spreadsheet": {
+        source: "iana",
+        compressible: false,
+        extensions: ["ods"]
+      },
+      "application/vnd.oasis.opendocument.spreadsheet-template": {
+        source: "iana",
+        extensions: ["ots"]
+      },
+      "application/vnd.oasis.opendocument.text": {
+        source: "iana",
+        compressible: false,
+        extensions: ["odt"]
+      },
+      "application/vnd.oasis.opendocument.text-master": {
+        source: "iana",
+        extensions: ["odm"]
+      },
+      "application/vnd.oasis.opendocument.text-template": {
+        source: "iana",
+        extensions: ["ott"]
+      },
+      "application/vnd.oasis.opendocument.text-web": {
+        source: "iana",
+        extensions: ["oth"]
+      },
+      "application/vnd.obn": {
+        source: "iana"
+      },
+      "application/vnd.ocf+cbor": {
+        source: "iana"
+      },
+      "application/vnd.oci.image.manifest.v1+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.oftn.l10n+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.oipf.contentaccessdownload+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.oipf.contentaccessstreaming+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.oipf.cspg-hexbinary": {
+        source: "iana"
+      },
+      "application/vnd.oipf.dae.svg+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.oipf.dae.xhtml+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.oipf.mippvcontrolmessage+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.oipf.pae.gem": {
+        source: "iana"
+      },
+      "application/vnd.oipf.spdiscovery+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.oipf.spdlist+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.oipf.ueprofile+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.oipf.userprofile+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.olpc-sugar": {
+        source: "iana",
+        extensions: ["xo"]
+      },
+      "application/vnd.oma-scws-config": {
+        source: "iana"
+      },
+      "application/vnd.oma-scws-http-request": {
+        source: "iana"
+      },
+      "application/vnd.oma-scws-http-response": {
+        source: "iana"
+      },
+      "application/vnd.oma.bcast.associated-procedure-parameter+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.oma.bcast.drm-trigger+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.oma.bcast.imd+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.oma.bcast.ltkm": {
+        source: "iana"
+      },
+      "application/vnd.oma.bcast.notification+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.oma.bcast.provisioningtrigger": {
+        source: "iana"
+      },
+      "application/vnd.oma.bcast.sgboot": {
+        source: "iana"
+      },
+      "application/vnd.oma.bcast.sgdd+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.oma.bcast.sgdu": {
+        source: "iana"
+      },
+      "application/vnd.oma.bcast.simple-symbol-container": {
+        source: "iana"
+      },
+      "application/vnd.oma.bcast.smartcard-trigger+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.oma.bcast.sprov+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.oma.bcast.stkm": {
+        source: "iana"
+      },
+      "application/vnd.oma.cab-address-book+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.oma.cab-feature-handler+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.oma.cab-pcc+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.oma.cab-subs-invite+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.oma.cab-user-prefs+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.oma.dcd": {
+        source: "iana"
+      },
+      "application/vnd.oma.dcdc": {
+        source: "iana"
+      },
+      "application/vnd.oma.dd2+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["dd2"]
+      },
+      "application/vnd.oma.drm.risd+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.oma.group-usage-list+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.oma.lwm2m+cbor": {
+        source: "iana"
+      },
+      "application/vnd.oma.lwm2m+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.oma.lwm2m+tlv": {
+        source: "iana"
+      },
+      "application/vnd.oma.pal+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.oma.poc.detailed-progress-report+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.oma.poc.final-report+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.oma.poc.groups+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.oma.poc.invocation-descriptor+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.oma.poc.optimized-progress-report+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.oma.push": {
+        source: "iana"
+      },
+      "application/vnd.oma.scidm.messages+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.oma.xcap-directory+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.omads-email+xml": {
+        source: "iana",
+        charset: "UTF-8",
+        compressible: true
+      },
+      "application/vnd.omads-file+xml": {
+        source: "iana",
+        charset: "UTF-8",
+        compressible: true
+      },
+      "application/vnd.omads-folder+xml": {
+        source: "iana",
+        charset: "UTF-8",
+        compressible: true
+      },
+      "application/vnd.omaloc-supl-init": {
+        source: "iana"
+      },
+      "application/vnd.onepager": {
+        source: "iana"
+      },
+      "application/vnd.onepagertamp": {
+        source: "iana"
+      },
+      "application/vnd.onepagertamx": {
+        source: "iana"
+      },
+      "application/vnd.onepagertat": {
+        source: "iana"
+      },
+      "application/vnd.onepagertatp": {
+        source: "iana"
+      },
+      "application/vnd.onepagertatx": {
+        source: "iana"
+      },
+      "application/vnd.openblox.game+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["obgx"]
+      },
+      "application/vnd.openblox.game-binary": {
+        source: "iana"
+      },
+      "application/vnd.openeye.oeb": {
+        source: "iana"
+      },
+      "application/vnd.openofficeorg.extension": {
+        source: "apache",
+        extensions: ["oxt"]
+      },
+      "application/vnd.openstreetmap.data+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["osm"]
+      },
+      "application/vnd.opentimestamps.ots": {
+        source: "iana"
+      },
+      "application/vnd.openxmlformats-officedocument.custom-properties+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.openxmlformats-officedocument.customxmlproperties+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.openxmlformats-officedocument.drawing+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.openxmlformats-officedocument.drawingml.chart+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.openxmlformats-officedocument.drawingml.chartshapes+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.openxmlformats-officedocument.drawingml.diagramcolors+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.openxmlformats-officedocument.drawingml.diagramdata+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.openxmlformats-officedocument.drawingml.diagramlayout+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.openxmlformats-officedocument.drawingml.diagramstyle+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.openxmlformats-officedocument.extended-properties+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.openxmlformats-officedocument.presentationml.commentauthors+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.openxmlformats-officedocument.presentationml.comments+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.openxmlformats-officedocument.presentationml.handoutmaster+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.openxmlformats-officedocument.presentationml.notesmaster+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.openxmlformats-officedocument.presentationml.notesslide+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.openxmlformats-officedocument.presentationml.presentation": {
+        source: "iana",
+        compressible: false,
+        extensions: ["pptx"]
+      },
+      "application/vnd.openxmlformats-officedocument.presentationml.presentation.main+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.openxmlformats-officedocument.presentationml.presprops+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.openxmlformats-officedocument.presentationml.slide": {
+        source: "iana",
+        extensions: ["sldx"]
+      },
+      "application/vnd.openxmlformats-officedocument.presentationml.slide+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.openxmlformats-officedocument.presentationml.slidelayout+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.openxmlformats-officedocument.presentationml.slidemaster+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.openxmlformats-officedocument.presentationml.slideshow": {
+        source: "iana",
+        extensions: ["ppsx"]
+      },
+      "application/vnd.openxmlformats-officedocument.presentationml.slideshow.main+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.openxmlformats-officedocument.presentationml.slideupdateinfo+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.openxmlformats-officedocument.presentationml.tablestyles+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.openxmlformats-officedocument.presentationml.tags+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.openxmlformats-officedocument.presentationml.template": {
+        source: "iana",
+        extensions: ["potx"]
+      },
+      "application/vnd.openxmlformats-officedocument.presentationml.template.main+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.openxmlformats-officedocument.presentationml.viewprops+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.calcchain+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.chartsheet+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.comments+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.connections+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.dialogsheet+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.externallink+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.pivotcachedefinition+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.pivotcacherecords+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.pivottable+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.querytable+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.revisionheaders+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.revisionlog+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.sharedstrings+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": {
+        source: "iana",
+        compressible: false,
+        extensions: ["xlsx"]
+      },
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheetmetadata+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.table+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.tablesinglecells+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.template": {
+        source: "iana",
+        extensions: ["xltx"]
+      },
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.template.main+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.usernames+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.volatiledependencies+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.openxmlformats-officedocument.theme+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.openxmlformats-officedocument.themeoverride+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.openxmlformats-officedocument.vmldrawing": {
+        source: "iana"
+      },
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.comments+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.document": {
+        source: "iana",
+        compressible: false,
+        extensions: ["docx"]
+      },
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.document.glossary+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.endnotes+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.fonttable+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.footer+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.footnotes+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.numbering+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.settings+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.styles+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.template": {
+        source: "iana",
+        extensions: ["dotx"]
+      },
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.template.main+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.websettings+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.openxmlformats-package.core-properties+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.openxmlformats-package.digital-signature-xmlsignature+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.openxmlformats-package.relationships+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.oracle.resource+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.orange.indata": {
+        source: "iana"
+      },
+      "application/vnd.osa.netdeploy": {
+        source: "iana"
+      },
+      "application/vnd.osgeo.mapguide.package": {
+        source: "iana",
+        extensions: ["mgp"]
+      },
+      "application/vnd.osgi.bundle": {
+        source: "iana"
+      },
+      "application/vnd.osgi.dp": {
+        source: "iana",
+        extensions: ["dp"]
+      },
+      "application/vnd.osgi.subsystem": {
+        source: "iana",
+        extensions: ["esa"]
+      },
+      "application/vnd.otps.ct-kip+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.oxli.countgraph": {
+        source: "iana"
+      },
+      "application/vnd.pagerduty+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.palm": {
+        source: "iana",
+        extensions: ["pdb", "pqa", "oprc"]
+      },
+      "application/vnd.panoply": {
+        source: "iana"
+      },
+      "application/vnd.paos.xml": {
+        source: "iana"
+      },
+      "application/vnd.patentdive": {
+        source: "iana"
+      },
+      "application/vnd.patientecommsdoc": {
+        source: "iana"
+      },
+      "application/vnd.pawaafile": {
+        source: "iana",
+        extensions: ["paw"]
+      },
+      "application/vnd.pcos": {
+        source: "iana"
+      },
+      "application/vnd.pg.format": {
+        source: "iana",
+        extensions: ["str"]
+      },
+      "application/vnd.pg.osasli": {
+        source: "iana",
+        extensions: ["ei6"]
+      },
+      "application/vnd.piaccess.application-licence": {
+        source: "iana"
+      },
+      "application/vnd.picsel": {
+        source: "iana",
+        extensions: ["efif"]
+      },
+      "application/vnd.pmi.widget": {
+        source: "iana",
+        extensions: ["wg"]
+      },
+      "application/vnd.poc.group-advertisement+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.pocketlearn": {
+        source: "iana",
+        extensions: ["plf"]
+      },
+      "application/vnd.powerbuilder6": {
+        source: "iana",
+        extensions: ["pbd"]
+      },
+      "application/vnd.powerbuilder6-s": {
+        source: "iana"
+      },
+      "application/vnd.powerbuilder7": {
+        source: "iana"
+      },
+      "application/vnd.powerbuilder7-s": {
+        source: "iana"
+      },
+      "application/vnd.powerbuilder75": {
+        source: "iana"
+      },
+      "application/vnd.powerbuilder75-s": {
+        source: "iana"
+      },
+      "application/vnd.preminet": {
+        source: "iana"
+      },
+      "application/vnd.previewsystems.box": {
+        source: "iana",
+        extensions: ["box"]
+      },
+      "application/vnd.proteus.magazine": {
+        source: "iana",
+        extensions: ["mgz"]
+      },
+      "application/vnd.psfs": {
+        source: "iana"
+      },
+      "application/vnd.publishare-delta-tree": {
+        source: "iana",
+        extensions: ["qps"]
+      },
+      "application/vnd.pvi.ptid1": {
+        source: "iana",
+        extensions: ["ptid"]
+      },
+      "application/vnd.pwg-multiplexed": {
+        source: "iana"
+      },
+      "application/vnd.pwg-xhtml-print+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.qualcomm.brew-app-res": {
+        source: "iana"
+      },
+      "application/vnd.quarantainenet": {
+        source: "iana"
+      },
+      "application/vnd.quark.quarkxpress": {
+        source: "iana",
+        extensions: ["qxd", "qxt", "qwd", "qwt", "qxl", "qxb"]
+      },
+      "application/vnd.quobject-quoxdocument": {
+        source: "iana"
+      },
+      "application/vnd.radisys.moml+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.radisys.msml+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.radisys.msml-audit+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.radisys.msml-audit-conf+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.radisys.msml-audit-conn+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.radisys.msml-audit-dialog+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.radisys.msml-audit-stream+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.radisys.msml-conf+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.radisys.msml-dialog+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.radisys.msml-dialog-base+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.radisys.msml-dialog-fax-detect+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.radisys.msml-dialog-fax-sendrecv+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.radisys.msml-dialog-group+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.radisys.msml-dialog-speech+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.radisys.msml-dialog-transform+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.rainstor.data": {
+        source: "iana"
+      },
+      "application/vnd.rapid": {
+        source: "iana"
+      },
+      "application/vnd.rar": {
+        source: "iana",
+        extensions: ["rar"]
+      },
+      "application/vnd.realvnc.bed": {
+        source: "iana",
+        extensions: ["bed"]
+      },
+      "application/vnd.recordare.musicxml": {
+        source: "iana",
+        extensions: ["mxl"]
+      },
+      "application/vnd.recordare.musicxml+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["musicxml"]
+      },
+      "application/vnd.renlearn.rlprint": {
+        source: "iana"
+      },
+      "application/vnd.resilient.logic": {
+        source: "iana"
+      },
+      "application/vnd.restful+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.rig.cryptonote": {
+        source: "iana",
+        extensions: ["cryptonote"]
+      },
+      "application/vnd.rim.cod": {
+        source: "apache",
+        extensions: ["cod"]
+      },
+      "application/vnd.rn-realmedia": {
+        source: "apache",
+        extensions: ["rm"]
+      },
+      "application/vnd.rn-realmedia-vbr": {
+        source: "apache",
+        extensions: ["rmvb"]
+      },
+      "application/vnd.route66.link66+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["link66"]
+      },
+      "application/vnd.rs-274x": {
+        source: "iana"
+      },
+      "application/vnd.ruckus.download": {
+        source: "iana"
+      },
+      "application/vnd.s3sms": {
+        source: "iana"
+      },
+      "application/vnd.sailingtracker.track": {
+        source: "iana",
+        extensions: ["st"]
+      },
+      "application/vnd.sar": {
+        source: "iana"
+      },
+      "application/vnd.sbm.cid": {
+        source: "iana"
+      },
+      "application/vnd.sbm.mid2": {
+        source: "iana"
+      },
+      "application/vnd.scribus": {
+        source: "iana"
+      },
+      "application/vnd.sealed.3df": {
+        source: "iana"
+      },
+      "application/vnd.sealed.csf": {
+        source: "iana"
+      },
+      "application/vnd.sealed.doc": {
+        source: "iana"
+      },
+      "application/vnd.sealed.eml": {
+        source: "iana"
+      },
+      "application/vnd.sealed.mht": {
+        source: "iana"
+      },
+      "application/vnd.sealed.net": {
+        source: "iana"
+      },
+      "application/vnd.sealed.ppt": {
+        source: "iana"
+      },
+      "application/vnd.sealed.tiff": {
+        source: "iana"
+      },
+      "application/vnd.sealed.xls": {
+        source: "iana"
+      },
+      "application/vnd.sealedmedia.softseal.html": {
+        source: "iana"
+      },
+      "application/vnd.sealedmedia.softseal.pdf": {
+        source: "iana"
+      },
+      "application/vnd.seemail": {
+        source: "iana",
+        extensions: ["see"]
+      },
+      "application/vnd.seis+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.sema": {
+        source: "iana",
+        extensions: ["sema"]
+      },
+      "application/vnd.semd": {
+        source: "iana",
+        extensions: ["semd"]
+      },
+      "application/vnd.semf": {
+        source: "iana",
+        extensions: ["semf"]
+      },
+      "application/vnd.shade-save-file": {
+        source: "iana"
+      },
+      "application/vnd.shana.informed.formdata": {
+        source: "iana",
+        extensions: ["ifm"]
+      },
+      "application/vnd.shana.informed.formtemplate": {
+        source: "iana",
+        extensions: ["itp"]
+      },
+      "application/vnd.shana.informed.interchange": {
+        source: "iana",
+        extensions: ["iif"]
+      },
+      "application/vnd.shana.informed.package": {
+        source: "iana",
+        extensions: ["ipk"]
+      },
+      "application/vnd.shootproof+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.shopkick+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.shp": {
+        source: "iana"
+      },
+      "application/vnd.shx": {
+        source: "iana"
+      },
+      "application/vnd.sigrok.session": {
+        source: "iana"
+      },
+      "application/vnd.simtech-mindmapper": {
+        source: "iana",
+        extensions: ["twd", "twds"]
+      },
+      "application/vnd.siren+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.smaf": {
+        source: "iana",
+        extensions: ["mmf"]
+      },
+      "application/vnd.smart.notebook": {
+        source: "iana"
+      },
+      "application/vnd.smart.teacher": {
+        source: "iana",
+        extensions: ["teacher"]
+      },
+      "application/vnd.snesdev-page-table": {
+        source: "iana"
+      },
+      "application/vnd.software602.filler.form+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["fo"]
+      },
+      "application/vnd.software602.filler.form-xml-zip": {
+        source: "iana"
+      },
+      "application/vnd.solent.sdkm+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["sdkm", "sdkd"]
+      },
+      "application/vnd.spotfire.dxp": {
+        source: "iana",
+        extensions: ["dxp"]
+      },
+      "application/vnd.spotfire.sfs": {
+        source: "iana",
+        extensions: ["sfs"]
+      },
+      "application/vnd.sqlite3": {
+        source: "iana"
+      },
+      "application/vnd.sss-cod": {
+        source: "iana"
+      },
+      "application/vnd.sss-dtf": {
+        source: "iana"
+      },
+      "application/vnd.sss-ntf": {
+        source: "iana"
+      },
+      "application/vnd.stardivision.calc": {
+        source: "apache",
+        extensions: ["sdc"]
+      },
+      "application/vnd.stardivision.draw": {
+        source: "apache",
+        extensions: ["sda"]
+      },
+      "application/vnd.stardivision.impress": {
+        source: "apache",
+        extensions: ["sdd"]
+      },
+      "application/vnd.stardivision.math": {
+        source: "apache",
+        extensions: ["smf"]
+      },
+      "application/vnd.stardivision.writer": {
+        source: "apache",
+        extensions: ["sdw", "vor"]
+      },
+      "application/vnd.stardivision.writer-global": {
+        source: "apache",
+        extensions: ["sgl"]
+      },
+      "application/vnd.stepmania.package": {
+        source: "iana",
+        extensions: ["smzip"]
+      },
+      "application/vnd.stepmania.stepchart": {
+        source: "iana",
+        extensions: ["sm"]
+      },
+      "application/vnd.street-stream": {
+        source: "iana"
+      },
+      "application/vnd.sun.wadl+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["wadl"]
+      },
+      "application/vnd.sun.xml.calc": {
+        source: "apache",
+        extensions: ["sxc"]
+      },
+      "application/vnd.sun.xml.calc.template": {
+        source: "apache",
+        extensions: ["stc"]
+      },
+      "application/vnd.sun.xml.draw": {
+        source: "apache",
+        extensions: ["sxd"]
+      },
+      "application/vnd.sun.xml.draw.template": {
+        source: "apache",
+        extensions: ["std"]
+      },
+      "application/vnd.sun.xml.impress": {
+        source: "apache",
+        extensions: ["sxi"]
+      },
+      "application/vnd.sun.xml.impress.template": {
+        source: "apache",
+        extensions: ["sti"]
+      },
+      "application/vnd.sun.xml.math": {
+        source: "apache",
+        extensions: ["sxm"]
+      },
+      "application/vnd.sun.xml.writer": {
+        source: "apache",
+        extensions: ["sxw"]
+      },
+      "application/vnd.sun.xml.writer.global": {
+        source: "apache",
+        extensions: ["sxg"]
+      },
+      "application/vnd.sun.xml.writer.template": {
+        source: "apache",
+        extensions: ["stw"]
+      },
+      "application/vnd.sus-calendar": {
+        source: "iana",
+        extensions: ["sus", "susp"]
+      },
+      "application/vnd.svd": {
+        source: "iana",
+        extensions: ["svd"]
+      },
+      "application/vnd.swiftview-ics": {
+        source: "iana"
+      },
+      "application/vnd.sycle+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.syft+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.symbian.install": {
+        source: "apache",
+        extensions: ["sis", "sisx"]
+      },
+      "application/vnd.syncml+xml": {
+        source: "iana",
+        charset: "UTF-8",
+        compressible: true,
+        extensions: ["xsm"]
+      },
+      "application/vnd.syncml.dm+wbxml": {
+        source: "iana",
+        charset: "UTF-8",
+        extensions: ["bdm"]
+      },
+      "application/vnd.syncml.dm+xml": {
+        source: "iana",
+        charset: "UTF-8",
+        compressible: true,
+        extensions: ["xdm"]
+      },
+      "application/vnd.syncml.dm.notification": {
+        source: "iana"
+      },
+      "application/vnd.syncml.dmddf+wbxml": {
+        source: "iana"
+      },
+      "application/vnd.syncml.dmddf+xml": {
+        source: "iana",
+        charset: "UTF-8",
+        compressible: true,
+        extensions: ["ddf"]
+      },
+      "application/vnd.syncml.dmtnds+wbxml": {
+        source: "iana"
+      },
+      "application/vnd.syncml.dmtnds+xml": {
+        source: "iana",
+        charset: "UTF-8",
+        compressible: true
+      },
+      "application/vnd.syncml.ds.notification": {
+        source: "iana"
+      },
+      "application/vnd.tableschema+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.tao.intent-module-archive": {
+        source: "iana",
+        extensions: ["tao"]
+      },
+      "application/vnd.tcpdump.pcap": {
+        source: "iana",
+        extensions: ["pcap", "cap", "dmp"]
+      },
+      "application/vnd.think-cell.ppttc+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.tmd.mediaflex.api+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.tml": {
+        source: "iana"
+      },
+      "application/vnd.tmobile-livetv": {
+        source: "iana",
+        extensions: ["tmo"]
+      },
+      "application/vnd.tri.onesource": {
+        source: "iana"
+      },
+      "application/vnd.trid.tpt": {
+        source: "iana",
+        extensions: ["tpt"]
+      },
+      "application/vnd.triscape.mxs": {
+        source: "iana",
+        extensions: ["mxs"]
+      },
+      "application/vnd.trueapp": {
+        source: "iana",
+        extensions: ["tra"]
+      },
+      "application/vnd.truedoc": {
+        source: "iana"
+      },
+      "application/vnd.ubisoft.webplayer": {
+        source: "iana"
+      },
+      "application/vnd.ufdl": {
+        source: "iana",
+        extensions: ["ufd", "ufdl"]
+      },
+      "application/vnd.uiq.theme": {
+        source: "iana",
+        extensions: ["utz"]
+      },
+      "application/vnd.umajin": {
+        source: "iana",
+        extensions: ["umj"]
+      },
+      "application/vnd.unity": {
+        source: "iana",
+        extensions: ["unityweb"]
+      },
+      "application/vnd.uoml+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["uoml"]
+      },
+      "application/vnd.uplanet.alert": {
+        source: "iana"
+      },
+      "application/vnd.uplanet.alert-wbxml": {
+        source: "iana"
+      },
+      "application/vnd.uplanet.bearer-choice": {
+        source: "iana"
+      },
+      "application/vnd.uplanet.bearer-choice-wbxml": {
+        source: "iana"
+      },
+      "application/vnd.uplanet.cacheop": {
+        source: "iana"
+      },
+      "application/vnd.uplanet.cacheop-wbxml": {
+        source: "iana"
+      },
+      "application/vnd.uplanet.channel": {
+        source: "iana"
+      },
+      "application/vnd.uplanet.channel-wbxml": {
+        source: "iana"
+      },
+      "application/vnd.uplanet.list": {
+        source: "iana"
+      },
+      "application/vnd.uplanet.list-wbxml": {
+        source: "iana"
+      },
+      "application/vnd.uplanet.listcmd": {
+        source: "iana"
+      },
+      "application/vnd.uplanet.listcmd-wbxml": {
+        source: "iana"
+      },
+      "application/vnd.uplanet.signal": {
+        source: "iana"
+      },
+      "application/vnd.uri-map": {
+        source: "iana"
+      },
+      "application/vnd.valve.source.material": {
+        source: "iana"
+      },
+      "application/vnd.vcx": {
+        source: "iana",
+        extensions: ["vcx"]
+      },
+      "application/vnd.vd-study": {
+        source: "iana"
+      },
+      "application/vnd.vectorworks": {
+        source: "iana"
+      },
+      "application/vnd.vel+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.verimatrix.vcas": {
+        source: "iana"
+      },
+      "application/vnd.veritone.aion+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.veryant.thin": {
+        source: "iana"
+      },
+      "application/vnd.ves.encrypted": {
+        source: "iana"
+      },
+      "application/vnd.vidsoft.vidconference": {
+        source: "iana"
+      },
+      "application/vnd.visio": {
+        source: "iana",
+        extensions: ["vsd", "vst", "vss", "vsw"]
+      },
+      "application/vnd.visionary": {
+        source: "iana",
+        extensions: ["vis"]
+      },
+      "application/vnd.vividence.scriptfile": {
+        source: "iana"
+      },
+      "application/vnd.vsf": {
+        source: "iana",
+        extensions: ["vsf"]
+      },
+      "application/vnd.wap.sic": {
+        source: "iana"
+      },
+      "application/vnd.wap.slc": {
+        source: "iana"
+      },
+      "application/vnd.wap.wbxml": {
+        source: "iana",
+        charset: "UTF-8",
+        extensions: ["wbxml"]
+      },
+      "application/vnd.wap.wmlc": {
+        source: "iana",
+        extensions: ["wmlc"]
+      },
+      "application/vnd.wap.wmlscriptc": {
+        source: "iana",
+        extensions: ["wmlsc"]
+      },
+      "application/vnd.webturbo": {
+        source: "iana",
+        extensions: ["wtb"]
+      },
+      "application/vnd.wfa.dpp": {
+        source: "iana"
+      },
+      "application/vnd.wfa.p2p": {
+        source: "iana"
+      },
+      "application/vnd.wfa.wsc": {
+        source: "iana"
+      },
+      "application/vnd.windows.devicepairing": {
+        source: "iana"
+      },
+      "application/vnd.wmc": {
+        source: "iana"
+      },
+      "application/vnd.wmf.bootstrap": {
+        source: "iana"
+      },
+      "application/vnd.wolfram.mathematica": {
+        source: "iana"
+      },
+      "application/vnd.wolfram.mathematica.package": {
+        source: "iana"
+      },
+      "application/vnd.wolfram.player": {
+        source: "iana",
+        extensions: ["nbp"]
+      },
+      "application/vnd.wordperfect": {
+        source: "iana",
+        extensions: ["wpd"]
+      },
+      "application/vnd.wqd": {
+        source: "iana",
+        extensions: ["wqd"]
+      },
+      "application/vnd.wrq-hp3000-labelled": {
+        source: "iana"
+      },
+      "application/vnd.wt.stf": {
+        source: "iana",
+        extensions: ["stf"]
+      },
+      "application/vnd.wv.csp+wbxml": {
+        source: "iana"
+      },
+      "application/vnd.wv.csp+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.wv.ssp+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.xacml+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.xara": {
+        source: "iana",
+        extensions: ["xar"]
+      },
+      "application/vnd.xfdl": {
+        source: "iana",
+        extensions: ["xfdl"]
+      },
+      "application/vnd.xfdl.webform": {
+        source: "iana"
+      },
+      "application/vnd.xmi+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vnd.xmpie.cpkg": {
+        source: "iana"
+      },
+      "application/vnd.xmpie.dpkg": {
+        source: "iana"
+      },
+      "application/vnd.xmpie.plan": {
+        source: "iana"
+      },
+      "application/vnd.xmpie.ppkg": {
+        source: "iana"
+      },
+      "application/vnd.xmpie.xlim": {
+        source: "iana"
+      },
+      "application/vnd.yamaha.hv-dic": {
+        source: "iana",
+        extensions: ["hvd"]
+      },
+      "application/vnd.yamaha.hv-script": {
+        source: "iana",
+        extensions: ["hvs"]
+      },
+      "application/vnd.yamaha.hv-voice": {
+        source: "iana",
+        extensions: ["hvp"]
+      },
+      "application/vnd.yamaha.openscoreformat": {
+        source: "iana",
+        extensions: ["osf"]
+      },
+      "application/vnd.yamaha.openscoreformat.osfpvg+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["osfpvg"]
+      },
+      "application/vnd.yamaha.remote-setup": {
+        source: "iana"
+      },
+      "application/vnd.yamaha.smaf-audio": {
+        source: "iana",
+        extensions: ["saf"]
+      },
+      "application/vnd.yamaha.smaf-phrase": {
+        source: "iana",
+        extensions: ["spf"]
+      },
+      "application/vnd.yamaha.through-ngn": {
+        source: "iana"
+      },
+      "application/vnd.yamaha.tunnel-udpencap": {
+        source: "iana"
+      },
+      "application/vnd.yaoweme": {
+        source: "iana"
+      },
+      "application/vnd.yellowriver-custom-menu": {
+        source: "iana",
+        extensions: ["cmp"]
+      },
+      "application/vnd.youtube.yt": {
+        source: "iana"
+      },
+      "application/vnd.zul": {
+        source: "iana",
+        extensions: ["zir", "zirz"]
+      },
+      "application/vnd.zzazz.deck+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["zaz"]
+      },
+      "application/voicexml+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["vxml"]
+      },
+      "application/voucher-cms+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/vq-rtcpxr": {
+        source: "iana"
+      },
+      "application/wasm": {
+        source: "iana",
+        compressible: true,
+        extensions: ["wasm"]
+      },
+      "application/watcherinfo+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["wif"]
+      },
+      "application/webpush-options+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/whoispp-query": {
+        source: "iana"
+      },
+      "application/whoispp-response": {
+        source: "iana"
+      },
+      "application/widget": {
+        source: "iana",
+        extensions: ["wgt"]
+      },
+      "application/winhlp": {
+        source: "apache",
+        extensions: ["hlp"]
+      },
+      "application/wita": {
+        source: "iana"
+      },
+      "application/wordperfect5.1": {
+        source: "iana"
+      },
+      "application/wsdl+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["wsdl"]
+      },
+      "application/wspolicy+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["wspolicy"]
+      },
+      "application/x-7z-compressed": {
+        source: "apache",
+        compressible: false,
+        extensions: ["7z"]
+      },
+      "application/x-abiword": {
+        source: "apache",
+        extensions: ["abw"]
+      },
+      "application/x-ace-compressed": {
+        source: "apache",
+        extensions: ["ace"]
+      },
+      "application/x-amf": {
+        source: "apache"
+      },
+      "application/x-apple-diskimage": {
+        source: "apache",
+        extensions: ["dmg"]
+      },
+      "application/x-arj": {
+        compressible: false,
+        extensions: ["arj"]
+      },
+      "application/x-authorware-bin": {
+        source: "apache",
+        extensions: ["aab", "x32", "u32", "vox"]
+      },
+      "application/x-authorware-map": {
+        source: "apache",
+        extensions: ["aam"]
+      },
+      "application/x-authorware-seg": {
+        source: "apache",
+        extensions: ["aas"]
+      },
+      "application/x-bcpio": {
+        source: "apache",
+        extensions: ["bcpio"]
+      },
+      "application/x-bdoc": {
+        compressible: false,
+        extensions: ["bdoc"]
+      },
+      "application/x-bittorrent": {
+        source: "apache",
+        extensions: ["torrent"]
+      },
+      "application/x-blorb": {
+        source: "apache",
+        extensions: ["blb", "blorb"]
+      },
+      "application/x-bzip": {
+        source: "apache",
+        compressible: false,
+        extensions: ["bz"]
+      },
+      "application/x-bzip2": {
+        source: "apache",
+        compressible: false,
+        extensions: ["bz2", "boz"]
+      },
+      "application/x-cbr": {
+        source: "apache",
+        extensions: ["cbr", "cba", "cbt", "cbz", "cb7"]
+      },
+      "application/x-cdlink": {
+        source: "apache",
+        extensions: ["vcd"]
+      },
+      "application/x-cfs-compressed": {
+        source: "apache",
+        extensions: ["cfs"]
+      },
+      "application/x-chat": {
+        source: "apache",
+        extensions: ["chat"]
+      },
+      "application/x-chess-pgn": {
+        source: "apache",
+        extensions: ["pgn"]
+      },
+      "application/x-chrome-extension": {
+        extensions: ["crx"]
+      },
+      "application/x-cocoa": {
+        source: "nginx",
+        extensions: ["cco"]
+      },
+      "application/x-compress": {
+        source: "apache"
+      },
+      "application/x-conference": {
+        source: "apache",
+        extensions: ["nsc"]
+      },
+      "application/x-cpio": {
+        source: "apache",
+        extensions: ["cpio"]
+      },
+      "application/x-csh": {
+        source: "apache",
+        extensions: ["csh"]
+      },
+      "application/x-deb": {
+        compressible: false
+      },
+      "application/x-debian-package": {
+        source: "apache",
+        extensions: ["deb", "udeb"]
+      },
+      "application/x-dgc-compressed": {
+        source: "apache",
+        extensions: ["dgc"]
+      },
+      "application/x-director": {
+        source: "apache",
+        extensions: ["dir", "dcr", "dxr", "cst", "cct", "cxt", "w3d", "fgd", "swa"]
+      },
+      "application/x-doom": {
+        source: "apache",
+        extensions: ["wad"]
+      },
+      "application/x-dtbncx+xml": {
+        source: "apache",
+        compressible: true,
+        extensions: ["ncx"]
+      },
+      "application/x-dtbook+xml": {
+        source: "apache",
+        compressible: true,
+        extensions: ["dtb"]
+      },
+      "application/x-dtbresource+xml": {
+        source: "apache",
+        compressible: true,
+        extensions: ["res"]
+      },
+      "application/x-dvi": {
+        source: "apache",
+        compressible: false,
+        extensions: ["dvi"]
+      },
+      "application/x-envoy": {
+        source: "apache",
+        extensions: ["evy"]
+      },
+      "application/x-eva": {
+        source: "apache",
+        extensions: ["eva"]
+      },
+      "application/x-font-bdf": {
+        source: "apache",
+        extensions: ["bdf"]
+      },
+      "application/x-font-dos": {
+        source: "apache"
+      },
+      "application/x-font-framemaker": {
+        source: "apache"
+      },
+      "application/x-font-ghostscript": {
+        source: "apache",
+        extensions: ["gsf"]
+      },
+      "application/x-font-libgrx": {
+        source: "apache"
+      },
+      "application/x-font-linux-psf": {
+        source: "apache",
+        extensions: ["psf"]
+      },
+      "application/x-font-pcf": {
+        source: "apache",
+        extensions: ["pcf"]
+      },
+      "application/x-font-snf": {
+        source: "apache",
+        extensions: ["snf"]
+      },
+      "application/x-font-speedo": {
+        source: "apache"
+      },
+      "application/x-font-sunos-news": {
+        source: "apache"
+      },
+      "application/x-font-type1": {
+        source: "apache",
+        extensions: ["pfa", "pfb", "pfm", "afm"]
+      },
+      "application/x-font-vfont": {
+        source: "apache"
+      },
+      "application/x-freearc": {
+        source: "apache",
+        extensions: ["arc"]
+      },
+      "application/x-futuresplash": {
+        source: "apache",
+        extensions: ["spl"]
+      },
+      "application/x-gca-compressed": {
+        source: "apache",
+        extensions: ["gca"]
+      },
+      "application/x-glulx": {
+        source: "apache",
+        extensions: ["ulx"]
+      },
+      "application/x-gnumeric": {
+        source: "apache",
+        extensions: ["gnumeric"]
+      },
+      "application/x-gramps-xml": {
+        source: "apache",
+        extensions: ["gramps"]
+      },
+      "application/x-gtar": {
+        source: "apache",
+        extensions: ["gtar"]
+      },
+      "application/x-gzip": {
+        source: "apache"
+      },
+      "application/x-hdf": {
+        source: "apache",
+        extensions: ["hdf"]
+      },
+      "application/x-httpd-php": {
+        compressible: true,
+        extensions: ["php"]
+      },
+      "application/x-install-instructions": {
+        source: "apache",
+        extensions: ["install"]
+      },
+      "application/x-iso9660-image": {
+        source: "apache",
+        extensions: ["iso"]
+      },
+      "application/x-iwork-keynote-sffkey": {
+        extensions: ["key"]
+      },
+      "application/x-iwork-numbers-sffnumbers": {
+        extensions: ["numbers"]
+      },
+      "application/x-iwork-pages-sffpages": {
+        extensions: ["pages"]
+      },
+      "application/x-java-archive-diff": {
+        source: "nginx",
+        extensions: ["jardiff"]
+      },
+      "application/x-java-jnlp-file": {
+        source: "apache",
+        compressible: false,
+        extensions: ["jnlp"]
+      },
+      "application/x-javascript": {
+        compressible: true
+      },
+      "application/x-keepass2": {
+        extensions: ["kdbx"]
+      },
+      "application/x-latex": {
+        source: "apache",
+        compressible: false,
+        extensions: ["latex"]
+      },
+      "application/x-lua-bytecode": {
+        extensions: ["luac"]
+      },
+      "application/x-lzh-compressed": {
+        source: "apache",
+        extensions: ["lzh", "lha"]
+      },
+      "application/x-makeself": {
+        source: "nginx",
+        extensions: ["run"]
+      },
+      "application/x-mie": {
+        source: "apache",
+        extensions: ["mie"]
+      },
+      "application/x-mobipocket-ebook": {
+        source: "apache",
+        extensions: ["prc", "mobi"]
+      },
+      "application/x-mpegurl": {
+        compressible: false
+      },
+      "application/x-ms-application": {
+        source: "apache",
+        extensions: ["application"]
+      },
+      "application/x-ms-shortcut": {
+        source: "apache",
+        extensions: ["lnk"]
+      },
+      "application/x-ms-wmd": {
+        source: "apache",
+        extensions: ["wmd"]
+      },
+      "application/x-ms-wmz": {
+        source: "apache",
+        extensions: ["wmz"]
+      },
+      "application/x-ms-xbap": {
+        source: "apache",
+        extensions: ["xbap"]
+      },
+      "application/x-msaccess": {
+        source: "apache",
+        extensions: ["mdb"]
+      },
+      "application/x-msbinder": {
+        source: "apache",
+        extensions: ["obd"]
+      },
+      "application/x-mscardfile": {
+        source: "apache",
+        extensions: ["crd"]
+      },
+      "application/x-msclip": {
+        source: "apache",
+        extensions: ["clp"]
+      },
+      "application/x-msdos-program": {
+        extensions: ["exe"]
+      },
+      "application/x-msdownload": {
+        source: "apache",
+        extensions: ["exe", "dll", "com", "bat", "msi"]
+      },
+      "application/x-msmediaview": {
+        source: "apache",
+        extensions: ["mvb", "m13", "m14"]
+      },
+      "application/x-msmetafile": {
+        source: "apache",
+        extensions: ["wmf", "wmz", "emf", "emz"]
+      },
+      "application/x-msmoney": {
+        source: "apache",
+        extensions: ["mny"]
+      },
+      "application/x-mspublisher": {
+        source: "apache",
+        extensions: ["pub"]
+      },
+      "application/x-msschedule": {
+        source: "apache",
+        extensions: ["scd"]
+      },
+      "application/x-msterminal": {
+        source: "apache",
+        extensions: ["trm"]
+      },
+      "application/x-mswrite": {
+        source: "apache",
+        extensions: ["wri"]
+      },
+      "application/x-netcdf": {
+        source: "apache",
+        extensions: ["nc", "cdf"]
+      },
+      "application/x-ns-proxy-autoconfig": {
+        compressible: true,
+        extensions: ["pac"]
+      },
+      "application/x-nzb": {
+        source: "apache",
+        extensions: ["nzb"]
+      },
+      "application/x-perl": {
+        source: "nginx",
+        extensions: ["pl", "pm"]
+      },
+      "application/x-pilot": {
+        source: "nginx",
+        extensions: ["prc", "pdb"]
+      },
+      "application/x-pkcs12": {
+        source: "apache",
+        compressible: false,
+        extensions: ["p12", "pfx"]
+      },
+      "application/x-pkcs7-certificates": {
+        source: "apache",
+        extensions: ["p7b", "spc"]
+      },
+      "application/x-pkcs7-certreqresp": {
+        source: "apache",
+        extensions: ["p7r"]
+      },
+      "application/x-pki-message": {
+        source: "iana"
+      },
+      "application/x-rar-compressed": {
+        source: "apache",
+        compressible: false,
+        extensions: ["rar"]
+      },
+      "application/x-redhat-package-manager": {
+        source: "nginx",
+        extensions: ["rpm"]
+      },
+      "application/x-research-info-systems": {
+        source: "apache",
+        extensions: ["ris"]
+      },
+      "application/x-sea": {
+        source: "nginx",
+        extensions: ["sea"]
+      },
+      "application/x-sh": {
+        source: "apache",
+        compressible: true,
+        extensions: ["sh"]
+      },
+      "application/x-shar": {
+        source: "apache",
+        extensions: ["shar"]
+      },
+      "application/x-shockwave-flash": {
+        source: "apache",
+        compressible: false,
+        extensions: ["swf"]
+      },
+      "application/x-silverlight-app": {
+        source: "apache",
+        extensions: ["xap"]
+      },
+      "application/x-sql": {
+        source: "apache",
+        extensions: ["sql"]
+      },
+      "application/x-stuffit": {
+        source: "apache",
+        compressible: false,
+        extensions: ["sit"]
+      },
+      "application/x-stuffitx": {
+        source: "apache",
+        extensions: ["sitx"]
+      },
+      "application/x-subrip": {
+        source: "apache",
+        extensions: ["srt"]
+      },
+      "application/x-sv4cpio": {
+        source: "apache",
+        extensions: ["sv4cpio"]
+      },
+      "application/x-sv4crc": {
+        source: "apache",
+        extensions: ["sv4crc"]
+      },
+      "application/x-t3vm-image": {
+        source: "apache",
+        extensions: ["t3"]
+      },
+      "application/x-tads": {
+        source: "apache",
+        extensions: ["gam"]
+      },
+      "application/x-tar": {
+        source: "apache",
+        compressible: true,
+        extensions: ["tar"]
+      },
+      "application/x-tcl": {
+        source: "apache",
+        extensions: ["tcl", "tk"]
+      },
+      "application/x-tex": {
+        source: "apache",
+        extensions: ["tex"]
+      },
+      "application/x-tex-tfm": {
+        source: "apache",
+        extensions: ["tfm"]
+      },
+      "application/x-texinfo": {
+        source: "apache",
+        extensions: ["texinfo", "texi"]
+      },
+      "application/x-tgif": {
+        source: "apache",
+        extensions: ["obj"]
+      },
+      "application/x-ustar": {
+        source: "apache",
+        extensions: ["ustar"]
+      },
+      "application/x-virtualbox-hdd": {
+        compressible: true,
+        extensions: ["hdd"]
+      },
+      "application/x-virtualbox-ova": {
+        compressible: true,
+        extensions: ["ova"]
+      },
+      "application/x-virtualbox-ovf": {
+        compressible: true,
+        extensions: ["ovf"]
+      },
+      "application/x-virtualbox-vbox": {
+        compressible: true,
+        extensions: ["vbox"]
+      },
+      "application/x-virtualbox-vbox-extpack": {
+        compressible: false,
+        extensions: ["vbox-extpack"]
+      },
+      "application/x-virtualbox-vdi": {
+        compressible: true,
+        extensions: ["vdi"]
+      },
+      "application/x-virtualbox-vhd": {
+        compressible: true,
+        extensions: ["vhd"]
+      },
+      "application/x-virtualbox-vmdk": {
+        compressible: true,
+        extensions: ["vmdk"]
+      },
+      "application/x-wais-source": {
+        source: "apache",
+        extensions: ["src"]
+      },
+      "application/x-web-app-manifest+json": {
+        compressible: true,
+        extensions: ["webapp"]
+      },
+      "application/x-www-form-urlencoded": {
+        source: "iana",
+        compressible: true
+      },
+      "application/x-x509-ca-cert": {
+        source: "iana",
+        extensions: ["der", "crt", "pem"]
+      },
+      "application/x-x509-ca-ra-cert": {
+        source: "iana"
+      },
+      "application/x-x509-next-ca-cert": {
+        source: "iana"
+      },
+      "application/x-xfig": {
+        source: "apache",
+        extensions: ["fig"]
+      },
+      "application/x-xliff+xml": {
+        source: "apache",
+        compressible: true,
+        extensions: ["xlf"]
+      },
+      "application/x-xpinstall": {
+        source: "apache",
+        compressible: false,
+        extensions: ["xpi"]
+      },
+      "application/x-xz": {
+        source: "apache",
+        extensions: ["xz"]
+      },
+      "application/x-zmachine": {
+        source: "apache",
+        extensions: ["z1", "z2", "z3", "z4", "z5", "z6", "z7", "z8"]
+      },
+      "application/x400-bp": {
+        source: "iana"
+      },
+      "application/xacml+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/xaml+xml": {
+        source: "apache",
+        compressible: true,
+        extensions: ["xaml"]
+      },
+      "application/xcap-att+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["xav"]
+      },
+      "application/xcap-caps+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["xca"]
+      },
+      "application/xcap-diff+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["xdf"]
+      },
+      "application/xcap-el+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["xel"]
+      },
+      "application/xcap-error+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/xcap-ns+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["xns"]
+      },
+      "application/xcon-conference-info+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/xcon-conference-info-diff+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/xenc+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["xenc"]
+      },
+      "application/xhtml+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["xhtml", "xht"]
+      },
+      "application/xhtml-voice+xml": {
+        source: "apache",
+        compressible: true
+      },
+      "application/xliff+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["xlf"]
+      },
+      "application/xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["xml", "xsl", "xsd", "rng"]
+      },
+      "application/xml-dtd": {
+        source: "iana",
+        compressible: true,
+        extensions: ["dtd"]
+      },
+      "application/xml-external-parsed-entity": {
+        source: "iana"
+      },
+      "application/xml-patch+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/xmpp+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/xop+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["xop"]
+      },
+      "application/xproc+xml": {
+        source: "apache",
+        compressible: true,
+        extensions: ["xpl"]
+      },
+      "application/xslt+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["xsl", "xslt"]
+      },
+      "application/xspf+xml": {
+        source: "apache",
+        compressible: true,
+        extensions: ["xspf"]
+      },
+      "application/xv+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["mxml", "xhvml", "xvml", "xvm"]
+      },
+      "application/yang": {
+        source: "iana",
+        extensions: ["yang"]
+      },
+      "application/yang-data+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/yang-data+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/yang-patch+json": {
+        source: "iana",
+        compressible: true
+      },
+      "application/yang-patch+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "application/yin+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["yin"]
+      },
+      "application/zip": {
+        source: "iana",
+        compressible: false,
+        extensions: ["zip"]
+      },
+      "application/zlib": {
+        source: "iana"
+      },
+      "application/zstd": {
+        source: "iana"
+      },
+      "audio/1d-interleaved-parityfec": {
+        source: "iana"
+      },
+      "audio/32kadpcm": {
+        source: "iana"
+      },
+      "audio/3gpp": {
+        source: "iana",
+        compressible: false,
+        extensions: ["3gpp"]
+      },
+      "audio/3gpp2": {
+        source: "iana"
+      },
+      "audio/aac": {
+        source: "iana"
+      },
+      "audio/ac3": {
+        source: "iana"
+      },
+      "audio/adpcm": {
+        source: "apache",
+        extensions: ["adp"]
+      },
+      "audio/amr": {
+        source: "iana",
+        extensions: ["amr"]
+      },
+      "audio/amr-wb": {
+        source: "iana"
+      },
+      "audio/amr-wb+": {
+        source: "iana"
+      },
+      "audio/aptx": {
+        source: "iana"
+      },
+      "audio/asc": {
+        source: "iana"
+      },
+      "audio/atrac-advanced-lossless": {
+        source: "iana"
+      },
+      "audio/atrac-x": {
+        source: "iana"
+      },
+      "audio/atrac3": {
+        source: "iana"
+      },
+      "audio/basic": {
+        source: "iana",
+        compressible: false,
+        extensions: ["au", "snd"]
+      },
+      "audio/bv16": {
+        source: "iana"
+      },
+      "audio/bv32": {
+        source: "iana"
+      },
+      "audio/clearmode": {
+        source: "iana"
+      },
+      "audio/cn": {
+        source: "iana"
+      },
+      "audio/dat12": {
+        source: "iana"
+      },
+      "audio/dls": {
+        source: "iana"
+      },
+      "audio/dsr-es201108": {
+        source: "iana"
+      },
+      "audio/dsr-es202050": {
+        source: "iana"
+      },
+      "audio/dsr-es202211": {
+        source: "iana"
+      },
+      "audio/dsr-es202212": {
+        source: "iana"
+      },
+      "audio/dv": {
+        source: "iana"
+      },
+      "audio/dvi4": {
+        source: "iana"
+      },
+      "audio/eac3": {
+        source: "iana"
+      },
+      "audio/encaprtp": {
+        source: "iana"
+      },
+      "audio/evrc": {
+        source: "iana"
+      },
+      "audio/evrc-qcp": {
+        source: "iana"
+      },
+      "audio/evrc0": {
+        source: "iana"
+      },
+      "audio/evrc1": {
+        source: "iana"
+      },
+      "audio/evrcb": {
+        source: "iana"
+      },
+      "audio/evrcb0": {
+        source: "iana"
+      },
+      "audio/evrcb1": {
+        source: "iana"
+      },
+      "audio/evrcnw": {
+        source: "iana"
+      },
+      "audio/evrcnw0": {
+        source: "iana"
+      },
+      "audio/evrcnw1": {
+        source: "iana"
+      },
+      "audio/evrcwb": {
+        source: "iana"
+      },
+      "audio/evrcwb0": {
+        source: "iana"
+      },
+      "audio/evrcwb1": {
+        source: "iana"
+      },
+      "audio/evs": {
+        source: "iana"
+      },
+      "audio/flexfec": {
+        source: "iana"
+      },
+      "audio/fwdred": {
+        source: "iana"
+      },
+      "audio/g711-0": {
+        source: "iana"
+      },
+      "audio/g719": {
+        source: "iana"
+      },
+      "audio/g722": {
+        source: "iana"
+      },
+      "audio/g7221": {
+        source: "iana"
+      },
+      "audio/g723": {
+        source: "iana"
+      },
+      "audio/g726-16": {
+        source: "iana"
+      },
+      "audio/g726-24": {
+        source: "iana"
+      },
+      "audio/g726-32": {
+        source: "iana"
+      },
+      "audio/g726-40": {
+        source: "iana"
+      },
+      "audio/g728": {
+        source: "iana"
+      },
+      "audio/g729": {
+        source: "iana"
+      },
+      "audio/g7291": {
+        source: "iana"
+      },
+      "audio/g729d": {
+        source: "iana"
+      },
+      "audio/g729e": {
+        source: "iana"
+      },
+      "audio/gsm": {
+        source: "iana"
+      },
+      "audio/gsm-efr": {
+        source: "iana"
+      },
+      "audio/gsm-hr-08": {
+        source: "iana"
+      },
+      "audio/ilbc": {
+        source: "iana"
+      },
+      "audio/ip-mr_v2.5": {
+        source: "iana"
+      },
+      "audio/isac": {
+        source: "apache"
+      },
+      "audio/l16": {
+        source: "iana"
+      },
+      "audio/l20": {
+        source: "iana"
+      },
+      "audio/l24": {
+        source: "iana",
+        compressible: false
+      },
+      "audio/l8": {
+        source: "iana"
+      },
+      "audio/lpc": {
+        source: "iana"
+      },
+      "audio/melp": {
+        source: "iana"
+      },
+      "audio/melp1200": {
+        source: "iana"
+      },
+      "audio/melp2400": {
+        source: "iana"
+      },
+      "audio/melp600": {
+        source: "iana"
+      },
+      "audio/mhas": {
+        source: "iana"
+      },
+      "audio/midi": {
+        source: "apache",
+        extensions: ["mid", "midi", "kar", "rmi"]
+      },
+      "audio/mobile-xmf": {
+        source: "iana",
+        extensions: ["mxmf"]
+      },
+      "audio/mp3": {
+        compressible: false,
+        extensions: ["mp3"]
+      },
+      "audio/mp4": {
+        source: "iana",
+        compressible: false,
+        extensions: ["m4a", "mp4a"]
+      },
+      "audio/mp4a-latm": {
+        source: "iana"
+      },
+      "audio/mpa": {
+        source: "iana"
+      },
+      "audio/mpa-robust": {
+        source: "iana"
+      },
+      "audio/mpeg": {
+        source: "iana",
+        compressible: false,
+        extensions: ["mpga", "mp2", "mp2a", "mp3", "m2a", "m3a"]
+      },
+      "audio/mpeg4-generic": {
+        source: "iana"
+      },
+      "audio/musepack": {
+        source: "apache"
+      },
+      "audio/ogg": {
+        source: "iana",
+        compressible: false,
+        extensions: ["oga", "ogg", "spx", "opus"]
+      },
+      "audio/opus": {
+        source: "iana"
+      },
+      "audio/parityfec": {
+        source: "iana"
+      },
+      "audio/pcma": {
+        source: "iana"
+      },
+      "audio/pcma-wb": {
+        source: "iana"
+      },
+      "audio/pcmu": {
+        source: "iana"
+      },
+      "audio/pcmu-wb": {
+        source: "iana"
+      },
+      "audio/prs.sid": {
+        source: "iana"
+      },
+      "audio/qcelp": {
+        source: "iana"
+      },
+      "audio/raptorfec": {
+        source: "iana"
+      },
+      "audio/red": {
+        source: "iana"
+      },
+      "audio/rtp-enc-aescm128": {
+        source: "iana"
+      },
+      "audio/rtp-midi": {
+        source: "iana"
+      },
+      "audio/rtploopback": {
+        source: "iana"
+      },
+      "audio/rtx": {
+        source: "iana"
+      },
+      "audio/s3m": {
+        source: "apache",
+        extensions: ["s3m"]
+      },
+      "audio/scip": {
+        source: "iana"
+      },
+      "audio/silk": {
+        source: "apache",
+        extensions: ["sil"]
+      },
+      "audio/smv": {
+        source: "iana"
+      },
+      "audio/smv-qcp": {
+        source: "iana"
+      },
+      "audio/smv0": {
+        source: "iana"
+      },
+      "audio/sofa": {
+        source: "iana"
+      },
+      "audio/sp-midi": {
+        source: "iana"
+      },
+      "audio/speex": {
+        source: "iana"
+      },
+      "audio/t140c": {
+        source: "iana"
+      },
+      "audio/t38": {
+        source: "iana"
+      },
+      "audio/telephone-event": {
+        source: "iana"
+      },
+      "audio/tetra_acelp": {
+        source: "iana"
+      },
+      "audio/tetra_acelp_bb": {
+        source: "iana"
+      },
+      "audio/tone": {
+        source: "iana"
+      },
+      "audio/tsvcis": {
+        source: "iana"
+      },
+      "audio/uemclip": {
+        source: "iana"
+      },
+      "audio/ulpfec": {
+        source: "iana"
+      },
+      "audio/usac": {
+        source: "iana"
+      },
+      "audio/vdvi": {
+        source: "iana"
+      },
+      "audio/vmr-wb": {
+        source: "iana"
+      },
+      "audio/vnd.3gpp.iufp": {
+        source: "iana"
+      },
+      "audio/vnd.4sb": {
+        source: "iana"
+      },
+      "audio/vnd.audiokoz": {
+        source: "iana"
+      },
+      "audio/vnd.celp": {
+        source: "iana"
+      },
+      "audio/vnd.cisco.nse": {
+        source: "iana"
+      },
+      "audio/vnd.cmles.radio-events": {
+        source: "iana"
+      },
+      "audio/vnd.cns.anp1": {
+        source: "iana"
+      },
+      "audio/vnd.cns.inf1": {
+        source: "iana"
+      },
+      "audio/vnd.dece.audio": {
+        source: "iana",
+        extensions: ["uva", "uvva"]
+      },
+      "audio/vnd.digital-winds": {
+        source: "iana",
+        extensions: ["eol"]
+      },
+      "audio/vnd.dlna.adts": {
+        source: "iana"
+      },
+      "audio/vnd.dolby.heaac.1": {
+        source: "iana"
+      },
+      "audio/vnd.dolby.heaac.2": {
+        source: "iana"
+      },
+      "audio/vnd.dolby.mlp": {
+        source: "iana"
+      },
+      "audio/vnd.dolby.mps": {
+        source: "iana"
+      },
+      "audio/vnd.dolby.pl2": {
+        source: "iana"
+      },
+      "audio/vnd.dolby.pl2x": {
+        source: "iana"
+      },
+      "audio/vnd.dolby.pl2z": {
+        source: "iana"
+      },
+      "audio/vnd.dolby.pulse.1": {
+        source: "iana"
+      },
+      "audio/vnd.dra": {
+        source: "iana",
+        extensions: ["dra"]
+      },
+      "audio/vnd.dts": {
+        source: "iana",
+        extensions: ["dts"]
+      },
+      "audio/vnd.dts.hd": {
+        source: "iana",
+        extensions: ["dtshd"]
+      },
+      "audio/vnd.dts.uhd": {
+        source: "iana"
+      },
+      "audio/vnd.dvb.file": {
+        source: "iana"
+      },
+      "audio/vnd.everad.plj": {
+        source: "iana"
+      },
+      "audio/vnd.hns.audio": {
+        source: "iana"
+      },
+      "audio/vnd.lucent.voice": {
+        source: "iana",
+        extensions: ["lvp"]
+      },
+      "audio/vnd.ms-playready.media.pya": {
+        source: "iana",
+        extensions: ["pya"]
+      },
+      "audio/vnd.nokia.mobile-xmf": {
+        source: "iana"
+      },
+      "audio/vnd.nortel.vbk": {
+        source: "iana"
+      },
+      "audio/vnd.nuera.ecelp4800": {
+        source: "iana",
+        extensions: ["ecelp4800"]
+      },
+      "audio/vnd.nuera.ecelp7470": {
+        source: "iana",
+        extensions: ["ecelp7470"]
+      },
+      "audio/vnd.nuera.ecelp9600": {
+        source: "iana",
+        extensions: ["ecelp9600"]
+      },
+      "audio/vnd.octel.sbc": {
+        source: "iana"
+      },
+      "audio/vnd.presonus.multitrack": {
+        source: "iana"
+      },
+      "audio/vnd.qcelp": {
+        source: "iana"
+      },
+      "audio/vnd.rhetorex.32kadpcm": {
+        source: "iana"
+      },
+      "audio/vnd.rip": {
+        source: "iana",
+        extensions: ["rip"]
+      },
+      "audio/vnd.rn-realaudio": {
+        compressible: false
+      },
+      "audio/vnd.sealedmedia.softseal.mpeg": {
+        source: "iana"
+      },
+      "audio/vnd.vmx.cvsd": {
+        source: "iana"
+      },
+      "audio/vnd.wave": {
+        compressible: false
+      },
+      "audio/vorbis": {
+        source: "iana",
+        compressible: false
+      },
+      "audio/vorbis-config": {
+        source: "iana"
+      },
+      "audio/wav": {
+        compressible: false,
+        extensions: ["wav"]
+      },
+      "audio/wave": {
+        compressible: false,
+        extensions: ["wav"]
+      },
+      "audio/webm": {
+        source: "apache",
+        compressible: false,
+        extensions: ["weba"]
+      },
+      "audio/x-aac": {
+        source: "apache",
+        compressible: false,
+        extensions: ["aac"]
+      },
+      "audio/x-aiff": {
+        source: "apache",
+        extensions: ["aif", "aiff", "aifc"]
+      },
+      "audio/x-caf": {
+        source: "apache",
+        compressible: false,
+        extensions: ["caf"]
+      },
+      "audio/x-flac": {
+        source: "apache",
+        extensions: ["flac"]
+      },
+      "audio/x-m4a": {
+        source: "nginx",
+        extensions: ["m4a"]
+      },
+      "audio/x-matroska": {
+        source: "apache",
+        extensions: ["mka"]
+      },
+      "audio/x-mpegurl": {
+        source: "apache",
+        extensions: ["m3u"]
+      },
+      "audio/x-ms-wax": {
+        source: "apache",
+        extensions: ["wax"]
+      },
+      "audio/x-ms-wma": {
+        source: "apache",
+        extensions: ["wma"]
+      },
+      "audio/x-pn-realaudio": {
+        source: "apache",
+        extensions: ["ram", "ra"]
+      },
+      "audio/x-pn-realaudio-plugin": {
+        source: "apache",
+        extensions: ["rmp"]
+      },
+      "audio/x-realaudio": {
+        source: "nginx",
+        extensions: ["ra"]
+      },
+      "audio/x-tta": {
+        source: "apache"
+      },
+      "audio/x-wav": {
+        source: "apache",
+        extensions: ["wav"]
+      },
+      "audio/xm": {
+        source: "apache",
+        extensions: ["xm"]
+      },
+      "chemical/x-cdx": {
+        source: "apache",
+        extensions: ["cdx"]
+      },
+      "chemical/x-cif": {
+        source: "apache",
+        extensions: ["cif"]
+      },
+      "chemical/x-cmdf": {
+        source: "apache",
+        extensions: ["cmdf"]
+      },
+      "chemical/x-cml": {
+        source: "apache",
+        extensions: ["cml"]
+      },
+      "chemical/x-csml": {
+        source: "apache",
+        extensions: ["csml"]
+      },
+      "chemical/x-pdb": {
+        source: "apache"
+      },
+      "chemical/x-xyz": {
+        source: "apache",
+        extensions: ["xyz"]
+      },
+      "font/collection": {
+        source: "iana",
+        extensions: ["ttc"]
+      },
+      "font/otf": {
+        source: "iana",
+        compressible: true,
+        extensions: ["otf"]
+      },
+      "font/sfnt": {
+        source: "iana"
+      },
+      "font/ttf": {
+        source: "iana",
+        compressible: true,
+        extensions: ["ttf"]
+      },
+      "font/woff": {
+        source: "iana",
+        extensions: ["woff"]
+      },
+      "font/woff2": {
+        source: "iana",
+        extensions: ["woff2"]
+      },
+      "image/aces": {
+        source: "iana",
+        extensions: ["exr"]
+      },
+      "image/apng": {
+        compressible: false,
+        extensions: ["apng"]
+      },
+      "image/avci": {
+        source: "iana",
+        extensions: ["avci"]
+      },
+      "image/avcs": {
+        source: "iana",
+        extensions: ["avcs"]
+      },
+      "image/avif": {
+        source: "iana",
+        compressible: false,
+        extensions: ["avif"]
+      },
+      "image/bmp": {
+        source: "iana",
+        compressible: true,
+        extensions: ["bmp"]
+      },
+      "image/cgm": {
+        source: "iana",
+        extensions: ["cgm"]
+      },
+      "image/dicom-rle": {
+        source: "iana",
+        extensions: ["drle"]
+      },
+      "image/emf": {
+        source: "iana",
+        extensions: ["emf"]
+      },
+      "image/fits": {
+        source: "iana",
+        extensions: ["fits"]
+      },
+      "image/g3fax": {
+        source: "iana",
+        extensions: ["g3"]
+      },
+      "image/gif": {
+        source: "iana",
+        compressible: false,
+        extensions: ["gif"]
+      },
+      "image/heic": {
+        source: "iana",
+        extensions: ["heic"]
+      },
+      "image/heic-sequence": {
+        source: "iana",
+        extensions: ["heics"]
+      },
+      "image/heif": {
+        source: "iana",
+        extensions: ["heif"]
+      },
+      "image/heif-sequence": {
+        source: "iana",
+        extensions: ["heifs"]
+      },
+      "image/hej2k": {
+        source: "iana",
+        extensions: ["hej2"]
+      },
+      "image/hsj2": {
+        source: "iana",
+        extensions: ["hsj2"]
+      },
+      "image/ief": {
+        source: "iana",
+        extensions: ["ief"]
+      },
+      "image/jls": {
+        source: "iana",
+        extensions: ["jls"]
+      },
+      "image/jp2": {
+        source: "iana",
+        compressible: false,
+        extensions: ["jp2", "jpg2"]
+      },
+      "image/jpeg": {
+        source: "iana",
+        compressible: false,
+        extensions: ["jpeg", "jpg", "jpe"]
+      },
+      "image/jph": {
+        source: "iana",
+        extensions: ["jph"]
+      },
+      "image/jphc": {
+        source: "iana",
+        extensions: ["jhc"]
+      },
+      "image/jpm": {
+        source: "iana",
+        compressible: false,
+        extensions: ["jpm"]
+      },
+      "image/jpx": {
+        source: "iana",
+        compressible: false,
+        extensions: ["jpx", "jpf"]
+      },
+      "image/jxr": {
+        source: "iana",
+        extensions: ["jxr"]
+      },
+      "image/jxra": {
+        source: "iana",
+        extensions: ["jxra"]
+      },
+      "image/jxrs": {
+        source: "iana",
+        extensions: ["jxrs"]
+      },
+      "image/jxs": {
+        source: "iana",
+        extensions: ["jxs"]
+      },
+      "image/jxsc": {
+        source: "iana",
+        extensions: ["jxsc"]
+      },
+      "image/jxsi": {
+        source: "iana",
+        extensions: ["jxsi"]
+      },
+      "image/jxss": {
+        source: "iana",
+        extensions: ["jxss"]
+      },
+      "image/ktx": {
+        source: "iana",
+        extensions: ["ktx"]
+      },
+      "image/ktx2": {
+        source: "iana",
+        extensions: ["ktx2"]
+      },
+      "image/naplps": {
+        source: "iana"
+      },
+      "image/pjpeg": {
+        compressible: false
+      },
+      "image/png": {
+        source: "iana",
+        compressible: false,
+        extensions: ["png"]
+      },
+      "image/prs.btif": {
+        source: "iana",
+        extensions: ["btif"]
+      },
+      "image/prs.pti": {
+        source: "iana",
+        extensions: ["pti"]
+      },
+      "image/pwg-raster": {
+        source: "iana"
+      },
+      "image/sgi": {
+        source: "apache",
+        extensions: ["sgi"]
+      },
+      "image/svg+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["svg", "svgz"]
+      },
+      "image/t38": {
+        source: "iana",
+        extensions: ["t38"]
+      },
+      "image/tiff": {
+        source: "iana",
+        compressible: false,
+        extensions: ["tif", "tiff"]
+      },
+      "image/tiff-fx": {
+        source: "iana",
+        extensions: ["tfx"]
+      },
+      "image/vnd.adobe.photoshop": {
+        source: "iana",
+        compressible: true,
+        extensions: ["psd"]
+      },
+      "image/vnd.airzip.accelerator.azv": {
+        source: "iana",
+        extensions: ["azv"]
+      },
+      "image/vnd.cns.inf2": {
+        source: "iana"
+      },
+      "image/vnd.dece.graphic": {
+        source: "iana",
+        extensions: ["uvi", "uvvi", "uvg", "uvvg"]
+      },
+      "image/vnd.djvu": {
+        source: "iana",
+        extensions: ["djvu", "djv"]
+      },
+      "image/vnd.dvb.subtitle": {
+        source: "iana",
+        extensions: ["sub"]
+      },
+      "image/vnd.dwg": {
+        source: "iana",
+        extensions: ["dwg"]
+      },
+      "image/vnd.dxf": {
+        source: "iana",
+        extensions: ["dxf"]
+      },
+      "image/vnd.fastbidsheet": {
+        source: "iana",
+        extensions: ["fbs"]
+      },
+      "image/vnd.fpx": {
+        source: "iana",
+        extensions: ["fpx"]
+      },
+      "image/vnd.fst": {
+        source: "iana",
+        extensions: ["fst"]
+      },
+      "image/vnd.fujixerox.edmics-mmr": {
+        source: "iana",
+        extensions: ["mmr"]
+      },
+      "image/vnd.fujixerox.edmics-rlc": {
+        source: "iana",
+        extensions: ["rlc"]
+      },
+      "image/vnd.globalgraphics.pgb": {
+        source: "iana"
+      },
+      "image/vnd.microsoft.icon": {
+        source: "iana",
+        compressible: true,
+        extensions: ["ico"]
+      },
+      "image/vnd.mix": {
+        source: "iana"
+      },
+      "image/vnd.mozilla.apng": {
+        source: "iana"
+      },
+      "image/vnd.ms-dds": {
+        compressible: true,
+        extensions: ["dds"]
+      },
+      "image/vnd.ms-modi": {
+        source: "iana",
+        extensions: ["mdi"]
+      },
+      "image/vnd.ms-photo": {
+        source: "apache",
+        extensions: ["wdp"]
+      },
+      "image/vnd.net-fpx": {
+        source: "iana",
+        extensions: ["npx"]
+      },
+      "image/vnd.pco.b16": {
+        source: "iana",
+        extensions: ["b16"]
+      },
+      "image/vnd.radiance": {
+        source: "iana"
+      },
+      "image/vnd.sealed.png": {
+        source: "iana"
+      },
+      "image/vnd.sealedmedia.softseal.gif": {
+        source: "iana"
+      },
+      "image/vnd.sealedmedia.softseal.jpg": {
+        source: "iana"
+      },
+      "image/vnd.svf": {
+        source: "iana"
+      },
+      "image/vnd.tencent.tap": {
+        source: "iana",
+        extensions: ["tap"]
+      },
+      "image/vnd.valve.source.texture": {
+        source: "iana",
+        extensions: ["vtf"]
+      },
+      "image/vnd.wap.wbmp": {
+        source: "iana",
+        extensions: ["wbmp"]
+      },
+      "image/vnd.xiff": {
+        source: "iana",
+        extensions: ["xif"]
+      },
+      "image/vnd.zbrush.pcx": {
+        source: "iana",
+        extensions: ["pcx"]
+      },
+      "image/webp": {
+        source: "apache",
+        extensions: ["webp"]
+      },
+      "image/wmf": {
+        source: "iana",
+        extensions: ["wmf"]
+      },
+      "image/x-3ds": {
+        source: "apache",
+        extensions: ["3ds"]
+      },
+      "image/x-cmu-raster": {
+        source: "apache",
+        extensions: ["ras"]
+      },
+      "image/x-cmx": {
+        source: "apache",
+        extensions: ["cmx"]
+      },
+      "image/x-freehand": {
+        source: "apache",
+        extensions: ["fh", "fhc", "fh4", "fh5", "fh7"]
+      },
+      "image/x-icon": {
+        source: "apache",
+        compressible: true,
+        extensions: ["ico"]
+      },
+      "image/x-jng": {
+        source: "nginx",
+        extensions: ["jng"]
+      },
+      "image/x-mrsid-image": {
+        source: "apache",
+        extensions: ["sid"]
+      },
+      "image/x-ms-bmp": {
+        source: "nginx",
+        compressible: true,
+        extensions: ["bmp"]
+      },
+      "image/x-pcx": {
+        source: "apache",
+        extensions: ["pcx"]
+      },
+      "image/x-pict": {
+        source: "apache",
+        extensions: ["pic", "pct"]
+      },
+      "image/x-portable-anymap": {
+        source: "apache",
+        extensions: ["pnm"]
+      },
+      "image/x-portable-bitmap": {
+        source: "apache",
+        extensions: ["pbm"]
+      },
+      "image/x-portable-graymap": {
+        source: "apache",
+        extensions: ["pgm"]
+      },
+      "image/x-portable-pixmap": {
+        source: "apache",
+        extensions: ["ppm"]
+      },
+      "image/x-rgb": {
+        source: "apache",
+        extensions: ["rgb"]
+      },
+      "image/x-tga": {
+        source: "apache",
+        extensions: ["tga"]
+      },
+      "image/x-xbitmap": {
+        source: "apache",
+        extensions: ["xbm"]
+      },
+      "image/x-xcf": {
+        compressible: false
+      },
+      "image/x-xpixmap": {
+        source: "apache",
+        extensions: ["xpm"]
+      },
+      "image/x-xwindowdump": {
+        source: "apache",
+        extensions: ["xwd"]
+      },
+      "message/cpim": {
+        source: "iana"
+      },
+      "message/delivery-status": {
+        source: "iana"
+      },
+      "message/disposition-notification": {
+        source: "iana",
+        extensions: [
+          "disposition-notification"
+        ]
+      },
+      "message/external-body": {
+        source: "iana"
+      },
+      "message/feedback-report": {
+        source: "iana"
+      },
+      "message/global": {
+        source: "iana",
+        extensions: ["u8msg"]
+      },
+      "message/global-delivery-status": {
+        source: "iana",
+        extensions: ["u8dsn"]
+      },
+      "message/global-disposition-notification": {
+        source: "iana",
+        extensions: ["u8mdn"]
+      },
+      "message/global-headers": {
+        source: "iana",
+        extensions: ["u8hdr"]
+      },
+      "message/http": {
+        source: "iana",
+        compressible: false
+      },
+      "message/imdn+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "message/news": {
+        source: "iana"
+      },
+      "message/partial": {
+        source: "iana",
+        compressible: false
+      },
+      "message/rfc822": {
+        source: "iana",
+        compressible: true,
+        extensions: ["eml", "mime"]
+      },
+      "message/s-http": {
+        source: "iana"
+      },
+      "message/sip": {
+        source: "iana"
+      },
+      "message/sipfrag": {
+        source: "iana"
+      },
+      "message/tracking-status": {
+        source: "iana"
+      },
+      "message/vnd.si.simp": {
+        source: "iana"
+      },
+      "message/vnd.wfa.wsc": {
+        source: "iana",
+        extensions: ["wsc"]
+      },
+      "model/3mf": {
+        source: "iana",
+        extensions: ["3mf"]
+      },
+      "model/e57": {
+        source: "iana"
+      },
+      "model/gltf+json": {
+        source: "iana",
+        compressible: true,
+        extensions: ["gltf"]
+      },
+      "model/gltf-binary": {
+        source: "iana",
+        compressible: true,
+        extensions: ["glb"]
+      },
+      "model/iges": {
+        source: "iana",
+        compressible: false,
+        extensions: ["igs", "iges"]
+      },
+      "model/mesh": {
+        source: "iana",
+        compressible: false,
+        extensions: ["msh", "mesh", "silo"]
+      },
+      "model/mtl": {
+        source: "iana",
+        extensions: ["mtl"]
+      },
+      "model/obj": {
+        source: "iana",
+        extensions: ["obj"]
+      },
+      "model/step": {
+        source: "iana"
+      },
+      "model/step+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["stpx"]
+      },
+      "model/step+zip": {
+        source: "iana",
+        compressible: false,
+        extensions: ["stpz"]
+      },
+      "model/step-xml+zip": {
+        source: "iana",
+        compressible: false,
+        extensions: ["stpxz"]
+      },
+      "model/stl": {
+        source: "iana",
+        extensions: ["stl"]
+      },
+      "model/vnd.collada+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["dae"]
+      },
+      "model/vnd.dwf": {
+        source: "iana",
+        extensions: ["dwf"]
+      },
+      "model/vnd.flatland.3dml": {
+        source: "iana"
+      },
+      "model/vnd.gdl": {
+        source: "iana",
+        extensions: ["gdl"]
+      },
+      "model/vnd.gs-gdl": {
+        source: "apache"
+      },
+      "model/vnd.gs.gdl": {
+        source: "iana"
+      },
+      "model/vnd.gtw": {
+        source: "iana",
+        extensions: ["gtw"]
+      },
+      "model/vnd.moml+xml": {
+        source: "iana",
+        compressible: true
+      },
+      "model/vnd.mts": {
+        source: "iana",
+        extensions: ["mts"]
+      },
+      "model/vnd.opengex": {
+        source: "iana",
+        extensions: ["ogex"]
+      },
+      "model/vnd.parasolid.transmit.binary": {
+        source: "iana",
+        extensions: ["x_b"]
+      },
+      "model/vnd.parasolid.transmit.text": {
+        source: "iana",
+        extensions: ["x_t"]
+      },
+      "model/vnd.pytha.pyox": {
+        source: "iana"
+      },
+      "model/vnd.rosette.annotated-data-model": {
+        source: "iana"
+      },
+      "model/vnd.sap.vds": {
+        source: "iana",
+        extensions: ["vds"]
+      },
+      "model/vnd.usdz+zip": {
+        source: "iana",
+        compressible: false,
+        extensions: ["usdz"]
+      },
+      "model/vnd.valve.source.compiled-map": {
+        source: "iana",
+        extensions: ["bsp"]
+      },
+      "model/vnd.vtu": {
+        source: "iana",
+        extensions: ["vtu"]
+      },
+      "model/vrml": {
+        source: "iana",
+        compressible: false,
+        extensions: ["wrl", "vrml"]
+      },
+      "model/x3d+binary": {
+        source: "apache",
+        compressible: false,
+        extensions: ["x3db", "x3dbz"]
+      },
+      "model/x3d+fastinfoset": {
+        source: "iana",
+        extensions: ["x3db"]
+      },
+      "model/x3d+vrml": {
+        source: "apache",
+        compressible: false,
+        extensions: ["x3dv", "x3dvz"]
+      },
+      "model/x3d+xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["x3d", "x3dz"]
+      },
+      "model/x3d-vrml": {
+        source: "iana",
+        extensions: ["x3dv"]
+      },
+      "multipart/alternative": {
+        source: "iana",
+        compressible: false
+      },
+      "multipart/appledouble": {
+        source: "iana"
+      },
+      "multipart/byteranges": {
+        source: "iana"
+      },
+      "multipart/digest": {
+        source: "iana"
+      },
+      "multipart/encrypted": {
+        source: "iana",
+        compressible: false
+      },
+      "multipart/form-data": {
+        source: "iana",
+        compressible: false
+      },
+      "multipart/header-set": {
+        source: "iana"
+      },
+      "multipart/mixed": {
+        source: "iana"
+      },
+      "multipart/multilingual": {
+        source: "iana"
+      },
+      "multipart/parallel": {
+        source: "iana"
+      },
+      "multipart/related": {
+        source: "iana",
+        compressible: false
+      },
+      "multipart/report": {
+        source: "iana"
+      },
+      "multipart/signed": {
+        source: "iana",
+        compressible: false
+      },
+      "multipart/vnd.bint.med-plus": {
+        source: "iana"
+      },
+      "multipart/voice-message": {
+        source: "iana"
+      },
+      "multipart/x-mixed-replace": {
+        source: "iana"
+      },
+      "text/1d-interleaved-parityfec": {
+        source: "iana"
+      },
+      "text/cache-manifest": {
+        source: "iana",
+        compressible: true,
+        extensions: ["appcache", "manifest"]
+      },
+      "text/calendar": {
+        source: "iana",
+        extensions: ["ics", "ifb"]
+      },
+      "text/calender": {
+        compressible: true
+      },
+      "text/cmd": {
+        compressible: true
+      },
+      "text/coffeescript": {
+        extensions: ["coffee", "litcoffee"]
+      },
+      "text/cql": {
+        source: "iana"
+      },
+      "text/cql-expression": {
+        source: "iana"
+      },
+      "text/cql-identifier": {
+        source: "iana"
+      },
+      "text/css": {
+        source: "iana",
+        charset: "UTF-8",
+        compressible: true,
+        extensions: ["css"]
+      },
+      "text/csv": {
+        source: "iana",
+        compressible: true,
+        extensions: ["csv"]
+      },
+      "text/csv-schema": {
+        source: "iana"
+      },
+      "text/directory": {
+        source: "iana"
+      },
+      "text/dns": {
+        source: "iana"
+      },
+      "text/ecmascript": {
+        source: "iana"
+      },
+      "text/encaprtp": {
+        source: "iana"
+      },
+      "text/enriched": {
+        source: "iana"
+      },
+      "text/fhirpath": {
+        source: "iana"
+      },
+      "text/flexfec": {
+        source: "iana"
+      },
+      "text/fwdred": {
+        source: "iana"
+      },
+      "text/gff3": {
+        source: "iana"
+      },
+      "text/grammar-ref-list": {
+        source: "iana"
+      },
+      "text/html": {
+        source: "iana",
+        compressible: true,
+        extensions: ["html", "htm", "shtml"]
+      },
+      "text/jade": {
+        extensions: ["jade"]
+      },
+      "text/javascript": {
+        source: "iana",
+        compressible: true
+      },
+      "text/jcr-cnd": {
+        source: "iana"
+      },
+      "text/jsx": {
+        compressible: true,
+        extensions: ["jsx"]
+      },
+      "text/less": {
+        compressible: true,
+        extensions: ["less"]
+      },
+      "text/markdown": {
+        source: "iana",
+        compressible: true,
+        extensions: ["markdown", "md"]
+      },
+      "text/mathml": {
+        source: "nginx",
+        extensions: ["mml"]
+      },
+      "text/mdx": {
+        compressible: true,
+        extensions: ["mdx"]
+      },
+      "text/mizar": {
+        source: "iana"
+      },
+      "text/n3": {
+        source: "iana",
+        charset: "UTF-8",
+        compressible: true,
+        extensions: ["n3"]
+      },
+      "text/parameters": {
+        source: "iana",
+        charset: "UTF-8"
+      },
+      "text/parityfec": {
+        source: "iana"
+      },
+      "text/plain": {
+        source: "iana",
+        compressible: true,
+        extensions: ["txt", "text", "conf", "def", "list", "log", "in", "ini"]
+      },
+      "text/provenance-notation": {
+        source: "iana",
+        charset: "UTF-8"
+      },
+      "text/prs.fallenstein.rst": {
+        source: "iana"
+      },
+      "text/prs.lines.tag": {
+        source: "iana",
+        extensions: ["dsc"]
+      },
+      "text/prs.prop.logic": {
+        source: "iana"
+      },
+      "text/raptorfec": {
+        source: "iana"
+      },
+      "text/red": {
+        source: "iana"
+      },
+      "text/rfc822-headers": {
+        source: "iana"
+      },
+      "text/richtext": {
+        source: "iana",
+        compressible: true,
+        extensions: ["rtx"]
+      },
+      "text/rtf": {
+        source: "iana",
+        compressible: true,
+        extensions: ["rtf"]
+      },
+      "text/rtp-enc-aescm128": {
+        source: "iana"
+      },
+      "text/rtploopback": {
+        source: "iana"
+      },
+      "text/rtx": {
+        source: "iana"
+      },
+      "text/sgml": {
+        source: "iana",
+        extensions: ["sgml", "sgm"]
+      },
+      "text/shaclc": {
+        source: "iana"
+      },
+      "text/shex": {
+        source: "iana",
+        extensions: ["shex"]
+      },
+      "text/slim": {
+        extensions: ["slim", "slm"]
+      },
+      "text/spdx": {
+        source: "iana",
+        extensions: ["spdx"]
+      },
+      "text/strings": {
+        source: "iana"
+      },
+      "text/stylus": {
+        extensions: ["stylus", "styl"]
+      },
+      "text/t140": {
+        source: "iana"
+      },
+      "text/tab-separated-values": {
+        source: "iana",
+        compressible: true,
+        extensions: ["tsv"]
+      },
+      "text/troff": {
+        source: "iana",
+        extensions: ["t", "tr", "roff", "man", "me", "ms"]
+      },
+      "text/turtle": {
+        source: "iana",
+        charset: "UTF-8",
+        extensions: ["ttl"]
+      },
+      "text/ulpfec": {
+        source: "iana"
+      },
+      "text/uri-list": {
+        source: "iana",
+        compressible: true,
+        extensions: ["uri", "uris", "urls"]
+      },
+      "text/vcard": {
+        source: "iana",
+        compressible: true,
+        extensions: ["vcard"]
+      },
+      "text/vnd.a": {
+        source: "iana"
+      },
+      "text/vnd.abc": {
+        source: "iana"
+      },
+      "text/vnd.ascii-art": {
+        source: "iana"
+      },
+      "text/vnd.curl": {
+        source: "iana",
+        extensions: ["curl"]
+      },
+      "text/vnd.curl.dcurl": {
+        source: "apache",
+        extensions: ["dcurl"]
+      },
+      "text/vnd.curl.mcurl": {
+        source: "apache",
+        extensions: ["mcurl"]
+      },
+      "text/vnd.curl.scurl": {
+        source: "apache",
+        extensions: ["scurl"]
+      },
+      "text/vnd.debian.copyright": {
+        source: "iana",
+        charset: "UTF-8"
+      },
+      "text/vnd.dmclientscript": {
+        source: "iana"
+      },
+      "text/vnd.dvb.subtitle": {
+        source: "iana",
+        extensions: ["sub"]
+      },
+      "text/vnd.esmertec.theme-descriptor": {
+        source: "iana",
+        charset: "UTF-8"
+      },
+      "text/vnd.familysearch.gedcom": {
+        source: "iana",
+        extensions: ["ged"]
+      },
+      "text/vnd.ficlab.flt": {
+        source: "iana"
+      },
+      "text/vnd.fly": {
+        source: "iana",
+        extensions: ["fly"]
+      },
+      "text/vnd.fmi.flexstor": {
+        source: "iana",
+        extensions: ["flx"]
+      },
+      "text/vnd.gml": {
+        source: "iana"
+      },
+      "text/vnd.graphviz": {
+        source: "iana",
+        extensions: ["gv"]
+      },
+      "text/vnd.hans": {
+        source: "iana"
+      },
+      "text/vnd.hgl": {
+        source: "iana"
+      },
+      "text/vnd.in3d.3dml": {
+        source: "iana",
+        extensions: ["3dml"]
+      },
+      "text/vnd.in3d.spot": {
+        source: "iana",
+        extensions: ["spot"]
+      },
+      "text/vnd.iptc.newsml": {
+        source: "iana"
+      },
+      "text/vnd.iptc.nitf": {
+        source: "iana"
+      },
+      "text/vnd.latex-z": {
+        source: "iana"
+      },
+      "text/vnd.motorola.reflex": {
+        source: "iana"
+      },
+      "text/vnd.ms-mediapackage": {
+        source: "iana"
+      },
+      "text/vnd.net2phone.commcenter.command": {
+        source: "iana"
+      },
+      "text/vnd.radisys.msml-basic-layout": {
+        source: "iana"
+      },
+      "text/vnd.senx.warpscript": {
+        source: "iana"
+      },
+      "text/vnd.si.uricatalogue": {
+        source: "iana"
+      },
+      "text/vnd.sosi": {
+        source: "iana"
+      },
+      "text/vnd.sun.j2me.app-descriptor": {
+        source: "iana",
+        charset: "UTF-8",
+        extensions: ["jad"]
+      },
+      "text/vnd.trolltech.linguist": {
+        source: "iana",
+        charset: "UTF-8"
+      },
+      "text/vnd.wap.si": {
+        source: "iana"
+      },
+      "text/vnd.wap.sl": {
+        source: "iana"
+      },
+      "text/vnd.wap.wml": {
+        source: "iana",
+        extensions: ["wml"]
+      },
+      "text/vnd.wap.wmlscript": {
+        source: "iana",
+        extensions: ["wmls"]
+      },
+      "text/vtt": {
+        source: "iana",
+        charset: "UTF-8",
+        compressible: true,
+        extensions: ["vtt"]
+      },
+      "text/x-asm": {
+        source: "apache",
+        extensions: ["s", "asm"]
+      },
+      "text/x-c": {
+        source: "apache",
+        extensions: ["c", "cc", "cxx", "cpp", "h", "hh", "dic"]
+      },
+      "text/x-component": {
+        source: "nginx",
+        extensions: ["htc"]
+      },
+      "text/x-fortran": {
+        source: "apache",
+        extensions: ["f", "for", "f77", "f90"]
+      },
+      "text/x-gwt-rpc": {
+        compressible: true
+      },
+      "text/x-handlebars-template": {
+        extensions: ["hbs"]
+      },
+      "text/x-java-source": {
+        source: "apache",
+        extensions: ["java"]
+      },
+      "text/x-jquery-tmpl": {
+        compressible: true
+      },
+      "text/x-lua": {
+        extensions: ["lua"]
+      },
+      "text/x-markdown": {
+        compressible: true,
+        extensions: ["mkd"]
+      },
+      "text/x-nfo": {
+        source: "apache",
+        extensions: ["nfo"]
+      },
+      "text/x-opml": {
+        source: "apache",
+        extensions: ["opml"]
+      },
+      "text/x-org": {
+        compressible: true,
+        extensions: ["org"]
+      },
+      "text/x-pascal": {
+        source: "apache",
+        extensions: ["p", "pas"]
+      },
+      "text/x-processing": {
+        compressible: true,
+        extensions: ["pde"]
+      },
+      "text/x-sass": {
+        extensions: ["sass"]
+      },
+      "text/x-scss": {
+        extensions: ["scss"]
+      },
+      "text/x-setext": {
+        source: "apache",
+        extensions: ["etx"]
+      },
+      "text/x-sfv": {
+        source: "apache",
+        extensions: ["sfv"]
+      },
+      "text/x-suse-ymp": {
+        compressible: true,
+        extensions: ["ymp"]
+      },
+      "text/x-uuencode": {
+        source: "apache",
+        extensions: ["uu"]
+      },
+      "text/x-vcalendar": {
+        source: "apache",
+        extensions: ["vcs"]
+      },
+      "text/x-vcard": {
+        source: "apache",
+        extensions: ["vcf"]
+      },
+      "text/xml": {
+        source: "iana",
+        compressible: true,
+        extensions: ["xml"]
+      },
+      "text/xml-external-parsed-entity": {
+        source: "iana"
+      },
+      "text/yaml": {
+        compressible: true,
+        extensions: ["yaml", "yml"]
+      },
+      "video/1d-interleaved-parityfec": {
+        source: "iana"
+      },
+      "video/3gpp": {
+        source: "iana",
+        extensions: ["3gp", "3gpp"]
+      },
+      "video/3gpp-tt": {
+        source: "iana"
+      },
+      "video/3gpp2": {
+        source: "iana",
+        extensions: ["3g2"]
+      },
+      "video/av1": {
+        source: "iana"
+      },
+      "video/bmpeg": {
+        source: "iana"
+      },
+      "video/bt656": {
+        source: "iana"
+      },
+      "video/celb": {
+        source: "iana"
+      },
+      "video/dv": {
+        source: "iana"
+      },
+      "video/encaprtp": {
+        source: "iana"
+      },
+      "video/ffv1": {
+        source: "iana"
+      },
+      "video/flexfec": {
+        source: "iana"
+      },
+      "video/h261": {
+        source: "iana",
+        extensions: ["h261"]
+      },
+      "video/h263": {
+        source: "iana",
+        extensions: ["h263"]
+      },
+      "video/h263-1998": {
+        source: "iana"
+      },
+      "video/h263-2000": {
+        source: "iana"
+      },
+      "video/h264": {
+        source: "iana",
+        extensions: ["h264"]
+      },
+      "video/h264-rcdo": {
+        source: "iana"
+      },
+      "video/h264-svc": {
+        source: "iana"
+      },
+      "video/h265": {
+        source: "iana"
+      },
+      "video/iso.segment": {
+        source: "iana",
+        extensions: ["m4s"]
+      },
+      "video/jpeg": {
+        source: "iana",
+        extensions: ["jpgv"]
+      },
+      "video/jpeg2000": {
+        source: "iana"
+      },
+      "video/jpm": {
+        source: "apache",
+        extensions: ["jpm", "jpgm"]
+      },
+      "video/jxsv": {
+        source: "iana"
+      },
+      "video/mj2": {
+        source: "iana",
+        extensions: ["mj2", "mjp2"]
+      },
+      "video/mp1s": {
+        source: "iana"
+      },
+      "video/mp2p": {
+        source: "iana"
+      },
+      "video/mp2t": {
+        source: "iana",
+        extensions: ["ts"]
+      },
+      "video/mp4": {
+        source: "iana",
+        compressible: false,
+        extensions: ["mp4", "mp4v", "mpg4"]
+      },
+      "video/mp4v-es": {
+        source: "iana"
+      },
+      "video/mpeg": {
+        source: "iana",
+        compressible: false,
+        extensions: ["mpeg", "mpg", "mpe", "m1v", "m2v"]
+      },
+      "video/mpeg4-generic": {
+        source: "iana"
+      },
+      "video/mpv": {
+        source: "iana"
+      },
+      "video/nv": {
+        source: "iana"
+      },
+      "video/ogg": {
+        source: "iana",
+        compressible: false,
+        extensions: ["ogv"]
+      },
+      "video/parityfec": {
+        source: "iana"
+      },
+      "video/pointer": {
+        source: "iana"
+      },
+      "video/quicktime": {
+        source: "iana",
+        compressible: false,
+        extensions: ["qt", "mov"]
+      },
+      "video/raptorfec": {
+        source: "iana"
+      },
+      "video/raw": {
+        source: "iana"
+      },
+      "video/rtp-enc-aescm128": {
+        source: "iana"
+      },
+      "video/rtploopback": {
+        source: "iana"
+      },
+      "video/rtx": {
+        source: "iana"
+      },
+      "video/scip": {
+        source: "iana"
+      },
+      "video/smpte291": {
+        source: "iana"
+      },
+      "video/smpte292m": {
+        source: "iana"
+      },
+      "video/ulpfec": {
+        source: "iana"
+      },
+      "video/vc1": {
+        source: "iana"
+      },
+      "video/vc2": {
+        source: "iana"
+      },
+      "video/vnd.cctv": {
+        source: "iana"
+      },
+      "video/vnd.dece.hd": {
+        source: "iana",
+        extensions: ["uvh", "uvvh"]
+      },
+      "video/vnd.dece.mobile": {
+        source: "iana",
+        extensions: ["uvm", "uvvm"]
+      },
+      "video/vnd.dece.mp4": {
+        source: "iana"
+      },
+      "video/vnd.dece.pd": {
+        source: "iana",
+        extensions: ["uvp", "uvvp"]
+      },
+      "video/vnd.dece.sd": {
+        source: "iana",
+        extensions: ["uvs", "uvvs"]
+      },
+      "video/vnd.dece.video": {
+        source: "iana",
+        extensions: ["uvv", "uvvv"]
+      },
+      "video/vnd.directv.mpeg": {
+        source: "iana"
+      },
+      "video/vnd.directv.mpeg-tts": {
+        source: "iana"
+      },
+      "video/vnd.dlna.mpeg-tts": {
+        source: "iana"
+      },
+      "video/vnd.dvb.file": {
+        source: "iana",
+        extensions: ["dvb"]
+      },
+      "video/vnd.fvt": {
+        source: "iana",
+        extensions: ["fvt"]
+      },
+      "video/vnd.hns.video": {
+        source: "iana"
+      },
+      "video/vnd.iptvforum.1dparityfec-1010": {
+        source: "iana"
+      },
+      "video/vnd.iptvforum.1dparityfec-2005": {
+        source: "iana"
+      },
+      "video/vnd.iptvforum.2dparityfec-1010": {
+        source: "iana"
+      },
+      "video/vnd.iptvforum.2dparityfec-2005": {
+        source: "iana"
+      },
+      "video/vnd.iptvforum.ttsavc": {
+        source: "iana"
+      },
+      "video/vnd.iptvforum.ttsmpeg2": {
+        source: "iana"
+      },
+      "video/vnd.motorola.video": {
+        source: "iana"
+      },
+      "video/vnd.motorola.videop": {
+        source: "iana"
+      },
+      "video/vnd.mpegurl": {
+        source: "iana",
+        extensions: ["mxu", "m4u"]
+      },
+      "video/vnd.ms-playready.media.pyv": {
+        source: "iana",
+        extensions: ["pyv"]
+      },
+      "video/vnd.nokia.interleaved-multimedia": {
+        source: "iana"
+      },
+      "video/vnd.nokia.mp4vr": {
+        source: "iana"
+      },
+      "video/vnd.nokia.videovoip": {
+        source: "iana"
+      },
+      "video/vnd.objectvideo": {
+        source: "iana"
+      },
+      "video/vnd.radgamettools.bink": {
+        source: "iana"
+      },
+      "video/vnd.radgamettools.smacker": {
+        source: "iana"
+      },
+      "video/vnd.sealed.mpeg1": {
+        source: "iana"
+      },
+      "video/vnd.sealed.mpeg4": {
+        source: "iana"
+      },
+      "video/vnd.sealed.swf": {
+        source: "iana"
+      },
+      "video/vnd.sealedmedia.softseal.mov": {
+        source: "iana"
+      },
+      "video/vnd.uvvu.mp4": {
+        source: "iana",
+        extensions: ["uvu", "uvvu"]
+      },
+      "video/vnd.vivo": {
+        source: "iana",
+        extensions: ["viv"]
+      },
+      "video/vnd.youtube.yt": {
+        source: "iana"
+      },
+      "video/vp8": {
+        source: "iana"
+      },
+      "video/vp9": {
+        source: "iana"
+      },
+      "video/webm": {
+        source: "apache",
+        compressible: false,
+        extensions: ["webm"]
+      },
+      "video/x-f4v": {
+        source: "apache",
+        extensions: ["f4v"]
+      },
+      "video/x-fli": {
+        source: "apache",
+        extensions: ["fli"]
+      },
+      "video/x-flv": {
+        source: "apache",
+        compressible: false,
+        extensions: ["flv"]
+      },
+      "video/x-m4v": {
+        source: "apache",
+        extensions: ["m4v"]
+      },
+      "video/x-matroska": {
+        source: "apache",
+        compressible: false,
+        extensions: ["mkv", "mk3d", "mks"]
+      },
+      "video/x-mng": {
+        source: "apache",
+        extensions: ["mng"]
+      },
+      "video/x-ms-asf": {
+        source: "apache",
+        extensions: ["asf", "asx"]
+      },
+      "video/x-ms-vob": {
+        source: "apache",
+        extensions: ["vob"]
+      },
+      "video/x-ms-wm": {
+        source: "apache",
+        extensions: ["wm"]
+      },
+      "video/x-ms-wmv": {
+        source: "apache",
+        compressible: false,
+        extensions: ["wmv"]
+      },
+      "video/x-ms-wmx": {
+        source: "apache",
+        extensions: ["wmx"]
+      },
+      "video/x-ms-wvx": {
+        source: "apache",
+        extensions: ["wvx"]
+      },
+      "video/x-msvideo": {
+        source: "apache",
+        extensions: ["avi"]
+      },
+      "video/x-sgi-movie": {
+        source: "apache",
+        extensions: ["movie"]
+      },
+      "video/x-smv": {
+        source: "apache",
+        extensions: ["smv"]
+      },
+      "x-conference/x-cooltalk": {
+        source: "apache",
+        extensions: ["ice"]
+      },
+      "x-shader/x-fragment": {
+        compressible: true
+      },
+      "x-shader/x-vertex": {
+        compressible: true
+      }
+    };
+  }
+});
+
+// node_modules/mime-db/index.js
+var require_mime_db = __commonJS({
+  "node_modules/mime-db/index.js"(exports2, module2) {
+    module2.exports = require_db();
+  }
+});
+
+// node_modules/mime-types/index.js
+var require_mime_types = __commonJS({
+  "node_modules/mime-types/index.js"(exports2) {
+    "use strict";
+    var db = require_mime_db();
+    var extname = require("path").extname;
+    var EXTRACT_TYPE_REGEXP = /^\s*([^;\s]*)(?:;|\s|$)/;
+    var TEXT_TYPE_REGEXP = /^text\//i;
+    exports2.charset = charset;
+    exports2.charsets = { lookup: charset };
+    exports2.contentType = contentType;
+    exports2.extension = extension;
+    exports2.extensions = /* @__PURE__ */ Object.create(null);
+    exports2.lookup = lookup;
+    exports2.types = /* @__PURE__ */ Object.create(null);
+    populateMaps(exports2.extensions, exports2.types);
+    function charset(type) {
+      if (!type || typeof type !== "string") {
+        return false;
+      }
+      var match = EXTRACT_TYPE_REGEXP.exec(type);
+      var mime = match && db[match[1].toLowerCase()];
+      if (mime && mime.charset) {
+        return mime.charset;
+      }
+      if (match && TEXT_TYPE_REGEXP.test(match[1])) {
+        return "UTF-8";
+      }
+      return false;
+    }
+    function contentType(str2) {
+      if (!str2 || typeof str2 !== "string") {
+        return false;
+      }
+      var mime = str2.indexOf("/") === -1 ? exports2.lookup(str2) : str2;
+      if (!mime) {
+        return false;
+      }
+      if (mime.indexOf("charset") === -1) {
+        var charset2 = exports2.charset(mime);
+        if (charset2)
+          mime += "; charset=" + charset2.toLowerCase();
+      }
+      return mime;
+    }
+    function extension(type) {
+      if (!type || typeof type !== "string") {
+        return false;
+      }
+      var match = EXTRACT_TYPE_REGEXP.exec(type);
+      var exts = match && exports2.extensions[match[1].toLowerCase()];
+      if (!exts || !exts.length) {
+        return false;
+      }
+      return exts[0];
+    }
+    function lookup(path2) {
+      if (!path2 || typeof path2 !== "string") {
+        return false;
+      }
+      var extension2 = extname("x." + path2).toLowerCase().substr(1);
+      if (!extension2) {
+        return false;
+      }
+      return exports2.types[extension2] || false;
+    }
+    function populateMaps(extensions, types) {
+      var preference = ["nginx", "apache", void 0, "iana"];
+      Object.keys(db).forEach(function forEachMimeType(type) {
+        var mime = db[type];
+        var exts = mime.extensions;
+        if (!exts || !exts.length) {
+          return;
+        }
+        extensions[type] = exts;
+        for (var i2 = 0; i2 < exts.length; i2++) {
+          var extension2 = exts[i2];
+          if (types[extension2]) {
+            var from = preference.indexOf(db[types[extension2]].source);
+            var to = preference.indexOf(mime.source);
+            if (types[extension2] !== "application/octet-stream" && (from > to || from === to && types[extension2].substr(0, 12) === "application/")) {
+              continue;
+            }
+          }
+          types[extension2] = type;
+        }
+      });
+    }
+  }
+});
+
+// node_modules/ylru/index.js
+var require_ylru = __commonJS({
+  "node_modules/ylru/index.js"(exports2, module2) {
+    "use strict";
+    var LRU = class {
+      constructor(max) {
+        this.max = max;
+        this.size = 0;
+        this.cache = /* @__PURE__ */ new Map();
+        this._cache = /* @__PURE__ */ new Map();
+      }
+      get(key, options) {
+        let item = this.cache.get(key);
+        const maxAge = options && options.maxAge;
+        let now;
+        function getNow() {
+          now = now || Date.now();
+          return now;
+        }
+        if (item) {
+          if (item.expired && getNow() > item.expired) {
+            item.expired = 0;
+            item.value = void 0;
+          } else {
+            if (maxAge !== void 0) {
+              const expired = maxAge ? getNow() + maxAge : 0;
+              item.expired = expired;
+            }
+          }
+          return item.value;
+        }
+        item = this._cache.get(key);
+        if (item) {
+          if (item.expired && getNow() > item.expired) {
+            item.expired = 0;
+            item.value = void 0;
+          } else {
+            this._update(key, item);
+            if (maxAge !== void 0) {
+              const expired = maxAge ? getNow() + maxAge : 0;
+              item.expired = expired;
+            }
+          }
+          return item.value;
+        }
+      }
+      set(key, value, options) {
+        const maxAge = options && options.maxAge;
+        const expired = maxAge ? Date.now() + maxAge : 0;
+        let item = this.cache.get(key);
+        if (item) {
+          item.expired = expired;
+          item.value = value;
+        } else {
+          item = {
+            value,
+            expired
+          };
+          this._update(key, item);
+        }
+      }
+      keys() {
+        const cacheKeys = /* @__PURE__ */ new Set();
+        const now = Date.now();
+        for (const entry of this.cache.entries()) {
+          checkEntry(entry);
+        }
+        for (const entry of this._cache.entries()) {
+          checkEntry(entry);
+        }
+        function checkEntry(entry) {
+          const key = entry[0];
+          const item = entry[1];
+          if (entry[1].value && !entry[1].expired || item.expired >= now) {
+            cacheKeys.add(key);
+          }
+        }
+        return Array.from(cacheKeys.keys());
+      }
+      reset() {
+        this.size = 0;
+        this.cache.clear();
+        this._cache.clear();
+      }
+      _update(key, item) {
+        this.cache.set(key, item);
+        this.size++;
+        if (this.size >= this.max) {
+          this.size = 0;
+          this._cache = this.cache;
+          this.cache = /* @__PURE__ */ new Map();
+        }
+      }
+    };
+    module2.exports = LRU;
+  }
+});
+
+// node_modules/cache-content-type/index.js
+var require_cache_content_type = __commonJS({
+  "node_modules/cache-content-type/index.js"(exports2, module2) {
+    "use strict";
+    var mimeTypes = require_mime_types();
+    var LRU = require_ylru();
+    var typeLRUCache = new LRU(100);
+    module2.exports = (type) => {
+      let mimeType = typeLRUCache.get(type);
+      if (!mimeType) {
+        mimeType = mimeTypes.contentType(type);
+        typeLRUCache.set(type, mimeType);
+      }
+      return mimeType;
+    };
+  }
+});
+
+// node_modules/escape-html/index.js
+var require_escape_html = __commonJS({
+  "node_modules/escape-html/index.js"(exports2, module2) {
+    "use strict";
+    var matchHtmlRegExp = /["'&<>]/;
+    module2.exports = escapeHtml;
+    function escapeHtml(string) {
+      var str2 = "" + string;
+      var match = matchHtmlRegExp.exec(str2);
+      if (!match) {
+        return str2;
+      }
+      var escape;
+      var html = "";
+      var index = 0;
+      var lastIndex = 0;
+      for (index = match.index; index < str2.length; index++) {
+        switch (str2.charCodeAt(index)) {
+          case 34:
+            escape = "&quot;";
+            break;
+          case 38:
+            escape = "&amp;";
+            break;
+          case 39:
+            escape = "&#39;";
+            break;
+          case 60:
+            escape = "&lt;";
+            break;
+          case 62:
+            escape = "&gt;";
+            break;
+          default:
+            continue;
+        }
+        if (lastIndex !== index) {
+          html += str2.substring(lastIndex, index);
+        }
+        lastIndex = index + 1;
+        html += escape;
+      }
+      return lastIndex !== index ? html + str2.substring(lastIndex, index) : html;
+    }
+  }
+});
+
+// node_modules/media-typer/index.js
+var require_media_typer = __commonJS({
+  "node_modules/media-typer/index.js"(exports2) {
+    var paramRegExp = /; *([!#$%&'\*\+\-\.0-9A-Z\^_`a-z\|~]+) *= *("(?:[ !\u0023-\u005b\u005d-\u007e\u0080-\u00ff]|\\[\u0020-\u007e])*"|[!#$%&'\*\+\-\.0-9A-Z\^_`a-z\|~]+) */g;
+    var textRegExp = /^[\u0020-\u007e\u0080-\u00ff]+$/;
+    var tokenRegExp = /^[!#$%&'\*\+\-\.0-9A-Z\^_`a-z\|~]+$/;
+    var qescRegExp = /\\([\u0000-\u007f])/g;
+    var quoteRegExp = /([\\"])/g;
+    var subtypeNameRegExp = /^[A-Za-z0-9][A-Za-z0-9!#$&^_.-]{0,126}$/;
+    var typeNameRegExp = /^[A-Za-z0-9][A-Za-z0-9!#$&^_-]{0,126}$/;
+    var typeRegExp = /^ *([A-Za-z0-9][A-Za-z0-9!#$&^_-]{0,126})\/([A-Za-z0-9][A-Za-z0-9!#$&^_.+-]{0,126}) *$/;
+    exports2.format = format;
+    exports2.parse = parse3;
+    function format(obj) {
+      if (!obj || typeof obj !== "object") {
+        throw new TypeError("argument obj is required");
+      }
+      var parameters = obj.parameters;
+      var subtype = obj.subtype;
+      var suffix = obj.suffix;
+      var type = obj.type;
+      if (!type || !typeNameRegExp.test(type)) {
+        throw new TypeError("invalid type");
+      }
+      if (!subtype || !subtypeNameRegExp.test(subtype)) {
+        throw new TypeError("invalid subtype");
+      }
+      var string = type + "/" + subtype;
+      if (suffix) {
+        if (!typeNameRegExp.test(suffix)) {
+          throw new TypeError("invalid suffix");
+        }
+        string += "+" + suffix;
+      }
+      if (parameters && typeof parameters === "object") {
+        var param;
+        var params = Object.keys(parameters).sort();
+        for (var i2 = 0; i2 < params.length; i2++) {
+          param = params[i2];
+          if (!tokenRegExp.test(param)) {
+            throw new TypeError("invalid parameter name");
+          }
+          string += "; " + param + "=" + qstring(parameters[param]);
+        }
+      }
+      return string;
+    }
+    function parse3(string) {
+      if (!string) {
+        throw new TypeError("argument string is required");
+      }
+      if (typeof string === "object") {
+        string = getcontenttype(string);
+      }
+      if (typeof string !== "string") {
+        throw new TypeError("argument string is required to be a string");
+      }
+      var index = string.indexOf(";");
+      var type = index !== -1 ? string.substr(0, index) : string;
+      var key;
+      var match;
+      var obj = splitType(type);
+      var params = {};
+      var value;
+      paramRegExp.lastIndex = index;
+      while (match = paramRegExp.exec(string)) {
+        if (match.index !== index) {
+          throw new TypeError("invalid parameter format");
+        }
+        index += match[0].length;
+        key = match[1].toLowerCase();
+        value = match[2];
+        if (value[0] === '"') {
+          value = value.substr(1, value.length - 2).replace(qescRegExp, "$1");
+        }
+        params[key] = value;
+      }
+      if (index !== -1 && index !== string.length) {
+        throw new TypeError("invalid parameter format");
+      }
+      obj.parameters = params;
+      return obj;
+    }
+    function getcontenttype(obj) {
+      if (typeof obj.getHeader === "function") {
+        return obj.getHeader("content-type");
+      }
+      if (typeof obj.headers === "object") {
+        return obj.headers && obj.headers["content-type"];
+      }
+    }
+    function qstring(val) {
+      var str2 = String(val);
+      if (tokenRegExp.test(str2)) {
+        return str2;
+      }
+      if (str2.length > 0 && !textRegExp.test(str2)) {
+        throw new TypeError("invalid parameter value");
+      }
+      return '"' + str2.replace(quoteRegExp, "\\$1") + '"';
+    }
+    function splitType(string) {
+      var match = typeRegExp.exec(string.toLowerCase());
+      if (!match) {
+        throw new TypeError("invalid media type");
+      }
+      var type = match[1];
+      var subtype = match[2];
+      var suffix;
+      var index = subtype.lastIndexOf("+");
+      if (index !== -1) {
+        suffix = subtype.substr(index + 1);
+        subtype = subtype.substr(0, index);
+      }
+      var obj = {
+        type,
+        subtype,
+        suffix
+      };
+      return obj;
+    }
+  }
+});
+
+// node_modules/type-is/index.js
+var require_type_is = __commonJS({
+  "node_modules/type-is/index.js"(exports2, module2) {
+    "use strict";
+    var typer = require_media_typer();
+    var mime = require_mime_types();
+    module2.exports = typeofrequest;
+    module2.exports.is = typeis;
+    module2.exports.hasBody = hasbody;
+    module2.exports.normalize = normalize;
+    module2.exports.match = mimeMatch;
+    function typeis(value, types_) {
+      var i2;
+      var types = types_;
+      var val = tryNormalizeType(value);
+      if (!val) {
+        return false;
+      }
+      if (types && !Array.isArray(types)) {
+        types = new Array(arguments.length - 1);
+        for (i2 = 0; i2 < types.length; i2++) {
+          types[i2] = arguments[i2 + 1];
+        }
+      }
+      if (!types || !types.length) {
+        return val;
+      }
+      var type;
+      for (i2 = 0; i2 < types.length; i2++) {
+        if (mimeMatch(normalize(type = types[i2]), val)) {
+          return type[0] === "+" || type.indexOf("*") !== -1 ? val : type;
+        }
+      }
+      return false;
+    }
+    function hasbody(req) {
+      return req.headers["transfer-encoding"] !== void 0 || !isNaN(req.headers["content-length"]);
+    }
+    function typeofrequest(req, types_) {
+      var types = types_;
+      if (!hasbody(req)) {
+        return null;
+      }
+      if (arguments.length > 2) {
+        types = new Array(arguments.length - 1);
+        for (var i2 = 0; i2 < types.length; i2++) {
+          types[i2] = arguments[i2 + 1];
+        }
+      }
+      var value = req.headers["content-type"];
+      return typeis(value, types);
+    }
+    function normalize(type) {
+      if (typeof type !== "string") {
+        return false;
+      }
+      switch (type) {
+        case "urlencoded":
+          return "application/x-www-form-urlencoded";
+        case "multipart":
+          return "multipart/*";
+      }
+      if (type[0] === "+") {
+        return "*/*" + type;
+      }
+      return type.indexOf("/") === -1 ? mime.lookup(type) : type;
+    }
+    function mimeMatch(expected, actual) {
+      if (expected === false) {
+        return false;
+      }
+      var actualParts = actual.split("/");
+      var expectedParts = expected.split("/");
+      if (actualParts.length !== 2 || expectedParts.length !== 2) {
+        return false;
+      }
+      if (expectedParts[0] !== "*" && expectedParts[0] !== actualParts[0]) {
+        return false;
+      }
+      if (expectedParts[1].substr(0, 2) === "*+") {
+        return expectedParts[1].length <= actualParts[1].length + 1 && expectedParts[1].substr(1) === actualParts[1].substr(1 - expectedParts[1].length);
+      }
+      if (expectedParts[1] !== "*" && expectedParts[1] !== actualParts[1]) {
+        return false;
+      }
+      return true;
+    }
+    function normalizeType(value) {
+      var type = typer.parse(value);
+      type.parameters = void 0;
+      return typer.format(type);
+    }
+    function tryNormalizeType(value) {
+      if (!value) {
+        return null;
+      }
+      try {
+        return normalizeType(value);
+      } catch (err) {
+        return null;
+      }
+    }
+  }
+});
+
+// node_modules/statuses/codes.json
+var require_codes = __commonJS({
+  "node_modules/statuses/codes.json"(exports2, module2) {
+    module2.exports = {
+      "100": "Continue",
+      "101": "Switching Protocols",
+      "102": "Processing",
+      "103": "Early Hints",
+      "200": "OK",
+      "201": "Created",
+      "202": "Accepted",
+      "203": "Non-Authoritative Information",
+      "204": "No Content",
+      "205": "Reset Content",
+      "206": "Partial Content",
+      "207": "Multi-Status",
+      "208": "Already Reported",
+      "226": "IM Used",
+      "300": "Multiple Choices",
+      "301": "Moved Permanently",
+      "302": "Found",
+      "303": "See Other",
+      "304": "Not Modified",
+      "305": "Use Proxy",
+      "306": "(Unused)",
+      "307": "Temporary Redirect",
+      "308": "Permanent Redirect",
+      "400": "Bad Request",
+      "401": "Unauthorized",
+      "402": "Payment Required",
+      "403": "Forbidden",
+      "404": "Not Found",
+      "405": "Method Not Allowed",
+      "406": "Not Acceptable",
+      "407": "Proxy Authentication Required",
+      "408": "Request Timeout",
+      "409": "Conflict",
+      "410": "Gone",
+      "411": "Length Required",
+      "412": "Precondition Failed",
+      "413": "Payload Too Large",
+      "414": "URI Too Long",
+      "415": "Unsupported Media Type",
+      "416": "Range Not Satisfiable",
+      "417": "Expectation Failed",
+      "418": "I'm a teapot",
+      "421": "Misdirected Request",
+      "422": "Unprocessable Entity",
+      "423": "Locked",
+      "424": "Failed Dependency",
+      "425": "Unordered Collection",
+      "426": "Upgrade Required",
+      "428": "Precondition Required",
+      "429": "Too Many Requests",
+      "431": "Request Header Fields Too Large",
+      "451": "Unavailable For Legal Reasons",
+      "500": "Internal Server Error",
+      "501": "Not Implemented",
+      "502": "Bad Gateway",
+      "503": "Service Unavailable",
+      "504": "Gateway Timeout",
+      "505": "HTTP Version Not Supported",
+      "506": "Variant Also Negotiates",
+      "507": "Insufficient Storage",
+      "508": "Loop Detected",
+      "509": "Bandwidth Limit Exceeded",
+      "510": "Not Extended",
+      "511": "Network Authentication Required"
+    };
+  }
+});
+
+// node_modules/statuses/index.js
+var require_statuses = __commonJS({
+  "node_modules/statuses/index.js"(exports2, module2) {
+    "use strict";
+    var codes = require_codes();
+    module2.exports = status;
+    status.STATUS_CODES = codes;
+    status.codes = populateStatusesMap(status, codes);
+    status.redirect = {
+      300: true,
+      301: true,
+      302: true,
+      303: true,
+      305: true,
+      307: true,
+      308: true
+    };
+    status.empty = {
+      204: true,
+      205: true,
+      304: true
+    };
+    status.retry = {
+      502: true,
+      503: true,
+      504: true
+    };
+    function populateStatusesMap(statuses, codes2) {
+      var arr = [];
+      Object.keys(codes2).forEach(function forEachCode(code) {
+        var message2 = codes2[code];
+        var status2 = Number(code);
+        statuses[status2] = message2;
+        statuses[message2] = status2;
+        statuses[message2.toLowerCase()] = status2;
+        arr.push(status2);
+      });
+      return arr;
+    }
+    function status(code) {
+      if (typeof code === "number") {
+        if (!status[code])
+          throw new Error("invalid status code: " + code);
+        return code;
+      }
+      if (typeof code !== "string") {
+        throw new TypeError("code must be a number or string");
+      }
+      var n2 = parseInt(code, 10);
+      if (!isNaN(n2)) {
+        if (!status[n2])
+          throw new Error("invalid status code: " + n2);
+        return n2;
+      }
+      n2 = status[code.toLowerCase()];
+      if (!n2)
+        throw new Error('invalid status message: "' + code + '"');
+      return n2;
+    }
+  }
+});
+
+// node_modules/destroy/index.js
+var require_destroy = __commonJS({
+  "node_modules/destroy/index.js"(exports2, module2) {
+    "use strict";
+    var EventEmitter = require("events").EventEmitter;
+    var ReadStream = require("fs").ReadStream;
+    var Stream2 = require("stream");
+    var Zlib = require("zlib");
+    module2.exports = destroy;
+    function destroy(stream, suppress) {
+      if (isFsReadStream2(stream)) {
+        destroyReadStream(stream);
+      } else if (isZlibStream(stream)) {
+        destroyZlibStream(stream);
+      } else if (hasDestroy(stream)) {
+        stream.destroy();
+      }
+      if (isEventEmitter(stream) && suppress) {
+        stream.removeAllListeners("error");
+        stream.addListener("error", noop);
+      }
+      return stream;
+    }
+    function destroyReadStream(stream) {
+      stream.destroy();
+      if (typeof stream.close === "function") {
+        stream.on("open", onOpenClose);
+      }
+    }
+    function closeZlibStream(stream) {
+      if (stream._hadError === true) {
+        var prop = stream._binding === null ? "_binding" : "_handle";
+        stream[prop] = {
+          close: function() {
+            this[prop] = null;
+          }
+        };
+      }
+      stream.close();
+    }
+    function destroyZlibStream(stream) {
+      if (typeof stream.destroy === "function") {
+        if (stream._binding) {
+          stream.destroy();
+          if (stream._processing) {
+            stream._needDrain = true;
+            stream.once("drain", onDrainClearBinding);
+          } else {
+            stream._binding.clear();
+          }
+        } else if (stream._destroy && stream._destroy !== Stream2.Transform.prototype._destroy) {
+          stream.destroy();
+        } else if (stream._destroy && typeof stream.close === "function") {
+          stream.destroyed = true;
+          stream.close();
+        } else {
+          stream.destroy();
+        }
+      } else if (typeof stream.close === "function") {
+        closeZlibStream(stream);
+      }
+    }
+    function hasDestroy(stream) {
+      return stream instanceof Stream2 && typeof stream.destroy === "function";
+    }
+    function isEventEmitter(val) {
+      return val instanceof EventEmitter;
+    }
+    function isFsReadStream2(stream) {
+      return stream instanceof ReadStream;
+    }
+    function isZlibStream(stream) {
+      return stream instanceof Zlib.Gzip || stream instanceof Zlib.Gunzip || stream instanceof Zlib.Deflate || stream instanceof Zlib.DeflateRaw || stream instanceof Zlib.Inflate || stream instanceof Zlib.InflateRaw || stream instanceof Zlib.Unzip;
+    }
+    function noop() {
+    }
+    function onDrainClearBinding() {
+      this._binding.clear();
+    }
+    function onOpenClose() {
+      if (typeof this.fd === "number") {
+        this.close();
+      }
+    }
+  }
+});
+
+// node_modules/only/index.js
+var require_only = __commonJS({
+  "node_modules/only/index.js"(exports2, module2) {
+    module2.exports = function(obj, keys) {
+      obj = obj || {};
+      if ("string" == typeof keys)
+        keys = keys.split(/ +/);
+      return keys.reduce(function(ret, key) {
+        if (null == obj[key])
+          return ret;
+        ret[key] = obj[key];
+        return ret;
+      }, {});
+    };
+  }
+});
+
+// node_modules/encodeurl/index.js
+var require_encodeurl = __commonJS({
+  "node_modules/encodeurl/index.js"(exports2, module2) {
+    "use strict";
+    module2.exports = encodeUrl;
+    var ENCODE_CHARS_REGEXP = /(?:[^\x21\x25\x26-\x3B\x3D\x3F-\x5B\x5D\x5F\x61-\x7A\x7E]|%(?:[^0-9A-Fa-f]|[0-9A-Fa-f][^0-9A-Fa-f]|$))+/g;
+    var UNMATCHED_SURROGATE_PAIR_REGEXP = /(^|[^\uD800-\uDBFF])[\uDC00-\uDFFF]|[\uD800-\uDBFF]([^\uDC00-\uDFFF]|$)/g;
+    var UNMATCHED_SURROGATE_PAIR_REPLACE = "$1\uFFFD$2";
+    function encodeUrl(url) {
+      return String(url).replace(UNMATCHED_SURROGATE_PAIR_REGEXP, UNMATCHED_SURROGATE_PAIR_REPLACE).replace(ENCODE_CHARS_REGEXP, encodeURI);
+    }
+  }
+});
+
+// node_modules/koa/lib/response.js
+var require_response = __commonJS({
+  "node_modules/koa/lib/response.js"(exports2, module2) {
+    "use strict";
+    var contentDisposition = require_content_disposition();
+    var getType3 = require_cache_content_type();
+    var onFinish = require_on_finished();
+    var escape = require_escape_html();
+    var typeis = require_type_is().is;
+    var statuses = require_statuses();
+    var destroy = require_destroy();
+    var assert = require("assert");
+    var extname = require("path").extname;
+    var vary = require_vary();
+    var only = require_only();
+    var util = require("util");
+    var encodeUrl = require_encodeurl();
+    var Stream2 = require("stream");
+    module2.exports = {
+      /**
+       * Return the request socket.
+       *
+       * @return {Connection}
+       * @api public
+       */
+      get socket() {
+        return this.res.socket;
+      },
+      /**
+       * Return response header.
+       *
+       * @return {Object}
+       * @api public
+       */
+      get header() {
+        const { res } = this;
+        return typeof res.getHeaders === "function" ? res.getHeaders() : res._headers || {};
+      },
+      /**
+       * Return response header, alias as response.header
+       *
+       * @return {Object}
+       * @api public
+       */
+      get headers() {
+        return this.header;
+      },
+      /**
+       * Get response status code.
+       *
+       * @return {Number}
+       * @api public
+       */
+      get status() {
+        return this.res.statusCode;
+      },
+      /**
+       * Set response status code.
+       *
+       * @param {Number} code
+       * @api public
+       */
+      set status(code) {
+        if (this.headerSent)
+          return;
+        assert(Number.isInteger(code), "status code must be a number");
+        assert(code >= 100 && code <= 999, `invalid status code: ${code}`);
+        this._explicitStatus = true;
+        this.res.statusCode = code;
+        if (this.req.httpVersionMajor < 2)
+          this.res.statusMessage = statuses[code];
+        if (this.body && statuses.empty[code])
+          this.body = null;
+      },
+      /**
+       * Get response status message
+       *
+       * @return {String}
+       * @api public
+       */
+      get message() {
+        return this.res.statusMessage || statuses[this.status];
+      },
+      /**
+       * Set response status message
+       *
+       * @param {String} msg
+       * @api public
+       */
+      set message(msg) {
+        this.res.statusMessage = msg;
+      },
+      /**
+       * Get response body.
+       *
+       * @return {Mixed}
+       * @api public
+       */
+      get body() {
+        return this._body;
+      },
+      /**
+       * Set response body.
+       *
+       * @param {String|Buffer|Object|Stream} val
+       * @api public
+       */
+      set body(val) {
+        const original = this._body;
+        this._body = val;
+        if (null == val) {
+          if (!statuses.empty[this.status])
+            this.status = 204;
+          if (val === null)
+            this._explicitNullBody = true;
+          this.remove("Content-Type");
+          this.remove("Content-Length");
+          this.remove("Transfer-Encoding");
+          return;
+        }
+        if (!this._explicitStatus)
+          this.status = 200;
+        const setType = !this.has("Content-Type");
+        if ("string" === typeof val) {
+          if (setType)
+            this.type = /^\s*</.test(val) ? "html" : "text";
+          this.length = Buffer.byteLength(val);
+          return;
+        }
+        if (Buffer.isBuffer(val)) {
+          if (setType)
+            this.type = "bin";
+          this.length = val.length;
+          return;
+        }
+        if (val instanceof Stream2) {
+          onFinish(this.res, destroy.bind(null, val));
+          if (original != val) {
+            val.once("error", (err) => this.ctx.onerror(err));
+            if (null != original)
+              this.remove("Content-Length");
+          }
+          if (setType)
+            this.type = "bin";
+          return;
+        }
+        this.remove("Content-Length");
+        this.type = "json";
+      },
+      /**
+       * Set Content-Length field to `n`.
+       *
+       * @param {Number} n
+       * @api public
+       */
+      set length(n2) {
+        if (!this.has("Transfer-Encoding")) {
+          this.set("Content-Length", n2);
+        }
+      },
+      /**
+       * Return parsed response Content-Length when present.
+       *
+       * @return {Number}
+       * @api public
+       */
+      get length() {
+        if (this.has("Content-Length")) {
+          return parseInt(this.get("Content-Length"), 10) || 0;
+        }
+        const { body } = this;
+        if (!body || body instanceof Stream2)
+          return void 0;
+        if ("string" === typeof body)
+          return Buffer.byteLength(body);
+        if (Buffer.isBuffer(body))
+          return body.length;
+        return Buffer.byteLength(JSON.stringify(body));
+      },
+      /**
+       * Check if a header has been written to the socket.
+       *
+       * @return {Boolean}
+       * @api public
+       */
+      get headerSent() {
+        return this.res.headersSent;
+      },
+      /**
+       * Vary on `field`.
+       *
+       * @param {String} field
+       * @api public
+       */
+      vary(field) {
+        if (this.headerSent)
+          return;
+        vary(this.res, field);
+      },
+      /**
+       * Perform a 302 redirect to `url`.
+       *
+       * The string "back" is special-cased
+       * to provide Referrer support, when Referrer
+       * is not present `alt` or "/" is used.
+       *
+       * Examples:
+       *
+       *    this.redirect('back');
+       *    this.redirect('back', '/index.html');
+       *    this.redirect('/login');
+       *    this.redirect('http://google.com');
+       *
+       * @param {String} url
+       * @param {String} [alt]
+       * @api public
+       */
+      redirect(url, alt) {
+        if ("back" === url)
+          url = this.ctx.get("Referrer") || alt || "/";
+        if (/^https?:\/\//i.test(url)) {
+          url = new URL(url).toString();
+        }
+        this.set("Location", encodeUrl(url));
+        if (!statuses.redirect[this.status])
+          this.status = 302;
+        if (this.ctx.accepts("html")) {
+          url = escape(url);
+          this.type = "text/html; charset=utf-8";
+          this.body = `Redirecting to <a href="${url}">${url}</a>.`;
+          return;
+        }
+        this.type = "text/plain; charset=utf-8";
+        this.body = `Redirecting to ${url}.`;
+      },
+      /**
+       * Set Content-Disposition header to "attachment" with optional `filename`.
+       *
+       * @param {String} filename
+       * @api public
+       */
+      attachment(filename, options) {
+        if (filename)
+          this.type = extname(filename);
+        this.set("Content-Disposition", contentDisposition(filename, options));
+      },
+      /**
+       * Set Content-Type response header with `type` through `mime.lookup()`
+       * when it does not contain a charset.
+       *
+       * Examples:
+       *
+       *     this.type = '.html';
+       *     this.type = 'html';
+       *     this.type = 'json';
+       *     this.type = 'application/json';
+       *     this.type = 'png';
+       *
+       * @param {String} type
+       * @api public
+       */
+      set type(type) {
+        type = getType3(type);
+        if (type) {
+          this.set("Content-Type", type);
+        } else {
+          this.remove("Content-Type");
+        }
+      },
+      /**
+       * Set the Last-Modified date using a string or a Date.
+       *
+       *     this.response.lastModified = new Date();
+       *     this.response.lastModified = '2013-09-13';
+       *
+       * @param {String|Date} type
+       * @api public
+       */
+      set lastModified(val) {
+        if ("string" === typeof val)
+          val = new Date(val);
+        this.set("Last-Modified", val.toUTCString());
+      },
+      /**
+       * Get the Last-Modified date in Date form, if it exists.
+       *
+       * @return {Date}
+       * @api public
+       */
+      get lastModified() {
+        const date = this.get("last-modified");
+        if (date)
+          return new Date(date);
+      },
+      /**
+       * Set the ETag of a response.
+       * This will normalize the quotes if necessary.
+       *
+       *     this.response.etag = 'md5hashsum';
+       *     this.response.etag = '"md5hashsum"';
+       *     this.response.etag = 'W/"123456789"';
+       *
+       * @param {String} etag
+       * @api public
+       */
+      set etag(val) {
+        if (!/^(W\/)?"/.test(val))
+          val = `"${val}"`;
+        this.set("ETag", val);
+      },
+      /**
+       * Get the ETag of a response.
+       *
+       * @return {String}
+       * @api public
+       */
+      get etag() {
+        return this.get("ETag");
+      },
+      /**
+       * Return the response mime type void of
+       * parameters such as "charset".
+       *
+       * @return {String}
+       * @api public
+       */
+      get type() {
+        const type = this.get("Content-Type");
+        if (!type)
+          return "";
+        return type.split(";", 1)[0];
+      },
+      /**
+       * Check whether the response is one of the listed types.
+       * Pretty much the same as `this.request.is()`.
+       *
+       * @param {String|String[]} [type]
+       * @param {String[]} [types]
+       * @return {String|false}
+       * @api public
+       */
+      is(type, ...types) {
+        return typeis(this.type, type, ...types);
+      },
+      /**
+       * Return response header.
+       *
+       * Examples:
+       *
+       *     this.get('Content-Type');
+       *     // => "text/plain"
+       *
+       *     this.get('content-type');
+       *     // => "text/plain"
+       *
+       * @param {String} field
+       * @return {String}
+       * @api public
+       */
+      get(field) {
+        return this.header[field.toLowerCase()] || "";
+      },
+      /**
+       * Returns true if the header identified by name is currently set in the outgoing headers.
+       * The header name matching is case-insensitive.
+       *
+       * Examples:
+       *
+       *     this.has('Content-Type');
+       *     // => true
+       *
+       *     this.get('content-type');
+       *     // => true
+       *
+       * @param {String} field
+       * @return {boolean}
+       * @api public
+       */
+      has(field) {
+        return typeof this.res.hasHeader === "function" ? this.res.hasHeader(field) : field.toLowerCase() in this.headers;
+      },
+      /**
+       * Set header `field` to `val` or pass
+       * an object of header fields.
+       *
+       * Examples:
+       *
+       *    this.set('Foo', ['bar', 'baz']);
+       *    this.set('Accept', 'application/json');
+       *    this.set({ Accept: 'text/plain', 'X-API-Key': 'tobi' });
+       *
+       * @param {String|Object|Array} field
+       * @param {String} val
+       * @api public
+       */
+      set(field, val) {
+        if (this.headerSent)
+          return;
+        if (2 === arguments.length) {
+          if (Array.isArray(val))
+            val = val.map((v6) => typeof v6 === "string" ? v6 : String(v6));
+          else if (typeof val !== "string")
+            val = String(val);
+          this.res.setHeader(field, val);
+        } else {
+          for (const key in field) {
+            this.set(key, field[key]);
+          }
+        }
+      },
+      /**
+       * Append additional header `field` with value `val`.
+       *
+       * Examples:
+       *
+       * ```
+       * this.append('Link', ['<http://localhost/>', '<http://localhost:3000/>']);
+       * this.append('Set-Cookie', 'foo=bar; Path=/; HttpOnly');
+       * this.append('Warning', '199 Miscellaneous warning');
+       * ```
+       *
+       * @param {String} field
+       * @param {String|Array} val
+       * @api public
+       */
+      append(field, val) {
+        const prev = this.get(field);
+        if (prev) {
+          val = Array.isArray(prev) ? prev.concat(val) : [prev].concat(val);
+        }
+        return this.set(field, val);
+      },
+      /**
+       * Remove header `field`.
+       *
+       * @param {String} name
+       * @api public
+       */
+      remove(field) {
+        if (this.headerSent)
+          return;
+        this.res.removeHeader(field);
+      },
+      /**
+       * Checks if the request is writable.
+       * Tests for the existence of the socket
+       * as node sometimes does not set it.
+       *
+       * @return {Boolean}
+       * @api private
+       */
+      get writable() {
+        if (this.res.writableEnded || this.res.finished)
+          return false;
+        const socket = this.res.socket;
+        if (!socket)
+          return true;
+        return socket.writable;
+      },
+      /**
+       * Inspect implementation.
+       *
+       * @return {Object}
+       * @api public
+       */
+      inspect() {
+        if (!this.res)
+          return;
+        const o2 = this.toJSON();
+        o2.body = this.body;
+        return o2;
+      },
+      /**
+       * Return JSON representation.
+       *
+       * @return {Object}
+       * @api public
+       */
+      toJSON() {
+        return only(this, [
+          "status",
+          "message",
+          "header"
+        ]);
+      },
+      /**
+       * Flush any set headers and begin the body
+       */
+      flushHeaders() {
+        this.res.flushHeaders();
+      }
+    };
+    if (util.inspect.custom) {
+      module2.exports[util.inspect.custom] = module2.exports.inspect;
+    }
+  }
+});
+
+// node_modules/koa-compose/index.js
+var require_koa_compose = __commonJS({
+  "node_modules/koa-compose/index.js"(exports2, module2) {
+    "use strict";
+    module2.exports = compose;
+    function compose(middleware) {
+      if (!Array.isArray(middleware))
+        throw new TypeError("Middleware stack must be an array!");
+      for (const fn2 of middleware) {
+        if (typeof fn2 !== "function")
+          throw new TypeError("Middleware must be composed of functions!");
+      }
+      return function(context, next) {
+        let index = -1;
+        return dispatch(0);
+        function dispatch(i2) {
+          if (i2 <= index)
+            return Promise.reject(new Error("next() called multiple times"));
+          index = i2;
+          let fn2 = middleware[i2];
+          if (i2 === middleware.length)
+            fn2 = next;
+          if (!fn2)
+            return Promise.resolve();
+          try {
+            return Promise.resolve(fn2(context, dispatch.bind(null, i2 + 1)));
+          } catch (err) {
+            return Promise.reject(err);
+          }
+        }
+      };
+    }
+  }
+});
+
+// node_modules/http-errors/node_modules/depd/lib/compat/callsite-tostring.js
+var require_callsite_tostring = __commonJS({
+  "node_modules/http-errors/node_modules/depd/lib/compat/callsite-tostring.js"(exports2, module2) {
+    "use strict";
+    module2.exports = callSiteToString2;
+    function callSiteFileLocation(callSite) {
+      var fileName;
+      var fileLocation = "";
+      if (callSite.isNative()) {
+        fileLocation = "native";
+      } else if (callSite.isEval()) {
+        fileName = callSite.getScriptNameOrSourceURL();
+        if (!fileName) {
+          fileLocation = callSite.getEvalOrigin();
+        }
+      } else {
+        fileName = callSite.getFileName();
+      }
+      if (fileName) {
+        fileLocation += fileName;
+        var lineNumber = callSite.getLineNumber();
+        if (lineNumber != null) {
+          fileLocation += ":" + lineNumber;
+          var columnNumber = callSite.getColumnNumber();
+          if (columnNumber) {
+            fileLocation += ":" + columnNumber;
+          }
+        }
+      }
+      return fileLocation || "unknown source";
+    }
+    function callSiteToString2(callSite) {
+      var addSuffix = true;
+      var fileLocation = callSiteFileLocation(callSite);
+      var functionName = callSite.getFunctionName();
+      var isConstructor = callSite.isConstructor();
+      var isMethodCall = !(callSite.isToplevel() || isConstructor);
+      var line = "";
+      if (isMethodCall) {
+        var methodName = callSite.getMethodName();
+        var typeName = getConstructorName(callSite);
+        if (functionName) {
+          if (typeName && functionName.indexOf(typeName) !== 0) {
+            line += typeName + ".";
+          }
+          line += functionName;
+          if (methodName && functionName.lastIndexOf("." + methodName) !== functionName.length - methodName.length - 1) {
+            line += " [as " + methodName + "]";
+          }
+        } else {
+          line += typeName + "." + (methodName || "<anonymous>");
+        }
+      } else if (isConstructor) {
+        line += "new " + (functionName || "<anonymous>");
+      } else if (functionName) {
+        line += functionName;
+      } else {
+        addSuffix = false;
+        line += fileLocation;
+      }
+      if (addSuffix) {
+        line += " (" + fileLocation + ")";
+      }
+      return line;
+    }
+    function getConstructorName(obj) {
+      var receiver = obj.receiver;
+      return receiver.constructor && receiver.constructor.name || null;
+    }
+  }
+});
+
+// node_modules/http-errors/node_modules/depd/lib/compat/event-listener-count.js
+var require_event_listener_count = __commonJS({
+  "node_modules/http-errors/node_modules/depd/lib/compat/event-listener-count.js"(exports2, module2) {
+    "use strict";
+    module2.exports = eventListenerCount2;
+    function eventListenerCount2(emitter, type) {
+      return emitter.listeners(type).length;
+    }
+  }
+});
+
+// node_modules/http-errors/node_modules/depd/lib/compat/index.js
+var require_compat = __commonJS({
+  "node_modules/http-errors/node_modules/depd/lib/compat/index.js"(exports2, module2) {
+    "use strict";
+    var EventEmitter = require("events").EventEmitter;
+    lazyProperty(module2.exports, "callSiteToString", function callSiteToString2() {
+      var limit = Error.stackTraceLimit;
+      var obj = {};
+      var prep = Error.prepareStackTrace;
+      function prepareObjectStackTrace2(obj2, stack3) {
+        return stack3;
+      }
+      Error.prepareStackTrace = prepareObjectStackTrace2;
+      Error.stackTraceLimit = 2;
+      Error.captureStackTrace(obj);
+      var stack2 = obj.stack.slice();
+      Error.prepareStackTrace = prep;
+      Error.stackTraceLimit = limit;
+      return stack2[0].toString ? toString : require_callsite_tostring();
+    });
+    lazyProperty(module2.exports, "eventListenerCount", function eventListenerCount2() {
+      return EventEmitter.listenerCount || require_event_listener_count();
+    });
+    function lazyProperty(obj, prop, getter) {
+      function get() {
+        var val = getter();
+        Object.defineProperty(obj, prop, {
+          configurable: true,
+          enumerable: true,
+          value: val
+        });
+        return val;
+      }
+      Object.defineProperty(obj, prop, {
+        configurable: true,
+        enumerable: true,
+        get
+      });
+    }
+    function toString(obj) {
+      return obj.toString();
+    }
+  }
+});
+
+// node_modules/http-errors/node_modules/depd/index.js
+var require_depd = __commonJS({
+  "node_modules/http-errors/node_modules/depd/index.js"(exports, module) {
+    var callSiteToString = require_compat().callSiteToString;
+    var eventListenerCount = require_compat().eventListenerCount;
+    var relative = require("path").relative;
+    module.exports = depd;
+    var basePath = process.cwd();
+    function containsNamespace(str2, namespace) {
+      var vals = str2.split(/[ ,]+/);
+      var ns = String(namespace).toLowerCase();
+      for (var i2 = 0; i2 < vals.length; i2++) {
+        var val = vals[i2];
+        if (val && (val === "*" || val.toLowerCase() === ns)) {
+          return true;
+        }
+      }
+      return false;
+    }
+    function convertDataDescriptorToAccessor(obj, prop, message2) {
+      var descriptor = Object.getOwnPropertyDescriptor(obj, prop);
+      var value = descriptor.value;
+      descriptor.get = function getter() {
+        return value;
+      };
+      if (descriptor.writable) {
+        descriptor.set = function setter(val) {
+          return value = val;
+        };
+      }
+      delete descriptor.value;
+      delete descriptor.writable;
+      Object.defineProperty(obj, prop, descriptor);
+      return descriptor;
+    }
+    function createArgumentsString(arity) {
+      var str2 = "";
+      for (var i2 = 0; i2 < arity; i2++) {
+        str2 += ", arg" + i2;
+      }
+      return str2.substr(2);
+    }
+    function createStackString(stack2) {
+      var str2 = this.name + ": " + this.namespace;
+      if (this.message) {
+        str2 += " deprecated " + this.message;
+      }
+      for (var i2 = 0; i2 < stack2.length; i2++) {
+        str2 += "\n    at " + callSiteToString(stack2[i2]);
+      }
+      return str2;
+    }
+    function depd(namespace) {
+      if (!namespace) {
+        throw new TypeError("argument namespace is required");
+      }
+      var stack2 = getStack();
+      var site2 = callSiteLocation(stack2[1]);
+      var file = site2[0];
+      function deprecate3(message2) {
+        log.call(deprecate3, message2);
+      }
+      deprecate3._file = file;
+      deprecate3._ignored = isignored(namespace);
+      deprecate3._namespace = namespace;
+      deprecate3._traced = istraced(namespace);
+      deprecate3._warned = /* @__PURE__ */ Object.create(null);
+      deprecate3.function = wrapfunction;
+      deprecate3.property = wrapproperty;
+      return deprecate3;
+    }
+    function isignored(namespace) {
+      if (process.noDeprecation) {
+        return true;
+      }
+      var str2 = process.env.NO_DEPRECATION || "";
+      return containsNamespace(str2, namespace);
+    }
+    function istraced(namespace) {
+      if (process.traceDeprecation) {
+        return true;
+      }
+      var str2 = process.env.TRACE_DEPRECATION || "";
+      return containsNamespace(str2, namespace);
+    }
+    function log(message2, site2) {
+      var haslisteners = eventListenerCount(process, "deprecation") !== 0;
+      if (!haslisteners && this._ignored) {
+        return;
+      }
+      var caller;
+      var callFile;
+      var callSite;
+      var depSite;
+      var i2 = 0;
+      var seen = false;
+      var stack2 = getStack();
+      var file = this._file;
+      if (site2) {
+        depSite = site2;
+        callSite = callSiteLocation(stack2[1]);
+        callSite.name = depSite.name;
+        file = callSite[0];
+      } else {
+        i2 = 2;
+        depSite = callSiteLocation(stack2[i2]);
+        callSite = depSite;
+      }
+      for (; i2 < stack2.length; i2++) {
+        caller = callSiteLocation(stack2[i2]);
+        callFile = caller[0];
+        if (callFile === file) {
+          seen = true;
+        } else if (callFile === this._file) {
+          file = this._file;
+        } else if (seen) {
+          break;
+        }
+      }
+      var key = caller ? depSite.join(":") + "__" + caller.join(":") : void 0;
+      if (key !== void 0 && key in this._warned) {
+        return;
+      }
+      this._warned[key] = true;
+      var msg = message2;
+      if (!msg) {
+        msg = callSite === depSite || !callSite.name ? defaultMessage(depSite) : defaultMessage(callSite);
+      }
+      if (haslisteners) {
+        var err = DeprecationError(this._namespace, msg, stack2.slice(i2));
+        process.emit("deprecation", err);
+        return;
+      }
+      var format = process.stderr.isTTY ? formatColor : formatPlain;
+      var output = format.call(this, msg, caller, stack2.slice(i2));
+      process.stderr.write(output + "\n", "utf8");
+    }
+    function callSiteLocation(callSite) {
+      var file = callSite.getFileName() || "<anonymous>";
+      var line = callSite.getLineNumber();
+      var colm = callSite.getColumnNumber();
+      if (callSite.isEval()) {
+        file = callSite.getEvalOrigin() + ", " + file;
+      }
+      var site2 = [file, line, colm];
+      site2.callSite = callSite;
+      site2.name = callSite.getFunctionName();
+      return site2;
+    }
+    function defaultMessage(site2) {
+      var callSite = site2.callSite;
+      var funcName = site2.name;
+      if (!funcName) {
+        funcName = "<anonymous@" + formatLocation(site2) + ">";
+      }
+      var context = callSite.getThis();
+      var typeName = context && callSite.getTypeName();
+      if (typeName === "Object") {
+        typeName = void 0;
+      }
+      if (typeName === "Function") {
+        typeName = context.name || typeName;
+      }
+      return typeName && callSite.getMethodName() ? typeName + "." + funcName : funcName;
+    }
+    function formatPlain(msg, caller, stack2) {
+      var timestamp = (/* @__PURE__ */ new Date()).toUTCString();
+      var formatted = timestamp + " " + this._namespace + " deprecated " + msg;
+      if (this._traced) {
+        for (var i2 = 0; i2 < stack2.length; i2++) {
+          formatted += "\n    at " + callSiteToString(stack2[i2]);
+        }
+        return formatted;
+      }
+      if (caller) {
+        formatted += " at " + formatLocation(caller);
+      }
+      return formatted;
+    }
+    function formatColor(msg, caller, stack2) {
+      var formatted = "\x1B[36;1m" + this._namespace + "\x1B[22;39m \x1B[33;1mdeprecated\x1B[22;39m \x1B[0m" + msg + "\x1B[39m";
+      if (this._traced) {
+        for (var i2 = 0; i2 < stack2.length; i2++) {
+          formatted += "\n    \x1B[36mat " + callSiteToString(stack2[i2]) + "\x1B[39m";
+        }
+        return formatted;
+      }
+      if (caller) {
+        formatted += " \x1B[36m" + formatLocation(caller) + "\x1B[39m";
+      }
+      return formatted;
+    }
+    function formatLocation(callSite) {
+      return relative(basePath, callSite[0]) + ":" + callSite[1] + ":" + callSite[2];
+    }
+    function getStack() {
+      var limit = Error.stackTraceLimit;
+      var obj = {};
+      var prep = Error.prepareStackTrace;
+      Error.prepareStackTrace = prepareObjectStackTrace;
+      Error.stackTraceLimit = Math.max(10, limit);
+      Error.captureStackTrace(obj);
+      var stack2 = obj.stack.slice(1);
+      Error.prepareStackTrace = prep;
+      Error.stackTraceLimit = limit;
+      return stack2;
+    }
+    function prepareObjectStackTrace(obj, stack2) {
+      return stack2;
+    }
+    function wrapfunction(fn, message) {
+      if (typeof fn !== "function") {
+        throw new TypeError("argument fn must be a function");
+      }
+      var args = createArgumentsString(fn.length);
+      var deprecate = this;
+      var stack = getStack();
+      var site = callSiteLocation(stack[1]);
+      site.name = fn.name;
+      var deprecatedfn = eval("(function (" + args + ') {\n"use strict"\nlog.call(deprecate, message, site)\nreturn fn.apply(this, arguments)\n})');
+      return deprecatedfn;
+    }
+    function wrapproperty(obj, prop, message2) {
+      if (!obj || typeof obj !== "object" && typeof obj !== "function") {
+        throw new TypeError("argument obj must be object");
+      }
+      var descriptor = Object.getOwnPropertyDescriptor(obj, prop);
+      if (!descriptor) {
+        throw new TypeError("must call property on owner object");
+      }
+      if (!descriptor.configurable) {
+        throw new TypeError("property must be configurable");
+      }
+      var deprecate3 = this;
+      var stack2 = getStack();
+      var site2 = callSiteLocation(stack2[1]);
+      site2.name = prop;
+      if ("value" in descriptor) {
+        descriptor = convertDataDescriptorToAccessor(obj, prop, message2);
+      }
+      var get = descriptor.get;
+      var set = descriptor.set;
+      if (typeof get === "function") {
+        descriptor.get = function getter() {
+          log.call(deprecate3, message2, site2);
+          return get.apply(this, arguments);
+        };
+      }
+      if (typeof set === "function") {
+        descriptor.set = function setter() {
+          log.call(deprecate3, message2, site2);
+          return set.apply(this, arguments);
+        };
+      }
+      Object.defineProperty(obj, prop, descriptor);
+    }
+    function DeprecationError(namespace, message2, stack2) {
+      var error = new Error();
+      var stackString;
+      Object.defineProperty(error, "constructor", {
+        value: DeprecationError
+      });
+      Object.defineProperty(error, "message", {
+        configurable: true,
+        enumerable: false,
+        value: message2,
+        writable: true
+      });
+      Object.defineProperty(error, "name", {
+        enumerable: false,
+        configurable: true,
+        value: "DeprecationError",
+        writable: true
+      });
+      Object.defineProperty(error, "namespace", {
+        configurable: true,
+        enumerable: false,
+        value: namespace,
+        writable: true
+      });
+      Object.defineProperty(error, "stack", {
+        configurable: true,
+        enumerable: false,
+        get: function() {
+          if (stackString !== void 0) {
+            return stackString;
+          }
+          return stackString = createStackString.call(this, stack2);
+        },
+        set: function setter(val) {
+          stackString = val;
+        }
+      });
+      return error;
+    }
+  }
+});
+
+// node_modules/setprototypeof/index.js
+var require_setprototypeof = __commonJS({
+  "node_modules/setprototypeof/index.js"(exports2, module2) {
+    "use strict";
+    module2.exports = Object.setPrototypeOf || ({ __proto__: [] } instanceof Array ? setProtoOf : mixinProperties);
+    function setProtoOf(obj, proto) {
+      obj.__proto__ = proto;
+      return obj;
+    }
+    function mixinProperties(obj, proto) {
+      for (var prop in proto) {
+        if (!Object.prototype.hasOwnProperty.call(obj, prop)) {
+          obj[prop] = proto[prop];
+        }
+      }
+      return obj;
+    }
+  }
+});
+
+// node_modules/inherits/inherits_browser.js
+var require_inherits_browser = __commonJS({
+  "node_modules/inherits/inherits_browser.js"(exports2, module2) {
+    if (typeof Object.create === "function") {
+      module2.exports = function inherits(ctor, superCtor) {
+        if (superCtor) {
+          ctor.super_ = superCtor;
+          ctor.prototype = Object.create(superCtor.prototype, {
+            constructor: {
+              value: ctor,
+              enumerable: false,
+              writable: true,
+              configurable: true
+            }
+          });
+        }
+      };
+    } else {
+      module2.exports = function inherits(ctor, superCtor) {
+        if (superCtor) {
+          ctor.super_ = superCtor;
+          var TempCtor = function() {
+          };
+          TempCtor.prototype = superCtor.prototype;
+          ctor.prototype = new TempCtor();
+          ctor.prototype.constructor = ctor;
+        }
+      };
+    }
+  }
+});
+
+// node_modules/inherits/inherits.js
+var require_inherits = __commonJS({
+  "node_modules/inherits/inherits.js"(exports2, module2) {
+    try {
+      util = require("util");
+      if (typeof util.inherits !== "function")
+        throw "";
+      module2.exports = util.inherits;
+    } catch (e2) {
+      module2.exports = require_inherits_browser();
+    }
+    var util;
+  }
+});
+
+// node_modules/toidentifier/index.js
+var require_toidentifier = __commonJS({
+  "node_modules/toidentifier/index.js"(exports2, module2) {
+    "use strict";
+    module2.exports = toIdentifier;
+    function toIdentifier(str2) {
+      return str2.split(" ").map(function(token) {
+        return token.slice(0, 1).toUpperCase() + token.slice(1);
+      }).join("").replace(/[^ _0-9a-z]/gi, "");
+    }
+  }
+});
+
+// node_modules/http-errors/index.js
+var require_http_errors = __commonJS({
+  "node_modules/http-errors/index.js"(exports2, module2) {
+    "use strict";
+    var deprecate3 = require_depd()("http-errors");
+    var setPrototypeOf = require_setprototypeof();
+    var statuses = require_statuses();
+    var inherits = require_inherits();
+    var toIdentifier = require_toidentifier();
+    module2.exports = createError;
+    module2.exports.HttpError = createHttpErrorConstructor();
+    module2.exports.isHttpError = createIsHttpErrorFunction(module2.exports.HttpError);
+    populateConstructorExports(module2.exports, statuses.codes, module2.exports.HttpError);
+    function codeClass(status) {
+      return Number(String(status).charAt(0) + "00");
+    }
+    function createError() {
+      var err;
+      var msg;
+      var status = 500;
+      var props = {};
+      for (var i2 = 0; i2 < arguments.length; i2++) {
+        var arg = arguments[i2];
+        if (arg instanceof Error) {
+          err = arg;
+          status = err.status || err.statusCode || status;
+          continue;
+        }
+        switch (typeof arg) {
+          case "string":
+            msg = arg;
+            break;
+          case "number":
+            status = arg;
+            if (i2 !== 0) {
+              deprecate3("non-first-argument status code; replace with createError(" + arg + ", ...)");
+            }
+            break;
+          case "object":
+            props = arg;
+            break;
+        }
+      }
+      if (typeof status === "number" && (status < 400 || status >= 600)) {
+        deprecate3("non-error status code; use only 4xx or 5xx status codes");
+      }
+      if (typeof status !== "number" || !statuses[status] && (status < 400 || status >= 600)) {
+        status = 500;
+      }
+      var HttpError2 = createError[status] || createError[codeClass(status)];
+      if (!err) {
+        err = HttpError2 ? new HttpError2(msg) : new Error(msg || statuses[status]);
+        Error.captureStackTrace(err, createError);
+      }
+      if (!HttpError2 || !(err instanceof HttpError2) || err.status !== status) {
+        err.expose = status < 500;
+        err.status = err.statusCode = status;
+      }
+      for (var key in props) {
+        if (key !== "status" && key !== "statusCode") {
+          err[key] = props[key];
+        }
+      }
+      return err;
+    }
+    function createHttpErrorConstructor() {
+      function HttpError2() {
+        throw new TypeError("cannot construct abstract class");
+      }
+      inherits(HttpError2, Error);
+      return HttpError2;
+    }
+    function createClientErrorConstructor(HttpError2, name, code) {
+      var className = toClassName(name);
+      function ClientError(message2) {
+        var msg = message2 != null ? message2 : statuses[code];
+        var err = new Error(msg);
+        Error.captureStackTrace(err, ClientError);
+        setPrototypeOf(err, ClientError.prototype);
+        Object.defineProperty(err, "message", {
+          enumerable: true,
+          configurable: true,
+          value: msg,
+          writable: true
+        });
+        Object.defineProperty(err, "name", {
+          enumerable: false,
+          configurable: true,
+          value: className,
+          writable: true
+        });
+        return err;
+      }
+      inherits(ClientError, HttpError2);
+      nameFunc(ClientError, className);
+      ClientError.prototype.status = code;
+      ClientError.prototype.statusCode = code;
+      ClientError.prototype.expose = true;
+      return ClientError;
+    }
+    function createIsHttpErrorFunction(HttpError2) {
+      return function isHttpError(val) {
+        if (!val || typeof val !== "object") {
+          return false;
+        }
+        if (val instanceof HttpError2) {
+          return true;
+        }
+        return val instanceof Error && typeof val.expose === "boolean" && typeof val.statusCode === "number" && val.status === val.statusCode;
+      };
+    }
+    function createServerErrorConstructor(HttpError2, name, code) {
+      var className = toClassName(name);
+      function ServerError(message2) {
+        var msg = message2 != null ? message2 : statuses[code];
+        var err = new Error(msg);
+        Error.captureStackTrace(err, ServerError);
+        setPrototypeOf(err, ServerError.prototype);
+        Object.defineProperty(err, "message", {
+          enumerable: true,
+          configurable: true,
+          value: msg,
+          writable: true
+        });
+        Object.defineProperty(err, "name", {
+          enumerable: false,
+          configurable: true,
+          value: className,
+          writable: true
+        });
+        return err;
+      }
+      inherits(ServerError, HttpError2);
+      nameFunc(ServerError, className);
+      ServerError.prototype.status = code;
+      ServerError.prototype.statusCode = code;
+      ServerError.prototype.expose = false;
+      return ServerError;
+    }
+    function nameFunc(func, name) {
+      var desc = Object.getOwnPropertyDescriptor(func, "name");
+      if (desc && desc.configurable) {
+        desc.value = name;
+        Object.defineProperty(func, "name", desc);
+      }
+    }
+    function populateConstructorExports(exports3, codes, HttpError2) {
+      codes.forEach(function forEachCode(code) {
+        var CodeError;
+        var name = toIdentifier(statuses[code]);
+        switch (codeClass(code)) {
+          case 400:
+            CodeError = createClientErrorConstructor(HttpError2, name, code);
+            break;
+          case 500:
+            CodeError = createServerErrorConstructor(HttpError2, name, code);
+            break;
+        }
+        if (CodeError) {
+          exports3[code] = CodeError;
+          exports3[name] = CodeError;
+        }
+      });
+      exports3["I'mateapot"] = deprecate3.function(
+        exports3.ImATeapot,
+        `"I'mateapot"; use "ImATeapot" instead`
+      );
+    }
+    function toClassName(name) {
+      return name.substr(-5) !== "Error" ? name + "Error" : name;
+    }
+  }
+});
+
+// node_modules/deep-equal/lib/keys.js
+var require_keys = __commonJS({
+  "node_modules/deep-equal/lib/keys.js"(exports2, module2) {
+    exports2 = module2.exports = typeof Object.keys === "function" ? Object.keys : shim;
+    exports2.shim = shim;
+    function shim(obj) {
+      var keys = [];
+      for (var key in obj)
+        keys.push(key);
+      return keys;
+    }
+  }
+});
+
+// node_modules/deep-equal/lib/is_arguments.js
+var require_is_arguments = __commonJS({
+  "node_modules/deep-equal/lib/is_arguments.js"(exports2, module2) {
+    var supportsArgumentsClass = function() {
+      return Object.prototype.toString.call(arguments);
+    }() == "[object Arguments]";
+    exports2 = module2.exports = supportsArgumentsClass ? supported : unsupported;
+    exports2.supported = supported;
+    function supported(object) {
+      return Object.prototype.toString.call(object) == "[object Arguments]";
+    }
+    exports2.unsupported = unsupported;
+    function unsupported(object) {
+      return object && typeof object == "object" && typeof object.length == "number" && Object.prototype.hasOwnProperty.call(object, "callee") && !Object.prototype.propertyIsEnumerable.call(object, "callee") || false;
+    }
+  }
+});
+
+// node_modules/deep-equal/index.js
+var require_deep_equal = __commonJS({
+  "node_modules/deep-equal/index.js"(exports2, module2) {
+    var pSlice = Array.prototype.slice;
+    var objectKeys = require_keys();
+    var isArguments = require_is_arguments();
+    var deepEqual = module2.exports = function(actual, expected, opts) {
+      if (!opts)
+        opts = {};
+      if (actual === expected) {
+        return true;
+      } else if (actual instanceof Date && expected instanceof Date) {
+        return actual.getTime() === expected.getTime();
+      } else if (!actual || !expected || typeof actual != "object" && typeof expected != "object") {
+        return opts.strict ? actual === expected : actual == expected;
+      } else {
+        return objEquiv(actual, expected, opts);
+      }
+    };
+    function isUndefinedOrNull(value) {
+      return value === null || value === void 0;
+    }
+    function isBuffer(x2) {
+      if (!x2 || typeof x2 !== "object" || typeof x2.length !== "number")
+        return false;
+      if (typeof x2.copy !== "function" || typeof x2.slice !== "function") {
+        return false;
+      }
+      if (x2.length > 0 && typeof x2[0] !== "number")
+        return false;
+      return true;
+    }
+    function objEquiv(a2, b2, opts) {
+      var i2, key;
+      if (isUndefinedOrNull(a2) || isUndefinedOrNull(b2))
+        return false;
+      if (a2.prototype !== b2.prototype)
+        return false;
+      if (isArguments(a2)) {
+        if (!isArguments(b2)) {
+          return false;
+        }
+        a2 = pSlice.call(a2);
+        b2 = pSlice.call(b2);
+        return deepEqual(a2, b2, opts);
+      }
+      if (isBuffer(a2)) {
+        if (!isBuffer(b2)) {
+          return false;
+        }
+        if (a2.length !== b2.length)
+          return false;
+        for (i2 = 0; i2 < a2.length; i2++) {
+          if (a2[i2] !== b2[i2])
+            return false;
+        }
+        return true;
+      }
+      try {
+        var ka = objectKeys(a2), kb = objectKeys(b2);
+      } catch (e2) {
+        return false;
+      }
+      if (ka.length != kb.length)
+        return false;
+      ka.sort();
+      kb.sort();
+      for (i2 = ka.length - 1; i2 >= 0; i2--) {
+        if (ka[i2] != kb[i2])
+          return false;
+      }
+      for (i2 = ka.length - 1; i2 >= 0; i2--) {
+        key = ka[i2];
+        if (!deepEqual(a2[key], b2[key], opts))
+          return false;
+      }
+      return typeof a2 === typeof b2;
+    }
+  }
+});
+
+// node_modules/http-assert/index.js
+var require_http_assert = __commonJS({
+  "node_modules/http-assert/index.js"(exports2, module2) {
+    var createError = require_http_errors();
+    var eql = require_deep_equal();
+    module2.exports = assert;
+    function assert(value, status, msg, opts) {
+      if (value)
+        return;
+      throw createError(status, msg, opts);
+    }
+    assert.fail = function(status, msg, opts) {
+      assert(false, status, msg, opts);
+    };
+    assert.equal = function(a2, b2, status, msg, opts) {
+      assert(a2 == b2, status, msg, opts);
+    };
+    assert.notEqual = function(a2, b2, status, msg, opts) {
+      assert(a2 != b2, status, msg, opts);
+    };
+    assert.ok = function(value, status, msg, opts) {
+      assert(value, status, msg, opts);
+    };
+    assert.strictEqual = function(a2, b2, status, msg, opts) {
+      assert(a2 === b2, status, msg, opts);
+    };
+    assert.notStrictEqual = function(a2, b2, status, msg, opts) {
+      assert(a2 !== b2, status, msg, opts);
+    };
+    assert.deepEqual = function(a2, b2, status, msg, opts) {
+      assert(eql(a2, b2), status, msg, opts);
+    };
+    assert.notDeepEqual = function(a2, b2, status, msg, opts) {
+      assert(!eql(a2, b2), status, msg, opts);
+    };
+  }
+});
+
+// node_modules/delegates/index.js
+var require_delegates = __commonJS({
+  "node_modules/delegates/index.js"(exports2, module2) {
+    module2.exports = Delegator;
+    function Delegator(proto, target) {
+      if (!(this instanceof Delegator))
+        return new Delegator(proto, target);
+      this.proto = proto;
+      this.target = target;
+      this.methods = [];
+      this.getters = [];
+      this.setters = [];
+      this.fluents = [];
+    }
+    Delegator.prototype.method = function(name) {
+      var proto = this.proto;
+      var target = this.target;
+      this.methods.push(name);
+      proto[name] = function() {
+        return this[target][name].apply(this[target], arguments);
+      };
+      return this;
+    };
+    Delegator.prototype.access = function(name) {
+      return this.getter(name).setter(name);
+    };
+    Delegator.prototype.getter = function(name) {
+      var proto = this.proto;
+      var target = this.target;
+      this.getters.push(name);
+      proto.__defineGetter__(name, function() {
+        return this[target][name];
+      });
+      return this;
+    };
+    Delegator.prototype.setter = function(name) {
+      var proto = this.proto;
+      var target = this.target;
+      this.setters.push(name);
+      proto.__defineSetter__(name, function(val) {
+        return this[target][name] = val;
+      });
+      return this;
+    };
+    Delegator.prototype.fluent = function(name) {
+      var proto = this.proto;
+      var target = this.target;
+      this.fluents.push(name);
+      proto[name] = function(val) {
+        if ("undefined" != typeof val) {
+          this[target][name] = val;
+          return this;
+        } else {
+          return this[target][name];
+        }
+      };
+      return this;
+    };
+  }
+});
+
+// node_modules/depd/index.js
+var require_depd2 = __commonJS({
+  "node_modules/depd/index.js"(exports2, module2) {
+    var relative2 = require("path").relative;
+    module2.exports = depd2;
+    var basePath2 = process.cwd();
+    function containsNamespace2(str2, namespace) {
+      var vals = str2.split(/[ ,]+/);
+      var ns = String(namespace).toLowerCase();
+      for (var i2 = 0; i2 < vals.length; i2++) {
+        var val = vals[i2];
+        if (val && (val === "*" || val.toLowerCase() === ns)) {
+          return true;
+        }
+      }
+      return false;
+    }
+    function convertDataDescriptorToAccessor2(obj, prop, message2) {
+      var descriptor = Object.getOwnPropertyDescriptor(obj, prop);
+      var value = descriptor.value;
+      descriptor.get = function getter() {
+        return value;
+      };
+      if (descriptor.writable) {
+        descriptor.set = function setter(val) {
+          return value = val;
+        };
+      }
+      delete descriptor.value;
+      delete descriptor.writable;
+      Object.defineProperty(obj, prop, descriptor);
+      return descriptor;
+    }
+    function createArgumentsString2(arity) {
+      var str2 = "";
+      for (var i2 = 0; i2 < arity; i2++) {
+        str2 += ", arg" + i2;
+      }
+      return str2.substr(2);
+    }
+    function createStackString2(stack2) {
+      var str2 = this.name + ": " + this.namespace;
+      if (this.message) {
+        str2 += " deprecated " + this.message;
+      }
+      for (var i2 = 0; i2 < stack2.length; i2++) {
+        str2 += "\n    at " + stack2[i2].toString();
+      }
+      return str2;
+    }
+    function depd2(namespace) {
+      if (!namespace) {
+        throw new TypeError("argument namespace is required");
+      }
+      var stack2 = getStack2();
+      var site2 = callSiteLocation2(stack2[1]);
+      var file = site2[0];
+      function deprecate3(message2) {
+        log2.call(deprecate3, message2);
+      }
+      deprecate3._file = file;
+      deprecate3._ignored = isignored2(namespace);
+      deprecate3._namespace = namespace;
+      deprecate3._traced = istraced2(namespace);
+      deprecate3._warned = /* @__PURE__ */ Object.create(null);
+      deprecate3.function = wrapfunction2;
+      deprecate3.property = wrapproperty2;
+      return deprecate3;
+    }
+    function eehaslisteners(emitter, type) {
+      var count = typeof emitter.listenerCount !== "function" ? emitter.listeners(type).length : emitter.listenerCount(type);
+      return count > 0;
+    }
+    function isignored2(namespace) {
+      if (process.noDeprecation) {
+        return true;
+      }
+      var str2 = process.env.NO_DEPRECATION || "";
+      return containsNamespace2(str2, namespace);
+    }
+    function istraced2(namespace) {
+      if (process.traceDeprecation) {
+        return true;
+      }
+      var str2 = process.env.TRACE_DEPRECATION || "";
+      return containsNamespace2(str2, namespace);
+    }
+    function log2(message2, site2) {
+      var haslisteners = eehaslisteners(process, "deprecation");
+      if (!haslisteners && this._ignored) {
+        return;
+      }
+      var caller;
+      var callFile;
+      var callSite;
+      var depSite;
+      var i2 = 0;
+      var seen = false;
+      var stack2 = getStack2();
+      var file = this._file;
+      if (site2) {
+        depSite = site2;
+        callSite = callSiteLocation2(stack2[1]);
+        callSite.name = depSite.name;
+        file = callSite[0];
+      } else {
+        i2 = 2;
+        depSite = callSiteLocation2(stack2[i2]);
+        callSite = depSite;
+      }
+      for (; i2 < stack2.length; i2++) {
+        caller = callSiteLocation2(stack2[i2]);
+        callFile = caller[0];
+        if (callFile === file) {
+          seen = true;
+        } else if (callFile === this._file) {
+          file = this._file;
+        } else if (seen) {
+          break;
+        }
+      }
+      var key = caller ? depSite.join(":") + "__" + caller.join(":") : void 0;
+      if (key !== void 0 && key in this._warned) {
+        return;
+      }
+      this._warned[key] = true;
+      var msg = message2;
+      if (!msg) {
+        msg = callSite === depSite || !callSite.name ? defaultMessage2(depSite) : defaultMessage2(callSite);
+      }
+      if (haslisteners) {
+        var err = DeprecationError2(this._namespace, msg, stack2.slice(i2));
+        process.emit("deprecation", err);
+        return;
+      }
+      var format = process.stderr.isTTY ? formatColor2 : formatPlain2;
+      var output = format.call(this, msg, caller, stack2.slice(i2));
+      process.stderr.write(output + "\n", "utf8");
+    }
+    function callSiteLocation2(callSite) {
+      var file = callSite.getFileName() || "<anonymous>";
+      var line = callSite.getLineNumber();
+      var colm = callSite.getColumnNumber();
+      if (callSite.isEval()) {
+        file = callSite.getEvalOrigin() + ", " + file;
+      }
+      var site2 = [file, line, colm];
+      site2.callSite = callSite;
+      site2.name = callSite.getFunctionName();
+      return site2;
+    }
+    function defaultMessage2(site2) {
+      var callSite = site2.callSite;
+      var funcName = site2.name;
+      if (!funcName) {
+        funcName = "<anonymous@" + formatLocation2(site2) + ">";
+      }
+      var context = callSite.getThis();
+      var typeName = context && callSite.getTypeName();
+      if (typeName === "Object") {
+        typeName = void 0;
+      }
+      if (typeName === "Function") {
+        typeName = context.name || typeName;
+      }
+      return typeName && callSite.getMethodName() ? typeName + "." + funcName : funcName;
+    }
+    function formatPlain2(msg, caller, stack2) {
+      var timestamp = (/* @__PURE__ */ new Date()).toUTCString();
+      var formatted = timestamp + " " + this._namespace + " deprecated " + msg;
+      if (this._traced) {
+        for (var i2 = 0; i2 < stack2.length; i2++) {
+          formatted += "\n    at " + stack2[i2].toString();
+        }
+        return formatted;
+      }
+      if (caller) {
+        formatted += " at " + formatLocation2(caller);
+      }
+      return formatted;
+    }
+    function formatColor2(msg, caller, stack2) {
+      var formatted = "\x1B[36;1m" + this._namespace + "\x1B[22;39m \x1B[33;1mdeprecated\x1B[22;39m \x1B[0m" + msg + "\x1B[39m";
+      if (this._traced) {
+        for (var i2 = 0; i2 < stack2.length; i2++) {
+          formatted += "\n    \x1B[36mat " + stack2[i2].toString() + "\x1B[39m";
+        }
+        return formatted;
+      }
+      if (caller) {
+        formatted += " \x1B[36m" + formatLocation2(caller) + "\x1B[39m";
+      }
+      return formatted;
+    }
+    function formatLocation2(callSite) {
+      return relative2(basePath2, callSite[0]) + ":" + callSite[1] + ":" + callSite[2];
+    }
+    function getStack2() {
+      var limit = Error.stackTraceLimit;
+      var obj = {};
+      var prep = Error.prepareStackTrace;
+      Error.prepareStackTrace = prepareObjectStackTrace2;
+      Error.stackTraceLimit = Math.max(10, limit);
+      Error.captureStackTrace(obj);
+      var stack2 = obj.stack.slice(1);
+      Error.prepareStackTrace = prep;
+      Error.stackTraceLimit = limit;
+      return stack2;
+    }
+    function prepareObjectStackTrace2(obj, stack2) {
+      return stack2;
+    }
+    function wrapfunction2(fn2, message2) {
+      if (typeof fn2 !== "function") {
+        throw new TypeError("argument fn must be a function");
+      }
+      var args2 = createArgumentsString2(fn2.length);
+      var stack2 = getStack2();
+      var site2 = callSiteLocation2(stack2[1]);
+      site2.name = fn2.name;
+      var deprecatedfn2 = new Function(
+        "fn",
+        "log",
+        "deprecate",
+        "message",
+        "site",
+        '"use strict"\nreturn function (' + args2 + ") {log.call(deprecate, message, site)\nreturn fn.apply(this, arguments)\n}"
+      )(fn2, log2, this, message2, site2);
+      return deprecatedfn2;
+    }
+    function wrapproperty2(obj, prop, message2) {
+      if (!obj || typeof obj !== "object" && typeof obj !== "function") {
+        throw new TypeError("argument obj must be object");
+      }
+      var descriptor = Object.getOwnPropertyDescriptor(obj, prop);
+      if (!descriptor) {
+        throw new TypeError("must call property on owner object");
+      }
+      if (!descriptor.configurable) {
+        throw new TypeError("property must be configurable");
+      }
+      var deprecate3 = this;
+      var stack2 = getStack2();
+      var site2 = callSiteLocation2(stack2[1]);
+      site2.name = prop;
+      if ("value" in descriptor) {
+        descriptor = convertDataDescriptorToAccessor2(obj, prop, message2);
+      }
+      var get = descriptor.get;
+      var set = descriptor.set;
+      if (typeof get === "function") {
+        descriptor.get = function getter() {
+          log2.call(deprecate3, message2, site2);
+          return get.apply(this, arguments);
+        };
+      }
+      if (typeof set === "function") {
+        descriptor.set = function setter() {
+          log2.call(deprecate3, message2, site2);
+          return set.apply(this, arguments);
+        };
+      }
+      Object.defineProperty(obj, prop, descriptor);
+    }
+    function DeprecationError2(namespace, message2, stack2) {
+      var error = new Error();
+      var stackString;
+      Object.defineProperty(error, "constructor", {
+        value: DeprecationError2
+      });
+      Object.defineProperty(error, "message", {
+        configurable: true,
+        enumerable: false,
+        value: message2,
+        writable: true
+      });
+      Object.defineProperty(error, "name", {
+        enumerable: false,
+        configurable: true,
+        value: "DeprecationError",
+        writable: true
+      });
+      Object.defineProperty(error, "namespace", {
+        configurable: true,
+        enumerable: false,
+        value: namespace,
+        writable: true
+      });
+      Object.defineProperty(error, "stack", {
+        configurable: true,
+        enumerable: false,
+        get: function() {
+          if (stackString !== void 0) {
+            return stackString;
+          }
+          return stackString = createStackString2.call(this, stack2);
+        },
+        set: function setter(val) {
+          stackString = val;
+        }
+      });
+      return error;
+    }
+  }
+});
+
+// node_modules/tsscmp/lib/index.js
 var require_lib4 = __commonJS({
+  "node_modules/tsscmp/lib/index.js"(exports2, module2) {
+    "use strict";
+    var crypto4 = require("crypto");
+    function bufferEqual(a2, b2) {
+      if (a2.length !== b2.length) {
+        return false;
+      }
+      if (crypto4.timingSafeEqual) {
+        return crypto4.timingSafeEqual(a2, b2);
+      }
+      for (var i2 = 0; i2 < a2.length; i2++) {
+        if (a2[i2] !== b2[i2]) {
+          return false;
+        }
+      }
+      return true;
+    }
+    function timeSafeCompare(a2, b2) {
+      var sa = String(a2);
+      var sb = String(b2);
+      var key = crypto4.pseudoRandomBytes(32);
+      var ah = crypto4.createHmac("sha256", key).update(sa).digest();
+      var bh = crypto4.createHmac("sha256", key).update(sb).digest();
+      return bufferEqual(ah, bh) && a2 === b2;
+    }
+    module2.exports = timeSafeCompare;
+  }
+});
+
+// node_modules/keygrip/index.js
+var require_keygrip = __commonJS({
+  "node_modules/keygrip/index.js"(exports2, module2) {
+    "use strict";
+    var compare = require_lib4();
+    var crypto4 = require("crypto");
+    function Keygrip(keys, algorithm, encoding) {
+      if (!algorithm)
+        algorithm = "sha1";
+      if (!encoding)
+        encoding = "base64";
+      if (!(this instanceof Keygrip))
+        return new Keygrip(keys, algorithm, encoding);
+      if (!keys || !(0 in keys)) {
+        throw new Error("Keys must be provided.");
+      }
+      function sign(data, key) {
+        return crypto4.createHmac(algorithm, key).update(data).digest(encoding).replace(/\/|\+|=/g, function(x2) {
+          return { "/": "_", "+": "-", "=": "" }[x2];
+        });
+      }
+      this.sign = function(data) {
+        return sign(data, keys[0]);
+      };
+      this.verify = function(data, digest) {
+        return this.index(data, digest) > -1;
+      };
+      this.index = function(data, digest) {
+        for (var i2 = 0, l2 = keys.length; i2 < l2; i2++) {
+          if (compare(digest, sign(data, keys[i2]))) {
+            return i2;
+          }
+        }
+        return -1;
+      };
+    }
+    Keygrip.sign = Keygrip.verify = Keygrip.index = function() {
+      throw new Error("Usage: require('keygrip')(<array-of-keys>)");
+    };
+    module2.exports = Keygrip;
+  }
+});
+
+// node_modules/cookies/index.js
+var require_cookies = __commonJS({
+  "node_modules/cookies/index.js"(exports2, module2) {
+    "use strict";
+    var deprecate3 = require_depd2()("cookies");
+    var Keygrip = require_keygrip();
+    var http = require("http");
+    var fieldContentRegExp = /^[\u0009\u0020-\u007e\u0080-\u00ff]+$/;
+    var PRIORITY_REGEXP = /^(?:low|medium|high)$/i;
+    var REGEXP_CACHE = /* @__PURE__ */ Object.create(null);
+    var REGEXP_ESCAPE_CHARS_REGEXP = /[\^$\\.*+?()[\]{}|]/g;
+    var RESTRICTED_NAME_CHARS_REGEXP = /[;=]/;
+    var RESTRICTED_VALUE_CHARS_REGEXP = /[;]/;
+    var SAME_SITE_REGEXP = /^(?:lax|none|strict)$/i;
+    function Cookies(request, response, options) {
+      if (!(this instanceof Cookies))
+        return new Cookies(request, response, options);
+      this.secure = void 0;
+      this.request = request;
+      this.response = response;
+      if (options) {
+        if (Array.isArray(options)) {
+          deprecate3('"keys" argument; provide using options {"keys": [...]}');
+          this.keys = new Keygrip(options);
+        } else if (options.constructor && options.constructor.name === "Keygrip") {
+          deprecate3('"keys" argument; provide using options {"keys": keygrip}');
+          this.keys = options;
+        } else {
+          this.keys = Array.isArray(options.keys) ? new Keygrip(options.keys) : options.keys;
+          this.secure = options.secure;
+        }
+      }
+    }
+    Cookies.prototype.get = function(name, opts) {
+      var sigName = name + ".sig", header, match, value, remote, data, index, signed = opts && opts.signed !== void 0 ? opts.signed : !!this.keys;
+      header = this.request.headers["cookie"];
+      if (!header)
+        return;
+      match = header.match(getPattern(name));
+      if (!match)
+        return;
+      value = match[1];
+      if (value[0] === '"')
+        value = value.slice(1, -1);
+      if (!opts || !signed)
+        return value;
+      remote = this.get(sigName);
+      if (!remote)
+        return;
+      data = name + "=" + value;
+      if (!this.keys)
+        throw new Error(".keys required for signed cookies");
+      index = this.keys.index(data, remote);
+      if (index < 0) {
+        this.set(sigName, null, { path: "/", signed: false });
+      } else {
+        index && this.set(sigName, this.keys.sign(data), { signed: false });
+        return value;
+      }
+    };
+    Cookies.prototype.set = function(name, value, opts) {
+      var res = this.response, req = this.request, headers = res.getHeader("Set-Cookie") || [], cookie = new Cookie(name, value, opts), signed = opts && opts.signed !== void 0 ? opts.signed : !!this.keys;
+      var secure = this.secure === void 0 ? req.protocol === "https" || isRequestEncrypted(req) : Boolean(this.secure);
+      if (typeof headers == "string")
+        headers = [headers];
+      if (!secure && opts && opts.secure) {
+        throw new Error("Cannot send secure cookie over unencrypted connection");
+      }
+      cookie.secure = opts && opts.secure !== void 0 ? opts.secure : secure;
+      if (opts && "secureProxy" in opts) {
+        deprecate3('"secureProxy" option; use "secure" option, provide "secure" to constructor if needed');
+        cookie.secure = opts.secureProxy;
+      }
+      pushCookie(headers, cookie);
+      if (opts && signed) {
+        if (!this.keys)
+          throw new Error(".keys required for signed cookies");
+        cookie.value = this.keys.sign(cookie.toString());
+        cookie.name += ".sig";
+        pushCookie(headers, cookie);
+      }
+      var setHeader = res.set ? http.OutgoingMessage.prototype.setHeader : res.setHeader;
+      setHeader.call(res, "Set-Cookie", headers);
+      return this;
+    };
+    function Cookie(name, value, attrs) {
+      if (!fieldContentRegExp.test(name) || RESTRICTED_NAME_CHARS_REGEXP.test(name)) {
+        throw new TypeError("argument name is invalid");
+      }
+      if (value && (!fieldContentRegExp.test(value) || RESTRICTED_VALUE_CHARS_REGEXP.test(value))) {
+        throw new TypeError("argument value is invalid");
+      }
+      this.name = name;
+      this.value = value || "";
+      for (var name in attrs) {
+        this[name] = attrs[name];
+      }
+      if (!this.value) {
+        this.expires = /* @__PURE__ */ new Date(0);
+        this.maxAge = null;
+      }
+      if (this.path && !fieldContentRegExp.test(this.path)) {
+        throw new TypeError("option path is invalid");
+      }
+      if (this.domain && !fieldContentRegExp.test(this.domain)) {
+        throw new TypeError("option domain is invalid");
+      }
+      if (typeof this.maxAge === "number" ? isNaN(this.maxAge) || !isFinite(this.maxAge) : this.maxAge) {
+        throw new TypeError("option maxAge is invalid");
+      }
+      if (this.priority && !PRIORITY_REGEXP.test(this.priority)) {
+        throw new TypeError("option priority is invalid");
+      }
+      if (this.sameSite && this.sameSite !== true && !SAME_SITE_REGEXP.test(this.sameSite)) {
+        throw new TypeError("option sameSite is invalid");
+      }
+    }
+    Cookie.prototype.path = "/";
+    Cookie.prototype.expires = void 0;
+    Cookie.prototype.domain = void 0;
+    Cookie.prototype.httpOnly = true;
+    Cookie.prototype.partitioned = false;
+    Cookie.prototype.priority = void 0;
+    Cookie.prototype.sameSite = false;
+    Cookie.prototype.secure = false;
+    Cookie.prototype.overwrite = false;
+    Cookie.prototype.toString = function() {
+      return this.name + "=" + this.value;
+    };
+    Cookie.prototype.toHeader = function() {
+      var header = this.toString();
+      if (this.maxAge)
+        this.expires = new Date(Date.now() + this.maxAge);
+      if (this.path)
+        header += "; path=" + this.path;
+      if (this.expires)
+        header += "; expires=" + this.expires.toUTCString();
+      if (this.domain)
+        header += "; domain=" + this.domain;
+      if (this.priority)
+        header += "; priority=" + this.priority.toLowerCase();
+      if (this.sameSite)
+        header += "; samesite=" + (this.sameSite === true ? "strict" : this.sameSite.toLowerCase());
+      if (this.secure)
+        header += "; secure";
+      if (this.httpOnly)
+        header += "; httponly";
+      if (this.partitioned)
+        header += "; partitioned";
+      return header;
+    };
+    Object.defineProperty(Cookie.prototype, "maxage", {
+      configurable: true,
+      enumerable: true,
+      get: function() {
+        return this.maxAge;
+      },
+      set: function(val) {
+        return this.maxAge = val;
+      }
+    });
+    deprecate3.property(Cookie.prototype, "maxage", '"maxage"; use "maxAge" instead');
+    function getPattern(name) {
+      if (!REGEXP_CACHE[name]) {
+        REGEXP_CACHE[name] = new RegExp(
+          "(?:^|;) *" + name.replace(REGEXP_ESCAPE_CHARS_REGEXP, "\\$&") + "=([^;]*)"
+        );
+      }
+      return REGEXP_CACHE[name];
+    }
+    function isRequestEncrypted(req) {
+      return req.socket ? req.socket.encrypted : req.connection.encrypted;
+    }
+    function pushCookie(headers, cookie) {
+      if (cookie.overwrite) {
+        for (var i2 = headers.length - 1; i2 >= 0; i2--) {
+          if (headers[i2].indexOf(cookie.name + "=") === 0) {
+            headers.splice(i2, 1);
+          }
+        }
+      }
+      headers.push(cookie.toHeader());
+    }
+    Cookies.connect = Cookies.express = function(keys) {
+      return function(req, res, next) {
+        req.cookies = res.cookies = new Cookies(req, res, {
+          keys
+        });
+        next();
+      };
+    };
+    Cookies.Cookie = Cookie;
+    module2.exports = Cookies;
+  }
+});
+
+// node_modules/koa/lib/context.js
+var require_context = __commonJS({
+  "node_modules/koa/lib/context.js"(exports2, module2) {
+    "use strict";
+    var util = require("util");
+    var createError = require_http_errors();
+    var httpAssert = require_http_assert();
+    var delegate = require_delegates();
+    var statuses = require_statuses();
+    var Cookies = require_cookies();
+    var COOKIES = Symbol("context#cookies");
+    var proto = module2.exports = {
+      /**
+       * util.inspect() implementation, which
+       * just returns the JSON output.
+       *
+       * @return {Object}
+       * @api public
+       */
+      inspect() {
+        if (this === proto)
+          return this;
+        return this.toJSON();
+      },
+      /**
+       * Return JSON representation.
+       *
+       * Here we explicitly invoke .toJSON() on each
+       * object, as iteration will otherwise fail due
+       * to the getters and cause utilities such as
+       * clone() to fail.
+       *
+       * @return {Object}
+       * @api public
+       */
+      toJSON() {
+        return {
+          request: this.request.toJSON(),
+          response: this.response.toJSON(),
+          app: this.app.toJSON(),
+          originalUrl: this.originalUrl,
+          req: "<original node req>",
+          res: "<original node res>",
+          socket: "<original node socket>"
+        };
+      },
+      /**
+       * Similar to .throw(), adds assertion.
+       *
+       *    this.assert(this.user, 401, 'Please login!');
+       *
+       * See: https://github.com/jshttp/http-assert
+       *
+       * @param {Mixed} test
+       * @param {Number} status
+       * @param {String} message
+       * @api public
+       */
+      assert: httpAssert,
+      /**
+       * Throw an error with `status` (default 500) and
+       * `msg`. Note that these are user-level
+       * errors, and the message may be exposed to the client.
+       *
+       *    this.throw(403)
+       *    this.throw(400, 'name required')
+       *    this.throw('something exploded')
+       *    this.throw(new Error('invalid'))
+       *    this.throw(400, new Error('invalid'))
+       *
+       * See: https://github.com/jshttp/http-errors
+       *
+       * Note: `status` should only be passed as the first parameter.
+       *
+       * @param {String|Number|Error} err, msg or status
+       * @param {String|Number|Error} [err, msg or status]
+       * @param {Object} [props]
+       * @api public
+       */
+      throw(...args2) {
+        throw createError(...args2);
+      },
+      /**
+       * Default error handling.
+       *
+       * @param {Error} err
+       * @api private
+       */
+      onerror(err) {
+        if (null == err)
+          return;
+        const isNativeError = Object.prototype.toString.call(err) === "[object Error]" || err instanceof Error;
+        if (!isNativeError)
+          err = new Error(util.format("non-error thrown: %j", err));
+        let headerSent = false;
+        if (this.headerSent || !this.writable) {
+          headerSent = err.headerSent = true;
+        }
+        this.app.emit("error", err, this);
+        if (headerSent) {
+          return;
+        }
+        const { res } = this;
+        if (typeof res.getHeaderNames === "function") {
+          res.getHeaderNames().forEach((name) => res.removeHeader(name));
+        } else {
+          res._headers = {};
+        }
+        this.set(err.headers);
+        this.type = "text";
+        let statusCode = err.status || err.statusCode;
+        if ("ENOENT" === err.code)
+          statusCode = 404;
+        if ("number" !== typeof statusCode || !statuses[statusCode])
+          statusCode = 500;
+        const code = statuses[statusCode];
+        const msg = err.expose ? err.message : code;
+        this.status = err.status = statusCode;
+        this.length = Buffer.byteLength(msg);
+        res.end(msg);
+      },
+      get cookies() {
+        if (!this[COOKIES]) {
+          this[COOKIES] = new Cookies(this.req, this.res, {
+            keys: this.app.keys,
+            secure: this.request.secure
+          });
+        }
+        return this[COOKIES];
+      },
+      set cookies(_cookies) {
+        this[COOKIES] = _cookies;
+      }
+    };
+    if (util.inspect.custom) {
+      module2.exports[util.inspect.custom] = module2.exports.inspect;
+    }
+    delegate(proto, "response").method("attachment").method("redirect").method("remove").method("vary").method("has").method("set").method("append").method("flushHeaders").access("status").access("message").access("body").access("length").access("type").access("lastModified").access("etag").getter("headerSent").getter("writable");
+    delegate(proto, "request").method("acceptsLanguages").method("acceptsEncodings").method("acceptsCharsets").method("accepts").method("get").method("is").access("querystring").access("idempotent").access("socket").access("search").access("method").access("query").access("path").access("url").access("accept").getter("origin").getter("href").getter("subdomains").getter("protocol").getter("host").getter("hostname").getter("URL").getter("header").getter("headers").getter("secure").getter("stale").getter("fresh").getter("ips").getter("ip");
+  }
+});
+
+// node_modules/negotiator/lib/charset.js
+var require_charset = __commonJS({
+  "node_modules/negotiator/lib/charset.js"(exports2, module2) {
+    "use strict";
+    module2.exports = preferredCharsets;
+    module2.exports.preferredCharsets = preferredCharsets;
+    var simpleCharsetRegExp = /^\s*([^\s;]+)\s*(?:;(.*))?$/;
+    function parseAcceptCharset(accept) {
+      var accepts = accept.split(",");
+      for (var i2 = 0, j2 = 0; i2 < accepts.length; i2++) {
+        var charset = parseCharset(accepts[i2].trim(), i2);
+        if (charset) {
+          accepts[j2++] = charset;
+        }
+      }
+      accepts.length = j2;
+      return accepts;
+    }
+    function parseCharset(str2, i2) {
+      var match = simpleCharsetRegExp.exec(str2);
+      if (!match)
+        return null;
+      var charset = match[1];
+      var q2 = 1;
+      if (match[2]) {
+        var params = match[2].split(";");
+        for (var j2 = 0; j2 < params.length; j2++) {
+          var p2 = params[j2].trim().split("=");
+          if (p2[0] === "q") {
+            q2 = parseFloat(p2[1]);
+            break;
+          }
+        }
+      }
+      return {
+        charset,
+        q: q2,
+        i: i2
+      };
+    }
+    function getCharsetPriority(charset, accepted, index) {
+      var priority = { o: -1, q: 0, s: 0 };
+      for (var i2 = 0; i2 < accepted.length; i2++) {
+        var spec = specify(charset, accepted[i2], index);
+        if (spec && (priority.s - spec.s || priority.q - spec.q || priority.o - spec.o) < 0) {
+          priority = spec;
+        }
+      }
+      return priority;
+    }
+    function specify(charset, spec, index) {
+      var s2 = 0;
+      if (spec.charset.toLowerCase() === charset.toLowerCase()) {
+        s2 |= 1;
+      } else if (spec.charset !== "*") {
+        return null;
+      }
+      return {
+        i: index,
+        o: spec.i,
+        q: spec.q,
+        s: s2
+      };
+    }
+    function preferredCharsets(accept, provided) {
+      var accepts = parseAcceptCharset(accept === void 0 ? "*" : accept || "");
+      if (!provided) {
+        return accepts.filter(isQuality).sort(compareSpecs).map(getFullCharset);
+      }
+      var priorities = provided.map(function getPriority(type, index) {
+        return getCharsetPriority(type, accepts, index);
+      });
+      return priorities.filter(isQuality).sort(compareSpecs).map(function getCharset(priority) {
+        return provided[priorities.indexOf(priority)];
+      });
+    }
+    function compareSpecs(a2, b2) {
+      return b2.q - a2.q || b2.s - a2.s || a2.o - b2.o || a2.i - b2.i || 0;
+    }
+    function getFullCharset(spec) {
+      return spec.charset;
+    }
+    function isQuality(spec) {
+      return spec.q > 0;
+    }
+  }
+});
+
+// node_modules/negotiator/lib/encoding.js
+var require_encoding = __commonJS({
+  "node_modules/negotiator/lib/encoding.js"(exports2, module2) {
+    "use strict";
+    module2.exports = preferredEncodings;
+    module2.exports.preferredEncodings = preferredEncodings;
+    var simpleEncodingRegExp = /^\s*([^\s;]+)\s*(?:;(.*))?$/;
+    function parseAcceptEncoding(accept) {
+      var accepts = accept.split(",");
+      var hasIdentity = false;
+      var minQuality = 1;
+      for (var i2 = 0, j2 = 0; i2 < accepts.length; i2++) {
+        var encoding = parseEncoding(accepts[i2].trim(), i2);
+        if (encoding) {
+          accepts[j2++] = encoding;
+          hasIdentity = hasIdentity || specify("identity", encoding);
+          minQuality = Math.min(minQuality, encoding.q || 1);
+        }
+      }
+      if (!hasIdentity) {
+        accepts[j2++] = {
+          encoding: "identity",
+          q: minQuality,
+          i: i2
+        };
+      }
+      accepts.length = j2;
+      return accepts;
+    }
+    function parseEncoding(str2, i2) {
+      var match = simpleEncodingRegExp.exec(str2);
+      if (!match)
+        return null;
+      var encoding = match[1];
+      var q2 = 1;
+      if (match[2]) {
+        var params = match[2].split(";");
+        for (var j2 = 0; j2 < params.length; j2++) {
+          var p2 = params[j2].trim().split("=");
+          if (p2[0] === "q") {
+            q2 = parseFloat(p2[1]);
+            break;
+          }
+        }
+      }
+      return {
+        encoding,
+        q: q2,
+        i: i2
+      };
+    }
+    function getEncodingPriority(encoding, accepted, index) {
+      var priority = { o: -1, q: 0, s: 0 };
+      for (var i2 = 0; i2 < accepted.length; i2++) {
+        var spec = specify(encoding, accepted[i2], index);
+        if (spec && (priority.s - spec.s || priority.q - spec.q || priority.o - spec.o) < 0) {
+          priority = spec;
+        }
+      }
+      return priority;
+    }
+    function specify(encoding, spec, index) {
+      var s2 = 0;
+      if (spec.encoding.toLowerCase() === encoding.toLowerCase()) {
+        s2 |= 1;
+      } else if (spec.encoding !== "*") {
+        return null;
+      }
+      return {
+        i: index,
+        o: spec.i,
+        q: spec.q,
+        s: s2
+      };
+    }
+    function preferredEncodings(accept, provided) {
+      var accepts = parseAcceptEncoding(accept || "");
+      if (!provided) {
+        return accepts.filter(isQuality).sort(compareSpecs).map(getFullEncoding);
+      }
+      var priorities = provided.map(function getPriority(type, index) {
+        return getEncodingPriority(type, accepts, index);
+      });
+      return priorities.filter(isQuality).sort(compareSpecs).map(function getEncoding(priority) {
+        return provided[priorities.indexOf(priority)];
+      });
+    }
+    function compareSpecs(a2, b2) {
+      return b2.q - a2.q || b2.s - a2.s || a2.o - b2.o || a2.i - b2.i || 0;
+    }
+    function getFullEncoding(spec) {
+      return spec.encoding;
+    }
+    function isQuality(spec) {
+      return spec.q > 0;
+    }
+  }
+});
+
+// node_modules/negotiator/lib/language.js
+var require_language = __commonJS({
+  "node_modules/negotiator/lib/language.js"(exports2, module2) {
+    "use strict";
+    module2.exports = preferredLanguages;
+    module2.exports.preferredLanguages = preferredLanguages;
+    var simpleLanguageRegExp = /^\s*([^\s\-;]+)(?:-([^\s;]+))?\s*(?:;(.*))?$/;
+    function parseAcceptLanguage(accept) {
+      var accepts = accept.split(",");
+      for (var i2 = 0, j2 = 0; i2 < accepts.length; i2++) {
+        var language = parseLanguage(accepts[i2].trim(), i2);
+        if (language) {
+          accepts[j2++] = language;
+        }
+      }
+      accepts.length = j2;
+      return accepts;
+    }
+    function parseLanguage(str2, i2) {
+      var match = simpleLanguageRegExp.exec(str2);
+      if (!match)
+        return null;
+      var prefix = match[1];
+      var suffix = match[2];
+      var full = prefix;
+      if (suffix)
+        full += "-" + suffix;
+      var q2 = 1;
+      if (match[3]) {
+        var params = match[3].split(";");
+        for (var j2 = 0; j2 < params.length; j2++) {
+          var p2 = params[j2].split("=");
+          if (p2[0] === "q")
+            q2 = parseFloat(p2[1]);
+        }
+      }
+      return {
+        prefix,
+        suffix,
+        q: q2,
+        i: i2,
+        full
+      };
+    }
+    function getLanguagePriority(language, accepted, index) {
+      var priority = { o: -1, q: 0, s: 0 };
+      for (var i2 = 0; i2 < accepted.length; i2++) {
+        var spec = specify(language, accepted[i2], index);
+        if (spec && (priority.s - spec.s || priority.q - spec.q || priority.o - spec.o) < 0) {
+          priority = spec;
+        }
+      }
+      return priority;
+    }
+    function specify(language, spec, index) {
+      var p2 = parseLanguage(language);
+      if (!p2)
+        return null;
+      var s2 = 0;
+      if (spec.full.toLowerCase() === p2.full.toLowerCase()) {
+        s2 |= 4;
+      } else if (spec.prefix.toLowerCase() === p2.full.toLowerCase()) {
+        s2 |= 2;
+      } else if (spec.full.toLowerCase() === p2.prefix.toLowerCase()) {
+        s2 |= 1;
+      } else if (spec.full !== "*") {
+        return null;
+      }
+      return {
+        i: index,
+        o: spec.i,
+        q: spec.q,
+        s: s2
+      };
+    }
+    function preferredLanguages(accept, provided) {
+      var accepts = parseAcceptLanguage(accept === void 0 ? "*" : accept || "");
+      if (!provided) {
+        return accepts.filter(isQuality).sort(compareSpecs).map(getFullLanguage);
+      }
+      var priorities = provided.map(function getPriority(type, index) {
+        return getLanguagePriority(type, accepts, index);
+      });
+      return priorities.filter(isQuality).sort(compareSpecs).map(function getLanguage(priority) {
+        return provided[priorities.indexOf(priority)];
+      });
+    }
+    function compareSpecs(a2, b2) {
+      return b2.q - a2.q || b2.s - a2.s || a2.o - b2.o || a2.i - b2.i || 0;
+    }
+    function getFullLanguage(spec) {
+      return spec.full;
+    }
+    function isQuality(spec) {
+      return spec.q > 0;
+    }
+  }
+});
+
+// node_modules/negotiator/lib/mediaType.js
+var require_mediaType = __commonJS({
+  "node_modules/negotiator/lib/mediaType.js"(exports2, module2) {
+    "use strict";
+    module2.exports = preferredMediaTypes;
+    module2.exports.preferredMediaTypes = preferredMediaTypes;
+    var simpleMediaTypeRegExp = /^\s*([^\s\/;]+)\/([^;\s]+)\s*(?:;(.*))?$/;
+    function parseAccept(accept) {
+      var accepts = splitMediaTypes(accept);
+      for (var i2 = 0, j2 = 0; i2 < accepts.length; i2++) {
+        var mediaType = parseMediaType(accepts[i2].trim(), i2);
+        if (mediaType) {
+          accepts[j2++] = mediaType;
+        }
+      }
+      accepts.length = j2;
+      return accepts;
+    }
+    function parseMediaType(str2, i2) {
+      var match = simpleMediaTypeRegExp.exec(str2);
+      if (!match)
+        return null;
+      var params = /* @__PURE__ */ Object.create(null);
+      var q2 = 1;
+      var subtype = match[2];
+      var type = match[1];
+      if (match[3]) {
+        var kvps = splitParameters(match[3]).map(splitKeyValuePair);
+        for (var j2 = 0; j2 < kvps.length; j2++) {
+          var pair = kvps[j2];
+          var key = pair[0].toLowerCase();
+          var val = pair[1];
+          var value = val && val[0] === '"' && val[val.length - 1] === '"' ? val.substr(1, val.length - 2) : val;
+          if (key === "q") {
+            q2 = parseFloat(value);
+            break;
+          }
+          params[key] = value;
+        }
+      }
+      return {
+        type,
+        subtype,
+        params,
+        q: q2,
+        i: i2
+      };
+    }
+    function getMediaTypePriority(type, accepted, index) {
+      var priority = { o: -1, q: 0, s: 0 };
+      for (var i2 = 0; i2 < accepted.length; i2++) {
+        var spec = specify(type, accepted[i2], index);
+        if (spec && (priority.s - spec.s || priority.q - spec.q || priority.o - spec.o) < 0) {
+          priority = spec;
+        }
+      }
+      return priority;
+    }
+    function specify(type, spec, index) {
+      var p2 = parseMediaType(type);
+      var s2 = 0;
+      if (!p2) {
+        return null;
+      }
+      if (spec.type.toLowerCase() == p2.type.toLowerCase()) {
+        s2 |= 4;
+      } else if (spec.type != "*") {
+        return null;
+      }
+      if (spec.subtype.toLowerCase() == p2.subtype.toLowerCase()) {
+        s2 |= 2;
+      } else if (spec.subtype != "*") {
+        return null;
+      }
+      var keys = Object.keys(spec.params);
+      if (keys.length > 0) {
+        if (keys.every(function(k3) {
+          return spec.params[k3] == "*" || (spec.params[k3] || "").toLowerCase() == (p2.params[k3] || "").toLowerCase();
+        })) {
+          s2 |= 1;
+        } else {
+          return null;
+        }
+      }
+      return {
+        i: index,
+        o: spec.i,
+        q: spec.q,
+        s: s2
+      };
+    }
+    function preferredMediaTypes(accept, provided) {
+      var accepts = parseAccept(accept === void 0 ? "*/*" : accept || "");
+      if (!provided) {
+        return accepts.filter(isQuality).sort(compareSpecs).map(getFullType);
+      }
+      var priorities = provided.map(function getPriority(type, index) {
+        return getMediaTypePriority(type, accepts, index);
+      });
+      return priorities.filter(isQuality).sort(compareSpecs).map(function getType3(priority) {
+        return provided[priorities.indexOf(priority)];
+      });
+    }
+    function compareSpecs(a2, b2) {
+      return b2.q - a2.q || b2.s - a2.s || a2.o - b2.o || a2.i - b2.i || 0;
+    }
+    function getFullType(spec) {
+      return spec.type + "/" + spec.subtype;
+    }
+    function isQuality(spec) {
+      return spec.q > 0;
+    }
+    function quoteCount(string) {
+      var count = 0;
+      var index = 0;
+      while ((index = string.indexOf('"', index)) !== -1) {
+        count++;
+        index++;
+      }
+      return count;
+    }
+    function splitKeyValuePair(str2) {
+      var index = str2.indexOf("=");
+      var key;
+      var val;
+      if (index === -1) {
+        key = str2;
+      } else {
+        key = str2.substr(0, index);
+        val = str2.substr(index + 1);
+      }
+      return [key, val];
+    }
+    function splitMediaTypes(accept) {
+      var accepts = accept.split(",");
+      for (var i2 = 1, j2 = 0; i2 < accepts.length; i2++) {
+        if (quoteCount(accepts[j2]) % 2 == 0) {
+          accepts[++j2] = accepts[i2];
+        } else {
+          accepts[j2] += "," + accepts[i2];
+        }
+      }
+      accepts.length = j2 + 1;
+      return accepts;
+    }
+    function splitParameters(str2) {
+      var parameters = str2.split(";");
+      for (var i2 = 1, j2 = 0; i2 < parameters.length; i2++) {
+        if (quoteCount(parameters[j2]) % 2 == 0) {
+          parameters[++j2] = parameters[i2];
+        } else {
+          parameters[j2] += ";" + parameters[i2];
+        }
+      }
+      parameters.length = j2 + 1;
+      for (var i2 = 0; i2 < parameters.length; i2++) {
+        parameters[i2] = parameters[i2].trim();
+      }
+      return parameters;
+    }
+  }
+});
+
+// node_modules/negotiator/index.js
+var require_negotiator = __commonJS({
+  "node_modules/negotiator/index.js"(exports2, module2) {
+    "use strict";
+    var preferredCharsets = require_charset();
+    var preferredEncodings = require_encoding();
+    var preferredLanguages = require_language();
+    var preferredMediaTypes = require_mediaType();
+    module2.exports = Negotiator;
+    module2.exports.Negotiator = Negotiator;
+    function Negotiator(request) {
+      if (!(this instanceof Negotiator)) {
+        return new Negotiator(request);
+      }
+      this.request = request;
+    }
+    Negotiator.prototype.charset = function charset(available) {
+      var set = this.charsets(available);
+      return set && set[0];
+    };
+    Negotiator.prototype.charsets = function charsets(available) {
+      return preferredCharsets(this.request.headers["accept-charset"], available);
+    };
+    Negotiator.prototype.encoding = function encoding(available) {
+      var set = this.encodings(available);
+      return set && set[0];
+    };
+    Negotiator.prototype.encodings = function encodings(available) {
+      return preferredEncodings(this.request.headers["accept-encoding"], available);
+    };
+    Negotiator.prototype.language = function language(available) {
+      var set = this.languages(available);
+      return set && set[0];
+    };
+    Negotiator.prototype.languages = function languages(available) {
+      return preferredLanguages(this.request.headers["accept-language"], available);
+    };
+    Negotiator.prototype.mediaType = function mediaType(available) {
+      var set = this.mediaTypes(available);
+      return set && set[0];
+    };
+    Negotiator.prototype.mediaTypes = function mediaTypes(available) {
+      return preferredMediaTypes(this.request.headers.accept, available);
+    };
+    Negotiator.prototype.preferredCharset = Negotiator.prototype.charset;
+    Negotiator.prototype.preferredCharsets = Negotiator.prototype.charsets;
+    Negotiator.prototype.preferredEncoding = Negotiator.prototype.encoding;
+    Negotiator.prototype.preferredEncodings = Negotiator.prototype.encodings;
+    Negotiator.prototype.preferredLanguage = Negotiator.prototype.language;
+    Negotiator.prototype.preferredLanguages = Negotiator.prototype.languages;
+    Negotiator.prototype.preferredMediaType = Negotiator.prototype.mediaType;
+    Negotiator.prototype.preferredMediaTypes = Negotiator.prototype.mediaTypes;
+  }
+});
+
+// node_modules/accepts/index.js
+var require_accepts = __commonJS({
+  "node_modules/accepts/index.js"(exports2, module2) {
+    "use strict";
+    var Negotiator = require_negotiator();
+    var mime = require_mime_types();
+    module2.exports = Accepts;
+    function Accepts(req) {
+      if (!(this instanceof Accepts)) {
+        return new Accepts(req);
+      }
+      this.headers = req.headers;
+      this.negotiator = new Negotiator(req);
+    }
+    Accepts.prototype.type = Accepts.prototype.types = function(types_) {
+      var types = types_;
+      if (types && !Array.isArray(types)) {
+        types = new Array(arguments.length);
+        for (var i2 = 0; i2 < types.length; i2++) {
+          types[i2] = arguments[i2];
+        }
+      }
+      if (!types || types.length === 0) {
+        return this.negotiator.mediaTypes();
+      }
+      if (!this.headers.accept) {
+        return types[0];
+      }
+      var mimes = types.map(extToMime);
+      var accepts = this.negotiator.mediaTypes(mimes.filter(validMime));
+      var first = accepts[0];
+      return first ? types[mimes.indexOf(first)] : false;
+    };
+    Accepts.prototype.encoding = Accepts.prototype.encodings = function(encodings_) {
+      var encodings = encodings_;
+      if (encodings && !Array.isArray(encodings)) {
+        encodings = new Array(arguments.length);
+        for (var i2 = 0; i2 < encodings.length; i2++) {
+          encodings[i2] = arguments[i2];
+        }
+      }
+      if (!encodings || encodings.length === 0) {
+        return this.negotiator.encodings();
+      }
+      return this.negotiator.encodings(encodings)[0] || false;
+    };
+    Accepts.prototype.charset = Accepts.prototype.charsets = function(charsets_) {
+      var charsets = charsets_;
+      if (charsets && !Array.isArray(charsets)) {
+        charsets = new Array(arguments.length);
+        for (var i2 = 0; i2 < charsets.length; i2++) {
+          charsets[i2] = arguments[i2];
+        }
+      }
+      if (!charsets || charsets.length === 0) {
+        return this.negotiator.charsets();
+      }
+      return this.negotiator.charsets(charsets)[0] || false;
+    };
+    Accepts.prototype.lang = Accepts.prototype.langs = Accepts.prototype.language = Accepts.prototype.languages = function(languages_) {
+      var languages = languages_;
+      if (languages && !Array.isArray(languages)) {
+        languages = new Array(arguments.length);
+        for (var i2 = 0; i2 < languages.length; i2++) {
+          languages[i2] = arguments[i2];
+        }
+      }
+      if (!languages || languages.length === 0) {
+        return this.negotiator.languages();
+      }
+      return this.negotiator.languages(languages)[0] || false;
+    };
+    function extToMime(type) {
+      return type.indexOf("/") === -1 ? mime.lookup(type) : type;
+    }
+    function validMime(type) {
+      return typeof type === "string";
+    }
+  }
+});
+
+// node_modules/content-type/index.js
+var require_content_type = __commonJS({
+  "node_modules/content-type/index.js"(exports2) {
+    "use strict";
+    var PARAM_REGEXP = /; *([!#$%&'*+.^_`|~0-9A-Za-z-]+) *= *("(?:[\u000b\u0020\u0021\u0023-\u005b\u005d-\u007e\u0080-\u00ff]|\\[\u000b\u0020-\u00ff])*"|[!#$%&'*+.^_`|~0-9A-Za-z-]+) */g;
+    var TEXT_REGEXP = /^[\u000b\u0020-\u007e\u0080-\u00ff]+$/;
+    var TOKEN_REGEXP = /^[!#$%&'*+.^_`|~0-9A-Za-z-]+$/;
+    var QESC_REGEXP = /\\([\u000b\u0020-\u00ff])/g;
+    var QUOTE_REGEXP = /([\\"])/g;
+    var TYPE_REGEXP = /^[!#$%&'*+.^_`|~0-9A-Za-z-]+\/[!#$%&'*+.^_`|~0-9A-Za-z-]+$/;
+    exports2.format = format;
+    exports2.parse = parse3;
+    function format(obj) {
+      if (!obj || typeof obj !== "object") {
+        throw new TypeError("argument obj is required");
+      }
+      var parameters = obj.parameters;
+      var type = obj.type;
+      if (!type || !TYPE_REGEXP.test(type)) {
+        throw new TypeError("invalid type");
+      }
+      var string = type;
+      if (parameters && typeof parameters === "object") {
+        var param;
+        var params = Object.keys(parameters).sort();
+        for (var i2 = 0; i2 < params.length; i2++) {
+          param = params[i2];
+          if (!TOKEN_REGEXP.test(param)) {
+            throw new TypeError("invalid parameter name");
+          }
+          string += "; " + param + "=" + qstring(parameters[param]);
+        }
+      }
+      return string;
+    }
+    function parse3(string) {
+      if (!string) {
+        throw new TypeError("argument string is required");
+      }
+      var header = typeof string === "object" ? getcontenttype(string) : string;
+      if (typeof header !== "string") {
+        throw new TypeError("argument string is required to be a string");
+      }
+      var index = header.indexOf(";");
+      var type = index !== -1 ? header.slice(0, index).trim() : header.trim();
+      if (!TYPE_REGEXP.test(type)) {
+        throw new TypeError("invalid media type");
+      }
+      var obj = new ContentType(type.toLowerCase());
+      if (index !== -1) {
+        var key;
+        var match;
+        var value;
+        PARAM_REGEXP.lastIndex = index;
+        while (match = PARAM_REGEXP.exec(header)) {
+          if (match.index !== index) {
+            throw new TypeError("invalid parameter format");
+          }
+          index += match[0].length;
+          key = match[1].toLowerCase();
+          value = match[2];
+          if (value.charCodeAt(0) === 34) {
+            value = value.slice(1, -1);
+            if (value.indexOf("\\") !== -1) {
+              value = value.replace(QESC_REGEXP, "$1");
+            }
+          }
+          obj.parameters[key] = value;
+        }
+        if (index !== header.length) {
+          throw new TypeError("invalid parameter format");
+        }
+      }
+      return obj;
+    }
+    function getcontenttype(obj) {
+      var header;
+      if (typeof obj.getHeader === "function") {
+        header = obj.getHeader("content-type");
+      } else if (typeof obj.headers === "object") {
+        header = obj.headers && obj.headers["content-type"];
+      }
+      if (typeof header !== "string") {
+        throw new TypeError("content-type header is missing from object");
+      }
+      return header;
+    }
+    function qstring(val) {
+      var str2 = String(val);
+      if (TOKEN_REGEXP.test(str2)) {
+        return str2;
+      }
+      if (str2.length > 0 && !TEXT_REGEXP.test(str2)) {
+        throw new TypeError("invalid parameter value");
+      }
+      return '"' + str2.replace(QUOTE_REGEXP, "\\$1") + '"';
+    }
+    function ContentType(type) {
+      this.parameters = /* @__PURE__ */ Object.create(null);
+      this.type = type;
+    }
+  }
+});
+
+// node_modules/parseurl/index.js
+var require_parseurl = __commonJS({
+  "node_modules/parseurl/index.js"(exports2, module2) {
+    "use strict";
+    var url = require("url");
+    var parse3 = url.parse;
+    var Url = url.Url;
+    module2.exports = parseurl;
+    module2.exports.original = originalurl;
+    function parseurl(req) {
+      var url2 = req.url;
+      if (url2 === void 0) {
+        return void 0;
+      }
+      var parsed = req._parsedUrl;
+      if (fresh(url2, parsed)) {
+        return parsed;
+      }
+      parsed = fastparse(url2);
+      parsed._raw = url2;
+      return req._parsedUrl = parsed;
+    }
+    function originalurl(req) {
+      var url2 = req.originalUrl;
+      if (typeof url2 !== "string") {
+        return parseurl(req);
+      }
+      var parsed = req._parsedOriginalUrl;
+      if (fresh(url2, parsed)) {
+        return parsed;
+      }
+      parsed = fastparse(url2);
+      parsed._raw = url2;
+      return req._parsedOriginalUrl = parsed;
+    }
+    function fastparse(str2) {
+      if (typeof str2 !== "string" || str2.charCodeAt(0) !== 47) {
+        return parse3(str2);
+      }
+      var pathname = str2;
+      var query = null;
+      var search = null;
+      for (var i2 = 1; i2 < str2.length; i2++) {
+        switch (str2.charCodeAt(i2)) {
+          case 63:
+            if (search === null) {
+              pathname = str2.substring(0, i2);
+              query = str2.substring(i2 + 1);
+              search = str2.substring(i2);
+            }
+            break;
+          case 9:
+          case 10:
+          case 12:
+          case 13:
+          case 32:
+          case 35:
+          case 160:
+          case 65279:
+            return parse3(str2);
+        }
+      }
+      var url2 = Url !== void 0 ? new Url() : {};
+      url2.path = str2;
+      url2.href = str2;
+      url2.pathname = pathname;
+      if (search !== null) {
+        url2.query = query;
+        url2.search = search;
+      }
+      return url2;
+    }
+    function fresh(url2, parsedUrl) {
+      return typeof parsedUrl === "object" && parsedUrl !== null && (Url === void 0 || parsedUrl instanceof Url) && parsedUrl._raw === url2;
+    }
+  }
+});
+
+// node_modules/fresh/index.js
+var require_fresh = __commonJS({
+  "node_modules/fresh/index.js"(exports2, module2) {
+    "use strict";
+    var CACHE_CONTROL_NO_CACHE_REGEXP = /(?:^|,)\s*?no-cache\s*?(?:,|$)/;
+    module2.exports = fresh;
+    function fresh(reqHeaders, resHeaders) {
+      var modifiedSince = reqHeaders["if-modified-since"];
+      var noneMatch = reqHeaders["if-none-match"];
+      if (!modifiedSince && !noneMatch) {
+        return false;
+      }
+      var cacheControl = reqHeaders["cache-control"];
+      if (cacheControl && CACHE_CONTROL_NO_CACHE_REGEXP.test(cacheControl)) {
+        return false;
+      }
+      if (noneMatch && noneMatch !== "*") {
+        var etag = resHeaders["etag"];
+        if (!etag) {
+          return false;
+        }
+        var etagStale = true;
+        var matches = parseTokenList(noneMatch);
+        for (var i2 = 0; i2 < matches.length; i2++) {
+          var match = matches[i2];
+          if (match === etag || match === "W/" + etag || "W/" + match === etag) {
+            etagStale = false;
+            break;
+          }
+        }
+        if (etagStale) {
+          return false;
+        }
+      }
+      if (modifiedSince) {
+        var lastModified = resHeaders["last-modified"];
+        var modifiedStale = !lastModified || !(parseHttpDate(lastModified) <= parseHttpDate(modifiedSince));
+        if (modifiedStale) {
+          return false;
+        }
+      }
+      return true;
+    }
+    function parseHttpDate(date) {
+      var timestamp = date && Date.parse(date);
+      return typeof timestamp === "number" ? timestamp : NaN;
+    }
+    function parseTokenList(str2) {
+      var end = 0;
+      var list = [];
+      var start = 0;
+      for (var i2 = 0, len = str2.length; i2 < len; i2++) {
+        switch (str2.charCodeAt(i2)) {
+          case 32:
+            if (start === end) {
+              start = end = i2 + 1;
+            }
+            break;
+          case 44:
+            list.push(str2.substring(start, end));
+            start = end = i2 + 1;
+            break;
+          default:
+            end = i2 + 1;
+            break;
+        }
+      }
+      list.push(str2.substring(start, end));
+      return list;
+    }
+  }
+});
+
+// node_modules/koa/lib/request.js
+var require_request = __commonJS({
+  "node_modules/koa/lib/request.js"(exports2, module2) {
+    "use strict";
+    var URL3 = require("url").URL;
+    var net = require("net");
+    var accepts = require_accepts();
+    var contentType = require_content_type();
+    var stringify2 = require("url").format;
+    var parse3 = require_parseurl();
+    var qs = require("querystring");
+    var typeis = require_type_is();
+    var fresh = require_fresh();
+    var only = require_only();
+    var util = require("util");
+    var IP = Symbol("context#ip");
+    module2.exports = {
+      /**
+       * Return request header.
+       *
+       * @return {Object}
+       * @api public
+       */
+      get header() {
+        return this.req.headers;
+      },
+      /**
+       * Set request header.
+       *
+       * @api public
+       */
+      set header(val) {
+        this.req.headers = val;
+      },
+      /**
+       * Return request header, alias as request.header
+       *
+       * @return {Object}
+       * @api public
+       */
+      get headers() {
+        return this.req.headers;
+      },
+      /**
+       * Set request header, alias as request.header
+       *
+       * @api public
+       */
+      set headers(val) {
+        this.req.headers = val;
+      },
+      /**
+       * Get request URL.
+       *
+       * @return {String}
+       * @api public
+       */
+      get url() {
+        return this.req.url;
+      },
+      /**
+       * Set request URL.
+       *
+       * @api public
+       */
+      set url(val) {
+        this.req.url = val;
+      },
+      /**
+       * Get origin of URL.
+       *
+       * @return {String}
+       * @api public
+       */
+      get origin() {
+        return `${this.protocol}://${this.host}`;
+      },
+      /**
+       * Get full request URL.
+       *
+       * @return {String}
+       * @api public
+       */
+      get href() {
+        if (/^https?:\/\//i.test(this.originalUrl))
+          return this.originalUrl;
+        return this.origin + this.originalUrl;
+      },
+      /**
+       * Get request method.
+       *
+       * @return {String}
+       * @api public
+       */
+      get method() {
+        return this.req.method;
+      },
+      /**
+       * Set request method.
+       *
+       * @param {String} val
+       * @api public
+       */
+      set method(val) {
+        this.req.method = val;
+      },
+      /**
+       * Get request pathname.
+       *
+       * @return {String}
+       * @api public
+       */
+      get path() {
+        return parse3(this.req).pathname;
+      },
+      /**
+       * Set pathname, retaining the query string when present.
+       *
+       * @param {String} path
+       * @api public
+       */
+      set path(path2) {
+        const url = parse3(this.req);
+        if (url.pathname === path2)
+          return;
+        url.pathname = path2;
+        url.path = null;
+        this.url = stringify2(url);
+      },
+      /**
+       * Get parsed query string.
+       *
+       * @return {Object}
+       * @api public
+       */
+      get query() {
+        const str2 = this.querystring;
+        const c2 = this._querycache = this._querycache || {};
+        return c2[str2] || (c2[str2] = qs.parse(str2));
+      },
+      /**
+       * Set query string as an object.
+       *
+       * @param {Object} obj
+       * @api public
+       */
+      set query(obj) {
+        this.querystring = qs.stringify(obj);
+      },
+      /**
+       * Get query string.
+       *
+       * @return {String}
+       * @api public
+       */
+      get querystring() {
+        if (!this.req)
+          return "";
+        return parse3(this.req).query || "";
+      },
+      /**
+       * Set query string.
+       *
+       * @param {String} str
+       * @api public
+       */
+      set querystring(str2) {
+        const url = parse3(this.req);
+        if (url.search === `?${str2}`)
+          return;
+        url.search = str2;
+        url.path = null;
+        this.url = stringify2(url);
+      },
+      /**
+       * Get the search string. Same as the query string
+       * except it includes the leading ?.
+       *
+       * @return {String}
+       * @api public
+       */
+      get search() {
+        if (!this.querystring)
+          return "";
+        return `?${this.querystring}`;
+      },
+      /**
+       * Set the search string. Same as
+       * request.querystring= but included for ubiquity.
+       *
+       * @param {String} str
+       * @api public
+       */
+      set search(str2) {
+        this.querystring = str2;
+      },
+      /**
+       * Parse the "Host" header field host
+       * and support X-Forwarded-Host when a
+       * proxy is enabled.
+       *
+       * @return {String} hostname:port
+       * @api public
+       */
+      get host() {
+        const proxy2 = this.app.proxy;
+        let host = proxy2 && this.get("X-Forwarded-Host");
+        if (!host) {
+          if (this.req.httpVersionMajor >= 2)
+            host = this.get(":authority");
+          if (!host)
+            host = this.get("Host");
+        }
+        if (!host)
+          return "";
+        return host.split(/\s*,\s*/, 1)[0];
+      },
+      /**
+       * Parse the "Host" header field hostname
+       * and support X-Forwarded-Host when a
+       * proxy is enabled.
+       *
+       * @return {String} hostname
+       * @api public
+       */
+      get hostname() {
+        const host = this.host;
+        if (!host)
+          return "";
+        if ("[" === host[0])
+          return this.URL.hostname || "";
+        return host.split(":", 1)[0];
+      },
+      /**
+       * Get WHATWG parsed URL.
+       * Lazily memoized.
+       *
+       * @return {URL|Object}
+       * @api public
+       */
+      get URL() {
+        if (!this.memoizedURL) {
+          const originalUrl = this.originalUrl || "";
+          try {
+            this.memoizedURL = new URL3(`${this.origin}${originalUrl}`);
+          } catch (err) {
+            this.memoizedURL = /* @__PURE__ */ Object.create(null);
+          }
+        }
+        return this.memoizedURL;
+      },
+      /**
+       * Check if the request is fresh, aka
+       * Last-Modified and/or the ETag
+       * still match.
+       *
+       * @return {Boolean}
+       * @api public
+       */
+      get fresh() {
+        const method = this.method;
+        const s2 = this.ctx.status;
+        if ("GET" !== method && "HEAD" !== method)
+          return false;
+        if (s2 >= 200 && s2 < 300 || 304 === s2) {
+          return fresh(this.header, this.response.header);
+        }
+        return false;
+      },
+      /**
+       * Check if the request is stale, aka
+       * "Last-Modified" and / or the "ETag" for the
+       * resource has changed.
+       *
+       * @return {Boolean}
+       * @api public
+       */
+      get stale() {
+        return !this.fresh;
+      },
+      /**
+       * Check if the request is idempotent.
+       *
+       * @return {Boolean}
+       * @api public
+       */
+      get idempotent() {
+        const methods = ["GET", "HEAD", "PUT", "DELETE", "OPTIONS", "TRACE"];
+        return !!~methods.indexOf(this.method);
+      },
+      /**
+       * Return the request socket.
+       *
+       * @return {Connection}
+       * @api public
+       */
+      get socket() {
+        return this.req.socket;
+      },
+      /**
+       * Get the charset when present or undefined.
+       *
+       * @return {String}
+       * @api public
+       */
+      get charset() {
+        try {
+          const { parameters } = contentType.parse(this.req);
+          return parameters.charset || "";
+        } catch (e2) {
+          return "";
+        }
+      },
+      /**
+       * Return parsed Content-Length when present.
+       *
+       * @return {Number}
+       * @api public
+       */
+      get length() {
+        const len = this.get("Content-Length");
+        if (len === "")
+          return;
+        return ~~len;
+      },
+      /**
+       * Return the protocol string "http" or "https"
+       * when requested with TLS. When the proxy setting
+       * is enabled the "X-Forwarded-Proto" header
+       * field will be trusted. If you're running behind
+       * a reverse proxy that supplies https for you this
+       * may be enabled.
+       *
+       * @return {String}
+       * @api public
+       */
+      get protocol() {
+        if (this.socket.encrypted)
+          return "https";
+        if (!this.app.proxy)
+          return "http";
+        const proto = this.get("X-Forwarded-Proto");
+        return proto ? proto.split(/\s*,\s*/, 1)[0] : "http";
+      },
+      /**
+       * Shorthand for:
+       *
+       *    this.protocol == 'https'
+       *
+       * @return {Boolean}
+       * @api public
+       */
+      get secure() {
+        return "https" === this.protocol;
+      },
+      /**
+       * When `app.proxy` is `true`, parse
+       * the "X-Forwarded-For" ip address list.
+       *
+       * For example if the value was "client, proxy1, proxy2"
+       * you would receive the array `["client", "proxy1", "proxy2"]`
+       * where "proxy2" is the furthest down-stream.
+       *
+       * @return {Array}
+       * @api public
+       */
+      get ips() {
+        const proxy2 = this.app.proxy;
+        const val = this.get(this.app.proxyIpHeader);
+        let ips = proxy2 && val ? val.split(/\s*,\s*/) : [];
+        if (this.app.maxIpsCount > 0) {
+          ips = ips.slice(-this.app.maxIpsCount);
+        }
+        return ips;
+      },
+      /**
+       * Return request's remote address
+       * When `app.proxy` is `true`, parse
+       * the "X-Forwarded-For" ip address list and return the first one
+       *
+       * @return {String}
+       * @api public
+       */
+      get ip() {
+        if (!this[IP]) {
+          this[IP] = this.ips[0] || this.socket.remoteAddress || "";
+        }
+        return this[IP];
+      },
+      set ip(_ip) {
+        this[IP] = _ip;
+      },
+      /**
+       * Return subdomains as an array.
+       *
+       * Subdomains are the dot-separated parts of the host before the main domain
+       * of the app. By default, the domain of the app is assumed to be the last two
+       * parts of the host. This can be changed by setting `app.subdomainOffset`.
+       *
+       * For example, if the domain is "tobi.ferrets.example.com":
+       * If `app.subdomainOffset` is not set, this.subdomains is
+       * `["ferrets", "tobi"]`.
+       * If `app.subdomainOffset` is 3, this.subdomains is `["tobi"]`.
+       *
+       * @return {Array}
+       * @api public
+       */
+      get subdomains() {
+        const offset = this.app.subdomainOffset;
+        const hostname = this.hostname;
+        if (net.isIP(hostname))
+          return [];
+        return hostname.split(".").reverse().slice(offset);
+      },
+      /**
+       * Get accept object.
+       * Lazily memoized.
+       *
+       * @return {Object}
+       * @api private
+       */
+      get accept() {
+        return this._accept || (this._accept = accepts(this.req));
+      },
+      /**
+       * Set accept object.
+       *
+       * @param {Object}
+       * @api private
+       */
+      set accept(obj) {
+        this._accept = obj;
+      },
+      /**
+       * Check if the given `type(s)` is acceptable, returning
+       * the best match when true, otherwise `false`, in which
+       * case you should respond with 406 "Not Acceptable".
+       *
+       * The `type` value may be a single mime type string
+       * such as "application/json", the extension name
+       * such as "json" or an array `["json", "html", "text/plain"]`. When a list
+       * or array is given the _best_ match, if any is returned.
+       *
+       * Examples:
+       *
+       *     // Accept: text/html
+       *     this.accepts('html');
+       *     // => "html"
+       *
+       *     // Accept: text/*, application/json
+       *     this.accepts('html');
+       *     // => "html"
+       *     this.accepts('text/html');
+       *     // => "text/html"
+       *     this.accepts('json', 'text');
+       *     // => "json"
+       *     this.accepts('application/json');
+       *     // => "application/json"
+       *
+       *     // Accept: text/*, application/json
+       *     this.accepts('image/png');
+       *     this.accepts('png');
+       *     // => false
+       *
+       *     // Accept: text/*;q=.5, application/json
+       *     this.accepts(['html', 'json']);
+       *     this.accepts('html', 'json');
+       *     // => "json"
+       *
+       * @param {String|Array} type(s)...
+       * @return {String|Array|false}
+       * @api public
+       */
+      accepts(...args2) {
+        return this.accept.types(...args2);
+      },
+      /**
+       * Return accepted encodings or best fit based on `encodings`.
+       *
+       * Given `Accept-Encoding: gzip, deflate`
+       * an array sorted by quality is returned:
+       *
+       *     ['gzip', 'deflate']
+       *
+       * @param {String|Array} encoding(s)...
+       * @return {String|Array}
+       * @api public
+       */
+      acceptsEncodings(...args2) {
+        return this.accept.encodings(...args2);
+      },
+      /**
+       * Return accepted charsets or best fit based on `charsets`.
+       *
+       * Given `Accept-Charset: utf-8, iso-8859-1;q=0.2, utf-7;q=0.5`
+       * an array sorted by quality is returned:
+       *
+       *     ['utf-8', 'utf-7', 'iso-8859-1']
+       *
+       * @param {String|Array} charset(s)...
+       * @return {String|Array}
+       * @api public
+       */
+      acceptsCharsets(...args2) {
+        return this.accept.charsets(...args2);
+      },
+      /**
+       * Return accepted languages or best fit based on `langs`.
+       *
+       * Given `Accept-Language: en;q=0.8, es, pt`
+       * an array sorted by quality is returned:
+       *
+       *     ['es', 'pt', 'en']
+       *
+       * @param {String|Array} lang(s)...
+       * @return {Array|String}
+       * @api public
+       */
+      acceptsLanguages(...args2) {
+        return this.accept.languages(...args2);
+      },
+      /**
+       * Check if the incoming request contains the "Content-Type"
+       * header field and if it contains any of the given mime `type`s.
+       * If there is no request body, `null` is returned.
+       * If there is no content type, `false` is returned.
+       * Otherwise, it returns the first `type` that matches.
+       *
+       * Examples:
+       *
+       *     // With Content-Type: text/html; charset=utf-8
+       *     this.is('html'); // => 'html'
+       *     this.is('text/html'); // => 'text/html'
+       *     this.is('text/*', 'application/json'); // => 'text/html'
+       *
+       *     // When Content-Type is application/json
+       *     this.is('json', 'urlencoded'); // => 'json'
+       *     this.is('application/json'); // => 'application/json'
+       *     this.is('html', 'application/*'); // => 'application/json'
+       *
+       *     this.is('html'); // => false
+       *
+       * @param {String|String[]} [type]
+       * @param {String[]} [types]
+       * @return {String|false|null}
+       * @api public
+       */
+      is(type, ...types) {
+        return typeis(this.req, type, ...types);
+      },
+      /**
+       * Return the request mime type void of
+       * parameters such as "charset".
+       *
+       * @return {String}
+       * @api public
+       */
+      get type() {
+        const type = this.get("Content-Type");
+        if (!type)
+          return "";
+        return type.split(";")[0];
+      },
+      /**
+       * Return request header.
+       *
+       * The `Referrer` header field is special-cased,
+       * both `Referrer` and `Referer` are interchangeable.
+       *
+       * Examples:
+       *
+       *     this.get('Content-Type');
+       *     // => "text/plain"
+       *
+       *     this.get('content-type');
+       *     // => "text/plain"
+       *
+       *     this.get('Something');
+       *     // => ''
+       *
+       * @param {String} field
+       * @return {String}
+       * @api public
+       */
+      get(field) {
+        const req = this.req;
+        switch (field = field.toLowerCase()) {
+          case "referer":
+          case "referrer":
+            return req.headers.referrer || req.headers.referer || "";
+          default:
+            return req.headers[field] || "";
+        }
+      },
+      /**
+       * Inspect implementation.
+       *
+       * @return {Object}
+       * @api public
+       */
+      inspect() {
+        if (!this.req)
+          return;
+        return this.toJSON();
+      },
+      /**
+       * Return JSON representation.
+       *
+       * @return {Object}
+       * @api public
+       */
+      toJSON() {
+        return only(this, [
+          "method",
+          "url",
+          "header"
+        ]);
+      }
+    };
+    if (util.inspect.custom) {
+      module2.exports[util.inspect.custom] = module2.exports.inspect;
+    }
+  }
+});
+
+// node_modules/co/index.js
+var require_co = __commonJS({
+  "node_modules/co/index.js"(exports2, module2) {
+    var slice = Array.prototype.slice;
+    module2.exports = co["default"] = co.co = co;
+    co.wrap = function(fn2) {
+      createPromise.__generatorFunction__ = fn2;
+      return createPromise;
+      function createPromise() {
+        return co.call(this, fn2.apply(this, arguments));
+      }
+    };
+    function co(gen) {
+      var ctx = this;
+      var args2 = slice.call(arguments, 1);
+      return new Promise(function(resolve, reject) {
+        if (typeof gen === "function")
+          gen = gen.apply(ctx, args2);
+        if (!gen || typeof gen.next !== "function")
+          return resolve(gen);
+        onFulfilled();
+        function onFulfilled(res) {
+          var ret;
+          try {
+            ret = gen.next(res);
+          } catch (e2) {
+            return reject(e2);
+          }
+          next(ret);
+        }
+        function onRejected(err) {
+          var ret;
+          try {
+            ret = gen.throw(err);
+          } catch (e2) {
+            return reject(e2);
+          }
+          next(ret);
+        }
+        function next(ret) {
+          if (ret.done)
+            return resolve(ret.value);
+          var value = toPromise.call(ctx, ret.value);
+          if (value && isPromise(value))
+            return value.then(onFulfilled, onRejected);
+          return onRejected(new TypeError('You may only yield a function, promise, generator, array, or object, but the following object was passed: "' + String(ret.value) + '"'));
+        }
+      });
+    }
+    function toPromise(obj) {
+      if (!obj)
+        return obj;
+      if (isPromise(obj))
+        return obj;
+      if (isGeneratorFunction(obj) || isGenerator(obj))
+        return co.call(this, obj);
+      if ("function" == typeof obj)
+        return thunkToPromise.call(this, obj);
+      if (Array.isArray(obj))
+        return arrayToPromise.call(this, obj);
+      if (isObject(obj))
+        return objectToPromise.call(this, obj);
+      return obj;
+    }
+    function thunkToPromise(fn2) {
+      var ctx = this;
+      return new Promise(function(resolve, reject) {
+        fn2.call(ctx, function(err, res) {
+          if (err)
+            return reject(err);
+          if (arguments.length > 2)
+            res = slice.call(arguments, 1);
+          resolve(res);
+        });
+      });
+    }
+    function arrayToPromise(obj) {
+      return Promise.all(obj.map(toPromise, this));
+    }
+    function objectToPromise(obj) {
+      var results = new obj.constructor();
+      var keys = Object.keys(obj);
+      var promises = [];
+      for (var i2 = 0; i2 < keys.length; i2++) {
+        var key = keys[i2];
+        var promise = toPromise.call(this, obj[key]);
+        if (promise && isPromise(promise))
+          defer(promise, key);
+        else
+          results[key] = obj[key];
+      }
+      return Promise.all(promises).then(function() {
+        return results;
+      });
+      function defer(promise2, key2) {
+        results[key2] = void 0;
+        promises.push(promise2.then(function(res) {
+          results[key2] = res;
+        }));
+      }
+    }
+    function isPromise(obj) {
+      return "function" == typeof obj.then;
+    }
+    function isGenerator(obj) {
+      return "function" == typeof obj.next && "function" == typeof obj.throw;
+    }
+    function isGeneratorFunction(obj) {
+      var constructor = obj.constructor;
+      if (!constructor)
+        return false;
+      if ("GeneratorFunction" === constructor.name || "GeneratorFunction" === constructor.displayName)
+        return true;
+      return isGenerator(constructor.prototype);
+    }
+    function isObject(val) {
+      return Object == val.constructor;
+    }
+  }
+});
+
+// node_modules/koa-convert/index.js
+var require_koa_convert = __commonJS({
+  "node_modules/koa-convert/index.js"(exports2, module2) {
+    "use strict";
+    var co = require_co();
+    var compose = require_koa_compose();
+    module2.exports = convert;
+    function convert(mw) {
+      if (typeof mw !== "function") {
+        throw new TypeError("middleware must be a function");
+      }
+      if (mw.constructor.name !== "GeneratorFunction" && mw.constructor.name !== "AsyncGeneratorFunction") {
+        return mw;
+      }
+      const converted = function(ctx, next) {
+        return co.call(
+          ctx,
+          mw.call(
+            ctx,
+            function* (next2) {
+              return yield next2();
+            }(next)
+          )
+        );
+      };
+      converted._name = mw._name || mw.name;
+      return converted;
+    }
+    convert.compose = function(arr) {
+      if (!Array.isArray(arr)) {
+        arr = Array.from(arguments);
+      }
+      return compose(arr.map(convert));
+    };
+    convert.back = function(mw) {
+      if (typeof mw !== "function") {
+        throw new TypeError("middleware must be a function");
+      }
+      if (mw.constructor.name === "GeneratorFunction" || mw.constructor.name === "AsyncGeneratorFunction") {
+        return mw;
+      }
+      const converted = function* (next) {
+        const ctx = this;
+        let called = false;
+        yield mw(ctx, function() {
+          if (called) {
+            throw new Error("next() called multiple times");
+          }
+          called = true;
+          return co.call(ctx, next);
+        });
+      };
+      converted._name = mw._name || mw.name;
+      return converted;
+    };
+  }
+});
+
+// node_modules/koa/lib/application.js
+var require_application = __commonJS({
+  "node_modules/koa/lib/application.js"(exports2, module2) {
+    "use strict";
+    var isGeneratorFunction = require_is_generator_function();
+    var debug2 = require_src()("koa:application");
+    var onFinished = require_on_finished();
+    var assert = require("assert");
+    var response = require_response();
+    var compose = require_koa_compose();
+    var context = require_context();
+    var request = require_request();
+    var statuses = require_statuses();
+    var Emitter = require("events");
+    var util = require("util");
+    var Stream2 = require("stream");
+    var http = require("http");
+    var only = require_only();
+    var convert = require_koa_convert();
+    var deprecate3 = require_depd2()("koa");
+    var { HttpError: HttpError2 } = require_http_errors();
+    module2.exports = class Application extends Emitter {
+      /**
+       * Initialize a new `Application`.
+       *
+       * @api public
+       */
+      /**
+        *
+        * @param {object} [options] Application options
+        * @param {string} [options.env='development'] Environment
+        * @param {string[]} [options.keys] Signed cookie keys
+        * @param {boolean} [options.proxy] Trust proxy headers
+        * @param {number} [options.subdomainOffset] Subdomain offset
+        * @param {string} [options.proxyIpHeader] Proxy IP header, defaults to X-Forwarded-For
+        * @param {number} [options.maxIpsCount] Max IPs read from proxy IP header, default to 0 (means infinity)
+        *
+        */
+      constructor(options) {
+        super();
+        options = options || {};
+        this.proxy = options.proxy || false;
+        this.subdomainOffset = options.subdomainOffset || 2;
+        this.proxyIpHeader = options.proxyIpHeader || "X-Forwarded-For";
+        this.maxIpsCount = options.maxIpsCount || 0;
+        this.env = options.env || process.env.NODE_ENV || "development";
+        if (options.keys)
+          this.keys = options.keys;
+        this.middleware = [];
+        this.context = Object.create(context);
+        this.request = Object.create(request);
+        this.response = Object.create(response);
+        if (util.inspect.custom) {
+          this[util.inspect.custom] = this.inspect;
+        }
+        if (options.asyncLocalStorage) {
+          const { AsyncLocalStorage } = require("async_hooks");
+          assert(AsyncLocalStorage, "Requires node 12.17.0 or higher to enable asyncLocalStorage");
+          this.ctxStorage = new AsyncLocalStorage();
+        }
+      }
+      /**
+       * Shorthand for:
+       *
+       *    http.createServer(app.callback()).listen(...)
+       *
+       * @param {Mixed} ...
+       * @return {Server}
+       * @api public
+       */
+      listen(...args2) {
+        debug2("listen");
+        const server = http.createServer(this.callback());
+        return server.listen(...args2);
+      }
+      /**
+       * Return JSON representation.
+       * We only bother showing settings.
+       *
+       * @return {Object}
+       * @api public
+       */
+      toJSON() {
+        return only(this, [
+          "subdomainOffset",
+          "proxy",
+          "env"
+        ]);
+      }
+      /**
+       * Inspect implementation.
+       *
+       * @return {Object}
+       * @api public
+       */
+      inspect() {
+        return this.toJSON();
+      }
+      /**
+       * Use the given middleware `fn`.
+       *
+       * Old-style middleware will be converted.
+       *
+       * @param {Function} fn
+       * @return {Application} self
+       * @api public
+       */
+      use(fn2) {
+        if (typeof fn2 !== "function")
+          throw new TypeError("middleware must be a function!");
+        if (isGeneratorFunction(fn2)) {
+          deprecate3("Support for generators will be removed in v3. See the documentation for examples of how to convert old middleware https://github.com/koajs/koa/blob/master/docs/migration.md");
+          fn2 = convert(fn2);
+        }
+        debug2("use %s", fn2._name || fn2.name || "-");
+        this.middleware.push(fn2);
+        return this;
+      }
+      /**
+       * Return a request handler callback
+       * for node's native http server.
+       *
+       * @return {Function}
+       * @api public
+       */
+      callback() {
+        const fn2 = compose(this.middleware);
+        if (!this.listenerCount("error"))
+          this.on("error", this.onerror);
+        const handleRequest = (req, res) => {
+          const ctx = this.createContext(req, res);
+          if (!this.ctxStorage) {
+            return this.handleRequest(ctx, fn2);
+          }
+          return this.ctxStorage.run(ctx, async () => {
+            return await this.handleRequest(ctx, fn2);
+          });
+        };
+        return handleRequest;
+      }
+      /**
+       * return currnect contenxt from async local storage
+       */
+      get currentContext() {
+        if (this.ctxStorage)
+          return this.ctxStorage.getStore();
+      }
+      /**
+       * Handle request in callback.
+       *
+       * @api private
+       */
+      handleRequest(ctx, fnMiddleware) {
+        const res = ctx.res;
+        res.statusCode = 404;
+        const onerror = (err) => ctx.onerror(err);
+        const handleResponse = () => respond(ctx);
+        onFinished(res, onerror);
+        return fnMiddleware(ctx).then(handleResponse).catch(onerror);
+      }
+      /**
+       * Initialize a new context.
+       *
+       * @api private
+       */
+      createContext(req, res) {
+        const context2 = Object.create(this.context);
+        const request2 = context2.request = Object.create(this.request);
+        const response2 = context2.response = Object.create(this.response);
+        context2.app = request2.app = response2.app = this;
+        context2.req = request2.req = response2.req = req;
+        context2.res = request2.res = response2.res = res;
+        request2.ctx = response2.ctx = context2;
+        request2.response = response2;
+        response2.request = request2;
+        context2.originalUrl = request2.originalUrl = req.url;
+        context2.state = {};
+        return context2;
+      }
+      /**
+       * Default error handler.
+       *
+       * @param {Error} err
+       * @api private
+       */
+      onerror(err) {
+        const isNativeError = Object.prototype.toString.call(err) === "[object Error]" || err instanceof Error;
+        if (!isNativeError)
+          throw new TypeError(util.format("non-error thrown: %j", err));
+        if (404 === err.status || err.expose)
+          return;
+        if (this.silent)
+          return;
+        const msg = err.stack || err.toString();
+        console.error(`
+${msg.replace(/^/gm, "  ")}
+`);
+      }
+      /**
+       * Help TS users comply to CommonJS, ESM, bundler mismatch.
+       * @see https://github.com/koajs/koa/issues/1513
+       */
+      static get default() {
+        return Application;
+      }
+      createAsyncCtxStorageMiddleware() {
+        const app = this;
+        return async function asyncCtxStorage(ctx, next) {
+          await app.ctxStorage.run(ctx, async () => {
+            return await next();
+          });
+        };
+      }
+    };
+    function respond(ctx) {
+      if (false === ctx.respond)
+        return;
+      if (!ctx.writable)
+        return;
+      const res = ctx.res;
+      let body = ctx.body;
+      const code = ctx.status;
+      if (statuses.empty[code]) {
+        ctx.body = null;
+        return res.end();
+      }
+      if ("HEAD" === ctx.method) {
+        if (!res.headersSent && !ctx.response.has("Content-Length")) {
+          const { length } = ctx.response;
+          if (Number.isInteger(length))
+            ctx.length = length;
+        }
+        return res.end();
+      }
+      if (null == body) {
+        if (ctx.response._explicitNullBody) {
+          ctx.response.remove("Content-Type");
+          ctx.response.remove("Transfer-Encoding");
+          return res.end();
+        }
+        if (ctx.req.httpVersionMajor >= 2) {
+          body = String(code);
+        } else {
+          body = ctx.message || String(code);
+        }
+        if (!res.headersSent) {
+          ctx.type = "text";
+          ctx.length = Buffer.byteLength(body);
+        }
+        return res.end(body);
+      }
+      if (Buffer.isBuffer(body))
+        return res.end(body);
+      if ("string" === typeof body)
+        return res.end(body);
+      if (body instanceof Stream2)
+        return body.pipe(res);
+      body = JSON.stringify(body);
+      if (!res.headersSent) {
+        ctx.length = Buffer.byteLength(body);
+      }
+      res.end(body);
+    }
+    module2.exports.HttpError = HttpError2;
+  }
+});
+
+// node_modules/eventemitter3/index.js
+var require_eventemitter3 = __commonJS({
+  "node_modules/eventemitter3/index.js"(exports2, module2) {
+    "use strict";
+    var has = Object.prototype.hasOwnProperty;
+    var prefix = "~";
+    function Events() {
+    }
+    if (Object.create) {
+      Events.prototype = /* @__PURE__ */ Object.create(null);
+      if (!new Events().__proto__)
+        prefix = false;
+    }
+    function EE(fn2, context, once) {
+      this.fn = fn2;
+      this.context = context;
+      this.once = once || false;
+    }
+    function addListener(emitter, event, fn2, context, once) {
+      if (typeof fn2 !== "function") {
+        throw new TypeError("The listener must be a function");
+      }
+      var listener = new EE(fn2, context || emitter, once), evt = prefix ? prefix + event : event;
+      if (!emitter._events[evt])
+        emitter._events[evt] = listener, emitter._eventsCount++;
+      else if (!emitter._events[evt].fn)
+        emitter._events[evt].push(listener);
+      else
+        emitter._events[evt] = [emitter._events[evt], listener];
+      return emitter;
+    }
+    function clearEvent(emitter, evt) {
+      if (--emitter._eventsCount === 0)
+        emitter._events = new Events();
+      else
+        delete emitter._events[evt];
+    }
+    function EventEmitter() {
+      this._events = new Events();
+      this._eventsCount = 0;
+    }
+    EventEmitter.prototype.eventNames = function eventNames() {
+      var names = [], events, name;
+      if (this._eventsCount === 0)
+        return names;
+      for (name in events = this._events) {
+        if (has.call(events, name))
+          names.push(prefix ? name.slice(1) : name);
+      }
+      if (Object.getOwnPropertySymbols) {
+        return names.concat(Object.getOwnPropertySymbols(events));
+      }
+      return names;
+    };
+    EventEmitter.prototype.listeners = function listeners(event) {
+      var evt = prefix ? prefix + event : event, handlers = this._events[evt];
+      if (!handlers)
+        return [];
+      if (handlers.fn)
+        return [handlers.fn];
+      for (var i2 = 0, l2 = handlers.length, ee2 = new Array(l2); i2 < l2; i2++) {
+        ee2[i2] = handlers[i2].fn;
+      }
+      return ee2;
+    };
+    EventEmitter.prototype.listenerCount = function listenerCount(event) {
+      var evt = prefix ? prefix + event : event, listeners = this._events[evt];
+      if (!listeners)
+        return 0;
+      if (listeners.fn)
+        return 1;
+      return listeners.length;
+    };
+    EventEmitter.prototype.emit = function emit(event, a1, a2, a3, a4, a5) {
+      var evt = prefix ? prefix + event : event;
+      if (!this._events[evt])
+        return false;
+      var listeners = this._events[evt], len = arguments.length, args2, i2;
+      if (listeners.fn) {
+        if (listeners.once)
+          this.removeListener(event, listeners.fn, void 0, true);
+        switch (len) {
+          case 1:
+            return listeners.fn.call(listeners.context), true;
+          case 2:
+            return listeners.fn.call(listeners.context, a1), true;
+          case 3:
+            return listeners.fn.call(listeners.context, a1, a2), true;
+          case 4:
+            return listeners.fn.call(listeners.context, a1, a2, a3), true;
+          case 5:
+            return listeners.fn.call(listeners.context, a1, a2, a3, a4), true;
+          case 6:
+            return listeners.fn.call(listeners.context, a1, a2, a3, a4, a5), true;
+        }
+        for (i2 = 1, args2 = new Array(len - 1); i2 < len; i2++) {
+          args2[i2 - 1] = arguments[i2];
+        }
+        listeners.fn.apply(listeners.context, args2);
+      } else {
+        var length = listeners.length, j2;
+        for (i2 = 0; i2 < length; i2++) {
+          if (listeners[i2].once)
+            this.removeListener(event, listeners[i2].fn, void 0, true);
+          switch (len) {
+            case 1:
+              listeners[i2].fn.call(listeners[i2].context);
+              break;
+            case 2:
+              listeners[i2].fn.call(listeners[i2].context, a1);
+              break;
+            case 3:
+              listeners[i2].fn.call(listeners[i2].context, a1, a2);
+              break;
+            case 4:
+              listeners[i2].fn.call(listeners[i2].context, a1, a2, a3);
+              break;
+            default:
+              if (!args2)
+                for (j2 = 1, args2 = new Array(len - 1); j2 < len; j2++) {
+                  args2[j2 - 1] = arguments[j2];
+                }
+              listeners[i2].fn.apply(listeners[i2].context, args2);
+          }
+        }
+      }
+      return true;
+    };
+    EventEmitter.prototype.on = function on(event, fn2, context) {
+      return addListener(this, event, fn2, context, false);
+    };
+    EventEmitter.prototype.once = function once(event, fn2, context) {
+      return addListener(this, event, fn2, context, true);
+    };
+    EventEmitter.prototype.removeListener = function removeListener(event, fn2, context, once) {
+      var evt = prefix ? prefix + event : event;
+      if (!this._events[evt])
+        return this;
+      if (!fn2) {
+        clearEvent(this, evt);
+        return this;
+      }
+      var listeners = this._events[evt];
+      if (listeners.fn) {
+        if (listeners.fn === fn2 && (!once || listeners.once) && (!context || listeners.context === context)) {
+          clearEvent(this, evt);
+        }
+      } else {
+        for (var i2 = 0, events = [], length = listeners.length; i2 < length; i2++) {
+          if (listeners[i2].fn !== fn2 || once && !listeners[i2].once || context && listeners[i2].context !== context) {
+            events.push(listeners[i2]);
+          }
+        }
+        if (events.length)
+          this._events[evt] = events.length === 1 ? events[0] : events;
+        else
+          clearEvent(this, evt);
+      }
+      return this;
+    };
+    EventEmitter.prototype.removeAllListeners = function removeAllListeners(event) {
+      var evt;
+      if (event) {
+        evt = prefix ? prefix + event : event;
+        if (this._events[evt])
+          clearEvent(this, evt);
+      } else {
+        this._events = new Events();
+        this._eventsCount = 0;
+      }
+      return this;
+    };
+    EventEmitter.prototype.off = EventEmitter.prototype.removeListener;
+    EventEmitter.prototype.addListener = EventEmitter.prototype.on;
+    EventEmitter.prefixed = prefix;
+    EventEmitter.EventEmitter = EventEmitter;
+    if ("undefined" !== typeof module2) {
+      module2.exports = EventEmitter;
+    }
+  }
+});
+
+// node_modules/requires-port/index.js
+var require_requires_port = __commonJS({
+  "node_modules/requires-port/index.js"(exports2, module2) {
+    "use strict";
+    module2.exports = function required(port, protocol) {
+      protocol = protocol.split(":")[0];
+      port = +port;
+      if (!port)
+        return false;
+      switch (protocol) {
+        case "http":
+        case "ws":
+          return port !== 80;
+        case "https":
+        case "wss":
+          return port !== 443;
+        case "ftp":
+          return port !== 21;
+        case "gopher":
+          return port !== 70;
+        case "file":
+          return false;
+      }
+      return port !== 0;
+    };
+  }
+});
+
+// node_modules/http-proxy/lib/http-proxy/common.js
+var require_common2 = __commonJS({
+  "node_modules/http-proxy/lib/http-proxy/common.js"(exports2) {
+    var common = exports2;
+    var url = require("url");
+    var extend = require("util")._extend;
+    var required = require_requires_port();
+    var upgradeHeader = /(^|,)\s*upgrade\s*($|,)/i;
+    var isSSL = /^https|wss/;
+    common.isSSL = isSSL;
+    common.setupOutgoing = function(outgoing, options, req, forward) {
+      outgoing.port = options[forward || "target"].port || (isSSL.test(options[forward || "target"].protocol) ? 443 : 80);
+      [
+        "host",
+        "hostname",
+        "socketPath",
+        "pfx",
+        "key",
+        "passphrase",
+        "cert",
+        "ca",
+        "ciphers",
+        "secureProtocol"
+      ].forEach(
+        function(e2) {
+          outgoing[e2] = options[forward || "target"][e2];
+        }
+      );
+      outgoing.method = options.method || req.method;
+      outgoing.headers = extend({}, req.headers);
+      if (options.headers) {
+        extend(outgoing.headers, options.headers);
+      }
+      if (options.auth) {
+        outgoing.auth = options.auth;
+      }
+      if (options.ca) {
+        outgoing.ca = options.ca;
+      }
+      if (isSSL.test(options[forward || "target"].protocol)) {
+        outgoing.rejectUnauthorized = typeof options.secure === "undefined" ? true : options.secure;
+      }
+      outgoing.agent = options.agent || false;
+      outgoing.localAddress = options.localAddress;
+      if (!outgoing.agent) {
+        outgoing.headers = outgoing.headers || {};
+        if (typeof outgoing.headers.connection !== "string" || !upgradeHeader.test(outgoing.headers.connection)) {
+          outgoing.headers.connection = "close";
+        }
+      }
+      var target = options[forward || "target"];
+      var targetPath = target && options.prependPath !== false ? target.path || "" : "";
+      var outgoingPath = !options.toProxy ? url.parse(req.url).path || "" : req.url;
+      outgoingPath = !options.ignorePath ? outgoingPath : "";
+      outgoing.path = common.urlJoin(targetPath, outgoingPath);
+      if (options.changeOrigin) {
+        outgoing.headers.host = required(outgoing.port, options[forward || "target"].protocol) && !hasPort(outgoing.host) ? outgoing.host + ":" + outgoing.port : outgoing.host;
+      }
+      return outgoing;
+    };
+    common.setupSocket = function(socket) {
+      socket.setTimeout(0);
+      socket.setNoDelay(true);
+      socket.setKeepAlive(true, 0);
+      return socket;
+    };
+    common.getPort = function(req) {
+      var res = req.headers.host ? req.headers.host.match(/:(\d+)/) : "";
+      return res ? res[1] : common.hasEncryptedConnection(req) ? "443" : "80";
+    };
+    common.hasEncryptedConnection = function(req) {
+      return Boolean(req.connection.encrypted || req.connection.pair);
+    };
+    common.urlJoin = function() {
+      var args2 = Array.prototype.slice.call(arguments), lastIndex = args2.length - 1, last = args2[lastIndex], lastSegs = last.split("?"), retSegs;
+      args2[lastIndex] = lastSegs.shift();
+      retSegs = [
+        args2.filter(Boolean).join("/").replace(/\/+/g, "/").replace("http:/", "http://").replace("https:/", "https://")
+      ];
+      retSegs.push.apply(retSegs, lastSegs);
+      return retSegs.join("?");
+    };
+    common.rewriteCookieProperty = function rewriteCookieProperty(header, config, property) {
+      if (Array.isArray(header)) {
+        return header.map(function(headerElement) {
+          return rewriteCookieProperty(headerElement, config, property);
+        });
+      }
+      return header.replace(new RegExp("(;\\s*" + property + "=)([^;]+)", "i"), function(match, prefix, previousValue) {
+        var newValue;
+        if (previousValue in config) {
+          newValue = config[previousValue];
+        } else if ("*" in config) {
+          newValue = config["*"];
+        } else {
+          return match;
+        }
+        if (newValue) {
+          return prefix + newValue;
+        } else {
+          return "";
+        }
+      });
+    };
+    function hasPort(host) {
+      return !!~host.indexOf(":");
+    }
+  }
+});
+
+// node_modules/http-proxy/lib/http-proxy/passes/web-outgoing.js
+var require_web_outgoing = __commonJS({
+  "node_modules/http-proxy/lib/http-proxy/passes/web-outgoing.js"(exports2, module2) {
+    var url = require("url");
+    var common = require_common2();
+    var redirectRegex = /^201|30(1|2|7|8)$/;
+    module2.exports = {
+      // <--
+      /**
+       * If is a HTTP 1.0 request, remove chunk headers
+       *
+       * @param {ClientRequest} Req Request object
+       * @param {IncomingMessage} Res Response object
+       * @param {proxyResponse} Res Response object from the proxy request
+       *
+       * @api private
+       */
+      removeChunked: function removeChunked(req, res, proxyRes) {
+        if (req.httpVersion === "1.0") {
+          delete proxyRes.headers["transfer-encoding"];
+        }
+      },
+      /**
+       * If is a HTTP 1.0 request, set the correct connection header
+       * or if connection header not present, then use `keep-alive`
+       *
+       * @param {ClientRequest} Req Request object
+       * @param {IncomingMessage} Res Response object
+       * @param {proxyResponse} Res Response object from the proxy request
+       *
+       * @api private
+       */
+      setConnection: function setConnection(req, res, proxyRes) {
+        if (req.httpVersion === "1.0") {
+          proxyRes.headers.connection = req.headers.connection || "close";
+        } else if (req.httpVersion !== "2.0" && !proxyRes.headers.connection) {
+          proxyRes.headers.connection = req.headers.connection || "keep-alive";
+        }
+      },
+      setRedirectHostRewrite: function setRedirectHostRewrite(req, res, proxyRes, options) {
+        if ((options.hostRewrite || options.autoRewrite || options.protocolRewrite) && proxyRes.headers["location"] && redirectRegex.test(proxyRes.statusCode)) {
+          var target = url.parse(options.target);
+          var u2 = url.parse(proxyRes.headers["location"]);
+          if (target.host != u2.host) {
+            return;
+          }
+          if (options.hostRewrite) {
+            u2.host = options.hostRewrite;
+          } else if (options.autoRewrite) {
+            u2.host = req.headers["host"];
+          }
+          if (options.protocolRewrite) {
+            u2.protocol = options.protocolRewrite;
+          }
+          proxyRes.headers["location"] = u2.format();
+        }
+      },
+      /**
+       * Copy headers from proxyResponse to response
+       * set each header in response object.
+       *
+       * @param {ClientRequest} Req Request object
+       * @param {IncomingMessage} Res Response object
+       * @param {proxyResponse} Res Response object from the proxy request
+       * @param {Object} Options options.cookieDomainRewrite: Config to rewrite cookie domain
+       *
+       * @api private
+       */
+      writeHeaders: function writeHeaders(req, res, proxyRes, options) {
+        var rewriteCookieDomainConfig = options.cookieDomainRewrite, rewriteCookiePathConfig = options.cookiePathRewrite, preserveHeaderKeyCase = options.preserveHeaderKeyCase, rawHeaderKeyMap, setHeader = function(key2, header) {
+          if (header == void 0)
+            return;
+          if (rewriteCookieDomainConfig && key2.toLowerCase() === "set-cookie") {
+            header = common.rewriteCookieProperty(header, rewriteCookieDomainConfig, "domain");
+          }
+          if (rewriteCookiePathConfig && key2.toLowerCase() === "set-cookie") {
+            header = common.rewriteCookieProperty(header, rewriteCookiePathConfig, "path");
+          }
+          res.setHeader(String(key2).trim(), header);
+        };
+        if (typeof rewriteCookieDomainConfig === "string") {
+          rewriteCookieDomainConfig = { "*": rewriteCookieDomainConfig };
+        }
+        if (typeof rewriteCookiePathConfig === "string") {
+          rewriteCookiePathConfig = { "*": rewriteCookiePathConfig };
+        }
+        if (preserveHeaderKeyCase && proxyRes.rawHeaders != void 0) {
+          rawHeaderKeyMap = {};
+          for (var i2 = 0; i2 < proxyRes.rawHeaders.length; i2 += 2) {
+            var key = proxyRes.rawHeaders[i2];
+            rawHeaderKeyMap[key.toLowerCase()] = key;
+          }
+        }
+        Object.keys(proxyRes.headers).forEach(function(key2) {
+          var header = proxyRes.headers[key2];
+          if (preserveHeaderKeyCase && rawHeaderKeyMap) {
+            key2 = rawHeaderKeyMap[key2] || key2;
+          }
+          setHeader(key2, header);
+        });
+      },
+      /**
+       * Set the statusCode from the proxyResponse
+       *
+       * @param {ClientRequest} Req Request object
+       * @param {IncomingMessage} Res Response object
+       * @param {proxyResponse} Res Response object from the proxy request
+       *
+       * @api private
+       */
+      writeStatusCode: function writeStatusCode(req, res, proxyRes) {
+        if (proxyRes.statusMessage) {
+          res.statusCode = proxyRes.statusCode;
+          res.statusMessage = proxyRes.statusMessage;
+        } else {
+          res.statusCode = proxyRes.statusCode;
+        }
+      }
+    };
+  }
+});
+
+// node_modules/follow-redirects/debug.js
+var require_debug = __commonJS({
+  "node_modules/follow-redirects/debug.js"(exports2, module2) {
+    var debug2;
+    module2.exports = function() {
+      if (!debug2) {
+        try {
+          debug2 = require_src()("follow-redirects");
+        } catch (error) {
+        }
+        if (typeof debug2 !== "function") {
+          debug2 = function() {
+          };
+        }
+      }
+      debug2.apply(null, arguments);
+    };
+  }
+});
+
+// node_modules/follow-redirects/index.js
+var require_follow_redirects = __commonJS({
+  "node_modules/follow-redirects/index.js"(exports2, module2) {
+    var url = require("url");
+    var URL3 = url.URL;
+    var http = require("http");
+    var https = require("https");
+    var Writable = require("stream").Writable;
+    var assert = require("assert");
+    var debug2 = require_debug();
+    var useNativeURL = false;
+    try {
+      assert(new URL3());
+    } catch (error) {
+      useNativeURL = error.code === "ERR_INVALID_URL";
+    }
+    var preservedUrlFields = [
+      "auth",
+      "host",
+      "hostname",
+      "href",
+      "path",
+      "pathname",
+      "port",
+      "protocol",
+      "query",
+      "search",
+      "hash"
+    ];
+    var events = ["abort", "aborted", "connect", "error", "socket", "timeout"];
+    var eventHandlers = /* @__PURE__ */ Object.create(null);
+    events.forEach(function(event) {
+      eventHandlers[event] = function(arg1, arg2, arg3) {
+        this._redirectable.emit(event, arg1, arg2, arg3);
+      };
+    });
+    var InvalidUrlError = createErrorType(
+      "ERR_INVALID_URL",
+      "Invalid URL",
+      TypeError
+    );
+    var RedirectionError = createErrorType(
+      "ERR_FR_REDIRECTION_FAILURE",
+      "Redirected request failed"
+    );
+    var TooManyRedirectsError = createErrorType(
+      "ERR_FR_TOO_MANY_REDIRECTS",
+      "Maximum number of redirects exceeded",
+      RedirectionError
+    );
+    var MaxBodyLengthExceededError = createErrorType(
+      "ERR_FR_MAX_BODY_LENGTH_EXCEEDED",
+      "Request body larger than maxBodyLength limit"
+    );
+    var WriteAfterEndError = createErrorType(
+      "ERR_STREAM_WRITE_AFTER_END",
+      "write after end"
+    );
+    var destroy = Writable.prototype.destroy || noop;
+    function RedirectableRequest(options, responseCallback) {
+      Writable.call(this);
+      this._sanitizeOptions(options);
+      this._options = options;
+      this._ended = false;
+      this._ending = false;
+      this._redirectCount = 0;
+      this._redirects = [];
+      this._requestBodyLength = 0;
+      this._requestBodyBuffers = [];
+      if (responseCallback) {
+        this.on("response", responseCallback);
+      }
+      var self2 = this;
+      this._onNativeResponse = function(response) {
+        try {
+          self2._processResponse(response);
+        } catch (cause) {
+          self2.emit("error", cause instanceof RedirectionError ? cause : new RedirectionError({ cause }));
+        }
+      };
+      this._performRequest();
+    }
+    RedirectableRequest.prototype = Object.create(Writable.prototype);
+    RedirectableRequest.prototype.abort = function() {
+      destroyRequest(this._currentRequest);
+      this._currentRequest.abort();
+      this.emit("abort");
+    };
+    RedirectableRequest.prototype.destroy = function(error) {
+      destroyRequest(this._currentRequest, error);
+      destroy.call(this, error);
+      return this;
+    };
+    RedirectableRequest.prototype.write = function(data, encoding, callback) {
+      if (this._ending) {
+        throw new WriteAfterEndError();
+      }
+      if (!isString(data) && !isBuffer(data)) {
+        throw new TypeError("data should be a string, Buffer or Uint8Array");
+      }
+      if (isFunction3(encoding)) {
+        callback = encoding;
+        encoding = null;
+      }
+      if (data.length === 0) {
+        if (callback) {
+          callback();
+        }
+        return;
+      }
+      if (this._requestBodyLength + data.length <= this._options.maxBodyLength) {
+        this._requestBodyLength += data.length;
+        this._requestBodyBuffers.push({ data, encoding });
+        this._currentRequest.write(data, encoding, callback);
+      } else {
+        this.emit("error", new MaxBodyLengthExceededError());
+        this.abort();
+      }
+    };
+    RedirectableRequest.prototype.end = function(data, encoding, callback) {
+      if (isFunction3(data)) {
+        callback = data;
+        data = encoding = null;
+      } else if (isFunction3(encoding)) {
+        callback = encoding;
+        encoding = null;
+      }
+      if (!data) {
+        this._ended = this._ending = true;
+        this._currentRequest.end(null, null, callback);
+      } else {
+        var self2 = this;
+        var currentRequest = this._currentRequest;
+        this.write(data, encoding, function() {
+          self2._ended = true;
+          currentRequest.end(null, null, callback);
+        });
+        this._ending = true;
+      }
+    };
+    RedirectableRequest.prototype.setHeader = function(name, value) {
+      this._options.headers[name] = value;
+      this._currentRequest.setHeader(name, value);
+    };
+    RedirectableRequest.prototype.removeHeader = function(name) {
+      delete this._options.headers[name];
+      this._currentRequest.removeHeader(name);
+    };
+    RedirectableRequest.prototype.setTimeout = function(msecs, callback) {
+      var self2 = this;
+      function destroyOnTimeout(socket) {
+        socket.setTimeout(msecs);
+        socket.removeListener("timeout", socket.destroy);
+        socket.addListener("timeout", socket.destroy);
+      }
+      function startTimer(socket) {
+        if (self2._timeout) {
+          clearTimeout(self2._timeout);
+        }
+        self2._timeout = setTimeout(function() {
+          self2.emit("timeout");
+          clearTimer();
+        }, msecs);
+        destroyOnTimeout(socket);
+      }
+      function clearTimer() {
+        if (self2._timeout) {
+          clearTimeout(self2._timeout);
+          self2._timeout = null;
+        }
+        self2.removeListener("abort", clearTimer);
+        self2.removeListener("error", clearTimer);
+        self2.removeListener("response", clearTimer);
+        self2.removeListener("close", clearTimer);
+        if (callback) {
+          self2.removeListener("timeout", callback);
+        }
+        if (!self2.socket) {
+          self2._currentRequest.removeListener("socket", startTimer);
+        }
+      }
+      if (callback) {
+        this.on("timeout", callback);
+      }
+      if (this.socket) {
+        startTimer(this.socket);
+      } else {
+        this._currentRequest.once("socket", startTimer);
+      }
+      this.on("socket", destroyOnTimeout);
+      this.on("abort", clearTimer);
+      this.on("error", clearTimer);
+      this.on("response", clearTimer);
+      this.on("close", clearTimer);
+      return this;
+    };
+    [
+      "flushHeaders",
+      "getHeader",
+      "setNoDelay",
+      "setSocketKeepAlive"
+    ].forEach(function(method) {
+      RedirectableRequest.prototype[method] = function(a2, b2) {
+        return this._currentRequest[method](a2, b2);
+      };
+    });
+    ["aborted", "connection", "socket"].forEach(function(property) {
+      Object.defineProperty(RedirectableRequest.prototype, property, {
+        get: function() {
+          return this._currentRequest[property];
+        }
+      });
+    });
+    RedirectableRequest.prototype._sanitizeOptions = function(options) {
+      if (!options.headers) {
+        options.headers = {};
+      }
+      if (options.host) {
+        if (!options.hostname) {
+          options.hostname = options.host;
+        }
+        delete options.host;
+      }
+      if (!options.pathname && options.path) {
+        var searchPos = options.path.indexOf("?");
+        if (searchPos < 0) {
+          options.pathname = options.path;
+        } else {
+          options.pathname = options.path.substring(0, searchPos);
+          options.search = options.path.substring(searchPos);
+        }
+      }
+    };
+    RedirectableRequest.prototype._performRequest = function() {
+      var protocol = this._options.protocol;
+      var nativeProtocol = this._options.nativeProtocols[protocol];
+      if (!nativeProtocol) {
+        throw new TypeError("Unsupported protocol " + protocol);
+      }
+      if (this._options.agents) {
+        var scheme = protocol.slice(0, -1);
+        this._options.agent = this._options.agents[scheme];
+      }
+      var request = this._currentRequest = nativeProtocol.request(this._options, this._onNativeResponse);
+      request._redirectable = this;
+      for (var event of events) {
+        request.on(event, eventHandlers[event]);
+      }
+      this._currentUrl = /^\//.test(this._options.path) ? url.format(this._options) : (
+        // When making a request to a proxy, […]
+        // a client MUST send the target URI in absolute-form […].
+        this._options.path
+      );
+      if (this._isRedirect) {
+        var i2 = 0;
+        var self2 = this;
+        var buffers = this._requestBodyBuffers;
+        (function writeNext(error) {
+          if (request === self2._currentRequest) {
+            if (error) {
+              self2.emit("error", error);
+            } else if (i2 < buffers.length) {
+              var buffer = buffers[i2++];
+              if (!request.finished) {
+                request.write(buffer.data, buffer.encoding, writeNext);
+              }
+            } else if (self2._ended) {
+              request.end();
+            }
+          }
+        })();
+      }
+    };
+    RedirectableRequest.prototype._processResponse = function(response) {
+      var statusCode = response.statusCode;
+      if (this._options.trackRedirects) {
+        this._redirects.push({
+          url: this._currentUrl,
+          headers: response.headers,
+          statusCode
+        });
+      }
+      var location = response.headers.location;
+      if (!location || this._options.followRedirects === false || statusCode < 300 || statusCode >= 400) {
+        response.responseUrl = this._currentUrl;
+        response.redirects = this._redirects;
+        this.emit("response", response);
+        this._requestBodyBuffers = [];
+        return;
+      }
+      destroyRequest(this._currentRequest);
+      response.destroy();
+      if (++this._redirectCount > this._options.maxRedirects) {
+        throw new TooManyRedirectsError();
+      }
+      var requestHeaders;
+      var beforeRedirect = this._options.beforeRedirect;
+      if (beforeRedirect) {
+        requestHeaders = Object.assign({
+          // The Host header was set by nativeProtocol.request
+          Host: response.req.getHeader("host")
+        }, this._options.headers);
+      }
+      var method = this._options.method;
+      if ((statusCode === 301 || statusCode === 302) && this._options.method === "POST" || // RFC7231§6.4.4: The 303 (See Other) status code indicates that
+      // the server is redirecting the user agent to a different resource […]
+      // A user agent can perform a retrieval request targeting that URI
+      // (a GET or HEAD request if using HTTP) […]
+      statusCode === 303 && !/^(?:GET|HEAD)$/.test(this._options.method)) {
+        this._options.method = "GET";
+        this._requestBodyBuffers = [];
+        removeMatchingHeaders(/^content-/i, this._options.headers);
+      }
+      var currentHostHeader = removeMatchingHeaders(/^host$/i, this._options.headers);
+      var currentUrlParts = parseUrl(this._currentUrl);
+      var currentHost = currentHostHeader || currentUrlParts.host;
+      var currentUrl = /^\w+:/.test(location) ? this._currentUrl : url.format(Object.assign(currentUrlParts, { host: currentHost }));
+      var redirectUrl = resolveUrl(location, currentUrl);
+      debug2("redirecting to", redirectUrl.href);
+      this._isRedirect = true;
+      spreadUrlObject(redirectUrl, this._options);
+      if (redirectUrl.protocol !== currentUrlParts.protocol && redirectUrl.protocol !== "https:" || redirectUrl.host !== currentHost && !isSubdomain(redirectUrl.host, currentHost)) {
+        removeMatchingHeaders(/^(?:(?:proxy-)?authorization|cookie)$/i, this._options.headers);
+      }
+      if (isFunction3(beforeRedirect)) {
+        var responseDetails = {
+          headers: response.headers,
+          statusCode
+        };
+        var requestDetails = {
+          url: currentUrl,
+          method,
+          headers: requestHeaders
+        };
+        beforeRedirect(this._options, responseDetails, requestDetails);
+        this._sanitizeOptions(this._options);
+      }
+      this._performRequest();
+    };
+    function wrap(protocols) {
+      var exports3 = {
+        maxRedirects: 21,
+        maxBodyLength: 10 * 1024 * 1024
+      };
+      var nativeProtocols = {};
+      Object.keys(protocols).forEach(function(scheme) {
+        var protocol = scheme + ":";
+        var nativeProtocol = nativeProtocols[protocol] = protocols[scheme];
+        var wrappedProtocol = exports3[scheme] = Object.create(nativeProtocol);
+        function request(input, options, callback) {
+          if (isURL(input)) {
+            input = spreadUrlObject(input);
+          } else if (isString(input)) {
+            input = spreadUrlObject(parseUrl(input));
+          } else {
+            callback = options;
+            options = validateUrl(input);
+            input = { protocol };
+          }
+          if (isFunction3(options)) {
+            callback = options;
+            options = null;
+          }
+          options = Object.assign({
+            maxRedirects: exports3.maxRedirects,
+            maxBodyLength: exports3.maxBodyLength
+          }, input, options);
+          options.nativeProtocols = nativeProtocols;
+          if (!isString(options.host) && !isString(options.hostname)) {
+            options.hostname = "::1";
+          }
+          assert.equal(options.protocol, protocol, "protocol mismatch");
+          debug2("options", options);
+          return new RedirectableRequest(options, callback);
+        }
+        function get(input, options, callback) {
+          var wrappedRequest = wrappedProtocol.request(input, options, callback);
+          wrappedRequest.end();
+          return wrappedRequest;
+        }
+        Object.defineProperties(wrappedProtocol, {
+          request: { value: request, configurable: true, enumerable: true, writable: true },
+          get: { value: get, configurable: true, enumerable: true, writable: true }
+        });
+      });
+      return exports3;
+    }
+    function noop() {
+    }
+    function parseUrl(input) {
+      var parsed;
+      if (useNativeURL) {
+        parsed = new URL3(input);
+      } else {
+        parsed = validateUrl(url.parse(input));
+        if (!isString(parsed.protocol)) {
+          throw new InvalidUrlError({ input });
+        }
+      }
+      return parsed;
+    }
+    function resolveUrl(relative2, base) {
+      return useNativeURL ? new URL3(relative2, base) : parseUrl(url.resolve(base, relative2));
+    }
+    function validateUrl(input) {
+      if (/^\[/.test(input.hostname) && !/^\[[:0-9a-f]+\]$/i.test(input.hostname)) {
+        throw new InvalidUrlError({ input: input.href || input });
+      }
+      if (/^\[/.test(input.host) && !/^\[[:0-9a-f]+\](:\d+)?$/i.test(input.host)) {
+        throw new InvalidUrlError({ input: input.href || input });
+      }
+      return input;
+    }
+    function spreadUrlObject(urlObject, target) {
+      var spread = target || {};
+      for (var key of preservedUrlFields) {
+        spread[key] = urlObject[key];
+      }
+      if (spread.hostname.startsWith("[")) {
+        spread.hostname = spread.hostname.slice(1, -1);
+      }
+      if (spread.port !== "") {
+        spread.port = Number(spread.port);
+      }
+      spread.path = spread.search ? spread.pathname + spread.search : spread.pathname;
+      return spread;
+    }
+    function removeMatchingHeaders(regex, headers) {
+      var lastValue;
+      for (var header in headers) {
+        if (regex.test(header)) {
+          lastValue = headers[header];
+          delete headers[header];
+        }
+      }
+      return lastValue === null || typeof lastValue === "undefined" ? void 0 : String(lastValue).trim();
+    }
+    function createErrorType(code, message2, baseClass) {
+      function CustomError(properties) {
+        Error.captureStackTrace(this, this.constructor);
+        Object.assign(this, properties || {});
+        this.code = code;
+        this.message = this.cause ? message2 + ": " + this.cause.message : message2;
+      }
+      CustomError.prototype = new (baseClass || Error)();
+      Object.defineProperties(CustomError.prototype, {
+        constructor: {
+          value: CustomError,
+          enumerable: false
+        },
+        name: {
+          value: "Error [" + code + "]",
+          enumerable: false
+        }
+      });
+      return CustomError;
+    }
+    function destroyRequest(request, error) {
+      for (var event of events) {
+        request.removeListener(event, eventHandlers[event]);
+      }
+      request.on("error", noop);
+      request.destroy(error);
+    }
+    function isSubdomain(subdomain, domain) {
+      assert(isString(subdomain) && isString(domain));
+      var dot = subdomain.length - domain.length - 1;
+      return dot > 0 && subdomain[dot] === "." && subdomain.endsWith(domain);
+    }
+    function isString(value) {
+      return typeof value === "string" || value instanceof String;
+    }
+    function isFunction3(value) {
+      return typeof value === "function";
+    }
+    function isBuffer(value) {
+      return typeof value === "object" && "length" in value;
+    }
+    function isURL(value) {
+      return URL3 && value instanceof URL3;
+    }
+    module2.exports = wrap({ http, https });
+    module2.exports.wrap = wrap;
+  }
+});
+
+// node_modules/http-proxy/lib/http-proxy/passes/web-incoming.js
+var require_web_incoming = __commonJS({
+  "node_modules/http-proxy/lib/http-proxy/passes/web-incoming.js"(exports2, module2) {
+    var httpNative = require("http");
+    var httpsNative = require("https");
+    var web_o = require_web_outgoing();
+    var common = require_common2();
+    var followRedirects = require_follow_redirects();
+    web_o = Object.keys(web_o).map(function(pass) {
+      return web_o[pass];
+    });
+    var nativeAgents = { http: httpNative, https: httpsNative };
+    module2.exports = {
+      /**
+       * Sets `content-length` to '0' if request is of DELETE type.
+       *
+       * @param {ClientRequest} Req Request object
+       * @param {IncomingMessage} Res Response object
+       * @param {Object} Options Config object passed to the proxy
+       *
+       * @api private
+       */
+      deleteLength: function deleteLength(req, res, options) {
+        if ((req.method === "DELETE" || req.method === "OPTIONS") && !req.headers["content-length"]) {
+          req.headers["content-length"] = "0";
+          delete req.headers["transfer-encoding"];
+        }
+      },
+      /**
+       * Sets timeout in request socket if it was specified in options.
+       *
+       * @param {ClientRequest} Req Request object
+       * @param {IncomingMessage} Res Response object
+       * @param {Object} Options Config object passed to the proxy
+       *
+       * @api private
+       */
+      timeout: function timeout(req, res, options) {
+        if (options.timeout) {
+          req.socket.setTimeout(options.timeout);
+        }
+      },
+      /**
+       * Sets `x-forwarded-*` headers if specified in config.
+       *
+       * @param {ClientRequest} Req Request object
+       * @param {IncomingMessage} Res Response object
+       * @param {Object} Options Config object passed to the proxy
+       *
+       * @api private
+       */
+      XHeaders: function XHeaders(req, res, options) {
+        if (!options.xfwd)
+          return;
+        var encrypted = req.isSpdy || common.hasEncryptedConnection(req);
+        var values = {
+          for: req.connection.remoteAddress || req.socket.remoteAddress,
+          port: common.getPort(req),
+          proto: encrypted ? "https" : "http"
+        };
+        ["for", "port", "proto"].forEach(function(header) {
+          req.headers["x-forwarded-" + header] = (req.headers["x-forwarded-" + header] || "") + (req.headers["x-forwarded-" + header] ? "," : "") + values[header];
+        });
+        req.headers["x-forwarded-host"] = req.headers["x-forwarded-host"] || req.headers["host"] || "";
+      },
+      /**
+       * Does the actual proxying. If `forward` is enabled fires up
+       * a ForwardStream, same happens for ProxyStream. The request
+       * just dies otherwise.
+       *
+       * @param {ClientRequest} Req Request object
+       * @param {IncomingMessage} Res Response object
+       * @param {Object} Options Config object passed to the proxy
+       *
+       * @api private
+       */
+      stream: function stream(req, res, options, _2, server, clb) {
+        server.emit("start", req, res, options.target || options.forward);
+        var agents = options.followRedirects ? followRedirects : nativeAgents;
+        var http = agents.http;
+        var https = agents.https;
+        if (options.forward) {
+          var forwardReq = (options.forward.protocol === "https:" ? https : http).request(
+            common.setupOutgoing(options.ssl || {}, options, req, "forward")
+          );
+          var forwardError = createErrorHandler(forwardReq, options.forward);
+          req.on("error", forwardError);
+          forwardReq.on("error", forwardError);
+          (options.buffer || req).pipe(forwardReq);
+          if (!options.target) {
+            return res.end();
+          }
+        }
+        var proxyReq = (options.target.protocol === "https:" ? https : http).request(
+          common.setupOutgoing(options.ssl || {}, options, req)
+        );
+        proxyReq.on("socket", function(socket) {
+          if (server && !proxyReq.getHeader("expect")) {
+            server.emit("proxyReq", proxyReq, req, res, options);
+          }
+        });
+        if (options.proxyTimeout) {
+          proxyReq.setTimeout(options.proxyTimeout, function() {
+            proxyReq.abort();
+          });
+        }
+        req.on("aborted", function() {
+          proxyReq.abort();
+        });
+        var proxyError = createErrorHandler(proxyReq, options.target);
+        req.on("error", proxyError);
+        proxyReq.on("error", proxyError);
+        function createErrorHandler(proxyReq2, url) {
+          return function proxyError2(err) {
+            if (req.socket.destroyed && err.code === "ECONNRESET") {
+              server.emit("econnreset", err, req, res, url);
+              return proxyReq2.abort();
+            }
+            if (clb) {
+              clb(err, req, res, url);
+            } else {
+              server.emit("error", err, req, res, url);
+            }
+          };
+        }
+        (options.buffer || req).pipe(proxyReq);
+        proxyReq.on("response", function(proxyRes) {
+          if (server) {
+            server.emit("proxyRes", proxyRes, req, res);
+          }
+          if (!res.headersSent && !options.selfHandleResponse) {
+            for (var i2 = 0; i2 < web_o.length; i2++) {
+              if (web_o[i2](req, res, proxyRes, options)) {
+                break;
+              }
+            }
+          }
+          if (!res.finished) {
+            proxyRes.on("end", function() {
+              if (server)
+                server.emit("end", req, res, proxyRes);
+            });
+            if (!options.selfHandleResponse)
+              proxyRes.pipe(res);
+          } else {
+            if (server)
+              server.emit("end", req, res, proxyRes);
+          }
+        });
+      }
+    };
+  }
+});
+
+// node_modules/http-proxy/lib/http-proxy/passes/ws-incoming.js
+var require_ws_incoming = __commonJS({
+  "node_modules/http-proxy/lib/http-proxy/passes/ws-incoming.js"(exports2, module2) {
+    var http = require("http");
+    var https = require("https");
+    var common = require_common2();
+    module2.exports = {
+      /**
+       * WebSocket requests must have the `GET` method and
+       * the `upgrade:websocket` header
+       *
+       * @param {ClientRequest} Req Request object
+       * @param {Socket} Websocket
+       *
+       * @api private
+       */
+      checkMethodAndHeader: function checkMethodAndHeader(req, socket) {
+        if (req.method !== "GET" || !req.headers.upgrade) {
+          socket.destroy();
+          return true;
+        }
+        if (req.headers.upgrade.toLowerCase() !== "websocket") {
+          socket.destroy();
+          return true;
+        }
+      },
+      /**
+       * Sets `x-forwarded-*` headers if specified in config.
+       *
+       * @param {ClientRequest} Req Request object
+       * @param {Socket} Websocket
+       * @param {Object} Options Config object passed to the proxy
+       *
+       * @api private
+       */
+      XHeaders: function XHeaders(req, socket, options) {
+        if (!options.xfwd)
+          return;
+        var values = {
+          for: req.connection.remoteAddress || req.socket.remoteAddress,
+          port: common.getPort(req),
+          proto: common.hasEncryptedConnection(req) ? "wss" : "ws"
+        };
+        ["for", "port", "proto"].forEach(function(header) {
+          req.headers["x-forwarded-" + header] = (req.headers["x-forwarded-" + header] || "") + (req.headers["x-forwarded-" + header] ? "," : "") + values[header];
+        });
+      },
+      /**
+       * Does the actual proxying. Make the request and upgrade it
+       * send the Switching Protocols request and pipe the sockets.
+       *
+       * @param {ClientRequest} Req Request object
+       * @param {Socket} Websocket
+       * @param {Object} Options Config object passed to the proxy
+       *
+       * @api private
+       */
+      stream: function stream(req, socket, options, head, server, clb) {
+        var createHttpHeader = function(line, headers) {
+          return Object.keys(headers).reduce(function(head2, key) {
+            var value = headers[key];
+            if (!Array.isArray(value)) {
+              head2.push(key + ": " + value);
+              return head2;
+            }
+            for (var i2 = 0; i2 < value.length; i2++) {
+              head2.push(key + ": " + value[i2]);
+            }
+            return head2;
+          }, [line]).join("\r\n") + "\r\n\r\n";
+        };
+        common.setupSocket(socket);
+        if (head && head.length)
+          socket.unshift(head);
+        var proxyReq = (common.isSSL.test(options.target.protocol) ? https : http).request(
+          common.setupOutgoing(options.ssl || {}, options, req)
+        );
+        if (server) {
+          server.emit("proxyReqWs", proxyReq, req, socket, options, head);
+        }
+        proxyReq.on("error", onOutgoingError);
+        proxyReq.on("response", function(res) {
+          if (!res.upgrade) {
+            socket.write(createHttpHeader("HTTP/" + res.httpVersion + " " + res.statusCode + " " + res.statusMessage, res.headers));
+            res.pipe(socket);
+          }
+        });
+        proxyReq.on("upgrade", function(proxyRes, proxySocket, proxyHead) {
+          proxySocket.on("error", onOutgoingError);
+          proxySocket.on("end", function() {
+            server.emit("close", proxyRes, proxySocket, proxyHead);
+          });
+          socket.on("error", function() {
+            proxySocket.end();
+          });
+          common.setupSocket(proxySocket);
+          if (proxyHead && proxyHead.length)
+            proxySocket.unshift(proxyHead);
+          socket.write(createHttpHeader("HTTP/1.1 101 Switching Protocols", proxyRes.headers));
+          proxySocket.pipe(socket).pipe(proxySocket);
+          server.emit("open", proxySocket);
+          server.emit("proxySocket", proxySocket);
+        });
+        return proxyReq.end();
+        function onOutgoingError(err) {
+          if (clb) {
+            clb(err, req, socket);
+          } else {
+            server.emit("error", err, req, socket);
+          }
+          socket.end();
+        }
+      }
+    };
+  }
+});
+
+// node_modules/http-proxy/lib/http-proxy/index.js
+var require_http_proxy = __commonJS({
+  "node_modules/http-proxy/lib/http-proxy/index.js"(exports2, module2) {
+    var httpProxy = module2.exports;
+    var extend = require("util")._extend;
+    var parse_url = require("url").parse;
+    var EE3 = require_eventemitter3();
+    var http = require("http");
+    var https = require("https");
+    var web = require_web_incoming();
+    var ws = require_ws_incoming();
+    httpProxy.Server = ProxyServer2;
+    function createRightProxy(type) {
+      return function(options) {
+        return function(req, res) {
+          var passes = type === "ws" ? this.wsPasses : this.webPasses, args2 = [].slice.call(arguments), cntr = args2.length - 1, head, cbl;
+          if (typeof args2[cntr] === "function") {
+            cbl = args2[cntr];
+            cntr--;
+          }
+          var requestOptions = options;
+          if (!(args2[cntr] instanceof Buffer) && args2[cntr] !== res) {
+            requestOptions = extend({}, options);
+            extend(requestOptions, args2[cntr]);
+            cntr--;
+          }
+          if (args2[cntr] instanceof Buffer) {
+            head = args2[cntr];
+          }
+          ["target", "forward"].forEach(function(e2) {
+            if (typeof requestOptions[e2] === "string")
+              requestOptions[e2] = parse_url(requestOptions[e2]);
+          });
+          if (!requestOptions.target && !requestOptions.forward) {
+            return this.emit("error", new Error("Must provide a proper URL as target"));
+          }
+          for (var i2 = 0; i2 < passes.length; i2++) {
+            if (passes[i2](req, res, requestOptions, head, this, cbl)) {
+              break;
+            }
+          }
+        };
+      };
+    }
+    httpProxy.createRightProxy = createRightProxy;
+    function ProxyServer2(options) {
+      EE3.call(this);
+      options = options || {};
+      options.prependPath = options.prependPath === false ? false : true;
+      this.web = this.proxyRequest = createRightProxy("web")(options);
+      this.ws = this.proxyWebsocketRequest = createRightProxy("ws")(options);
+      this.options = options;
+      this.webPasses = Object.keys(web).map(function(pass) {
+        return web[pass];
+      });
+      this.wsPasses = Object.keys(ws).map(function(pass) {
+        return ws[pass];
+      });
+      this.on("error", this.onError, this);
+    }
+    require("util").inherits(ProxyServer2, EE3);
+    ProxyServer2.prototype.onError = function(err) {
+      if (this.listeners("error").length === 1) {
+        throw err;
+      }
+    };
+    ProxyServer2.prototype.listen = function(port, hostname) {
+      var self2 = this, closure = function(req, res) {
+        self2.web(req, res);
+      };
+      this._server = this.options.ssl ? https.createServer(this.options.ssl, closure) : http.createServer(closure);
+      if (this.options.ws) {
+        this._server.on("upgrade", function(req, socket, head) {
+          self2.ws(req, socket, head);
+        });
+      }
+      this._server.listen(port, hostname);
+      return this;
+    };
+    ProxyServer2.prototype.close = function(callback) {
+      var self2 = this;
+      if (this._server) {
+        this._server.close(done);
+      }
+      function done() {
+        self2._server = null;
+        if (callback) {
+          callback.apply(null, arguments);
+        }
+      }
+      ;
+    };
+    ProxyServer2.prototype.before = function(type, passName, callback) {
+      if (type !== "ws" && type !== "web") {
+        throw new Error("type must be `web` or `ws`");
+      }
+      var passes = type === "ws" ? this.wsPasses : this.webPasses, i2 = false;
+      passes.forEach(function(v6, idx) {
+        if (v6.name === passName)
+          i2 = idx;
+      });
+      if (i2 === false)
+        throw new Error("No such pass");
+      passes.splice(i2, 0, callback);
+    };
+    ProxyServer2.prototype.after = function(type, passName, callback) {
+      if (type !== "ws" && type !== "web") {
+        throw new Error("type must be `web` or `ws`");
+      }
+      var passes = type === "ws" ? this.wsPasses : this.webPasses, i2 = false;
+      passes.forEach(function(v6, idx) {
+        if (v6.name === passName)
+          i2 = idx;
+      });
+      if (i2 === false)
+        throw new Error("No such pass");
+      passes.splice(i2++, 0, callback);
+    };
+  }
+});
+
+// node_modules/http-proxy/lib/http-proxy.js
+var require_http_proxy2 = __commonJS({
+  "node_modules/http-proxy/lib/http-proxy.js"(exports2, module2) {
+    var ProxyServer2 = require_http_proxy().Server;
+    function createProxyServer(options) {
+      return new ProxyServer2(options);
+    }
+    ProxyServer2.createProxyServer = createProxyServer;
+    ProxyServer2.createServer = createProxyServer;
+    ProxyServer2.createProxy = createProxyServer;
+    module2.exports = ProxyServer2;
+  }
+});
+
+// node_modules/http-proxy/index.js
+var require_http_proxy3 = __commonJS({
+  "node_modules/http-proxy/index.js"(exports2, module2) {
+    module2.exports = require_http_proxy2();
+  }
+});
+
+// node_modules/isarray/index.js
+var require_isarray = __commonJS({
+  "node_modules/isarray/index.js"(exports2, module2) {
+    module2.exports = Array.isArray || function(arr) {
+      return Object.prototype.toString.call(arr) == "[object Array]";
+    };
+  }
+});
+
+// node_modules/path-to-regexp/index.js
+var require_path_to_regexp = __commonJS({
+  "node_modules/path-to-regexp/index.js"(exports2, module2) {
+    var isarray = require_isarray();
+    module2.exports = pathToRegexp;
+    module2.exports.parse = parse3;
+    module2.exports.compile = compile;
+    module2.exports.tokensToFunction = tokensToFunction;
+    module2.exports.tokensToRegExp = tokensToRegExp;
+    var PATH_REGEXP = new RegExp([
+      // Match escaped characters that would otherwise appear in future matches.
+      // This allows the user to escape special characters that won't transform.
+      "(\\\\.)",
+      // Match Express-style parameters and un-named parameters with a prefix
+      // and optional suffixes. Matches appear as:
+      //
+      // "/:test(\\d+)?" => ["/", "test", "\d+", undefined, "?", undefined]
+      // "/route(\\d+)"  => [undefined, undefined, undefined, "\d+", undefined, undefined]
+      // "/*"            => ["/", undefined, undefined, undefined, undefined, "*"]
+      "([\\/.])?(?:(?:\\:(\\w+)(?:\\(((?:\\\\.|[^\\\\()])+)\\))?|\\(((?:\\\\.|[^\\\\()])+)\\))([+*?])?|(\\*))"
+    ].join("|"), "g");
+    function parse3(str2, options) {
+      var tokens = [];
+      var key = 0;
+      var index = 0;
+      var path2 = "";
+      var defaultDelimiter = options && options.delimiter || "/";
+      var res;
+      while ((res = PATH_REGEXP.exec(str2)) != null) {
+        var m2 = res[0];
+        var escaped = res[1];
+        var offset = res.index;
+        path2 += str2.slice(index, offset);
+        index = offset + m2.length;
+        if (escaped) {
+          path2 += escaped[1];
+          continue;
+        }
+        var next = str2[index];
+        var prefix = res[2];
+        var name = res[3];
+        var capture = res[4];
+        var group = res[5];
+        var modifier = res[6];
+        var asterisk = res[7];
+        if (path2) {
+          tokens.push(path2);
+          path2 = "";
+        }
+        var partial = prefix != null && next != null && next !== prefix;
+        var repeat = modifier === "+" || modifier === "*";
+        var optional = modifier === "?" || modifier === "*";
+        var delimiter = res[2] || defaultDelimiter;
+        var pattern = capture || group;
+        tokens.push({
+          name: name || key++,
+          prefix: prefix || "",
+          delimiter,
+          optional,
+          repeat,
+          partial,
+          asterisk: !!asterisk,
+          pattern: pattern ? escapeGroup(pattern) : asterisk ? ".*" : "[^" + escapeString(delimiter) + "]+?"
+        });
+      }
+      if (index < str2.length) {
+        path2 += str2.substr(index);
+      }
+      if (path2) {
+        tokens.push(path2);
+      }
+      return tokens;
+    }
+    function compile(str2, options) {
+      return tokensToFunction(parse3(str2, options), options);
+    }
+    function encodeURIComponentPretty(str2) {
+      return encodeURI(str2).replace(/[\/?#]/g, function(c2) {
+        return "%" + c2.charCodeAt(0).toString(16).toUpperCase();
+      });
+    }
+    function encodeAsterisk(str2) {
+      return encodeURI(str2).replace(/[?#]/g, function(c2) {
+        return "%" + c2.charCodeAt(0).toString(16).toUpperCase();
+      });
+    }
+    function tokensToFunction(tokens, options) {
+      var matches = new Array(tokens.length);
+      for (var i2 = 0; i2 < tokens.length; i2++) {
+        if (typeof tokens[i2] === "object") {
+          matches[i2] = new RegExp("^(?:" + tokens[i2].pattern + ")$", flags(options));
+        }
+      }
+      return function(obj, opts) {
+        var path2 = "";
+        var data = obj || {};
+        var options2 = opts || {};
+        var encode = options2.pretty ? encodeURIComponentPretty : encodeURIComponent;
+        for (var i3 = 0; i3 < tokens.length; i3++) {
+          var token = tokens[i3];
+          if (typeof token === "string") {
+            path2 += token;
+            continue;
+          }
+          var value = data[token.name];
+          var segment;
+          if (value == null) {
+            if (token.optional) {
+              if (token.partial) {
+                path2 += token.prefix;
+              }
+              continue;
+            } else {
+              throw new TypeError('Expected "' + token.name + '" to be defined');
+            }
+          }
+          if (isarray(value)) {
+            if (!token.repeat) {
+              throw new TypeError('Expected "' + token.name + '" to not repeat, but received `' + JSON.stringify(value) + "`");
+            }
+            if (value.length === 0) {
+              if (token.optional) {
+                continue;
+              } else {
+                throw new TypeError('Expected "' + token.name + '" to not be empty');
+              }
+            }
+            for (var j2 = 0; j2 < value.length; j2++) {
+              segment = encode(value[j2]);
+              if (!matches[i3].test(segment)) {
+                throw new TypeError('Expected all "' + token.name + '" to match "' + token.pattern + '", but received `' + JSON.stringify(segment) + "`");
+              }
+              path2 += (j2 === 0 ? token.prefix : token.delimiter) + segment;
+            }
+            continue;
+          }
+          segment = token.asterisk ? encodeAsterisk(value) : encode(value);
+          if (!matches[i3].test(segment)) {
+            throw new TypeError('Expected "' + token.name + '" to match "' + token.pattern + '", but received "' + segment + '"');
+          }
+          path2 += token.prefix + segment;
+        }
+        return path2;
+      };
+    }
+    function escapeString(str2) {
+      return str2.replace(/([.+*?=^!:${}()[\]|\/\\])/g, "\\$1");
+    }
+    function escapeGroup(group) {
+      return group.replace(/([=!:$\/()])/g, "\\$1");
+    }
+    function attachKeys(re2, keys) {
+      re2.keys = keys;
+      return re2;
+    }
+    function flags(options) {
+      return options && options.sensitive ? "" : "i";
+    }
+    function regexpToRegexp(path2, keys) {
+      var groups = path2.source.match(/\((?!\?)/g);
+      if (groups) {
+        for (var i2 = 0; i2 < groups.length; i2++) {
+          keys.push({
+            name: i2,
+            prefix: null,
+            delimiter: null,
+            optional: false,
+            repeat: false,
+            partial: false,
+            asterisk: false,
+            pattern: null
+          });
+        }
+      }
+      return attachKeys(path2, keys);
+    }
+    function arrayToRegexp(path2, keys, options) {
+      var parts = [];
+      for (var i2 = 0; i2 < path2.length; i2++) {
+        parts.push(pathToRegexp(path2[i2], keys, options).source);
+      }
+      var regexp = new RegExp("(?:" + parts.join("|") + ")", flags(options));
+      return attachKeys(regexp, keys);
+    }
+    function stringToRegexp(path2, keys, options) {
+      return tokensToRegExp(parse3(path2, options), keys, options);
+    }
+    function tokensToRegExp(tokens, keys, options) {
+      if (!isarray(keys)) {
+        options = /** @type {!Object} */
+        keys || options;
+        keys = [];
+      }
+      options = options || {};
+      var strict = options.strict;
+      var end = options.end !== false;
+      var route = "";
+      for (var i2 = 0; i2 < tokens.length; i2++) {
+        var token = tokens[i2];
+        if (typeof token === "string") {
+          route += escapeString(token);
+        } else {
+          var prefix = escapeString(token.prefix);
+          var capture = "(?:" + token.pattern + ")";
+          keys.push(token);
+          if (token.repeat) {
+            capture += "(?:" + prefix + capture + ")*";
+          }
+          if (token.optional) {
+            if (!token.partial) {
+              capture = "(?:" + prefix + "(" + capture + "))?";
+            } else {
+              capture = prefix + "(" + capture + ")?";
+            }
+          } else {
+            capture = prefix + "(" + capture + ")";
+          }
+          route += capture;
+        }
+      }
+      var delimiter = escapeString(options.delimiter || "/");
+      var endsWithDelimiter = route.slice(-delimiter.length) === delimiter;
+      if (!strict) {
+        route = (endsWithDelimiter ? route.slice(0, -delimiter.length) : route) + "(?:" + delimiter + "(?=$))?";
+      }
+      if (end) {
+        route += "$";
+      } else {
+        route += strict && endsWithDelimiter ? "" : "(?=" + delimiter + "|$)";
+      }
+      return attachKeys(new RegExp("^" + route, flags(options)), keys);
+    }
+    function pathToRegexp(path2, keys, options) {
+      if (!isarray(keys)) {
+        options = /** @type {!Object} */
+        keys || options;
+        keys = [];
+      }
+      options = options || {};
+      if (path2 instanceof RegExp) {
+        return regexpToRegexp(
+          path2,
+          /** @type {!Array} */
+          keys
+        );
+      }
+      if (isarray(path2)) {
+        return arrayToRegexp(
+          /** @type {!Array} */
+          path2,
+          /** @type {!Array} */
+          keys,
+          options
+        );
+      }
+      return stringToRegexp(
+        /** @type {string} */
+        path2,
+        /** @type {!Array} */
+        keys,
+        options
+      );
+    }
+  }
+});
+
+// node_modules/path-match/node_modules/inherits/inherits.js
+var require_inherits2 = __commonJS({
+  "node_modules/path-match/node_modules/inherits/inherits.js"(exports2, module2) {
+    module2.exports = require("util").inherits;
+  }
+});
+
+// node_modules/path-match/node_modules/http-errors/index.js
+var require_http_errors2 = __commonJS({
+  "node_modules/path-match/node_modules/http-errors/index.js"(exports2, module2) {
+    var statuses = require_statuses();
+    var inherits = require_inherits2();
+    function toIdentifier(str2) {
+      return str2.split(" ").map(function(token) {
+        return token.slice(0, 1).toUpperCase() + token.slice(1);
+      }).join("").replace(/[^ _0-9a-z]/gi, "");
+    }
+    exports2 = module2.exports = function httpError() {
+      var err;
+      var msg;
+      var status = 500;
+      var props = {};
+      for (var i2 = 0; i2 < arguments.length; i2++) {
+        var arg = arguments[i2];
+        if (arg instanceof Error) {
+          err = arg;
+          status = err.status || err.statusCode || status;
+          continue;
+        }
+        switch (typeof arg) {
+          case "string":
+            msg = arg;
+            break;
+          case "number":
+            status = arg;
+            break;
+          case "object":
+            props = arg;
+            break;
+        }
+      }
+      if (typeof status !== "number" || !statuses[status]) {
+        status = 500;
+      }
+      var HttpError3 = exports2[status];
+      if (!err) {
+        err = HttpError3 ? new HttpError3(msg) : new Error(msg || statuses[status]);
+        Error.captureStackTrace(err, httpError);
+      }
+      if (!HttpError3 || !(err instanceof HttpError3)) {
+        err.expose = status < 500;
+        err.status = err.statusCode = status;
+      }
+      for (var key in props) {
+        if (key !== "status" && key !== "statusCode") {
+          err[key] = props[key];
+        }
+      }
+      return err;
+    };
+    var HttpError2 = exports2.HttpError = function HttpError3() {
+      throw new TypeError("cannot construct abstract class");
+    };
+    inherits(HttpError2, Error);
+    var codes = statuses.codes.filter(function(num) {
+      return num >= 400;
+    });
+    codes.forEach(function(code) {
+      var name = toIdentifier(statuses[code]);
+      var className = name.match(/Error$/) ? name : name + "Error";
+      if (code >= 500) {
+        var ServerError = function ServerError2(msg) {
+          var self2 = new Error(msg != null ? msg : statuses[code]);
+          Error.captureStackTrace(self2, ServerError2);
+          self2.__proto__ = ServerError2.prototype;
+          Object.defineProperty(self2, "name", {
+            enumerable: false,
+            configurable: true,
+            value: className,
+            writable: true
+          });
+          return self2;
+        };
+        inherits(ServerError, HttpError2);
+        ServerError.prototype.status = ServerError.prototype.statusCode = code;
+        ServerError.prototype.expose = false;
+        exports2[code] = exports2[name] = ServerError;
+        return;
+      }
+      var ClientError = function ClientError2(msg) {
+        var self2 = new Error(msg != null ? msg : statuses[code]);
+        Error.captureStackTrace(self2, ClientError2);
+        self2.__proto__ = ClientError2.prototype;
+        Object.defineProperty(self2, "name", {
+          enumerable: false,
+          configurable: true,
+          value: className,
+          writable: true
+        });
+        return self2;
+      };
+      inherits(ClientError, HttpError2);
+      ClientError.prototype.status = ClientError.prototype.statusCode = code;
+      ClientError.prototype.expose = true;
+      exports2[code] = exports2[name] = ClientError;
+      return;
+    });
+    exports2["I'mateapot"] = exports2.ImATeapot;
+  }
+});
+
+// node_modules/path-match/index.js
+var require_path_match = __commonJS({
+  "node_modules/path-match/index.js"(exports2, module2) {
+    var pathToRegexp = require_path_to_regexp();
+    var createError = require_http_errors2();
+    module2.exports = function(options) {
+      options = options || {};
+      return function(path2) {
+        var keys = [];
+        var re2 = pathToRegexp(path2, keys, options);
+        return function(pathname, params) {
+          var m2 = re2.exec(pathname);
+          if (!m2)
+            return false;
+          params = params || {};
+          var key, param;
+          for (var i2 = 0; i2 < keys.length; i2++) {
+            key = keys[i2];
+            param = m2[i2 + 1];
+            if (!param)
+              continue;
+            params[key.name] = decodeParam(param);
+            if (key.repeat)
+              params[key.name] = params[key.name].split(key.delimiter);
+          }
+          return params;
+        };
+      };
+    };
+    function decodeParam(param) {
+      try {
+        return decodeURIComponent(param);
+      } catch (_2) {
+        throw createError(400, 'failed to decode param "' + param + '"');
+      }
+    }
+  }
+});
+
+// node_modules/uuid/dist/esm-node/rng.js
+function rng() {
+  if (poolPtr > rnds8Pool.length - 16) {
+    import_crypto2.default.randomFillSync(rnds8Pool);
+    poolPtr = 0;
+  }
+  return rnds8Pool.slice(poolPtr, poolPtr += 16);
+}
+var import_crypto2, rnds8Pool, poolPtr;
+var init_rng = __esm({
+  "node_modules/uuid/dist/esm-node/rng.js"() {
+    import_crypto2 = __toESM(require("crypto"));
+    rnds8Pool = new Uint8Array(256);
+    poolPtr = rnds8Pool.length;
+  }
+});
+
+// node_modules/uuid/dist/esm-node/regex.js
+var regex_default;
+var init_regex = __esm({
+  "node_modules/uuid/dist/esm-node/regex.js"() {
+    regex_default = /^(?:[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|00000000-0000-0000-0000-000000000000)$/i;
+  }
+});
+
+// node_modules/uuid/dist/esm-node/validate.js
+function validate(uuid) {
+  return typeof uuid === "string" && regex_default.test(uuid);
+}
+var validate_default;
+var init_validate = __esm({
+  "node_modules/uuid/dist/esm-node/validate.js"() {
+    init_regex();
+    validate_default = validate;
+  }
+});
+
+// node_modules/uuid/dist/esm-node/stringify.js
+function stringify(arr, offset = 0) {
+  const uuid = (byteToHex[arr[offset + 0]] + byteToHex[arr[offset + 1]] + byteToHex[arr[offset + 2]] + byteToHex[arr[offset + 3]] + "-" + byteToHex[arr[offset + 4]] + byteToHex[arr[offset + 5]] + "-" + byteToHex[arr[offset + 6]] + byteToHex[arr[offset + 7]] + "-" + byteToHex[arr[offset + 8]] + byteToHex[arr[offset + 9]] + "-" + byteToHex[arr[offset + 10]] + byteToHex[arr[offset + 11]] + byteToHex[arr[offset + 12]] + byteToHex[arr[offset + 13]] + byteToHex[arr[offset + 14]] + byteToHex[arr[offset + 15]]).toLowerCase();
+  if (!validate_default(uuid)) {
+    throw TypeError("Stringified UUID is invalid");
+  }
+  return uuid;
+}
+var byteToHex, stringify_default;
+var init_stringify = __esm({
+  "node_modules/uuid/dist/esm-node/stringify.js"() {
+    init_validate();
+    byteToHex = [];
+    for (let i2 = 0; i2 < 256; ++i2) {
+      byteToHex.push((i2 + 256).toString(16).substr(1));
+    }
+    stringify_default = stringify;
+  }
+});
+
+// node_modules/uuid/dist/esm-node/v1.js
+function v1(options, buf, offset) {
+  let i2 = buf && offset || 0;
+  const b2 = buf || new Array(16);
+  options = options || {};
+  let node = options.node || _nodeId;
+  let clockseq = options.clockseq !== void 0 ? options.clockseq : _clockseq;
+  if (node == null || clockseq == null) {
+    const seedBytes = options.random || (options.rng || rng)();
+    if (node == null) {
+      node = _nodeId = [seedBytes[0] | 1, seedBytes[1], seedBytes[2], seedBytes[3], seedBytes[4], seedBytes[5]];
+    }
+    if (clockseq == null) {
+      clockseq = _clockseq = (seedBytes[6] << 8 | seedBytes[7]) & 16383;
+    }
+  }
+  let msecs = options.msecs !== void 0 ? options.msecs : Date.now();
+  let nsecs = options.nsecs !== void 0 ? options.nsecs : _lastNSecs + 1;
+  const dt2 = msecs - _lastMSecs + (nsecs - _lastNSecs) / 1e4;
+  if (dt2 < 0 && options.clockseq === void 0) {
+    clockseq = clockseq + 1 & 16383;
+  }
+  if ((dt2 < 0 || msecs > _lastMSecs) && options.nsecs === void 0) {
+    nsecs = 0;
+  }
+  if (nsecs >= 1e4) {
+    throw new Error("uuid.v1(): Can't create more than 10M uuids/sec");
+  }
+  _lastMSecs = msecs;
+  _lastNSecs = nsecs;
+  _clockseq = clockseq;
+  msecs += 122192928e5;
+  const tl = ((msecs & 268435455) * 1e4 + nsecs) % 4294967296;
+  b2[i2++] = tl >>> 24 & 255;
+  b2[i2++] = tl >>> 16 & 255;
+  b2[i2++] = tl >>> 8 & 255;
+  b2[i2++] = tl & 255;
+  const tmh = msecs / 4294967296 * 1e4 & 268435455;
+  b2[i2++] = tmh >>> 8 & 255;
+  b2[i2++] = tmh & 255;
+  b2[i2++] = tmh >>> 24 & 15 | 16;
+  b2[i2++] = tmh >>> 16 & 255;
+  b2[i2++] = clockseq >>> 8 | 128;
+  b2[i2++] = clockseq & 255;
+  for (let n2 = 0; n2 < 6; ++n2) {
+    b2[i2 + n2] = node[n2];
+  }
+  return buf || stringify_default(b2);
+}
+var _nodeId, _clockseq, _lastMSecs, _lastNSecs, v1_default;
+var init_v1 = __esm({
+  "node_modules/uuid/dist/esm-node/v1.js"() {
+    init_rng();
+    init_stringify();
+    _lastMSecs = 0;
+    _lastNSecs = 0;
+    v1_default = v1;
+  }
+});
+
+// node_modules/uuid/dist/esm-node/parse.js
+function parse2(uuid) {
+  if (!validate_default(uuid)) {
+    throw TypeError("Invalid UUID");
+  }
+  let v6;
+  const arr = new Uint8Array(16);
+  arr[0] = (v6 = parseInt(uuid.slice(0, 8), 16)) >>> 24;
+  arr[1] = v6 >>> 16 & 255;
+  arr[2] = v6 >>> 8 & 255;
+  arr[3] = v6 & 255;
+  arr[4] = (v6 = parseInt(uuid.slice(9, 13), 16)) >>> 8;
+  arr[5] = v6 & 255;
+  arr[6] = (v6 = parseInt(uuid.slice(14, 18), 16)) >>> 8;
+  arr[7] = v6 & 255;
+  arr[8] = (v6 = parseInt(uuid.slice(19, 23), 16)) >>> 8;
+  arr[9] = v6 & 255;
+  arr[10] = (v6 = parseInt(uuid.slice(24, 36), 16)) / 1099511627776 & 255;
+  arr[11] = v6 / 4294967296 & 255;
+  arr[12] = v6 >>> 24 & 255;
+  arr[13] = v6 >>> 16 & 255;
+  arr[14] = v6 >>> 8 & 255;
+  arr[15] = v6 & 255;
+  return arr;
+}
+var parse_default;
+var init_parse = __esm({
+  "node_modules/uuid/dist/esm-node/parse.js"() {
+    init_validate();
+    parse_default = parse2;
+  }
+});
+
+// node_modules/uuid/dist/esm-node/v35.js
+function stringToBytes(str2) {
+  str2 = unescape(encodeURIComponent(str2));
+  const bytes = [];
+  for (let i2 = 0; i2 < str2.length; ++i2) {
+    bytes.push(str2.charCodeAt(i2));
+  }
+  return bytes;
+}
+function v35_default(name, version2, hashfunc) {
+  function generateUUID(value, namespace, buf, offset) {
+    if (typeof value === "string") {
+      value = stringToBytes(value);
+    }
+    if (typeof namespace === "string") {
+      namespace = parse_default(namespace);
+    }
+    if (namespace.length !== 16) {
+      throw TypeError("Namespace must be array-like (16 iterable integer values, 0-255)");
+    }
+    let bytes = new Uint8Array(16 + value.length);
+    bytes.set(namespace);
+    bytes.set(value, namespace.length);
+    bytes = hashfunc(bytes);
+    bytes[6] = bytes[6] & 15 | version2;
+    bytes[8] = bytes[8] & 63 | 128;
+    if (buf) {
+      offset = offset || 0;
+      for (let i2 = 0; i2 < 16; ++i2) {
+        buf[offset + i2] = bytes[i2];
+      }
+      return buf;
+    }
+    return stringify_default(bytes);
+  }
+  try {
+    generateUUID.name = name;
+  } catch (err) {
+  }
+  generateUUID.DNS = DNS;
+  generateUUID.URL = URL2;
+  return generateUUID;
+}
+var DNS, URL2;
+var init_v35 = __esm({
+  "node_modules/uuid/dist/esm-node/v35.js"() {
+    init_stringify();
+    init_parse();
+    DNS = "6ba7b810-9dad-11d1-80b4-00c04fd430c8";
+    URL2 = "6ba7b811-9dad-11d1-80b4-00c04fd430c8";
+  }
+});
+
+// node_modules/uuid/dist/esm-node/md5.js
+function md5(bytes) {
+  if (Array.isArray(bytes)) {
+    bytes = Buffer.from(bytes);
+  } else if (typeof bytes === "string") {
+    bytes = Buffer.from(bytes, "utf8");
+  }
+  return import_crypto3.default.createHash("md5").update(bytes).digest();
+}
+var import_crypto3, md5_default;
+var init_md5 = __esm({
+  "node_modules/uuid/dist/esm-node/md5.js"() {
+    import_crypto3 = __toESM(require("crypto"));
+    md5_default = md5;
+  }
+});
+
+// node_modules/uuid/dist/esm-node/v3.js
+var v3, v3_default;
+var init_v3 = __esm({
+  "node_modules/uuid/dist/esm-node/v3.js"() {
+    init_v35();
+    init_md5();
+    v3 = v35_default("v3", 48, md5_default);
+    v3_default = v3;
+  }
+});
+
+// node_modules/uuid/dist/esm-node/v4.js
+function v4(options, buf, offset) {
+  options = options || {};
+  const rnds = options.random || (options.rng || rng)();
+  rnds[6] = rnds[6] & 15 | 64;
+  rnds[8] = rnds[8] & 63 | 128;
+  if (buf) {
+    offset = offset || 0;
+    for (let i2 = 0; i2 < 16; ++i2) {
+      buf[offset + i2] = rnds[i2];
+    }
+    return buf;
+  }
+  return stringify_default(rnds);
+}
+var v4_default;
+var init_v4 = __esm({
+  "node_modules/uuid/dist/esm-node/v4.js"() {
+    init_rng();
+    init_stringify();
+    v4_default = v4;
+  }
+});
+
+// node_modules/uuid/dist/esm-node/sha1.js
+function sha1(bytes) {
+  if (Array.isArray(bytes)) {
+    bytes = Buffer.from(bytes);
+  } else if (typeof bytes === "string") {
+    bytes = Buffer.from(bytes, "utf8");
+  }
+  return import_crypto4.default.createHash("sha1").update(bytes).digest();
+}
+var import_crypto4, sha1_default;
+var init_sha1 = __esm({
+  "node_modules/uuid/dist/esm-node/sha1.js"() {
+    import_crypto4 = __toESM(require("crypto"));
+    sha1_default = sha1;
+  }
+});
+
+// node_modules/uuid/dist/esm-node/v5.js
+var v5, v5_default;
+var init_v5 = __esm({
+  "node_modules/uuid/dist/esm-node/v5.js"() {
+    init_v35();
+    init_sha1();
+    v5 = v35_default("v5", 80, sha1_default);
+    v5_default = v5;
+  }
+});
+
+// node_modules/uuid/dist/esm-node/nil.js
+var nil_default;
+var init_nil = __esm({
+  "node_modules/uuid/dist/esm-node/nil.js"() {
+    nil_default = "00000000-0000-0000-0000-000000000000";
+  }
+});
+
+// node_modules/uuid/dist/esm-node/version.js
+function version(uuid) {
+  if (!validate_default(uuid)) {
+    throw TypeError("Invalid UUID");
+  }
+  return parseInt(uuid.substr(14, 1), 16);
+}
+var version_default;
+var init_version = __esm({
+  "node_modules/uuid/dist/esm-node/version.js"() {
+    init_validate();
+    version_default = version;
+  }
+});
+
+// node_modules/uuid/dist/esm-node/index.js
+var esm_node_exports = {};
+__export(esm_node_exports, {
+  NIL: () => nil_default,
+  parse: () => parse_default,
+  stringify: () => stringify_default,
+  v1: () => v1_default,
+  v3: () => v3_default,
+  v4: () => v4_default,
+  v5: () => v5_default,
+  validate: () => validate_default,
+  version: () => version_default
+});
+var init_esm_node = __esm({
+  "node_modules/uuid/dist/esm-node/index.js"() {
+    init_v1();
+    init_v3();
+    init_v4();
+    init_v5();
+    init_nil();
+    init_version();
+    init_validate();
+    init_stringify();
+    init_parse();
+  }
+});
+
+// node_modules/koa-proxies/index.js
+var require_koa_proxies = __commonJS({
+  "node_modules/koa-proxies/index.js"(exports2, module2) {
+    var { URL: URL3 } = require("url");
+    var HttpProxy = require_http_proxy3();
+    var httpProxyCommonUtil = require_common2();
+    var pathMatch = require_path_match();
+    var { v4: uuidv4 } = (init_esm_node(), __toCommonJS(esm_node_exports));
+    var url = require("url");
+    var proxy2 = HttpProxy.createProxyServer();
+    var route = pathMatch({
+      // path-to-regexp options
+      sensitive: false,
+      strict: false,
+      end: false
+    });
+    var REQUEST_IDENTIFIER = "__KOA_PROXIES_MIDDLEWARE_ID__";
+    var proxyEventHandlers = {};
+    function setupProxyEventHandler(event) {
+      if (["error", "proxyReq", "proxyRes"].indexOf(event) < 0) {
+        return;
+      }
+      proxyEventHandlers[event] = /* @__PURE__ */ new Map();
+      proxy2.on(event, (...args2) => {
+        const req = args2[1];
+        const eventHandler = proxyEventHandlers[event].get(req[REQUEST_IDENTIFIER]);
+        if (typeof eventHandler === "function") {
+          eventHandler(...args2);
+        }
+      });
+      return proxyEventHandlers[event];
+    }
+    module2.exports = (path2, options) => {
+      const middlewareId = uuidv4();
+      return (ctx, next) => {
+        const match = route(path2);
+        const params = match(ctx.path);
+        if (!params)
+          return next();
+        let opts;
+        if (typeof options === "function") {
+          opts = options.call(options, params, ctx);
+          if (opts === false) {
+            return next();
+          }
+        } else {
+          opts = Object.assign({}, options);
+        }
+        const { logs, rewrite, events, ...httpProxyOpts } = opts;
+        return new Promise((resolve, reject) => {
+          ctx.req.oldPath = ctx.req.url;
+          if (typeof rewrite === "function") {
+            ctx.req.url = rewrite(ctx.req.url, ctx);
+          }
+          if (logs) {
+            typeof logs === "function" ? logs(ctx, opts.target) : logger(ctx, httpProxyOpts);
+          }
+          if (events && typeof events === "object") {
+            ctx.req[REQUEST_IDENTIFIER] = middlewareId;
+            Object.entries(events).forEach(([event, handler]) => {
+              const eventHandler = proxyEventHandlers[event] == null ? setupProxyEventHandler(event) : proxyEventHandlers[event];
+              if (typeof eventHandler === "object" && !eventHandler.has(middlewareId)) {
+                eventHandler.set(middlewareId, handler);
+              }
+            });
+          }
+          ctx.res.on("close", () => {
+            reject(new Error(`Http response closed while proxying ${ctx.req.oldPath}`));
+          });
+          ctx.res.on("finish", () => {
+            resolve();
+          });
+          proxy2.web(ctx.req, ctx.res, httpProxyOpts, (e2, ...args2) => {
+            const errorHandler = proxyEventHandlers.error && proxyEventHandlers.error.get(ctx.req[REQUEST_IDENTIFIER]);
+            if (typeof errorHandler === "function") {
+              errorHandler(e2, ...args2);
+            }
+            const status = {
+              ECONNREFUSED: 503,
+              ETIMEOUT: 504
+            }[e2.code];
+            ctx.status = status || 500;
+            resolve();
+          });
+        });
+      };
+    };
+    module2.exports.proxy = proxy2;
+    function logger(ctx, httpProxyOpts) {
+      const outgoing = {};
+      let dest;
+      try {
+        const httpProxyOpts2 = { ...httpProxyOpts, target: url.parse(httpProxyOpts.target || "") };
+        httpProxyCommonUtil.setupOutgoing(outgoing, httpProxyOpts2, ctx.req);
+        dest = new URL3("", `${httpProxyOpts2.target.protocol}//${outgoing.host}${outgoing.path}`);
+      } catch (err) {
+        console.error("Error occurs when logging. Please check if target is a valid URL.");
+      }
+      console.log("%s - %s %s proxy to -> %s", (/* @__PURE__ */ new Date()).toISOString(), ctx.req.method, ctx.req.oldPath, `${dest || httpProxyOpts.target}`);
+    }
+  }
+});
+
+// node_modules/obsidian-dataview/lib/index.js
+var require_lib5 = __commonJS({
   "node_modules/obsidian-dataview/lib/index.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
@@ -20802,19 +37656,19 @@ var require_lib4 = __commonJS({
         return localeStr;
       }
     }
-    function mapMonths(f2) {
+    function mapMonths(f3) {
       const ms = [];
       for (let i2 = 1; i2 <= 12; i2++) {
         const dt2 = DateTime.utc(2009, i2, 1);
-        ms.push(f2(dt2));
+        ms.push(f3(dt2));
       }
       return ms;
     }
-    function mapWeekdays(f2) {
+    function mapWeekdays(f3) {
       const ms = [];
       for (let i2 = 1; i2 <= 7; i2++) {
         const dt2 = DateTime.utc(2016, 11, 13 + i2);
-        ms.push(f2(dt2));
+        ms.push(f3(dt2));
       }
       return ms;
     }
@@ -21380,8 +38234,8 @@ var require_lib4 = __commonJS({
       }, null)[1];
     }
     function pick(obj, keys) {
-      return keys.reduce((a2, k2) => {
-        a2[k2] = obj[k2];
+      return keys.reduce((a2, k3) => {
+        a2[k3] = obj[k3];
         return a2;
       }, {});
     }
@@ -21422,8 +38276,8 @@ var require_lib4 = __commonJS({
       if (isUndefined(fraction) || fraction === null || fraction === "") {
         return void 0;
       } else {
-        const f2 = parseFloat("0." + fraction) * 1e3;
-        return Math.floor(f2);
+        const f3 = parseFloat("0." + fraction) * 1e3;
+        return Math.floor(f3);
       }
     }
     function roundTo(number, digits, towardZero = false) {
@@ -21445,7 +38299,7 @@ var require_lib4 = __commonJS({
       }
     }
     function objToLocalTS(obj) {
-      let d2 = Date.UTC(
+      let d3 = Date.UTC(
         obj.year,
         obj.month - 1,
         obj.day,
@@ -21455,10 +38309,10 @@ var require_lib4 = __commonJS({
         obj.millisecond
       );
       if (obj.year < 100 && obj.year >= 0) {
-        d2 = new Date(d2);
-        d2.setUTCFullYear(obj.year, obj.month - 1, obj.day);
+        d3 = new Date(d3);
+        d3.setUTCFullYear(obj.year, obj.month - 1, obj.day);
       }
-      return +d2;
+      return +d3;
     }
     function weeksInWeekYear(weekYear) {
       const p1 = (weekYear + Math.floor(weekYear / 4) - Math.floor(weekYear / 100) + Math.floor(weekYear / 400)) % 7, last = weekYear - 1, p2 = (last + Math.floor(last / 4) - Math.floor(last / 100) + Math.floor(last / 400)) % 7;
@@ -21504,10 +38358,10 @@ var require_lib4 = __commonJS({
       const normalized = {};
       for (const u2 in obj) {
         if (hasOwnProperty(obj, u2)) {
-          const v2 = obj[u2];
-          if (v2 === void 0 || v2 === null)
+          const v6 = obj[u2];
+          if (v6 === void 0 || v6 === null)
             continue;
-          normalized[normalizer(u2)] = asNumber(v2);
+          normalized[normalizer(u2)] = asNumber(v6);
         }
       }
       return normalized;
@@ -21947,7 +38801,7 @@ var require_lib4 = __commonJS({
     };
     var ianaRegex = /[A-Za-z_+-]{1,256}(?::?\/[A-Za-z0-9_+-]{1,256}(?:\/[A-Za-z0-9_+-]{1,256})?)?/;
     function combineRegexes(...regexes) {
-      const full = regexes.reduce((f2, r2) => f2 + r2.source, "");
+      const full = regexes.reduce((f3, r2) => f3 + r2.source, "");
       return RegExp(`^${full}$`);
     }
     function combineExtractors(...extractors) {
@@ -21959,7 +38813,7 @@ var require_lib4 = __commonJS({
         [{}, null, 1]
       ).slice(0, 2);
     }
-    function parse2(s3, ...patterns) {
+    function parse3(s3, ...patterns) {
       if (s3 == null) {
         return [null, null];
       }
@@ -22139,7 +38993,7 @@ var require_lib4 = __commonJS({
       extractIANAZone
     );
     function parseISODate(s3) {
-      return parse2(
+      return parse3(
         s3,
         [isoYmdWithTimeExtensionRegex, extractISOYmdTimeAndOffset],
         [isoWeekWithTimeExtensionRegex, extractISOWeekTimeAndOffset],
@@ -22148,10 +39002,10 @@ var require_lib4 = __commonJS({
       );
     }
     function parseRFC2822Date(s3) {
-      return parse2(preprocessRFC2822(s3), [rfc2822, extractRFC2822]);
+      return parse3(preprocessRFC2822(s3), [rfc2822, extractRFC2822]);
     }
     function parseHTTPDate(s3) {
-      return parse2(
+      return parse3(
         s3,
         [rfc1123, extractRFC1123Or850],
         [rfc850, extractRFC1123Or850],
@@ -22159,11 +39013,11 @@ var require_lib4 = __commonJS({
       );
     }
     function parseISODuration(s3) {
-      return parse2(s3, [isoDuration, extractISODuration]);
+      return parse3(s3, [isoDuration, extractISODuration]);
     }
     var extractISOTimeOnly = combineExtractors(extractISOTime);
     function parseISOTimeOnly(s3) {
-      return parse2(s3, [isoTimeOnly, extractISOTimeOnly]);
+      return parse3(s3, [isoTimeOnly, extractISOTimeOnly]);
     }
     var sqlYmdWithTimeExtensionRegex = combineRegexes(sqlYmdRegex, sqlTimeExtensionRegex);
     var sqlTimeCombinedRegex = combineRegexes(sqlTimeRegex);
@@ -22173,7 +39027,7 @@ var require_lib4 = __commonJS({
       extractIANAZone
     );
     function parseSQL(s3) {
-      return parse2(
+      return parse3(
         s3,
         [sqlYmdWithTimeExtensionRegex, extractISOYmdTimeAndOffset],
         [sqlTimeCombinedRegex, extractISOTimeOffsetAndIANAZone]
@@ -22697,9 +39551,9 @@ var require_lib4 = __commonJS({
         if (!this.isValid)
           return this;
         const dur = _Duration.fromDurationLike(duration), result = {};
-        for (const k2 of orderedUnits$1) {
-          if (hasOwnProperty(dur.values, k2) || hasOwnProperty(this.values, k2)) {
-            result[k2] = dur.get(k2) + this.get(k2);
+        for (const k3 of orderedUnits$1) {
+          if (hasOwnProperty(dur.values, k3) || hasOwnProperty(this.values, k3)) {
+            result[k3] = dur.get(k3) + this.get(k3);
           }
         }
         return clone$1(this, { values: result }, true);
@@ -22722,12 +39576,12 @@ var require_lib4 = __commonJS({
        * @example Duration.fromObject({ hours: 1, minutes: 30 }).mapUnits((x, u) => u === "hours" ? x * 2 : x) //=> { hours: 2, minutes: 30 }
        * @return {Duration}
        */
-      mapUnits(fn) {
+      mapUnits(fn2) {
         if (!this.isValid)
           return this;
         const result = {};
-        for (const k2 of Object.keys(this.values)) {
-          result[k2] = asNumber(fn(this.values[k2], k2));
+        for (const k3 of Object.keys(this.values)) {
+          result[k3] = asNumber(fn2(this.values[k3], k3));
         }
         return clone$1(this, { values: result }, true);
       }
@@ -22823,22 +39677,22 @@ var require_lib4 = __commonJS({
         units = units.map((u2) => _Duration.normalizeUnit(u2));
         const built = {}, accumulated = {}, vals = this.toObject();
         let lastUnit;
-        for (const k2 of orderedUnits$1) {
-          if (units.indexOf(k2) >= 0) {
-            lastUnit = k2;
+        for (const k3 of orderedUnits$1) {
+          if (units.indexOf(k3) >= 0) {
+            lastUnit = k3;
             let own = 0;
             for (const ak in accumulated) {
-              own += this.matrix[ak][k2] * accumulated[ak];
+              own += this.matrix[ak][k3] * accumulated[ak];
               accumulated[ak] = 0;
             }
-            if (isNumber(vals[k2])) {
-              own += vals[k2];
+            if (isNumber(vals[k3])) {
+              own += vals[k3];
             }
             const i2 = Math.trunc(own);
-            built[k2] = i2;
-            accumulated[k2] = (own * 1e3 - i2 * 1e3) / 1e3;
-          } else if (isNumber(vals[k2])) {
-            accumulated[k2] = vals[k2];
+            built[k3] = i2;
+            accumulated[k3] = (own * 1e3 - i2 * 1e3) / 1e3;
+          } else if (isNumber(vals[k3])) {
+            accumulated[k3] = vals[k3];
           }
         }
         for (const key in accumulated) {
@@ -22877,8 +39731,8 @@ var require_lib4 = __commonJS({
         if (!this.isValid)
           return this;
         const negated = {};
-        for (const k2 of Object.keys(this.values)) {
-          negated[k2] = this.values[k2] === 0 ? 0 : -this.values[k2];
+        for (const k3 of Object.keys(this.values)) {
+          negated[k3] = this.values[k3] === 0 ? 0 : -this.values[k3];
         }
         return clone$1(this, { values: negated }, true);
       }
@@ -22980,10 +39834,10 @@ var require_lib4 = __commonJS({
         if (!this.loc.equals(other.loc)) {
           return false;
         }
-        function eq(v1, v2) {
-          if (v1 === void 0 || v1 === 0)
-            return v2 === void 0 || v2 === 0;
-          return v1 === v2;
+        function eq(v12, v22) {
+          if (v12 === void 0 || v12 === 0)
+            return v22 === void 0 || v22 === 0;
+          return v12 === v22;
         }
         for (const u2 of orderedUnits$1) {
           if (!eq(this.values[u2], other.values[u2])) {
@@ -23244,7 +40098,7 @@ var require_lib4 = __commonJS({
       splitAt(...dateTimes) {
         if (!this.isValid)
           return [];
-        const sorted = dateTimes.map(friendlyDateTime).filter((d2) => this.contains(d2)).sort(), results = [];
+        const sorted = dateTimes.map(friendlyDateTime).filter((d3) => this.contains(d3)).sort(), results = [];
         let { s: s3 } = this, i2 = 0;
         while (s3 < this.e) {
           const added = sorted[i2] || this.e, next = +added > +this.e ? this.e : added;
@@ -24025,7 +40879,7 @@ var require_lib4 = __commonJS({
       return void 0;
     }
     function buildRegex(units) {
-      const re2 = units.map((u2) => u2.regex).reduce((f2, r2) => `${f2}(${r2.source})`, "");
+      const re2 = units.map((u2) => u2.regex).reduce((f3, r2) => `${f3}(${r2.source})`, "");
       return [`^${re2}$`, units];
     }
     function match(input, regex, handlers) {
@@ -24108,10 +40962,10 @@ var require_lib4 = __commonJS({
       if (!isUndefined(matches.u)) {
         matches.S = parseMillis(matches.u);
       }
-      const vals = Object.keys(matches).reduce((r2, k2) => {
-        const f2 = toField(k2);
-        if (f2) {
-          r2[f2] = matches[k2];
+      const vals = Object.keys(matches).reduce((r2, k3) => {
+        const f3 = toField(k3);
+        if (f3) {
+          r2[f3] = matches[k3];
         }
         return r2;
       }, {});
@@ -24175,11 +41029,11 @@ var require_lib4 = __commonJS({
       );
     }
     function dayOfWeek(year, month, day) {
-      const d2 = new Date(Date.UTC(year, month - 1, day));
+      const d3 = new Date(Date.UTC(year, month - 1, day));
       if (year < 100 && year >= 0) {
-        d2.setUTCFullYear(d2.getUTCFullYear() - 1900);
+        d3.setUTCFullYear(d3.getUTCFullYear() - 1900);
       }
-      const js = d2.getUTCDay();
+      const js = d3.getUTCDay();
       return js === 0 ? 7 : js;
     }
     function computeOrdinal(year, month, day) {
@@ -24310,15 +41164,15 @@ var require_lib4 = __commonJS({
     }
     function tsToObj(ts, offset2) {
       ts += offset2 * 60 * 1e3;
-      const d2 = new Date(ts);
+      const d3 = new Date(ts);
       return {
-        year: d2.getUTCFullYear(),
-        month: d2.getUTCMonth() + 1,
-        day: d2.getUTCDate(),
-        hour: d2.getUTCHours(),
-        minute: d2.getUTCMinutes(),
-        second: d2.getUTCSeconds(),
-        millisecond: d2.getUTCMilliseconds()
+        year: d3.getUTCFullYear(),
+        month: d3.getUTCMonth() + 1,
+        day: d3.getUTCDate(),
+        hour: d3.getUTCHours(),
+        minute: d3.getUTCMinutes(),
+        second: d3.getUTCSeconds(),
+        millisecond: d3.getUTCMilliseconds()
       };
     }
     function objToTS(obj, offset2, zone) {
@@ -24536,14 +41390,14 @@ var require_lib4 = __commonJS({
       return format(start > end ? -0 : 0, opts.units[opts.units.length - 1]);
     }
     function lastOpts(argList) {
-      let opts = {}, args;
+      let opts = {}, args2;
       if (argList.length > 0 && typeof argList[argList.length - 1] === "object") {
         opts = argList[argList.length - 1];
-        args = Array.from(argList).slice(0, argList.length - 1);
+        args2 = Array.from(argList).slice(0, argList.length - 1);
       } else {
-        args = Array.from(argList);
+        args2 = Array.from(argList);
       }
-      return [opts, args];
+      return [opts, args2];
     }
     var DateTime = class _DateTime {
       /**
@@ -24607,7 +41461,7 @@ var require_lib4 = __commonJS({
        * @return {DateTime}
        */
       static local() {
-        const [opts, args] = lastOpts(arguments), [year, month, day, hour, minute, second, millisecond] = args;
+        const [opts, args2] = lastOpts(arguments), [year, month, day, hour, minute, second, millisecond] = args2;
         return quickDT({ year, month, day, hour, minute, second, millisecond }, opts);
       }
       /**
@@ -24635,7 +41489,7 @@ var require_lib4 = __commonJS({
        * @return {DateTime}
        */
       static utc() {
-        const [opts, args] = lastOpts(arguments), [year, month, day, hour, minute, second, millisecond] = args;
+        const [opts, args2] = lastOpts(arguments), [year, month, day, hour, minute, second, millisecond] = args2;
         opts.zone = FixedOffsetZone.utcInstance;
         return quickDT({ year, month, day, hour, minute, second, millisecond }, opts);
       }
@@ -24766,8 +41620,8 @@ var require_lib4 = __commonJS({
         }
         let foundFirst = false;
         for (const u2 of units) {
-          const v2 = normalized[u2];
-          if (!isUndefined(v2)) {
+          const v6 = normalized[u2];
+          if (!isUndefined(v6)) {
             foundFirst = true;
           } else if (foundFirst) {
             normalized[u2] = defaultValues[u2];
@@ -26152,16 +43006,18 @@ var require_lib4 = __commonJS({
     });
     var Success = class _Success {
       constructor(value) {
+        __publicField(this, "value");
+        __publicField(this, "successful");
         this.value = value;
         this.successful = true;
       }
-      map(f2) {
-        return new _Success(f2(this.value));
+      map(f3) {
+        return new _Success(f3(this.value));
       }
-      flatMap(f2) {
-        return f2(this.value);
+      flatMap(f3) {
+        return f3(this.value);
       }
-      mapErr(f2) {
+      mapErr(f3) {
         return this;
       }
       bimap(succ, _fail) {
@@ -26179,6 +43035,8 @@ var require_lib4 = __commonJS({
     };
     var Failure = class _Failure {
       constructor(error) {
+        __publicField(this, "error");
+        __publicField(this, "successful");
         this.error = error;
         this.successful = false;
       }
@@ -26188,8 +43046,8 @@ var require_lib4 = __commonJS({
       flatMap(_f) {
         return this;
       }
-      mapErr(f2) {
-        return new _Failure(f2(this.error));
+      mapErr(f3) {
+        return new _Failure(f3(this.error));
       }
       bimap(_succ, fail) {
         return this.mapErr(fail);
@@ -26200,9 +43058,9 @@ var require_lib4 = __commonJS({
       cast() {
         return this;
       }
-      orElseThrow(message) {
-        if (message)
-          throw new Error(message(this.error));
+      orElseThrow(message2) {
+        if (message2)
+          throw new Error(message2(this.error));
         else
           throw new Error("" + this.error);
       }
@@ -26217,10 +43075,10 @@ var require_lib4 = __commonJS({
         return new Failure(error);
       }
       Result2.failure = failure;
-      function flatMap2(first, second, f2) {
+      function flatMap2(first, second, f3) {
         if (first.successful) {
           if (second.successful)
-            return f2(first.value, second.value);
+            return f3(first.value, second.value);
           else
             return failure(second.error);
         } else {
@@ -26228,8 +43086,8 @@ var require_lib4 = __commonJS({
         }
       }
       Result2.flatMap2 = flatMap2;
-      function map2(first, second, f2) {
-        return flatMap2(first, second, (a2, b2) => success(f2(a2, b2)));
+      function map2(first, second, f3) {
+        return flatMap2(first, second, (a2, b2) => success(f3(a2, b2)));
       }
       Result2.map2 = map2;
     })(Result || (Result = {}));
@@ -26287,7 +43145,7 @@ var require_lib4 = __commonJS({
               return t4.concat([n4(r3, e3, u3)]);
             }, [], t3);
           }
-          function f2(n4, t3) {
+          function f3(n4, t3) {
             var r3 = { v: 0, buf: t3 };
             return o2(n4, function() {
               var n5;
@@ -26325,7 +43183,7 @@ var require_lib4 = __commonJS({
             return new e2(function(t4, r4) {
               var e3 = u3 + r4;
               return e3 > t4.length ? x2(r4, u3.toString() + " bytes") : b2(e3, i2(function(n5, t5) {
-                var r5 = f2(t5, n5.buf);
+                var r5 = f3(t5, n5.buf);
                 return { coll: n5.coll.concat(r5.v), buf: r5.buf };
               }, { coll: [], buf: t4.slice(r4, e3) }, n4).coll);
             });
@@ -26340,17 +43198,17 @@ var require_lib4 = __commonJS({
               throw new Error(n4 + " requires integer length in range [0, 6].");
             var r3;
           }
-          function d2(n4) {
+          function d3(n4) {
             return p2("uintBE", n4), h2("uintBE(" + n4 + ")", n4).map(function(t3) {
               return t3.readUIntBE(0, n4);
             });
           }
-          function v2(n4) {
+          function v6(n4) {
             return p2("uintLE", n4), h2("uintLE(" + n4 + ")", n4).map(function(t3) {
               return t3.readUIntLE(0, n4);
             });
           }
-          function g2(n4) {
+          function g3(n4) {
             return p2("intBE", n4), h2("intBE(" + n4 + ")", n4).map(function(t3) {
               return t3.readIntBE(0, n4);
             });
@@ -26366,7 +43224,7 @@ var require_lib4 = __commonJS({
           function E2(n4) {
             return "[object Array]" === {}.toString.call(n4);
           }
-          function w2(n4) {
+          function w3(n4) {
             return c2() && Buffer.isBuffer(n4);
           }
           function b2(n4, t3) {
@@ -26394,8 +43252,8 @@ var require_lib4 = __commonJS({
               }
               for (var i3 = {}, a3 = 0; a3 < n5.length; a3++)
                 i3[n5[a3]] = true;
-              for (var f3 = 0; f3 < t4.length; f3++)
-                i3[t4[f3]] = true;
+              for (var f4 = 0; f4 < t4.length; f4++)
+                i3[t4[f4]] = true;
               var c3 = [];
               for (var s4 in i3)
                 ({}).hasOwnProperty.call(i3, s4) && c3.push(s4);
@@ -26404,8 +43262,8 @@ var require_lib4 = __commonJS({
             return { status: n4.status, index: n4.index, value: n4.value, furthest: t3.furthest, expected: r3 };
           }
           var j2 = {};
-          function S2(n4, t3) {
-            if (w2(n4))
+          function S3(n4, t3) {
+            if (w3(n4))
               return { offset: t3, line: -1, column: -1 };
             n4 in j2 || (j2[n4] = {});
             for (var r3 = j2[n4], e3 = 0, u3 = 0, o3 = 0, i3 = t3; i3 >= 0; ) {
@@ -26415,8 +43273,8 @@ var require_lib4 = __commonJS({
               }
               ("\n" === n4.charAt(i3) || "\r" === n4.charAt(i3) && "\n" !== n4.charAt(i3 + 1)) && (u3++, 0 === o3 && (o3 = i3 + 1)), i3--;
             }
-            var a3 = e3 + u3, f3 = t3 - o3;
-            return r3[t3] = { line: a3, lineStart: o3 }, { offset: t3, line: a3 + 1, column: f3 + 1 };
+            var a3 = e3 + u3, f4 = t3 - o3;
+            return r3[t3] = { line: a3, lineStart: o3 }, { offset: t3, line: a3 + 1, column: f4 + 1 };
           }
           function _2(n4) {
             if (!y2(n4))
@@ -26429,7 +43287,7 @@ var require_lib4 = __commonJS({
             if ("number" != typeof n4)
               throw new Error("not a number: " + n4);
           }
-          function k2(n4) {
+          function k3(n4) {
             if ("function" != typeof n4)
               throw new Error("not a function: " + n4);
           }
@@ -26437,7 +43295,7 @@ var require_lib4 = __commonJS({
             if ("string" != typeof n4)
               throw new Error("not a string: " + n4);
           }
-          var q2 = 2, A2 = 3, I2 = 8, F2 = 5 * I2, M2 = 4 * I2, z2 = "  ";
+          var q2 = 2, A3 = 3, I2 = 8, F2 = 5 * I2, M2 = 4 * I2, z2 = "  ";
           function R2(n4, t3) {
             return new Array(t3 + 1).join(n4);
           }
@@ -26449,11 +43307,11 @@ var require_lib4 = __commonJS({
             return { from: n4 - t3 > 0 ? n4 - t3 : 0, to: n4 + r3 > e3 ? e3 : n4 + r3 };
           }
           function D2(n4, t3) {
-            var r3, e3, u3, o3, f3, c3 = t3.index, s4 = c3.offset, l4 = 1;
+            var r3, e3, u3, o3, f4, c3 = t3.index, s4 = c3.offset, l4 = 1;
             if (s4 === n4.length)
               return "Got the end of the input";
-            if (w2(n4)) {
-              var h3 = s4 - s4 % I2, p3 = s4 - h3, d3 = W2(h3, F2, M2 + I2, n4.length), v3 = a2(function(n5) {
+            if (w3(n4)) {
+              var h3 = s4 - s4 % I2, p3 = s4 - h3, d4 = W2(h3, F2, M2 + I2, n4.length), v7 = a2(function(n5) {
                 return a2(function(n6) {
                   return U2(n6.toString(16), 2, "0");
                 }, n5);
@@ -26464,30 +43322,30 @@ var require_lib4 = __commonJS({
                 for (var o4 = 0; o4 < r4; o4++)
                   e4[u4] || e4.push([]), e4[u4].push(n5[o4]), (o4 + 1) % t4 == 0 && u4++;
                 return e4;
-              }(n4.slice(d3.from, d3.to).toJSON().data, I2));
+              }(n4.slice(d4.from, d4.to).toJSON().data, I2));
               o3 = function(n5) {
                 return 0 === n5.from && 1 === n5.to ? { from: n5.from, to: n5.to } : { from: n5.from / I2, to: Math.floor(n5.to / I2) };
-              }(d3), e3 = h3 / I2, r3 = 3 * p3, p3 >= 4 && (r3 += 1), l4 = 2, u3 = a2(function(n5) {
+              }(d4), e3 = h3 / I2, r3 = 3 * p3, p3 >= 4 && (r3 += 1), l4 = 2, u3 = a2(function(n5) {
                 return n5.length <= 4 ? n5.join(" ") : n5.slice(0, 4).join(" ") + "  " + n5.slice(4).join(" ");
-              }, v3), (f3 = (8 * (o3.to > 0 ? o3.to - 1 : o3.to)).toString(16).length) < 2 && (f3 = 2);
+              }, v7), (f4 = (8 * (o3.to > 0 ? o3.to - 1 : o3.to)).toString(16).length) < 2 && (f4 = 2);
             } else {
-              var g3 = n4.split(/\r\n|[\n\r\u2028\u2029]/);
-              r3 = c3.column - 1, e3 = c3.line - 1, o3 = W2(e3, q2, A2, g3.length), u3 = g3.slice(o3.from, o3.to), f3 = o3.to.toString().length;
+              var g4 = n4.split(/\r\n|[\n\r\u2028\u2029]/);
+              r3 = c3.column - 1, e3 = c3.line - 1, o3 = W2(e3, q2, A3, g4.length), u3 = g4.slice(o3.from, o3.to), f4 = o3.to.toString().length;
             }
             var m3 = e3 - o3.from;
-            return w2(n4) && (f3 = (8 * (o3.to > 0 ? o3.to - 1 : o3.to)).toString(16).length) < 2 && (f3 = 2), i2(function(t4, e4, u4) {
+            return w3(n4) && (f4 = (8 * (o3.to > 0 ? o3.to - 1 : o3.to)).toString(16).length) < 2 && (f4 = 2), i2(function(t4, e4, u4) {
               var i3, a3 = u4 === m3, c4 = a3 ? "> " : z2;
-              return i3 = w2(n4) ? U2((8 * (o3.from + u4)).toString(16), f3, "0") : U2((o3.from + u4 + 1).toString(), f3, " "), [].concat(t4, [c4 + i3 + " | " + e4], a3 ? [z2 + R2(" ", f3) + " | " + U2("", r3, " ") + R2("^", l4)] : []);
+              return i3 = w3(n4) ? U2((8 * (o3.from + u4)).toString(16), f4, "0") : U2((o3.from + u4 + 1).toString(), f4, " "), [].concat(t4, [c4 + i3 + " | " + e4], a3 ? [z2 + R2(" ", f4) + " | " + U2("", r3, " ") + R2("^", l4)] : []);
             }, [], u3).join("\n");
           }
-          function N2(n4, t3) {
+          function N3(n4, t3) {
             return ["\n", "-- PARSING FAILED " + R2("-", 50), "\n\n", D2(n4, t3), "\n\n", (r3 = t3.expected, 1 === r3.length ? "Expected:\n\n" + r3[0] : "Expected one of the following: \n\n" + r3.join(", ")), "\n"].join("");
             var r3;
           }
           function G2(n4) {
             return void 0 !== n4.flags ? n4.flags : [n4.global ? "g" : "", n4.ignoreCase ? "i" : "", n4.multiline ? "m" : "", n4.unicode ? "u" : "", n4.sticky ? "y" : ""].join("");
           }
-          function C2() {
+          function C3() {
             for (var n4 = [].slice.call(arguments), t3 = n4.length, r3 = 0; r3 < t3; r3 += 1)
               _2(n4[r3]);
             return e2(function(r4, e3) {
@@ -26504,7 +43362,7 @@ var require_lib4 = __commonJS({
             if (0 === n4.length)
               throw new Error("seqMap needs at least one argument");
             var t3 = n4.pop();
-            return k2(t3), C2.apply(null, n4).map(function(n5) {
+            return k3(t3), C3.apply(null, n4).map(function(n5) {
               return t3.apply(null, n5);
             });
           }
@@ -26529,7 +43387,7 @@ var require_lib4 = __commonJS({
               return [n5].concat(t4);
             });
           }
-          function K2(n4) {
+          function K3(n4) {
             P2(n4);
             var t3 = "'" + n4 + "'";
             return e2(function(r3, e3) {
@@ -26579,7 +43437,7 @@ var require_lib4 = __commonJS({
                 return e3.index = r3, e3.value = "", e3;
               });
             if ("string" == typeof n4)
-              return Z2(K2(n4));
+              return Z2(K3(n4));
             if (n4 instanceof RegExp)
               return Z2(Q2(n4));
             throw new Error("not a string, regexp, or parser: " + n4);
@@ -26591,7 +43449,7 @@ var require_lib4 = __commonJS({
             });
           }
           function nn(n4) {
-            return k2(n4), e2(function(t3, r3) {
+            return k3(n4), e2(function(t3, r3) {
               var e3 = L2(t3, r3);
               return r3 < t3.length && n4(e3) ? b2(r3 + 1, e3) : x2(r3, "a character/byte matching " + n4);
             });
@@ -26607,15 +43465,15 @@ var require_lib4 = __commonJS({
             return Y2("fantasy-land/empty");
           }
           u2.parse = function(n4) {
-            if ("string" != typeof n4 && !w2(n4))
+            if ("string" != typeof n4 && !w3(n4))
               throw new Error(".parse must be called with a string or Buffer as its argument");
             var t3, r3 = this.skip(an)._(n4, 0);
-            return t3 = r3.status ? { status: true, value: r3.value } : { status: false, index: S2(n4, r3.furthest), expected: r3.expected }, delete j2[n4], t3;
+            return t3 = r3.status ? { status: true, value: r3.value } : { status: false, index: S3(n4, r3.furthest), expected: r3.expected }, delete j2[n4], t3;
           }, u2.tryParse = function(n4) {
             var t3 = this.parse(n4);
             if (t3.status)
               return t3.value;
-            var r3 = N2(n4, t3), e3 = new Error(r3);
+            var r3 = N3(n4, t3), e3 = new Error(r3);
             throw e3.type = "ParsimmonError", e3.result = t3, e3;
           }, u2.assert = function(n4, t3) {
             return this.chain(function(r3) {
@@ -26632,7 +43490,7 @@ var require_lib4 = __commonJS({
           }, u2.thru = function(n4) {
             return n4(this);
           }, u2.then = function(n4) {
-            return _2(n4), C2(this, n4).map(function(n5) {
+            return _2(n4), C3(this, n4).map(function(n5) {
               return n5[1];
             });
           }, u2.many = function() {
@@ -26664,12 +43522,12 @@ var require_lib4 = __commonJS({
           }, u2.times = function(n4, t3) {
             var r3 = this;
             return arguments.length < 2 && (t3 = n4), O2(n4), O2(t3), e2(function(e3, u3) {
-              for (var o3 = [], i3 = void 0, a3 = void 0, f3 = 0; f3 < n4; f3 += 1) {
+              for (var o3 = [], i3 = void 0, a3 = void 0, f4 = 0; f4 < n4; f4 += 1) {
                 if (a3 = B2(i3 = r3._(e3, u3), a3), !i3.status)
                   return a3;
                 u3 = i3.index, o3.push(i3.value);
               }
-              for (; f3 < t3 && (a3 = B2(i3 = r3._(e3, u3), a3), i3.status); f3 += 1)
+              for (; f4 < t3 && (a3 = B2(i3 = r3._(e3, u3), a3), i3.status); f4 += 1)
                 u3 = i3.index, o3.push(i3.value);
               return B2(b2(u3, o3), a3);
             });
@@ -26684,23 +43542,23 @@ var require_lib4 = __commonJS({
               return n5.concat(t3);
             });
           }, u2.map = function(n4) {
-            k2(n4);
+            k3(n4);
             var t3 = this;
             return e2(function(r3, e3) {
               var u3 = t3._(r3, e3);
               return u3.status ? B2(b2(u3.index, n4(u3.value)), u3) : u3;
             });
           }, u2.contramap = function(n4) {
-            k2(n4);
+            k3(n4);
             var t3 = this;
             return e2(function(r3, e3) {
               var u3 = t3.parse(n4(r3.slice(e3)));
               return u3.status ? b2(e3 + r3.length, u3.value) : u3;
             });
           }, u2.promap = function(n4, t3) {
-            return k2(n4), k2(t3), this.contramap(n4).map(t3);
+            return k3(n4), k3(t3), this.contramap(n4).map(t3);
           }, u2.skip = function(n4) {
-            return C2(this, n4).map(function(n5) {
+            return C3(this, n4).map(function(n5) {
               return n5[0];
             });
           }, u2.mark = function() {
@@ -26740,14 +43598,14 @@ var require_lib4 = __commonJS({
             });
           }, u2.concat = u2.or, u2.empty = rn, u2.of = X2, u2["fantasy-land/ap"] = u2.ap, u2["fantasy-land/chain"] = u2.chain, u2["fantasy-land/concat"] = u2.concat, u2["fantasy-land/empty"] = u2.empty, u2["fantasy-land/of"] = u2.of, u2["fantasy-land/map"] = u2.map;
           var en = e2(function(n4, t3) {
-            return b2(t3, S2(n4, t3));
+            return b2(t3, S3(n4, t3));
           }), un = e2(function(n4, t3) {
             return t3 >= n4.length ? x2(t3, "any character/byte") : b2(t3 + 1, L2(n4, t3));
           }), on = e2(function(n4, t3) {
             return b2(n4.length, n4.slice(t3));
           }), an = e2(function(n4, t3) {
             return t3 < n4.length ? x2(t3, "EOF") : b2(t3, null);
-          }), fn = Q2(/[0-9]/).desc("a digit"), cn = Q2(/[0-9]*/).desc("optional digits"), sn = Q2(/[a-z]/i).desc("a letter"), ln = Q2(/[a-z]*/i).desc("optional letters"), hn = Q2(/\s*/).desc("optional whitespace"), pn = Q2(/\s+/).desc("whitespace"), dn = K2("\r"), vn = K2("\n"), gn = K2("\r\n"), mn = T2(gn, vn, dn).desc("newline"), yn = T2(mn, an);
+          }), fn2 = Q2(/[0-9]/).desc("a digit"), cn = Q2(/[0-9]*/).desc("optional digits"), sn = Q2(/[a-z]/i).desc("a letter"), ln = Q2(/[a-z]*/i).desc("optional letters"), hn = Q2(/\s*/).desc("optional whitespace"), pn = Q2(/\s+/).desc("whitespace"), dn = K3("\r"), vn = K3("\n"), gn = K3("\r\n"), mn = T2(gn, vn, dn).desc("newline"), yn = T2(mn, an);
           e2.all = on, e2.alt = T2, e2.any = un, e2.cr = dn, e2.createLanguage = function(n4) {
             var t3 = {};
             for (var r3 in n4)
@@ -26759,7 +43617,7 @@ var require_lib4 = __commonJS({
             return t3;
           }, e2.crlf = gn, e2.custom = function(n4) {
             return e2(n4(b2, x2));
-          }, e2.digit = fn, e2.digits = cn, e2.empty = rn, e2.end = yn, e2.eof = an, e2.fail = Y2, e2.formatError = N2, e2.index = en, e2.isParser = y2, e2.lazy = tn, e2.letter = sn, e2.letters = ln, e2.lf = vn, e2.lookahead = Z2, e2.makeFailure = x2, e2.makeSuccess = b2, e2.newline = mn, e2.noneOf = function(n4) {
+          }, e2.digit = fn2, e2.digits = cn, e2.empty = rn, e2.end = yn, e2.eof = an, e2.fail = Y2, e2.formatError = N3, e2.index = en, e2.isParser = y2, e2.lazy = tn, e2.letter = sn, e2.letters = ln, e2.lf = vn, e2.lookahead = Z2, e2.makeFailure = x2, e2.makeSuccess = b2, e2.newline = mn, e2.noneOf = function(n4) {
             return nn(function(t3) {
               return n4.indexOf(t3) < 0;
             }).desc("none of '" + n4 + "'");
@@ -26773,15 +43631,15 @@ var require_lib4 = __commonJS({
             return nn(function(r3) {
               return n4 <= r3 && r3 <= t3;
             }).desc(n4 + "-" + t3);
-          }, e2.regex = Q2, e2.regexp = Q2, e2.sepBy = V2, e2.sepBy1 = H2, e2.seq = C2, e2.seqMap = J2, e2.seqObj = function() {
+          }, e2.regex = Q2, e2.regexp = Q2, e2.sepBy = V2, e2.sepBy1 = H2, e2.seq = C3, e2.seqMap = J2, e2.seqObj = function() {
             for (var n4, t3 = {}, r3 = 0, u3 = (n4 = arguments, Array.prototype.slice.call(n4)), o3 = u3.length, i3 = 0; i3 < o3; i3 += 1) {
               var a3 = u3[i3];
               if (!y2(a3)) {
                 if (E2(a3) && 2 === a3.length && "string" == typeof a3[0] && y2(a3[1])) {
-                  var f3 = a3[0];
-                  if (Object.prototype.hasOwnProperty.call(t3, f3))
-                    throw new Error("seqObj: duplicate key " + f3);
-                  t3[f3] = true, r3++;
+                  var f4 = a3[0];
+                  if (Object.prototype.hasOwnProperty.call(t3, f4))
+                    throw new Error("seqObj: duplicate key " + f4);
+                  t3[f4] = true, r3++;
                   continue;
                 }
                 throw new Error("seqObj arguments must be parsers or [string, parser] array pairs.");
@@ -26791,15 +43649,15 @@ var require_lib4 = __commonJS({
               throw new Error("seqObj expects at least one named parser, found zero");
             return e2(function(n5, t4) {
               for (var r4, e3 = {}, i4 = 0; i4 < o3; i4 += 1) {
-                var a4, f4;
-                if (E2(u3[i4]) ? (a4 = u3[i4][0], f4 = u3[i4][1]) : (a4 = null, f4 = u3[i4]), !(r4 = B2(f4._(n5, t4), r4)).status)
+                var a4, f5;
+                if (E2(u3[i4]) ? (a4 = u3[i4][0], f5 = u3[i4][1]) : (a4 = null, f5 = u3[i4]), !(r4 = B2(f5._(n5, t4), r4)).status)
                   return r4;
                 a4 && (e3[a4] = r4.value), t4 = r4.index;
               }
               return B2(b2(t4, e3), r4);
             });
-          }, e2.string = K2, e2.succeed = X2, e2.takeWhile = function(n4) {
-            return k2(n4), e2(function(t3, r3) {
+          }, e2.string = K3, e2.succeed = X2, e2.takeWhile = function(n4) {
+            return k3(n4), e2(function(t3, r3) {
               for (var e3 = r3; e3 < t3.length && n4(L2(t3, e3)); )
                 e3++;
               return b2(e3, t3.slice(r3, e3));
@@ -26847,7 +43705,7 @@ var require_lib4 = __commonJS({
             return h2("string", t3).map(function(t4) {
               return t4.toString(n4);
             });
-          }, uintBE: d2, uint8BE: d2(1), uint16BE: d2(2), uint32BE: d2(4), uintLE: v2, uint8LE: v2(1), uint16LE: v2(2), uint32LE: v2(4), intBE: g2, int8BE: g2(1), int16BE: g2(2), int32BE: g2(4), intLE: m2, int8LE: m2(1), int16LE: m2(2), int32LE: m2(4), floatBE: h2("floatBE", 4).map(function(n4) {
+          }, uintBE: d3, uint8BE: d3(1), uint16BE: d3(2), uint32BE: d3(4), uintLE: v6, uint8LE: v6(1), uint16LE: v6(2), uint32LE: v6(4), intBE: g3, int8BE: g3(1), int16BE: g3(2), int32BE: g3(4), intLE: m2, int8LE: m2(1), int16LE: m2(2), int32LE: m2(4), floatBE: h2("floatBE", 4).map(function(n4) {
             return n4.readFloatBE(0);
           }), floatLE: h2("floatLE", 4).map(function(n4) {
             return n4.readFloatLE(0);
@@ -26913,7 +43771,7 @@ var require_lib4 = __commonJS({
             let result = "";
             if (recursive)
               result += "[";
-            result += wrapped.value.map((f2) => toString(f2, setting, true)).join(", ");
+            result += wrapped.value.map((f3) => toString(f3, setting, true)).join(", ");
             if (recursive)
               result += "]";
             return result;
@@ -26975,7 +43833,6 @@ var require_lib4 = __commonJS({
       }
       Values2.mapLeaves = mapLeaves;
       function compareValue(val1, val2, linkNormalizer) {
-        var _a2, _b;
         if (val1 === void 0)
           val1 = null;
         if (val2 === void 0)
@@ -27017,7 +43874,7 @@ var require_lib4 = __commonJS({
           case "link":
             let link1 = wrap1.value;
             let link2 = wrap2.value;
-            let normalize = linkNormalizer !== null && linkNormalizer !== void 0 ? linkNormalizer : (x2) => x2;
+            let normalize = linkNormalizer ?? ((x2) => x2);
             let pathCompare = normalize(link1.path).localeCompare(normalize(link2.path));
             if (pathCompare != 0)
               return pathCompare;
@@ -27030,28 +43887,28 @@ var require_lib4 = __commonJS({
               return -1;
             if (!link1.subpath && !link2.subpath)
               return 0;
-            return ((_a2 = link1.subpath) !== null && _a2 !== void 0 ? _a2 : "").localeCompare((_b = link2.subpath) !== null && _b !== void 0 ? _b : "");
+            return (link1.subpath ?? "").localeCompare(link2.subpath ?? "");
           case "date":
             return wrap1.value < wrap2.value ? -1 : wrap1.value.equals(wrap2.value) ? 0 : 1;
           case "duration":
             return wrap1.value < wrap2.value ? -1 : wrap1.value.equals(wrap2.value) ? 0 : 1;
           case "array":
             let f1 = wrap1.value;
-            let f2 = wrap2.value;
-            for (let index = 0; index < Math.min(f1.length, f2.length); index++) {
-              let comp = compareValue(f1[index], f2[index]);
+            let f22 = wrap2.value;
+            for (let index = 0; index < Math.min(f1.length, f22.length); index++) {
+              let comp = compareValue(f1[index], f22[index]);
               if (comp != 0)
                 return comp;
             }
-            return f1.length - f2.length;
+            return f1.length - f22.length;
           case "object":
             let o1 = wrap1.value;
             let o2 = wrap2.value;
             let k1 = Array.from(Object.keys(o1));
-            let k2 = Array.from(Object.keys(o2));
+            let k22 = Array.from(Object.keys(o2));
             k1.sort();
-            k2.sort();
-            let keyCompare = compareValue(k1, k2);
+            k22.sort();
+            let keyCompare = compareValue(k1, k22);
             if (keyCompare != 0)
               return keyCompare;
             for (let key of k1) {
@@ -27068,8 +43925,7 @@ var require_lib4 = __commonJS({
       }
       Values2.compareValue = compareValue;
       function typeOf(val) {
-        var _a2;
-        return (_a2 = wrapValue(val)) === null || _a2 === void 0 ? void 0 : _a2.type;
+        return wrapValue(val)?.type;
       }
       Values2.typeOf = typeOf;
       function isTruthy(field) {
@@ -27106,7 +43962,7 @@ var require_lib4 = __commonJS({
         if (field === null || field === void 0)
           return field;
         if (Values2.isArray(field)) {
-          return [].concat(field.map((v2) => deepCopy(v2)));
+          return [].concat(field.map((v6) => deepCopy(v6)));
         } else if (Values2.isObject(field)) {
           let result = {};
           for (let [key, value] of Object.entries(field))
@@ -27196,6 +44052,19 @@ var require_lib4 = __commonJS({
       Groupings2.count = count;
     })(Groupings || (Groupings = {}));
     var Link = class _Link {
+      constructor(fields) {
+        /** The file path this link points to. */
+        __publicField(this, "path");
+        /** The display name associated with the link. */
+        __publicField(this, "display");
+        /** The block ID or header this link points to within a file, if relevant. */
+        __publicField(this, "subpath");
+        /** Is this link an embedded link (!)? */
+        __publicField(this, "embed");
+        /** The type of this link, which determines what 'subpath' refers to, if anything. */
+        __publicField(this, "type");
+        Object.assign(this, fields);
+      }
       /** Create a link to a specific file. */
       static file(path2, embed = false, display) {
         return new _Link({
@@ -27238,9 +44107,6 @@ var require_lib4 = __commonJS({
       }
       static fromObject(object) {
         return new _Link(object);
-      }
-      constructor(fields) {
-        Object.assign(this, fields);
       }
       /** Checks for link equality (i.e., that the links are pointing to the same exact location). */
       equals(other) {
@@ -27308,12 +44174,11 @@ var require_lib4 = __commonJS({
       }
       /** Convert the inner part of the link to something that Obsidian can open / understand. */
       obsidianLink() {
-        var _a2, _b;
-        const escaped = this.path.replace("|", "\\|");
+        const escaped = this.path.replaceAll("|", "\\|");
         if (this.type == "header")
-          return escaped + "#" + ((_a2 = this.subpath) === null || _a2 === void 0 ? void 0 : _a2.replace("|", "\\|"));
+          return escaped + "#" + this.subpath?.replaceAll("|", "\\|");
         if (this.type == "block")
-          return escaped + "#^" + ((_b = this.subpath) === null || _b === void 0 ? void 0 : _b.replace("|", "\\|"));
+          return escaped + "#^" + this.subpath?.replaceAll("|", "\\|");
         else
           return escaped;
       }
@@ -27324,12 +44189,15 @@ var require_lib4 = __commonJS({
     };
     var Widget = class {
       constructor($widget) {
+        __publicField(this, "$widget");
         this.$widget = $widget;
       }
     };
     var ListPairWidget = class extends Widget {
       constructor(key, value) {
         super("dataview:list-pair");
+        __publicField(this, "key");
+        __publicField(this, "value");
         this.key = key;
         this.value = value;
       }
@@ -27340,12 +44208,13 @@ var require_lib4 = __commonJS({
     var ExternalLinkWidget = class extends Widget {
       constructor(url, display) {
         super("dataview:external-link");
+        __publicField(this, "url");
+        __publicField(this, "display");
         this.url = url;
         this.display = display;
       }
       markdown() {
-        var _a2;
-        return `[${(_a2 = this.display) !== null && _a2 !== void 0 ? _a2 : this.url}](${this.url})`;
+        return `[${this.display ?? this.url}](${this.url})`;
       }
     };
     var Widgets;
@@ -27398,12 +44267,12 @@ var require_lib4 = __commonJS({
         return result;
       }
       Fields2.indexVariable = indexVariable;
-      function lambda(args, value) {
-        return { type: "lambda", arguments: args, value };
+      function lambda(args2, value) {
+        return { type: "lambda", arguments: args2, value };
       }
       Fields2.lambda = lambda;
-      function func(func2, args) {
-        return { type: "function", func: func2, arguments: args };
+      function func(func2, args2) {
+        return { type: "function", func: func2, arguments: args2 };
       }
       Fields2.func = func;
       function list(values) {
@@ -27610,7 +44479,7 @@ var require_lib4 = __commonJS({
         // pass
       ), (dt2) => parsimmon_umd_minExports.alt(parsimmon_umd_minExports.seqMap(parsimmon_umd_minExports.string("+").or(parsimmon_umd_minExports.string("-")), parsimmon_umd_minExports.regexp(/\d{1,2}(:\d{2})?/), (pm, hr2) => dt2.setZone("UTC" + pm + hr2, { keepLocalTime: true })), parsimmon_umd_minExports.seqMap(parsimmon_umd_minExports.string("Z"), () => dt2.setZone("utc", { keepLocalTime: true })), parsimmon_umd_minExports.seqMap(parsimmon_umd_minExports.string("["), parsimmon_umd_minExports.regexp(/[0-9A-Za-z+-\/]+/u), parsimmon_umd_minExports.string("]"), (_a2, zone, _b) => dt2.setZone(zone, { keepLocalTime: true })))).assert((dt2) => dt2.isValid, "valid date").desc("date in format YYYY-MM[-DDTHH-MM-SS.MS]"),
       // A date, plus various shorthand times of day it could be.
-      datePlus: (q2) => parsimmon_umd_minExports.alt(q2.dateShorthand.map((d2) => DATE_SHORTHANDS[d2]()), q2.date).desc("date in format YYYY-MM[-DDTHH-MM-SS.MS] or in shorthand"),
+      datePlus: (q2) => parsimmon_umd_minExports.alt(q2.dateShorthand.map((d3) => DATE_SHORTHANDS[d3]()), q2.date).desc("date in format YYYY-MM[-DDTHH-MM-SS.MS] or in shorthand"),
       // A duration of time.
       durationType: (_2) => parsimmon_umd_minExports.alt(...Object.keys(DURATION_TYPES).sort((a2, b2) => b2.length - a2.length).map(parsimmon_umd_minExports.string)),
       duration: (q2) => parsimmon_umd_minExports.seqMap(q2.number, parsimmon_umd_minExports.optWhitespace, q2.durationType, (count, _2, t2) => DURATION_TYPES[t2].mapUnits((x2) => x2 * count)).sepBy1(parsimmon_umd_minExports.string(",").trim(parsimmon_umd_minExports.optWhitespace).or(parsimmon_umd_minExports.optWhitespace)).map((durations) => durations.reduce((p2, c2) => p2.plus(c2))).desc("duration like 4hr2min"),
@@ -27641,7 +44510,7 @@ var require_lib4 = __commonJS({
       dateField: (q2) => parsimmon_umd_minExports.seqMap(parsimmon_umd_minExports.string("date("), parsimmon_umd_minExports.optWhitespace, q2.datePlus, parsimmon_umd_minExports.optWhitespace, parsimmon_umd_minExports.string(")"), (prefix, _1, date, _2, postfix) => Fields.literal(date)).desc("date"),
       durationField: (q2) => parsimmon_umd_minExports.seqMap(parsimmon_umd_minExports.string("dur("), parsimmon_umd_minExports.optWhitespace, q2.duration, parsimmon_umd_minExports.optWhitespace, parsimmon_umd_minExports.string(")"), (prefix, _1, dur, _2, postfix) => Fields.literal(dur)).desc("duration"),
       nullField: (q2) => q2.rawNull.map((_2) => Fields.NULL),
-      linkField: (q2) => q2.link.map((f2) => Fields.literal(f2)),
+      linkField: (q2) => q2.link.map((f3) => Fields.literal(f3)),
       listField: (q2) => q2.field.sepBy(parsimmon_umd_minExports.string(",").trim(parsimmon_umd_minExports.optWhitespace)).wrap(parsimmon_umd_minExports.string("[").skip(parsimmon_umd_minExports.optWhitespace), parsimmon_umd_minExports.optWhitespace.then(parsimmon_umd_minExports.string("]"))).map((l3) => Fields.list(l3)).desc("list ('[1, 2, 3]')"),
       objectField: (q2) => parsimmon_umd_minExports.seqMap(q2.identifier.or(q2.string), parsimmon_umd_minExports.string(":").trim(parsimmon_umd_minExports.optWhitespace), q2.field, (name, _sep, value) => {
         return { name, value };
@@ -27651,9 +44520,9 @@ var require_lib4 = __commonJS({
           res[entry.name] = entry.value;
         return Fields.object(res);
       }).desc("object ('{ a: 1, b: 2 }')"),
-      atomInlineField: (q2) => parsimmon_umd_minExports.alt(q2.date, q2.duration.map((d2) => normalizeDuration(d2)), q2.string, q2.tag, q2.embedLink, q2.bool, q2.number, q2.rawNull),
+      atomInlineField: (q2) => parsimmon_umd_minExports.alt(q2.date, q2.duration.map((d3) => normalizeDuration(d3)), q2.string, q2.tag, q2.embedLink, q2.bool, q2.number, q2.rawNull),
       inlineFieldList: (q2) => q2.atomInlineField.sepBy(parsimmon_umd_minExports.string(",").trim(parsimmon_umd_minExports.optWhitespace).lookahead(q2.atomInlineField)),
-      inlineField: (q2) => parsimmon_umd_minExports.alt(parsimmon_umd_minExports.seqMap(q2.atomInlineField, parsimmon_umd_minExports.string(",").trim(parsimmon_umd_minExports.optWhitespace), q2.inlineFieldList, (f2, _s, l3) => [f2].concat(l3)), q2.atomInlineField),
+      inlineField: (q2) => parsimmon_umd_minExports.alt(parsimmon_umd_minExports.seqMap(q2.atomInlineField, parsimmon_umd_minExports.string(",").trim(parsimmon_umd_minExports.optWhitespace), q2.inlineFieldList, (f3, _s, l3) => [f3].concat(l3)), q2.atomInlineField),
       atomField: (q2) => parsimmon_umd_minExports.alt(
         // Place embed links above negated fields as they are the special parser case '![[thing]]' and are generally unambigious.
         q2.embedLink.map((l3) => Fields.literal(l3)),
@@ -27748,6 +44617,14 @@ var require_lib4 = __commonJS({
       // Simple atom parsing, like words, identifiers, numbers.
       queryType: (q2) => parsimmon_umd_minExports.alt(parsimmon_umd_minExports.regexp(/TABLE|LIST|TASK|CALENDAR/i)).map((str2) => str2.toLowerCase()).desc("query type ('TABLE', 'LIST', 'TASK', or 'CALENDAR')"),
       explicitNamedField: (q2) => parsimmon_umd_minExports.seqMap(EXPRESSION.field.skip(parsimmon_umd_minExports.whitespace), parsimmon_umd_minExports.regexp(/AS/i).skip(parsimmon_umd_minExports.whitespace), EXPRESSION.identifier.or(EXPRESSION.string), (field, _as, ident) => QueryFields.named(ident, field)),
+      comment: () => parsimmon_umd_minExports.Parser((input, i2) => {
+        let line = input.substring(i2);
+        if (!line.startsWith("//"))
+          return parsimmon_umd_minExports.makeFailure(i2, "Not a comment");
+        line = line.split("\n")[0];
+        let comment = line.substring(2).trim();
+        return parsimmon_umd_minExports.makeSuccess(i2 + line.length, comment);
+      }),
       namedField: (q2) => parsimmon_umd_minExports.alt(q2.explicitNamedField, captureRaw(EXPRESSION.field).map(([value, text]) => QueryFields.named(stripNewlines(text), value))),
       sortField: (q2) => parsimmon_umd_minExports.seqMap(EXPRESSION.field.skip(parsimmon_umd_minExports.optWhitespace), parsimmon_umd_minExports.regexp(/ASCENDING|DESCENDING|ASC|DESC/i).atMost(1), (field, dir) => {
         let direction = dir.length == 0 ? "ascending" : dir[0].toLowerCase();
@@ -27807,7 +44684,7 @@ var require_lib4 = __commonJS({
       }).desc("GROUP BY <value> [AS <name>]"),
       // Full query parsing.
       clause: (q2) => parsimmon_umd_minExports.alt(q2.fromClause, q2.whereClause, q2.sortByClause, q2.limitClause, q2.groupByClause, q2.flattenClause),
-      query: (q2) => parsimmon_umd_minExports.seqMap(q2.headerClause.trim(parsimmon_umd_minExports.optWhitespace), q2.fromClause.trim(parsimmon_umd_minExports.optWhitespace).atMost(1), q2.clause.trim(parsimmon_umd_minExports.optWhitespace).many(), (header, from, clauses) => {
+      query: (q2) => parsimmon_umd_minExports.seqMap(q2.headerClause.trim(optionalWhitespaceOrComment), q2.fromClause.trim(optionalWhitespaceOrComment).atMost(1), q2.clause.trim(optionalWhitespaceOrComment).many(), (header, from, clauses) => {
         return {
           header,
           source: from.length == 0 ? Sources.folder("") : from[0],
@@ -27816,10 +44693,10 @@ var require_lib4 = __commonJS({
         };
       })
     });
+    var optionalWhitespaceOrComment = parsimmon_umd_minExports.alt(parsimmon_umd_minExports.whitespace, QUERY_LANGUAGE.comment).many().map((arr) => arr.join(""));
     var getAPI2 = (app) => {
-      var _a2;
       if (app)
-        return (_a2 = app.plugins.plugins.dataview) === null || _a2 === void 0 ? void 0 : _a2.api;
+        return app.plugins.plugins.dataview?.api;
       else
         return window.DataviewAPI;
     };
@@ -27843,7 +44720,7 @@ __export(main_exports, {
 module.exports = __toCommonJS(main_exports);
 
 // src/ReasonPlugin.ts
-var import_obsidian13 = require("obsidian");
+var import_obsidian14 = require("obsidian");
 
 // src/settings/ReasonSettings.ts
 var DEFAULT_SETTINGS = {
@@ -27976,7 +44853,81 @@ var SettingsTab = class extends import_obsidian.PluginSettingTab {
 var SettingsTab_default = SettingsTab;
 
 // src/render/CodeBlockRenderer.ts
+var import_obsidian3 = require("obsidian");
+
+// src/reason-node/BaseReasonNodeBuilder.ts
 var import_obsidian2 = require("obsidian");
+
+// src/types.ts
+var ReasonNodeType = /* @__PURE__ */ ((ReasonNodeType2) => {
+  ReasonNodeType2[ReasonNodeType2["Source"] = 0] = "Source";
+  ReasonNodeType2[ReasonNodeType2["Aggregator"] = 1] = "Aggregator";
+  ReasonNodeType2[ReasonNodeType2["Synthesis"] = 2] = "Synthesis";
+  return ReasonNodeType2;
+})(ReasonNodeType || {});
+
+// src/reason-node/BaseReasonNodeBuilder.ts
+var import_yaml = __toESM(require_dist(), 1);
+var BaseReasonNodeBuilder = class {
+  constructor() {
+    __publicField(this, "type");
+    __publicField(this, "color");
+    __publicField(this, "endpoint");
+  }
+  renderFrontmatter(spec) {
+    return `---
+${import_yaml.default.stringify(spec)}
+---`;
+  }
+  buildSpec(spec) {
+    return {
+      role: ReasonNodeType[this.type],
+      cssclasses: [`reason-node-${ReasonNodeType[this.type].toLowerCase()}`],
+      ...spec
+    };
+  }
+  async createReasonNodeFile(spec, createFile) {
+    spec = this.buildSpec(spec);
+    const body = this.renderFrontmatter(spec) + "\n" + this.renderBodyDataWithSpec(spec, "");
+    const file = await createFile(body);
+    new import_obsidian2.Notice(
+      `Created a file for a new ${ReasonNodeType[this.type]} node at ${file.path}`
+    );
+  }
+};
+
+// src/reason-node/SourceReasonNodeBuilder.ts
+var import_dedent_js = __toESM(require_lib(), 1);
+var DQLStrategy = /* @__PURE__ */ ((DQLStrategy2) => {
+  DQLStrategy2[DQLStrategy2["SingleEvergreenReferrer"] = 0] = "SingleEvergreenReferrer";
+  DQLStrategy2[DQLStrategy2["AllEvergreenReferrers"] = 1] = "AllEvergreenReferrers";
+  DQLStrategy2[DQLStrategy2["LongContent"] = 2] = "LongContent";
+  DQLStrategy2[DQLStrategy2["RecentMentions"] = 3] = "RecentMentions";
+  DQLStrategy2[DQLStrategy2["Basic"] = 4] = "Basic";
+  return DQLStrategy2;
+})(DQLStrategy || {});
+var DQLStrategyDescriptions = {
+  SingleEvergreenReferrer: void 0,
+  AllEvergreenReferrers: void 0,
+  LongContent: void 0,
+  RecentMentions: "Identify the top most recent tags and links, and extract the content surrounding their mentions."
+};
+var SourceReasonNodeBuilder = class extends BaseReasonNodeBuilder {
+  constructor() {
+    super(...arguments);
+    __publicField(this, "type", 0 /* Source */);
+    __publicField(this, "endpoint", "create-source-node");
+    __publicField(this, "color", "4");
+  }
+  renderBodyDataWithSpec(spec, body) {
+    const sourceSpec = spec;
+    return (0, import_dedent_js.default)(`
+    \`\`\`dataview
+    ${sourceSpec.dql}
+    \`\`\`
+    `);
+  }
+};
 
 // src/render/SynthesisContainer.ts
 var SynthesisContainer = class {
@@ -28137,18 +45088,25 @@ var SynthesisContainer = class {
   getMessagesToHere(curLine = this.curLine, curCh = this.curCh) {
     const rawContent = this.editor.getRange(
       { ch: 0, line: 0 },
-      { ch: curCh, line: curLine }
+      { ch: curCh, line: this.endOfCodeFenceLine }
     );
     const combinedBlocks = rawContent.match(
       /```reason\n([\s\S]*?)\n```|> \[!💭\]\+\n> ([\s\S]*?)(?=\n[^>])/g
     );
-    const messages = combinedBlocks.map((block) => {
+    const messages = combinedBlocks.map((block, index) => {
       const role = block.includes("```reason") ? "user" : "assistant";
       let displayedContent = role === "user" ? block.match(/```reason\n([\s\S]*?)\n```/)[1] : block.match(/> \[!💭\]\+\n> ([\s\S]*)/)[1];
       let content = displayedContent;
       let metadata;
       if (role === "user") {
         let { type, ...parsedContents } = this.renderer.parseReasonBlockContents(displayedContent);
+        if (index === 0 && parsedContents.sources.length === 0) {
+          parsedContents.sources = [
+            {
+              strategy: DQLStrategy[3 /* RecentMentions */]
+            }
+          ];
+        }
         switch (type) {
           case "source":
             metadata = [
@@ -28296,7 +45254,7 @@ ${aggregator.sources.map((source) => JSON.stringify(source)).join("\n")}`;
 
 // src/render/CodeBlockRenderer.ts
 var yaml = __toESM(require_dist(), 1);
-var import_obsidian3 = require("obsidian");
+var import_obsidian4 = require("obsidian");
 var CodeBlockRenderer = class {
   constructor(app, canvasLoader, reasonAgent, registerMarkdownCodeBlockProcessor) {
     this.app = app;
@@ -28325,42 +45283,52 @@ var CodeBlockRenderer = class {
     const body = container.createDiv("reason-preview");
     const s2 = body.createSpan();
     await this.canvasLoader.reload();
-    let { type, ...parsedContents } = this.parseReasonBlockContents(blockContents);
+    const tempSynthesisContainer = new SynthesisContainer(
+      this.app.workspace.activeEditor.editor,
+      context.getSectionInfo(el).lineStart,
+      0,
+      context.getSectionInfo(el).lineEnd + 1,
+      this
+    );
     const button = body.createEl("button");
     button.addClass("reason-generate-button");
-    let renderedString;
+    let renderedString = "";
     let sources;
     let prompt;
-    let dqlString;
     const executionLock = { isExecuting: false };
     if (blockContents.length > 0) {
-      switch (type) {
-        case "source":
-          sources = parsedContents.sources;
-          let dqlstring = sources.map((source) => {
-            return "### Source:\n```dataview\n" + source.dql + "\n```";
-          }).join("\n\n");
-          prompt = parsedContents.prompt;
-          renderedString = dqlstring + "\n---\n### Guidance:\n> " + prompt.split("\n").join("\n> ");
-          break;
-        case "aggregator":
-          sources = parsedContents.sources;
-          dqlString = sources.map((source) => {
-            return "### Source:\n```dataview\n" + source.dql + "\n```";
-          }).join("\n\n");
-          prompt = parsedContents.prompt;
-          renderedString = dqlString + "\n---\n### Guidance:\n> " + prompt.split("\n").join("\n> ");
-          break;
-        case "plaintext":
-          prompt = parsedContents.prompt;
-          renderedString = prompt;
-          break;
+      let { type, ...parsedContents } = this.parseReasonBlockContents(blockContents);
+      let sourceStringParts = [];
+      prompt = parsedContents.prompt;
+      if (type === "source" || type === "aggregator") {
+        sources = parsedContents.sources;
+        if (sources.length === 0 && tempSynthesisContainer.getMessagesToHere().length === 1) {
+          sources.push({
+            strategy: DQLStrategy[3 /* RecentMentions */]
+          });
+        }
+        if (sources.length > 0) {
+          sourceStringParts = sources.map((source) => {
+            const dqlPart = source.dql ? `\`\`\`dataview
+${source.dql}
+\`\`\`
+` : "";
+            const strategyPart = type === "source" && source.strategy && DQLStrategyDescriptions[source.strategy] !== void 0 ? `**Strategy**: ${DQLStrategyDescriptions[source.strategy]}
+` : "";
+            const preamblePart = type === "source" && source.sourcePreamble ? `**Preamble**: ${source.sourcePreamble}
+` : "";
+            return `### Source:
+${dqlPart}${strategyPart}${preamblePart}`;
+          });
+          renderedString = "> [!Sources]-\n> " + sourceStringParts.join("\n\n").split("\n").join("\n> ") + "\n\n";
+        }
       }
-      import_obsidian2.MarkdownRenderer.render(this.app, renderedString, s2, "/", new import_obsidian2.Component());
+      renderedString += prompt;
+      import_obsidian3.MarkdownRenderer.render(this.app, renderedString, s2, "/", new import_obsidian3.Component());
       button.setText("Send");
       button.addEventListener("click", async () => {
         if (!this.reasonAgent.checkSetup()) {
-          new import_obsidian3.Notice(
+          new import_obsidian4.Notice(
             "Please check that Reason is set up properly (i.e. API Key, etc.)"
           );
           return;
@@ -28370,50 +45338,22 @@ var CodeBlockRenderer = class {
           context,
           executionLock,
           async (synthesisContainerEl) => {
-            if (sources?.length > 0) {
-              await this.reasonAgent.synthesize(synthesisContainerEl);
-            } else {
-              await this.reasonAgent.execute(synthesisContainerEl);
-            }
+            await this.reasonAgent.synthesize(synthesisContainerEl);
           }
         );
       });
-    } else {
-      button.setText("Continue");
-      button.addEventListener("click", async () => {
-        if (!this.reasonAgent.checkSetup()) {
-          new import_obsidian3.Notice(
-            "Please check that Reason is set up properly (i.e. API Key, etc.)"
-          );
-          return;
-        }
+    } else if (blockContents.trim().length === 0 && tempSynthesisContainer.getMessagesToHere().length > 0) {
+      const saveButton = body.createEl("button");
+      saveButton.addClass("reason-generate-button");
+      saveButton.setText("Save");
+      saveButton.addEventListener("click", async () => {
         this.createSynthesisContainerAction(
           el,
           context,
           executionLock,
-          async (synthesisContainerEl) => await this.reasonAgent.synthesize(synthesisContainerEl)
+          async (synthesisContainerEl) => await this.reasonAgent.collapseAndPersist(synthesisContainerEl)
         );
       });
-      const tempSynthesisContainer = new SynthesisContainer(
-        this.app.workspace.activeEditor.editor,
-        context.getSectionInfo(el).lineEnd,
-        0,
-        context.getSectionInfo(el).lineEnd,
-        this
-      );
-      if (tempSynthesisContainer.getMessagesToHere().length > 0) {
-        const saveButton = body.createEl("button");
-        saveButton.addClass("reason-generate-button");
-        saveButton.setText("Save");
-        saveButton.addEventListener("click", async () => {
-          this.createSynthesisContainerAction(
-            el,
-            context,
-            executionLock,
-            async (synthesisContainerEl) => await this.reasonAgent.collapseAndPersist(synthesisContainerEl)
-          );
-        });
-      }
     }
   }
   /**
@@ -28438,28 +45378,29 @@ var CodeBlockRenderer = class {
         const synthesisContainerEl = this.createSynthesisContainer(el, context);
         await callback(synthesisContainerEl);
       } catch (e2) {
-        new import_obsidian3.Notice("Reason encountered an error: " + e2.message);
+        new import_obsidian4.Notice("Reason encountered an error: " + e2.message);
       } finally {
         executionLock.isExecuting = false;
       }
     } else {
-      new import_obsidian3.Notice("Please wait for Reason to finish.");
+      new import_obsidian4.Notice("Please wait for Reason to finish.");
     }
   }
   createSynthesisContainer(codeblockEl, context) {
-    const endOfCodeFenceLine = context.getSectionInfo(codeblockEl).lineEnd;
+    let endOfCodeFenceLine = context.getSectionInfo(codeblockEl).lineEnd;
     let editor = this.app.workspace.activeEditor.editor;
     editor.replaceRange("\n> [!\u{1F4AD}]+\n> ", {
       ch: 0,
       line: endOfCodeFenceLine + 1
     });
     let curLine = endOfCodeFenceLine + 3;
+    endOfCodeFenceLine += 3;
     let curCh = 2;
     return new SynthesisContainer(
       editor,
       curLine,
       curCh,
-      endOfCodeFenceLine,
+      endOfCodeFenceLine + 1,
       this
     );
   }
@@ -28492,7 +45433,8 @@ var CodeBlockRenderer = class {
           return {
             dql: source.dql,
             strategy: source.strategy,
-            evergreen: source.evergreen
+            evergreen: source.evergreen,
+            sourcePreamble: source.sourcePreamble
           };
         });
         prompt = parsedYaml.guidance;
@@ -28501,23 +45443,31 @@ var CodeBlockRenderer = class {
           prompt,
           sources
         };
+      } else if (parsedYaml?.guidance) {
+        return {
+          type: "source",
+          prompt: parsedYaml.guidance,
+          sources: []
+        };
       } else {
         return {
-          type: "plaintext",
-          prompt: contents
+          type: "source",
+          prompt: contents,
+          sources: []
         };
       }
     } catch (e2) {
       return {
-        type: "plaintext",
-        prompt: contents
+        type: "source",
+        prompt: contents,
+        sources: []
       };
     }
   }
 };
 
 // src/aggregator/Aggregator.ts
-var import_obsidian4 = require("obsidian");
+var import_obsidian5 = require("obsidian");
 var Aggregator = class {
   constructor(aiClient, getModel, systemPrompt, instructions) {
     this.aiClient = aiClient;
@@ -28547,7 +45497,7 @@ var Aggregator = class {
         );
       }
     } catch (error) {
-      new import_obsidian4.Notice(`Error calling GPT: ${error.message || error}`);
+      new import_obsidian5.Notice(`Error calling GPT: ${error.message || error}`);
       console.error(error.message || error);
     }
   }
@@ -28612,22 +45562,12 @@ var Aggregator = class {
 };
 
 // src/notebook/TemplateSaver.ts
-var import_obsidian7 = require("obsidian");
-
-// src/types.ts
-var ReasonNodeType = /* @__PURE__ */ ((ReasonNodeType2) => {
-  ReasonNodeType2[ReasonNodeType2["Source"] = 0] = "Source";
-  ReasonNodeType2[ReasonNodeType2["Aggregator"] = 1] = "Aggregator";
-  ReasonNodeType2[ReasonNodeType2["Synthesis"] = 2] = "Synthesis";
-  return ReasonNodeType2;
-})(ReasonNodeType || {});
-
-// src/notebook/TemplateSaver.ts
+var import_obsidian8 = require("obsidian");
 var import_crypto = require("crypto");
 
 // src/notebook/CanvasLoader.ts
-var import_obsidian5 = require("obsidian");
 var import_obsidian6 = require("obsidian");
+var import_obsidian7 = require("obsidian");
 var path = __toESM(require("path"), 1);
 var DEFAULT_BASE_REASON_PATH = "reason";
 var DEFAULT_CANVAS_PATH = path.join(
@@ -28650,7 +45590,7 @@ var CanvasLoader = class {
     if (!canvasFile) {
       this.canvasData = { nodes: [], edges: [] };
     } else {
-      if (!(canvasFile instanceof import_obsidian5.TFile)) {
+      if (!(canvasFile instanceof import_obsidian6.TFile)) {
         throw new Error(`Canvas file not found: ${DEFAULT_CANVAS_PATH}`);
       }
       this.canvasData = JSON.parse(
@@ -28662,10 +45602,10 @@ var CanvasLoader = class {
     );
     if (!reasonPath) {
       reasonPath = await this.app.vault.createFolder(DEFAULT_BASE_REASON_PATH);
-    } else if (!(reasonPath instanceof import_obsidian6.TFolder)) {
+    } else if (!(reasonPath instanceof import_obsidian7.TFolder)) {
       throw new Error(`Expected ${DEFAULT_BASE_REASON_PATH} to be a folder.`);
     }
-    import_obsidian6.Vault.recurseChildren(reasonPath, async (file) => {
+    import_obsidian7.Vault.recurseChildren(reasonPath, async (file) => {
       if (file.path !== DEFAULT_BASE_REASON_PATH && !file.path.contains(".canvas") && !this.canvasData.nodes.find((node) => node.file === file.path)) {
         await this.app.vault.delete(file);
       }
@@ -28771,7 +45711,7 @@ ${synthesisPlanMetadata.map((m2) => JSON.stringify(m2)).join("\n")}")`;
    */
   async save(synthesisConstruction, canvasPath) {
     let canvasFile = this.app.vault.getAbstractFileByPath(canvasPath);
-    if (!(canvasFile instanceof import_obsidian7.TFile)) {
+    if (!(canvasFile instanceof import_obsidian8.TFile)) {
       throw new Error(`Canvas file not found: ${canvasPath}`);
     }
     let canvasData;
@@ -28786,7 +45726,7 @@ ${synthesisPlanMetadata.map((m2) => JSON.stringify(m2)).join("\n")}")`;
       );
       return;
     } else {
-      if (!(canvasFile instanceof import_obsidian7.TFile)) {
+      if (!(canvasFile instanceof import_obsidian8.TFile)) {
         throw new Error(`Canvas file not found: ${canvasPath}`);
       }
       canvasData = JSON.parse(
@@ -28812,7 +45752,7 @@ ${synthesisPlanMetadata.map((m2) => JSON.stringify(m2)).join("\n")}")`;
                   (node) => node.file === filepath
                 );
                 if (existingNode) {
-                  new import_obsidian7.Notice(
+                  new import_obsidian8.Notice(
                     `Source material ${sourceMaterial.id} already exists. Skipping.`
                   );
                   return filepath;
@@ -28891,29 +45831,28 @@ ${synthesisPlanMetadata.map((m2) => JSON.stringify(m2)).join("\n")}")`;
 };
 
 // src/notebook/ReasonAgent.ts
-var import_obsidian8 = require("obsidian");
+var import_obsidian9 = require("obsidian");
 
 // src/notebook/prompts.ts
 var prompts = {
   aggregatorInstructions: `
-	  Relate different notes to each other. Limit your response to 500 words. Use MARKERs from different sources to support a point.
-	  You will encounter MARKERS in the notes. These start and end with %. Try your best to alternate between your synthesis and MARKERs to show where you got insights from. Use at most 2 MARKERs together in a section. Try to create at least 2 MARKER sections. Avoid placing all MARKERs at the end. For example:
+	  Relate note excerpts to each other. Limit your response to 500 words. You will encounter %markers% in the notes. These start and end with %. Try your best to alternate between your synthesis and %markers% to show where you got insights from. Use at most 2 %markers% together in a section. Try to create at least 2 marker sections, from different sources to support a point. Only use valid %markers% that exist in the text. You MUST avoid repeating the same %marker% twice, and avoid placing all markers at the end. For example:
 	  \`\`\`
 	  <some synthesis>
 	  %a6de%
 	  %8f3a%
 	  <some more synthesis>: %0d22%. <continuing with the point>
 	  \`\`\`
-	  MARKERS are NOT [[links]] or #tags.
-	  Only use MARKERS that you can find. Only use "Backup Marker" if you can't find a MARKER within the \`\`\`codefence\`\`\`.
-	  The user does not know what MARKERs are; don't mention your use of them in output.
-	  MARKERs appear in the frontmatter of a document, or after the text they reference. Think carefully about using the MARKERs most related to your ideas.
+	  Markers are NOT [[links]] or #tags.
+	  Only use "Main marker" if you can't find a %marker% within the \`\`\`codefence\`\`\`.
+	  Do NOT mention the word %marker% in your response to the user.
+	  %markers% appear in the frontmatter of a document, or after the text they reference. Think carefully about using a %marker% to extract the excerpts most related to your ideas.
 	`,
   aggregatorSystemPrompt: `
-  You are an analytical sounding board who has the goal of helping the user delve into past notes that they have taken, synthesizing them. These include the user's own reflections, highlights from books/articles, and references to people/topics/other notes.
-  You're great at crafting a narrative to weave notes together, in a way that accurately addresses the Guidance. You're also extremely skilled at identifying MARKER syntax patterns, such as %some_marker_id%, in the notes and incorporating them into your synthesis output to help the user understand where you got your insights from.
+  You are an analytical sounding board who has the goal of helping the user delve into past notes that they have taken, synthesizing ideas for them to explore further. These include the user's own reflections, highlights from books/articles/podcasts, and references to people/topics/other notes.
+  You're great at crafting a narrative to weave note excerpts together, in a way that accurately addresses the Guidance. You're also extremely skilled at identifying %marker% syntax to refer to note excerpts within your output, because this helps the user understand where you got your insights from.
 
-  MARKERS may appear after the text that you draw insights from.
+  %markers% may appear after the text that you draw insights from.
 
   Your task is to synthesize these notes using Markdown.
 
@@ -28921,7 +45860,7 @@ var prompts = {
 
   {instructions}
 
-  Here are excerpts and metadata from the user's notes, and the user guidance for the synthesis:
+  Here are a series of note titles / metadata from frontmatter, followed by the note contents in a \`\`\`codefence\`\`\`. At the end, there is user guidance for the synthesis.
   `,
   ranker: `
   You are an expert at helping answer a user's prompt from their notes. You do this by recommending the best Aggregators for the task. An Aggregator contains several Sources (defines a query to retrieve notes) and Guidance for synthesizing info from its sources.
@@ -29016,7 +45955,7 @@ var ReasonAgent = class {
     const canvasData = this.canvasLoader.canvasData;
     const aggregators = canvasData.nodes.filter((node) => {
       const file = this.app.metadataCache.getFirstLinkpathDest(node.file, "/");
-      if (!(file instanceof import_obsidian8.TFile)) {
+      if (!(file instanceof import_obsidian9.TFile)) {
         return false;
       }
       return this.app.metadataCache.getFileCache(file)?.frontmatter?.role === ReasonNodeType[1 /* Aggregator */];
@@ -29047,6 +45986,33 @@ var ReasonAgent = class {
     cancelPlaceholderFn();
     return ranked;
   }
+  async retrieve(sources) {
+    let results = (await Promise.all(
+      sources.map(async (source) => {
+        source = source;
+        const retrievalParams = {
+          dql: source.dql,
+          strategy: source.strategy,
+          evergreen: source.evergreen,
+          sourcePreamble: source.sourcePreamble
+        };
+        const fileContents = await this.candidateRetriever.retrieve(retrievalParams);
+        const flatContents = fileContents.flat().map((content) => {
+          return {
+            content: content.contents,
+            substitutions: content.substitutions
+          };
+        });
+        return flatContents;
+      })
+    )).flat();
+    let sourceContents = results.map((result) => result.content);
+    let substitutions = results.map((result) => result.substitutions).flat();
+    return {
+      sourceContents,
+      substitutions
+    };
+  }
   /**
    * Processes the synthesis of content based on user interactions and synthesis plans.
    * It appends generated content to the editor and handles user feedback.
@@ -29055,44 +46021,38 @@ var ReasonAgent = class {
    * @returns {Promise<void>} - A promise that resolves when the synthesis process is complete.
    */
   async synthesize(synthesisContainer) {
-    const recentMessages = synthesisContainer.getMessagesToHere();
-    let mostRecentMessage = recentMessages[recentMessages.length - 1];
-    if (mostRecentMessage.role === "user" && !mostRecentMessage.metadata) {
-      mostRecentMessage = recentMessages[recentMessages.length - 2];
-    }
     synthesisContainer.renderMetadata([
       {
         id: Math.random().toString(16).slice(6),
         assistantMessageType: "synthesis"
       }
     ]);
-    let sources;
-    const synthesisPlanMessage = recentMessages.slice().reverse().find(
-      (msg) => msg.metadata?.length > 0 && msg.metadata[0].assistantMessageType === "synthesisPlan"
-    );
-    if (synthesisPlanMessage) {
-      sources = synthesisPlanMessage.metadata[0].sources;
-    } else {
-      new import_obsidian8.Notice("No synthesis plan found.");
-      return;
-    }
     let allSubstitutions = [];
-    let userPrompts = [];
     let messages = [];
-    let curUserPrompt = "";
-    synthesisContainer.getMessagesToHere().forEach((msg) => {
+    const messagesToHere = synthesisContainer.getMessagesToHere();
+    for (const msg of messagesToHere) {
       if (msg.role === "user" && msg.content.length > 0) {
         if (msg.metadata) {
-          curUserPrompt = msg.metadata[0].prompt;
-        } else {
-          curUserPrompt = msg.content;
+          let curUserPrompt = msg.metadata[0].prompt;
+          let sources = msg.metadata[0].sources;
+          let retrieval = await this.retrieve(sources);
+          let sourceContents = retrieval.sourceContents;
+          let concatenatedContents = sourceContents.join("\n\n").trim();
+          allSubstitutions = allSubstitutions.concat(retrieval.substitutions);
+          let message2 = "";
+          if (concatenatedContents.length > 0) {
+            message2 = `Sources:
+${concatenatedContents}
+
+`;
+          }
+          message2 += `Guidance: ${curUserPrompt}`;
+          messages.push({
+            role: "user",
+            content: message2
+          });
         }
-        userPrompts.push(curUserPrompt);
       } else if (msg.role === "assistant" && msg.metadata[0].assistantMessageType === "synthesis") {
-        messages.push({
-          role: "user",
-          content: curUserPrompt
-        });
         let { contents, substitutions } = substituteBlockEmbeds(msg.content);
         allSubstitutions = allSubstitutions.concat(substitutions);
         messages.push({
@@ -29100,41 +46060,11 @@ var ReasonAgent = class {
           content: contents
         });
       }
-    });
-    let sourceContents = (await Promise.all(
-      sources.map(async (source) => {
-        if (source.dql) {
-          source = source;
-          const fileContents = await this.candidateRetriever.retrieve({
-            dql: source.dql,
-            strategy: source.strategy,
-            evergreen: source.evergreen
-          });
-          const contents = fileContents.flat().map((content) => {
-            return {
-              role: "user",
-              content: content.contents,
-              substitutions: content.substitutions
-            };
-          });
-          contents.forEach((content) => {
-            allSubstitutions = allSubstitutions.concat(content.substitutions);
-          });
-          return contents.map((content) => content.content);
-        }
-      })
-    )).flat();
-    messages.push({
-      role: "user",
-      content: `New sources:
-${sourceContents.join("\n\n")}
+    }
+    messages[messages.length - 1].content += `
 
 Remember the rules:
-${this.systemPrompts.aggregatorInstructions}
-
-Guidance: ${userPrompts.join(". ")}
-`
-    });
+${this.systemPrompts.aggregatorInstructions}`;
     const cancelPlaceholderFn = synthesisContainer.waitPlaceholder("\u{1F9E0} Synthesizing...");
     let synthesisGenerator = this.aggregator.generateFromMessages(messages);
     let firstChunkWasSent = false;
@@ -29339,7 +46269,7 @@ function substituteBlockEmbeds(contents) {
 }
 
 // node_modules/openai/version.mjs
-var VERSION = "4.28.4";
+var VERSION = "4.32.0";
 
 // node_modules/openai/_shims/registry.mjs
 var auto = false;
@@ -29380,7 +46310,7 @@ function setShims(shims, options = { auto: false }) {
 }
 
 // node_modules/openai/_shims/node-runtime.mjs
-var nf = __toESM(require_lib2(), 1);
+var nf = __toESM(require_lib3(), 1);
 
 // node_modules/formdata-node/lib/esm/FormData.js
 var import_util2 = require("util");
@@ -29400,12 +46330,12 @@ var deprecateConstructorEntries = (0, import_util.deprecate)(() => {
 }, 'Constructor "entries" argument is not spec-compliant and will be removed in next major release.');
 
 // node_modules/formdata-node/lib/esm/FormData.js
-var __classPrivateFieldGet3 = function(receiver, state, kind2, f2) {
-  if (kind2 === "a" && !f2)
+var __classPrivateFieldGet3 = function(receiver, state, kind2, f3) {
+  if (kind2 === "a" && !f3)
     throw new TypeError("Private accessor was defined without a getter");
-  if (typeof state === "function" ? receiver !== state || !f2 : !state.has(receiver))
+  if (typeof state === "function" ? receiver !== state || !f3 : !state.has(receiver))
     throw new TypeError("Cannot read private member from an object whose class did not declare it");
-  return kind2 === "m" ? f2 : kind2 === "a" ? f2.call(receiver) : f2 ? f2.value : state.get(receiver);
+  return kind2 === "m" ? f3 : kind2 === "a" ? f3.call(receiver) : f3 ? f3.value : state.get(receiver);
 };
 var _FormData_instances;
 var _FormData_entries;
@@ -29583,21 +46513,21 @@ var isFileLike = (value) => Boolean(value && typeof value === "object" && isFunc
 var isFormData = (value) => Boolean(value && isFunction_default(value.constructor) && value[Symbol.toStringTag] === "FormData" && isFunction_default(value.append) && isFunction_default(value.getAll) && isFunction_default(value.entries) && isFunction_default(value[Symbol.iterator]));
 
 // node_modules/form-data-encoder/lib/esm/FormDataEncoder.js
-var __classPrivateFieldSet3 = function(receiver, state, value, kind2, f2) {
+var __classPrivateFieldSet3 = function(receiver, state, value, kind2, f3) {
   if (kind2 === "m")
     throw new TypeError("Private method is not writable");
-  if (kind2 === "a" && !f2)
+  if (kind2 === "a" && !f3)
     throw new TypeError("Private accessor was defined without a setter");
-  if (typeof state === "function" ? receiver !== state || !f2 : !state.has(receiver))
+  if (typeof state === "function" ? receiver !== state || !f3 : !state.has(receiver))
     throw new TypeError("Cannot write private member to an object whose class did not declare it");
-  return kind2 === "a" ? f2.call(receiver, value) : f2 ? f2.value = value : state.set(receiver, value), value;
+  return kind2 === "a" ? f3.call(receiver, value) : f3 ? f3.value = value : state.set(receiver, value), value;
 };
-var __classPrivateFieldGet4 = function(receiver, state, kind2, f2) {
-  if (kind2 === "a" && !f2)
+var __classPrivateFieldGet4 = function(receiver, state, kind2, f3) {
+  if (kind2 === "a" && !f3)
     throw new TypeError("Private accessor was defined without a getter");
-  if (typeof state === "function" ? receiver !== state || !f2 : !state.has(receiver))
+  if (typeof state === "function" ? receiver !== state || !f3 : !state.has(receiver))
     throw new TypeError("Cannot read private member from an object whose class did not declare it");
-  return kind2 === "m" ? f2 : kind2 === "a" ? f2.call(receiver) : f2 ? f2.value : state.get(receiver);
+  return kind2 === "m" ? f3 : kind2 === "a" ? f3.call(receiver) : f3 ? f3.value : state.get(receiver);
 };
 var _FormDataEncoder_instances;
 var _FormDataEncoder_CRLF;
@@ -29724,13 +46654,13 @@ var MultipartBody = class {
 // node_modules/openai/_shims/node-runtime.mjs
 var import_ponyfill_es2018 = __toESM(require_ponyfill_es2018(), 1);
 var fileFromPathWarned = false;
-async function fileFromPath3(path2, ...args) {
+async function fileFromPath3(path2, ...args2) {
   const { fileFromPath: _fileFromPath } = await Promise.resolve().then(() => (init_fileFromPath(), fileFromPath_exports));
   if (!fileFromPathWarned) {
     console.warn(`fileFromPath is deprecated; use fs.createReadStream(${JSON.stringify(path2)}) instead`);
     fileFromPathWarned = true;
   }
-  return await _fileFromPath(path2, ...args);
+  return await _fileFromPath(path2, ...args2);
 }
 var defaultHttpAgent = new import_agentkeepalive.default({ keepAlive: true, timeout: 5 * 60 * 1e3 });
 var defaultHttpsAgent = new import_agentkeepalive.default.HttpsAgent({ keepAlive: true, timeout: 5 * 60 * 1e3 });
@@ -29790,8 +46720,8 @@ __export(error_exports, {
 var OpenAIError = class extends Error {
 };
 var APIError = class _APIError extends OpenAIError {
-  constructor(status, error, message, headers) {
-    super(`${_APIError.makeMessage(status, error, message)}`);
+  constructor(status, error, message2, headers) {
+    super(`${_APIError.makeMessage(status, error, message2)}`);
     this.status = status;
     this.headers = headers;
     const data = error;
@@ -29800,8 +46730,8 @@ var APIError = class _APIError extends OpenAIError {
     this.param = data?.["param"];
     this.type = data?.["type"];
   }
-  static makeMessage(status, error, message) {
-    const msg = error?.message ? typeof error.message === "string" ? error.message : JSON.stringify(error.message) : error ? JSON.stringify(error) : message;
+  static makeMessage(status, error, message2) {
+    const msg = error?.message ? typeof error.message === "string" ? error.message : JSON.stringify(error.message) : error ? JSON.stringify(error) : message2;
     if (status && msg) {
       return `${status} ${msg}`;
     }
@@ -29813,55 +46743,55 @@ var APIError = class _APIError extends OpenAIError {
     }
     return "(no status code or body)";
   }
-  static generate(status, errorResponse, message, headers) {
+  static generate(status, errorResponse, message2, headers) {
     if (!status) {
       return new APIConnectionError({ cause: castToError(errorResponse) });
     }
     const error = errorResponse?.["error"];
     if (status === 400) {
-      return new BadRequestError(status, error, message, headers);
+      return new BadRequestError(status, error, message2, headers);
     }
     if (status === 401) {
-      return new AuthenticationError(status, error, message, headers);
+      return new AuthenticationError(status, error, message2, headers);
     }
     if (status === 403) {
-      return new PermissionDeniedError(status, error, message, headers);
+      return new PermissionDeniedError(status, error, message2, headers);
     }
     if (status === 404) {
-      return new NotFoundError(status, error, message, headers);
+      return new NotFoundError(status, error, message2, headers);
     }
     if (status === 409) {
-      return new ConflictError(status, error, message, headers);
+      return new ConflictError(status, error, message2, headers);
     }
     if (status === 422) {
-      return new UnprocessableEntityError(status, error, message, headers);
+      return new UnprocessableEntityError(status, error, message2, headers);
     }
     if (status === 429) {
-      return new RateLimitError(status, error, message, headers);
+      return new RateLimitError(status, error, message2, headers);
     }
     if (status >= 500) {
-      return new InternalServerError(status, error, message, headers);
+      return new InternalServerError(status, error, message2, headers);
     }
-    return new _APIError(status, error, message, headers);
+    return new _APIError(status, error, message2, headers);
   }
 };
 var APIUserAbortError = class extends APIError {
-  constructor({ message } = {}) {
-    super(void 0, void 0, message || "Request was aborted.", void 0);
+  constructor({ message: message2 } = {}) {
+    super(void 0, void 0, message2 || "Request was aborted.", void 0);
     this.status = void 0;
   }
 };
 var APIConnectionError = class extends APIError {
-  constructor({ message, cause }) {
-    super(void 0, void 0, message || "Connection error.", void 0);
+  constructor({ message: message2, cause }) {
+    super(void 0, void 0, message2 || "Connection error.", void 0);
     this.status = void 0;
     if (cause)
       this.cause = cause;
   }
 };
 var APIConnectionTimeoutError = class extends APIConnectionError {
-  constructor({ message } = {}) {
-    super({ message: message ?? "Request timed out." });
+  constructor({ message: message2 } = {}) {
+    super({ message: message2 ?? "Request timed out." });
   }
 };
 var BadRequestError = class extends APIError {
@@ -29965,6 +46895,19 @@ var Stream = class _Stream {
               throw new APIError(void 0, data.error, void 0, void 0);
             }
             yield data;
+          } else {
+            let data;
+            try {
+              data = JSON.parse(sse.data);
+            } catch (e2) {
+              console.error(`Could not parse message into JSON:`, sse.data);
+              console.error(`From chunk:`, sse.raw);
+              throw e2;
+            }
+            if (sse.event == "error") {
+              throw new APIError(void 0, data.error, data.message, void 0);
+            }
+            yield { event: sse.event, data };
           }
         }
         done = true;
@@ -30139,6 +47082,9 @@ var LineDecoder = class _LineDecoder {
     }
     const trailingNewline = _LineDecoder.NEWLINE_CHARS.has(text[text.length - 1] || "");
     let lines = text.split(_LineDecoder.NEWLINE_REGEXP);
+    if (trailingNewline) {
+      lines.pop();
+    }
     if (lines.length === 1 && !trailingNewline) {
       this.buffer.push(lines[0]);
       return [];
@@ -30229,8 +47175,9 @@ var isBlobLike = (value) => value != null && typeof value === "object" && typeof
 var isUploadable = (value) => {
   return isFileLike2(value) || isResponseLike(value) || isFsReadStream(value);
 };
-async function toFile(value, name, options = {}) {
+async function toFile(value, name, options) {
   value = await value;
+  options ?? (options = isFileLike2(value) ? { lastModified: value.lastModified, type: value.type } : {});
   if (isResponseLike(value)) {
     const blob = await value.blob();
     name || (name = new URL(value.url).pathname.split(/[\\/]/).pop() ?? "unknown_file");
@@ -30309,21 +47256,21 @@ var addFormValue = async (form, key, value) => {
 };
 
 // node_modules/openai/core.mjs
-var __classPrivateFieldSet5 = function(receiver, state, value, kind2, f2) {
+var __classPrivateFieldSet5 = function(receiver, state, value, kind2, f3) {
   if (kind2 === "m")
     throw new TypeError("Private method is not writable");
-  if (kind2 === "a" && !f2)
+  if (kind2 === "a" && !f3)
     throw new TypeError("Private accessor was defined without a setter");
-  if (typeof state === "function" ? receiver !== state || !f2 : !state.has(receiver))
+  if (typeof state === "function" ? receiver !== state || !f3 : !state.has(receiver))
     throw new TypeError("Cannot write private member to an object whose class did not declare it");
-  return kind2 === "a" ? f2.call(receiver, value) : f2 ? f2.value = value : state.set(receiver, value), value;
+  return kind2 === "a" ? f3.call(receiver, value) : f3 ? f3.value = value : state.set(receiver, value), value;
 };
-var __classPrivateFieldGet6 = function(receiver, state, kind2, f2) {
-  if (kind2 === "a" && !f2)
+var __classPrivateFieldGet6 = function(receiver, state, kind2, f3) {
+  if (kind2 === "a" && !f3)
     throw new TypeError("Private accessor was defined without a getter");
-  if (typeof state === "function" ? receiver !== state || !f2 : !state.has(receiver))
+  if (typeof state === "function" ? receiver !== state || !f3 : !state.has(receiver))
     throw new TypeError("Cannot read private member from an object whose class did not declare it");
-  return kind2 === "m" ? f2 : kind2 === "a" ? f2.call(receiver) : f2 ? f2.value : state.get(receiver);
+  return kind2 === "m" ? f3 : kind2 === "a" ? f3.call(receiver) : f3 ? f3.value : state.get(receiver);
 };
 var _AbstractPage_client;
 async function defaultParseResponse(props) {
@@ -30549,8 +47496,8 @@ var APIClient = class {
   parseHeaders(headers) {
     return !headers ? {} : Symbol.iterator in headers ? Object.fromEntries(Array.from(headers).map((header) => [...header])) : { ...headers };
   }
-  makeStatusError(status, error, message, headers) {
-    return APIError.generate(status, error, message, headers);
+  makeStatusError(status, error, message2, headers) {
+    return APIError.generate(status, error, message2, headers);
   }
   request(options, remainingRetries = null) {
     return new APIPromise(this.makeRequest(options, remainingRetries));
@@ -30782,7 +47729,7 @@ var requestOptionsKeys = {
   __streamClass: true
 };
 var isRequestOptions = (obj) => {
-  return typeof obj === "object" && obj !== null && !isEmptyObj(obj) && Object.keys(obj).every((k2) => hasOwn(requestOptionsKeys, k2));
+  return typeof obj === "object" && obj !== null && !isEmptyObj(obj) && Object.keys(obj).every((k3) => hasOwn(requestOptionsKeys, k3));
 };
 var getPlatformProperties = () => {
   if (typeof Deno !== "undefined" && Deno.build != null) {
@@ -30792,7 +47739,7 @@ var getPlatformProperties = () => {
       "X-Stainless-OS": normalizePlatform(Deno.build.os),
       "X-Stainless-Arch": normalizeArch(Deno.build.arch),
       "X-Stainless-Runtime": "deno",
-      "X-Stainless-Runtime-Version": Deno.version
+      "X-Stainless-Runtime-Version": typeof Deno.version === "string" ? Deno.version : Deno.version?.deno ?? "unknown"
     };
   }
   if (typeof EdgeRuntime !== "undefined") {
@@ -30941,13 +47888,13 @@ function hasOwn(obj, key) {
   return Object.prototype.hasOwnProperty.call(obj, key);
 }
 function applyHeadersMut(targetHeaders, newHeaders) {
-  for (const k2 in newHeaders) {
-    if (!hasOwn(newHeaders, k2))
+  for (const k3 in newHeaders) {
+    if (!hasOwn(newHeaders, k3))
       continue;
-    const lowerKey = k2.toLowerCase();
+    const lowerKey = k3.toLowerCase();
     if (!lowerKey)
       continue;
-    const val = newHeaders[k2];
+    const val = newHeaders[k3];
     if (val === null) {
       delete targetHeaders[lowerKey];
     } else if (val !== void 0) {
@@ -30955,16 +47902,16 @@ function applyHeadersMut(targetHeaders, newHeaders) {
     }
   }
 }
-function debug(action, ...args) {
-  if (typeof process !== "undefined" && process.env["DEBUG"] === "true") {
-    console.log(`OpenAI:DEBUG:${action}`, ...args);
+function debug(action, ...args2) {
+  if (typeof process !== "undefined" && process?.env?.["DEBUG"] === "true") {
+    console.log(`OpenAI:DEBUG:${action}`, ...args2);
   }
 }
 var uuid4 = () => {
   return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, (c2) => {
     const r2 = Math.random() * 16 | 0;
-    const v2 = c2 === "x" ? r2 : r2 & 3 | 8;
-    return v2.toString(16);
+    const v6 = c2 === "x" ? r2 : r2 & 3 | 8;
+    return v6.toString(16);
   });
 };
 var isRunningInBrowser = () => {
@@ -30975,6 +47922,9 @@ var isRunningInBrowser = () => {
     typeof navigator !== "undefined"
   );
 };
+function isObj(obj) {
+  return obj != null && typeof obj === "object" && !Array.isArray(obj);
+}
 
 // node_modules/openai/pagination.mjs
 var Page = class extends AbstractPage {
@@ -31222,37 +48172,37 @@ var AssistantsPage = class extends CursorPage {
 })(Assistants || (Assistants = {}));
 
 // node_modules/openai/lib/RunnableFunction.mjs
-function isRunnableFunctionWithParse(fn) {
-  return typeof fn.parse === "function";
+function isRunnableFunctionWithParse(fn2) {
+  return typeof fn2.parse === "function";
 }
 
 // node_modules/openai/lib/chatCompletionUtils.mjs
-var isAssistantMessage = (message) => {
-  return message?.role === "assistant";
+var isAssistantMessage = (message2) => {
+  return message2?.role === "assistant";
 };
-var isFunctionMessage = (message) => {
-  return message?.role === "function";
+var isFunctionMessage = (message2) => {
+  return message2?.role === "function";
 };
-var isToolMessage = (message) => {
-  return message?.role === "tool";
+var isToolMessage = (message2) => {
+  return message2?.role === "tool";
 };
 
 // node_modules/openai/lib/AbstractChatCompletionRunner.mjs
-var __classPrivateFieldSet6 = function(receiver, state, value, kind2, f2) {
+var __classPrivateFieldSet6 = function(receiver, state, value, kind2, f3) {
   if (kind2 === "m")
     throw new TypeError("Private method is not writable");
-  if (kind2 === "a" && !f2)
+  if (kind2 === "a" && !f3)
     throw new TypeError("Private accessor was defined without a setter");
-  if (typeof state === "function" ? receiver !== state || !f2 : !state.has(receiver))
+  if (typeof state === "function" ? receiver !== state || !f3 : !state.has(receiver))
     throw new TypeError("Cannot write private member to an object whose class did not declare it");
-  return kind2 === "a" ? f2.call(receiver, value) : f2 ? f2.value = value : state.set(receiver, value), value;
+  return kind2 === "a" ? f3.call(receiver, value) : f3 ? f3.value = value : state.set(receiver, value), value;
 };
-var __classPrivateFieldGet7 = function(receiver, state, kind2, f2) {
-  if (kind2 === "a" && !f2)
+var __classPrivateFieldGet7 = function(receiver, state, kind2, f3) {
+  if (kind2 === "a" && !f3)
     throw new TypeError("Private accessor was defined without a getter");
-  if (typeof state === "function" ? receiver !== state || !f2 : !state.has(receiver))
+  if (typeof state === "function" ? receiver !== state || !f3 : !state.has(receiver))
     throw new TypeError("Cannot read private member from an object whose class did not declare it");
-  return kind2 === "m" ? f2 : kind2 === "a" ? f2.call(receiver) : f2 ? f2.value : state.get(receiver);
+  return kind2 === "m" ? f3 : kind2 === "a" ? f3.call(receiver) : f3 ? f3.value : state.get(receiver);
 };
 var _AbstractChatCompletionRunner_instances;
 var _AbstractChatCompletionRunner_connectedPromise;
@@ -31339,23 +48289,23 @@ var AbstractChatCompletionRunner = class {
   _addChatCompletion(chatCompletion) {
     this._chatCompletions.push(chatCompletion);
     this._emit("chatCompletion", chatCompletion);
-    const message = chatCompletion.choices[0]?.message;
-    if (message)
-      this._addMessage(message);
+    const message2 = chatCompletion.choices[0]?.message;
+    if (message2)
+      this._addMessage(message2);
     return chatCompletion;
   }
-  _addMessage(message, emit = true) {
-    if (!("content" in message))
-      message.content = null;
-    this.messages.push(message);
+  _addMessage(message2, emit = true) {
+    if (!("content" in message2))
+      message2.content = null;
+    this.messages.push(message2);
     if (emit) {
-      this._emit("message", message);
-      if ((isFunctionMessage(message) || isToolMessage(message)) && message.content) {
-        this._emit("functionCallResult", message.content);
-      } else if (isAssistantMessage(message) && message.function_call) {
-        this._emit("functionCall", message.function_call);
-      } else if (isAssistantMessage(message) && message.tool_calls) {
-        for (const tool_call of message.tool_calls) {
+      this._emit("message", message2);
+      if ((isFunctionMessage(message2) || isToolMessage(message2)) && message2.content) {
+        this._emit("functionCallResult", message2.content);
+      } else if (isAssistantMessage(message2) && message2.function_call) {
+        this._emit("functionCall", message2.function_call);
+      } else if (isAssistantMessage(message2) && message2.tool_calls) {
+        for (const tool_call of message2.tool_calls) {
           if (tool_call.type === "function") {
             this._emit("functionCall", tool_call.function);
           }
@@ -31488,7 +48438,7 @@ var AbstractChatCompletionRunner = class {
   allChatCompletions() {
     return [...this._chatCompletions];
   }
-  _emit(event, ...args) {
+  _emit(event, ...args2) {
     if (__classPrivateFieldGet7(this, _AbstractChatCompletionRunner_ended, "f")) {
       return;
     }
@@ -31499,10 +48449,10 @@ var AbstractChatCompletionRunner = class {
     const listeners = __classPrivateFieldGet7(this, _AbstractChatCompletionRunner_listeners, "f")[event];
     if (listeners) {
       __classPrivateFieldGet7(this, _AbstractChatCompletionRunner_listeners, "f")[event] = listeners.filter((l2) => !l2.once);
-      listeners.forEach(({ listener }) => listener(...args));
+      listeners.forEach(({ listener }) => listener(...args2));
     }
     if (event === "abort") {
-      const error = args[0];
+      const error = args2[0];
       if (!__classPrivateFieldGet7(this, _AbstractChatCompletionRunner_catchingPromiseCreated, "f") && !listeners?.length) {
         Promise.reject(error);
       }
@@ -31512,7 +48462,7 @@ var AbstractChatCompletionRunner = class {
       return;
     }
     if (event === "error") {
-      const error = args[0];
+      const error = args2[0];
       if (!__classPrivateFieldGet7(this, _AbstractChatCompletionRunner_catchingPromiseCreated, "f") && !listeners?.length) {
         Promise.reject(error);
       }
@@ -31554,8 +48504,8 @@ var AbstractChatCompletionRunner = class {
     return this._addChatCompletion(chatCompletion);
   }
   async _runChatCompletion(completions, params, options) {
-    for (const message of params.messages) {
-      this._addMessage(message, false);
+    for (const message2 of params.messages) {
+      this._addMessage(message2, false);
     }
     return await this._createChatCompletion(completions, params, options);
   }
@@ -31565,16 +48515,16 @@ var AbstractChatCompletionRunner = class {
     const singleFunctionToCall = typeof function_call !== "string" && function_call?.name;
     const { maxChatCompletions = DEFAULT_MAX_CHAT_COMPLETIONS } = options || {};
     const functionsByName = {};
-    for (const f2 of params.functions) {
-      functionsByName[f2.name || f2.function.name] = f2;
+    for (const f3 of params.functions) {
+      functionsByName[f3.name || f3.function.name] = f3;
     }
-    const functions = params.functions.map((f2) => ({
-      name: f2.name || f2.function.name,
-      parameters: f2.parameters,
-      description: f2.description
+    const functions = params.functions.map((f3) => ({
+      name: f3.name || f3.function.name,
+      parameters: f3.parameters,
+      description: f3.description
     }));
-    for (const message of params.messages) {
-      this._addMessage(message, false);
+    for (const message2 of params.messages) {
+      this._addMessage(message2, false);
     }
     for (let i2 = 0; i2 < maxChatCompletions; ++i2) {
       const chatCompletion = await this._createChatCompletion(completions, {
@@ -31583,16 +48533,16 @@ var AbstractChatCompletionRunner = class {
         functions,
         messages: [...this.messages]
       }, options);
-      const message = chatCompletion.choices[0]?.message;
-      if (!message) {
+      const message2 = chatCompletion.choices[0]?.message;
+      if (!message2) {
         throw new OpenAIError(`missing message in ChatCompletion response`);
       }
-      if (!message.function_call)
+      if (!message2.function_call)
         return;
-      const { name, arguments: args } = message.function_call;
-      const fn = functionsByName[name];
-      if (!fn) {
-        const content2 = `Invalid function_call: ${JSON.stringify(name)}. Available options are: ${functions.map((f2) => JSON.stringify(f2.name)).join(", ")}. Please try again`;
+      const { name, arguments: args2 } = message2.function_call;
+      const fn2 = functionsByName[name];
+      if (!fn2) {
+        const content2 = `Invalid function_call: ${JSON.stringify(name)}. Available options are: ${functions.map((f3) => JSON.stringify(f3.name)).join(", ")}. Please try again`;
         this._addMessage({ role, name, content: content2 });
         continue;
       } else if (singleFunctionToCall && singleFunctionToCall !== name) {
@@ -31602,7 +48552,7 @@ var AbstractChatCompletionRunner = class {
       }
       let parsed;
       try {
-        parsed = isRunnableFunctionWithParse(fn) ? await fn.parse(args) : args;
+        parsed = isRunnableFunctionWithParse(fn2) ? await fn2.parse(args2) : args2;
       } catch (error) {
         this._addMessage({
           role,
@@ -31611,7 +48561,7 @@ var AbstractChatCompletionRunner = class {
         });
         continue;
       }
-      const rawContent = await fn.function(parsed, this);
+      const rawContent = await fn2.function(parsed, this);
       const content = __classPrivateFieldGet7(this, _AbstractChatCompletionRunner_instances, "m", _AbstractChatCompletionRunner_stringifyFunctionCallResult).call(this, rawContent);
       this._addMessage({ role, name, content });
       if (singleFunctionToCall)
@@ -31624,9 +48574,9 @@ var AbstractChatCompletionRunner = class {
     const singleFunctionToCall = typeof tool_choice !== "string" && tool_choice?.function?.name;
     const { maxChatCompletions = DEFAULT_MAX_CHAT_COMPLETIONS } = options || {};
     const functionsByName = {};
-    for (const f2 of params.tools) {
-      if (f2.type === "function") {
-        functionsByName[f2.function.name || f2.function.function.name] = f2.function;
+    for (const f3 of params.tools) {
+      if (f3.type === "function") {
+        functionsByName[f3.function.name || f3.function.function.name] = f3.function;
       }
     }
     const tools = "tools" in params ? params.tools.map((t2) => t2.type === "function" ? {
@@ -31637,8 +48587,8 @@ var AbstractChatCompletionRunner = class {
         description: t2.function.description
       }
     } : t2) : void 0;
-    for (const message of params.messages) {
-      this._addMessage(message, false);
+    for (const message2 of params.messages) {
+      this._addMessage(message2, false);
     }
     for (let i2 = 0; i2 < maxChatCompletions; ++i2) {
       const chatCompletion = await this._createChatCompletion(completions, {
@@ -31647,21 +48597,21 @@ var AbstractChatCompletionRunner = class {
         tools,
         messages: [...this.messages]
       }, options);
-      const message = chatCompletion.choices[0]?.message;
-      if (!message) {
+      const message2 = chatCompletion.choices[0]?.message;
+      if (!message2) {
         throw new OpenAIError(`missing message in ChatCompletion response`);
       }
-      if (!message.tool_calls) {
+      if (!message2.tool_calls) {
         return;
       }
-      for (const tool_call of message.tool_calls) {
+      for (const tool_call of message2.tool_calls) {
         if (tool_call.type !== "function")
           continue;
         const tool_call_id = tool_call.id;
-        const { name, arguments: args } = tool_call.function;
-        const fn = functionsByName[name];
-        if (!fn) {
-          const content2 = `Invalid tool_call: ${JSON.stringify(name)}. Available options are: ${tools.map((f2) => JSON.stringify(f2.function.name)).join(", ")}. Please try again`;
+        const { name, arguments: args2 } = tool_call.function;
+        const fn2 = functionsByName[name];
+        if (!fn2) {
+          const content2 = `Invalid tool_call: ${JSON.stringify(name)}. Available options are: ${tools.map((f3) => JSON.stringify(f3.function.name)).join(", ")}. Please try again`;
           this._addMessage({ role, tool_call_id, content: content2 });
           continue;
         } else if (singleFunctionToCall && singleFunctionToCall !== name) {
@@ -31671,13 +48621,13 @@ var AbstractChatCompletionRunner = class {
         }
         let parsed;
         try {
-          parsed = isRunnableFunctionWithParse(fn) ? await fn.parse(args) : args;
+          parsed = isRunnableFunctionWithParse(fn2) ? await fn2.parse(args2) : args2;
         } catch (error) {
           const content2 = error instanceof Error ? error.message : String(error);
           this._addMessage({ role, tool_call_id, content: content2 });
           continue;
         }
-        const rawContent = await fn.function(parsed, this);
+        const rawContent = await fn2.function(parsed, this);
         const content = __classPrivateFieldGet7(this, _AbstractChatCompletionRunner_instances, "m", _AbstractChatCompletionRunner_stringifyFunctionCallResult).call(this, rawContent);
         this._addMessage({ role, tool_call_id, content });
         if (singleFunctionToCall) {
@@ -31693,31 +48643,31 @@ _AbstractChatCompletionRunner_connectedPromise = /* @__PURE__ */ new WeakMap(), 
 }, _AbstractChatCompletionRunner_getFinalMessage = function _AbstractChatCompletionRunner_getFinalMessage2() {
   let i2 = this.messages.length;
   while (i2-- > 0) {
-    const message = this.messages[i2];
-    if (isAssistantMessage(message)) {
-      return { ...message, content: message.content ?? null };
+    const message2 = this.messages[i2];
+    if (isAssistantMessage(message2)) {
+      return { ...message2, content: message2.content ?? null };
     }
   }
   throw new OpenAIError("stream ended without producing a ChatCompletionMessage with role=assistant");
 }, _AbstractChatCompletionRunner_getFinalFunctionCall = function _AbstractChatCompletionRunner_getFinalFunctionCall2() {
   for (let i2 = this.messages.length - 1; i2 >= 0; i2--) {
-    const message = this.messages[i2];
-    if (isAssistantMessage(message) && message?.function_call) {
-      return message.function_call;
+    const message2 = this.messages[i2];
+    if (isAssistantMessage(message2) && message2?.function_call) {
+      return message2.function_call;
     }
-    if (isAssistantMessage(message) && message?.tool_calls?.length) {
-      return message.tool_calls.at(-1)?.function;
+    if (isAssistantMessage(message2) && message2?.tool_calls?.length) {
+      return message2.tool_calls.at(-1)?.function;
     }
   }
   return;
 }, _AbstractChatCompletionRunner_getFinalFunctionCallResult = function _AbstractChatCompletionRunner_getFinalFunctionCallResult2() {
   for (let i2 = this.messages.length - 1; i2 >= 0; i2--) {
-    const message = this.messages[i2];
-    if (isFunctionMessage(message) && message.content != null) {
-      return message.content;
+    const message2 = this.messages[i2];
+    if (isFunctionMessage(message2) && message2.content != null) {
+      return message2.content;
     }
-    if (isToolMessage(message) && message.content != null && this.messages.some((x2) => x2.role === "assistant" && x2.tool_calls?.some((y2) => y2.type === "function" && y2.id === message.tool_call_id))) {
-      return message.content;
+    if (isToolMessage(message2) && message2.content != null && this.messages.some((x2) => x2.role === "assistant" && x2.tool_calls?.some((y2) => y2.type === "function" && y2.id === message2.tool_call_id))) {
+      return message2.content;
     }
   }
   return;
@@ -31764,30 +48714,30 @@ var ChatCompletionRunner = class _ChatCompletionRunner extends AbstractChatCompl
     runner._run(() => runner._runTools(completions, params, opts));
     return runner;
   }
-  _addMessage(message) {
-    super._addMessage(message);
-    if (isAssistantMessage(message) && message.content) {
-      this._emit("content", message.content);
+  _addMessage(message2) {
+    super._addMessage(message2);
+    if (isAssistantMessage(message2) && message2.content) {
+      this._emit("content", message2.content);
     }
   }
 };
 
 // node_modules/openai/lib/ChatCompletionStream.mjs
-var __classPrivateFieldGet8 = function(receiver, state, kind2, f2) {
-  if (kind2 === "a" && !f2)
+var __classPrivateFieldGet8 = function(receiver, state, kind2, f3) {
+  if (kind2 === "a" && !f3)
     throw new TypeError("Private accessor was defined without a getter");
-  if (typeof state === "function" ? receiver !== state || !f2 : !state.has(receiver))
+  if (typeof state === "function" ? receiver !== state || !f3 : !state.has(receiver))
     throw new TypeError("Cannot read private member from an object whose class did not declare it");
-  return kind2 === "m" ? f2 : kind2 === "a" ? f2.call(receiver) : f2 ? f2.value : state.get(receiver);
+  return kind2 === "m" ? f3 : kind2 === "a" ? f3.call(receiver) : f3 ? f3.value : state.get(receiver);
 };
-var __classPrivateFieldSet7 = function(receiver, state, value, kind2, f2) {
+var __classPrivateFieldSet7 = function(receiver, state, value, kind2, f3) {
   if (kind2 === "m")
     throw new TypeError("Private method is not writable");
-  if (kind2 === "a" && !f2)
+  if (kind2 === "a" && !f3)
     throw new TypeError("Private accessor was defined without a setter");
-  if (typeof state === "function" ? receiver !== state || !f2 : !state.has(receiver))
+  if (typeof state === "function" ? receiver !== state || !f3 : !state.has(receiver))
     throw new TypeError("Cannot write private member to an object whose class did not declare it");
-  return kind2 === "a" ? f2.call(receiver, value) : f2 ? f2.value = value : state.set(receiver, value), value;
+  return kind2 === "a" ? f3.call(receiver, value) : f3 ? f3.value = value : state.set(receiver, value), value;
 };
 var _ChatCompletionStream_instances;
 var _ChatCompletionStream_currentChatCompletionSnapshot;
@@ -31941,19 +48891,19 @@ var ChatCompletionStream = class _ChatCompletionStream extends AbstractChatCompl
       if (tool_calls) {
         if (!choice.message.tool_calls)
           choice.message.tool_calls = [];
-        for (const { index: index2, id, type, function: fn, ...rest3 } of tool_calls) {
+        for (const { index: index2, id, type, function: fn2, ...rest3 } of tool_calls) {
           const tool_call = (_c = choice.message.tool_calls)[index2] ?? (_c[index2] = {});
           Object.assign(tool_call, rest3);
           if (id)
             tool_call.id = id;
           if (type)
             tool_call.type = type;
-          if (fn)
+          if (fn2)
             tool_call.function ?? (tool_call.function = { arguments: "" });
-          if (fn?.name)
-            tool_call.function.name = fn.name;
-          if (fn?.arguments)
-            tool_call.function.arguments += fn.arguments;
+          if (fn2?.name)
+            tool_call.function.name = fn2.name;
+          if (fn2?.arguments)
+            tool_call.function.arguments += fn2.arguments;
         }
       }
     }
@@ -31965,7 +48915,7 @@ var ChatCompletionStream = class _ChatCompletionStream extends AbstractChatCompl
     this.on("chunk", (chunk) => {
       const reader = readQueue.shift();
       if (reader) {
-        reader(chunk);
+        reader.resolve(chunk);
       } else {
         pushQueue.push(chunk);
       }
@@ -31973,7 +48923,21 @@ var ChatCompletionStream = class _ChatCompletionStream extends AbstractChatCompl
     this.on("end", () => {
       done = true;
       for (const reader of readQueue) {
-        reader(void 0);
+        reader.resolve(void 0);
+      }
+      readQueue.length = 0;
+    });
+    this.on("abort", (err) => {
+      done = true;
+      for (const reader of readQueue) {
+        reader.reject(err);
+      }
+      readQueue.length = 0;
+    });
+    this.on("error", (err) => {
+      done = true;
+      for (const reader of readQueue) {
+        reader.reject(err);
       }
       readQueue.length = 0;
     });
@@ -31983,10 +48947,14 @@ var ChatCompletionStream = class _ChatCompletionStream extends AbstractChatCompl
           if (done) {
             return { value: void 0, done: true };
           }
-          return new Promise((resolve) => readQueue.push(resolve)).then((chunk2) => chunk2 ? { value: chunk2, done: false } : { value: void 0, done: true });
+          return new Promise((resolve, reject) => readQueue.push({ resolve, reject })).then((chunk2) => chunk2 ? { value: chunk2, done: false } : { value: void 0, done: true });
         }
         const chunk = pushQueue.shift();
         return { value: chunk, done: false };
+      },
+      return: async () => {
+        this.abort();
+        return { value: void 0, done: true };
       }
     };
   }
@@ -32000,22 +48968,22 @@ function finalizeChatCompletion(snapshot) {
   return {
     ...rest,
     id,
-    choices: choices.map(({ message, finish_reason, index, logprobs, ...choiceRest }) => {
+    choices: choices.map(({ message: message2, finish_reason, index, logprobs, ...choiceRest }) => {
       if (!finish_reason)
         throw new OpenAIError(`missing finish_reason for choice ${index}`);
-      const { content = null, function_call, tool_calls, ...messageRest } = message;
-      const role = message.role;
+      const { content = null, function_call, tool_calls, ...messageRest } = message2;
+      const role = message2.role;
       if (!role)
         throw new OpenAIError(`missing role for choice ${index}`);
       if (function_call) {
-        const { arguments: args, name } = function_call;
-        if (args == null)
+        const { arguments: args2, name } = function_call;
+        if (args2 == null)
           throw new OpenAIError(`missing function_call.arguments for choice ${index}`);
         if (!name)
           throw new OpenAIError(`missing function_call.name for choice ${index}`);
         return {
           ...choiceRest,
-          message: { content, function_call: { arguments: args, name }, role },
+          message: { content, function_call: { arguments: args2, name }, role },
           finish_reason,
           index,
           logprobs
@@ -32032,8 +49000,8 @@ function finalizeChatCompletion(snapshot) {
             role,
             content,
             tool_calls: tool_calls.map((tool_call, i2) => {
-              const { function: fn, type, id: id2, ...toolRest } = tool_call;
-              const { arguments: args, name, ...fnRest } = fn || {};
+              const { function: fn2, type, id: id2, ...toolRest } = tool_call;
+              const { arguments: args2, name, ...fnRest } = fn2 || {};
               if (id2 == null)
                 throw new OpenAIError(`missing choices[${index}].tool_calls[${i2}].id
 ${str(snapshot)}`);
@@ -32043,10 +49011,10 @@ ${str(snapshot)}`);
               if (name == null)
                 throw new OpenAIError(`missing choices[${index}].tool_calls[${i2}].function.name
 ${str(snapshot)}`);
-              if (args == null)
+              if (args2 == null)
                 throw new OpenAIError(`missing choices[${index}].tool_calls[${i2}].function.arguments
 ${str(snapshot)}`);
-              return { ...toolRest, id: id2, type, function: { ...fnRest, name, arguments: args } };
+              return { ...toolRest, id: id2, type, function: { ...fnRest, name, arguments: args2 } };
             })
           }
         };
@@ -32130,6 +49098,768 @@ var Chat2 = class extends APIResource {
   Chat3.Completions = Completions2;
 })(Chat2 || (Chat2 = {}));
 
+// node_modules/openai/lib/AbstractAssistantStreamRunner.mjs
+var __classPrivateFieldSet8 = function(receiver, state, value, kind2, f3) {
+  if (kind2 === "m")
+    throw new TypeError("Private method is not writable");
+  if (kind2 === "a" && !f3)
+    throw new TypeError("Private accessor was defined without a setter");
+  if (typeof state === "function" ? receiver !== state || !f3 : !state.has(receiver))
+    throw new TypeError("Cannot write private member to an object whose class did not declare it");
+  return kind2 === "a" ? f3.call(receiver, value) : f3 ? f3.value = value : state.set(receiver, value), value;
+};
+var __classPrivateFieldGet9 = function(receiver, state, kind2, f3) {
+  if (kind2 === "a" && !f3)
+    throw new TypeError("Private accessor was defined without a getter");
+  if (typeof state === "function" ? receiver !== state || !f3 : !state.has(receiver))
+    throw new TypeError("Cannot read private member from an object whose class did not declare it");
+  return kind2 === "m" ? f3 : kind2 === "a" ? f3.call(receiver) : f3 ? f3.value : state.get(receiver);
+};
+var _AbstractAssistantStreamRunner_connectedPromise;
+var _AbstractAssistantStreamRunner_resolveConnectedPromise;
+var _AbstractAssistantStreamRunner_rejectConnectedPromise;
+var _AbstractAssistantStreamRunner_endPromise;
+var _AbstractAssistantStreamRunner_resolveEndPromise;
+var _AbstractAssistantStreamRunner_rejectEndPromise;
+var _AbstractAssistantStreamRunner_listeners;
+var _AbstractAssistantStreamRunner_ended;
+var _AbstractAssistantStreamRunner_errored;
+var _AbstractAssistantStreamRunner_aborted;
+var _AbstractAssistantStreamRunner_catchingPromiseCreated;
+var _AbstractAssistantStreamRunner_handleError;
+var AbstractAssistantStreamRunner = class {
+  constructor() {
+    this.controller = new AbortController();
+    _AbstractAssistantStreamRunner_connectedPromise.set(this, void 0);
+    _AbstractAssistantStreamRunner_resolveConnectedPromise.set(this, () => {
+    });
+    _AbstractAssistantStreamRunner_rejectConnectedPromise.set(this, () => {
+    });
+    _AbstractAssistantStreamRunner_endPromise.set(this, void 0);
+    _AbstractAssistantStreamRunner_resolveEndPromise.set(this, () => {
+    });
+    _AbstractAssistantStreamRunner_rejectEndPromise.set(this, () => {
+    });
+    _AbstractAssistantStreamRunner_listeners.set(this, {});
+    _AbstractAssistantStreamRunner_ended.set(this, false);
+    _AbstractAssistantStreamRunner_errored.set(this, false);
+    _AbstractAssistantStreamRunner_aborted.set(this, false);
+    _AbstractAssistantStreamRunner_catchingPromiseCreated.set(this, false);
+    _AbstractAssistantStreamRunner_handleError.set(this, (error) => {
+      __classPrivateFieldSet8(this, _AbstractAssistantStreamRunner_errored, true, "f");
+      if (error instanceof Error && error.name === "AbortError") {
+        error = new APIUserAbortError();
+      }
+      if (error instanceof APIUserAbortError) {
+        __classPrivateFieldSet8(this, _AbstractAssistantStreamRunner_aborted, true, "f");
+        return this._emit("abort", error);
+      }
+      if (error instanceof OpenAIError) {
+        return this._emit("error", error);
+      }
+      if (error instanceof Error) {
+        const openAIError = new OpenAIError(error.message);
+        openAIError.cause = error;
+        return this._emit("error", openAIError);
+      }
+      return this._emit("error", new OpenAIError(String(error)));
+    });
+    __classPrivateFieldSet8(this, _AbstractAssistantStreamRunner_connectedPromise, new Promise((resolve, reject) => {
+      __classPrivateFieldSet8(this, _AbstractAssistantStreamRunner_resolveConnectedPromise, resolve, "f");
+      __classPrivateFieldSet8(this, _AbstractAssistantStreamRunner_rejectConnectedPromise, reject, "f");
+    }), "f");
+    __classPrivateFieldSet8(this, _AbstractAssistantStreamRunner_endPromise, new Promise((resolve, reject) => {
+      __classPrivateFieldSet8(this, _AbstractAssistantStreamRunner_resolveEndPromise, resolve, "f");
+      __classPrivateFieldSet8(this, _AbstractAssistantStreamRunner_rejectEndPromise, reject, "f");
+    }), "f");
+    __classPrivateFieldGet9(this, _AbstractAssistantStreamRunner_connectedPromise, "f").catch(() => {
+    });
+    __classPrivateFieldGet9(this, _AbstractAssistantStreamRunner_endPromise, "f").catch(() => {
+    });
+  }
+  _run(executor) {
+    setTimeout(() => {
+      executor().then(() => {
+        this._emit("end");
+      }, __classPrivateFieldGet9(this, _AbstractAssistantStreamRunner_handleError, "f"));
+    }, 0);
+  }
+  _addRun(run) {
+    return run;
+  }
+  _connected() {
+    if (this.ended)
+      return;
+    __classPrivateFieldGet9(this, _AbstractAssistantStreamRunner_resolveConnectedPromise, "f").call(this);
+    this._emit("connect");
+  }
+  get ended() {
+    return __classPrivateFieldGet9(this, _AbstractAssistantStreamRunner_ended, "f");
+  }
+  get errored() {
+    return __classPrivateFieldGet9(this, _AbstractAssistantStreamRunner_errored, "f");
+  }
+  get aborted() {
+    return __classPrivateFieldGet9(this, _AbstractAssistantStreamRunner_aborted, "f");
+  }
+  abort() {
+    this.controller.abort();
+  }
+  /**
+   * Adds the listener function to the end of the listeners array for the event.
+   * No checks are made to see if the listener has already been added. Multiple calls passing
+   * the same combination of event and listener will result in the listener being added, and
+   * called, multiple times.
+   * @returns this ChatCompletionStream, so that calls can be chained
+   */
+  on(event, listener) {
+    const listeners = __classPrivateFieldGet9(this, _AbstractAssistantStreamRunner_listeners, "f")[event] || (__classPrivateFieldGet9(this, _AbstractAssistantStreamRunner_listeners, "f")[event] = []);
+    listeners.push({ listener });
+    return this;
+  }
+  /**
+   * Removes the specified listener from the listener array for the event.
+   * off() will remove, at most, one instance of a listener from the listener array. If any single
+   * listener has been added multiple times to the listener array for the specified event, then
+   * off() must be called multiple times to remove each instance.
+   * @returns this ChatCompletionStream, so that calls can be chained
+   */
+  off(event, listener) {
+    const listeners = __classPrivateFieldGet9(this, _AbstractAssistantStreamRunner_listeners, "f")[event];
+    if (!listeners)
+      return this;
+    const index = listeners.findIndex((l2) => l2.listener === listener);
+    if (index >= 0)
+      listeners.splice(index, 1);
+    return this;
+  }
+  /**
+   * Adds a one-time listener function for the event. The next time the event is triggered,
+   * this listener is removed and then invoked.
+   * @returns this ChatCompletionStream, so that calls can be chained
+   */
+  once(event, listener) {
+    const listeners = __classPrivateFieldGet9(this, _AbstractAssistantStreamRunner_listeners, "f")[event] || (__classPrivateFieldGet9(this, _AbstractAssistantStreamRunner_listeners, "f")[event] = []);
+    listeners.push({ listener, once: true });
+    return this;
+  }
+  /**
+   * This is similar to `.once()`, but returns a Promise that resolves the next time
+   * the event is triggered, instead of calling a listener callback.
+   * @returns a Promise that resolves the next time given event is triggered,
+   * or rejects if an error is emitted.  (If you request the 'error' event,
+   * returns a promise that resolves with the error).
+   *
+   * Example:
+   *
+   *   const message = await stream.emitted('message') // rejects if the stream errors
+   */
+  emitted(event) {
+    return new Promise((resolve, reject) => {
+      __classPrivateFieldSet8(this, _AbstractAssistantStreamRunner_catchingPromiseCreated, true, "f");
+      if (event !== "error")
+        this.once("error", reject);
+      this.once(event, resolve);
+    });
+  }
+  async done() {
+    __classPrivateFieldSet8(this, _AbstractAssistantStreamRunner_catchingPromiseCreated, true, "f");
+    await __classPrivateFieldGet9(this, _AbstractAssistantStreamRunner_endPromise, "f");
+  }
+  _emit(event, ...args2) {
+    if (__classPrivateFieldGet9(this, _AbstractAssistantStreamRunner_ended, "f")) {
+      return;
+    }
+    if (event === "end") {
+      __classPrivateFieldSet8(this, _AbstractAssistantStreamRunner_ended, true, "f");
+      __classPrivateFieldGet9(this, _AbstractAssistantStreamRunner_resolveEndPromise, "f").call(this);
+    }
+    const listeners = __classPrivateFieldGet9(this, _AbstractAssistantStreamRunner_listeners, "f")[event];
+    if (listeners) {
+      __classPrivateFieldGet9(this, _AbstractAssistantStreamRunner_listeners, "f")[event] = listeners.filter((l2) => !l2.once);
+      listeners.forEach(({ listener }) => listener(...args2));
+    }
+    if (event === "abort") {
+      const error = args2[0];
+      if (!__classPrivateFieldGet9(this, _AbstractAssistantStreamRunner_catchingPromiseCreated, "f") && !listeners?.length) {
+        Promise.reject(error);
+      }
+      __classPrivateFieldGet9(this, _AbstractAssistantStreamRunner_rejectConnectedPromise, "f").call(this, error);
+      __classPrivateFieldGet9(this, _AbstractAssistantStreamRunner_rejectEndPromise, "f").call(this, error);
+      this._emit("end");
+      return;
+    }
+    if (event === "error") {
+      const error = args2[0];
+      if (!__classPrivateFieldGet9(this, _AbstractAssistantStreamRunner_catchingPromiseCreated, "f") && !listeners?.length) {
+        Promise.reject(error);
+      }
+      __classPrivateFieldGet9(this, _AbstractAssistantStreamRunner_rejectConnectedPromise, "f").call(this, error);
+      __classPrivateFieldGet9(this, _AbstractAssistantStreamRunner_rejectEndPromise, "f").call(this, error);
+      this._emit("end");
+    }
+  }
+  async _threadAssistantStream(body, thread, options) {
+    return await this._createThreadAssistantStream(thread, body, options);
+  }
+  async _runAssistantStream(threadId, runs, params, options) {
+    return await this._createAssistantStream(runs, threadId, params, options);
+  }
+  async _runToolAssistantStream(threadId, runId, runs, params, options) {
+    return await this._createToolAssistantStream(runs, threadId, runId, params, options);
+  }
+  async _createThreadAssistantStream(thread, body, options) {
+    const signal = options?.signal;
+    if (signal) {
+      if (signal.aborted)
+        this.controller.abort();
+      signal.addEventListener("abort", () => this.controller.abort());
+    }
+    const runResult = await thread.createAndRun({ ...body, stream: false }, { ...options, signal: this.controller.signal });
+    this._connected();
+    return this._addRun(runResult);
+  }
+  async _createToolAssistantStream(run, threadId, runId, params, options) {
+    const signal = options?.signal;
+    if (signal) {
+      if (signal.aborted)
+        this.controller.abort();
+      signal.addEventListener("abort", () => this.controller.abort());
+    }
+    const runResult = await run.submitToolOutputs(threadId, runId, { ...params, stream: false }, { ...options, signal: this.controller.signal });
+    this._connected();
+    return this._addRun(runResult);
+  }
+  async _createAssistantStream(run, threadId, params, options) {
+    const signal = options?.signal;
+    if (signal) {
+      if (signal.aborted)
+        this.controller.abort();
+      signal.addEventListener("abort", () => this.controller.abort());
+    }
+    const runResult = await run.create(threadId, { ...params, stream: false }, { ...options, signal: this.controller.signal });
+    this._connected();
+    return this._addRun(runResult);
+  }
+};
+_AbstractAssistantStreamRunner_connectedPromise = /* @__PURE__ */ new WeakMap(), _AbstractAssistantStreamRunner_resolveConnectedPromise = /* @__PURE__ */ new WeakMap(), _AbstractAssistantStreamRunner_rejectConnectedPromise = /* @__PURE__ */ new WeakMap(), _AbstractAssistantStreamRunner_endPromise = /* @__PURE__ */ new WeakMap(), _AbstractAssistantStreamRunner_resolveEndPromise = /* @__PURE__ */ new WeakMap(), _AbstractAssistantStreamRunner_rejectEndPromise = /* @__PURE__ */ new WeakMap(), _AbstractAssistantStreamRunner_listeners = /* @__PURE__ */ new WeakMap(), _AbstractAssistantStreamRunner_ended = /* @__PURE__ */ new WeakMap(), _AbstractAssistantStreamRunner_errored = /* @__PURE__ */ new WeakMap(), _AbstractAssistantStreamRunner_aborted = /* @__PURE__ */ new WeakMap(), _AbstractAssistantStreamRunner_catchingPromiseCreated = /* @__PURE__ */ new WeakMap(), _AbstractAssistantStreamRunner_handleError = /* @__PURE__ */ new WeakMap();
+
+// node_modules/openai/lib/AssistantStream.mjs
+var __classPrivateFieldGet10 = function(receiver, state, kind2, f3) {
+  if (kind2 === "a" && !f3)
+    throw new TypeError("Private accessor was defined without a getter");
+  if (typeof state === "function" ? receiver !== state || !f3 : !state.has(receiver))
+    throw new TypeError("Cannot read private member from an object whose class did not declare it");
+  return kind2 === "m" ? f3 : kind2 === "a" ? f3.call(receiver) : f3 ? f3.value : state.get(receiver);
+};
+var __classPrivateFieldSet9 = function(receiver, state, value, kind2, f3) {
+  if (kind2 === "m")
+    throw new TypeError("Private method is not writable");
+  if (kind2 === "a" && !f3)
+    throw new TypeError("Private accessor was defined without a setter");
+  if (typeof state === "function" ? receiver !== state || !f3 : !state.has(receiver))
+    throw new TypeError("Cannot write private member to an object whose class did not declare it");
+  return kind2 === "a" ? f3.call(receiver, value) : f3 ? f3.value = value : state.set(receiver, value), value;
+};
+var _AssistantStream_instances;
+var _AssistantStream_events;
+var _AssistantStream_runStepSnapshots;
+var _AssistantStream_messageSnapshots;
+var _AssistantStream_messageSnapshot;
+var _AssistantStream_finalRun;
+var _AssistantStream_currentContentIndex;
+var _AssistantStream_currentContent;
+var _AssistantStream_currentToolCallIndex;
+var _AssistantStream_currentToolCall;
+var _AssistantStream_currentEvent;
+var _AssistantStream_currentRunSnapshot;
+var _AssistantStream_currentRunStepSnapshot;
+var _AssistantStream_addEvent;
+var _AssistantStream_endRequest;
+var _AssistantStream_handleMessage;
+var _AssistantStream_handleRunStep;
+var _AssistantStream_handleEvent;
+var _AssistantStream_accumulateRunStep;
+var _AssistantStream_accumulateMessage;
+var _AssistantStream_accumulateContent;
+var _AssistantStream_handleRun;
+var AssistantStream = class _AssistantStream extends AbstractAssistantStreamRunner {
+  constructor() {
+    super(...arguments);
+    _AssistantStream_instances.add(this);
+    _AssistantStream_events.set(this, []);
+    _AssistantStream_runStepSnapshots.set(this, {});
+    _AssistantStream_messageSnapshots.set(this, {});
+    _AssistantStream_messageSnapshot.set(this, void 0);
+    _AssistantStream_finalRun.set(this, void 0);
+    _AssistantStream_currentContentIndex.set(this, void 0);
+    _AssistantStream_currentContent.set(this, void 0);
+    _AssistantStream_currentToolCallIndex.set(this, void 0);
+    _AssistantStream_currentToolCall.set(this, void 0);
+    _AssistantStream_currentEvent.set(this, void 0);
+    _AssistantStream_currentRunSnapshot.set(this, void 0);
+    _AssistantStream_currentRunStepSnapshot.set(this, void 0);
+  }
+  [(_AssistantStream_events = /* @__PURE__ */ new WeakMap(), _AssistantStream_runStepSnapshots = /* @__PURE__ */ new WeakMap(), _AssistantStream_messageSnapshots = /* @__PURE__ */ new WeakMap(), _AssistantStream_messageSnapshot = /* @__PURE__ */ new WeakMap(), _AssistantStream_finalRun = /* @__PURE__ */ new WeakMap(), _AssistantStream_currentContentIndex = /* @__PURE__ */ new WeakMap(), _AssistantStream_currentContent = /* @__PURE__ */ new WeakMap(), _AssistantStream_currentToolCallIndex = /* @__PURE__ */ new WeakMap(), _AssistantStream_currentToolCall = /* @__PURE__ */ new WeakMap(), _AssistantStream_currentEvent = /* @__PURE__ */ new WeakMap(), _AssistantStream_currentRunSnapshot = /* @__PURE__ */ new WeakMap(), _AssistantStream_currentRunStepSnapshot = /* @__PURE__ */ new WeakMap(), _AssistantStream_instances = /* @__PURE__ */ new WeakSet(), Symbol.asyncIterator)]() {
+    const pushQueue = [];
+    const readQueue = [];
+    let done = false;
+    this.on("event", (event) => {
+      const reader = readQueue.shift();
+      if (reader) {
+        reader.resolve(event);
+      } else {
+        pushQueue.push(event);
+      }
+    });
+    this.on("end", () => {
+      done = true;
+      for (const reader of readQueue) {
+        reader.resolve(void 0);
+      }
+      readQueue.length = 0;
+    });
+    this.on("abort", (err) => {
+      done = true;
+      for (const reader of readQueue) {
+        reader.reject(err);
+      }
+      readQueue.length = 0;
+    });
+    this.on("error", (err) => {
+      done = true;
+      for (const reader of readQueue) {
+        reader.reject(err);
+      }
+      readQueue.length = 0;
+    });
+    return {
+      next: async () => {
+        if (!pushQueue.length) {
+          if (done) {
+            return { value: void 0, done: true };
+          }
+          return new Promise((resolve, reject) => readQueue.push({ resolve, reject })).then((chunk2) => chunk2 ? { value: chunk2, done: false } : { value: void 0, done: true });
+        }
+        const chunk = pushQueue.shift();
+        return { value: chunk, done: false };
+      },
+      return: async () => {
+        this.abort();
+        return { value: void 0, done: true };
+      }
+    };
+  }
+  static fromReadableStream(stream) {
+    const runner = new _AssistantStream();
+    runner._run(() => runner._fromReadableStream(stream));
+    return runner;
+  }
+  async _fromReadableStream(readableStream, options) {
+    const signal = options?.signal;
+    if (signal) {
+      if (signal.aborted)
+        this.controller.abort();
+      signal.addEventListener("abort", () => this.controller.abort());
+    }
+    this._connected();
+    const stream = Stream.fromReadableStream(readableStream, this.controller);
+    for await (const event of stream) {
+      __classPrivateFieldGet10(this, _AssistantStream_instances, "m", _AssistantStream_addEvent).call(this, event);
+    }
+    if (stream.controller.signal?.aborted) {
+      throw new APIUserAbortError();
+    }
+    return this._addRun(__classPrivateFieldGet10(this, _AssistantStream_instances, "m", _AssistantStream_endRequest).call(this));
+  }
+  toReadableStream() {
+    const stream = new Stream(this[Symbol.asyncIterator].bind(this), this.controller);
+    return stream.toReadableStream();
+  }
+  static createToolAssistantStream(threadId, runId, runs, body, options) {
+    const runner = new _AssistantStream();
+    runner._run(() => runner._runToolAssistantStream(threadId, runId, runs, body, {
+      ...options,
+      headers: { ...options?.headers, "X-Stainless-Helper-Method": "stream" }
+    }));
+    return runner;
+  }
+  async _createToolAssistantStream(run, threadId, runId, params, options) {
+    const signal = options?.signal;
+    if (signal) {
+      if (signal.aborted)
+        this.controller.abort();
+      signal.addEventListener("abort", () => this.controller.abort());
+    }
+    const body = { ...params, stream: true };
+    const stream = await run.submitToolOutputs(threadId, runId, body, {
+      ...options,
+      signal: this.controller.signal
+    });
+    this._connected();
+    for await (const event of stream) {
+      __classPrivateFieldGet10(this, _AssistantStream_instances, "m", _AssistantStream_addEvent).call(this, event);
+    }
+    if (stream.controller.signal?.aborted) {
+      throw new APIUserAbortError();
+    }
+    return this._addRun(__classPrivateFieldGet10(this, _AssistantStream_instances, "m", _AssistantStream_endRequest).call(this));
+  }
+  static createThreadAssistantStream(body, thread, options) {
+    const runner = new _AssistantStream();
+    runner._run(() => runner._threadAssistantStream(body, thread, {
+      ...options,
+      headers: { ...options?.headers, "X-Stainless-Helper-Method": "stream" }
+    }));
+    return runner;
+  }
+  static createAssistantStream(threadId, runs, params, options) {
+    const runner = new _AssistantStream();
+    runner._run(() => runner._runAssistantStream(threadId, runs, params, {
+      ...options,
+      headers: { ...options?.headers, "X-Stainless-Helper-Method": "stream" }
+    }));
+    return runner;
+  }
+  currentEvent() {
+    return __classPrivateFieldGet10(this, _AssistantStream_currentEvent, "f");
+  }
+  currentRun() {
+    return __classPrivateFieldGet10(this, _AssistantStream_currentRunSnapshot, "f");
+  }
+  currentMessageSnapshot() {
+    return __classPrivateFieldGet10(this, _AssistantStream_messageSnapshot, "f");
+  }
+  currentRunStepSnapshot() {
+    return __classPrivateFieldGet10(this, _AssistantStream_currentRunStepSnapshot, "f");
+  }
+  async finalRunSteps() {
+    await this.done();
+    return Object.values(__classPrivateFieldGet10(this, _AssistantStream_runStepSnapshots, "f"));
+  }
+  async finalMessages() {
+    await this.done();
+    return Object.values(__classPrivateFieldGet10(this, _AssistantStream_messageSnapshots, "f"));
+  }
+  async finalRun() {
+    await this.done();
+    if (!__classPrivateFieldGet10(this, _AssistantStream_finalRun, "f"))
+      throw Error("Final run was not received.");
+    return __classPrivateFieldGet10(this, _AssistantStream_finalRun, "f");
+  }
+  async _createThreadAssistantStream(thread, params, options) {
+    const signal = options?.signal;
+    if (signal) {
+      if (signal.aborted)
+        this.controller.abort();
+      signal.addEventListener("abort", () => this.controller.abort());
+    }
+    const body = { ...params, stream: true };
+    const stream = await thread.createAndRun(body, { ...options, signal: this.controller.signal });
+    this._connected();
+    for await (const event of stream) {
+      __classPrivateFieldGet10(this, _AssistantStream_instances, "m", _AssistantStream_addEvent).call(this, event);
+    }
+    if (stream.controller.signal?.aborted) {
+      throw new APIUserAbortError();
+    }
+    return this._addRun(__classPrivateFieldGet10(this, _AssistantStream_instances, "m", _AssistantStream_endRequest).call(this));
+  }
+  async _createAssistantStream(run, threadId, params, options) {
+    const signal = options?.signal;
+    if (signal) {
+      if (signal.aborted)
+        this.controller.abort();
+      signal.addEventListener("abort", () => this.controller.abort());
+    }
+    const body = { ...params, stream: true };
+    const stream = await run.create(threadId, body, { ...options, signal: this.controller.signal });
+    this._connected();
+    for await (const event of stream) {
+      __classPrivateFieldGet10(this, _AssistantStream_instances, "m", _AssistantStream_addEvent).call(this, event);
+    }
+    if (stream.controller.signal?.aborted) {
+      throw new APIUserAbortError();
+    }
+    return this._addRun(__classPrivateFieldGet10(this, _AssistantStream_instances, "m", _AssistantStream_endRequest).call(this));
+  }
+  static accumulateDelta(acc, delta) {
+    for (const [key, deltaValue] of Object.entries(delta)) {
+      if (!acc.hasOwnProperty(key)) {
+        acc[key] = deltaValue;
+        continue;
+      }
+      let accValue = acc[key];
+      if (accValue === null || accValue === void 0) {
+        acc[key] = deltaValue;
+        continue;
+      }
+      if (key === "index" || key === "type") {
+        acc[key] = deltaValue;
+        continue;
+      }
+      if (typeof accValue === "string" && typeof deltaValue === "string") {
+        accValue += deltaValue;
+      } else if (typeof accValue === "number" && typeof deltaValue === "number") {
+        accValue += deltaValue;
+      } else if (isObj(accValue) && isObj(deltaValue)) {
+        accValue = this.accumulateDelta(accValue, deltaValue);
+      } else if (Array.isArray(accValue) && Array.isArray(deltaValue)) {
+        if (accValue.every((x2) => typeof x2 === "string" || typeof x2 === "number")) {
+          accValue.push(...deltaValue);
+          continue;
+        }
+      } else {
+        throw Error(`Unhandled record type: ${key}, deltaValue: ${deltaValue}, accValue: ${accValue}`);
+      }
+      acc[key] = accValue;
+    }
+    return acc;
+  }
+};
+_AssistantStream_addEvent = function _AssistantStream_addEvent2(event) {
+  if (this.ended)
+    return;
+  __classPrivateFieldSet9(this, _AssistantStream_currentEvent, event, "f");
+  __classPrivateFieldGet10(this, _AssistantStream_instances, "m", _AssistantStream_handleEvent).call(this, event);
+  switch (event.event) {
+    case "thread.created":
+      break;
+    case "thread.run.created":
+    case "thread.run.queued":
+    case "thread.run.in_progress":
+    case "thread.run.requires_action":
+    case "thread.run.completed":
+    case "thread.run.failed":
+    case "thread.run.cancelling":
+    case "thread.run.cancelled":
+    case "thread.run.expired":
+      __classPrivateFieldGet10(this, _AssistantStream_instances, "m", _AssistantStream_handleRun).call(this, event);
+      break;
+    case "thread.run.step.created":
+    case "thread.run.step.in_progress":
+    case "thread.run.step.delta":
+    case "thread.run.step.completed":
+    case "thread.run.step.failed":
+    case "thread.run.step.cancelled":
+    case "thread.run.step.expired":
+      __classPrivateFieldGet10(this, _AssistantStream_instances, "m", _AssistantStream_handleRunStep).call(this, event);
+      break;
+    case "thread.message.created":
+    case "thread.message.in_progress":
+    case "thread.message.delta":
+    case "thread.message.completed":
+    case "thread.message.incomplete":
+      __classPrivateFieldGet10(this, _AssistantStream_instances, "m", _AssistantStream_handleMessage).call(this, event);
+      break;
+    case "error":
+      throw new Error("Encountered an error event in event processing - errors should be processed earlier");
+  }
+}, _AssistantStream_endRequest = function _AssistantStream_endRequest2() {
+  if (this.ended) {
+    throw new OpenAIError(`stream has ended, this shouldn't happen`);
+  }
+  if (!__classPrivateFieldGet10(this, _AssistantStream_finalRun, "f"))
+    throw Error("Final run has not been received");
+  return __classPrivateFieldGet10(this, _AssistantStream_finalRun, "f");
+}, _AssistantStream_handleMessage = function _AssistantStream_handleMessage2(event) {
+  const [accumulatedMessage, newContent] = __classPrivateFieldGet10(this, _AssistantStream_instances, "m", _AssistantStream_accumulateMessage).call(this, event, __classPrivateFieldGet10(this, _AssistantStream_messageSnapshot, "f"));
+  __classPrivateFieldSet9(this, _AssistantStream_messageSnapshot, accumulatedMessage, "f");
+  __classPrivateFieldGet10(this, _AssistantStream_messageSnapshots, "f")[accumulatedMessage.id] = accumulatedMessage;
+  for (const content of newContent) {
+    const snapshotContent = accumulatedMessage.content[content.index];
+    if (snapshotContent?.type == "text") {
+      this._emit("textCreated", snapshotContent.text);
+    }
+  }
+  switch (event.event) {
+    case "thread.message.created":
+      this._emit("messageCreated", event.data);
+      break;
+    case "thread.message.in_progress":
+      break;
+    case "thread.message.delta":
+      this._emit("messageDelta", event.data.delta, accumulatedMessage);
+      if (event.data.delta.content) {
+        for (const content of event.data.delta.content) {
+          if (content.type == "text" && content.text) {
+            let textDelta = content.text;
+            let snapshot = accumulatedMessage.content[content.index];
+            if (snapshot && snapshot.type == "text") {
+              this._emit("textDelta", textDelta, snapshot.text);
+            } else {
+              throw Error("The snapshot associated with this text delta is not text or missing");
+            }
+          }
+          if (content.index != __classPrivateFieldGet10(this, _AssistantStream_currentContentIndex, "f")) {
+            if (__classPrivateFieldGet10(this, _AssistantStream_currentContent, "f")) {
+              switch (__classPrivateFieldGet10(this, _AssistantStream_currentContent, "f").type) {
+                case "text":
+                  this._emit("textDone", __classPrivateFieldGet10(this, _AssistantStream_currentContent, "f").text, __classPrivateFieldGet10(this, _AssistantStream_messageSnapshot, "f"));
+                  break;
+                case "image_file":
+                  this._emit("imageFileDone", __classPrivateFieldGet10(this, _AssistantStream_currentContent, "f").image_file, __classPrivateFieldGet10(this, _AssistantStream_messageSnapshot, "f"));
+                  break;
+              }
+            }
+            __classPrivateFieldSet9(this, _AssistantStream_currentContentIndex, content.index, "f");
+          }
+          __classPrivateFieldSet9(this, _AssistantStream_currentContent, accumulatedMessage.content[content.index], "f");
+        }
+      }
+      break;
+    case "thread.message.completed":
+    case "thread.message.incomplete":
+      if (__classPrivateFieldGet10(this, _AssistantStream_currentContentIndex, "f") !== void 0) {
+        const currentContent = event.data.content[__classPrivateFieldGet10(this, _AssistantStream_currentContentIndex, "f")];
+        if (currentContent) {
+          switch (currentContent.type) {
+            case "image_file":
+              this._emit("imageFileDone", currentContent.image_file, __classPrivateFieldGet10(this, _AssistantStream_messageSnapshot, "f"));
+              break;
+            case "text":
+              this._emit("textDone", currentContent.text, __classPrivateFieldGet10(this, _AssistantStream_messageSnapshot, "f"));
+              break;
+          }
+        }
+      }
+      if (__classPrivateFieldGet10(this, _AssistantStream_messageSnapshot, "f")) {
+        this._emit("messageDone", event.data);
+      }
+      __classPrivateFieldSet9(this, _AssistantStream_messageSnapshot, void 0, "f");
+  }
+}, _AssistantStream_handleRunStep = function _AssistantStream_handleRunStep2(event) {
+  const accumulatedRunStep = __classPrivateFieldGet10(this, _AssistantStream_instances, "m", _AssistantStream_accumulateRunStep).call(this, event);
+  __classPrivateFieldSet9(this, _AssistantStream_currentRunStepSnapshot, accumulatedRunStep, "f");
+  switch (event.event) {
+    case "thread.run.step.created":
+      this._emit("runStepCreated", event.data);
+      break;
+    case "thread.run.step.delta":
+      const delta = event.data.delta;
+      if (delta.step_details && delta.step_details.type == "tool_calls" && delta.step_details.tool_calls && accumulatedRunStep.step_details.type == "tool_calls") {
+        for (const toolCall of delta.step_details.tool_calls) {
+          if (toolCall.index == __classPrivateFieldGet10(this, _AssistantStream_currentToolCallIndex, "f")) {
+            this._emit("toolCallDelta", toolCall, accumulatedRunStep.step_details.tool_calls[toolCall.index]);
+          } else {
+            if (__classPrivateFieldGet10(this, _AssistantStream_currentToolCall, "f")) {
+              this._emit("toolCallDone", __classPrivateFieldGet10(this, _AssistantStream_currentToolCall, "f"));
+            }
+            __classPrivateFieldSet9(this, _AssistantStream_currentToolCallIndex, toolCall.index, "f");
+            __classPrivateFieldSet9(this, _AssistantStream_currentToolCall, accumulatedRunStep.step_details.tool_calls[toolCall.index], "f");
+            if (__classPrivateFieldGet10(this, _AssistantStream_currentToolCall, "f"))
+              this._emit("toolCallCreated", __classPrivateFieldGet10(this, _AssistantStream_currentToolCall, "f"));
+          }
+        }
+      }
+      this._emit("runStepDelta", event.data.delta, accumulatedRunStep);
+      break;
+    case "thread.run.step.completed":
+    case "thread.run.step.failed":
+    case "thread.run.step.cancelled":
+    case "thread.run.step.expired":
+      __classPrivateFieldSet9(this, _AssistantStream_currentRunStepSnapshot, void 0, "f");
+      const details = event.data.step_details;
+      if (details.type == "tool_calls") {
+        if (__classPrivateFieldGet10(this, _AssistantStream_currentToolCall, "f")) {
+          this._emit("toolCallDone", __classPrivateFieldGet10(this, _AssistantStream_currentToolCall, "f"));
+          __classPrivateFieldSet9(this, _AssistantStream_currentToolCall, void 0, "f");
+        }
+      }
+      this._emit("runStepDone", event.data, accumulatedRunStep);
+      break;
+    case "thread.run.step.in_progress":
+      break;
+  }
+}, _AssistantStream_handleEvent = function _AssistantStream_handleEvent2(event) {
+  __classPrivateFieldGet10(this, _AssistantStream_events, "f").push(event);
+  this._emit("event", event);
+}, _AssistantStream_accumulateRunStep = function _AssistantStream_accumulateRunStep2(event) {
+  switch (event.event) {
+    case "thread.run.step.created":
+      __classPrivateFieldGet10(this, _AssistantStream_runStepSnapshots, "f")[event.data.id] = event.data;
+      return event.data;
+    case "thread.run.step.delta":
+      let snapshot = __classPrivateFieldGet10(this, _AssistantStream_runStepSnapshots, "f")[event.data.id];
+      if (!snapshot) {
+        throw Error("Received a RunStepDelta before creation of a snapshot");
+      }
+      let data = event.data;
+      if (data.delta) {
+        const accumulated = AssistantStream.accumulateDelta(snapshot, data.delta);
+        __classPrivateFieldGet10(this, _AssistantStream_runStepSnapshots, "f")[event.data.id] = accumulated;
+      }
+      return __classPrivateFieldGet10(this, _AssistantStream_runStepSnapshots, "f")[event.data.id];
+    case "thread.run.step.completed":
+    case "thread.run.step.failed":
+    case "thread.run.step.cancelled":
+    case "thread.run.step.expired":
+    case "thread.run.step.in_progress":
+      __classPrivateFieldGet10(this, _AssistantStream_runStepSnapshots, "f")[event.data.id] = event.data;
+      break;
+  }
+  if (__classPrivateFieldGet10(this, _AssistantStream_runStepSnapshots, "f")[event.data.id])
+    return __classPrivateFieldGet10(this, _AssistantStream_runStepSnapshots, "f")[event.data.id];
+  throw new Error("No snapshot available");
+}, _AssistantStream_accumulateMessage = function _AssistantStream_accumulateMessage2(event, snapshot) {
+  let newContent = [];
+  switch (event.event) {
+    case "thread.message.created":
+      return [event.data, newContent];
+    case "thread.message.delta":
+      if (!snapshot) {
+        throw Error("Received a delta with no existing snapshot (there should be one from message creation)");
+      }
+      let data = event.data;
+      if (data.delta.content) {
+        for (const contentElement of data.delta.content) {
+          if (contentElement.index in snapshot.content) {
+            let currentContent = snapshot.content[contentElement.index];
+            snapshot.content[contentElement.index] = __classPrivateFieldGet10(this, _AssistantStream_instances, "m", _AssistantStream_accumulateContent).call(this, contentElement, currentContent);
+          } else {
+            snapshot.content[contentElement.index] = contentElement;
+            newContent.push(contentElement);
+          }
+        }
+      }
+      return [snapshot, newContent];
+    case "thread.message.in_progress":
+    case "thread.message.completed":
+    case "thread.message.incomplete":
+      if (snapshot) {
+        return [snapshot, newContent];
+      } else {
+        throw Error("Received thread message event with no existing snapshot");
+      }
+  }
+  throw Error("Tried to accumulate a non-message event");
+}, _AssistantStream_accumulateContent = function _AssistantStream_accumulateContent2(contentElement, currentContent) {
+  return AssistantStream.accumulateDelta(currentContent, contentElement);
+}, _AssistantStream_handleRun = function _AssistantStream_handleRun2(event) {
+  __classPrivateFieldSet9(this, _AssistantStream_currentRunSnapshot, event.data, "f");
+  switch (event.event) {
+    case "thread.run.created":
+      break;
+    case "thread.run.queued":
+      break;
+    case "thread.run.in_progress":
+      break;
+    case "thread.run.requires_action":
+    case "thread.run.cancelled":
+    case "thread.run.failed":
+    case "thread.run.completed":
+    case "thread.run.expired":
+      __classPrivateFieldSet9(this, _AssistantStream_finalRun, event.data, "f");
+      if (__classPrivateFieldGet10(this, _AssistantStream_currentToolCall, "f")) {
+        this._emit("toolCallDone", __classPrivateFieldGet10(this, _AssistantStream_currentToolCall, "f"));
+        __classPrivateFieldSet9(this, _AssistantStream_currentToolCall, void 0, "f");
+      }
+      break;
+    case "thread.run.cancelling":
+      break;
+  }
+};
+
 // node_modules/openai/resources/beta/threads/messages/files.mjs
 var Files2 = class extends APIResource {
   /**
@@ -32197,17 +49927,17 @@ var Messages = class extends APIResource {
     if (isRequestOptions(query)) {
       return this.list(threadId, {}, query);
     }
-    return this._client.getAPIList(`/threads/${threadId}/messages`, ThreadMessagesPage, {
+    return this._client.getAPIList(`/threads/${threadId}/messages`, MessagesPage, {
       query,
       ...options,
       headers: { "OpenAI-Beta": "assistants=v1", ...options?.headers }
     });
   }
 };
-var ThreadMessagesPage = class extends CursorPage {
+var MessagesPage = class extends CursorPage {
 };
 (function(Messages2) {
-  Messages2.ThreadMessagesPage = ThreadMessagesPage;
+  Messages2.MessagesPage = MessagesPage;
   Messages2.Files = Files2;
   Messages2.MessageFilesPage = MessageFilesPage;
 })(Messages || (Messages = {}));
@@ -32246,14 +49976,12 @@ var Runs = class extends APIResource {
     super(...arguments);
     this.steps = new Steps(this._client);
   }
-  /**
-   * Create a run.
-   */
   create(threadId, body, options) {
     return this._client.post(`/threads/${threadId}/runs`, {
       body,
       ...options,
-      headers: { "OpenAI-Beta": "assistants=v1", ...options?.headers }
+      headers: { "OpenAI-Beta": "assistants=v1", ...options?.headers },
+      stream: body.stream ?? false
     });
   }
   /**
@@ -32295,17 +50023,94 @@ var Runs = class extends APIResource {
     });
   }
   /**
-   * When a run has the `status: "requires_action"` and `required_action.type` is
-   * `submit_tool_outputs`, this endpoint can be used to submit the outputs from the
-   * tool calls once they're all completed. All outputs must be submitted in a single
-   * request.
+   * A helper to create a run an poll for a terminal state. More information on Run
+   * lifecycles can be found here:
+   * https://platform.openai.com/docs/assistants/how-it-works/runs-and-run-steps
    */
+  async createAndPoll(threadId, body, options) {
+    const run = await this.create(threadId, body, options);
+    return await this.poll(threadId, run.id, options);
+  }
+  /**
+   * Create a Run stream
+   *
+   * @deprecated use `stream` instead
+   */
+  createAndStream(threadId, body, options) {
+    return AssistantStream.createAssistantStream(threadId, this._client.beta.threads.runs, body, options);
+  }
+  /**
+   * A helper to poll a run status until it reaches a terminal state. More
+   * information on Run lifecycles can be found here:
+   * https://platform.openai.com/docs/assistants/how-it-works/runs-and-run-steps
+   */
+  async poll(threadId, runId, options) {
+    const headers = { ...options?.headers, "X-Stainless-Poll-Helper": "true" };
+    if (options?.pollIntervalMs) {
+      headers["X-Stainless-Custom-Poll-Interval"] = options.pollIntervalMs.toString();
+    }
+    while (true) {
+      const { data: run, response } = await this.retrieve(threadId, runId, {
+        ...options,
+        headers: { ...options?.headers, ...headers }
+      }).withResponse();
+      switch (run.status) {
+        case "queued":
+        case "in_progress":
+        case "cancelling":
+          let sleepInterval = 5e3;
+          if (options?.pollIntervalMs) {
+            sleepInterval = options.pollIntervalMs;
+          } else {
+            const headerInterval = response.headers.get("openai-poll-after-ms");
+            if (headerInterval) {
+              const headerIntervalMs = parseInt(headerInterval);
+              if (!isNaN(headerIntervalMs)) {
+                sleepInterval = headerIntervalMs;
+              }
+            }
+          }
+          await sleep(sleepInterval);
+          break;
+        case "requires_action":
+        case "cancelled":
+        case "completed":
+        case "failed":
+        case "expired":
+          return run;
+      }
+    }
+  }
+  /**
+   * Create a Run stream
+   */
+  stream(threadId, body, options) {
+    return AssistantStream.createAssistantStream(threadId, this._client.beta.threads.runs, body, options);
+  }
   submitToolOutputs(threadId, runId, body, options) {
     return this._client.post(`/threads/${threadId}/runs/${runId}/submit_tool_outputs`, {
       body,
       ...options,
-      headers: { "OpenAI-Beta": "assistants=v1", ...options?.headers }
+      headers: { "OpenAI-Beta": "assistants=v1", ...options?.headers },
+      stream: body.stream ?? false
     });
+  }
+  /**
+   * A helper to submit a tool output to a run and poll for a terminal run state.
+   * More information on Run lifecycles can be found here:
+   * https://platform.openai.com/docs/assistants/how-it-works/runs-and-run-steps
+   */
+  async submitToolOutputsAndPoll(threadId, runId, body, options) {
+    const run = await this.submitToolOutputs(threadId, runId, body, options);
+    return await this.poll(threadId, run.id, options);
+  }
+  /**
+   * Submit the tool outputs from a previous run and stream the run to a terminal
+   * state. More information on Run lifecycles can be found here:
+   * https://platform.openai.com/docs/assistants/how-it-works/runs-and-run-steps
+   */
+  submitToolOutputsStream(threadId, runId, body, options) {
+    return AssistantStream.createToolAssistantStream(threadId, runId, this._client.beta.threads.runs, body, options);
   }
 };
 var RunsPage = class extends CursorPage {
@@ -32361,22 +50166,35 @@ var Threads = class extends APIResource {
       headers: { "OpenAI-Beta": "assistants=v1", ...options?.headers }
     });
   }
-  /**
-   * Create a thread and run it in one request.
-   */
   createAndRun(body, options) {
     return this._client.post("/threads/runs", {
       body,
       ...options,
-      headers: { "OpenAI-Beta": "assistants=v1", ...options?.headers }
+      headers: { "OpenAI-Beta": "assistants=v1", ...options?.headers },
+      stream: body.stream ?? false
     });
+  }
+  /**
+   * A helper to create a thread, start a run and then poll for a terminal state.
+   * More information on Run lifecycles can be found here:
+   * https://platform.openai.com/docs/assistants/how-it-works/runs-and-run-steps
+   */
+  async createAndRunPoll(body, options) {
+    const run = await this.createAndRun(body, options);
+    return await this.runs.poll(run.thread_id, run.id, options);
+  }
+  /**
+   * Create a thread and stream the run back
+   */
+  createAndRunStream(body, options) {
+    return AssistantStream.createThreadAssistantStream(body, this._client.beta.threads, options);
   }
 };
 (function(Threads2) {
   Threads2.Runs = Runs;
   Threads2.RunsPage = RunsPage;
   Threads2.Messages = Messages;
-  Threads2.ThreadMessagesPage = ThreadMessagesPage;
+  Threads2.MessagesPage = MessagesPage;
 })(Threads || (Threads = {}));
 
 // node_modules/openai/resources/beta/beta.mjs
@@ -32617,7 +50435,7 @@ var ModelsPage = class extends Page {
 // node_modules/openai/resources/moderations.mjs
 var Moderations = class extends APIResource {
   /**
-   * Classifies if text violates OpenAI's Content Policy
+   * Classifies if text is potentially harmful.
    */
   create(body, options) {
     return this._client.post("/moderations", { body, ...options });
@@ -32725,80 +50543,320 @@ var { OpenAIError: OpenAIError2, APIError: APIError2, APIConnectionError: APICon
   OpenAI2.FineTuning = FineTuning;
   OpenAI2.Beta = Beta;
 })(OpenAI || (OpenAI = {}));
-var openai_default = OpenAI;
+
+// node_modules/llm-polyglot/dist/index.js
+function C2(o2) {
+  return typeof o2 == "object" && o2 !== null && o2 !== void 0 && !Array.isArray(o2);
+}
+var d2 = class {
+  constructor(e2) {
+    this.functionCalls = [];
+    this.buffer = "";
+    this.currentArgs = {};
+    this.schema = e2;
+  }
+  extractFunctionCalls(e2) {
+    this.buffer += e2, this.processFunctionCalls();
+    let t2 = this.functionCalls;
+    return this.functionCalls = [], t2;
+  }
+  processFunctionCalls() {
+    let e2 = /<invoke>([\s\S]*?)<\/invoke>/g, t2;
+    for (; t2 = e2.exec(this.buffer); ) {
+      let n2 = t2[1];
+      this.processInvokeBlock(n2);
+    }
+  }
+  processInvokeBlock(e2) {
+    let t2 = /<tool_name>(.*?)<\/tool_name>/.exec(e2), n2 = t2 ? t2[1] : void 0;
+    this.currentFunctionName !== n2 && (this.currentFunctionName = n2, this.currentArgs = {}, this.currentParameterName = void 0);
+    let s2 = /<(\w+)>([\s\S]*?)<\/\1>/g, a2;
+    for (; a2 = s2.exec(e2); ) {
+      let [r2, i2, p2] = a2;
+      this.processParameter(i2, p2);
+    }
+    this.finishCurrentFunctionCall();
+  }
+  processParameter(e2, t2) {
+    if (this.currentFunctionName && (this.currentParameterName !== e2 && (this.finishCurrentParameter(), this.currentParameterName = e2), e2 === "parameters")) {
+      let n2 = this.parseParameters(t2);
+      this.currentArgs = n2;
+    }
+  }
+  finishCurrentParameter() {
+    this.currentParameterName && (this.currentParameterName = void 0);
+  }
+  updateFunctions() {
+    if (this.currentFunctionName) {
+      let e2 = this.functionCalls.find((t2) => t2.functionName === this.currentFunctionName);
+      e2 ? e2.args = { ...e2.args, ...this.currentArgs } : this.functionCalls.push({ functionName: this.currentFunctionName, args: this.currentArgs });
+    }
+  }
+  finishCurrentFunctionCall() {
+    this.updateFunctions(), this.currentFunctionName = void 0, this.currentArgs = {}, this.currentParameterName = void 0;
+  }
+  parseParameters(e2, t2 = this.schema) {
+    let n2 = {}, s2 = /<(\w+)>([\s\S]*?)<\/\1>/g, a2;
+    for (; a2 = s2.exec(e2); ) {
+      let [r2, i2, p2] = a2;
+      if (C2(t2))
+        if (t2.properties && t2.properties[i2]) {
+          let c2 = t2.properties[i2];
+          C2(c2) && (c2.type === "array" ? n2[i2] = this.parseArrayParameter(p2, c2) : c2.type === "object" ? n2[i2] = this.parseParameters(p2, c2) : c2.type === "number" ? n2[i2] = parseFloat(`${p2}`) ?? p2 : n2[i2] = p2);
+        } else
+          n2[i2] = p2;
+      this.currentArgs = n2;
+    }
+    return n2;
+  }
+  parseArrayParameter(e2, t2) {
+    let n2 = [], s2 = Array.isArray(t2.items) ? t2.items[0] : t2.items, a2 = /<([^>]+)>([\s\S]*?)<\/\1>/g, r2;
+    for (; r2 = a2.exec(e2); ) {
+      let [i2, p2, c2] = r2;
+      C2(s2) && s2.type === "object" ? n2.push(this.parseParameters(c2, s2)) : n2.push(c2);
+    }
+    return n2;
+  }
+};
+function k2(o2, e2) {
+  let t2 = "  ".repeat(e2), n2 = o2.properties || {}, s2 = Object.entries(n2).map(([a2, r2]) => typeof r2 == "boolean" ? "" : `${t2}<parameter>
+${t2} <name>${a2}</name>
+${f2(r2, e2 + 2)}
+${t2}</parameter>`).join(`
+`);
+  return `${t2}<type>object</type>
+<properties>${s2}</properties>`;
+}
+function N2(o2, e2) {
+  let t2 = "  ".repeat(e2), s2 = (Array.isArray(o2.items) ? o2.items : [o2.items])[0] || {};
+  return `${t2}<type>array</type><description>${o2?.description ?? " "}</description>
+${t2}<$INDEX>
+${f2(s2, e2 + 2)}
+${t2}</$INDEX>`;
+}
+function v2(o2, e2) {
+  let t2 = "  ".repeat(e2);
+  return typeof o2 == "boolean" ? `${t2}<type>boolean</type>` : `${t2}<type>${o2.type}</type>
+${o2.description ? `${t2}<description>${o2.description}</description>` : ""}`;
+}
+function f2(o2, e2 = 0) {
+  if (typeof o2 == "object" && o2 !== null) {
+    if ("properties" in o2 && o2.properties !== void 0)
+      return k2(o2, e2);
+    if ("items" in o2)
+      return N2(o2, e2);
+  }
+  return v2(o2, e2);
+}
+var w2 = ["claude-3-opus-20240229", "claude-3-sonnet-20240229"];
+var g2 = class {
+  constructor(e2) {
+    this.baseURL = "https://api.anthropic.com/v1";
+    this.models = w2;
+    this.chat = { completions: { create: this.create.bind(this) } };
+    let t2 = e2?.apiKey ?? process.env?.ANTHROPIC_API_KEY ?? null;
+    if (!t2)
+      throw new Error("API key is required for AnthropicProvider - please provide it in the constructor or set it as an environment variable named ANTHROPIC_API_KEY.");
+    this.apiKey = t2;
+  }
+  async buildApiRequest(e2) {
+    let { url: t2, method: n2, body: s2 } = e2, a2 = { "Content-Type": "application/json", "X-API-Key": this.apiKey, "anthropic-version": "2023-06-01" };
+    try {
+      return fetch(`${this.baseURL}/${t2}`, { method: n2, headers: a2, body: JSON.stringify(s2) });
+    } catch (r2) {
+      throw console.error("Error in Anthropic API request:", r2), r2;
+    }
+  }
+  async transformResponse(e2, t2, { stream: n2 } = {}) {
+    if (!e2.id)
+      throw new Error("Response id is undefined");
+    let s2 = typeof t2?.tool_choice == "object" && "function" in t2?.tool_choice ? t2?.tool_choice?.function?.name : void 0, a2 = (t2.tools ?? []).find((p2) => p2.function.name === s2)?.function?.parameters, r2 = new d2(a2), i2 = { id: e2.id, originResponse: e2, model: e2.model, usage: { prompt_tokens: e2.usage.input_tokens, completion_tokens: e2.usage.output_tokens, total_tokens: e2.usage.input_tokens + e2.usage.output_tokens } };
+    if (n2)
+      return { ...i2, object: "chat.completion.chunk", choices: [{ delta: {}, finish_reason: null, index: 0 }] };
+    {
+      let p2 = e2.content.map((h2) => h2.text).join(""), u2 = (r2.extractFunctionCalls(p2) ?? []).map(({ functionName: h2, args: y2 }, m2) => ({ id: `${m2}-${h2}`, type: "function", function: { name: h2, arguments: JSON.stringify(y2) } }));
+      return { ...i2, object: "chat.completion", choices: [{ message: { role: "assistant", content: p2, ...u2?.length ? { tool_calls: u2 } : {} }, finish_reason: u2?.length ? "tool_calls" : "stop", index: 0, logprobs: null }] };
+    }
+  }
+  transformParams(e2) {
+    let t2 = e2.messages.filter((r2) => r2.role === "system"), s2 = e2.messages.filter((r2) => r2.role !== "system").map((r2) => ({ role: r2.role, content: r2.content })), a2 = t2?.length ? t2.map((r2) => r2.content).join(`
+`) : "";
+    if (t2.length && console.warn("Anthropic does not support system messages - concatenating them all into a single 'system' property."), !e2.max_tokens)
+      throw new Error("max_tokens is required");
+    return e2.tools && e2.tools.length > 0 && (a2 += `
+      In this environment you have access to a set of tools you can use to answer the user's question.
+
+      You may call them like this:
+
+      <function_calls>
+      <invoke>
+      <tool_name>$TOOL_NAME</tool_name>
+      <parameters>
+      <$PARAMETER_NAME>$PARAMETER_VALUE</$PARAMETER_NAME>
+      ...
+      </parameters>
+      </invoke>
+      </function_calls>
+
+      Here are the tools available:
+      <tools>
+      ${e2.tools.map((r2) => {
+      let i2 = f2(r2.function.parameters);
+      return `<tool_description>
+            <tool_name>${r2.function.name}</tool_name>
+            <description>${r2.function.description}</description>
+            <parameters>${i2}</parameters>
+          </tool_description>`;
+    }).join(`
+`)}
+    </tools>`), e2.tool_choice && typeof e2.tool_choice == "object" && "function" in e2.tool_choice && e2.tool_choice.function.name && (a2 += `//(System request): 
+
+<tool_choice><tool_name>${e2.tool_choice.function.name}</tool_name></tool_choice>
+`), { model: e2.model, system: a2?.length ? a2 : void 0, messages: s2, max_tokens: e2.max_tokens, stop_sequences: e2.stop ? Array.isArray(e2.stop) ? e2.stop : [e2.stop] : void 0, temperature: e2.temperature ?? void 0, top_p: e2.top_p ?? void 0, top_k: e2.n ?? void 0, stream: e2.stream ?? false };
+  }
+  async *streamChatCompletion(e2, { toolChoice: t2, params: n2 }) {
+    let s2 = e2.body?.getReader();
+    if (!s2)
+      throw new Error("Failed to get stream reader");
+    let a2 = (n2.tools ?? []).find((c2) => c2.function.name === t2)?.function?.parameters, r2 = new d2(a2), i2 = null, p2 = new TextDecoder("utf-8");
+    try {
+      for (; ; ) {
+        let { done: c2, value: u2 } = await s2.read();
+        if (c2)
+          break;
+        let y2 = p2.decode(u2).split(`
+`);
+        for (let m2 of y2)
+          if (m2.trim() !== "" && m2.startsWith("data:")) {
+            let [$2, O2] = m2.split("data:");
+            if (!O2) {
+              console.warn("Skipping line without event data:", m2);
+              continue;
+            }
+            let l2 = JSON.parse(O2.trim());
+            switch (l2.type) {
+              case "message_start":
+                i2 = await this.transformResponse(l2.message, n2, { stream: true }), yield i2;
+                continue;
+              case "content_block_delta":
+                if (l2.delta && l2.delta.text) {
+                  if (i2 && i2.choices) {
+                    l2.delta.text && !t2 && (i2.choices[0].delta = { content: l2.delta.text, role: "assistant" });
+                    let _2 = r2.extractFunctionCalls(l2.delta.text);
+                    i2.choices[0].delta.tool_calls = _2.map(({ functionName: b2, args: P2 }, x2) => ({ index: x2, function: { name: b2, arguments: `${JSON.stringify(P2)}` } }));
+                  }
+                  yield i2;
+                }
+                continue;
+              case "content_block_stop":
+                i2 && i2.choices && (i2.choices[0].delta = {}, i2.choices[0].finish_reason = "stop"), yield i2;
+                break;
+              case "message_stop":
+                break;
+            }
+          }
+      }
+    } catch (c2) {
+      throw console.error("Error in stream:", c2), c2;
+    } finally {
+      s2.releaseLock();
+    }
+  }
+  async create(e2) {
+    let t2 = this.transformParams(e2);
+    try {
+      let n2 = await this.buildApiRequest({ url: "messages", method: "POST", body: t2 });
+      if (!n2.ok) {
+        let s2 = await n2.json();
+        throw console.error("Anthropic API request failed:", s2), new Error(`Anthropic API request failed: ${n2.statusText}`);
+      }
+      if (e2.stream)
+        return this.streamChatCompletion(n2, { params: e2, toolChoice: typeof e2?.tool_choice == "object" && "function" in e2?.tool_choice ? e2?.tool_choice?.function?.name : void 0 });
+      {
+        let s2 = await n2.json();
+        return await this.transformResponse(s2, e2);
+      }
+    } catch (n2) {
+      throw console.error("Error in Anthropic API request:", n2), n2;
+    }
+  }
+};
+var A2 = class extends OpenAI {
+  constructor(e2) {
+    super(e2);
+  }
+};
+var S2 = class {
+  constructor(e2) {
+    let t2 = e2?.provider ?? "openai", n2;
+    t2 === "openai" ? n2 = new A2(e2) : n2 = new g2(e2);
+    let s2 = { get: (a2, r2, i2) => {
+      if (r2 in a2)
+        return Reflect.get(a2, r2, i2);
+    } };
+    return new Proxy(n2, s2);
+  }
+};
+function K2(o2) {
+  return new S2(o2);
+}
+
+// src/notebook/ProxyServer.ts
+var import_cors = __toESM(require_cors(), 1);
+
+// node_modules/koa/dist/koa.mjs
+var import_application = __toESM(require_application(), 1);
+var koa_default = import_application.default;
+var HttpError = import_application.default.HttpError;
+
+// src/notebook/ProxyServer.ts
+var import_koa_proxies = __toESM(require_koa_proxies(), 1);
+var ProxyServer = class {
+  constructor(url, port) {
+    this.port = port;
+    __publicField(this, "server", null);
+    const app = new koa_default();
+    app.use((0, import_cors.default)());
+    app.use(
+      (0, import_koa_proxies.default)("/", {
+        target: url,
+        changeOrigin: true
+      })
+    );
+    this.server = app.listen(this.port, () => {
+      console.log(`Server running on port ${this.port}`);
+    });
+  }
+  stop() {
+    if (this.server) {
+      this.server.close();
+    }
+  }
+};
 
 // src/notebook/AIClient.ts
 var AIClient = class {
   constructor() {
-    __publicField(this, "openai");
+    __publicField(this, "llmClient");
+    __publicField(this, "server");
   }
   async initAIClient(modelConfig) {
-    this.openai = new openai_default({
-      ...{
-        ...modelConfig,
-        model: void 0
-      },
-      dangerouslyAllowBrowser: true
+    const baseURL = modelConfig.model.includes("claude") ? "https://api.anthropic.com/v1" : "https://api.openai.com";
+    if (this.server) {
+      this.server.stop();
+    }
+    this.server = new ProxyServer(baseURL, 3e3);
+    const provider = modelConfig.model.includes("claude") ? "anthropic" : "openai";
+    this.llmClient = K2({
+      ...modelConfig,
+      dangerouslyAllowBrowser: true,
+      baseURL: "http://localhost:3000",
+      provider
     });
+    this.llmClient.baseURL = "http://localhost:3000";
   }
   createCompletion(payload) {
-    return this.openai.chat.completions.create(payload);
-  }
-};
-
-// src/reason-node/BaseReasonNodeBuilder.ts
-var import_obsidian9 = require("obsidian");
-var import_yaml = __toESM(require_dist(), 1);
-var BaseReasonNodeBuilder = class {
-  constructor() {
-    __publicField(this, "type");
-    __publicField(this, "color");
-    __publicField(this, "endpoint");
-  }
-  renderFrontmatter(spec) {
-    return `---
-${import_yaml.default.stringify(spec)}
----`;
-  }
-  buildSpec(spec) {
-    return {
-      role: ReasonNodeType[this.type],
-      cssclasses: [`reason-node-${ReasonNodeType[this.type].toLowerCase()}`],
-      ...spec
-    };
-  }
-  async createReasonNodeFile(spec, createFile) {
-    spec = this.buildSpec(spec);
-    const body = this.renderFrontmatter(spec) + "\n" + this.renderBodyDataWithSpec(spec, "");
-    const file = await createFile(body);
-    new import_obsidian9.Notice(
-      `Created a file for a new ${ReasonNodeType[this.type]} node at ${file.path}`
-    );
-  }
-};
-
-// src/reason-node/SourceReasonNodeBuilder.ts
-var import_dedent_js = __toESM(require_lib3(), 1);
-var DQLStrategy = /* @__PURE__ */ ((DQLStrategy2) => {
-  DQLStrategy2[DQLStrategy2["SingleEvergreenReferrer"] = 0] = "SingleEvergreenReferrer";
-  DQLStrategy2[DQLStrategy2["AllEvergreenReferrers"] = 1] = "AllEvergreenReferrers";
-  DQLStrategy2[DQLStrategy2["LongContent"] = 2] = "LongContent";
-  return DQLStrategy2;
-})(DQLStrategy || {});
-var SourceReasonNodeBuilder = class extends BaseReasonNodeBuilder {
-  constructor() {
-    super(...arguments);
-    __publicField(this, "type", 0 /* Source */);
-    __publicField(this, "endpoint", "create-source-node");
-    __publicField(this, "color", "4");
-  }
-  renderBodyDataWithSpec(spec, body) {
-    const sourceSpec = spec;
-    return (0, import_dedent_js.default)(`
-    \`\`\`dataview
-    ${sourceSpec.dql}
-    \`\`\`
-    `);
+    return this.llmClient.chat.completions.create(payload);
   }
 };
 
@@ -32817,7 +50875,7 @@ var AggregatorReasonNodeBuilder = class extends BaseReasonNodeBuilder {
 
 // src/obsidian-modules/dataview-handler.ts
 var import_obsidian10 = require("obsidian");
-var import_obsidian_dataview = __toESM(require_lib4(), 1);
+var import_obsidian_dataview = __toESM(require_lib5(), 1);
 var canUseDataview = (app) => {
   const appWithPlugins = app;
   return !!appWithPlugins.plugins.getPlugin("dataview");
@@ -32830,7 +50888,7 @@ var getAPI = (app) => {
 };
 
 // src/source/retrieve/DataviewCandidateRetriever.ts
-var import_obsidian12 = require("obsidian");
+var import_obsidian13 = require("obsidian");
 
 // src/source/extract/LassoFromOffsetExtractor.ts
 var LassoFromOffsetExtractor = class {
@@ -32880,7 +50938,7 @@ var LassoFromOffsetExtractor = class {
           for (let tag of metadata.tags || []) {
             if (tag.tag === topic) {
               referenceWindows.push(
-                this.lassoContentFromOffset(contents, tag.position, 1, 200)
+                this.lassoContentFromOffset(contents, tag.position, 1, 500)
               );
             }
           }
@@ -32888,7 +50946,7 @@ var LassoFromOffsetExtractor = class {
           for (let link of metadata.links || []) {
             if (link.original === topic) {
               referenceWindows.push(
-                this.lassoContentFromOffset(contents, link.position, 1, 200)
+                this.lassoContentFromOffset(contents, link.position, 1, 500)
               );
             }
           }
@@ -32896,7 +50954,7 @@ var LassoFromOffsetExtractor = class {
       }
     }
     referenceWindows = referenceWindows.slice(
-      Math.max(0, referenceWindows.length - 4)
+      Math.max(0, referenceWindows.length - 8)
     );
     return referenceWindows;
   }
@@ -32980,6 +51038,8 @@ var BaseExtractor = class {
           block.position.start.offset,
           block.position.end.offset
         );
+      } else if (!pathOfEmbed.subpath || pathOfEmbed.subpath === "") {
+        return fullContent;
       } else {
         return "";
       }
@@ -32993,21 +51053,50 @@ var BaseExtractor = class {
    *
    * This method iterates over each embed reference found in the metadata, retrieves the content
    * for that reference, and replaces the reference in the original content with the retrieved content.
+   * Block references within the embed content are also substituted for markers.
    * It adjusts the offset for each subsequent replacement to account for the change in content length
    * after each replacement.
    *
    * @param contents The original content containing embed references.
    * @param metadata The metadata object containing embeds and their positions.
-   * @returns A Promise that resolves to the content with embed references replaced by actual content.
+   * @returns A Promise that resolves to an object containing the modified content and an array of block reference substitutions.
    */
   async replaceEmbeds(contents, metadata) {
     let newOffset = 0;
-    for (let embed of metadata?.embeds || []) {
-      const referenceContent = await this.getEmbedContent(embed);
-      contents = contents.slice(0, embed.position.start.offset + newOffset) + referenceContent + contents.slice(newOffset + embed.position.end.offset);
-      newOffset += referenceContent.length - (embed.original?.length || 0);
+    const allSubstitutions = [];
+    if (metadata.embeds) {
+      metadata.embeds = metadata.embeds.sort(
+        (a2, b2) => a2.position.start.offset - b2.position.start.offset
+      );
     }
-    return contents;
+    for (let embed of metadata?.embeds || []) {
+      if (embed.original.includes(".jpg") || embed.original.includes(".excalidraw")) {
+        continue;
+      }
+      var embedContent = await this.getEmbedContent(embed);
+      if (embedContent === "") {
+        continue;
+      }
+      const basename2 = embed.link.split("#")[0];
+      const { contents: substitutedEmbedContent, substitutions } = this.substituteBlockReferences(basename2, embedContent);
+      let renderedEmbed = `
+Excerpt from: ${basename2} -- 
+
+> ${substitutedEmbedContent.split("\n").join("\n> ")}
+`;
+      const markerHash = Math.random().toString(16).substring(4, 8);
+      const marker = `%${markerHash}%`;
+      renderedEmbed += `${marker}
+`;
+      substitutions.push({
+        template: marker,
+        block_reference: embed.original
+      });
+      contents = contents.slice(0, newOffset + embed.position.start.offset) + renderedEmbed + contents.slice(newOffset + embed.position.end.offset);
+      newOffset += renderedEmbed.length - (embed.position.end.offset - embed.position.start.offset);
+      allSubstitutions.push(...substitutions);
+    }
+    return { contents, substitutions: allSubstitutions };
   }
 };
 
@@ -33036,19 +51125,18 @@ var AllBacklinkersExtractor = class extends BaseExtractor {
     });
     let allReferenceContents = await Promise.all(
       backlinkers.map(async (referrerFile) => {
-        let rawReferrerContents = await this.app.vault.cachedRead(referrerFile);
-        rawReferrerContents = this.cleanContents(rawReferrerContents);
+        let contents2 = await this.app.vault.cachedRead(referrerFile);
         const referrerMetadata = this.app.metadataCache.getFileCache(referrerFile);
-        const referrerContentsReplacedEmbeds = await this.replaceEmbeds(
-          rawReferrerContents,
-          referrerMetadata
-        );
+        const replaced = await this.replaceEmbeds(contents2, referrerMetadata);
+        contents2 = replaced.contents;
+        let substitutions = replaced.substitutions;
+        contents2 = this.cleanContents(contents2);
         const referenceContentWindows = await this.lassoExtractor.extractReferenceWindows(
-          referrerContentsReplacedEmbeds,
+          contents2,
           referrerMetadata,
           [`[[${file.basename}]]`]
         );
-        const substituted = referenceContentWindows.map((window2) => {
+        const referenceContents = referenceContentWindows.map((window2) => {
           return this.substituteBlockReferences(referrerFile.basename, window2);
         });
         return {
@@ -33056,10 +51144,11 @@ var AllBacklinkersExtractor = class extends BaseExtractor {
           referrer_last_modified_date: new Date(
             referrerFile.stat.mtime
           ).toLocaleDateString(),
-          references: substituted.map((substitution) => substitution.contents),
-          substitutions: substituted.flatMap(
-            (substitution) => substitution.substitutions
-          )
+          references: referenceContents.map((c2) => c2.contents),
+          substitutions: [
+            ...referenceContents.flatMap((c2) => c2.substitutions),
+            ...substitutions
+          ]
         };
       })
     );
@@ -33089,19 +51178,20 @@ var TrimToEndExtractor = class extends BaseExtractor {
    * @returns A promise resolving to an array of FileContents, each representing the contents of a file.
    */
   async extract(file, metadata) {
-    let rawContents = await this.app.vault.cachedRead(file);
-    rawContents = this.cleanContents(rawContents);
-    rawContents = await this.replaceEmbeds(rawContents, metadata);
+    let contents = await this.app.vault.cachedRead(file);
+    const replaced = await this.replaceEmbeds(contents, metadata);
+    contents = replaced.contents;
+    let substitutions = replaced.substitutions;
+    contents = this.cleanContents(contents);
     const startSectionBoundary = Math.max(
       0,
       (metadata.sections?.length ?? 0) - 5
     );
     const fiveSectionBoundary = metadata.sections[startSectionBoundary].position.start.offset;
-    rawContents = rawContents.substring(fiveSectionBoundary);
-    let { substitutions, contents } = this.substituteBlockReferences(
-      file.basename,
-      rawContents
-    );
+    contents = contents.substring(fiveSectionBoundary);
+    const substituted = this.substituteBlockReferences(file.basename, contents);
+    contents = substituted.contents;
+    substitutions = [...substitutions, ...substituted.substitutions];
     return [
       {
         file: file.basename,
@@ -33131,29 +51221,199 @@ var SingleBacklinkerExtractor = class extends BaseExtractor {
    * @returns A promise resolving to an array of content snippets with backlink references.
    */
   async extract(file, metadata, strategy, evergreen) {
-    let rawReferrerContents = await this.app.vault.cachedRead(file);
-    rawReferrerContents = this.cleanContents(rawReferrerContents);
-    const referrerContentsReplacedEmbeds = await this.replaceEmbeds(
-      rawReferrerContents,
-      metadata
-    );
+    let contents = await this.app.vault.cachedRead(file);
+    const replaced = await this.replaceEmbeds(contents, metadata);
+    contents = replaced.contents;
+    let substitutions = replaced.substitutions;
+    const cleanedContents = this.cleanContents(contents);
     const referenceContentWindows = await this.lassoExtractor.extractReferenceWindows(
-      referrerContentsReplacedEmbeds,
+      cleanedContents,
       metadata,
       [evergreen]
     );
-    const substitutions = referenceContentWindows.map((window2) => {
+    const referenceContents = referenceContentWindows.map((window2) => {
       return this.substituteBlockReferences(file.basename, window2);
     });
-    let contents = {
+    let allContents = {
       file: file.basename,
       last_modified_date: new Date(file.stat.mtime).toLocaleDateString(),
-      contents: substitutions.map((substitution) => substitution.contents).join("\n\n"),
-      substitutions: substitutions.flatMap(
-        (substitution) => substitution.substitutions
-      )
+      contents: referenceContents.map((c2) => c2.contents).join("\n\n"),
+      substitutions: [
+        ...referenceContents.flatMap((c2) => c2.substitutions),
+        ...substitutions
+      ]
     };
-    return [contents];
+    return [allContents];
+  }
+};
+
+// src/source/extract/RecentMentionsExtractor.ts
+var import_obsidian12 = require("obsidian");
+var NUM_READWISE_FILES = 10;
+var NUM_OTHER_FILES = 100;
+var NUM_TAGS = 25;
+var MAX_NUM_FILES_PER_TAG = 10;
+var RecentMentionsExtractor = class extends BaseExtractor {
+  constructor(app, dataviewAPI, singleBacklinkerExtractor, basicExtractor) {
+    super();
+    this.app = app;
+    this.dataviewAPI = dataviewAPI;
+    this.singleBacklinkerExtractor = singleBacklinkerExtractor;
+    this.basicExtractor = basicExtractor;
+  }
+  /**
+   * Extracts the most recently modified files for the most common tags / mentioned links. They're sorted by the
+   * number of files and then by the most recently modified file.
+   *
+   * Each file is then passed to the SingleBacklinkerExtractor along with the mentioned entity.
+   * That extractor then extracts the neighboring context of the mentioned entity in the file.
+   *
+   * @returns A promise resolving to an array of FileContents, each representing the contents of a file.
+   */
+  async extract() {
+    const files = await this.dataviewAPI.tryQuery(`
+      TABLE WITHOUT ID file.link, file.mtime, file.tags, file.outlinks FROM "Readwise" SORT file.mtime DESC LIMIT ${NUM_READWISE_FILES}
+    `);
+    const files2 = await this.dataviewAPI.tryQuery(`
+      TABLE WITHOUT ID file.link, file.mtime, file.tags, file.outlinks FROM ""
+      WHERE !contains(file.path, "Readwise")
+      SORT file.ctime DESC LIMIT ${NUM_OTHER_FILES}
+    `);
+    const flattenedFiles = [...files.values, ...files2.values].flatMap(
+      ([link, mtime, tags, outlinks]) => {
+        const formatMention = (mention, type) => ({
+          mention: type === "tag" ? mention : `[[${this.app.vault.getAbstractFileByPath(mention).name}]]`,
+          filepath: link.path,
+          mtime: mtime.ts
+        });
+        const filterAndFormat = (items, filter, type) => items.filter((item) => !filter.some((f3) => item.includes(f3))).map((item) => formatMention(item, type));
+        const tagFilter = ["#Readwise", "#excalidraw"];
+        const linkFilter = ["daily/", "Readwise/"];
+        return [
+          ...filterAndFormat(tags, tagFilter, "tag"),
+          ...filterAndFormat(
+            outlinks.map((outlink) => outlink.path).filter((p2) => p2.includes(".md")),
+            linkFilter,
+            "link"
+          )
+        ];
+      }
+    );
+    const groupedFiles = {};
+    const groupedFilesMTime = {};
+    flattenedFiles.forEach((file) => {
+      if (!groupedFiles[file.mention]) {
+        groupedFiles[file.mention] = [];
+      }
+      groupedFiles[file.mention].push(file);
+      const curMax = groupedFilesMTime[file.mention] ? groupedFilesMTime[file.mention] : 0;
+      groupedFilesMTime[file.mention] = Math.max(file.mtime, curMax);
+    });
+    const sortedMentions = Object.keys(groupedFiles).sort(
+      (a2, b2) => groupedFiles[b2].length - groupedFiles[a2].length || groupedFilesMTime[b2] - groupedFilesMTime[a2]
+    );
+    console.log("Top mentions", sortedMentions);
+    const topPromises = sortedMentions.slice(0, NUM_TAGS).flatMap((mention, index) => {
+      return groupedFiles[mention].sort((a2, b2) => b2.mtime - a2.mtime).slice(0, MAX_NUM_FILES_PER_TAG).map((file) => ({ mention, file }));
+    }).map(async ({ mention, file }) => {
+      const tfile = this.app.vault.getAbstractFileByPath(file.filepath);
+      if (!tfile || !(tfile instanceof import_obsidian12.TFile)) {
+        return [];
+      }
+      const metadataCache = this.app.metadataCache.getFileCache(tfile);
+      if (mention.contains("#") && metadataCache?.frontmatter?.tags && metadataCache?.frontmatter?.tags?.includes(mention.slice(1))) {
+        return this.basicExtractor.extract(
+          tfile,
+          metadataCache,
+          DQLStrategy[4 /* Basic */],
+          void 0
+        );
+      } else {
+        return this.singleBacklinkerExtractor.extract(
+          tfile,
+          metadataCache,
+          DQLStrategy[0 /* SingleEvergreenReferrer */],
+          mention
+        );
+      }
+    });
+    const top = await Promise.all(topPromises).then((results) => results.flat());
+    const mergedTop = [].concat(
+      ...Object.values(
+        top.reduce((acc, fileContent) => {
+          const key = fileContent.file;
+          if (!acc[key]) {
+            if (fileContent.contents.trim() !== "") {
+              acc[key] = [fileContent];
+            }
+          } else {
+            let hasOverlap = false;
+            for (let existing of acc[key]) {
+              const existingContent = existing.contents;
+              const newContent = fileContent.contents;
+              if (!newContent.trim()) {
+                hasOverlap = true;
+                break;
+              }
+              if (existingContent.includes(newContent) || newContent.includes(existingContent)) {
+                hasOverlap = true;
+                break;
+              } else {
+                const overlapIndex = existingContent.lastIndexOf(
+                  newContent.substring(0, 10)
+                  // TODO this is a naive approach, should be improved
+                );
+                if (overlapIndex !== -1 && overlapIndex + newContent.length > existingContent.length) {
+                  existing.contents = existingContent.substring(0, overlapIndex) + newContent;
+                  hasOverlap = true;
+                  break;
+                }
+              }
+            }
+            if (!hasOverlap) {
+              acc[key].push(fileContent);
+            }
+          }
+          return acc;
+        }, {})
+      )
+    );
+    mergedTop.sort((a2, b2) => {
+      return Date.parse(b2.last_modified_date.split("/").reverse().join("-")) - Date.parse(a2.last_modified_date.split("/").reverse().join("-"));
+    });
+    return mergedTop.slice(0, 25);
+  }
+};
+
+// src/source/extract/BasicExtractor.ts
+var BasicExtractor = class extends BaseExtractor {
+  constructor(app, dataviewAPI) {
+    super();
+    this.app = app;
+    this.dataviewAPI = dataviewAPI;
+  }
+  async extract(file, metadata, strategy, evergreen) {
+    let contents = await this.app.vault.cachedRead(file);
+    const replaced = await this.replaceEmbeds(contents, metadata);
+    contents = replaced.contents;
+    let substitutions = replaced.substitutions;
+    contents = this.cleanContents(contents);
+    let substituted = this.substituteBlockReferences(file.basename, contents);
+    contents = substituted.contents;
+    substitutions = [...substitutions, ...substituted.substitutions];
+    const tags = [];
+    if (Array.isArray(metadata?.frontmatter?.tags) && metadata.frontmatter.tags.length > 0) {
+      tags.push(...metadata.frontmatter.tags.map((tag) => `#${tag}`));
+    }
+    return [
+      {
+        file: file.basename,
+        last_modified_date: new Date(file.stat.mtime).toLocaleDateString(),
+        contents,
+        substitutions,
+        tags
+      }
+    ];
   }
 };
 
@@ -33168,6 +51428,8 @@ var ExtractorDelegator = class extends BaseExtractor {
     __publicField(this, "allBacklinkersExtractor");
     __publicField(this, "trimToEndExtractor");
     __publicField(this, "singleBacklinkerExtractor");
+    __publicField(this, "recentMentionsExtractor");
+    __publicField(this, "basicExtractor");
     this.allBacklinkersExtractor = new AllBacklinkersExtractor(
       app,
       this.lassoExtractor,
@@ -33178,6 +51440,13 @@ var ExtractorDelegator = class extends BaseExtractor {
       app,
       dataviewAPI,
       this.lassoExtractor
+    );
+    this.basicExtractor = new BasicExtractor(app, dataviewAPI);
+    this.recentMentionsExtractor = new RecentMentionsExtractor(
+      app,
+      dataviewAPI,
+      this.singleBacklinkerExtractor,
+      this.basicExtractor
     );
   }
   /**
@@ -33205,28 +51474,16 @@ var ExtractorDelegator = class extends BaseExtractor {
           strategy,
           evergreen
         );
+      case DQLStrategy[3 /* RecentMentions */]:
+        return this.recentMentionsExtractor.extract();
       default:
-        let rawContents = await this.app.vault.cachedRead(file);
-        rawContents = await this.replaceEmbeds(rawContents, metadata);
-        rawContents = this.cleanContents(rawContents);
-        let { substitutions, contents } = this.substituteBlockReferences(
-          file.basename,
-          rawContents
-        );
-        return [
-          {
-            file: file.basename,
-            last_modified_date: new Date(file.stat.mtime).toLocaleDateString(),
-            contents,
-            substitutions
-          }
-        ];
+        return this.basicExtractor.extract(file, metadata);
     }
   }
 };
 
-// src/source/retrieve/FileRenderer.ts
-var FileRenderer = class {
+// src/source/retrieve/ContentRenderer.ts
+var ContentRenderer = class {
   constructor(app, settings) {
     this.app = app;
     __publicField(this, "dataviewAPI");
@@ -33235,24 +51492,23 @@ var FileRenderer = class {
     this.extractor = new ExtractorDelegator(app, this.dataviewAPI, settings);
   }
   /**
-   * Prepares the contents of a file for rendering.
-   * This method extracts relevant data from the file, including metadata and content based on the specified strategy and evergreen status.
-   * It then formats this data into a structured object including the title, contents, and any block reference substitutions.
-   *
-   * @param file - The file to be processed.
-   * @param strategy - The extraction strategy to be used (optional).
-   * @param evergreen - The evergreen status to be considered (optional).
-   * @returns A Promise that resolves to a FileContents object containing the prepared data.
+   * Higher-level extraction method where a specified strategy determines the files to be processed, then prepares and renders their contents.
+   * @param strategy - The extraction strategy to be used
+   * @returns A Promise that resolves to a FileContents object containing the prepared data
    */
-  async prepareContents(file, strategy, evergreen) {
-    const metadata = this.app.metadataCache.getFileCache(file);
-    let contentsData = await this.extractor.extract(
-      file,
-      metadata,
-      strategy,
-      evergreen
-    );
-    const renderedContentsData = contentsData.map((contents) => {
+  async prepareContents(strategy) {
+    let contentsData = await this.extractor.extract(null, null, strategy, null);
+    let renderedContentsData = this.renderFileContents(contentsData);
+    return {
+      title: "Contents surrounding the top most recent tags and links",
+      contents: renderedContentsData.map((contents) => contents.contents).join("\n\n"),
+      substitutions: renderedContentsData.flatMap(
+        (contents) => contents.substitutions
+      )
+    };
+  }
+  renderFileContents(contentsData, sourcePreamble) {
+    return contentsData.map((contents) => {
       let substitutions = contents.substitutions;
       let mainMarkerDisplay = "";
       if (contents.contents.match(/%[a-zA-Z0-9]+%/g) === null) {
@@ -33261,12 +51517,19 @@ var FileRenderer = class {
 * Main marker: %${mainMarkerHash}%`;
         substitutions.push({
           template: `%${mainMarkerHash}%`,
-          block_reference: `![[${file.name}]]`
+          block_reference: `![[${contents.file}]]`
         });
       }
-      let contentsDisplay = `## File: ${file.name}
-* Folder: ${file.path.substring(0, file.path.lastIndexOf("/"))}
-* Last modified date: ${contents.last_modified_date}${mainMarkerDisplay}
+      let tags = contents.tags ? contents.tags.join(", ") : "";
+      const path2 = this.app.metadataCache.getFirstLinkpathDest(
+        contents.file,
+        "/"
+      ).path;
+      let contentsDisplay = `## File: ${contents.file}
+* Folder: ${path2.substring(0, path2.lastIndexOf("/"))}
+* Last modified date: ${contents.last_modified_date}${mainMarkerDisplay}${tags ? `
+* Tags: ${tags}` : ""}${sourcePreamble ? `
+* Notes about this content: ${sourcePreamble}` : ""}
 
 ### Contents:
 \`\`\`
@@ -33280,6 +51543,29 @@ ${contents.contents}
         substitutions
       };
     });
+  }
+  /**
+   * Prepares the contents of a file for rendering.
+   * This method extracts relevant data from the file, including metadata and content based on the specified strategy and evergreen status.
+   * It then formats this data into a structured object including the title, contents, and any block reference substitutions.
+   *
+   * @param file - The file to be processed.
+   * @param strategy - The extraction strategy to be used (optional).
+   * @param evergreen - The evergreen status to be considered (optional).
+   * @returns A Promise that resolves to a FileContents object containing the prepared data.
+   */
+  async prepareFileContents(file, strategy, evergreen, sourcePreamble) {
+    const metadata = this.app.metadataCache.getFileCache(file);
+    let contentsData = await this.extractor.extract(
+      file,
+      metadata,
+      strategy,
+      evergreen
+    );
+    const renderedContentsData = this.renderFileContents(
+      contentsData,
+      sourcePreamble
+    );
     return {
       title: file.name,
       contents: renderedContentsData.map((contents) => contents.contents).join("\n\n"),
@@ -33294,9 +51580,9 @@ ${contents.contents}
 var DataviewCandidateRetriever = class {
   constructor(settings, app) {
     this.app = app;
-    __publicField(this, "fileRenderer");
+    __publicField(this, "contentRenderer");
     __publicField(this, "dataviewAPI");
-    this.fileRenderer = new FileRenderer(app, settings);
+    this.contentRenderer = new ContentRenderer(app, settings);
     this.dataviewAPI = getAPI(app);
   }
   /**
@@ -33326,10 +51612,13 @@ var DataviewCandidateRetriever = class {
    * Each file is then processed to prepare its contents according to the specified strategy and evergreen status.
    * The resulting array of FileContents is flattened before being returned.
    *
-   * @param parameters - An object containing the DQL query, strategy, and optional evergreen status.
+   * @param parameters - An object containing the DQL query, strategy, and optional evergreen status
    * @returns A Promise that resolves to an array of FileContents, each representing the contents of a file.
    */
   async retrieve(parameters) {
+    if (parameters.dql === void 0) {
+      return [await this.contentRenderer.prepareContents(parameters.strategy)];
+    }
     const dqlResults = await this.dataviewAPI.tryQuery(parameters.dql);
     const paths = dqlResults.values;
     const realPaths = [...new Set(paths.map((path2) => path2.path))];
@@ -33338,10 +51627,11 @@ var DataviewCandidateRetriever = class {
     );
     const bodies = await Promise.all(
       files.map(
-        (file) => this.fileRenderer.prepareContents(
+        (file) => this.contentRenderer.prepareFileContents(
           file,
           parameters.strategy,
-          parameters.evergreen
+          parameters.evergreen,
+          parameters.sourcePreamble
         )
       )
     );
@@ -33361,7 +51651,7 @@ var DataviewCandidateRetriever = class {
     let nodeFile;
     if (typeof nodeFileOrPath === "string") {
       const file = this.app.vault.getAbstractFileByPath(nodeFileOrPath);
-      if (file instanceof import_obsidian12.TFile) {
+      if (file instanceof import_obsidian13.TFile) {
         fileContents = await this.app.vault.read(nodeFile);
       } else {
         throw new Error(`File not found: ${nodeFile}`);
@@ -33398,7 +51688,7 @@ var DataviewCandidateRetriever = class {
 };
 
 // src/ReasonPlugin.ts
-var ReasonPlugin = class extends import_obsidian13.Plugin {
+var ReasonPlugin = class extends import_obsidian14.Plugin {
   constructor(app, pluginManifest) {
     super(app, pluginManifest);
     __publicField(this, "settings");
@@ -33420,7 +51710,7 @@ var ReasonPlugin = class extends import_obsidian13.Plugin {
       { focus: true }
     );
     const maybeCanvasView = this.app.workspace.getActiveViewOfType(
-      import_obsidian13.ItemView
+      import_obsidian14.ItemView
     );
     if (!maybeCanvasView) {
       throw new Error("No canvas view found");
@@ -33533,4 +51823,244 @@ web-streams-polyfill/dist/ponyfill.es2018.js:
 
 node-domexception/index.js:
   (*! node-domexception. MIT License. Jimmy Wärting <https://jimmy.warting.se/opensource> *)
+
+vary/index.js:
+  (*!
+   * vary
+   * Copyright(c) 2014-2017 Douglas Christopher Wilson
+   * MIT Licensed
+   *)
+
+ee-first/index.js:
+  (*!
+   * ee-first
+   * Copyright(c) 2014 Jonathan Ong
+   * MIT Licensed
+   *)
+
+on-finished/index.js:
+  (*!
+   * on-finished
+   * Copyright(c) 2013 Jonathan Ong
+   * Copyright(c) 2014 Douglas Christopher Wilson
+   * MIT Licensed
+   *)
+
+safe-buffer/index.js:
+  (*! safe-buffer. MIT License. Feross Aboukhadijeh <https://feross.org/opensource> *)
+
+content-disposition/index.js:
+  (*!
+   * content-disposition
+   * Copyright(c) 2014-2017 Douglas Christopher Wilson
+   * MIT Licensed
+   *)
+
+mime-db/index.js:
+  (*!
+   * mime-db
+   * Copyright(c) 2014 Jonathan Ong
+   * Copyright(c) 2015-2022 Douglas Christopher Wilson
+   * MIT Licensed
+   *)
+
+mime-types/index.js:
+  (*!
+   * mime-types
+   * Copyright(c) 2014 Jonathan Ong
+   * Copyright(c) 2015 Douglas Christopher Wilson
+   * MIT Licensed
+   *)
+
+escape-html/index.js:
+  (*!
+   * escape-html
+   * Copyright(c) 2012-2013 TJ Holowaychuk
+   * Copyright(c) 2015 Andreas Lubbe
+   * Copyright(c) 2015 Tiancheng "Timothy" Gu
+   * MIT Licensed
+   *)
+
+media-typer/index.js:
+  (*!
+   * media-typer
+   * Copyright(c) 2014 Douglas Christopher Wilson
+   * MIT Licensed
+   *)
+
+type-is/index.js:
+  (*!
+   * type-is
+   * Copyright(c) 2014 Jonathan Ong
+   * Copyright(c) 2014-2015 Douglas Christopher Wilson
+   * MIT Licensed
+   *)
+
+statuses/index.js:
+  (*!
+   * statuses
+   * Copyright(c) 2014 Jonathan Ong
+   * Copyright(c) 2016 Douglas Christopher Wilson
+   * MIT Licensed
+   *)
+
+destroy/index.js:
+  (*!
+   * destroy
+   * Copyright(c) 2014 Jonathan Ong
+   * Copyright(c) 2015-2022 Douglas Christopher Wilson
+   * MIT Licensed
+   *)
+
+encodeurl/index.js:
+  (*!
+   * encodeurl
+   * Copyright(c) 2016 Douglas Christopher Wilson
+   * MIT Licensed
+   *)
+
+depd/lib/compat/callsite-tostring.js:
+  (*!
+   * depd
+   * Copyright(c) 2014 Douglas Christopher Wilson
+   * MIT Licensed
+   *)
+
+depd/lib/compat/event-listener-count.js:
+  (*!
+   * depd
+   * Copyright(c) 2015 Douglas Christopher Wilson
+   * MIT Licensed
+   *)
+
+depd/lib/compat/index.js:
+  (*!
+   * depd
+   * Copyright(c) 2014-2015 Douglas Christopher Wilson
+   * MIT Licensed
+   *)
+
+depd/index.js:
+  (*!
+   * depd
+   * Copyright(c) 2014-2017 Douglas Christopher Wilson
+   * MIT Licensed
+   *)
+
+toidentifier/index.js:
+  (*!
+   * toidentifier
+   * Copyright(c) 2016 Douglas Christopher Wilson
+   * MIT Licensed
+   *)
+
+http-errors/index.js:
+  (*!
+   * http-errors
+   * Copyright(c) 2014 Jonathan Ong
+   * Copyright(c) 2016 Douglas Christopher Wilson
+   * MIT Licensed
+   *)
+
+depd/index.js:
+  (*!
+   * depd
+   * Copyright(c) 2014-2018 Douglas Christopher Wilson
+   * MIT Licensed
+   *)
+
+keygrip/index.js:
+  (*!
+   * keygrip
+   * Copyright(c) 2011-2014 Jed Schmidt
+   * MIT Licensed
+   *)
+
+cookies/index.js:
+  (*!
+   * cookies
+   * Copyright(c) 2014 Jed Schmidt, http://jed.is/
+   * Copyright(c) 2015-2016 Douglas Christopher Wilson
+   * MIT Licensed
+   *)
+
+negotiator/index.js:
+  (*!
+   * negotiator
+   * Copyright(c) 2012 Federico Romero
+   * Copyright(c) 2012-2014 Isaac Z. Schlueter
+   * Copyright(c) 2015 Douglas Christopher Wilson
+   * MIT Licensed
+   *)
+
+accepts/index.js:
+  (*!
+   * accepts
+   * Copyright(c) 2014 Jonathan Ong
+   * Copyright(c) 2015 Douglas Christopher Wilson
+   * MIT Licensed
+   *)
+
+content-type/index.js:
+  (*!
+   * content-type
+   * Copyright(c) 2015 Douglas Christopher Wilson
+   * MIT Licensed
+   *)
+
+parseurl/index.js:
+  (*!
+   * parseurl
+   * Copyright(c) 2014 Jonathan Ong
+   * Copyright(c) 2014-2017 Douglas Christopher Wilson
+   * MIT Licensed
+   *)
+
+fresh/index.js:
+  (*!
+   * fresh
+   * Copyright(c) 2012 TJ Holowaychuk
+   * Copyright(c) 2016-2017 Douglas Christopher Wilson
+   * MIT Licensed
+   *)
+
+http-proxy/lib/http-proxy/passes/web-outgoing.js:
+  (*!
+   * Array of passes.
+   *
+   * A `pass` is just a function that is executed on `req, res, options`
+   * so that you can easily add new checks while still keeping the base
+   * flexible.
+   *)
+
+http-proxy/lib/http-proxy/passes/web-incoming.js:
+  (*!
+   * Array of passes.
+   *
+   * A `pass` is just a function that is executed on `req, res, options`
+   * so that you can easily add new checks while still keeping the base
+   * flexible.
+   *)
+
+http-proxy/lib/http-proxy/passes/ws-incoming.js:
+  (*!
+   * Array of passes.
+   *
+   * A `pass` is just a function that is executed on `req, socket, options`
+   * so that you can easily add new checks while still keeping the base
+   * flexible.
+   *)
+
+http-proxy/index.js:
+  (*!
+   * Caron dimonio, con occhi di bragia
+   * loro accennando, tutte le raccoglie;
+   * batte col remo qualunque s’adagia 
+   *
+   * Charon the demon, with the eyes of glede,
+   * Beckoning to them, collects them all together,
+   * Beats with his oar whoever lags behind
+   *          
+   *          Dante - The Divine Comedy (Canto III)
+   *)
 */
