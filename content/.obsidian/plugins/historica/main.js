@@ -55,6 +55,331 @@ var __privateMethod = (obj, member, method) => {
   return method;
 };
 
+// node_modules/dayjs/plugin/quarterOfYear.js
+var require_quarterOfYear = __commonJS({
+  "node_modules/dayjs/plugin/quarterOfYear.js"(exports, module2) {
+    !function(t5, n5) {
+      "object" == typeof exports && "undefined" != typeof module2 ? module2.exports = n5() : "function" == typeof define && define.amd ? define(n5) : (t5 = "undefined" != typeof globalThis ? globalThis : t5 || self).dayjs_plugin_quarterOfYear = n5();
+    }(exports, function() {
+      "use strict";
+      var t5 = "month", n5 = "quarter";
+      return function(e3, i5) {
+        var r3 = i5.prototype;
+        r3.quarter = function(t6) {
+          return this.$utils().u(t6) ? Math.ceil((this.month() + 1) / 3) : this.month(this.month() % 3 + 3 * (t6 - 1));
+        };
+        var s5 = r3.add;
+        r3.add = function(e4, i6) {
+          return e4 = Number(e4), this.$utils().p(i6) === n5 ? this.add(3 * e4, t5) : s5.bind(this)(e4, i6);
+        };
+        var u4 = r3.startOf;
+        r3.startOf = function(e4, i6) {
+          var r4 = this.$utils(), s6 = !!r4.u(i6) || i6;
+          if (r4.p(e4) === n5) {
+            var o4 = this.quarter() - 1;
+            return s6 ? this.month(3 * o4).startOf(t5).startOf("day") : this.month(3 * o4 + 2).endOf(t5).endOf("day");
+          }
+          return u4.bind(this)(e4, i6);
+        };
+      };
+    });
+  }
+});
+
+// node_modules/dayjs/dayjs.min.js
+var require_dayjs_min = __commonJS({
+  "node_modules/dayjs/dayjs.min.js"(exports, module2) {
+    !function(t5, e3) {
+      "object" == typeof exports && "undefined" != typeof module2 ? module2.exports = e3() : "function" == typeof define && define.amd ? define(e3) : (t5 = "undefined" != typeof globalThis ? globalThis : t5 || self).dayjs = e3();
+    }(exports, function() {
+      "use strict";
+      var t5 = 1e3, e3 = 6e4, n5 = 36e5, r3 = "millisecond", i5 = "second", s5 = "minute", u4 = "hour", a4 = "day", o4 = "week", c5 = "month", f5 = "quarter", h4 = "year", d3 = "date", l4 = "Invalid Date", $2 = /^(\d{4})[-/]?(\d{1,2})?[-/]?(\d{0,2})[Tt\s]*(\d{1,2})?:?(\d{1,2})?:?(\d{1,2})?[.:]?(\d+)?$/, y3 = /\[([^\]]+)]|Y{1,4}|M{1,4}|D{1,2}|d{1,4}|H{1,2}|h{1,2}|a|A|m{1,2}|s{1,2}|Z{1,2}|SSS/g, M2 = { name: "en", weekdays: "Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday".split("_"), months: "January_February_March_April_May_June_July_August_September_October_November_December".split("_"), ordinal: function(t6) {
+        var e4 = ["th", "st", "nd", "rd"], n6 = t6 % 100;
+        return "[" + t6 + (e4[(n6 - 20) % 10] || e4[n6] || e4[0]) + "]";
+      } }, m6 = function(t6, e4, n6) {
+        var r4 = String(t6);
+        return !r4 || r4.length >= e4 ? t6 : "" + Array(e4 + 1 - r4.length).join(n6) + t6;
+      }, v4 = { s: m6, z: function(t6) {
+        var e4 = -t6.utcOffset(), n6 = Math.abs(e4), r4 = Math.floor(n6 / 60), i6 = n6 % 60;
+        return (e4 <= 0 ? "+" : "-") + m6(r4, 2, "0") + ":" + m6(i6, 2, "0");
+      }, m: function t6(e4, n6) {
+        if (e4.date() < n6.date())
+          return -t6(n6, e4);
+        var r4 = 12 * (n6.year() - e4.year()) + (n6.month() - e4.month()), i6 = e4.clone().add(r4, c5), s6 = n6 - i6 < 0, u5 = e4.clone().add(r4 + (s6 ? -1 : 1), c5);
+        return +(-(r4 + (n6 - i6) / (s6 ? i6 - u5 : u5 - i6)) || 0);
+      }, a: function(t6) {
+        return t6 < 0 ? Math.ceil(t6) || 0 : Math.floor(t6);
+      }, p: function(t6) {
+        return { M: c5, y: h4, w: o4, d: a4, D: d3, h: u4, m: s5, s: i5, ms: r3, Q: f5 }[t6] || String(t6 || "").toLowerCase().replace(/s$/, "");
+      }, u: function(t6) {
+        return void 0 === t6;
+      } }, g5 = "en", D2 = {};
+      D2[g5] = M2;
+      var p7 = "$isDayjsObject", S2 = function(t6) {
+        return t6 instanceof _4 || !(!t6 || !t6[p7]);
+      }, w2 = function t6(e4, n6, r4) {
+        var i6;
+        if (!e4)
+          return g5;
+        if ("string" == typeof e4) {
+          var s6 = e4.toLowerCase();
+          D2[s6] && (i6 = s6), n6 && (D2[s6] = n6, i6 = s6);
+          var u5 = e4.split("-");
+          if (!i6 && u5.length > 1)
+            return t6(u5[0]);
+        } else {
+          var a5 = e4.name;
+          D2[a5] = e4, i6 = a5;
+        }
+        return !r4 && i6 && (g5 = i6), i6 || !r4 && g5;
+      }, O3 = function(t6, e4) {
+        if (S2(t6))
+          return t6.clone();
+        var n6 = "object" == typeof e4 ? e4 : {};
+        return n6.date = t6, n6.args = arguments, new _4(n6);
+      }, b2 = v4;
+      b2.l = w2, b2.i = S2, b2.w = function(t6, e4) {
+        return O3(t6, { locale: e4.$L, utc: e4.$u, x: e4.$x, $offset: e4.$offset });
+      };
+      var _4 = function() {
+        function M3(t6) {
+          this.$L = w2(t6.locale, null, true), this.parse(t6), this.$x = this.$x || t6.x || {}, this[p7] = true;
+        }
+        var m7 = M3.prototype;
+        return m7.parse = function(t6) {
+          this.$d = function(t7) {
+            var e4 = t7.date, n6 = t7.utc;
+            if (null === e4)
+              return new Date(NaN);
+            if (b2.u(e4))
+              return new Date();
+            if (e4 instanceof Date)
+              return new Date(e4);
+            if ("string" == typeof e4 && !/Z$/i.test(e4)) {
+              var r4 = e4.match($2);
+              if (r4) {
+                var i6 = r4[2] - 1 || 0, s6 = (r4[7] || "0").substring(0, 3);
+                return n6 ? new Date(Date.UTC(r4[1], i6, r4[3] || 1, r4[4] || 0, r4[5] || 0, r4[6] || 0, s6)) : new Date(r4[1], i6, r4[3] || 1, r4[4] || 0, r4[5] || 0, r4[6] || 0, s6);
+              }
+            }
+            return new Date(e4);
+          }(t6), this.init();
+        }, m7.init = function() {
+          var t6 = this.$d;
+          this.$y = t6.getFullYear(), this.$M = t6.getMonth(), this.$D = t6.getDate(), this.$W = t6.getDay(), this.$H = t6.getHours(), this.$m = t6.getMinutes(), this.$s = t6.getSeconds(), this.$ms = t6.getMilliseconds();
+        }, m7.$utils = function() {
+          return b2;
+        }, m7.isValid = function() {
+          return !(this.$d.toString() === l4);
+        }, m7.isSame = function(t6, e4) {
+          var n6 = O3(t6);
+          return this.startOf(e4) <= n6 && n6 <= this.endOf(e4);
+        }, m7.isAfter = function(t6, e4) {
+          return O3(t6) < this.startOf(e4);
+        }, m7.isBefore = function(t6, e4) {
+          return this.endOf(e4) < O3(t6);
+        }, m7.$g = function(t6, e4, n6) {
+          return b2.u(t6) ? this[e4] : this.set(n6, t6);
+        }, m7.unix = function() {
+          return Math.floor(this.valueOf() / 1e3);
+        }, m7.valueOf = function() {
+          return this.$d.getTime();
+        }, m7.startOf = function(t6, e4) {
+          var n6 = this, r4 = !!b2.u(e4) || e4, f6 = b2.p(t6), l5 = function(t7, e5) {
+            var i6 = b2.w(n6.$u ? Date.UTC(n6.$y, e5, t7) : new Date(n6.$y, e5, t7), n6);
+            return r4 ? i6 : i6.endOf(a4);
+          }, $3 = function(t7, e5) {
+            return b2.w(n6.toDate()[t7].apply(n6.toDate("s"), (r4 ? [0, 0, 0, 0] : [23, 59, 59, 999]).slice(e5)), n6);
+          }, y4 = this.$W, M4 = this.$M, m8 = this.$D, v5 = "set" + (this.$u ? "UTC" : "");
+          switch (f6) {
+            case h4:
+              return r4 ? l5(1, 0) : l5(31, 11);
+            case c5:
+              return r4 ? l5(1, M4) : l5(0, M4 + 1);
+            case o4:
+              var g6 = this.$locale().weekStart || 0, D3 = (y4 < g6 ? y4 + 7 : y4) - g6;
+              return l5(r4 ? m8 - D3 : m8 + (6 - D3), M4);
+            case a4:
+            case d3:
+              return $3(v5 + "Hours", 0);
+            case u4:
+              return $3(v5 + "Minutes", 1);
+            case s5:
+              return $3(v5 + "Seconds", 2);
+            case i5:
+              return $3(v5 + "Milliseconds", 3);
+            default:
+              return this.clone();
+          }
+        }, m7.endOf = function(t6) {
+          return this.startOf(t6, false);
+        }, m7.$set = function(t6, e4) {
+          var n6, o5 = b2.p(t6), f6 = "set" + (this.$u ? "UTC" : ""), l5 = (n6 = {}, n6[a4] = f6 + "Date", n6[d3] = f6 + "Date", n6[c5] = f6 + "Month", n6[h4] = f6 + "FullYear", n6[u4] = f6 + "Hours", n6[s5] = f6 + "Minutes", n6[i5] = f6 + "Seconds", n6[r3] = f6 + "Milliseconds", n6)[o5], $3 = o5 === a4 ? this.$D + (e4 - this.$W) : e4;
+          if (o5 === c5 || o5 === h4) {
+            var y4 = this.clone().set(d3, 1);
+            y4.$d[l5]($3), y4.init(), this.$d = y4.set(d3, Math.min(this.$D, y4.daysInMonth())).$d;
+          } else
+            l5 && this.$d[l5]($3);
+          return this.init(), this;
+        }, m7.set = function(t6, e4) {
+          return this.clone().$set(t6, e4);
+        }, m7.get = function(t6) {
+          return this[b2.p(t6)]();
+        }, m7.add = function(r4, f6) {
+          var d4, l5 = this;
+          r4 = Number(r4);
+          var $3 = b2.p(f6), y4 = function(t6) {
+            var e4 = O3(l5);
+            return b2.w(e4.date(e4.date() + Math.round(t6 * r4)), l5);
+          };
+          if ($3 === c5)
+            return this.set(c5, this.$M + r4);
+          if ($3 === h4)
+            return this.set(h4, this.$y + r4);
+          if ($3 === a4)
+            return y4(1);
+          if ($3 === o4)
+            return y4(7);
+          var M4 = (d4 = {}, d4[s5] = e3, d4[u4] = n5, d4[i5] = t5, d4)[$3] || 1, m8 = this.$d.getTime() + r4 * M4;
+          return b2.w(m8, this);
+        }, m7.subtract = function(t6, e4) {
+          return this.add(-1 * t6, e4);
+        }, m7.format = function(t6) {
+          var e4 = this, n6 = this.$locale();
+          if (!this.isValid())
+            return n6.invalidDate || l4;
+          var r4 = t6 || "YYYY-MM-DDTHH:mm:ssZ", i6 = b2.z(this), s6 = this.$H, u5 = this.$m, a5 = this.$M, o5 = n6.weekdays, c6 = n6.months, f6 = n6.meridiem, h5 = function(t7, n7, i7, s7) {
+            return t7 && (t7[n7] || t7(e4, r4)) || i7[n7].slice(0, s7);
+          }, d4 = function(t7) {
+            return b2.s(s6 % 12 || 12, t7, "0");
+          }, $3 = f6 || function(t7, e5, n7) {
+            var r5 = t7 < 12 ? "AM" : "PM";
+            return n7 ? r5.toLowerCase() : r5;
+          };
+          return r4.replace(y3, function(t7, r5) {
+            return r5 || function(t8) {
+              switch (t8) {
+                case "YY":
+                  return String(e4.$y).slice(-2);
+                case "YYYY":
+                  return b2.s(e4.$y, 4, "0");
+                case "M":
+                  return a5 + 1;
+                case "MM":
+                  return b2.s(a5 + 1, 2, "0");
+                case "MMM":
+                  return h5(n6.monthsShort, a5, c6, 3);
+                case "MMMM":
+                  return h5(c6, a5);
+                case "D":
+                  return e4.$D;
+                case "DD":
+                  return b2.s(e4.$D, 2, "0");
+                case "d":
+                  return String(e4.$W);
+                case "dd":
+                  return h5(n6.weekdaysMin, e4.$W, o5, 2);
+                case "ddd":
+                  return h5(n6.weekdaysShort, e4.$W, o5, 3);
+                case "dddd":
+                  return o5[e4.$W];
+                case "H":
+                  return String(s6);
+                case "HH":
+                  return b2.s(s6, 2, "0");
+                case "h":
+                  return d4(1);
+                case "hh":
+                  return d4(2);
+                case "a":
+                  return $3(s6, u5, true);
+                case "A":
+                  return $3(s6, u5, false);
+                case "m":
+                  return String(u5);
+                case "mm":
+                  return b2.s(u5, 2, "0");
+                case "s":
+                  return String(e4.$s);
+                case "ss":
+                  return b2.s(e4.$s, 2, "0");
+                case "SSS":
+                  return b2.s(e4.$ms, 3, "0");
+                case "Z":
+                  return i6;
+              }
+              return null;
+            }(t7) || i6.replace(":", "");
+          });
+        }, m7.utcOffset = function() {
+          return 15 * -Math.round(this.$d.getTimezoneOffset() / 15);
+        }, m7.diff = function(r4, d4, l5) {
+          var $3, y4 = this, M4 = b2.p(d4), m8 = O3(r4), v5 = (m8.utcOffset() - this.utcOffset()) * e3, g6 = this - m8, D3 = function() {
+            return b2.m(y4, m8);
+          };
+          switch (M4) {
+            case h4:
+              $3 = D3() / 12;
+              break;
+            case c5:
+              $3 = D3();
+              break;
+            case f5:
+              $3 = D3() / 3;
+              break;
+            case o4:
+              $3 = (g6 - v5) / 6048e5;
+              break;
+            case a4:
+              $3 = (g6 - v5) / 864e5;
+              break;
+            case u4:
+              $3 = g6 / n5;
+              break;
+            case s5:
+              $3 = g6 / e3;
+              break;
+            case i5:
+              $3 = g6 / t5;
+              break;
+            default:
+              $3 = g6;
+          }
+          return l5 ? $3 : b2.a($3);
+        }, m7.daysInMonth = function() {
+          return this.endOf(c5).$D;
+        }, m7.$locale = function() {
+          return D2[this.$L];
+        }, m7.locale = function(t6, e4) {
+          if (!t6)
+            return this.$L;
+          var n6 = this.clone(), r4 = w2(t6, e4, true);
+          return r4 && (n6.$L = r4), n6;
+        }, m7.clone = function() {
+          return b2.w(this.$d, this);
+        }, m7.toDate = function() {
+          return new Date(this.valueOf());
+        }, m7.toJSON = function() {
+          return this.isValid() ? this.toISOString() : null;
+        }, m7.toISOString = function() {
+          return this.$d.toISOString();
+        }, m7.toString = function() {
+          return this.$d.toUTCString();
+        }, M3;
+      }(), k3 = _4.prototype;
+      return O3.prototype = k3, [["$ms", r3], ["$s", i5], ["$m", s5], ["$H", u4], ["$W", a4], ["$M", c5], ["$y", h4], ["$D", d3]].forEach(function(t6) {
+        k3[t6[1]] = function(e4) {
+          return this.$g(e4, t6[0], t6[1]);
+        };
+      }), O3.extend = function(t6, e4) {
+        return t6.$i || (t6(e4, _4, O3), t6.$i = true), O3;
+      }, O3.locale = w2, O3.isDayjs = S2, O3.unix = function(t6) {
+        return O3(1e3 * t6);
+      }, O3.en = D2[g5], O3.Ls = D2, O3.p = {}, O3;
+    });
+  }
+});
+
 // node_modules/toml/lib/parser.js
 var require_parser = __commonJS({
   "node_modules/toml/lib/parser.js"(exports, module2) {
@@ -23286,328 +23611,1042 @@ var init_index_es = __esm({
   }
 });
 
-// node_modules/dayjs/plugin/quarterOfYear.js
-var require_quarterOfYear = __commonJS({
-  "node_modules/dayjs/plugin/quarterOfYear.js"(exports, module2) {
-    !function(t5, n5) {
-      "object" == typeof exports && "undefined" != typeof module2 ? module2.exports = n5() : "function" == typeof define && define.amd ? define(n5) : (t5 = "undefined" != typeof globalThis ? globalThis : t5 || self).dayjs_plugin_quarterOfYear = n5();
-    }(exports, function() {
-      "use strict";
-      var t5 = "month", n5 = "quarter";
-      return function(e3, i5) {
-        var r3 = i5.prototype;
-        r3.quarter = function(t6) {
-          return this.$utils().u(t6) ? Math.ceil((this.month() + 1) / 3) : this.month(this.month() % 3 + 3 * (t6 - 1));
-        };
-        var s5 = r3.add;
-        r3.add = function(e4, i6) {
-          return e4 = Number(e4), this.$utils().p(i6) === n5 ? this.add(3 * e4, t5) : s5.bind(this)(e4, i6);
-        };
-        var u4 = r3.startOf;
-        r3.startOf = function(e4, i6) {
-          var r4 = this.$utils(), s6 = !!r4.u(i6) || i6;
-          if (r4.p(e4) === n5) {
-            var o4 = this.quarter() - 1;
-            return s6 ? this.month(3 * o4).startOf(t5).startOf("day") : this.month(3 * o4 + 2).endOf(t5).endOf("day");
-          }
-          return u4.bind(this)(e4, i6);
-        };
-      };
-    });
+// node_modules/json-2-csv/lib/constants.js
+var require_constants = __commonJS({
+  "node_modules/json-2-csv/lib/constants.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.excelBOM = exports.defaultCsv2JsonOptions = exports.defaultJson2CsvOptions = exports.errors = void 0;
+    exports.errors = {
+      optionsRequired: "Options were not passed and are required.",
+      json2csv: {
+        cannotCallOn: "Cannot call json2csv on",
+        dataCheckFailure: "Data provided was not an array of documents.",
+        notSameSchema: "Not all documents have the same schema."
+      },
+      csv2json: {
+        cannotCallOn: "Cannot call csv2json on",
+        dataCheckFailure: "CSV is not a string."
+      }
+    };
+    exports.defaultJson2CsvOptions = {
+      arrayIndexesAsKeys: false,
+      checkSchemaDifferences: false,
+      delimiter: {
+        field: ",",
+        wrap: '"',
+        eol: "\n"
+      },
+      emptyFieldValue: void 0,
+      escapeHeaderNestedDots: true,
+      excelBOM: false,
+      excludeKeys: [],
+      expandNestedObjects: true,
+      expandArrayObjects: false,
+      prependHeader: true,
+      preventCsvInjection: false,
+      sortHeader: false,
+      trimFieldValues: false,
+      trimHeaderFields: false,
+      unwindArrays: false,
+      useDateIso8601Format: false,
+      useLocaleFormat: false,
+      wrapBooleans: false
+    };
+    exports.defaultCsv2JsonOptions = {
+      delimiter: {
+        field: ",",
+        wrap: '"',
+        eol: "\n"
+      },
+      excelBOM: false,
+      preventCsvInjection: false,
+      trimFieldValues: false,
+      trimHeaderFields: false,
+      wrapBooleans: false
+    };
+    exports.excelBOM = "\uFEFF";
   }
 });
 
-// node_modules/dayjs/dayjs.min.js
-var require_dayjs_min = __commonJS({
-  "node_modules/dayjs/dayjs.min.js"(exports, module2) {
-    !function(t5, e3) {
-      "object" == typeof exports && "undefined" != typeof module2 ? module2.exports = e3() : "function" == typeof define && define.amd ? define(e3) : (t5 = "undefined" != typeof globalThis ? globalThis : t5 || self).dayjs = e3();
-    }(exports, function() {
-      "use strict";
-      var t5 = 1e3, e3 = 6e4, n5 = 36e5, r3 = "millisecond", i5 = "second", s5 = "minute", u4 = "hour", a4 = "day", o4 = "week", c5 = "month", f5 = "quarter", h4 = "year", d3 = "date", l4 = "Invalid Date", $2 = /^(\d{4})[-/]?(\d{1,2})?[-/]?(\d{0,2})[Tt\s]*(\d{1,2})?:?(\d{1,2})?:?(\d{1,2})?[.:]?(\d+)?$/, y3 = /\[([^\]]+)]|Y{1,4}|M{1,4}|D{1,2}|d{1,4}|H{1,2}|h{1,2}|a|A|m{1,2}|s{1,2}|Z{1,2}|SSS/g, M2 = { name: "en", weekdays: "Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday".split("_"), months: "January_February_March_April_May_June_July_August_September_October_November_December".split("_"), ordinal: function(t6) {
-        var e4 = ["th", "st", "nd", "rd"], n6 = t6 % 100;
-        return "[" + t6 + (e4[(n6 - 20) % 10] || e4[n6] || e4[0]) + "]";
-      } }, m6 = function(t6, e4, n6) {
-        var r4 = String(t6);
-        return !r4 || r4.length >= e4 ? t6 : "" + Array(e4 + 1 - r4.length).join(n6) + t6;
-      }, v4 = { s: m6, z: function(t6) {
-        var e4 = -t6.utcOffset(), n6 = Math.abs(e4), r4 = Math.floor(n6 / 60), i6 = n6 % 60;
-        return (e4 <= 0 ? "+" : "-") + m6(r4, 2, "0") + ":" + m6(i6, 2, "0");
-      }, m: function t6(e4, n6) {
-        if (e4.date() < n6.date())
-          return -t6(n6, e4);
-        var r4 = 12 * (n6.year() - e4.year()) + (n6.month() - e4.month()), i6 = e4.clone().add(r4, c5), s6 = n6 - i6 < 0, u5 = e4.clone().add(r4 + (s6 ? -1 : 1), c5);
-        return +(-(r4 + (n6 - i6) / (s6 ? i6 - u5 : u5 - i6)) || 0);
-      }, a: function(t6) {
-        return t6 < 0 ? Math.ceil(t6) || 0 : Math.floor(t6);
-      }, p: function(t6) {
-        return { M: c5, y: h4, w: o4, d: a4, D: d3, h: u4, m: s5, s: i5, ms: r3, Q: f5 }[t6] || String(t6 || "").toLowerCase().replace(/s$/, "");
-      }, u: function(t6) {
-        return void 0 === t6;
-      } }, g5 = "en", D2 = {};
-      D2[g5] = M2;
-      var p7 = "$isDayjsObject", S2 = function(t6) {
-        return t6 instanceof _4 || !(!t6 || !t6[p7]);
-      }, w2 = function t6(e4, n6, r4) {
-        var i6;
-        if (!e4)
-          return g5;
-        if ("string" == typeof e4) {
-          var s6 = e4.toLowerCase();
-          D2[s6] && (i6 = s6), n6 && (D2[s6] = n6, i6 = s6);
-          var u5 = e4.split("-");
-          if (!i6 && u5.length > 1)
-            return t6(u5[0]);
-        } else {
-          var a5 = e4.name;
-          D2[a5] = e4, i6 = a5;
+// node_modules/doc-path/lib/path.js
+var require_path = __commonJS({
+  "node_modules/doc-path/lib/path.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.setPath = exports.evaluatePath = void 0;
+    function evaluatePath(obj, kp) {
+      if (!obj) {
+        return null;
+      }
+      const { dotIndex, key, remaining } = state(kp);
+      const kpVal = typeof obj === "object" && kp in obj ? obj[kp] : void 0;
+      const keyVal = typeof obj === "object" && key in obj ? obj[key] : void 0;
+      if (dotIndex >= 0 && typeof obj === "object" && !(kp in obj)) {
+        const { key: nextKey } = state(remaining);
+        const nextKeyAsInt = parseInt(nextKey);
+        if (Array.isArray(keyVal) && isNaN(nextKeyAsInt)) {
+          return keyVal.map((doc) => evaluatePath(doc, remaining));
         }
-        return !r4 && i6 && (g5 = i6), i6 || !r4 && g5;
-      }, O3 = function(t6, e4) {
-        if (S2(t6))
-          return t6.clone();
-        var n6 = "object" == typeof e4 ? e4 : {};
-        return n6.date = t6, n6.args = arguments, new _4(n6);
-      }, b2 = v4;
-      b2.l = w2, b2.i = S2, b2.w = function(t6, e4) {
-        return O3(t6, { locale: e4.$L, utc: e4.$u, x: e4.$x, $offset: e4.$offset });
+        return evaluatePath(keyVal, remaining);
+      } else if (Array.isArray(obj)) {
+        const keyAsInt = parseInt(key);
+        if (kp === key && dotIndex === -1 && !isNaN(keyAsInt)) {
+          return keyVal;
+        }
+        return obj.map((doc) => evaluatePath(doc, kp));
+      } else if (dotIndex >= 0 && kp !== key && typeof obj === "object" && key in obj) {
+        return evaluatePath(keyVal, remaining);
+      } else if (dotIndex === -1 && typeof obj === "object" && key in obj && !(kp in obj)) {
+        return keyVal;
+      }
+      return kpVal;
+    }
+    exports.evaluatePath = evaluatePath;
+    function setPath(obj, kp, v4) {
+      if (!obj) {
+        throw new Error("No object was provided.");
+      } else if (!kp) {
+        throw new Error("No keyPath was provided.");
+      }
+      return _sp(obj, kp, v4);
+    }
+    exports.setPath = setPath;
+    function _sp(obj, kp, v4) {
+      var _a2;
+      const { dotIndex, key, remaining } = state(kp);
+      if (kp.startsWith("__proto__") || kp.startsWith("constructor") || kp.startsWith("prototype")) {
+        return obj;
+      }
+      if (dotIndex >= 0) {
+        const keyAsInt = parseInt(key);
+        if (typeof obj === "object" && obj !== null && !(key in obj) && Array.isArray(obj) && !isNaN(keyAsInt)) {
+          obj[key] = (_a2 = obj[key]) != null ? _a2 : {};
+          _sp(obj[key], remaining, v4);
+          return obj;
+        } else if (typeof obj === "object" && obj !== null && !(key in obj) && Array.isArray(obj)) {
+          obj.forEach((doc) => _sp(doc, kp, v4));
+          return obj;
+        } else if (typeof obj === "object" && obj !== null && !(key in obj) && !Array.isArray(obj)) {
+          const { key: nextKey } = state(remaining);
+          const nextKeyAsInt = parseInt(nextKey);
+          if (!isNaN(nextKeyAsInt)) {
+            obj[key] = [];
+          } else {
+            obj[key] = {};
+          }
+        }
+        _sp(obj[key], remaining, v4);
+      } else if (Array.isArray(obj)) {
+        const keyAsInt = parseInt(key);
+        if (kp === key && dotIndex === -1 && !isNaN(keyAsInt)) {
+          obj[key] = v4;
+          return obj;
+        }
+        obj.forEach((doc) => _sp(doc, remaining, v4));
+        return obj;
+      } else {
+        obj[key] = v4;
+      }
+      return obj;
+    }
+    function state(kp) {
+      const dotIndex = findFirstNonEscapedDotIndex(kp);
+      return {
+        dotIndex,
+        key: kp.slice(0, dotIndex >= 0 ? dotIndex : void 0).replace(/\\./g, "."),
+        remaining: kp.slice(dotIndex + 1)
       };
-      var _4 = function() {
-        function M3(t6) {
-          this.$L = w2(t6.locale, null, true), this.parse(t6), this.$x = this.$x || t6.x || {}, this[p7] = true;
+    }
+    function findFirstNonEscapedDotIndex(kp) {
+      for (let i5 = 0; i5 < kp.length; i5++) {
+        const previousChar = i5 > 0 ? kp[i5 - 1] : "", currentChar = kp[i5];
+        if (currentChar === "." && previousChar !== "\\")
+          return i5;
+      }
+      return -1;
+    }
+  }
+});
+
+// node_modules/deeks/lib/utils.js
+var require_utils = __commonJS({
+  "node_modules/deeks/lib/utils.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.isDocumentToRecurOn = exports.flatten = exports.unique = void 0;
+    function unique2(array) {
+      return [...new Set(array)];
+    }
+    exports.unique = unique2;
+    function flatten(array) {
+      return [].concat(...array);
+    }
+    exports.flatten = flatten;
+    function isDocumentToRecurOn(val) {
+      return typeof val === "object" && val !== null && !Array.isArray(val) && Object.keys(val).length;
+    }
+    exports.isDocumentToRecurOn = isDocumentToRecurOn;
+  }
+});
+
+// node_modules/deeks/lib/types.js
+var require_types = __commonJS({
+  "node_modules/deeks/lib/types.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+  }
+});
+
+// node_modules/deeks/lib/deeks.js
+var require_deeks = __commonJS({
+  "node_modules/deeks/lib/deeks.js"(exports) {
+    "use strict";
+    var __createBinding = exports && exports.__createBinding || (Object.create ? function(o4, m6, k3, k22) {
+      if (k22 === void 0)
+        k22 = k3;
+      var desc = Object.getOwnPropertyDescriptor(m6, k3);
+      if (!desc || ("get" in desc ? !m6.__esModule : desc.writable || desc.configurable)) {
+        desc = { enumerable: true, get: function() {
+          return m6[k3];
+        } };
+      }
+      Object.defineProperty(o4, k22, desc);
+    } : function(o4, m6, k3, k22) {
+      if (k22 === void 0)
+        k22 = k3;
+      o4[k22] = m6[k3];
+    });
+    var __setModuleDefault = exports && exports.__setModuleDefault || (Object.create ? function(o4, v4) {
+      Object.defineProperty(o4, "default", { enumerable: true, value: v4 });
+    } : function(o4, v4) {
+      o4["default"] = v4;
+    });
+    var __importStar = exports && exports.__importStar || function(mod) {
+      if (mod && mod.__esModule)
+        return mod;
+      var result = {};
+      if (mod != null) {
+        for (var k3 in mod)
+          if (k3 !== "default" && Object.prototype.hasOwnProperty.call(mod, k3))
+            __createBinding(result, mod, k3);
+      }
+      __setModuleDefault(result, mod);
+      return result;
+    };
+    var __exportStar = exports && exports.__exportStar || function(m6, exports2) {
+      for (var p7 in m6)
+        if (p7 !== "default" && !Object.prototype.hasOwnProperty.call(exports2, p7))
+          __createBinding(exports2, m6, p7);
+    };
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.deepKeysFromList = exports.deepKeys = void 0;
+    var utils2 = __importStar(require_utils());
+    __exportStar(require_types(), exports);
+    function deepKeys(object, options2) {
+      const parsedOptions = mergeOptions(options2);
+      if (typeof object === "object" && object !== null) {
+        return generateDeepKeysList("", object, parsedOptions);
+      }
+      return [];
+    }
+    exports.deepKeys = deepKeys;
+    function deepKeysFromList(list5, options2) {
+      const parsedOptions = mergeOptions(options2);
+      return list5.map((document2) => {
+        if (typeof document2 === "object" && document2 !== null) {
+          return deepKeys(document2, parsedOptions);
         }
-        var m7 = M3.prototype;
-        return m7.parse = function(t6) {
-          this.$d = function(t7) {
-            var e4 = t7.date, n6 = t7.utc;
-            if (null === e4)
-              return new Date(NaN);
-            if (b2.u(e4))
-              return new Date();
-            if (e4 instanceof Date)
-              return new Date(e4);
-            if ("string" == typeof e4 && !/Z$/i.test(e4)) {
-              var r4 = e4.match($2);
-              if (r4) {
-                var i6 = r4[2] - 1 || 0, s6 = (r4[7] || "0").substring(0, 3);
-                return n6 ? new Date(Date.UTC(r4[1], i6, r4[3] || 1, r4[4] || 0, r4[5] || 0, r4[6] || 0, s6)) : new Date(r4[1], i6, r4[3] || 1, r4[4] || 0, r4[5] || 0, r4[6] || 0, s6);
+        return [];
+      });
+    }
+    exports.deepKeysFromList = deepKeysFromList;
+    function generateDeepKeysList(heading2, data, options2) {
+      const keys = Object.keys(data).map((currentKey) => {
+        const keyName = buildKeyName(heading2, escapeNestedDotsIfSpecified(currentKey, options2));
+        if (options2.expandNestedObjects && utils2.isDocumentToRecurOn(data[currentKey]) || options2.arrayIndexesAsKeys && Array.isArray(data[currentKey]) && data[currentKey].length) {
+          return generateDeepKeysList(keyName, data[currentKey], options2);
+        } else if (options2.expandArrayObjects && Array.isArray(data[currentKey])) {
+          return processArrayKeys(data[currentKey], keyName, options2);
+        } else if (options2.ignoreEmptyArrays && Array.isArray(data[currentKey]) && !data[currentKey].length) {
+          return [];
+        }
+        return keyName;
+      });
+      return utils2.flatten(keys);
+    }
+    function processArrayKeys(subArray, currentKeyPath, options2) {
+      let subArrayKeys = deepKeysFromList(subArray, options2);
+      if (!subArray.length) {
+        return options2.ignoreEmptyArraysWhenExpanding ? [] : [currentKeyPath];
+      } else if (subArray.length && utils2.flatten(subArrayKeys).length === 0) {
+        return [currentKeyPath];
+      } else {
+        subArrayKeys = subArrayKeys.map((schemaKeys) => {
+          if (Array.isArray(schemaKeys) && schemaKeys.length === 0) {
+            return [currentKeyPath];
+          }
+          return schemaKeys.map((subKey) => buildKeyName(currentKeyPath, escapeNestedDotsIfSpecified(subKey, options2)));
+        });
+        return utils2.unique(utils2.flatten(subArrayKeys));
+      }
+    }
+    function escapeNestedDotsIfSpecified(key, options2) {
+      if (options2.escapeNestedDots) {
+        return key.replace(/\./g, "\\.");
+      }
+      return key;
+    }
+    function buildKeyName(upperKeyName, currentKeyName) {
+      if (upperKeyName) {
+        return upperKeyName + "." + currentKeyName;
+      }
+      return currentKeyName;
+    }
+    function mergeOptions(options2) {
+      return {
+        arrayIndexesAsKeys: false,
+        expandNestedObjects: true,
+        expandArrayObjects: false,
+        ignoreEmptyArraysWhenExpanding: false,
+        escapeNestedDots: false,
+        ignoreEmptyArrays: false,
+        ...options2 != null ? options2 : {}
+      };
+    }
+  }
+});
+
+// node_modules/json-2-csv/lib/utils.js
+var require_utils2 = __commonJS({
+  "node_modules/json-2-csv/lib/utils.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.isInvalid = exports.flatten = exports.unique = exports.arrayDifference = exports.isError = exports.isUndefined = exports.isNull = exports.isObject = exports.isString = exports.isNumber = exports.unwind = exports.getNCharacters = exports.removeEmptyFields = exports.isEmptyField = exports.computeSchemaDifferences = exports.isDateRepresentation = exports.isStringRepresentation = exports.deepCopy = exports.validate = exports.buildC2JOptions = exports.buildJ2COptions = void 0;
+    var doc_path_1 = require_path();
+    var constants_1 = require_constants();
+    var dateStringRegex = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{3}Z/;
+    var MAX_ARRAY_LENGTH = 1e5;
+    function buildJ2COptions(opts2) {
+      var _a2, _b2, _c, _d;
+      return {
+        ...constants_1.defaultJson2CsvOptions,
+        ...opts2,
+        delimiter: {
+          field: (_b2 = (_a2 = opts2 == null ? void 0 : opts2.delimiter) == null ? void 0 : _a2.field) != null ? _b2 : constants_1.defaultJson2CsvOptions.delimiter.field,
+          wrap: ((_c = opts2 == null ? void 0 : opts2.delimiter) == null ? void 0 : _c.wrap) || constants_1.defaultJson2CsvOptions.delimiter.wrap,
+          eol: ((_d = opts2 == null ? void 0 : opts2.delimiter) == null ? void 0 : _d.eol) || constants_1.defaultJson2CsvOptions.delimiter.eol
+        },
+        fieldTitleMap: /* @__PURE__ */ Object.create({})
+      };
+    }
+    exports.buildJ2COptions = buildJ2COptions;
+    function buildC2JOptions(opts2) {
+      var _a2, _b2, _c, _d;
+      return {
+        ...constants_1.defaultCsv2JsonOptions,
+        ...opts2,
+        delimiter: {
+          field: (_b2 = (_a2 = opts2 == null ? void 0 : opts2.delimiter) == null ? void 0 : _a2.field) != null ? _b2 : constants_1.defaultCsv2JsonOptions.delimiter.field,
+          wrap: ((_c = opts2 == null ? void 0 : opts2.delimiter) == null ? void 0 : _c.wrap) || constants_1.defaultCsv2JsonOptions.delimiter.wrap,
+          eol: ((_d = opts2 == null ? void 0 : opts2.delimiter) == null ? void 0 : _d.eol) || constants_1.defaultCsv2JsonOptions.delimiter.eol
+        }
+      };
+    }
+    exports.buildC2JOptions = buildC2JOptions;
+    function validate2(data, validationFn, errorMessages) {
+      if (!data)
+        throw new Error(`${errorMessages.cannotCallOn} ${data}.`);
+      if (!validationFn(data))
+        throw new Error(errorMessages.dataCheckFailure);
+      return true;
+    }
+    exports.validate = validate2;
+    function deepCopy(obj) {
+      return JSON.parse(JSON.stringify(obj));
+    }
+    exports.deepCopy = deepCopy;
+    function isStringRepresentation(fieldValue, options2) {
+      const firstChar = fieldValue[0], lastIndex = fieldValue.length - 1, lastChar = fieldValue[lastIndex];
+      return firstChar === options2.delimiter.wrap && lastChar === options2.delimiter.wrap;
+    }
+    exports.isStringRepresentation = isStringRepresentation;
+    function isDateRepresentation(fieldValue) {
+      return dateStringRegex.test(fieldValue);
+    }
+    exports.isDateRepresentation = isDateRepresentation;
+    function computeSchemaDifferences(schemaA, schemaB) {
+      return arrayDifference(schemaA, schemaB).concat(arrayDifference(schemaB, schemaA));
+    }
+    exports.computeSchemaDifferences = computeSchemaDifferences;
+    function isEmptyField(fieldValue) {
+      return isUndefined(fieldValue) || isNull(fieldValue) || fieldValue === "";
+    }
+    exports.isEmptyField = isEmptyField;
+    function removeEmptyFields(fields) {
+      return fields.filter((field) => !isEmptyField(field));
+    }
+    exports.removeEmptyFields = removeEmptyFields;
+    function getNCharacters(str, start2, n5) {
+      return str.substring(start2, start2 + n5);
+    }
+    exports.getNCharacters = getNCharacters;
+    function unwindItem(accumulator, item, fieldPath) {
+      const valueToUnwind = (0, doc_path_1.evaluatePath)(item, fieldPath);
+      let cloned = deepCopy(item);
+      if (Array.isArray(valueToUnwind) && valueToUnwind.length) {
+        valueToUnwind.forEach((val) => {
+          cloned = deepCopy(item);
+          accumulator.push((0, doc_path_1.setPath)(cloned, fieldPath, val));
+        });
+      } else if (Array.isArray(valueToUnwind) && valueToUnwind.length === 0) {
+        (0, doc_path_1.setPath)(cloned, fieldPath, "");
+        accumulator.push(cloned);
+      } else {
+        accumulator.push(cloned);
+      }
+    }
+    function unwind(array, field) {
+      const result = [];
+      array.forEach((item) => {
+        unwindItem(result, item, field);
+      });
+      return result;
+    }
+    exports.unwind = unwind;
+    function isNumber2(value) {
+      return !isNaN(Number(value));
+    }
+    exports.isNumber = isNumber2;
+    function isString(value) {
+      return typeof value === "string";
+    }
+    exports.isString = isString;
+    function isObject8(value) {
+      return typeof value === "object";
+    }
+    exports.isObject = isObject8;
+    function isNull(value) {
+      return value === null;
+    }
+    exports.isNull = isNull;
+    function isUndefined(value) {
+      return typeof value === "undefined";
+    }
+    exports.isUndefined = isUndefined;
+    function isError(value) {
+      return Object.prototype.toString.call(value) === "[object Error]";
+    }
+    exports.isError = isError;
+    function arrayDifference(a4, b2) {
+      return a4.filter((x2) => !b2.includes(x2));
+    }
+    exports.arrayDifference = arrayDifference;
+    function unique2(array) {
+      return [...new Set(array)];
+    }
+    exports.unique = unique2;
+    function flatten(array) {
+      if (array.flat) {
+        return array.flat();
+      }
+      if (array.length > MAX_ARRAY_LENGTH) {
+        let safeArray = [];
+        for (let a4 = 0; a4 < array.length; a4 += MAX_ARRAY_LENGTH) {
+          safeArray = safeArray.concat(...array.slice(a4, a4 + MAX_ARRAY_LENGTH));
+        }
+        return safeArray;
+      }
+      return array.reduce((accumulator, value) => accumulator.concat(value), []);
+    }
+    exports.flatten = flatten;
+    function isInvalid(parsedJson) {
+      return parsedJson === Infinity || parsedJson === -Infinity;
+    }
+    exports.isInvalid = isInvalid;
+  }
+});
+
+// node_modules/json-2-csv/lib/json2csv.js
+var require_json2csv = __commonJS({
+  "node_modules/json-2-csv/lib/json2csv.js"(exports) {
+    "use strict";
+    var __createBinding = exports && exports.__createBinding || (Object.create ? function(o4, m6, k3, k22) {
+      if (k22 === void 0)
+        k22 = k3;
+      var desc = Object.getOwnPropertyDescriptor(m6, k3);
+      if (!desc || ("get" in desc ? !m6.__esModule : desc.writable || desc.configurable)) {
+        desc = { enumerable: true, get: function() {
+          return m6[k3];
+        } };
+      }
+      Object.defineProperty(o4, k22, desc);
+    } : function(o4, m6, k3, k22) {
+      if (k22 === void 0)
+        k22 = k3;
+      o4[k22] = m6[k3];
+    });
+    var __setModuleDefault = exports && exports.__setModuleDefault || (Object.create ? function(o4, v4) {
+      Object.defineProperty(o4, "default", { enumerable: true, value: v4 });
+    } : function(o4, v4) {
+      o4["default"] = v4;
+    });
+    var __importStar = exports && exports.__importStar || function(mod) {
+      if (mod && mod.__esModule)
+        return mod;
+      var result = {};
+      if (mod != null) {
+        for (var k3 in mod)
+          if (k3 !== "default" && Object.prototype.hasOwnProperty.call(mod, k3))
+            __createBinding(result, mod, k3);
+      }
+      __setModuleDefault(result, mod);
+      return result;
+    };
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.Json2Csv = void 0;
+    var doc_path_1 = require_path();
+    var deeks_1 = require_deeks();
+    var constants_1 = require_constants();
+    var utils2 = __importStar(require_utils2());
+    var Json2Csv = function(options2) {
+      const wrapDelimiterCheckRegex = new RegExp(options2.delimiter.wrap, "g"), crlfSearchRegex = /\r?\n|\r/, customValueParser = options2.parseValue && typeof options2.parseValue === "function" ? options2.parseValue : null, expandingWithoutUnwinding = options2.expandArrayObjects && !options2.unwindArrays, deeksOptions = {
+        arrayIndexesAsKeys: options2.arrayIndexesAsKeys,
+        expandNestedObjects: options2.expandNestedObjects,
+        expandArrayObjects: expandingWithoutUnwinding,
+        ignoreEmptyArraysWhenExpanding: expandingWithoutUnwinding,
+        escapeNestedDots: true
+      };
+      function getFieldNameList(data) {
+        return (0, deeks_1.deepKeysFromList)(data, deeksOptions);
+      }
+      function processSchemas(documentSchemas) {
+        if (options2.checkSchemaDifferences) {
+          return checkSchemaDifferences(documentSchemas);
+        } else {
+          const uniqueFieldNames = utils2.unique(utils2.flatten(documentSchemas));
+          return uniqueFieldNames;
+        }
+      }
+      function checkSchemaDifferences(documentSchemas) {
+        const firstDocSchema = documentSchemas[0], restOfDocumentSchemas = documentSchemas.slice(1), schemaDifferences = computeNumberOfSchemaDifferences(firstDocSchema, restOfDocumentSchemas);
+        if (schemaDifferences) {
+          throw new Error(constants_1.errors.json2csv.notSameSchema);
+        }
+        return firstDocSchema;
+      }
+      function computeNumberOfSchemaDifferences(firstDocSchema, restOfDocumentSchemas) {
+        return restOfDocumentSchemas.reduce((schemaDifferences, documentSchema) => {
+          const numberOfDifferences = utils2.computeSchemaDifferences(firstDocSchema, documentSchema).length;
+          return numberOfDifferences > 0 ? schemaDifferences + 1 : schemaDifferences;
+        }, 0);
+      }
+      function filterExcludedKeys(keyPaths) {
+        if (options2.excludeKeys) {
+          return keyPaths.filter((keyPath) => {
+            for (const excludedKey of options2.excludeKeys) {
+              const regex = excludedKey instanceof RegExp ? excludedKey : new RegExp(`^${excludedKey}`);
+              if (excludedKey === keyPath || keyPath.match(regex)) {
+                return false;
               }
             }
-            return new Date(e4);
-          }(t6), this.init();
-        }, m7.init = function() {
-          var t6 = this.$d;
-          this.$y = t6.getFullYear(), this.$M = t6.getMonth(), this.$D = t6.getDate(), this.$W = t6.getDay(), this.$H = t6.getHours(), this.$m = t6.getMinutes(), this.$s = t6.getSeconds(), this.$ms = t6.getMilliseconds();
-        }, m7.$utils = function() {
-          return b2;
-        }, m7.isValid = function() {
-          return !(this.$d.toString() === l4);
-        }, m7.isSame = function(t6, e4) {
-          var n6 = O3(t6);
-          return this.startOf(e4) <= n6 && n6 <= this.endOf(e4);
-        }, m7.isAfter = function(t6, e4) {
-          return O3(t6) < this.startOf(e4);
-        }, m7.isBefore = function(t6, e4) {
-          return this.endOf(e4) < O3(t6);
-        }, m7.$g = function(t6, e4, n6) {
-          return b2.u(t6) ? this[e4] : this.set(n6, t6);
-        }, m7.unix = function() {
-          return Math.floor(this.valueOf() / 1e3);
-        }, m7.valueOf = function() {
-          return this.$d.getTime();
-        }, m7.startOf = function(t6, e4) {
-          var n6 = this, r4 = !!b2.u(e4) || e4, f6 = b2.p(t6), l5 = function(t7, e5) {
-            var i6 = b2.w(n6.$u ? Date.UTC(n6.$y, e5, t7) : new Date(n6.$y, e5, t7), n6);
-            return r4 ? i6 : i6.endOf(a4);
-          }, $3 = function(t7, e5) {
-            return b2.w(n6.toDate()[t7].apply(n6.toDate("s"), (r4 ? [0, 0, 0, 0] : [23, 59, 59, 999]).slice(e5)), n6);
-          }, y4 = this.$W, M4 = this.$M, m8 = this.$D, v5 = "set" + (this.$u ? "UTC" : "");
-          switch (f6) {
-            case h4:
-              return r4 ? l5(1, 0) : l5(31, 11);
-            case c5:
-              return r4 ? l5(1, M4) : l5(0, M4 + 1);
-            case o4:
-              var g6 = this.$locale().weekStart || 0, D3 = (y4 < g6 ? y4 + 7 : y4) - g6;
-              return l5(r4 ? m8 - D3 : m8 + (6 - D3), M4);
-            case a4:
-            case d3:
-              return $3(v5 + "Hours", 0);
-            case u4:
-              return $3(v5 + "Minutes", 1);
-            case s5:
-              return $3(v5 + "Seconds", 2);
-            case i5:
-              return $3(v5 + "Milliseconds", 3);
-            default:
-              return this.clone();
-          }
-        }, m7.endOf = function(t6) {
-          return this.startOf(t6, false);
-        }, m7.$set = function(t6, e4) {
-          var n6, o5 = b2.p(t6), f6 = "set" + (this.$u ? "UTC" : ""), l5 = (n6 = {}, n6[a4] = f6 + "Date", n6[d3] = f6 + "Date", n6[c5] = f6 + "Month", n6[h4] = f6 + "FullYear", n6[u4] = f6 + "Hours", n6[s5] = f6 + "Minutes", n6[i5] = f6 + "Seconds", n6[r3] = f6 + "Milliseconds", n6)[o5], $3 = o5 === a4 ? this.$D + (e4 - this.$W) : e4;
-          if (o5 === c5 || o5 === h4) {
-            var y4 = this.clone().set(d3, 1);
-            y4.$d[l5]($3), y4.init(), this.$d = y4.set(d3, Math.min(this.$D, y4.daysInMonth())).$d;
-          } else
-            l5 && this.$d[l5]($3);
-          return this.init(), this;
-        }, m7.set = function(t6, e4) {
-          return this.clone().$set(t6, e4);
-        }, m7.get = function(t6) {
-          return this[b2.p(t6)]();
-        }, m7.add = function(r4, f6) {
-          var d4, l5 = this;
-          r4 = Number(r4);
-          var $3 = b2.p(f6), y4 = function(t6) {
-            var e4 = O3(l5);
-            return b2.w(e4.date(e4.date() + Math.round(t6 * r4)), l5);
-          };
-          if ($3 === c5)
-            return this.set(c5, this.$M + r4);
-          if ($3 === h4)
-            return this.set(h4, this.$y + r4);
-          if ($3 === a4)
-            return y4(1);
-          if ($3 === o4)
-            return y4(7);
-          var M4 = (d4 = {}, d4[s5] = e3, d4[u4] = n5, d4[i5] = t5, d4)[$3] || 1, m8 = this.$d.getTime() + r4 * M4;
-          return b2.w(m8, this);
-        }, m7.subtract = function(t6, e4) {
-          return this.add(-1 * t6, e4);
-        }, m7.format = function(t6) {
-          var e4 = this, n6 = this.$locale();
-          if (!this.isValid())
-            return n6.invalidDate || l4;
-          var r4 = t6 || "YYYY-MM-DDTHH:mm:ssZ", i6 = b2.z(this), s6 = this.$H, u5 = this.$m, a5 = this.$M, o5 = n6.weekdays, c6 = n6.months, f6 = n6.meridiem, h5 = function(t7, n7, i7, s7) {
-            return t7 && (t7[n7] || t7(e4, r4)) || i7[n7].slice(0, s7);
-          }, d4 = function(t7) {
-            return b2.s(s6 % 12 || 12, t7, "0");
-          }, $3 = f6 || function(t7, e5, n7) {
-            var r5 = t7 < 12 ? "AM" : "PM";
-            return n7 ? r5.toLowerCase() : r5;
-          };
-          return r4.replace(y3, function(t7, r5) {
-            return r5 || function(t8) {
-              switch (t8) {
-                case "YY":
-                  return String(e4.$y).slice(-2);
-                case "YYYY":
-                  return b2.s(e4.$y, 4, "0");
-                case "M":
-                  return a5 + 1;
-                case "MM":
-                  return b2.s(a5 + 1, 2, "0");
-                case "MMM":
-                  return h5(n6.monthsShort, a5, c6, 3);
-                case "MMMM":
-                  return h5(c6, a5);
-                case "D":
-                  return e4.$D;
-                case "DD":
-                  return b2.s(e4.$D, 2, "0");
-                case "d":
-                  return String(e4.$W);
-                case "dd":
-                  return h5(n6.weekdaysMin, e4.$W, o5, 2);
-                case "ddd":
-                  return h5(n6.weekdaysShort, e4.$W, o5, 3);
-                case "dddd":
-                  return o5[e4.$W];
-                case "H":
-                  return String(s6);
-                case "HH":
-                  return b2.s(s6, 2, "0");
-                case "h":
-                  return d4(1);
-                case "hh":
-                  return d4(2);
-                case "a":
-                  return $3(s6, u5, true);
-                case "A":
-                  return $3(s6, u5, false);
-                case "m":
-                  return String(u5);
-                case "mm":
-                  return b2.s(u5, 2, "0");
-                case "s":
-                  return String(e4.$s);
-                case "ss":
-                  return b2.s(e4.$s, 2, "0");
-                case "SSS":
-                  return b2.s(e4.$ms, 3, "0");
-                case "Z":
-                  return i6;
-              }
-              return null;
-            }(t7) || i6.replace(":", "");
+            return true;
           });
-        }, m7.utcOffset = function() {
-          return 15 * -Math.round(this.$d.getTimezoneOffset() / 15);
-        }, m7.diff = function(r4, d4, l5) {
-          var $3, y4 = this, M4 = b2.p(d4), m8 = O3(r4), v5 = (m8.utcOffset() - this.utcOffset()) * e3, g6 = this - m8, D3 = function() {
-            return b2.m(y4, m8);
-          };
-          switch (M4) {
-            case h4:
-              $3 = D3() / 12;
-              break;
-            case c5:
-              $3 = D3();
-              break;
-            case f5:
-              $3 = D3() / 3;
-              break;
-            case o4:
-              $3 = (g6 - v5) / 6048e5;
-              break;
-            case a4:
-              $3 = (g6 - v5) / 864e5;
-              break;
-            case u4:
-              $3 = g6 / n5;
-              break;
-            case s5:
-              $3 = g6 / e3;
-              break;
-            case i5:
-              $3 = g6 / t5;
-              break;
-            default:
-              $3 = g6;
+        }
+        return keyPaths;
+      }
+      function sortHeaderFields(fieldNames) {
+        if (options2.sortHeader && typeof options2.sortHeader === "function") {
+          return fieldNames.sort(options2.sortHeader);
+        } else if (options2.sortHeader) {
+          return fieldNames.sort();
+        }
+        return fieldNames;
+      }
+      function trimHeaderFields(params) {
+        if (options2.trimHeaderFields) {
+          params.headerFields = params.headerFields.map((field) => field.split(".").map((component) => component.trim()).join("."));
+        }
+        return params;
+      }
+      function wrapHeaderFields(params) {
+        if (options2.prependHeader) {
+          params.headerFields = params.headerFields.map(function(headingKey) {
+            return wrapFieldValueIfNecessary(headingKey);
+          });
+        }
+        return params;
+      }
+      function generateCsvHeader(params) {
+        const fieldTitleMapKeys = Object.keys(options2.fieldTitleMap);
+        params.header = params.headerFields.map(function(field) {
+          let headerKey = field;
+          if (fieldTitleMapKeys.includes(field)) {
+            headerKey = options2.fieldTitleMap[field];
+          } else if (!options2.escapeHeaderNestedDots) {
+            headerKey = headerKey.replace(/\\\./g, ".");
           }
-          return l5 ? $3 : b2.a($3);
-        }, m7.daysInMonth = function() {
-          return this.endOf(c5).$D;
-        }, m7.$locale = function() {
-          return D2[this.$L];
-        }, m7.locale = function(t6, e4) {
-          if (!t6)
-            return this.$L;
-          var n6 = this.clone(), r4 = w2(t6, e4, true);
-          return r4 && (n6.$L = r4), n6;
-        }, m7.clone = function() {
-          return b2.w(this.$d, this);
-        }, m7.toDate = function() {
-          return new Date(this.valueOf());
-        }, m7.toJSON = function() {
-          return this.isValid() ? this.toISOString() : null;
-        }, m7.toISOString = function() {
-          return this.$d.toISOString();
-        }, m7.toString = function() {
-          return this.$d.toUTCString();
-        }, M3;
-      }(), k3 = _4.prototype;
-      return O3.prototype = k3, [["$ms", r3], ["$s", i5], ["$m", s5], ["$H", u4], ["$W", a4], ["$M", c5], ["$y", h4], ["$D", d3]].forEach(function(t6) {
-        k3[t6[1]] = function(e4) {
-          return this.$g(e4, t6[0], t6[1]);
+          return wrapFieldValueIfNecessary(headerKey);
+        }).join(options2.delimiter.field);
+        return params;
+      }
+      function convertKeysToHeaderFields() {
+        if (!options2.keys)
+          return [];
+        return options2.keys.map((key) => {
+          var _a2;
+          if (typeof key === "object" && "field" in key) {
+            options2.fieldTitleMap[key.field] = (_a2 = key.title) != null ? _a2 : key.field;
+            return key.field;
+          }
+          return key;
+        });
+      }
+      function extractWildcardMatchKeys() {
+        if (!options2.keys)
+          return [];
+        return options2.keys.flatMap((item) => {
+          if (typeof item === "string") {
+            return [];
+          } else if (item == null ? void 0 : item.wildcardMatch) {
+            return item.field;
+          }
+          return [];
+        });
+      }
+      function retrieveHeaderFields(data) {
+        const wildcardMatchKeys = extractWildcardMatchKeys();
+        const keyStrings = convertKeysToHeaderFields();
+        const fieldNames = getFieldNameList(data);
+        const processed = processSchemas(fieldNames);
+        if (options2.keys) {
+          options2.keys = keyStrings;
+          const matchedKeys = keyStrings.flatMap((userProvidedKey) => {
+            if (!wildcardMatchKeys.includes(userProvidedKey)) {
+              return userProvidedKey;
+            }
+            const matches3 = [];
+            const regex = new RegExp(`^${userProvidedKey}`);
+            for (const detectedKey of processed) {
+              if (userProvidedKey === detectedKey || detectedKey.match(regex)) {
+                matches3.push(detectedKey);
+              }
+            }
+            return matches3;
+          });
+          if (!options2.unwindArrays) {
+            const filtered2 = filterExcludedKeys(matchedKeys);
+            return sortHeaderFields(filtered2);
+          }
+        }
+        const filtered = filterExcludedKeys(processed);
+        return sortHeaderFields(filtered);
+      }
+      function unwindRecordsIfNecessary(params, finalPass = false) {
+        if (options2.unwindArrays) {
+          const originalRecordsLength = params.records.length;
+          params.headerFields.forEach((headerField) => {
+            params.records = utils2.unwind(params.records, headerField);
+          });
+          const headerFields = retrieveHeaderFields(params.records);
+          params.headerFields = headerFields;
+          if (originalRecordsLength !== params.records.length) {
+            return unwindRecordsIfNecessary(params);
+          }
+          if (!finalPass) {
+            return unwindRecordsIfNecessary(params, true);
+          }
+          if (options2.keys) {
+            const userSelectedFields = convertKeysToHeaderFields();
+            params.headerFields = filterExcludedKeys(userSelectedFields);
+          }
+          return params;
+        }
+        return params;
+      }
+      function processRecords(params) {
+        params.recordString = params.records.map((record) => {
+          const recordFieldData = retrieveRecordFieldData(record, params.headerFields), processedRecordData = recordFieldData.map((fieldValue) => {
+            fieldValue = trimRecordFieldValue(fieldValue);
+            fieldValue = preventCsvInjection(fieldValue);
+            let stringified = customValueParser ? customValueParser(fieldValue, recordFieldValueToString) : recordFieldValueToString(fieldValue);
+            stringified = wrapFieldValueIfNecessary(stringified);
+            return stringified;
+          });
+          return generateCsvRowFromRecord(processedRecordData);
+        }).join(options2.delimiter.eol);
+        return params;
+      }
+      function processRecordFieldDataForExpandedArrayObject(recordFieldValue) {
+        const filteredRecordFieldValue = utils2.removeEmptyFields(recordFieldValue);
+        if (!recordFieldValue.length || !filteredRecordFieldValue.length) {
+          return options2.emptyFieldValue || "";
+        } else if (filteredRecordFieldValue.length === 1) {
+          return filteredRecordFieldValue[0];
+        }
+        return recordFieldValue;
+      }
+      function retrieveRecordFieldData(record, fields) {
+        const recordValues = [];
+        fields.forEach((field) => {
+          let recordFieldValue = (0, doc_path_1.evaluatePath)(record, field);
+          if (!utils2.isUndefined(options2.emptyFieldValue) && utils2.isEmptyField(recordFieldValue)) {
+            recordFieldValue = options2.emptyFieldValue;
+          } else if (options2.expandArrayObjects && Array.isArray(recordFieldValue)) {
+            recordFieldValue = processRecordFieldDataForExpandedArrayObject(recordFieldValue);
+          }
+          recordValues.push(recordFieldValue);
+        });
+        return recordValues;
+      }
+      function recordFieldValueToString(fieldValue) {
+        const isDate = fieldValue instanceof Date;
+        if (fieldValue === null || Array.isArray(fieldValue) || typeof fieldValue === "object" && !isDate) {
+          return JSON.stringify(fieldValue);
+        } else if (typeof fieldValue === "undefined") {
+          return "undefined";
+        } else if (isDate && options2.useDateIso8601Format) {
+          return fieldValue.toISOString();
+        } else {
+          return !options2.useLocaleFormat ? fieldValue.toString() : fieldValue.toLocaleString();
+        }
+      }
+      function trimRecordFieldValue(fieldValue) {
+        if (options2.trimFieldValues) {
+          if (Array.isArray(fieldValue)) {
+            return fieldValue.map(trimRecordFieldValue);
+          } else if (typeof fieldValue === "string") {
+            return fieldValue.trim();
+          }
+          return fieldValue;
+        }
+        return fieldValue;
+      }
+      function preventCsvInjection(fieldValue) {
+        if (options2.preventCsvInjection) {
+          if (Array.isArray(fieldValue)) {
+            return fieldValue.map(preventCsvInjection);
+          } else if (typeof fieldValue === "string" && !utils2.isNumber(fieldValue)) {
+            return fieldValue.replace(/^[=+\-@\t\r]+/g, "");
+          }
+          return fieldValue;
+        }
+        return fieldValue;
+      }
+      function wrapFieldValueIfNecessary(fieldValue) {
+        const wrapDelimiter = options2.delimiter.wrap;
+        if (fieldValue.includes(options2.delimiter.wrap)) {
+          fieldValue = fieldValue.replace(wrapDelimiterCheckRegex, wrapDelimiter + wrapDelimiter);
+        }
+        if (fieldValue.includes(options2.delimiter.field) || fieldValue.includes(options2.delimiter.wrap) || fieldValue.match(crlfSearchRegex) || options2.wrapBooleans && (fieldValue === "true" || fieldValue === "false")) {
+          fieldValue = wrapDelimiter + fieldValue + wrapDelimiter;
+        }
+        return fieldValue;
+      }
+      function generateCsvRowFromRecord(recordFieldValues) {
+        return recordFieldValues.join(options2.delimiter.field);
+      }
+      function generateCsvFromComponents(params) {
+        const header = params.header, records = params.recordString, csv = (options2.excelBOM ? constants_1.excelBOM : "") + (options2.prependHeader ? header + options2.delimiter.eol : "") + records;
+        return csv;
+      }
+      function convert2(data) {
+        if (utils2.isObject(data) && !data.length) {
+          data = [data];
+        }
+        const headerFields = {
+          headerFields: retrieveHeaderFields(data),
+          records: data,
+          header: "",
+          recordString: ""
         };
-      }), O3.extend = function(t6, e4) {
-        return t6.$i || (t6(e4, _4, O3), t6.$i = true), O3;
-      }, O3.locale = w2, O3.isDayjs = S2, O3.unix = function(t6) {
-        return O3(1e3 * t6);
-      }, O3.en = D2[g5], O3.Ls = D2, O3.p = {}, O3;
+        const unwinded = unwindRecordsIfNecessary(headerFields);
+        const processed = processRecords(unwinded);
+        const wrapped = wrapHeaderFields(processed);
+        const trimmed = trimHeaderFields(wrapped);
+        const generated = generateCsvHeader(trimmed);
+        return generateCsvFromComponents(generated);
+      }
+      return {
+        convert: convert2
+      };
+    };
+    exports.Json2Csv = Json2Csv;
+  }
+});
+
+// node_modules/json-2-csv/lib/csv2json.js
+var require_csv2json = __commonJS({
+  "node_modules/json-2-csv/lib/csv2json.js"(exports) {
+    "use strict";
+    var __createBinding = exports && exports.__createBinding || (Object.create ? function(o4, m6, k3, k22) {
+      if (k22 === void 0)
+        k22 = k3;
+      var desc = Object.getOwnPropertyDescriptor(m6, k3);
+      if (!desc || ("get" in desc ? !m6.__esModule : desc.writable || desc.configurable)) {
+        desc = { enumerable: true, get: function() {
+          return m6[k3];
+        } };
+      }
+      Object.defineProperty(o4, k22, desc);
+    } : function(o4, m6, k3, k22) {
+      if (k22 === void 0)
+        k22 = k3;
+      o4[k22] = m6[k3];
     });
+    var __setModuleDefault = exports && exports.__setModuleDefault || (Object.create ? function(o4, v4) {
+      Object.defineProperty(o4, "default", { enumerable: true, value: v4 });
+    } : function(o4, v4) {
+      o4["default"] = v4;
+    });
+    var __importStar = exports && exports.__importStar || function(mod) {
+      if (mod && mod.__esModule)
+        return mod;
+      var result = {};
+      if (mod != null) {
+        for (var k3 in mod)
+          if (k3 !== "default" && Object.prototype.hasOwnProperty.call(mod, k3))
+            __createBinding(result, mod, k3);
+      }
+      __setModuleDefault(result, mod);
+      return result;
+    };
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.Csv2Json = void 0;
+    var doc_path_1 = require_path();
+    var constants_1 = require_constants();
+    var utils2 = __importStar(require_utils2());
+    var Csv2Json = function(options2) {
+      const escapedWrapDelimiterRegex = new RegExp(options2.delimiter.wrap + options2.delimiter.wrap, "g"), excelBOMRegex = new RegExp("^" + constants_1.excelBOM), valueParserFn = options2.parseValue && typeof options2.parseValue === "function" ? options2.parseValue : JSON.parse;
+      function processHeaderKey(headerKey) {
+        headerKey = removeWrapDelimitersFromValue(headerKey);
+        if (options2.trimHeaderFields) {
+          return headerKey.split(".").map((component) => component.trim()).join(".");
+        }
+        return headerKey;
+      }
+      function retrieveHeading(lines) {
+        let headerFields = [];
+        if (options2.headerFields) {
+          headerFields = options2.headerFields.map((headerField, index4) => ({
+            value: processHeaderKey(headerField),
+            index: index4
+          }));
+        } else {
+          const headerRow = lines[0];
+          headerFields = headerRow.map((headerKey, index4) => ({
+            value: processHeaderKey(headerKey),
+            index: index4
+          }));
+          if (options2.keys) {
+            const keys = options2.keys;
+            headerFields = headerFields.filter((headerKey) => keys.includes(headerKey.value));
+          }
+        }
+        return {
+          lines,
+          headerFields,
+          recordLines: []
+        };
+      }
+      function stripExcelBOM(csv) {
+        if (options2.excelBOM) {
+          return csv.replace(excelBOMRegex, "");
+        }
+        return csv;
+      }
+      function splitLines(csv) {
+        const lines = [], lastCharacterIndex = csv.length - 1, eolDelimiterLength = options2.delimiter.eol.length, stateVariables = {
+          insideWrapDelimiter: false,
+          parsingValue: true,
+          justParsedDoubleQuote: false,
+          startIndex: 0
+        };
+        let splitLine = [], character, charBefore, charAfter, nextNChar, index4 = 0;
+        while (index4 < csv.length) {
+          character = csv[index4];
+          charBefore = index4 ? csv[index4 - 1] : "";
+          charAfter = index4 < lastCharacterIndex ? csv[index4 + 1] : "";
+          nextNChar = utils2.getNCharacters(csv, index4, eolDelimiterLength);
+          if ((nextNChar === options2.delimiter.eol && !stateVariables.insideWrapDelimiter || index4 === lastCharacterIndex) && charBefore === options2.delimiter.field) {
+            if (nextNChar === options2.delimiter.eol && stateVariables.startIndex === index4) {
+              splitLine.push("");
+            } else if (character === options2.delimiter.field) {
+              splitLine.push("");
+            } else {
+              splitLine.push(csv.substr(stateVariables.startIndex));
+            }
+            splitLine.push("");
+            lines.push(splitLine);
+            splitLine = [];
+            stateVariables.startIndex = index4 + eolDelimiterLength;
+            stateVariables.parsingValue = true;
+            stateVariables.insideWrapDelimiter = charAfter === options2.delimiter.wrap;
+          } else if (index4 === lastCharacterIndex && character === options2.delimiter.field) {
+            const parsedValue = csv.substring(stateVariables.startIndex, index4);
+            splitLine.push(parsedValue);
+            splitLine.push("");
+            lines.push(splitLine);
+          } else if (index4 === lastCharacterIndex || nextNChar === options2.delimiter.eol && // if we aren't inside wrap delimiters or if we are but the character before was a wrap delimiter and we didn't just see two
+          (!stateVariables.insideWrapDelimiter || stateVariables.insideWrapDelimiter && charBefore === options2.delimiter.wrap && !stateVariables.justParsedDoubleQuote)) {
+            const toIndex = index4 !== lastCharacterIndex || charBefore === options2.delimiter.wrap ? index4 : void 0;
+            splitLine.push(csv.substring(stateVariables.startIndex, toIndex));
+            lines.push(splitLine);
+            splitLine = [];
+            stateVariables.startIndex = index4 + eolDelimiterLength;
+            stateVariables.parsingValue = true;
+            stateVariables.insideWrapDelimiter = charAfter === options2.delimiter.wrap;
+          } else if (character === options2.delimiter.wrap && charBefore === options2.delimiter.field && !stateVariables.insideWrapDelimiter && !stateVariables.parsingValue) {
+            stateVariables.startIndex = index4;
+            stateVariables.insideWrapDelimiter = true;
+            stateVariables.parsingValue = true;
+            if (utils2.getNCharacters(csv, index4 + 1, eolDelimiterLength) === options2.delimiter.eol) {
+              index4 += options2.delimiter.eol.length + 1;
+            }
+          } else if ((charBefore !== options2.delimiter.wrap || stateVariables.justParsedDoubleQuote && charBefore === options2.delimiter.wrap) && character === options2.delimiter.wrap && utils2.getNCharacters(csv, index4 + 1, eolDelimiterLength) === options2.delimiter.eol) {
+            stateVariables.insideWrapDelimiter = false;
+            stateVariables.parsingValue = false;
+          } else if (character === options2.delimiter.wrap && (index4 === 0 || utils2.getNCharacters(csv, index4 - eolDelimiterLength, eolDelimiterLength) === options2.delimiter.eol && !stateVariables.insideWrapDelimiter)) {
+            stateVariables.insideWrapDelimiter = true;
+            stateVariables.parsingValue = true;
+            stateVariables.startIndex = index4;
+          } else if (character === options2.delimiter.wrap && charAfter === options2.delimiter.field) {
+            splitLine.push(csv.substring(stateVariables.startIndex, index4 + 1));
+            stateVariables.startIndex = index4 + 2;
+            stateVariables.insideWrapDelimiter = false;
+            stateVariables.parsingValue = false;
+          } else if (character === options2.delimiter.wrap && charBefore === options2.delimiter.field && !stateVariables.insideWrapDelimiter && stateVariables.parsingValue) {
+            splitLine.push(csv.substring(stateVariables.startIndex, index4 - 1));
+            stateVariables.insideWrapDelimiter = true;
+            stateVariables.parsingValue = true;
+            stateVariables.startIndex = index4;
+          } else if (character === options2.delimiter.wrap && charAfter === options2.delimiter.wrap && index4 !== stateVariables.startIndex) {
+            index4 += 2;
+            stateVariables.justParsedDoubleQuote = true;
+            continue;
+          } else if (character === options2.delimiter.field && charBefore !== options2.delimiter.wrap && charAfter !== options2.delimiter.wrap && !stateVariables.insideWrapDelimiter && stateVariables.parsingValue) {
+            splitLine.push(csv.substring(stateVariables.startIndex, index4));
+            stateVariables.startIndex = index4 + 1;
+          } else if (character === options2.delimiter.field && charBefore === options2.delimiter.wrap && charAfter !== options2.delimiter.wrap && !stateVariables.parsingValue) {
+            stateVariables.insideWrapDelimiter = false;
+            stateVariables.parsingValue = true;
+            stateVariables.startIndex = index4 + 1;
+          }
+          index4++;
+          stateVariables.justParsedDoubleQuote = false;
+        }
+        return lines;
+      }
+      function retrieveRecordLines(params) {
+        if (options2.headerFields) {
+          params.recordLines = params.lines;
+        } else {
+          params.recordLines = params.lines.splice(1);
+        }
+        return params;
+      }
+      function retrieveRecordValueFromLine(headerField, line) {
+        const value = line[headerField.index];
+        return processRecordValue(value);
+      }
+      function processRecordValue(fieldValue) {
+        const parsedJson = parseValue(fieldValue);
+        if (!utils2.isError(parsedJson) && !utils2.isInvalid(parsedJson)) {
+          return parsedJson;
+        } else if (fieldValue === "undefined") {
+          return void 0;
+        }
+        return fieldValue;
+      }
+      function trimRecordValue(fieldValue) {
+        if (options2.trimFieldValues && fieldValue !== null) {
+          return fieldValue.trim();
+        }
+        return fieldValue;
+      }
+      function createDocument(headerFields, line) {
+        return headerFields.reduce((document2, headerField) => {
+          const value = retrieveRecordValueFromLine(headerField, line);
+          try {
+            return (0, doc_path_1.setPath)(document2, headerField.value, value);
+          } catch (error) {
+            return document2;
+          }
+        }, {});
+      }
+      function removeWrapDelimitersFromValue(fieldValue) {
+        const firstChar = fieldValue[0], lastIndex = fieldValue.length - 1, lastChar = fieldValue[lastIndex];
+        if (firstChar === options2.delimiter.wrap && lastChar === options2.delimiter.wrap) {
+          return fieldValue.substr(1, lastIndex - 1);
+        }
+        return fieldValue;
+      }
+      function unescapeWrapDelimiterInField(fieldValue) {
+        return fieldValue.replace(escapedWrapDelimiterRegex, options2.delimiter.wrap);
+      }
+      function transformRecordLines(params) {
+        return params.recordLines.reduce((generatedJsonObjects, line) => {
+          line = line.map((fieldValue) => {
+            fieldValue = removeWrapDelimitersFromValue(fieldValue);
+            fieldValue = unescapeWrapDelimiterInField(fieldValue);
+            fieldValue = trimRecordValue(fieldValue);
+            return fieldValue;
+          });
+          const generatedDocument = createDocument(params.headerFields, line);
+          return generatedJsonObjects.concat(generatedDocument);
+        }, []);
+      }
+      function parseValue(value) {
+        try {
+          if (utils2.isStringRepresentation(value, options2) && !utils2.isDateRepresentation(value)) {
+            return value;
+          }
+          const parsedJson = valueParserFn(value);
+          if (Array.isArray(parsedJson)) {
+            return parsedJson.map(trimRecordValue);
+          }
+          return parsedJson;
+        } catch (err) {
+          return err;
+        }
+      }
+      function convert2(data) {
+        const stripped = stripExcelBOM(data);
+        const split3 = splitLines(stripped);
+        const heading2 = retrieveHeading(split3);
+        const lines = retrieveRecordLines(heading2);
+        return transformRecordLines(lines);
+      }
+      return {
+        convert: convert2
+      };
+    };
+    exports.Csv2Json = Csv2Json;
+  }
+});
+
+// node_modules/json-2-csv/lib/converter.js
+var require_converter = __commonJS({
+  "node_modules/json-2-csv/lib/converter.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.csv2json = exports.json2csv = void 0;
+    var constants_1 = require_constants();
+    var json2csv_1 = require_json2csv();
+    var csv2json_1 = require_csv2json();
+    var utils_1 = require_utils2();
+    function json2csv2(data, options2) {
+      const builtOptions = (0, utils_1.buildJ2COptions)(options2 != null ? options2 : {});
+      (0, utils_1.validate)(data, utils_1.isObject, constants_1.errors.json2csv);
+      return (0, json2csv_1.Json2Csv)(builtOptions).convert(data);
+    }
+    exports.json2csv = json2csv2;
+    function csv2json(data, options2) {
+      const builtOptions = (0, utils_1.buildC2JOptions)(options2 != null ? options2 : {});
+      (0, utils_1.validate)(data, utils_1.isString, constants_1.errors.csv2json);
+      return (0, csv2json_1.Csv2Json)(builtOptions).convert(data);
+    }
+    exports.csv2json = csv2json;
   }
 });
 
@@ -23709,2055 +24748,2748 @@ var require_historica = __commonJS({
 // main.ts
 var main_exports = {};
 __export(main_exports, {
-  HISTORICA_VIEW_TYPE: () => HISTORICA_VIEW_TYPE,
   default: () => HistoricaPlugin
 });
 module.exports = __toCommonJS(main_exports);
-var import_obsidian4 = require("obsidian");
+var import_obsidian8 = require("obsidian");
 
-// node_modules/marked/lib/marked.esm.js
-function _getDefaults() {
-  return {
-    async: false,
-    breaks: false,
-    extensions: null,
-    gfm: true,
-    hooks: null,
-    pedantic: false,
-    renderer: null,
-    silent: false,
-    tokenizer: null,
-    walkTokens: null
-  };
+// node_modules/chrono-node/dist/esm/results.js
+var import_quarterOfYear = __toESM(require_quarterOfYear(), 1);
+var import_dayjs2 = __toESM(require_dayjs_min(), 1);
+
+// node_modules/chrono-node/dist/esm/types.js
+var Meridiem;
+(function(Meridiem2) {
+  Meridiem2[Meridiem2["AM"] = 0] = "AM";
+  Meridiem2[Meridiem2["PM"] = 1] = "PM";
+})(Meridiem || (Meridiem = {}));
+var Weekday;
+(function(Weekday2) {
+  Weekday2[Weekday2["SUNDAY"] = 0] = "SUNDAY";
+  Weekday2[Weekday2["MONDAY"] = 1] = "MONDAY";
+  Weekday2[Weekday2["TUESDAY"] = 2] = "TUESDAY";
+  Weekday2[Weekday2["WEDNESDAY"] = 3] = "WEDNESDAY";
+  Weekday2[Weekday2["THURSDAY"] = 4] = "THURSDAY";
+  Weekday2[Weekday2["FRIDAY"] = 5] = "FRIDAY";
+  Weekday2[Weekday2["SATURDAY"] = 6] = "SATURDAY";
+})(Weekday || (Weekday = {}));
+var Month;
+(function(Month2) {
+  Month2[Month2["JANUARY"] = 1] = "JANUARY";
+  Month2[Month2["FEBRUARY"] = 2] = "FEBRUARY";
+  Month2[Month2["MARCH"] = 3] = "MARCH";
+  Month2[Month2["APRIL"] = 4] = "APRIL";
+  Month2[Month2["MAY"] = 5] = "MAY";
+  Month2[Month2["JUNE"] = 6] = "JUNE";
+  Month2[Month2["JULY"] = 7] = "JULY";
+  Month2[Month2["AUGUST"] = 8] = "AUGUST";
+  Month2[Month2["SEPTEMBER"] = 9] = "SEPTEMBER";
+  Month2[Month2["OCTOBER"] = 10] = "OCTOBER";
+  Month2[Month2["NOVEMBER"] = 11] = "NOVEMBER";
+  Month2[Month2["DECEMBER"] = 12] = "DECEMBER";
+})(Month || (Month = {}));
+
+// node_modules/chrono-node/dist/esm/utils/dayjs.js
+function implyTheNextDay(component, targetDayJs) {
+  targetDayJs = targetDayJs.add(1, "day");
+  implySimilarDate(component, targetDayJs);
+  implySimilarTime(component, targetDayJs);
 }
-var _defaults = _getDefaults();
-function changeDefaults(newDefaults) {
-  _defaults = newDefaults;
+function assignSimilarDate(component, targetDayJs) {
+  component.assign("day", targetDayJs.date());
+  component.assign("month", targetDayJs.month() + 1);
+  component.assign("year", targetDayJs.year());
 }
-var escapeTest = /[&<>"']/;
-var escapeReplace = new RegExp(escapeTest.source, "g");
-var escapeTestNoEncode = /[<>"']|&(?!(#\d{1,7}|#[Xx][a-fA-F0-9]{1,6}|\w+);)/;
-var escapeReplaceNoEncode = new RegExp(escapeTestNoEncode.source, "g");
-var escapeReplacements = {
-  "&": "&amp;",
-  "<": "&lt;",
-  ">": "&gt;",
-  '"': "&quot;",
-  "'": "&#39;"
-};
-var getEscapeReplacement = (ch) => escapeReplacements[ch];
-function escape$1(html3, encode) {
-  if (encode) {
-    if (escapeTest.test(html3)) {
-      return html3.replace(escapeReplace, getEscapeReplacement);
-    }
+function assignSimilarTime(component, targetDayJs) {
+  component.assign("hour", targetDayJs.hour());
+  component.assign("minute", targetDayJs.minute());
+  component.assign("second", targetDayJs.second());
+  component.assign("millisecond", targetDayJs.millisecond());
+  if (component.get("hour") < 12) {
+    component.assign("meridiem", Meridiem.AM);
   } else {
-    if (escapeTestNoEncode.test(html3)) {
-      return html3.replace(escapeReplaceNoEncode, getEscapeReplacement);
-    }
+    component.assign("meridiem", Meridiem.PM);
   }
-  return html3;
 }
-var unescapeTest = /&(#(?:\d+)|(?:#x[0-9A-Fa-f]+)|(?:\w+));?/ig;
-function unescape2(html3) {
-  return html3.replace(unescapeTest, (_4, n5) => {
-    n5 = n5.toLowerCase();
-    if (n5 === "colon")
-      return ":";
-    if (n5.charAt(0) === "#") {
-      return n5.charAt(1) === "x" ? String.fromCharCode(parseInt(n5.substring(2), 16)) : String.fromCharCode(+n5.substring(1));
-    }
-    return "";
-  });
+function implySimilarDate(component, targetDayJs) {
+  component.imply("day", targetDayJs.date());
+  component.imply("month", targetDayJs.month() + 1);
+  component.imply("year", targetDayJs.year());
 }
-var caret = /(^|[^\[])\^/g;
-function edit(regex, opt) {
-  let source = typeof regex === "string" ? regex : regex.source;
-  opt = opt || "";
-  const obj = {
-    replace: (name, val) => {
-      let valSource = typeof val === "string" ? val : val.source;
-      valSource = valSource.replace(caret, "$1");
-      source = source.replace(name, valSource);
-      return obj;
-    },
-    getRegex: () => {
-      return new RegExp(source, opt);
-    }
-  };
-  return obj;
+function implySimilarTime(component, targetDayJs) {
+  component.imply("hour", targetDayJs.hour());
+  component.imply("minute", targetDayJs.minute());
+  component.imply("second", targetDayJs.second());
+  component.imply("millisecond", targetDayJs.millisecond());
 }
-function cleanUrl(href) {
-  try {
-    href = encodeURI(href).replace(/%25/g, "%");
-  } catch (e3) {
+
+// node_modules/chrono-node/dist/esm/timezone.js
+var import_dayjs = __toESM(require_dayjs_min(), 1);
+var TIMEZONE_ABBR_MAP = {
+  ACDT: 630,
+  ACST: 570,
+  ADT: -180,
+  AEDT: 660,
+  AEST: 600,
+  AFT: 270,
+  AKDT: -480,
+  AKST: -540,
+  ALMT: 360,
+  AMST: -180,
+  AMT: -240,
+  ANAST: 720,
+  ANAT: 720,
+  AQTT: 300,
+  ART: -180,
+  AST: -240,
+  AWDT: 540,
+  AWST: 480,
+  AZOST: 0,
+  AZOT: -60,
+  AZST: 300,
+  AZT: 240,
+  BNT: 480,
+  BOT: -240,
+  BRST: -120,
+  BRT: -180,
+  BST: 60,
+  BTT: 360,
+  CAST: 480,
+  CAT: 120,
+  CCT: 390,
+  CDT: -300,
+  CEST: 120,
+  CET: {
+    timezoneOffsetDuringDst: 2 * 60,
+    timezoneOffsetNonDst: 60,
+    dstStart: (year) => getLastWeekdayOfMonth(year, Month.MARCH, Weekday.SUNDAY, 2),
+    dstEnd: (year) => getLastWeekdayOfMonth(year, Month.OCTOBER, Weekday.SUNDAY, 3)
+  },
+  CHADT: 825,
+  CHAST: 765,
+  CKT: -600,
+  CLST: -180,
+  CLT: -240,
+  COT: -300,
+  CST: -360,
+  CT: {
+    timezoneOffsetDuringDst: -5 * 60,
+    timezoneOffsetNonDst: -6 * 60,
+    dstStart: (year) => getNthWeekdayOfMonth(year, Month.MARCH, Weekday.SUNDAY, 2, 2),
+    dstEnd: (year) => getNthWeekdayOfMonth(year, Month.NOVEMBER, Weekday.SUNDAY, 1, 2)
+  },
+  CVT: -60,
+  CXT: 420,
+  ChST: 600,
+  DAVT: 420,
+  EASST: -300,
+  EAST: -360,
+  EAT: 180,
+  ECT: -300,
+  EDT: -240,
+  EEST: 180,
+  EET: 120,
+  EGST: 0,
+  EGT: -60,
+  EST: -300,
+  ET: {
+    timezoneOffsetDuringDst: -4 * 60,
+    timezoneOffsetNonDst: -5 * 60,
+    dstStart: (year) => getNthWeekdayOfMonth(year, Month.MARCH, Weekday.SUNDAY, 2, 2),
+    dstEnd: (year) => getNthWeekdayOfMonth(year, Month.NOVEMBER, Weekday.SUNDAY, 1, 2)
+  },
+  FJST: 780,
+  FJT: 720,
+  FKST: -180,
+  FKT: -240,
+  FNT: -120,
+  GALT: -360,
+  GAMT: -540,
+  GET: 240,
+  GFT: -180,
+  GILT: 720,
+  GMT: 0,
+  GST: 240,
+  GYT: -240,
+  HAA: -180,
+  HAC: -300,
+  HADT: -540,
+  HAE: -240,
+  HAP: -420,
+  HAR: -360,
+  HAST: -600,
+  HAT: -90,
+  HAY: -480,
+  HKT: 480,
+  HLV: -210,
+  HNA: -240,
+  HNC: -360,
+  HNE: -300,
+  HNP: -480,
+  HNR: -420,
+  HNT: -150,
+  HNY: -540,
+  HOVT: 420,
+  ICT: 420,
+  IDT: 180,
+  IOT: 360,
+  IRDT: 270,
+  IRKST: 540,
+  IRKT: 540,
+  IRST: 210,
+  IST: 330,
+  JST: 540,
+  KGT: 360,
+  KRAST: 480,
+  KRAT: 480,
+  KST: 540,
+  KUYT: 240,
+  LHDT: 660,
+  LHST: 630,
+  LINT: 840,
+  MAGST: 720,
+  MAGT: 720,
+  MART: -510,
+  MAWT: 300,
+  MDT: -360,
+  MESZ: 120,
+  MEZ: 60,
+  MHT: 720,
+  MMT: 390,
+  MSD: 240,
+  MSK: 180,
+  MST: -420,
+  MT: {
+    timezoneOffsetDuringDst: -6 * 60,
+    timezoneOffsetNonDst: -7 * 60,
+    dstStart: (year) => getNthWeekdayOfMonth(year, Month.MARCH, Weekday.SUNDAY, 2, 2),
+    dstEnd: (year) => getNthWeekdayOfMonth(year, Month.NOVEMBER, Weekday.SUNDAY, 1, 2)
+  },
+  MUT: 240,
+  MVT: 300,
+  MYT: 480,
+  NCT: 660,
+  NDT: -90,
+  NFT: 690,
+  NOVST: 420,
+  NOVT: 360,
+  NPT: 345,
+  NST: -150,
+  NUT: -660,
+  NZDT: 780,
+  NZST: 720,
+  OMSST: 420,
+  OMST: 420,
+  PDT: -420,
+  PET: -300,
+  PETST: 720,
+  PETT: 720,
+  PGT: 600,
+  PHOT: 780,
+  PHT: 480,
+  PKT: 300,
+  PMDT: -120,
+  PMST: -180,
+  PONT: 660,
+  PST: -480,
+  PT: {
+    timezoneOffsetDuringDst: -7 * 60,
+    timezoneOffsetNonDst: -8 * 60,
+    dstStart: (year) => getNthWeekdayOfMonth(year, Month.MARCH, Weekday.SUNDAY, 2, 2),
+    dstEnd: (year) => getNthWeekdayOfMonth(year, Month.NOVEMBER, Weekday.SUNDAY, 1, 2)
+  },
+  PWT: 540,
+  PYST: -180,
+  PYT: -240,
+  RET: 240,
+  SAMT: 240,
+  SAST: 120,
+  SBT: 660,
+  SCT: 240,
+  SGT: 480,
+  SRT: -180,
+  SST: -660,
+  TAHT: -600,
+  TFT: 300,
+  TJT: 300,
+  TKT: 780,
+  TLT: 540,
+  TMT: 300,
+  TVT: 720,
+  ULAT: 480,
+  UTC: 0,
+  UYST: -120,
+  UYT: -180,
+  UZT: 300,
+  VET: -210,
+  VLAST: 660,
+  VLAT: 660,
+  VUT: 660,
+  WAST: 120,
+  WAT: 60,
+  WEST: 60,
+  WESZ: 60,
+  WET: 0,
+  WEZ: 0,
+  WFT: 720,
+  WGST: -120,
+  WGT: -180,
+  WIB: 420,
+  WIT: 540,
+  WITA: 480,
+  WST: 780,
+  WT: 0,
+  YAKST: 600,
+  YAKT: 600,
+  YAPT: 600,
+  YEKST: 360,
+  YEKT: 360
+};
+function getNthWeekdayOfMonth(year, month2, weekday, n5, hour = 0) {
+  let dayOfMonth = 0;
+  let i5 = 0;
+  while (i5 < n5) {
+    dayOfMonth++;
+    const date = new Date(year, month2 - 1, dayOfMonth);
+    if (date.getDay() === weekday)
+      i5++;
+  }
+  return new Date(year, month2 - 1, dayOfMonth, hour);
+}
+function getLastWeekdayOfMonth(year, month2, weekday, hour = 0) {
+  const oneIndexedWeekday = weekday === 0 ? 7 : weekday;
+  const date = new Date(year, month2 - 1 + 1, 1, 12);
+  const firstWeekdayNextMonth = date.getDay() === 0 ? 7 : date.getDay();
+  let dayDiff;
+  if (firstWeekdayNextMonth === oneIndexedWeekday)
+    dayDiff = 7;
+  else if (firstWeekdayNextMonth < oneIndexedWeekday)
+    dayDiff = 7 + firstWeekdayNextMonth - oneIndexedWeekday;
+  else
+    dayDiff = firstWeekdayNextMonth - oneIndexedWeekday;
+  date.setDate(date.getDate() - dayDiff);
+  return new Date(year, month2 - 1, date.getDate(), hour);
+}
+function toTimezoneOffset(timezoneInput, date, timezoneOverrides = {}) {
+  var _a2;
+  if (timezoneInput == null) {
     return null;
   }
-  return href;
+  if (typeof timezoneInput === "number") {
+    return timezoneInput;
+  }
+  const matchedTimezone = (_a2 = timezoneOverrides[timezoneInput]) != null ? _a2 : TIMEZONE_ABBR_MAP[timezoneInput];
+  if (matchedTimezone == null) {
+    return null;
+  }
+  if (typeof matchedTimezone == "number") {
+    return matchedTimezone;
+  }
+  if (date == null) {
+    return null;
+  }
+  if ((0, import_dayjs.default)(date).isAfter(matchedTimezone.dstStart(date.getFullYear())) && !(0, import_dayjs.default)(date).isAfter(matchedTimezone.dstEnd(date.getFullYear()))) {
+    return matchedTimezone.timezoneOffsetDuringDst;
+  }
+  return matchedTimezone.timezoneOffsetNonDst;
 }
-var noopTest = { exec: () => null };
-function splitCells(tableRow, count) {
-  const row = tableRow.replace(/\|/g, (match2, offset2, str) => {
-    let escaped = false;
-    let curr = offset2;
-    while (--curr >= 0 && str[curr] === "\\")
-      escaped = !escaped;
-    if (escaped) {
-      return "|";
-    } else {
-      return " |";
-    }
-  }), cells = row.split(/ \|/);
-  let i5 = 0;
-  if (!cells[0].trim()) {
-    cells.shift();
-  }
-  if (cells.length > 0 && !cells[cells.length - 1].trim()) {
-    cells.pop();
-  }
-  if (count) {
-    if (cells.length > count) {
-      cells.splice(count);
-    } else {
-      while (cells.length < count)
-        cells.push("");
-    }
-  }
-  for (; i5 < cells.length; i5++) {
-    cells[i5] = cells[i5].trim().replace(/\\\|/g, "|");
-  }
-  return cells;
-}
-function rtrim(str, c5, invert) {
-  const l4 = str.length;
-  if (l4 === 0) {
-    return "";
-  }
-  let suffLen = 0;
-  while (suffLen < l4) {
-    const currChar = str.charAt(l4 - suffLen - 1);
-    if (currChar === c5 && !invert) {
-      suffLen++;
-    } else if (currChar !== c5 && invert) {
-      suffLen++;
-    } else {
-      break;
-    }
-  }
-  return str.slice(0, l4 - suffLen);
-}
-function findClosingBracket(str, b2) {
-  if (str.indexOf(b2[1]) === -1) {
-    return -1;
-  }
-  let level = 0;
-  for (let i5 = 0; i5 < str.length; i5++) {
-    if (str[i5] === "\\") {
-      i5++;
-    } else if (str[i5] === b2[0]) {
-      level++;
-    } else if (str[i5] === b2[1]) {
-      level--;
-      if (level < 0) {
-        return i5;
-      }
-    }
-  }
-  return -1;
-}
-function outputLink(cap, link2, raw, lexer2) {
-  const href = link2.href;
-  const title = link2.title ? escape$1(link2.title) : null;
-  const text = cap[1].replace(/\\([\[\]])/g, "$1");
-  if (cap[0].charAt(0) !== "!") {
-    lexer2.state.inLink = true;
-    const token = {
-      type: "link",
-      raw,
-      href,
-      title,
-      text,
-      tokens: lexer2.inlineTokens(text)
-    };
-    lexer2.state.inLink = false;
-    return token;
-  }
-  return {
-    type: "image",
-    raw,
-    href,
-    title,
-    text: escape$1(text)
-  };
-}
-function indentCodeCompensation(raw, text) {
-  const matchIndentToCode = raw.match(/^(\s+)(?:```)/);
-  if (matchIndentToCode === null) {
-    return text;
-  }
-  const indentToCode = matchIndentToCode[1];
-  return text.split("\n").map((node2) => {
-    const matchIndentInNode = node2.match(/^\s+/);
-    if (matchIndentInNode === null) {
-      return node2;
-    }
-    const [indentInNode] = matchIndentInNode;
-    if (indentInNode.length >= indentToCode.length) {
-      return node2.slice(indentToCode.length);
-    }
-    return node2;
-  }).join("\n");
-}
-var _Tokenizer = class {
-  // set by the lexer
-  constructor(options2) {
-    __publicField(this, "options");
-    __publicField(this, "rules");
-    // set by the lexer
-    __publicField(this, "lexer");
-    this.options = options2 || _defaults;
-  }
-  space(src) {
-    const cap = this.rules.block.newline.exec(src);
-    if (cap && cap[0].length > 0) {
-      return {
-        type: "space",
-        raw: cap[0]
-      };
-    }
-  }
-  code(src) {
-    const cap = this.rules.block.code.exec(src);
-    if (cap) {
-      const text = cap[0].replace(/^ {1,4}/gm, "");
-      return {
-        type: "code",
-        raw: cap[0],
-        codeBlockStyle: "indented",
-        text: !this.options.pedantic ? rtrim(text, "\n") : text
-      };
-    }
-  }
-  fences(src) {
-    const cap = this.rules.block.fences.exec(src);
-    if (cap) {
-      const raw = cap[0];
-      const text = indentCodeCompensation(raw, cap[3] || "");
-      return {
-        type: "code",
-        raw,
-        lang: cap[2] ? cap[2].trim().replace(this.rules.inline.anyPunctuation, "$1") : cap[2],
-        text
-      };
-    }
-  }
-  heading(src) {
-    const cap = this.rules.block.heading.exec(src);
-    if (cap) {
-      let text = cap[2].trim();
-      if (/#$/.test(text)) {
-        const trimmed = rtrim(text, "#");
-        if (this.options.pedantic) {
-          text = trimmed.trim();
-        } else if (!trimmed || / $/.test(trimmed)) {
-          text = trimmed.trim();
-        }
-      }
-      return {
-        type: "heading",
-        raw: cap[0],
-        depth: cap[1].length,
-        text,
-        tokens: this.lexer.inline(text)
-      };
-    }
-  }
-  hr(src) {
-    const cap = this.rules.block.hr.exec(src);
-    if (cap) {
-      return {
-        type: "hr",
-        raw: cap[0]
-      };
-    }
-  }
-  blockquote(src) {
-    const cap = this.rules.block.blockquote.exec(src);
-    if (cap) {
-      const text = rtrim(cap[0].replace(/^ *>[ \t]?/gm, ""), "\n");
-      const top = this.lexer.state.top;
-      this.lexer.state.top = true;
-      const tokens = this.lexer.blockTokens(text);
-      this.lexer.state.top = top;
-      return {
-        type: "blockquote",
-        raw: cap[0],
-        tokens,
-        text
-      };
-    }
-  }
-  list(src) {
-    let cap = this.rules.block.list.exec(src);
-    if (cap) {
-      let bull = cap[1].trim();
-      const isordered = bull.length > 1;
-      const list5 = {
-        type: "list",
-        raw: "",
-        ordered: isordered,
-        start: isordered ? +bull.slice(0, -1) : "",
-        loose: false,
-        items: []
-      };
-      bull = isordered ? `\\d{1,9}\\${bull.slice(-1)}` : `\\${bull}`;
-      if (this.options.pedantic) {
-        bull = isordered ? bull : "[*+-]";
-      }
-      const itemRegex = new RegExp(`^( {0,3}${bull})((?:[	 ][^\\n]*)?(?:\\n|$))`);
-      let raw = "";
-      let itemContents = "";
-      let endsWithBlankLine = false;
-      while (src) {
-        let endEarly = false;
-        if (!(cap = itemRegex.exec(src))) {
-          break;
-        }
-        if (this.rules.block.hr.test(src)) {
-          break;
-        }
-        raw = cap[0];
-        src = src.substring(raw.length);
-        let line = cap[2].split("\n", 1)[0].replace(/^\t+/, (t5) => " ".repeat(3 * t5.length));
-        let nextLine = src.split("\n", 1)[0];
-        let indent = 0;
-        if (this.options.pedantic) {
-          indent = 2;
-          itemContents = line.trimStart();
-        } else {
-          indent = cap[2].search(/[^ ]/);
-          indent = indent > 4 ? 1 : indent;
-          itemContents = line.slice(indent);
-          indent += cap[1].length;
-        }
-        let blankLine = false;
-        if (!line && /^ *$/.test(nextLine)) {
-          raw += nextLine + "\n";
-          src = src.substring(nextLine.length + 1);
-          endEarly = true;
-        }
-        if (!endEarly) {
-          const nextBulletRegex = new RegExp(`^ {0,${Math.min(3, indent - 1)}}(?:[*+-]|\\d{1,9}[.)])((?:[ 	][^\\n]*)?(?:\\n|$))`);
-          const hrRegex = new RegExp(`^ {0,${Math.min(3, indent - 1)}}((?:- *){3,}|(?:_ *){3,}|(?:\\* *){3,})(?:\\n+|$)`);
-          const fencesBeginRegex = new RegExp(`^ {0,${Math.min(3, indent - 1)}}(?:\`\`\`|~~~)`);
-          const headingBeginRegex = new RegExp(`^ {0,${Math.min(3, indent - 1)}}#`);
-          while (src) {
-            const rawLine = src.split("\n", 1)[0];
-            nextLine = rawLine;
-            if (this.options.pedantic) {
-              nextLine = nextLine.replace(/^ {1,4}(?=( {4})*[^ ])/g, "  ");
-            }
-            if (fencesBeginRegex.test(nextLine)) {
-              break;
-            }
-            if (headingBeginRegex.test(nextLine)) {
-              break;
-            }
-            if (nextBulletRegex.test(nextLine)) {
-              break;
-            }
-            if (hrRegex.test(src)) {
-              break;
-            }
-            if (nextLine.search(/[^ ]/) >= indent || !nextLine.trim()) {
-              itemContents += "\n" + nextLine.slice(indent);
-            } else {
-              if (blankLine) {
-                break;
-              }
-              if (line.search(/[^ ]/) >= 4) {
-                break;
-              }
-              if (fencesBeginRegex.test(line)) {
-                break;
-              }
-              if (headingBeginRegex.test(line)) {
-                break;
-              }
-              if (hrRegex.test(line)) {
-                break;
-              }
-              itemContents += "\n" + nextLine;
-            }
-            if (!blankLine && !nextLine.trim()) {
-              blankLine = true;
-            }
-            raw += rawLine + "\n";
-            src = src.substring(rawLine.length + 1);
-            line = nextLine.slice(indent);
-          }
-        }
-        if (!list5.loose) {
-          if (endsWithBlankLine) {
-            list5.loose = true;
-          } else if (/\n *\n *$/.test(raw)) {
-            endsWithBlankLine = true;
-          }
-        }
-        let istask = null;
-        let ischecked;
-        if (this.options.gfm) {
-          istask = /^\[[ xX]\] /.exec(itemContents);
-          if (istask) {
-            ischecked = istask[0] !== "[ ] ";
-            itemContents = itemContents.replace(/^\[[ xX]\] +/, "");
-          }
-        }
-        list5.items.push({
-          type: "list_item",
-          raw,
-          task: !!istask,
-          checked: ischecked,
-          loose: false,
-          text: itemContents,
-          tokens: []
-        });
-        list5.raw += raw;
-      }
-      list5.items[list5.items.length - 1].raw = raw.trimEnd();
-      list5.items[list5.items.length - 1].text = itemContents.trimEnd();
-      list5.raw = list5.raw.trimEnd();
-      for (let i5 = 0; i5 < list5.items.length; i5++) {
-        this.lexer.state.top = false;
-        list5.items[i5].tokens = this.lexer.blockTokens(list5.items[i5].text, []);
-        if (!list5.loose) {
-          const spacers = list5.items[i5].tokens.filter((t5) => t5.type === "space");
-          const hasMultipleLineBreaks = spacers.length > 0 && spacers.some((t5) => /\n.*\n/.test(t5.raw));
-          list5.loose = hasMultipleLineBreaks;
-        }
-      }
-      if (list5.loose) {
-        for (let i5 = 0; i5 < list5.items.length; i5++) {
-          list5.items[i5].loose = true;
-        }
-      }
-      return list5;
-    }
-  }
-  html(src) {
-    const cap = this.rules.block.html.exec(src);
-    if (cap) {
-      const token = {
-        type: "html",
-        block: true,
-        raw: cap[0],
-        pre: cap[1] === "pre" || cap[1] === "script" || cap[1] === "style",
-        text: cap[0]
-      };
-      return token;
-    }
-  }
-  def(src) {
-    const cap = this.rules.block.def.exec(src);
-    if (cap) {
-      const tag2 = cap[1].toLowerCase().replace(/\s+/g, " ");
-      const href = cap[2] ? cap[2].replace(/^<(.*)>$/, "$1").replace(this.rules.inline.anyPunctuation, "$1") : "";
-      const title = cap[3] ? cap[3].substring(1, cap[3].length - 1).replace(this.rules.inline.anyPunctuation, "$1") : cap[3];
-      return {
-        type: "def",
-        tag: tag2,
-        raw: cap[0],
-        href,
-        title
-      };
-    }
-  }
-  table(src) {
-    const cap = this.rules.block.table.exec(src);
-    if (!cap) {
-      return;
-    }
-    if (!/[:|]/.test(cap[2])) {
-      return;
-    }
-    const headers = splitCells(cap[1]);
-    const aligns = cap[2].replace(/^\||\| *$/g, "").split("|");
-    const rows = cap[3] && cap[3].trim() ? cap[3].replace(/\n[ \t]*$/, "").split("\n") : [];
-    const item = {
-      type: "table",
-      raw: cap[0],
-      header: [],
-      align: [],
-      rows: []
-    };
-    if (headers.length !== aligns.length) {
-      return;
-    }
-    for (const align of aligns) {
-      if (/^ *-+: *$/.test(align)) {
-        item.align.push("right");
-      } else if (/^ *:-+: *$/.test(align)) {
-        item.align.push("center");
-      } else if (/^ *:-+ *$/.test(align)) {
-        item.align.push("left");
-      } else {
-        item.align.push(null);
-      }
-    }
-    for (const header of headers) {
-      item.header.push({
-        text: header,
-        tokens: this.lexer.inline(header)
-      });
-    }
-    for (const row of rows) {
-      item.rows.push(splitCells(row, item.header.length).map((cell) => {
-        return {
-          text: cell,
-          tokens: this.lexer.inline(cell)
-        };
-      }));
-    }
-    return item;
-  }
-  lheading(src) {
-    const cap = this.rules.block.lheading.exec(src);
-    if (cap) {
-      return {
-        type: "heading",
-        raw: cap[0],
-        depth: cap[2].charAt(0) === "=" ? 1 : 2,
-        text: cap[1],
-        tokens: this.lexer.inline(cap[1])
-      };
-    }
-  }
-  paragraph(src) {
-    const cap = this.rules.block.paragraph.exec(src);
-    if (cap) {
-      const text = cap[1].charAt(cap[1].length - 1) === "\n" ? cap[1].slice(0, -1) : cap[1];
-      return {
-        type: "paragraph",
-        raw: cap[0],
-        text,
-        tokens: this.lexer.inline(text)
-      };
-    }
-  }
-  text(src) {
-    const cap = this.rules.block.text.exec(src);
-    if (cap) {
-      return {
-        type: "text",
-        raw: cap[0],
-        text: cap[0],
-        tokens: this.lexer.inline(cap[0])
-      };
-    }
-  }
-  escape(src) {
-    const cap = this.rules.inline.escape.exec(src);
-    if (cap) {
-      return {
-        type: "escape",
-        raw: cap[0],
-        text: escape$1(cap[1])
-      };
-    }
-  }
-  tag(src) {
-    const cap = this.rules.inline.tag.exec(src);
-    if (cap) {
-      if (!this.lexer.state.inLink && /^<a /i.test(cap[0])) {
-        this.lexer.state.inLink = true;
-      } else if (this.lexer.state.inLink && /^<\/a>/i.test(cap[0])) {
-        this.lexer.state.inLink = false;
-      }
-      if (!this.lexer.state.inRawBlock && /^<(pre|code|kbd|script)(\s|>)/i.test(cap[0])) {
-        this.lexer.state.inRawBlock = true;
-      } else if (this.lexer.state.inRawBlock && /^<\/(pre|code|kbd|script)(\s|>)/i.test(cap[0])) {
-        this.lexer.state.inRawBlock = false;
-      }
-      return {
-        type: "html",
-        raw: cap[0],
-        inLink: this.lexer.state.inLink,
-        inRawBlock: this.lexer.state.inRawBlock,
-        block: false,
-        text: cap[0]
-      };
-    }
-  }
-  link(src) {
-    const cap = this.rules.inline.link.exec(src);
-    if (cap) {
-      const trimmedUrl = cap[2].trim();
-      if (!this.options.pedantic && /^</.test(trimmedUrl)) {
-        if (!/>$/.test(trimmedUrl)) {
-          return;
-        }
-        const rtrimSlash = rtrim(trimmedUrl.slice(0, -1), "\\");
-        if ((trimmedUrl.length - rtrimSlash.length) % 2 === 0) {
-          return;
-        }
-      } else {
-        const lastParenIndex = findClosingBracket(cap[2], "()");
-        if (lastParenIndex > -1) {
-          const start2 = cap[0].indexOf("!") === 0 ? 5 : 4;
-          const linkLen = start2 + cap[1].length + lastParenIndex;
-          cap[2] = cap[2].substring(0, lastParenIndex);
-          cap[0] = cap[0].substring(0, linkLen).trim();
-          cap[3] = "";
-        }
-      }
-      let href = cap[2];
-      let title = "";
-      if (this.options.pedantic) {
-        const link2 = /^([^'"]*[^\s])\s+(['"])(.*)\2/.exec(href);
-        if (link2) {
-          href = link2[1];
-          title = link2[3];
-        }
-      } else {
-        title = cap[3] ? cap[3].slice(1, -1) : "";
-      }
-      href = href.trim();
-      if (/^</.test(href)) {
-        if (this.options.pedantic && !/>$/.test(trimmedUrl)) {
-          href = href.slice(1);
-        } else {
-          href = href.slice(1, -1);
-        }
-      }
-      return outputLink(cap, {
-        href: href ? href.replace(this.rules.inline.anyPunctuation, "$1") : href,
-        title: title ? title.replace(this.rules.inline.anyPunctuation, "$1") : title
-      }, cap[0], this.lexer);
-    }
-  }
-  reflink(src, links) {
-    let cap;
-    if ((cap = this.rules.inline.reflink.exec(src)) || (cap = this.rules.inline.nolink.exec(src))) {
-      const linkString = (cap[2] || cap[1]).replace(/\s+/g, " ");
-      const link2 = links[linkString.toLowerCase()];
-      if (!link2) {
-        const text = cap[0].charAt(0);
-        return {
-          type: "text",
-          raw: text,
-          text
-        };
-      }
-      return outputLink(cap, link2, cap[0], this.lexer);
-    }
-  }
-  emStrong(src, maskedSrc, prevChar = "") {
-    let match2 = this.rules.inline.emStrongLDelim.exec(src);
-    if (!match2)
-      return;
-    if (match2[3] && prevChar.match(/[\p{L}\p{N}]/u))
-      return;
-    const nextChar = match2[1] || match2[2] || "";
-    if (!nextChar || !prevChar || this.rules.inline.punctuation.exec(prevChar)) {
-      const lLength = [...match2[0]].length - 1;
-      let rDelim, rLength, delimTotal = lLength, midDelimTotal = 0;
-      const endReg = match2[0][0] === "*" ? this.rules.inline.emStrongRDelimAst : this.rules.inline.emStrongRDelimUnd;
-      endReg.lastIndex = 0;
-      maskedSrc = maskedSrc.slice(-1 * src.length + lLength);
-      while ((match2 = endReg.exec(maskedSrc)) != null) {
-        rDelim = match2[1] || match2[2] || match2[3] || match2[4] || match2[5] || match2[6];
-        if (!rDelim)
-          continue;
-        rLength = [...rDelim].length;
-        if (match2[3] || match2[4]) {
-          delimTotal += rLength;
-          continue;
-        } else if (match2[5] || match2[6]) {
-          if (lLength % 3 && !((lLength + rLength) % 3)) {
-            midDelimTotal += rLength;
-            continue;
-          }
-        }
-        delimTotal -= rLength;
-        if (delimTotal > 0)
-          continue;
-        rLength = Math.min(rLength, rLength + delimTotal + midDelimTotal);
-        const lastCharLength = [...match2[0]][0].length;
-        const raw = src.slice(0, lLength + match2.index + lastCharLength + rLength);
-        if (Math.min(lLength, rLength) % 2) {
-          const text2 = raw.slice(1, -1);
-          return {
-            type: "em",
-            raw,
-            text: text2,
-            tokens: this.lexer.inlineTokens(text2)
-          };
-        }
-        const text = raw.slice(2, -2);
-        return {
-          type: "strong",
-          raw,
-          text,
-          tokens: this.lexer.inlineTokens(text)
-        };
-      }
-    }
-  }
-  codespan(src) {
-    const cap = this.rules.inline.code.exec(src);
-    if (cap) {
-      let text = cap[2].replace(/\n/g, " ");
-      const hasNonSpaceChars = /[^ ]/.test(text);
-      const hasSpaceCharsOnBothEnds = /^ /.test(text) && / $/.test(text);
-      if (hasNonSpaceChars && hasSpaceCharsOnBothEnds) {
-        text = text.substring(1, text.length - 1);
-      }
-      text = escape$1(text, true);
-      return {
-        type: "codespan",
-        raw: cap[0],
-        text
-      };
-    }
-  }
-  br(src) {
-    const cap = this.rules.inline.br.exec(src);
-    if (cap) {
-      return {
-        type: "br",
-        raw: cap[0]
-      };
-    }
-  }
-  del(src) {
-    const cap = this.rules.inline.del.exec(src);
-    if (cap) {
-      return {
-        type: "del",
-        raw: cap[0],
-        text: cap[2],
-        tokens: this.lexer.inlineTokens(cap[2])
-      };
-    }
-  }
-  autolink(src) {
-    const cap = this.rules.inline.autolink.exec(src);
-    if (cap) {
-      let text, href;
-      if (cap[2] === "@") {
-        text = escape$1(cap[1]);
-        href = "mailto:" + text;
-      } else {
-        text = escape$1(cap[1]);
-        href = text;
-      }
-      return {
-        type: "link",
-        raw: cap[0],
-        text,
-        href,
-        tokens: [
-          {
-            type: "text",
-            raw: text,
-            text
-          }
-        ]
-      };
-    }
-  }
-  url(src) {
-    var _a2, _b2;
-    let cap;
-    if (cap = this.rules.inline.url.exec(src)) {
-      let text, href;
-      if (cap[2] === "@") {
-        text = escape$1(cap[0]);
-        href = "mailto:" + text;
-      } else {
-        let prevCapZero;
-        do {
-          prevCapZero = cap[0];
-          cap[0] = (_b2 = (_a2 = this.rules.inline._backpedal.exec(cap[0])) == null ? void 0 : _a2[0]) != null ? _b2 : "";
-        } while (prevCapZero !== cap[0]);
-        text = escape$1(cap[0]);
-        if (cap[1] === "www.") {
-          href = "http://" + cap[0];
-        } else {
-          href = cap[0];
-        }
-      }
-      return {
-        type: "link",
-        raw: cap[0],
-        text,
-        href,
-        tokens: [
-          {
-            type: "text",
-            raw: text,
-            text
-          }
-        ]
-      };
-    }
-  }
-  inlineText(src) {
-    const cap = this.rules.inline.text.exec(src);
-    if (cap) {
-      let text;
-      if (this.lexer.state.inRawBlock) {
-        text = cap[0];
-      } else {
-        text = escape$1(cap[0]);
-      }
-      return {
-        type: "text",
-        raw: cap[0],
-        text
-      };
-    }
-  }
-};
-var newline = /^(?: *(?:\n|$))+/;
-var blockCode = /^( {4}[^\n]+(?:\n(?: *(?:\n|$))*)?)+/;
-var fences = /^ {0,3}(`{3,}(?=[^`\n]*(?:\n|$))|~{3,})([^\n]*)(?:\n|$)(?:|([\s\S]*?)(?:\n|$))(?: {0,3}\1[~`]* *(?=\n|$)|$)/;
-var hr = /^ {0,3}((?:-[\t ]*){3,}|(?:_[ \t]*){3,}|(?:\*[ \t]*){3,})(?:\n+|$)/;
-var heading = /^ {0,3}(#{1,6})(?=\s|$)(.*)(?:\n+|$)/;
-var bullet = /(?:[*+-]|\d{1,9}[.)])/;
-var lheading = edit(/^(?!bull )((?:.|\n(?!\s*?\n|bull ))+?)\n {0,3}(=+|-+) *(?:\n+|$)/).replace(/bull/g, bullet).getRegex();
-var _paragraph = /^([^\n]+(?:\n(?!hr|heading|lheading|blockquote|fences|list|html|table| +\n)[^\n]+)*)/;
-var blockText = /^[^\n]+/;
-var _blockLabel = /(?!\s*\])(?:\\.|[^\[\]\\])+/;
-var def = edit(/^ {0,3}\[(label)\]: *(?:\n *)?([^<\s][^\s]*|<.*?>)(?:(?: +(?:\n *)?| *\n *)(title))? *(?:\n+|$)/).replace("label", _blockLabel).replace("title", /(?:"(?:\\"?|[^"\\])*"|'[^'\n]*(?:\n[^'\n]+)*\n?'|\([^()]*\))/).getRegex();
-var list = edit(/^( {0,3}bull)([ \t][^\n]+?)?(?:\n|$)/).replace(/bull/g, bullet).getRegex();
-var _tag = "address|article|aside|base|basefont|blockquote|body|caption|center|col|colgroup|dd|details|dialog|dir|div|dl|dt|fieldset|figcaption|figure|footer|form|frame|frameset|h[1-6]|head|header|hr|html|iframe|legend|li|link|main|menu|menuitem|meta|nav|noframes|ol|optgroup|option|p|param|search|section|summary|table|tbody|td|tfoot|th|thead|title|tr|track|ul";
-var _comment = /<!--(?:-?>|[\s\S]*?(?:-->|$))/;
-var html = edit("^ {0,3}(?:<(script|pre|style|textarea)[\\s>][\\s\\S]*?(?:</\\1>[^\\n]*\\n+|$)|comment[^\\n]*(\\n+|$)|<\\?[\\s\\S]*?(?:\\?>\\n*|$)|<![A-Z][\\s\\S]*?(?:>\\n*|$)|<!\\[CDATA\\[[\\s\\S]*?(?:\\]\\]>\\n*|$)|</?(tag)(?: +|\\n|/?>)[\\s\\S]*?(?:(?:\\n *)+\\n|$)|<(?!script|pre|style|textarea)([a-z][\\w-]*)(?:attribute)*? */?>(?=[ \\t]*(?:\\n|$))[\\s\\S]*?(?:(?:\\n *)+\\n|$)|</(?!script|pre|style|textarea)[a-z][\\w-]*\\s*>(?=[ \\t]*(?:\\n|$))[\\s\\S]*?(?:(?:\\n *)+\\n|$))", "i").replace("comment", _comment).replace("tag", _tag).replace("attribute", / +[a-zA-Z:_][\w.:-]*(?: *= *"[^"\n]*"| *= *'[^'\n]*'| *= *[^\s"'=<>`]+)?/).getRegex();
-var paragraph = edit(_paragraph).replace("hr", hr).replace("heading", " {0,3}#{1,6}(?:\\s|$)").replace("|lheading", "").replace("|table", "").replace("blockquote", " {0,3}>").replace("fences", " {0,3}(?:`{3,}(?=[^`\\n]*\\n)|~{3,})[^\\n]*\\n").replace("list", " {0,3}(?:[*+-]|1[.)]) ").replace("html", "</?(?:tag)(?: +|\\n|/?>)|<(?:script|pre|style|textarea|!--)").replace("tag", _tag).getRegex();
-var blockquote = edit(/^( {0,3}> ?(paragraph|[^\n]*)(?:\n|$))+/).replace("paragraph", paragraph).getRegex();
-var blockNormal = {
-  blockquote,
-  code: blockCode,
-  def,
-  fences,
-  heading,
-  hr,
-  html,
-  lheading,
-  list,
-  newline,
-  paragraph,
-  table: noopTest,
-  text: blockText
-};
-var gfmTable = edit("^ *([^\\n ].*)\\n {0,3}((?:\\| *)?:?-+:? *(?:\\| *:?-+:? *)*(?:\\| *)?)(?:\\n((?:(?! *\\n|hr|heading|blockquote|code|fences|list|html).*(?:\\n|$))*)\\n*|$)").replace("hr", hr).replace("heading", " {0,3}#{1,6}(?:\\s|$)").replace("blockquote", " {0,3}>").replace("code", " {4}[^\\n]").replace("fences", " {0,3}(?:`{3,}(?=[^`\\n]*\\n)|~{3,})[^\\n]*\\n").replace("list", " {0,3}(?:[*+-]|1[.)]) ").replace("html", "</?(?:tag)(?: +|\\n|/?>)|<(?:script|pre|style|textarea|!--)").replace("tag", _tag).getRegex();
-var blockGfm = {
-  ...blockNormal,
-  table: gfmTable,
-  paragraph: edit(_paragraph).replace("hr", hr).replace("heading", " {0,3}#{1,6}(?:\\s|$)").replace("|lheading", "").replace("table", gfmTable).replace("blockquote", " {0,3}>").replace("fences", " {0,3}(?:`{3,}(?=[^`\\n]*\\n)|~{3,})[^\\n]*\\n").replace("list", " {0,3}(?:[*+-]|1[.)]) ").replace("html", "</?(?:tag)(?: +|\\n|/?>)|<(?:script|pre|style|textarea|!--)").replace("tag", _tag).getRegex()
-};
-var blockPedantic = {
-  ...blockNormal,
-  html: edit(`^ *(?:comment *(?:\\n|\\s*$)|<(tag)[\\s\\S]+?</\\1> *(?:\\n{2,}|\\s*$)|<tag(?:"[^"]*"|'[^']*'|\\s[^'"/>\\s]*)*?/?> *(?:\\n{2,}|\\s*$))`).replace("comment", _comment).replace(/tag/g, "(?!(?:a|em|strong|small|s|cite|q|dfn|abbr|data|time|code|var|samp|kbd|sub|sup|i|b|u|mark|ruby|rt|rp|bdi|bdo|span|br|wbr|ins|del|img)\\b)\\w+(?!:|[^\\w\\s@]*@)\\b").getRegex(),
-  def: /^ *\[([^\]]+)\]: *<?([^\s>]+)>?(?: +(["(][^\n]+[")]))? *(?:\n+|$)/,
-  heading: /^(#{1,6})(.*)(?:\n+|$)/,
-  fences: noopTest,
-  // fences not supported
-  lheading: /^(.+?)\n {0,3}(=+|-+) *(?:\n+|$)/,
-  paragraph: edit(_paragraph).replace("hr", hr).replace("heading", " *#{1,6} *[^\n]").replace("lheading", lheading).replace("|table", "").replace("blockquote", " {0,3}>").replace("|fences", "").replace("|list", "").replace("|html", "").replace("|tag", "").getRegex()
-};
-var escape = /^\\([!"#$%&'()*+,\-./:;<=>?@\[\]\\^_`{|}~])/;
-var inlineCode = /^(`+)([^`]|[^`][\s\S]*?[^`])\1(?!`)/;
-var br = /^( {2,}|\\)\n(?!\s*$)/;
-var inlineText = /^(`+|[^`])(?:(?= {2,}\n)|[\s\S]*?(?:(?=[\\<!\[`*_]|\b_|$)|[^ ](?= {2,}\n)))/;
-var _punctuation = "\\p{P}\\p{S}";
-var punctuation = edit(/^((?![*_])[\spunctuation])/, "u").replace(/punctuation/g, _punctuation).getRegex();
-var blockSkip = /\[[^[\]]*?\]\([^\(\)]*?\)|`[^`]*?`|<[^<>]*?>/g;
-var emStrongLDelim = edit(/^(?:\*+(?:((?!\*)[punct])|[^\s*]))|^_+(?:((?!_)[punct])|([^\s_]))/, "u").replace(/punct/g, _punctuation).getRegex();
-var emStrongRDelimAst = edit("^[^_*]*?__[^_*]*?\\*[^_*]*?(?=__)|[^*]+(?=[^*])|(?!\\*)[punct](\\*+)(?=[\\s]|$)|[^punct\\s](\\*+)(?!\\*)(?=[punct\\s]|$)|(?!\\*)[punct\\s](\\*+)(?=[^punct\\s])|[\\s](\\*+)(?!\\*)(?=[punct])|(?!\\*)[punct](\\*+)(?!\\*)(?=[punct])|[^punct\\s](\\*+)(?=[^punct\\s])", "gu").replace(/punct/g, _punctuation).getRegex();
-var emStrongRDelimUnd = edit("^[^_*]*?\\*\\*[^_*]*?_[^_*]*?(?=\\*\\*)|[^_]+(?=[^_])|(?!_)[punct](_+)(?=[\\s]|$)|[^punct\\s](_+)(?!_)(?=[punct\\s]|$)|(?!_)[punct\\s](_+)(?=[^punct\\s])|[\\s](_+)(?!_)(?=[punct])|(?!_)[punct](_+)(?!_)(?=[punct])", "gu").replace(/punct/g, _punctuation).getRegex();
-var anyPunctuation = edit(/\\([punct])/, "gu").replace(/punct/g, _punctuation).getRegex();
-var autolink = edit(/^<(scheme:[^\s\x00-\x1f<>]*|email)>/).replace("scheme", /[a-zA-Z][a-zA-Z0-9+.-]{1,31}/).replace("email", /[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+(@)[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+(?![-_])/).getRegex();
-var _inlineComment = edit(_comment).replace("(?:-->|$)", "-->").getRegex();
-var tag = edit("^comment|^</[a-zA-Z][\\w:-]*\\s*>|^<[a-zA-Z][\\w-]*(?:attribute)*?\\s*/?>|^<\\?[\\s\\S]*?\\?>|^<![a-zA-Z]+\\s[\\s\\S]*?>|^<!\\[CDATA\\[[\\s\\S]*?\\]\\]>").replace("comment", _inlineComment).replace("attribute", /\s+[a-zA-Z:_][\w.:-]*(?:\s*=\s*"[^"]*"|\s*=\s*'[^']*'|\s*=\s*[^\s"'=<>`]+)?/).getRegex();
-var _inlineLabel = /(?:\[(?:\\.|[^\[\]\\])*\]|\\.|`[^`]*`|[^\[\]\\`])*?/;
-var link = edit(/^!?\[(label)\]\(\s*(href)(?:\s+(title))?\s*\)/).replace("label", _inlineLabel).replace("href", /<(?:\\.|[^\n<>\\])+>|[^\s\x00-\x1f]*/).replace("title", /"(?:\\"?|[^"\\])*"|'(?:\\'?|[^'\\])*'|\((?:\\\)?|[^)\\])*\)/).getRegex();
-var reflink = edit(/^!?\[(label)\]\[(ref)\]/).replace("label", _inlineLabel).replace("ref", _blockLabel).getRegex();
-var nolink = edit(/^!?\[(ref)\](?:\[\])?/).replace("ref", _blockLabel).getRegex();
-var reflinkSearch = edit("reflink|nolink(?!\\()", "g").replace("reflink", reflink).replace("nolink", nolink).getRegex();
-var inlineNormal = {
-  _backpedal: noopTest,
-  // only used for GFM url
-  anyPunctuation,
-  autolink,
-  blockSkip,
-  br,
-  code: inlineCode,
-  del: noopTest,
-  emStrongLDelim,
-  emStrongRDelimAst,
-  emStrongRDelimUnd,
-  escape,
-  link,
-  nolink,
-  punctuation,
-  reflink,
-  reflinkSearch,
-  tag,
-  text: inlineText,
-  url: noopTest
-};
-var inlinePedantic = {
-  ...inlineNormal,
-  link: edit(/^!?\[(label)\]\((.*?)\)/).replace("label", _inlineLabel).getRegex(),
-  reflink: edit(/^!?\[(label)\]\s*\[([^\]]*)\]/).replace("label", _inlineLabel).getRegex()
-};
-var inlineGfm = {
-  ...inlineNormal,
-  escape: edit(escape).replace("])", "~|])").getRegex(),
-  url: edit(/^((?:ftp|https?):\/\/|www\.)(?:[a-zA-Z0-9\-]+\.?)+[^\s<]*|^email/, "i").replace("email", /[A-Za-z0-9._+-]+(@)[a-zA-Z0-9-_]+(?:\.[a-zA-Z0-9-_]*[a-zA-Z0-9])+(?![-_])/).getRegex(),
-  _backpedal: /(?:[^?!.,:;*_'"~()&]+|\([^)]*\)|&(?![a-zA-Z0-9]+;$)|[?!.,:;*_'"~)]+(?!$))+/,
-  del: /^(~~?)(?=[^\s~])([\s\S]*?[^\s~])\1(?=[^~]|$)/,
-  text: /^([`~]+|[^`~])(?:(?= {2,}\n)|(?=[a-zA-Z0-9.!#$%&'*+\/=?_`{\|}~-]+@)|[\s\S]*?(?:(?=[\\<!\[`*~_]|\b_|https?:\/\/|ftp:\/\/|www\.|$)|[^ ](?= {2,}\n)|[^a-zA-Z0-9.!#$%&'*+\/=?_`{\|}~-](?=[a-zA-Z0-9.!#$%&'*+\/=?_`{\|}~-]+@)))/
-};
-var inlineBreaks = {
-  ...inlineGfm,
-  br: edit(br).replace("{2,}", "*").getRegex(),
-  text: edit(inlineGfm.text).replace("\\b_", "\\b_| {2,}\\n").replace(/\{2,\}/g, "*").getRegex()
-};
-var block = {
-  normal: blockNormal,
-  gfm: blockGfm,
-  pedantic: blockPedantic
-};
-var inline = {
-  normal: inlineNormal,
-  gfm: inlineGfm,
-  breaks: inlineBreaks,
-  pedantic: inlinePedantic
-};
-var _Lexer = class {
-  constructor(options2) {
-    __publicField(this, "tokens");
-    __publicField(this, "options");
-    __publicField(this, "state");
-    __publicField(this, "tokenizer");
-    __publicField(this, "inlineQueue");
-    this.tokens = [];
-    this.tokens.links = /* @__PURE__ */ Object.create(null);
-    this.options = options2 || _defaults;
-    this.options.tokenizer = this.options.tokenizer || new _Tokenizer();
-    this.tokenizer = this.options.tokenizer;
-    this.tokenizer.options = this.options;
-    this.tokenizer.lexer = this;
-    this.inlineQueue = [];
-    this.state = {
-      inLink: false,
-      inRawBlock: false,
-      top: true
-    };
-    const rules2 = {
-      block: block.normal,
-      inline: inline.normal
-    };
-    if (this.options.pedantic) {
-      rules2.block = block.pedantic;
-      rules2.inline = inline.pedantic;
-    } else if (this.options.gfm) {
-      rules2.block = block.gfm;
-      if (this.options.breaks) {
-        rules2.inline = inline.breaks;
-      } else {
-        rules2.inline = inline.gfm;
-      }
-    }
-    this.tokenizer.rules = rules2;
-  }
-  /**
-   * Expose Rules
-   */
-  static get rules() {
-    return {
-      block,
-      inline
-    };
-  }
-  /**
-   * Static Lex Method
-   */
-  static lex(src, options2) {
-    const lexer2 = new _Lexer(options2);
-    return lexer2.lex(src);
-  }
-  /**
-   * Static Lex Inline Method
-   */
-  static lexInline(src, options2) {
-    const lexer2 = new _Lexer(options2);
-    return lexer2.inlineTokens(src);
-  }
-  /**
-   * Preprocessing
-   */
-  lex(src) {
-    src = src.replace(/\r\n|\r/g, "\n");
-    this.blockTokens(src, this.tokens);
-    for (let i5 = 0; i5 < this.inlineQueue.length; i5++) {
-      const next = this.inlineQueue[i5];
-      this.inlineTokens(next.src, next.tokens);
-    }
-    this.inlineQueue = [];
-    return this.tokens;
-  }
-  blockTokens(src, tokens = []) {
-    if (this.options.pedantic) {
-      src = src.replace(/\t/g, "    ").replace(/^ +$/gm, "");
-    } else {
-      src = src.replace(/^( *)(\t+)/gm, (_4, leading, tabs) => {
-        return leading + "    ".repeat(tabs.length);
-      });
-    }
-    let token;
-    let lastToken;
-    let cutSrc;
-    let lastParagraphClipped;
-    while (src) {
-      if (this.options.extensions && this.options.extensions.block && this.options.extensions.block.some((extTokenizer) => {
-        if (token = extTokenizer.call({ lexer: this }, src, tokens)) {
-          src = src.substring(token.raw.length);
-          tokens.push(token);
-          return true;
-        }
-        return false;
-      })) {
-        continue;
-      }
-      if (token = this.tokenizer.space(src)) {
-        src = src.substring(token.raw.length);
-        if (token.raw.length === 1 && tokens.length > 0) {
-          tokens[tokens.length - 1].raw += "\n";
-        } else {
-          tokens.push(token);
-        }
-        continue;
-      }
-      if (token = this.tokenizer.code(src)) {
-        src = src.substring(token.raw.length);
-        lastToken = tokens[tokens.length - 1];
-        if (lastToken && (lastToken.type === "paragraph" || lastToken.type === "text")) {
-          lastToken.raw += "\n" + token.raw;
-          lastToken.text += "\n" + token.text;
-          this.inlineQueue[this.inlineQueue.length - 1].src = lastToken.text;
-        } else {
-          tokens.push(token);
-        }
-        continue;
-      }
-      if (token = this.tokenizer.fences(src)) {
-        src = src.substring(token.raw.length);
-        tokens.push(token);
-        continue;
-      }
-      if (token = this.tokenizer.heading(src)) {
-        src = src.substring(token.raw.length);
-        tokens.push(token);
-        continue;
-      }
-      if (token = this.tokenizer.hr(src)) {
-        src = src.substring(token.raw.length);
-        tokens.push(token);
-        continue;
-      }
-      if (token = this.tokenizer.blockquote(src)) {
-        src = src.substring(token.raw.length);
-        tokens.push(token);
-        continue;
-      }
-      if (token = this.tokenizer.list(src)) {
-        src = src.substring(token.raw.length);
-        tokens.push(token);
-        continue;
-      }
-      if (token = this.tokenizer.html(src)) {
-        src = src.substring(token.raw.length);
-        tokens.push(token);
-        continue;
-      }
-      if (token = this.tokenizer.def(src)) {
-        src = src.substring(token.raw.length);
-        lastToken = tokens[tokens.length - 1];
-        if (lastToken && (lastToken.type === "paragraph" || lastToken.type === "text")) {
-          lastToken.raw += "\n" + token.raw;
-          lastToken.text += "\n" + token.raw;
-          this.inlineQueue[this.inlineQueue.length - 1].src = lastToken.text;
-        } else if (!this.tokens.links[token.tag]) {
-          this.tokens.links[token.tag] = {
-            href: token.href,
-            title: token.title
-          };
-        }
-        continue;
-      }
-      if (token = this.tokenizer.table(src)) {
-        src = src.substring(token.raw.length);
-        tokens.push(token);
-        continue;
-      }
-      if (token = this.tokenizer.lheading(src)) {
-        src = src.substring(token.raw.length);
-        tokens.push(token);
-        continue;
-      }
-      cutSrc = src;
-      if (this.options.extensions && this.options.extensions.startBlock) {
-        let startIndex = Infinity;
-        const tempSrc = src.slice(1);
-        let tempStart;
-        this.options.extensions.startBlock.forEach((getStartIndex) => {
-          tempStart = getStartIndex.call({ lexer: this }, tempSrc);
-          if (typeof tempStart === "number" && tempStart >= 0) {
-            startIndex = Math.min(startIndex, tempStart);
-          }
-        });
-        if (startIndex < Infinity && startIndex >= 0) {
-          cutSrc = src.substring(0, startIndex + 1);
-        }
-      }
-      if (this.state.top && (token = this.tokenizer.paragraph(cutSrc))) {
-        lastToken = tokens[tokens.length - 1];
-        if (lastParagraphClipped && lastToken.type === "paragraph") {
-          lastToken.raw += "\n" + token.raw;
-          lastToken.text += "\n" + token.text;
-          this.inlineQueue.pop();
-          this.inlineQueue[this.inlineQueue.length - 1].src = lastToken.text;
-        } else {
-          tokens.push(token);
-        }
-        lastParagraphClipped = cutSrc.length !== src.length;
-        src = src.substring(token.raw.length);
-        continue;
-      }
-      if (token = this.tokenizer.text(src)) {
-        src = src.substring(token.raw.length);
-        lastToken = tokens[tokens.length - 1];
-        if (lastToken && lastToken.type === "text") {
-          lastToken.raw += "\n" + token.raw;
-          lastToken.text += "\n" + token.text;
-          this.inlineQueue.pop();
-          this.inlineQueue[this.inlineQueue.length - 1].src = lastToken.text;
-        } else {
-          tokens.push(token);
-        }
-        continue;
-      }
-      if (src) {
-        const errMsg = "Infinite loop on byte: " + src.charCodeAt(0);
-        if (this.options.silent) {
-          console.error(errMsg);
-          break;
-        } else {
-          throw new Error(errMsg);
-        }
-      }
-    }
-    this.state.top = true;
-    return tokens;
-  }
-  inline(src, tokens = []) {
-    this.inlineQueue.push({ src, tokens });
-    return tokens;
-  }
-  /**
-   * Lexing/Compiling
-   */
-  inlineTokens(src, tokens = []) {
-    let token, lastToken, cutSrc;
-    let maskedSrc = src;
-    let match2;
-    let keepPrevChar, prevChar;
-    if (this.tokens.links) {
-      const links = Object.keys(this.tokens.links);
-      if (links.length > 0) {
-        while ((match2 = this.tokenizer.rules.inline.reflinkSearch.exec(maskedSrc)) != null) {
-          if (links.includes(match2[0].slice(match2[0].lastIndexOf("[") + 1, -1))) {
-            maskedSrc = maskedSrc.slice(0, match2.index) + "[" + "a".repeat(match2[0].length - 2) + "]" + maskedSrc.slice(this.tokenizer.rules.inline.reflinkSearch.lastIndex);
-          }
-        }
-      }
-    }
-    while ((match2 = this.tokenizer.rules.inline.blockSkip.exec(maskedSrc)) != null) {
-      maskedSrc = maskedSrc.slice(0, match2.index) + "[" + "a".repeat(match2[0].length - 2) + "]" + maskedSrc.slice(this.tokenizer.rules.inline.blockSkip.lastIndex);
-    }
-    while ((match2 = this.tokenizer.rules.inline.anyPunctuation.exec(maskedSrc)) != null) {
-      maskedSrc = maskedSrc.slice(0, match2.index) + "++" + maskedSrc.slice(this.tokenizer.rules.inline.anyPunctuation.lastIndex);
-    }
-    while (src) {
-      if (!keepPrevChar) {
-        prevChar = "";
-      }
-      keepPrevChar = false;
-      if (this.options.extensions && this.options.extensions.inline && this.options.extensions.inline.some((extTokenizer) => {
-        if (token = extTokenizer.call({ lexer: this }, src, tokens)) {
-          src = src.substring(token.raw.length);
-          tokens.push(token);
-          return true;
-        }
-        return false;
-      })) {
-        continue;
-      }
-      if (token = this.tokenizer.escape(src)) {
-        src = src.substring(token.raw.length);
-        tokens.push(token);
-        continue;
-      }
-      if (token = this.tokenizer.tag(src)) {
-        src = src.substring(token.raw.length);
-        lastToken = tokens[tokens.length - 1];
-        if (lastToken && token.type === "text" && lastToken.type === "text") {
-          lastToken.raw += token.raw;
-          lastToken.text += token.text;
-        } else {
-          tokens.push(token);
-        }
-        continue;
-      }
-      if (token = this.tokenizer.link(src)) {
-        src = src.substring(token.raw.length);
-        tokens.push(token);
-        continue;
-      }
-      if (token = this.tokenizer.reflink(src, this.tokens.links)) {
-        src = src.substring(token.raw.length);
-        lastToken = tokens[tokens.length - 1];
-        if (lastToken && token.type === "text" && lastToken.type === "text") {
-          lastToken.raw += token.raw;
-          lastToken.text += token.text;
-        } else {
-          tokens.push(token);
-        }
-        continue;
-      }
-      if (token = this.tokenizer.emStrong(src, maskedSrc, prevChar)) {
-        src = src.substring(token.raw.length);
-        tokens.push(token);
-        continue;
-      }
-      if (token = this.tokenizer.codespan(src)) {
-        src = src.substring(token.raw.length);
-        tokens.push(token);
-        continue;
-      }
-      if (token = this.tokenizer.br(src)) {
-        src = src.substring(token.raw.length);
-        tokens.push(token);
-        continue;
-      }
-      if (token = this.tokenizer.del(src)) {
-        src = src.substring(token.raw.length);
-        tokens.push(token);
-        continue;
-      }
-      if (token = this.tokenizer.autolink(src)) {
-        src = src.substring(token.raw.length);
-        tokens.push(token);
-        continue;
-      }
-      if (!this.state.inLink && (token = this.tokenizer.url(src))) {
-        src = src.substring(token.raw.length);
-        tokens.push(token);
-        continue;
-      }
-      cutSrc = src;
-      if (this.options.extensions && this.options.extensions.startInline) {
-        let startIndex = Infinity;
-        const tempSrc = src.slice(1);
-        let tempStart;
-        this.options.extensions.startInline.forEach((getStartIndex) => {
-          tempStart = getStartIndex.call({ lexer: this }, tempSrc);
-          if (typeof tempStart === "number" && tempStart >= 0) {
-            startIndex = Math.min(startIndex, tempStart);
-          }
-        });
-        if (startIndex < Infinity && startIndex >= 0) {
-          cutSrc = src.substring(0, startIndex + 1);
-        }
-      }
-      if (token = this.tokenizer.inlineText(cutSrc)) {
-        src = src.substring(token.raw.length);
-        if (token.raw.slice(-1) !== "_") {
-          prevChar = token.raw.slice(-1);
-        }
-        keepPrevChar = true;
-        lastToken = tokens[tokens.length - 1];
-        if (lastToken && lastToken.type === "text") {
-          lastToken.raw += token.raw;
-          lastToken.text += token.text;
-        } else {
-          tokens.push(token);
-        }
-        continue;
-      }
-      if (src) {
-        const errMsg = "Infinite loop on byte: " + src.charCodeAt(0);
-        if (this.options.silent) {
-          console.error(errMsg);
-          break;
-        } else {
-          throw new Error(errMsg);
-        }
-      }
-    }
-    return tokens;
-  }
-};
-var _Renderer = class {
-  constructor(options2) {
-    __publicField(this, "options");
-    this.options = options2 || _defaults;
-  }
-  code(code, infostring, escaped) {
-    var _a2;
-    const lang = (_a2 = (infostring || "").match(/^\S*/)) == null ? void 0 : _a2[0];
-    code = code.replace(/\n$/, "") + "\n";
-    if (!lang) {
-      return "<pre><code>" + (escaped ? code : escape$1(code, true)) + "</code></pre>\n";
-    }
-    return '<pre><code class="language-' + escape$1(lang) + '">' + (escaped ? code : escape$1(code, true)) + "</code></pre>\n";
-  }
-  blockquote(quote) {
-    return `<blockquote>
-${quote}</blockquote>
-`;
-  }
-  html(html3, block2) {
-    return html3;
-  }
-  heading(text, level, raw) {
-    return `<h${level}>${text}</h${level}>
-`;
-  }
-  hr() {
-    return "<hr>\n";
-  }
-  list(body, ordered, start2) {
-    const type = ordered ? "ol" : "ul";
-    const startatt = ordered && start2 !== 1 ? ' start="' + start2 + '"' : "";
-    return "<" + type + startatt + ">\n" + body + "</" + type + ">\n";
-  }
-  listitem(text, task, checked) {
-    return `<li>${text}</li>
-`;
-  }
-  checkbox(checked) {
-    return "<input " + (checked ? 'checked="" ' : "") + 'disabled="" type="checkbox">';
-  }
-  paragraph(text) {
-    return `<p>${text}</p>
-`;
-  }
-  table(header, body) {
-    if (body)
-      body = `<tbody>${body}</tbody>`;
-    return "<table>\n<thead>\n" + header + "</thead>\n" + body + "</table>\n";
-  }
-  tablerow(content) {
-    return `<tr>
-${content}</tr>
-`;
-  }
-  tablecell(content, flags) {
-    const type = flags.header ? "th" : "td";
-    const tag2 = flags.align ? `<${type} align="${flags.align}">` : `<${type}>`;
-    return tag2 + content + `</${type}>
-`;
-  }
-  /**
-   * span level renderer
-   */
-  strong(text) {
-    return `<strong>${text}</strong>`;
-  }
-  em(text) {
-    return `<em>${text}</em>`;
-  }
-  codespan(text) {
-    return `<code>${text}</code>`;
-  }
-  br() {
-    return "<br>";
-  }
-  del(text) {
-    return `<del>${text}</del>`;
-  }
-  link(href, title, text) {
-    const cleanHref = cleanUrl(href);
-    if (cleanHref === null) {
-      return text;
-    }
-    href = cleanHref;
-    let out2 = '<a href="' + href + '"';
-    if (title) {
-      out2 += ' title="' + title + '"';
-    }
-    out2 += ">" + text + "</a>";
-    return out2;
-  }
-  image(href, title, text) {
-    const cleanHref = cleanUrl(href);
-    if (cleanHref === null) {
-      return text;
-    }
-    href = cleanHref;
-    let out2 = `<img src="${href}" alt="${text}"`;
-    if (title) {
-      out2 += ` title="${title}"`;
-    }
-    out2 += ">";
-    return out2;
-  }
-  text(text) {
-    return text;
-  }
-};
-var _TextRenderer = class {
-  // no need for block level renderers
-  strong(text) {
-    return text;
-  }
-  em(text) {
-    return text;
-  }
-  codespan(text) {
-    return text;
-  }
-  del(text) {
-    return text;
-  }
-  html(text) {
-    return text;
-  }
-  text(text) {
-    return text;
-  }
-  link(href, title, text) {
-    return "" + text;
-  }
-  image(href, title, text) {
-    return "" + text;
-  }
-  br() {
-    return "";
-  }
-};
-var _Parser = class {
-  constructor(options2) {
-    __publicField(this, "options");
-    __publicField(this, "renderer");
-    __publicField(this, "textRenderer");
-    this.options = options2 || _defaults;
-    this.options.renderer = this.options.renderer || new _Renderer();
-    this.renderer = this.options.renderer;
-    this.renderer.options = this.options;
-    this.textRenderer = new _TextRenderer();
-  }
-  /**
-   * Static Parse Method
-   */
-  static parse(tokens, options2) {
-    const parser2 = new _Parser(options2);
-    return parser2.parse(tokens);
-  }
-  /**
-   * Static Parse Inline Method
-   */
-  static parseInline(tokens, options2) {
-    const parser2 = new _Parser(options2);
-    return parser2.parseInline(tokens);
-  }
-  /**
-   * Parse Loop
-   */
-  parse(tokens, top = true) {
-    let out2 = "";
-    for (let i5 = 0; i5 < tokens.length; i5++) {
-      const token = tokens[i5];
-      if (this.options.extensions && this.options.extensions.renderers && this.options.extensions.renderers[token.type]) {
-        const genericToken = token;
-        const ret = this.options.extensions.renderers[genericToken.type].call({ parser: this }, genericToken);
-        if (ret !== false || !["space", "hr", "heading", "code", "table", "blockquote", "list", "html", "paragraph", "text"].includes(genericToken.type)) {
-          out2 += ret || "";
-          continue;
-        }
-      }
-      switch (token.type) {
-        case "space": {
-          continue;
-        }
-        case "hr": {
-          out2 += this.renderer.hr();
-          continue;
-        }
-        case "heading": {
-          const headingToken = token;
-          out2 += this.renderer.heading(this.parseInline(headingToken.tokens), headingToken.depth, unescape2(this.parseInline(headingToken.tokens, this.textRenderer)));
-          continue;
-        }
-        case "code": {
-          const codeToken = token;
-          out2 += this.renderer.code(codeToken.text, codeToken.lang, !!codeToken.escaped);
-          continue;
-        }
-        case "table": {
-          const tableToken = token;
-          let header = "";
-          let cell = "";
-          for (let j3 = 0; j3 < tableToken.header.length; j3++) {
-            cell += this.renderer.tablecell(this.parseInline(tableToken.header[j3].tokens), { header: true, align: tableToken.align[j3] });
-          }
-          header += this.renderer.tablerow(cell);
-          let body = "";
-          for (let j3 = 0; j3 < tableToken.rows.length; j3++) {
-            const row = tableToken.rows[j3];
-            cell = "";
-            for (let k3 = 0; k3 < row.length; k3++) {
-              cell += this.renderer.tablecell(this.parseInline(row[k3].tokens), { header: false, align: tableToken.align[k3] });
-            }
-            body += this.renderer.tablerow(cell);
-          }
-          out2 += this.renderer.table(header, body);
-          continue;
-        }
-        case "blockquote": {
-          const blockquoteToken = token;
-          const body = this.parse(blockquoteToken.tokens);
-          out2 += this.renderer.blockquote(body);
-          continue;
-        }
-        case "list": {
-          const listToken = token;
-          const ordered = listToken.ordered;
-          const start2 = listToken.start;
-          const loose = listToken.loose;
-          let body = "";
-          for (let j3 = 0; j3 < listToken.items.length; j3++) {
-            const item = listToken.items[j3];
-            const checked = item.checked;
-            const task = item.task;
-            let itemBody = "";
-            if (item.task) {
-              const checkbox = this.renderer.checkbox(!!checked);
-              if (loose) {
-                if (item.tokens.length > 0 && item.tokens[0].type === "paragraph") {
-                  item.tokens[0].text = checkbox + " " + item.tokens[0].text;
-                  if (item.tokens[0].tokens && item.tokens[0].tokens.length > 0 && item.tokens[0].tokens[0].type === "text") {
-                    item.tokens[0].tokens[0].text = checkbox + " " + item.tokens[0].tokens[0].text;
-                  }
-                } else {
-                  item.tokens.unshift({
-                    type: "text",
-                    text: checkbox + " "
-                  });
-                }
-              } else {
-                itemBody += checkbox + " ";
-              }
-            }
-            itemBody += this.parse(item.tokens, loose);
-            body += this.renderer.listitem(itemBody, task, !!checked);
-          }
-          out2 += this.renderer.list(body, ordered, start2);
-          continue;
-        }
-        case "html": {
-          const htmlToken = token;
-          out2 += this.renderer.html(htmlToken.text, htmlToken.block);
-          continue;
-        }
-        case "paragraph": {
-          const paragraphToken = token;
-          out2 += this.renderer.paragraph(this.parseInline(paragraphToken.tokens));
-          continue;
-        }
-        case "text": {
-          let textToken = token;
-          let body = textToken.tokens ? this.parseInline(textToken.tokens) : textToken.text;
-          while (i5 + 1 < tokens.length && tokens[i5 + 1].type === "text") {
-            textToken = tokens[++i5];
-            body += "\n" + (textToken.tokens ? this.parseInline(textToken.tokens) : textToken.text);
-          }
-          out2 += top ? this.renderer.paragraph(body) : body;
-          continue;
-        }
-        default: {
-          const errMsg = 'Token with "' + token.type + '" type was not found.';
-          if (this.options.silent) {
-            console.error(errMsg);
-            return "";
-          } else {
-            throw new Error(errMsg);
-          }
-        }
-      }
-    }
-    return out2;
-  }
-  /**
-   * Parse Inline Tokens
-   */
-  parseInline(tokens, renderer) {
-    renderer = renderer || this.renderer;
-    let out2 = "";
-    for (let i5 = 0; i5 < tokens.length; i5++) {
-      const token = tokens[i5];
-      if (this.options.extensions && this.options.extensions.renderers && this.options.extensions.renderers[token.type]) {
-        const ret = this.options.extensions.renderers[token.type].call({ parser: this }, token);
-        if (ret !== false || !["escape", "html", "link", "image", "strong", "em", "codespan", "br", "del", "text"].includes(token.type)) {
-          out2 += ret || "";
-          continue;
-        }
-      }
-      switch (token.type) {
-        case "escape": {
-          const escapeToken = token;
-          out2 += renderer.text(escapeToken.text);
-          break;
-        }
-        case "html": {
-          const tagToken = token;
-          out2 += renderer.html(tagToken.text);
-          break;
-        }
-        case "link": {
-          const linkToken = token;
-          out2 += renderer.link(linkToken.href, linkToken.title, this.parseInline(linkToken.tokens, renderer));
-          break;
-        }
-        case "image": {
-          const imageToken = token;
-          out2 += renderer.image(imageToken.href, imageToken.title, imageToken.text);
-          break;
-        }
-        case "strong": {
-          const strongToken = token;
-          out2 += renderer.strong(this.parseInline(strongToken.tokens, renderer));
-          break;
-        }
-        case "em": {
-          const emToken = token;
-          out2 += renderer.em(this.parseInline(emToken.tokens, renderer));
-          break;
-        }
-        case "codespan": {
-          const codespanToken = token;
-          out2 += renderer.codespan(codespanToken.text);
-          break;
-        }
-        case "br": {
-          out2 += renderer.br();
-          break;
-        }
-        case "del": {
-          const delToken = token;
-          out2 += renderer.del(this.parseInline(delToken.tokens, renderer));
-          break;
-        }
-        case "text": {
-          const textToken = token;
-          out2 += renderer.text(textToken.text);
-          break;
-        }
-        default: {
-          const errMsg = 'Token with "' + token.type + '" type was not found.';
-          if (this.options.silent) {
-            console.error(errMsg);
-            return "";
-          } else {
-            throw new Error(errMsg);
-          }
-        }
-      }
-    }
-    return out2;
-  }
-};
-var _Hooks = class {
-  constructor(options2) {
-    __publicField(this, "options");
-    this.options = options2 || _defaults;
-  }
-  /**
-   * Process markdown before marked
-   */
-  preprocess(markdown) {
-    return markdown;
-  }
-  /**
-   * Process HTML after marked is finished
-   */
-  postprocess(html3) {
-    return html3;
-  }
-  /**
-   * Process all tokens before walk tokens
-   */
-  processAllTokens(tokens) {
-    return tokens;
-  }
-};
-__publicField(_Hooks, "passThroughHooks", /* @__PURE__ */ new Set([
-  "preprocess",
-  "postprocess",
-  "processAllTokens"
-]));
-var _parseMarkdown, parseMarkdown_fn, _onError, onError_fn;
-var Marked = class {
-  constructor(...args) {
-    __privateAdd(this, _parseMarkdown);
-    __privateAdd(this, _onError);
-    __publicField(this, "defaults", _getDefaults());
-    __publicField(this, "options", this.setOptions);
-    __publicField(this, "parse", __privateMethod(this, _parseMarkdown, parseMarkdown_fn).call(this, _Lexer.lex, _Parser.parse));
-    __publicField(this, "parseInline", __privateMethod(this, _parseMarkdown, parseMarkdown_fn).call(this, _Lexer.lexInline, _Parser.parseInline));
-    __publicField(this, "Parser", _Parser);
-    __publicField(this, "Renderer", _Renderer);
-    __publicField(this, "TextRenderer", _TextRenderer);
-    __publicField(this, "Lexer", _Lexer);
-    __publicField(this, "Tokenizer", _Tokenizer);
-    __publicField(this, "Hooks", _Hooks);
-    this.use(...args);
-  }
-  /**
-   * Run callback for every token
-   */
-  walkTokens(tokens, callback) {
-    var _a2, _b2;
-    let values = [];
-    for (const token of tokens) {
-      values = values.concat(callback.call(this, token));
-      switch (token.type) {
-        case "table": {
-          const tableToken = token;
-          for (const cell of tableToken.header) {
-            values = values.concat(this.walkTokens(cell.tokens, callback));
-          }
-          for (const row of tableToken.rows) {
-            for (const cell of row) {
-              values = values.concat(this.walkTokens(cell.tokens, callback));
-            }
-          }
-          break;
-        }
-        case "list": {
-          const listToken = token;
-          values = values.concat(this.walkTokens(listToken.items, callback));
-          break;
-        }
-        default: {
-          const genericToken = token;
-          if ((_b2 = (_a2 = this.defaults.extensions) == null ? void 0 : _a2.childTokens) == null ? void 0 : _b2[genericToken.type]) {
-            this.defaults.extensions.childTokens[genericToken.type].forEach((childTokens) => {
-              const tokens2 = genericToken[childTokens].flat(Infinity);
-              values = values.concat(this.walkTokens(tokens2, callback));
-            });
-          } else if (genericToken.tokens) {
-            values = values.concat(this.walkTokens(genericToken.tokens, callback));
-          }
-        }
-      }
-    }
-    return values;
-  }
-  use(...args) {
-    const extensions = this.defaults.extensions || { renderers: {}, childTokens: {} };
-    args.forEach((pack) => {
-      const opts2 = { ...pack };
-      opts2.async = this.defaults.async || opts2.async || false;
-      if (pack.extensions) {
-        pack.extensions.forEach((ext) => {
-          if (!ext.name) {
-            throw new Error("extension name required");
-          }
-          if ("renderer" in ext) {
-            const prevRenderer = extensions.renderers[ext.name];
-            if (prevRenderer) {
-              extensions.renderers[ext.name] = function(...args2) {
-                let ret = ext.renderer.apply(this, args2);
-                if (ret === false) {
-                  ret = prevRenderer.apply(this, args2);
-                }
-                return ret;
-              };
-            } else {
-              extensions.renderers[ext.name] = ext.renderer;
-            }
-          }
-          if ("tokenizer" in ext) {
-            if (!ext.level || ext.level !== "block" && ext.level !== "inline") {
-              throw new Error("extension level must be 'block' or 'inline'");
-            }
-            const extLevel = extensions[ext.level];
-            if (extLevel) {
-              extLevel.unshift(ext.tokenizer);
-            } else {
-              extensions[ext.level] = [ext.tokenizer];
-            }
-            if (ext.start) {
-              if (ext.level === "block") {
-                if (extensions.startBlock) {
-                  extensions.startBlock.push(ext.start);
-                } else {
-                  extensions.startBlock = [ext.start];
-                }
-              } else if (ext.level === "inline") {
-                if (extensions.startInline) {
-                  extensions.startInline.push(ext.start);
-                } else {
-                  extensions.startInline = [ext.start];
-                }
-              }
-            }
-          }
-          if ("childTokens" in ext && ext.childTokens) {
-            extensions.childTokens[ext.name] = ext.childTokens;
-          }
-        });
-        opts2.extensions = extensions;
-      }
-      if (pack.renderer) {
-        const renderer = this.defaults.renderer || new _Renderer(this.defaults);
-        for (const prop in pack.renderer) {
-          if (!(prop in renderer)) {
-            throw new Error(`renderer '${prop}' does not exist`);
-          }
-          if (prop === "options") {
-            continue;
-          }
-          const rendererProp = prop;
-          const rendererFunc = pack.renderer[rendererProp];
-          const prevRenderer = renderer[rendererProp];
-          renderer[rendererProp] = (...args2) => {
-            let ret = rendererFunc.apply(renderer, args2);
-            if (ret === false) {
-              ret = prevRenderer.apply(renderer, args2);
-            }
-            return ret || "";
-          };
-        }
-        opts2.renderer = renderer;
-      }
-      if (pack.tokenizer) {
-        const tokenizer = this.defaults.tokenizer || new _Tokenizer(this.defaults);
-        for (const prop in pack.tokenizer) {
-          if (!(prop in tokenizer)) {
-            throw new Error(`tokenizer '${prop}' does not exist`);
-          }
-          if (["options", "rules", "lexer"].includes(prop)) {
-            continue;
-          }
-          const tokenizerProp = prop;
-          const tokenizerFunc = pack.tokenizer[tokenizerProp];
-          const prevTokenizer = tokenizer[tokenizerProp];
-          tokenizer[tokenizerProp] = (...args2) => {
-            let ret = tokenizerFunc.apply(tokenizer, args2);
-            if (ret === false) {
-              ret = prevTokenizer.apply(tokenizer, args2);
-            }
-            return ret;
-          };
-        }
-        opts2.tokenizer = tokenizer;
-      }
-      if (pack.hooks) {
-        const hooks2 = this.defaults.hooks || new _Hooks();
-        for (const prop in pack.hooks) {
-          if (!(prop in hooks2)) {
-            throw new Error(`hook '${prop}' does not exist`);
-          }
-          if (prop === "options") {
-            continue;
-          }
-          const hooksProp = prop;
-          const hooksFunc = pack.hooks[hooksProp];
-          const prevHook = hooks2[hooksProp];
-          if (_Hooks.passThroughHooks.has(prop)) {
-            hooks2[hooksProp] = (arg) => {
-              if (this.defaults.async) {
-                return Promise.resolve(hooksFunc.call(hooks2, arg)).then((ret2) => {
-                  return prevHook.call(hooks2, ret2);
-                });
-              }
-              const ret = hooksFunc.call(hooks2, arg);
-              return prevHook.call(hooks2, ret);
-            };
-          } else {
-            hooks2[hooksProp] = (...args2) => {
-              let ret = hooksFunc.apply(hooks2, args2);
-              if (ret === false) {
-                ret = prevHook.apply(hooks2, args2);
-              }
-              return ret;
-            };
-          }
-        }
-        opts2.hooks = hooks2;
-      }
-      if (pack.walkTokens) {
-        const walkTokens2 = this.defaults.walkTokens;
-        const packWalktokens = pack.walkTokens;
-        opts2.walkTokens = function(token) {
-          let values = [];
-          values.push(packWalktokens.call(this, token));
-          if (walkTokens2) {
-            values = values.concat(walkTokens2.call(this, token));
-          }
-          return values;
-        };
-      }
-      this.defaults = { ...this.defaults, ...opts2 };
-    });
-    return this;
-  }
-  setOptions(opt) {
-    this.defaults = { ...this.defaults, ...opt };
-    return this;
-  }
-  lexer(src, options2) {
-    return _Lexer.lex(src, options2 != null ? options2 : this.defaults);
-  }
-  parser(tokens, options2) {
-    return _Parser.parse(tokens, options2 != null ? options2 : this.defaults);
-  }
-};
-_parseMarkdown = new WeakSet();
-parseMarkdown_fn = function(lexer2, parser2) {
-  return (src, options2) => {
-    const origOpt = { ...options2 };
-    const opt = { ...this.defaults, ...origOpt };
-    if (this.defaults.async === true && origOpt.async === false) {
-      if (!opt.silent) {
-        console.warn("marked(): The async option was set to true by an extension. The async: false option sent to parse will be ignored.");
-      }
-      opt.async = true;
-    }
-    const throwError = __privateMethod(this, _onError, onError_fn).call(this, !!opt.silent, !!opt.async);
-    if (typeof src === "undefined" || src === null) {
-      return throwError(new Error("marked(): input parameter is undefined or null"));
-    }
-    if (typeof src !== "string") {
-      return throwError(new Error("marked(): input parameter is of type " + Object.prototype.toString.call(src) + ", string expected"));
-    }
-    if (opt.hooks) {
-      opt.hooks.options = opt;
-    }
-    if (opt.async) {
-      return Promise.resolve(opt.hooks ? opt.hooks.preprocess(src) : src).then((src2) => lexer2(src2, opt)).then((tokens) => opt.hooks ? opt.hooks.processAllTokens(tokens) : tokens).then((tokens) => opt.walkTokens ? Promise.all(this.walkTokens(tokens, opt.walkTokens)).then(() => tokens) : tokens).then((tokens) => parser2(tokens, opt)).then((html3) => opt.hooks ? opt.hooks.postprocess(html3) : html3).catch(throwError);
-    }
-    try {
-      if (opt.hooks) {
-        src = opt.hooks.preprocess(src);
-      }
-      let tokens = lexer2(src, opt);
-      if (opt.hooks) {
-        tokens = opt.hooks.processAllTokens(tokens);
-      }
-      if (opt.walkTokens) {
-        this.walkTokens(tokens, opt.walkTokens);
-      }
-      let html3 = parser2(tokens, opt);
-      if (opt.hooks) {
-        html3 = opt.hooks.postprocess(html3);
-      }
-      return html3;
-    } catch (e3) {
-      return throwError(e3);
-    }
-  };
-};
-_onError = new WeakSet();
-onError_fn = function(silent, async) {
-  return (e3) => {
-    e3.message += "\nPlease report this to https://github.com/markedjs/marked.";
-    if (silent) {
-      const msg = "<p>An error occurred:</p><pre>" + escape$1(e3.message + "", true) + "</pre>";
-      if (async) {
-        return Promise.resolve(msg);
-      }
-      return msg;
-    }
-    if (async) {
-      return Promise.reject(e3);
-    }
-    throw e3;
-  };
-};
-var markedInstance = new Marked();
-function marked(src, opt) {
-  return markedInstance.parse(src, opt);
-}
-marked.options = marked.setOptions = function(options2) {
-  markedInstance.setOptions(options2);
-  marked.defaults = markedInstance.defaults;
-  changeDefaults(marked.defaults);
-  return marked;
-};
-marked.getDefaults = _getDefaults;
-marked.defaults = _defaults;
-marked.use = function(...args) {
-  markedInstance.use(...args);
-  marked.defaults = markedInstance.defaults;
-  changeDefaults(marked.defaults);
-  return marked;
-};
-marked.walkTokens = function(tokens, callback) {
-  return markedInstance.walkTokens(tokens, callback);
-};
-marked.parseInline = markedInstance.parseInline;
-marked.Parser = _Parser;
-marked.parser = _Parser.parse;
-marked.Renderer = _Renderer;
-marked.TextRenderer = _TextRenderer;
-marked.Lexer = _Lexer;
-marked.lexer = _Lexer.lex;
-marked.Tokenizer = _Tokenizer;
-marked.Hooks = _Hooks;
-marked.parse = marked;
-var options = marked.options;
-var setOptions = marked.setOptions;
-var use = marked.use;
-var walkTokens = marked.walkTokens;
-var parseInline = marked.parseInline;
-var parser = _Parser.parse;
-var lexer = _Lexer.lex;
 
-// src/RecusiveGetToken.ts
-function RecusiveGetToken(document2, tokens) {
-  if ("type" in document2 && document2.type === "text") {
-    tokens.push(document2);
+// node_modules/chrono-node/dist/esm/results.js
+import_dayjs2.default.extend(import_quarterOfYear.default);
+var ReferenceWithTimezone = class {
+  constructor(input) {
+    var _a2;
+    input = input != null ? input : new Date();
+    if (input instanceof Date) {
+      this.instant = input;
+    } else {
+      this.instant = (_a2 = input.instant) != null ? _a2 : new Date();
+      this.timezoneOffset = toTimezoneOffset(input.timezone, this.instant);
+    }
   }
-  if ("tokens" in document2 && document2.tokens) {
-    document2.tokens.map((t5) => {
-      RecusiveGetToken(t5, tokens);
-    });
+  getDateWithAdjustedTimezone() {
+    return new Date(this.instant.getTime() + this.getSystemTimezoneAdjustmentMinute(this.instant) * 6e4);
   }
-  if ("rows" in document2 && document2.rows) {
-    document2.rows.map((row) => {
-      row.map((cell) => {
-        RecusiveGetToken(cell, tokens);
+  getSystemTimezoneAdjustmentMinute(date, overrideTimezoneOffset) {
+    var _a2;
+    if (!date || date.getTime() < 0) {
+      date = new Date();
+    }
+    const currentTimezoneOffset = -date.getTimezoneOffset();
+    const targetTimezoneOffset = (_a2 = overrideTimezoneOffset != null ? overrideTimezoneOffset : this.timezoneOffset) != null ? _a2 : currentTimezoneOffset;
+    return currentTimezoneOffset - targetTimezoneOffset;
+  }
+};
+var ParsingComponents = class {
+  constructor(reference, knownComponents) {
+    this._tags = /* @__PURE__ */ new Set();
+    this.reference = reference;
+    this.knownValues = {};
+    this.impliedValues = {};
+    if (knownComponents) {
+      for (const key in knownComponents) {
+        this.knownValues[key] = knownComponents[key];
+      }
+    }
+    const refDayJs = (0, import_dayjs2.default)(reference.instant);
+    this.imply("day", refDayJs.date());
+    this.imply("month", refDayJs.month() + 1);
+    this.imply("year", refDayJs.year());
+    this.imply("hour", 12);
+    this.imply("minute", 0);
+    this.imply("second", 0);
+    this.imply("millisecond", 0);
+  }
+  get(component) {
+    if (component in this.knownValues) {
+      return this.knownValues[component];
+    }
+    if (component in this.impliedValues) {
+      return this.impliedValues[component];
+    }
+    return null;
+  }
+  isCertain(component) {
+    return component in this.knownValues;
+  }
+  getCertainComponents() {
+    return Object.keys(this.knownValues);
+  }
+  imply(component, value) {
+    if (component in this.knownValues) {
+      return this;
+    }
+    this.impliedValues[component] = value;
+    return this;
+  }
+  assign(component, value) {
+    this.knownValues[component] = value;
+    delete this.impliedValues[component];
+    return this;
+  }
+  delete(component) {
+    delete this.knownValues[component];
+    delete this.impliedValues[component];
+  }
+  clone() {
+    const component = new ParsingComponents(this.reference);
+    component.knownValues = {};
+    component.impliedValues = {};
+    for (const key in this.knownValues) {
+      component.knownValues[key] = this.knownValues[key];
+    }
+    for (const key in this.impliedValues) {
+      component.impliedValues[key] = this.impliedValues[key];
+    }
+    return component;
+  }
+  isOnlyDate() {
+    return !this.isCertain("hour") && !this.isCertain("minute") && !this.isCertain("second");
+  }
+  isOnlyTime() {
+    return !this.isCertain("weekday") && !this.isCertain("day") && !this.isCertain("month");
+  }
+  isOnlyWeekdayComponent() {
+    return this.isCertain("weekday") && !this.isCertain("day") && !this.isCertain("month");
+  }
+  isDateWithUnknownYear() {
+    return this.isCertain("month") && !this.isCertain("year");
+  }
+  isValidDate() {
+    const date = this.dateWithoutTimezoneAdjustment();
+    if (date.getFullYear() !== this.get("year"))
+      return false;
+    if (date.getMonth() !== this.get("month") - 1)
+      return false;
+    if (date.getDate() !== this.get("day"))
+      return false;
+    if (this.get("hour") != null && date.getHours() != this.get("hour"))
+      return false;
+    if (this.get("minute") != null && date.getMinutes() != this.get("minute"))
+      return false;
+    return true;
+  }
+  toString() {
+    return `[ParsingComponents {
+            tags: ${JSON.stringify(Array.from(this._tags).sort())}, 
+            knownValues: ${JSON.stringify(this.knownValues)}, 
+            impliedValues: ${JSON.stringify(this.impliedValues)}}, 
+            reference: ${JSON.stringify(this.reference)}]`;
+  }
+  dayjs() {
+    return (0, import_dayjs2.default)(this.date());
+  }
+  date() {
+    const date = this.dateWithoutTimezoneAdjustment();
+    const timezoneAdjustment = this.reference.getSystemTimezoneAdjustmentMinute(date, this.get("timezoneOffset"));
+    return new Date(date.getTime() + timezoneAdjustment * 6e4);
+  }
+  addTag(tag2) {
+    this._tags.add(tag2);
+    return this;
+  }
+  addTags(tags) {
+    for (const tag2 of tags) {
+      this._tags.add(tag2);
+    }
+    return this;
+  }
+  tags() {
+    return new Set(this._tags);
+  }
+  dateWithoutTimezoneAdjustment() {
+    const date = new Date(this.get("year"), this.get("month") - 1, this.get("day"), this.get("hour"), this.get("minute"), this.get("second"), this.get("millisecond"));
+    date.setFullYear(this.get("year"));
+    return date;
+  }
+  static createRelativeFromReference(reference, fragments) {
+    let date = (0, import_dayjs2.default)(reference.instant);
+    for (const key in fragments) {
+      date = date.add(fragments[key], key);
+    }
+    const components = new ParsingComponents(reference);
+    if (fragments["hour"] || fragments["minute"] || fragments["second"]) {
+      assignSimilarTime(components, date);
+      assignSimilarDate(components, date);
+      if (reference.timezoneOffset !== null) {
+        components.assign("timezoneOffset", -reference.instant.getTimezoneOffset());
+      }
+    } else {
+      implySimilarTime(components, date);
+      if (reference.timezoneOffset !== null) {
+        components.imply("timezoneOffset", -reference.instant.getTimezoneOffset());
+      }
+      if (fragments["d"]) {
+        components.assign("day", date.date());
+        components.assign("month", date.month() + 1);
+        components.assign("year", date.year());
+      } else {
+        if (fragments["week"]) {
+          components.imply("weekday", date.day());
+        }
+        components.imply("day", date.date());
+        if (fragments["month"]) {
+          components.assign("month", date.month() + 1);
+          components.assign("year", date.year());
+        } else {
+          components.imply("month", date.month() + 1);
+          if (fragments["year"]) {
+            components.assign("year", date.year());
+          } else {
+            components.imply("year", date.year());
+          }
+        }
+      }
+    }
+    return components;
+  }
+};
+var ParsingResult = class {
+  constructor(reference, index4, text, start2, end2) {
+    this.reference = reference;
+    this.refDate = reference.instant;
+    this.index = index4;
+    this.text = text;
+    this.start = start2 || new ParsingComponents(reference);
+    this.end = end2;
+  }
+  clone() {
+    const result = new ParsingResult(this.reference, this.index, this.text);
+    result.start = this.start ? this.start.clone() : null;
+    result.end = this.end ? this.end.clone() : null;
+    return result;
+  }
+  date() {
+    return this.start.date();
+  }
+  tags() {
+    const combinedTags = new Set(this.start.tags());
+    if (this.end) {
+      for (const tag2 of this.end.tags()) {
+        combinedTags.add(tag2);
+      }
+    }
+    return combinedTags;
+  }
+  toString() {
+    const tags = Array.from(this.tags()).sort();
+    return `[ParsingResult {index: ${this.index}, text: '${this.text}', tags: ${JSON.stringify(tags)} ...}]`;
+  }
+};
+
+// node_modules/chrono-node/dist/esm/utils/pattern.js
+function repeatedTimeunitPattern(prefix5, singleTimeunitPattern, connectorPattern = "\\s{0,5},?\\s{0,5}") {
+  const singleTimeunitPatternNoCapture = singleTimeunitPattern.replace(/\((?!\?)/g, "(?:");
+  return `${prefix5}${singleTimeunitPatternNoCapture}(?:${connectorPattern}${singleTimeunitPatternNoCapture}){0,10}`;
+}
+function extractTerms(dictionary) {
+  let keys;
+  if (dictionary instanceof Array) {
+    keys = [...dictionary];
+  } else if (dictionary instanceof Map) {
+    keys = Array.from(dictionary.keys());
+  } else {
+    keys = Object.keys(dictionary);
+  }
+  return keys;
+}
+function matchAnyPattern(dictionary) {
+  const joinedTerms = extractTerms(dictionary).sort((a4, b2) => b2.length - a4.length).join("|").replace(/\./g, "\\.");
+  return `(?:${joinedTerms})`;
+}
+
+// node_modules/chrono-node/dist/esm/calculation/years.js
+var import_dayjs4 = __toESM(require_dayjs_min(), 1);
+function findMostLikelyADYear(yearNumber) {
+  if (yearNumber < 100) {
+    if (yearNumber > 50) {
+      yearNumber = yearNumber + 1900;
+    } else {
+      yearNumber = yearNumber + 2e3;
+    }
+  }
+  return yearNumber;
+}
+function findYearClosestToRef(refDate, day, month2) {
+  const refMoment = (0, import_dayjs4.default)(refDate);
+  let dateMoment = refMoment;
+  dateMoment = dateMoment.month(month2 - 1);
+  dateMoment = dateMoment.date(day);
+  dateMoment = dateMoment.year(refMoment.year());
+  const nextYear = dateMoment.add(1, "y");
+  const lastYear = dateMoment.add(-1, "y");
+  if (Math.abs(nextYear.diff(refMoment)) < Math.abs(dateMoment.diff(refMoment))) {
+    dateMoment = nextYear;
+  } else if (Math.abs(lastYear.diff(refMoment)) < Math.abs(dateMoment.diff(refMoment))) {
+    dateMoment = lastYear;
+  }
+  return dateMoment.year();
+}
+
+// node_modules/chrono-node/dist/esm/locales/en/constants.js
+var WEEKDAY_DICTIONARY = {
+  sunday: 0,
+  sun: 0,
+  "sun.": 0,
+  monday: 1,
+  mon: 1,
+  "mon.": 1,
+  tuesday: 2,
+  tue: 2,
+  "tue.": 2,
+  wednesday: 3,
+  wed: 3,
+  "wed.": 3,
+  thursday: 4,
+  thurs: 4,
+  "thurs.": 4,
+  thur: 4,
+  "thur.": 4,
+  thu: 4,
+  "thu.": 4,
+  friday: 5,
+  fri: 5,
+  "fri.": 5,
+  saturday: 6,
+  sat: 6,
+  "sat.": 6
+};
+var FULL_MONTH_NAME_DICTIONARY = {
+  january: 1,
+  february: 2,
+  march: 3,
+  april: 4,
+  may: 5,
+  june: 6,
+  july: 7,
+  august: 8,
+  september: 9,
+  october: 10,
+  november: 11,
+  december: 12
+};
+var MONTH_DICTIONARY = {
+  ...FULL_MONTH_NAME_DICTIONARY,
+  jan: 1,
+  "jan.": 1,
+  feb: 2,
+  "feb.": 2,
+  mar: 3,
+  "mar.": 3,
+  apr: 4,
+  "apr.": 4,
+  jun: 6,
+  "jun.": 6,
+  jul: 7,
+  "jul.": 7,
+  aug: 8,
+  "aug.": 8,
+  sep: 9,
+  "sep.": 9,
+  sept: 9,
+  "sept.": 9,
+  oct: 10,
+  "oct.": 10,
+  nov: 11,
+  "nov.": 11,
+  dec: 12,
+  "dec.": 12
+};
+var INTEGER_WORD_DICTIONARY = {
+  one: 1,
+  two: 2,
+  three: 3,
+  four: 4,
+  five: 5,
+  six: 6,
+  seven: 7,
+  eight: 8,
+  nine: 9,
+  ten: 10,
+  eleven: 11,
+  twelve: 12
+};
+var ORDINAL_WORD_DICTIONARY = {
+  first: 1,
+  second: 2,
+  third: 3,
+  fourth: 4,
+  fifth: 5,
+  sixth: 6,
+  seventh: 7,
+  eighth: 8,
+  ninth: 9,
+  tenth: 10,
+  eleventh: 11,
+  twelfth: 12,
+  thirteenth: 13,
+  fourteenth: 14,
+  fifteenth: 15,
+  sixteenth: 16,
+  seventeenth: 17,
+  eighteenth: 18,
+  nineteenth: 19,
+  twentieth: 20,
+  "twenty first": 21,
+  "twenty-first": 21,
+  "twenty second": 22,
+  "twenty-second": 22,
+  "twenty third": 23,
+  "twenty-third": 23,
+  "twenty fourth": 24,
+  "twenty-fourth": 24,
+  "twenty fifth": 25,
+  "twenty-fifth": 25,
+  "twenty sixth": 26,
+  "twenty-sixth": 26,
+  "twenty seventh": 27,
+  "twenty-seventh": 27,
+  "twenty eighth": 28,
+  "twenty-eighth": 28,
+  "twenty ninth": 29,
+  "twenty-ninth": 29,
+  "thirtieth": 30,
+  "thirty first": 31,
+  "thirty-first": 31
+};
+var TIME_UNIT_DICTIONARY_NO_ABBR = {
+  second: "second",
+  seconds: "second",
+  minute: "minute",
+  minutes: "minute",
+  hour: "hour",
+  hours: "hour",
+  day: "d",
+  days: "d",
+  week: "week",
+  weeks: "week",
+  month: "month",
+  months: "month",
+  quarter: "quarter",
+  quarters: "quarter",
+  year: "year",
+  years: "year"
+};
+var TIME_UNIT_DICTIONARY = {
+  s: "second",
+  sec: "second",
+  second: "second",
+  seconds: "second",
+  m: "minute",
+  min: "minute",
+  mins: "minute",
+  minute: "minute",
+  minutes: "minute",
+  h: "hour",
+  hr: "hour",
+  hrs: "hour",
+  hour: "hour",
+  hours: "hour",
+  d: "d",
+  day: "d",
+  days: "d",
+  w: "w",
+  week: "week",
+  weeks: "week",
+  mo: "month",
+  mon: "month",
+  mos: "month",
+  month: "month",
+  months: "month",
+  qtr: "quarter",
+  quarter: "quarter",
+  quarters: "quarter",
+  y: "year",
+  yr: "year",
+  year: "year",
+  years: "year",
+  ...TIME_UNIT_DICTIONARY_NO_ABBR
+};
+var NUMBER_PATTERN = `(?:${matchAnyPattern(INTEGER_WORD_DICTIONARY)}|[0-9]+|[0-9]+\\.[0-9]+|half(?:\\s{0,2}an?)?|an?\\b(?:\\s{0,2}few)?|few|several|the|a?\\s{0,2}couple\\s{0,2}(?:of)?)`;
+function parseNumberPattern(match2) {
+  const num = match2.toLowerCase();
+  if (INTEGER_WORD_DICTIONARY[num] !== void 0) {
+    return INTEGER_WORD_DICTIONARY[num];
+  } else if (num === "a" || num === "an" || num == "the") {
+    return 1;
+  } else if (num.match(/few/)) {
+    return 3;
+  } else if (num.match(/half/)) {
+    return 0.5;
+  } else if (num.match(/couple/)) {
+    return 2;
+  } else if (num.match(/several/)) {
+    return 7;
+  }
+  return parseFloat(num);
+}
+var ORDINAL_NUMBER_PATTERN = `(?:${matchAnyPattern(ORDINAL_WORD_DICTIONARY)}|[0-9]{1,2}(?:st|nd|rd|th)?)`;
+function parseOrdinalNumberPattern(match2) {
+  let num = match2.toLowerCase();
+  if (ORDINAL_WORD_DICTIONARY[num] !== void 0) {
+    return ORDINAL_WORD_DICTIONARY[num];
+  }
+  num = num.replace(/(?:st|nd|rd|th)$/i, "");
+  return parseInt(num);
+}
+var YEAR_PATTERN = `(?:[1-9][0-9]{0,3}\\s{0,2}(?:BE|AD|BC|BCE|CE)|[1-2][0-9]{3}|[5-9][0-9]|2[0-5])`;
+function parseYear(match2) {
+  if (/BE/i.test(match2)) {
+    match2 = match2.replace(/BE/i, "");
+    return parseInt(match2) - 543;
+  }
+  if (/BCE?/i.test(match2)) {
+    match2 = match2.replace(/BCE?/i, "");
+    return -parseInt(match2);
+  }
+  if (/(AD|CE)/i.test(match2)) {
+    match2 = match2.replace(/(AD|CE)/i, "");
+    return parseInt(match2);
+  }
+  const rawYearNumber = parseInt(match2);
+  return findMostLikelyADYear(rawYearNumber);
+}
+var SINGLE_TIME_UNIT_PATTERN = `(${NUMBER_PATTERN})\\s{0,3}(${matchAnyPattern(TIME_UNIT_DICTIONARY)})`;
+var SINGLE_TIME_UNIT_REGEX = new RegExp(SINGLE_TIME_UNIT_PATTERN, "i");
+var SINGLE_TIME_UNIT_NO_ABBR_PATTERN = `(${NUMBER_PATTERN})\\s{0,3}(${matchAnyPattern(TIME_UNIT_DICTIONARY_NO_ABBR)})`;
+var TIME_UNIT_CONNECTOR_PATTERN = `\\s{0,5},?(?:\\s*and)?\\s{0,5}`;
+var TIME_UNITS_PATTERN = repeatedTimeunitPattern(`(?:(?:about|around)\\s{0,3})?`, SINGLE_TIME_UNIT_PATTERN, TIME_UNIT_CONNECTOR_PATTERN);
+var TIME_UNITS_NO_ABBR_PATTERN = repeatedTimeunitPattern(`(?:(?:about|around)\\s{0,3})?`, SINGLE_TIME_UNIT_NO_ABBR_PATTERN, TIME_UNIT_CONNECTOR_PATTERN);
+function parseTimeUnits(timeunitText) {
+  const fragments = {};
+  let remainingText = timeunitText;
+  let match2 = SINGLE_TIME_UNIT_REGEX.exec(remainingText);
+  while (match2) {
+    collectDateTimeFragment(fragments, match2);
+    remainingText = remainingText.substring(match2[0].length).trim();
+    match2 = SINGLE_TIME_UNIT_REGEX.exec(remainingText);
+  }
+  return fragments;
+}
+function collectDateTimeFragment(fragments, match2) {
+  const num = parseNumberPattern(match2[1]);
+  const unit = TIME_UNIT_DICTIONARY[match2[2].toLowerCase()];
+  fragments[unit] = num;
+}
+
+// node_modules/chrono-node/dist/esm/common/parsers/AbstractParserWithWordBoundary.js
+var AbstractParserWithWordBoundaryChecking = class {
+  constructor() {
+    this.cachedInnerPattern = null;
+    this.cachedPattern = null;
+  }
+  innerPatternHasChange(context, currentInnerPattern) {
+    return this.innerPattern(context) !== currentInnerPattern;
+  }
+  patternLeftBoundary() {
+    return `(\\W|^)`;
+  }
+  pattern(context) {
+    if (this.cachedInnerPattern) {
+      if (!this.innerPatternHasChange(context, this.cachedInnerPattern)) {
+        return this.cachedPattern;
+      }
+    }
+    this.cachedInnerPattern = this.innerPattern(context);
+    this.cachedPattern = new RegExp(`${this.patternLeftBoundary()}${this.cachedInnerPattern.source}`, this.cachedInnerPattern.flags);
+    return this.cachedPattern;
+  }
+  extract(context, match2) {
+    var _a2;
+    const header = (_a2 = match2[1]) != null ? _a2 : "";
+    match2.index = match2.index + header.length;
+    match2[0] = match2[0].substring(header.length);
+    for (let i5 = 2; i5 < match2.length; i5++) {
+      match2[i5 - 1] = match2[i5];
+    }
+    return this.innerExtract(context, match2);
+  }
+};
+
+// node_modules/chrono-node/dist/esm/locales/en/parsers/ENTimeUnitWithinFormatParser.js
+var PATTERN_WITH_OPTIONAL_PREFIX = new RegExp(`(?:(?:within|in|for)\\s*)?(?:(?:about|around|roughly|approximately|just)\\s*(?:~\\s*)?)?(${TIME_UNITS_PATTERN})(?=\\W|$)`, "i");
+var PATTERN_WITH_PREFIX = new RegExp(`(?:within|in|for)\\s*(?:(?:about|around|roughly|approximately|just)\\s*(?:~\\s*)?)?(${TIME_UNITS_PATTERN})(?=\\W|$)`, "i");
+var PATTERN_WITH_PREFIX_STRICT = new RegExp(`(?:within|in|for)\\s*(?:(?:about|around|roughly|approximately|just)\\s*(?:~\\s*)?)?(${TIME_UNITS_NO_ABBR_PATTERN})(?=\\W|$)`, "i");
+var ENTimeUnitWithinFormatParser = class extends AbstractParserWithWordBoundaryChecking {
+  constructor(strictMode) {
+    super();
+    this.strictMode = strictMode;
+  }
+  innerPattern(context) {
+    if (this.strictMode) {
+      return PATTERN_WITH_PREFIX_STRICT;
+    }
+    return context.option.forwardDate ? PATTERN_WITH_OPTIONAL_PREFIX : PATTERN_WITH_PREFIX;
+  }
+  innerExtract(context, match2) {
+    if (match2[0].match(/^for\s*the\s*\w+/)) {
+      return null;
+    }
+    const timeUnits = parseTimeUnits(match2[1]);
+    return ParsingComponents.createRelativeFromReference(context.reference, timeUnits);
+  }
+};
+
+// node_modules/chrono-node/dist/esm/locales/en/parsers/ENMonthNameLittleEndianParser.js
+var PATTERN = new RegExp(`(?:on\\s{0,3})?(${ORDINAL_NUMBER_PATTERN})(?:\\s{0,3}(?:to|\\-|\\\u2013|until|through|till)?\\s{0,3}(${ORDINAL_NUMBER_PATTERN}))?(?:-|/|\\s{0,3}(?:of)?\\s{0,3})(${matchAnyPattern(MONTH_DICTIONARY)})(?:(?:-|/|,?\\s{0,3})(${YEAR_PATTERN}(?![^\\s]\\d)))?(?=\\W|$)`, "i");
+var DATE_GROUP = 1;
+var DATE_TO_GROUP = 2;
+var MONTH_NAME_GROUP = 3;
+var YEAR_GROUP = 4;
+var ENMonthNameLittleEndianParser = class extends AbstractParserWithWordBoundaryChecking {
+  innerPattern() {
+    return PATTERN;
+  }
+  innerExtract(context, match2) {
+    const result = context.createParsingResult(match2.index, match2[0]);
+    const month2 = MONTH_DICTIONARY[match2[MONTH_NAME_GROUP].toLowerCase()];
+    const day = parseOrdinalNumberPattern(match2[DATE_GROUP]);
+    if (day > 31) {
+      match2.index = match2.index + match2[DATE_GROUP].length;
+      return null;
+    }
+    result.start.assign("month", month2);
+    result.start.assign("day", day);
+    if (match2[YEAR_GROUP]) {
+      const yearNumber = parseYear(match2[YEAR_GROUP]);
+      result.start.assign("year", yearNumber);
+    } else {
+      const year = findYearClosestToRef(context.refDate, day, month2);
+      result.start.imply("year", year);
+    }
+    if (match2[DATE_TO_GROUP]) {
+      const endDate = parseOrdinalNumberPattern(match2[DATE_TO_GROUP]);
+      result.end = result.start.clone();
+      result.end.assign("day", endDate);
+    }
+    return result;
+  }
+};
+
+// node_modules/chrono-node/dist/esm/locales/en/parsers/ENMonthNameMiddleEndianParser.js
+var PATTERN2 = new RegExp(`(${matchAnyPattern(MONTH_DICTIONARY)})(?:-|/|\\s*,?\\s*)(${ORDINAL_NUMBER_PATTERN})(?!\\s*(?:am|pm))\\s*(?:(?:to|\\-)\\s*(${ORDINAL_NUMBER_PATTERN})\\s*)?(?:(?:-|/|\\s*,\\s*|\\s+)(${YEAR_PATTERN}))?(?=\\W|$)(?!\\:\\d)`, "i");
+var MONTH_NAME_GROUP2 = 1;
+var DATE_GROUP2 = 2;
+var DATE_TO_GROUP2 = 3;
+var YEAR_GROUP2 = 4;
+var ENMonthNameMiddleEndianParser = class extends AbstractParserWithWordBoundaryChecking {
+  constructor(shouldSkipYearLikeDate) {
+    super();
+    this.shouldSkipYearLikeDate = shouldSkipYearLikeDate;
+  }
+  innerPattern() {
+    return PATTERN2;
+  }
+  innerExtract(context, match2) {
+    const month2 = MONTH_DICTIONARY[match2[MONTH_NAME_GROUP2].toLowerCase()];
+    const day = parseOrdinalNumberPattern(match2[DATE_GROUP2]);
+    if (day > 31) {
+      return null;
+    }
+    if (this.shouldSkipYearLikeDate) {
+      if (!match2[DATE_TO_GROUP2] && !match2[YEAR_GROUP2] && match2[DATE_GROUP2].match(/^2[0-5]$/)) {
+        return null;
+      }
+    }
+    const components = context.createParsingComponents({
+      day,
+      month: month2
+    }).addTag("parser/ENMonthNameMiddleEndianParser");
+    if (match2[YEAR_GROUP2]) {
+      const year = parseYear(match2[YEAR_GROUP2]);
+      components.assign("year", year);
+    } else {
+      const year = findYearClosestToRef(context.refDate, day, month2);
+      components.imply("year", year);
+    }
+    if (!match2[DATE_TO_GROUP2]) {
+      return components;
+    }
+    const endDate = parseOrdinalNumberPattern(match2[DATE_TO_GROUP2]);
+    const result = context.createParsingResult(match2.index, match2[0]);
+    result.start = components;
+    result.end = components.clone();
+    result.end.assign("day", endDate);
+    return result;
+  }
+};
+
+// node_modules/chrono-node/dist/esm/locales/en/parsers/ENMonthNameParser.js
+var PATTERN3 = new RegExp(`((?:in)\\s*)?(${matchAnyPattern(MONTH_DICTIONARY)})\\s*(?:[,-]?\\s*(${YEAR_PATTERN})?)?(?=[^\\s\\w]|\\s+[^0-9]|\\s+$|$)`, "i");
+var PREFIX_GROUP = 1;
+var MONTH_NAME_GROUP3 = 2;
+var YEAR_GROUP3 = 3;
+var ENMonthNameParser = class extends AbstractParserWithWordBoundaryChecking {
+  innerPattern() {
+    return PATTERN3;
+  }
+  innerExtract(context, match2) {
+    const monthName = match2[MONTH_NAME_GROUP3].toLowerCase();
+    if (match2[0].length <= 3 && !FULL_MONTH_NAME_DICTIONARY[monthName]) {
+      return null;
+    }
+    const result = context.createParsingResult(match2.index + (match2[PREFIX_GROUP] || "").length, match2.index + match2[0].length);
+    result.start.imply("day", 1);
+    result.start.addTag("parser/ENMonthNameParser");
+    const month2 = MONTH_DICTIONARY[monthName];
+    result.start.assign("month", month2);
+    if (match2[YEAR_GROUP3]) {
+      const year = parseYear(match2[YEAR_GROUP3]);
+      result.start.assign("year", year);
+    } else {
+      const year = findYearClosestToRef(context.refDate, 1, month2);
+      result.start.imply("year", year);
+    }
+    return result;
+  }
+};
+
+// node_modules/chrono-node/dist/esm/locales/en/parsers/ENCasualYearMonthDayParser.js
+var PATTERN4 = new RegExp(`([0-9]{4})[\\.\\/\\s](?:(${matchAnyPattern(MONTH_DICTIONARY)})|([0-9]{1,2}))[\\.\\/\\s]([0-9]{1,2})(?=\\W|$)`, "i");
+var YEAR_NUMBER_GROUP = 1;
+var MONTH_NAME_GROUP4 = 2;
+var MONTH_NUMBER_GROUP = 3;
+var DATE_NUMBER_GROUP = 4;
+var ENCasualYearMonthDayParser = class extends AbstractParserWithWordBoundaryChecking {
+  innerPattern() {
+    return PATTERN4;
+  }
+  innerExtract(context, match2) {
+    const month2 = match2[MONTH_NUMBER_GROUP] ? parseInt(match2[MONTH_NUMBER_GROUP]) : MONTH_DICTIONARY[match2[MONTH_NAME_GROUP4].toLowerCase()];
+    if (month2 < 1 || month2 > 12) {
+      return null;
+    }
+    const year = parseInt(match2[YEAR_NUMBER_GROUP]);
+    const day = parseInt(match2[DATE_NUMBER_GROUP]);
+    return {
+      day,
+      month: month2,
+      year
+    };
+  }
+};
+
+// node_modules/chrono-node/dist/esm/locales/en/parsers/ENSlashMonthFormatParser.js
+var PATTERN5 = new RegExp("([0-9]|0[1-9]|1[012])/([0-9]{4})", "i");
+var MONTH_GROUP = 1;
+var YEAR_GROUP4 = 2;
+var ENSlashMonthFormatParser = class extends AbstractParserWithWordBoundaryChecking {
+  innerPattern() {
+    return PATTERN5;
+  }
+  innerExtract(context, match2) {
+    const year = parseInt(match2[YEAR_GROUP4]);
+    const month2 = parseInt(match2[MONTH_GROUP]);
+    return context.createParsingComponents().imply("day", 1).assign("month", month2).assign("year", year);
+  }
+};
+
+// node_modules/chrono-node/dist/esm/common/parsers/AbstractTimeExpressionParser.js
+function primaryTimePattern(leftBoundary, primaryPrefix, primarySuffix, flags) {
+  return new RegExp(`${leftBoundary}${primaryPrefix}(\\d{1,4})(?:(?:\\.|:|\uFF1A)(\\d{1,2})(?:(?::|\uFF1A)(\\d{2})(?:\\.(\\d{1,6}))?)?)?(?:\\s*(a\\.m\\.|p\\.m\\.|am?|pm?))?${primarySuffix}`, flags);
+}
+function followingTimePatten(followingPhase, followingSuffix) {
+  return new RegExp(`^(${followingPhase})(\\d{1,4})(?:(?:\\.|\\:|\\\uFF1A)(\\d{1,2})(?:(?:\\.|\\:|\\\uFF1A)(\\d{1,2})(?:\\.(\\d{1,6}))?)?)?(?:\\s*(a\\.m\\.|p\\.m\\.|am?|pm?))?${followingSuffix}`, "i");
+}
+var HOUR_GROUP = 2;
+var MINUTE_GROUP = 3;
+var SECOND_GROUP = 4;
+var MILLI_SECOND_GROUP = 5;
+var AM_PM_HOUR_GROUP = 6;
+var AbstractTimeExpressionParser = class {
+  constructor(strictMode = false) {
+    this.cachedPrimaryPrefix = null;
+    this.cachedPrimarySuffix = null;
+    this.cachedPrimaryTimePattern = null;
+    this.cachedFollowingPhase = null;
+    this.cachedFollowingSuffix = null;
+    this.cachedFollowingTimePatten = null;
+    this.strictMode = strictMode;
+  }
+  patternFlags() {
+    return "i";
+  }
+  primaryPatternLeftBoundary() {
+    return `(^|\\s|T|\\b)`;
+  }
+  primarySuffix() {
+    return `(?!/)(?=\\W|$)`;
+  }
+  followingSuffix() {
+    return `(?!/)(?=\\W|$)`;
+  }
+  pattern(context) {
+    return this.getPrimaryTimePatternThroughCache();
+  }
+  extract(context, match2) {
+    const startComponents = this.extractPrimaryTimeComponents(context, match2);
+    if (!startComponents) {
+      match2.index += match2[0].length;
+      return null;
+    }
+    const index4 = match2.index + match2[1].length;
+    const text = match2[0].substring(match2[1].length);
+    const result = context.createParsingResult(index4, text, startComponents);
+    match2.index += match2[0].length;
+    const remainingText = context.text.substring(match2.index);
+    const followingPattern = this.getFollowingTimePatternThroughCache();
+    const followingMatch = followingPattern.exec(remainingText);
+    if (text.match(/^\d{3,4}/) && followingMatch && followingMatch[0].match(/^\s*([+-])\s*\d{2,4}$/)) {
+      return null;
+    }
+    if (!followingMatch || followingMatch[0].match(/^\s*([+-])\s*\d{3,4}$/)) {
+      return this.checkAndReturnWithoutFollowingPattern(result);
+    }
+    result.end = this.extractFollowingTimeComponents(context, followingMatch, result);
+    if (result.end) {
+      result.text += followingMatch[0];
+    }
+    return this.checkAndReturnWithFollowingPattern(result);
+  }
+  extractPrimaryTimeComponents(context, match2, strict2 = false) {
+    const components = context.createParsingComponents();
+    let minute = 0;
+    let meridiem = null;
+    let hour = parseInt(match2[HOUR_GROUP]);
+    if (hour > 100) {
+      if (this.strictMode || match2[MINUTE_GROUP] != null) {
+        return null;
+      }
+      minute = hour % 100;
+      hour = Math.floor(hour / 100);
+    }
+    if (hour > 24) {
+      return null;
+    }
+    if (match2[MINUTE_GROUP] != null) {
+      if (match2[MINUTE_GROUP].length == 1 && !match2[AM_PM_HOUR_GROUP]) {
+        return null;
+      }
+      minute = parseInt(match2[MINUTE_GROUP]);
+    }
+    if (minute >= 60) {
+      return null;
+    }
+    if (hour > 12) {
+      meridiem = Meridiem.PM;
+    }
+    if (match2[AM_PM_HOUR_GROUP] != null) {
+      if (hour > 12)
+        return null;
+      const ampm = match2[AM_PM_HOUR_GROUP][0].toLowerCase();
+      if (ampm == "a") {
+        meridiem = Meridiem.AM;
+        if (hour == 12) {
+          hour = 0;
+        }
+      }
+      if (ampm == "p") {
+        meridiem = Meridiem.PM;
+        if (hour != 12) {
+          hour += 12;
+        }
+      }
+    }
+    components.assign("hour", hour);
+    components.assign("minute", minute);
+    if (meridiem !== null) {
+      components.assign("meridiem", meridiem);
+    } else {
+      if (hour < 12) {
+        components.imply("meridiem", Meridiem.AM);
+      } else {
+        components.imply("meridiem", Meridiem.PM);
+      }
+    }
+    if (match2[MILLI_SECOND_GROUP] != null) {
+      const millisecond = parseInt(match2[MILLI_SECOND_GROUP].substring(0, 3));
+      if (millisecond >= 1e3)
+        return null;
+      components.assign("millisecond", millisecond);
+    }
+    if (match2[SECOND_GROUP] != null) {
+      const second = parseInt(match2[SECOND_GROUP]);
+      if (second >= 60)
+        return null;
+      components.assign("second", second);
+    }
+    return components;
+  }
+  extractFollowingTimeComponents(context, match2, result) {
+    const components = context.createParsingComponents();
+    if (match2[MILLI_SECOND_GROUP] != null) {
+      const millisecond = parseInt(match2[MILLI_SECOND_GROUP].substring(0, 3));
+      if (millisecond >= 1e3)
+        return null;
+      components.assign("millisecond", millisecond);
+    }
+    if (match2[SECOND_GROUP] != null) {
+      const second = parseInt(match2[SECOND_GROUP]);
+      if (second >= 60)
+        return null;
+      components.assign("second", second);
+    }
+    let hour = parseInt(match2[HOUR_GROUP]);
+    let minute = 0;
+    let meridiem = -1;
+    if (match2[MINUTE_GROUP] != null) {
+      minute = parseInt(match2[MINUTE_GROUP]);
+    } else if (hour > 100) {
+      minute = hour % 100;
+      hour = Math.floor(hour / 100);
+    }
+    if (minute >= 60 || hour > 24) {
+      return null;
+    }
+    if (hour >= 12) {
+      meridiem = Meridiem.PM;
+    }
+    if (match2[AM_PM_HOUR_GROUP] != null) {
+      if (hour > 12) {
+        return null;
+      }
+      const ampm = match2[AM_PM_HOUR_GROUP][0].toLowerCase();
+      if (ampm == "a") {
+        meridiem = Meridiem.AM;
+        if (hour == 12) {
+          hour = 0;
+          if (!components.isCertain("day")) {
+            components.imply("day", components.get("day") + 1);
+          }
+        }
+      }
+      if (ampm == "p") {
+        meridiem = Meridiem.PM;
+        if (hour != 12)
+          hour += 12;
+      }
+      if (!result.start.isCertain("meridiem")) {
+        if (meridiem == Meridiem.AM) {
+          result.start.imply("meridiem", Meridiem.AM);
+          if (result.start.get("hour") == 12) {
+            result.start.assign("hour", 0);
+          }
+        } else {
+          result.start.imply("meridiem", Meridiem.PM);
+          if (result.start.get("hour") != 12) {
+            result.start.assign("hour", result.start.get("hour") + 12);
+          }
+        }
+      }
+    }
+    components.assign("hour", hour);
+    components.assign("minute", minute);
+    if (meridiem >= 0) {
+      components.assign("meridiem", meridiem);
+    } else {
+      const startAtPM = result.start.isCertain("meridiem") && result.start.get("hour") > 12;
+      if (startAtPM) {
+        if (result.start.get("hour") - 12 > hour) {
+          components.imply("meridiem", Meridiem.AM);
+        } else if (hour <= 12) {
+          components.assign("hour", hour + 12);
+          components.assign("meridiem", Meridiem.PM);
+        }
+      } else if (hour > 12) {
+        components.imply("meridiem", Meridiem.PM);
+      } else if (hour <= 12) {
+        components.imply("meridiem", Meridiem.AM);
+      }
+    }
+    if (components.date().getTime() < result.start.date().getTime()) {
+      components.imply("day", components.get("day") + 1);
+    }
+    return components;
+  }
+  checkAndReturnWithoutFollowingPattern(result) {
+    if (result.text.match(/^\d$/)) {
+      return null;
+    }
+    if (result.text.match(/^\d\d\d+$/)) {
+      return null;
+    }
+    if (result.text.match(/\d[apAP]$/)) {
+      return null;
+    }
+    const endingWithNumbers = result.text.match(/[^\d:.](\d[\d.]+)$/);
+    if (endingWithNumbers) {
+      const endingNumbers = endingWithNumbers[1];
+      if (this.strictMode) {
+        return null;
+      }
+      if (endingNumbers.includes(".") && !endingNumbers.match(/\d(\.\d{2})+$/)) {
+        return null;
+      }
+      const endingNumberVal = parseInt(endingNumbers);
+      if (endingNumberVal > 24) {
+        return null;
+      }
+    }
+    return result;
+  }
+  checkAndReturnWithFollowingPattern(result) {
+    if (result.text.match(/^\d+-\d+$/)) {
+      return null;
+    }
+    const endingWithNumbers = result.text.match(/[^\d:.](\d[\d.]+)\s*-\s*(\d[\d.]+)$/);
+    if (endingWithNumbers) {
+      if (this.strictMode) {
+        return null;
+      }
+      const startingNumbers = endingWithNumbers[1];
+      const endingNumbers = endingWithNumbers[2];
+      if (endingNumbers.includes(".") && !endingNumbers.match(/\d(\.\d{2})+$/)) {
+        return null;
+      }
+      const endingNumberVal = parseInt(endingNumbers);
+      const startingNumberVal = parseInt(startingNumbers);
+      if (endingNumberVal > 24 || startingNumberVal > 24) {
+        return null;
+      }
+    }
+    return result;
+  }
+  getPrimaryTimePatternThroughCache() {
+    const primaryPrefix = this.primaryPrefix();
+    const primarySuffix = this.primarySuffix();
+    if (this.cachedPrimaryPrefix === primaryPrefix && this.cachedPrimarySuffix === primarySuffix) {
+      return this.cachedPrimaryTimePattern;
+    }
+    this.cachedPrimaryTimePattern = primaryTimePattern(this.primaryPatternLeftBoundary(), primaryPrefix, primarySuffix, this.patternFlags());
+    this.cachedPrimaryPrefix = primaryPrefix;
+    this.cachedPrimarySuffix = primarySuffix;
+    return this.cachedPrimaryTimePattern;
+  }
+  getFollowingTimePatternThroughCache() {
+    const followingPhase = this.followingPhase();
+    const followingSuffix = this.followingSuffix();
+    if (this.cachedFollowingPhase === followingPhase && this.cachedFollowingSuffix === followingSuffix) {
+      return this.cachedFollowingTimePatten;
+    }
+    this.cachedFollowingTimePatten = followingTimePatten(followingPhase, followingSuffix);
+    this.cachedFollowingPhase = followingPhase;
+    this.cachedFollowingSuffix = followingSuffix;
+    return this.cachedFollowingTimePatten;
+  }
+};
+
+// node_modules/chrono-node/dist/esm/locales/en/parsers/ENTimeExpressionParser.js
+var ENTimeExpressionParser = class extends AbstractTimeExpressionParser {
+  constructor(strictMode) {
+    super(strictMode);
+  }
+  followingPhase() {
+    return "\\s*(?:\\-|\\\u2013|\\~|\\\u301C|to|until|through|till|\\?)\\s*";
+  }
+  primaryPrefix() {
+    return "(?:(?:at|from)\\s*)??";
+  }
+  primarySuffix() {
+    return "(?:\\s*(?:o\\W*clock|at\\s*night|in\\s*the\\s*(?:morning|afternoon)))?(?!/)(?=\\W|$)";
+  }
+  extractPrimaryTimeComponents(context, match2) {
+    const components = super.extractPrimaryTimeComponents(context, match2);
+    if (!components) {
+      return components;
+    }
+    if (match2[0].endsWith("night")) {
+      const hour = components.get("hour");
+      if (hour >= 6 && hour < 12) {
+        components.assign("hour", components.get("hour") + 12);
+        components.assign("meridiem", Meridiem.PM);
+      } else if (hour < 6) {
+        components.assign("meridiem", Meridiem.AM);
+      }
+    }
+    if (match2[0].endsWith("afternoon")) {
+      components.assign("meridiem", Meridiem.PM);
+      const hour = components.get("hour");
+      if (hour >= 0 && hour <= 6) {
+        components.assign("hour", components.get("hour") + 12);
+      }
+    }
+    if (match2[0].endsWith("morning")) {
+      components.assign("meridiem", Meridiem.AM);
+      const hour = components.get("hour");
+      if (hour < 12) {
+        components.assign("hour", components.get("hour"));
+      }
+    }
+    return components.addTag("parser/ENTimeExpressionParser");
+  }
+};
+
+// node_modules/chrono-node/dist/esm/utils/timeunits.js
+function reverseTimeUnits(timeUnits) {
+  const reversed = {};
+  for (const key in timeUnits) {
+    reversed[key] = -timeUnits[key];
+  }
+  return reversed;
+}
+function addImpliedTimeUnits(components, timeUnits) {
+  const output = components.clone();
+  let date = components.dayjs();
+  for (const key in timeUnits) {
+    date = date.add(timeUnits[key], key);
+  }
+  if ("day" in timeUnits || "d" in timeUnits || "week" in timeUnits || "month" in timeUnits || "year" in timeUnits) {
+    output.imply("day", date.date());
+    output.imply("month", date.month() + 1);
+    output.imply("year", date.year());
+  }
+  if ("second" in timeUnits || "minute" in timeUnits || "hour" in timeUnits) {
+    output.imply("second", date.second());
+    output.imply("minute", date.minute());
+    output.imply("hour", date.hour());
+  }
+  return output;
+}
+
+// node_modules/chrono-node/dist/esm/locales/en/parsers/ENTimeUnitAgoFormatParser.js
+var PATTERN6 = new RegExp(`(${TIME_UNITS_PATTERN})\\s{0,5}(?:ago|before|earlier)(?=\\W|$)`, "i");
+var STRICT_PATTERN = new RegExp(`(${TIME_UNITS_NO_ABBR_PATTERN})\\s{0,5}(?:ago|before|earlier)(?=\\W|$)`, "i");
+var ENTimeUnitAgoFormatParser = class extends AbstractParserWithWordBoundaryChecking {
+  constructor(strictMode) {
+    super();
+    this.strictMode = strictMode;
+  }
+  innerPattern() {
+    return this.strictMode ? STRICT_PATTERN : PATTERN6;
+  }
+  innerExtract(context, match2) {
+    const timeUnits = parseTimeUnits(match2[1]);
+    const outputTimeUnits = reverseTimeUnits(timeUnits);
+    return ParsingComponents.createRelativeFromReference(context.reference, outputTimeUnits);
+  }
+};
+
+// node_modules/chrono-node/dist/esm/locales/en/parsers/ENTimeUnitLaterFormatParser.js
+var PATTERN7 = new RegExp(`(${TIME_UNITS_PATTERN})\\s{0,5}(?:later|after|from now|henceforth|forward|out)(?=(?:\\W|$))`, "i");
+var STRICT_PATTERN2 = new RegExp(`(${TIME_UNITS_NO_ABBR_PATTERN})\\s{0,5}(later|after|from now)(?=\\W|$)`, "i");
+var GROUP_NUM_TIMEUNITS = 1;
+var ENTimeUnitLaterFormatParser = class extends AbstractParserWithWordBoundaryChecking {
+  constructor(strictMode) {
+    super();
+    this.strictMode = strictMode;
+  }
+  innerPattern() {
+    return this.strictMode ? STRICT_PATTERN2 : PATTERN7;
+  }
+  innerExtract(context, match2) {
+    const fragments = parseTimeUnits(match2[GROUP_NUM_TIMEUNITS]);
+    return ParsingComponents.createRelativeFromReference(context.reference, fragments);
+  }
+};
+
+// node_modules/chrono-node/dist/esm/common/abstractRefiners.js
+var Filter = class {
+  refine(context, results) {
+    return results.filter((r3) => this.isValid(context, r3));
+  }
+};
+var MergingRefiner = class {
+  refine(context, results) {
+    if (results.length < 2) {
+      return results;
+    }
+    const mergedResults = [];
+    let curResult = results[0];
+    let nextResult = null;
+    for (let i5 = 1; i5 < results.length; i5++) {
+      nextResult = results[i5];
+      const textBetween = context.text.substring(curResult.index + curResult.text.length, nextResult.index);
+      if (!this.shouldMergeResults(textBetween, curResult, nextResult, context)) {
+        mergedResults.push(curResult);
+        curResult = nextResult;
+      } else {
+        const left = curResult;
+        const right = nextResult;
+        const mergedResult = this.mergeResults(textBetween, left, right, context);
+        context.debug(() => {
+          console.log(`${this.constructor.name} merged ${left} and ${right} into ${mergedResult}`);
+        });
+        curResult = mergedResult;
+      }
+    }
+    if (curResult != null) {
+      mergedResults.push(curResult);
+    }
+    return mergedResults;
+  }
+};
+
+// node_modules/chrono-node/dist/esm/common/refiners/AbstractMergeDateRangeRefiner.js
+var AbstractMergeDateRangeRefiner = class extends MergingRefiner {
+  shouldMergeResults(textBetween, currentResult, nextResult) {
+    return !currentResult.end && !nextResult.end && textBetween.match(this.patternBetween()) != null;
+  }
+  mergeResults(textBetween, fromResult, toResult) {
+    if (!fromResult.start.isOnlyWeekdayComponent() && !toResult.start.isOnlyWeekdayComponent()) {
+      toResult.start.getCertainComponents().forEach((key) => {
+        if (!fromResult.start.isCertain(key)) {
+          fromResult.start.imply(key, toResult.start.get(key));
+        }
       });
+      fromResult.start.getCertainComponents().forEach((key) => {
+        if (!toResult.start.isCertain(key)) {
+          toResult.start.imply(key, fromResult.start.get(key));
+        }
+      });
+    }
+    if (fromResult.start.date().getTime() > toResult.start.date().getTime()) {
+      let fromMoment = fromResult.start.dayjs();
+      let toMoment = toResult.start.dayjs();
+      if (toResult.start.isOnlyWeekdayComponent() && toMoment.add(7, "days").isAfter(fromMoment)) {
+        toMoment = toMoment.add(7, "days");
+        toResult.start.imply("day", toMoment.date());
+        toResult.start.imply("month", toMoment.month() + 1);
+        toResult.start.imply("year", toMoment.year());
+      } else if (fromResult.start.isOnlyWeekdayComponent() && fromMoment.add(-7, "days").isBefore(toMoment)) {
+        fromMoment = fromMoment.add(-7, "days");
+        fromResult.start.imply("day", fromMoment.date());
+        fromResult.start.imply("month", fromMoment.month() + 1);
+        fromResult.start.imply("year", fromMoment.year());
+      } else if (toResult.start.isDateWithUnknownYear() && toMoment.add(1, "years").isAfter(fromMoment)) {
+        toMoment = toMoment.add(1, "years");
+        toResult.start.imply("year", toMoment.year());
+      } else if (fromResult.start.isDateWithUnknownYear() && fromMoment.add(-1, "years").isBefore(toMoment)) {
+        fromMoment = fromMoment.add(-1, "years");
+        fromResult.start.imply("year", fromMoment.year());
+      } else {
+        [toResult, fromResult] = [fromResult, toResult];
+      }
+    }
+    const result = fromResult.clone();
+    result.start = fromResult.start;
+    result.end = toResult.start;
+    result.index = Math.min(fromResult.index, toResult.index);
+    if (fromResult.index < toResult.index) {
+      result.text = fromResult.text + textBetween + toResult.text;
+    } else {
+      result.text = toResult.text + textBetween + fromResult.text;
+    }
+    return result;
+  }
+};
+
+// node_modules/chrono-node/dist/esm/locales/en/refiners/ENMergeDateRangeRefiner.js
+var ENMergeDateRangeRefiner = class extends AbstractMergeDateRangeRefiner {
+  patternBetween() {
+    return /^\s*(to|-|–|until|through|till)\s*$/i;
+  }
+};
+
+// node_modules/chrono-node/dist/esm/calculation/mergingCalculation.js
+function mergeDateTimeResult(dateResult, timeResult) {
+  const result = dateResult.clone();
+  const beginDate = dateResult.start;
+  const beginTime = timeResult.start;
+  result.start = mergeDateTimeComponent(beginDate, beginTime);
+  if (dateResult.end != null || timeResult.end != null) {
+    const endDate = dateResult.end == null ? dateResult.start : dateResult.end;
+    const endTime = timeResult.end == null ? timeResult.start : timeResult.end;
+    const endDateTime = mergeDateTimeComponent(endDate, endTime);
+    if (dateResult.end == null && endDateTime.date().getTime() < result.start.date().getTime()) {
+      const nextDayJs = endDateTime.dayjs().add(1, "day");
+      if (endDateTime.isCertain("day")) {
+        assignSimilarDate(endDateTime, nextDayJs);
+      } else {
+        implySimilarDate(endDateTime, nextDayJs);
+      }
+    }
+    result.end = endDateTime;
+  }
+  return result;
+}
+function mergeDateTimeComponent(dateComponent, timeComponent) {
+  const dateTimeComponent = dateComponent.clone();
+  if (timeComponent.isCertain("hour")) {
+    dateTimeComponent.assign("hour", timeComponent.get("hour"));
+    dateTimeComponent.assign("minute", timeComponent.get("minute"));
+    if (timeComponent.isCertain("second")) {
+      dateTimeComponent.assign("second", timeComponent.get("second"));
+      if (timeComponent.isCertain("millisecond")) {
+        dateTimeComponent.assign("millisecond", timeComponent.get("millisecond"));
+      } else {
+        dateTimeComponent.imply("millisecond", timeComponent.get("millisecond"));
+      }
+    } else {
+      dateTimeComponent.imply("second", timeComponent.get("second"));
+      dateTimeComponent.imply("millisecond", timeComponent.get("millisecond"));
+    }
+  } else {
+    dateTimeComponent.imply("hour", timeComponent.get("hour"));
+    dateTimeComponent.imply("minute", timeComponent.get("minute"));
+    dateTimeComponent.imply("second", timeComponent.get("second"));
+    dateTimeComponent.imply("millisecond", timeComponent.get("millisecond"));
+  }
+  if (timeComponent.isCertain("timezoneOffset")) {
+    dateTimeComponent.assign("timezoneOffset", timeComponent.get("timezoneOffset"));
+  }
+  if (timeComponent.isCertain("meridiem")) {
+    dateTimeComponent.assign("meridiem", timeComponent.get("meridiem"));
+  } else if (timeComponent.get("meridiem") != null && dateTimeComponent.get("meridiem") == null) {
+    dateTimeComponent.imply("meridiem", timeComponent.get("meridiem"));
+  }
+  if (dateTimeComponent.get("meridiem") == Meridiem.PM && dateTimeComponent.get("hour") < 12) {
+    if (timeComponent.isCertain("hour")) {
+      dateTimeComponent.assign("hour", dateTimeComponent.get("hour") + 12);
+    } else {
+      dateTimeComponent.imply("hour", dateTimeComponent.get("hour") + 12);
+    }
+  }
+  dateTimeComponent.addTags(dateComponent.tags());
+  dateTimeComponent.addTags(timeComponent.tags());
+  return dateTimeComponent;
+}
+
+// node_modules/chrono-node/dist/esm/common/refiners/AbstractMergeDateTimeRefiner.js
+var AbstractMergeDateTimeRefiner = class extends MergingRefiner {
+  shouldMergeResults(textBetween, currentResult, nextResult) {
+    return (currentResult.start.isOnlyDate() && nextResult.start.isOnlyTime() || nextResult.start.isOnlyDate() && currentResult.start.isOnlyTime()) && textBetween.match(this.patternBetween()) != null;
+  }
+  mergeResults(textBetween, currentResult, nextResult) {
+    const result = currentResult.start.isOnlyDate() ? mergeDateTimeResult(currentResult, nextResult) : mergeDateTimeResult(nextResult, currentResult);
+    result.index = currentResult.index;
+    result.text = currentResult.text + textBetween + nextResult.text;
+    return result;
+  }
+};
+
+// node_modules/chrono-node/dist/esm/locales/en/refiners/ENMergeDateTimeRefiner.js
+var ENMergeDateTimeRefiner = class extends AbstractMergeDateTimeRefiner {
+  patternBetween() {
+    return new RegExp("^\\s*(T|at|after|before|on|of|,|-)?\\s*$");
+  }
+};
+
+// node_modules/chrono-node/dist/esm/common/refiners/ExtractTimezoneAbbrRefiner.js
+var TIMEZONE_NAME_PATTERN = new RegExp("^\\s*,?\\s*\\(?([A-Z]{2,4})\\)?(?=\\W|$)", "i");
+var ExtractTimezoneAbbrRefiner = class {
+  constructor(timezoneOverrides) {
+    this.timezoneOverrides = timezoneOverrides;
+  }
+  refine(context, results) {
+    var _a2;
+    const timezoneOverrides = (_a2 = context.option.timezones) != null ? _a2 : {};
+    results.forEach((result) => {
+      var _a3, _b2;
+      const suffix = context.text.substring(result.index + result.text.length);
+      const match2 = TIMEZONE_NAME_PATTERN.exec(suffix);
+      if (!match2) {
+        return;
+      }
+      const timezoneAbbr = match2[1].toUpperCase();
+      const refDate = (_b2 = (_a3 = result.start.date()) != null ? _a3 : result.refDate) != null ? _b2 : new Date();
+      const tzOverrides = { ...this.timezoneOverrides, ...timezoneOverrides };
+      const extractedTimezoneOffset = toTimezoneOffset(timezoneAbbr, refDate, tzOverrides);
+      if (extractedTimezoneOffset == null) {
+        return;
+      }
+      context.debug(() => {
+        console.log(`Extracting timezone: '${timezoneAbbr}' into: ${extractedTimezoneOffset} for: ${result.start}`);
+      });
+      const currentTimezoneOffset = result.start.get("timezoneOffset");
+      if (currentTimezoneOffset !== null && extractedTimezoneOffset != currentTimezoneOffset) {
+        if (result.start.isCertain("timezoneOffset")) {
+          return;
+        }
+        if (timezoneAbbr != match2[1]) {
+          return;
+        }
+      }
+      if (result.start.isOnlyDate()) {
+        if (timezoneAbbr != match2[1]) {
+          return;
+        }
+      }
+      result.text += match2[0];
+      if (!result.start.isCertain("timezoneOffset")) {
+        result.start.assign("timezoneOffset", extractedTimezoneOffset);
+      }
+      if (result.end != null && !result.end.isCertain("timezoneOffset")) {
+        result.end.assign("timezoneOffset", extractedTimezoneOffset);
+      }
+    });
+    return results;
+  }
+};
+
+// node_modules/chrono-node/dist/esm/common/refiners/ExtractTimezoneOffsetRefiner.js
+var TIMEZONE_OFFSET_PATTERN = new RegExp("^\\s*(?:\\(?(?:GMT|UTC)\\s?)?([+-])(\\d{1,2})(?::?(\\d{2}))?\\)?", "i");
+var TIMEZONE_OFFSET_SIGN_GROUP = 1;
+var TIMEZONE_OFFSET_HOUR_OFFSET_GROUP = 2;
+var TIMEZONE_OFFSET_MINUTE_OFFSET_GROUP = 3;
+var ExtractTimezoneOffsetRefiner = class {
+  refine(context, results) {
+    results.forEach(function(result) {
+      if (result.start.isCertain("timezoneOffset")) {
+        return;
+      }
+      const suffix = context.text.substring(result.index + result.text.length);
+      const match2 = TIMEZONE_OFFSET_PATTERN.exec(suffix);
+      if (!match2) {
+        return;
+      }
+      context.debug(() => {
+        console.log(`Extracting timezone: '${match2[0]}' into : ${result}`);
+      });
+      const hourOffset = parseInt(match2[TIMEZONE_OFFSET_HOUR_OFFSET_GROUP]);
+      const minuteOffset = parseInt(match2[TIMEZONE_OFFSET_MINUTE_OFFSET_GROUP] || "0");
+      let timezoneOffset = hourOffset * 60 + minuteOffset;
+      if (timezoneOffset > 14 * 60) {
+        return;
+      }
+      if (match2[TIMEZONE_OFFSET_SIGN_GROUP] === "-") {
+        timezoneOffset = -timezoneOffset;
+      }
+      if (result.end != null) {
+        result.end.assign("timezoneOffset", timezoneOffset);
+      }
+      result.start.assign("timezoneOffset", timezoneOffset);
+      result.text += match2[0];
+    });
+    return results;
+  }
+};
+
+// node_modules/chrono-node/dist/esm/common/refiners/OverlapRemovalRefiner.js
+var OverlapRemovalRefiner = class {
+  refine(context, results) {
+    if (results.length < 2) {
+      return results;
+    }
+    const filteredResults = [];
+    let prevResult = results[0];
+    for (let i5 = 1; i5 < results.length; i5++) {
+      const result = results[i5];
+      if (result.index >= prevResult.index + prevResult.text.length) {
+        filteredResults.push(prevResult);
+        prevResult = result;
+        continue;
+      }
+      let kept = null;
+      let removed = null;
+      if (result.text.length > prevResult.text.length) {
+        kept = result;
+        removed = prevResult;
+      } else {
+        kept = prevResult;
+        removed = result;
+      }
+      context.debug(() => {
+        console.log(`${this.constructor.name} remove ${removed} by ${kept}`);
+      });
+      prevResult = kept;
+    }
+    if (prevResult != null) {
+      filteredResults.push(prevResult);
+    }
+    return filteredResults;
+  }
+};
+
+// node_modules/chrono-node/dist/esm/common/refiners/ForwardDateRefiner.js
+var import_dayjs6 = __toESM(require_dayjs_min(), 1);
+var ForwardDateRefiner = class {
+  refine(context, results) {
+    if (!context.option.forwardDate) {
+      return results;
+    }
+    results.forEach(function(result) {
+      let refMoment = (0, import_dayjs6.default)(context.refDate);
+      if (result.start.isOnlyTime() && refMoment.isAfter(result.start.dayjs())) {
+        refMoment = refMoment.add(1, "day");
+        implySimilarDate(result.start, refMoment);
+        if (result.end && result.end.isOnlyTime()) {
+          implySimilarDate(result.end, refMoment);
+          if (result.start.dayjs().isAfter(result.end.dayjs())) {
+            refMoment = refMoment.add(1, "day");
+            implySimilarDate(result.end, refMoment);
+          }
+        }
+      }
+      if (result.start.isOnlyWeekdayComponent() && refMoment.isAfter(result.start.dayjs())) {
+        if (refMoment.day() >= result.start.get("weekday")) {
+          refMoment = refMoment.day(result.start.get("weekday") + 7);
+        } else {
+          refMoment = refMoment.day(result.start.get("weekday"));
+        }
+        result.start.imply("day", refMoment.date());
+        result.start.imply("month", refMoment.month() + 1);
+        result.start.imply("year", refMoment.year());
+        context.debug(() => {
+          console.log(`Forward weekly adjusted for ${result} (${result.start})`);
+        });
+        if (result.end && result.end.isOnlyWeekdayComponent()) {
+          if (refMoment.day() > result.end.get("weekday")) {
+            refMoment = refMoment.day(result.end.get("weekday") + 7);
+          } else {
+            refMoment = refMoment.day(result.end.get("weekday"));
+          }
+          result.end.imply("day", refMoment.date());
+          result.end.imply("month", refMoment.month() + 1);
+          result.end.imply("year", refMoment.year());
+          context.debug(() => {
+            console.log(`Forward weekly adjusted for ${result} (${result.end})`);
+          });
+        }
+      }
+      if (result.start.isDateWithUnknownYear() && refMoment.isAfter(result.start.dayjs())) {
+        for (let i5 = 0; i5 < 3 && refMoment.isAfter(result.start.dayjs()); i5++) {
+          result.start.imply("year", result.start.get("year") + 1);
+          context.debug(() => {
+            console.log(`Forward yearly adjusted for ${result} (${result.start})`);
+          });
+          if (result.end && !result.end.isCertain("year")) {
+            result.end.imply("year", result.end.get("year") + 1);
+            context.debug(() => {
+              console.log(`Forward yearly adjusted for ${result} (${result.end})`);
+            });
+          }
+        }
+      }
+    });
+    return results;
+  }
+};
+
+// node_modules/chrono-node/dist/esm/common/refiners/UnlikelyFormatFilter.js
+var UnlikelyFormatFilter = class extends Filter {
+  constructor(strictMode) {
+    super();
+    this.strictMode = strictMode;
+  }
+  isValid(context, result) {
+    if (result.text.replace(" ", "").match(/^\d*(\.\d*)?$/)) {
+      context.debug(() => {
+        console.log(`Removing unlikely result '${result.text}'`);
+      });
+      return false;
+    }
+    if (!result.start.isValidDate()) {
+      context.debug(() => {
+        console.log(`Removing invalid result: ${result} (${result.start})`);
+      });
+      return false;
+    }
+    if (result.end && !result.end.isValidDate()) {
+      context.debug(() => {
+        console.log(`Removing invalid result: ${result} (${result.end})`);
+      });
+      return false;
+    }
+    if (this.strictMode) {
+      return this.isStrictModeValid(context, result);
+    }
+    return true;
+  }
+  isStrictModeValid(context, result) {
+    if (result.start.isOnlyWeekdayComponent()) {
+      context.debug(() => {
+        console.log(`(Strict) Removing weekday only component: ${result} (${result.end})`);
+      });
+      return false;
+    }
+    if (result.start.isOnlyTime() && (!result.start.isCertain("hour") || !result.start.isCertain("minute"))) {
+      context.debug(() => {
+        console.log(`(Strict) Removing uncertain time component: ${result} (${result.end})`);
+      });
+      return false;
+    }
+    return true;
+  }
+};
+
+// node_modules/chrono-node/dist/esm/common/parsers/ISOFormatParser.js
+var PATTERN8 = new RegExp("([0-9]{4})\\-([0-9]{1,2})\\-([0-9]{1,2})(?:T([0-9]{1,2}):([0-9]{1,2})(?::([0-9]{1,2})(?:\\.(\\d{1,4}))?)?(?:Z|([+-]\\d{2}):?(\\d{2})?)?)?(?=\\W|$)", "i");
+var YEAR_NUMBER_GROUP2 = 1;
+var MONTH_NUMBER_GROUP2 = 2;
+var DATE_NUMBER_GROUP2 = 3;
+var HOUR_NUMBER_GROUP = 4;
+var MINUTE_NUMBER_GROUP = 5;
+var SECOND_NUMBER_GROUP = 6;
+var MILLISECOND_NUMBER_GROUP = 7;
+var TZD_HOUR_OFFSET_GROUP = 8;
+var TZD_MINUTE_OFFSET_GROUP = 9;
+var ISOFormatParser = class extends AbstractParserWithWordBoundaryChecking {
+  innerPattern() {
+    return PATTERN8;
+  }
+  innerExtract(context, match2) {
+    const components = {};
+    components["year"] = parseInt(match2[YEAR_NUMBER_GROUP2]);
+    components["month"] = parseInt(match2[MONTH_NUMBER_GROUP2]);
+    components["day"] = parseInt(match2[DATE_NUMBER_GROUP2]);
+    if (match2[HOUR_NUMBER_GROUP] != null) {
+      components["hour"] = parseInt(match2[HOUR_NUMBER_GROUP]);
+      components["minute"] = parseInt(match2[MINUTE_NUMBER_GROUP]);
+      if (match2[SECOND_NUMBER_GROUP] != null) {
+        components["second"] = parseInt(match2[SECOND_NUMBER_GROUP]);
+      }
+      if (match2[MILLISECOND_NUMBER_GROUP] != null) {
+        components["millisecond"] = parseInt(match2[MILLISECOND_NUMBER_GROUP]);
+      }
+      if (match2[TZD_HOUR_OFFSET_GROUP] == null) {
+        components["timezoneOffset"] = 0;
+      } else {
+        const hourOffset = parseInt(match2[TZD_HOUR_OFFSET_GROUP]);
+        let minuteOffset = 0;
+        if (match2[TZD_MINUTE_OFFSET_GROUP] != null) {
+          minuteOffset = parseInt(match2[TZD_MINUTE_OFFSET_GROUP]);
+        }
+        let offset2 = hourOffset * 60;
+        if (offset2 < 0) {
+          offset2 -= minuteOffset;
+        } else {
+          offset2 += minuteOffset;
+        }
+        components["timezoneOffset"] = offset2;
+      }
+    }
+    return components;
+  }
+};
+
+// node_modules/chrono-node/dist/esm/common/refiners/MergeWeekdayComponentRefiner.js
+var MergeWeekdayComponentRefiner = class extends MergingRefiner {
+  mergeResults(textBetween, currentResult, nextResult) {
+    const newResult = nextResult.clone();
+    newResult.index = currentResult.index;
+    newResult.text = currentResult.text + textBetween + newResult.text;
+    newResult.start.assign("weekday", currentResult.start.get("weekday"));
+    if (newResult.end) {
+      newResult.end.assign("weekday", currentResult.start.get("weekday"));
+    }
+    return newResult;
+  }
+  shouldMergeResults(textBetween, currentResult, nextResult) {
+    const weekdayThenNormalDate = currentResult.start.isOnlyWeekdayComponent() && !currentResult.start.isCertain("hour") && nextResult.start.isCertain("day");
+    return weekdayThenNormalDate && textBetween.match(/^,?\s*$/) != null;
+  }
+};
+
+// node_modules/chrono-node/dist/esm/configurations.js
+function includeCommonConfiguration(configuration2, strictMode = false) {
+  configuration2.parsers.unshift(new ISOFormatParser());
+  configuration2.refiners.unshift(new MergeWeekdayComponentRefiner());
+  configuration2.refiners.unshift(new ExtractTimezoneOffsetRefiner());
+  configuration2.refiners.unshift(new OverlapRemovalRefiner());
+  configuration2.refiners.push(new ExtractTimezoneAbbrRefiner());
+  configuration2.refiners.push(new OverlapRemovalRefiner());
+  configuration2.refiners.push(new ForwardDateRefiner());
+  configuration2.refiners.push(new UnlikelyFormatFilter(strictMode));
+  return configuration2;
+}
+
+// node_modules/chrono-node/dist/esm/locales/en/parsers/ENCasualDateParser.js
+var import_dayjs10 = __toESM(require_dayjs_min(), 1);
+
+// node_modules/chrono-node/dist/esm/common/casualReferences.js
+var import_dayjs8 = __toESM(require_dayjs_min(), 1);
+function now(reference) {
+  const targetDate = (0, import_dayjs8.default)(reference.instant);
+  const component = new ParsingComponents(reference, {});
+  assignSimilarDate(component, targetDate);
+  assignSimilarTime(component, targetDate);
+  if (reference.timezoneOffset !== null) {
+    component.assign("timezoneOffset", targetDate.utcOffset());
+  }
+  component.addTag("casualReference/now");
+  return component;
+}
+function today(reference) {
+  const targetDate = (0, import_dayjs8.default)(reference.instant);
+  const component = new ParsingComponents(reference, {});
+  assignSimilarDate(component, targetDate);
+  implySimilarTime(component, targetDate);
+  component.addTag("casualReference/today");
+  return component;
+}
+function yesterday(reference) {
+  return theDayBefore(reference, 1).addTag("casualReference/yesterday");
+}
+function theDayBefore(reference, numDay) {
+  return theDayAfter(reference, -numDay);
+}
+function tomorrow(reference) {
+  return theDayAfter(reference, 1).addTag("casualReference/tomorrow");
+}
+function theDayAfter(reference, nDays) {
+  let targetDate = (0, import_dayjs8.default)(reference.instant);
+  const component = new ParsingComponents(reference, {});
+  targetDate = targetDate.add(nDays, "day");
+  assignSimilarDate(component, targetDate);
+  implySimilarTime(component, targetDate);
+  return component;
+}
+function tonight(reference, implyHour = 22) {
+  const targetDate = (0, import_dayjs8.default)(reference.instant);
+  const component = new ParsingComponents(reference, {});
+  assignSimilarDate(component, targetDate);
+  component.imply("hour", implyHour);
+  component.imply("meridiem", Meridiem.PM);
+  component.addTag("casualReference/tonight");
+  return component;
+}
+function evening(reference, implyHour = 20) {
+  const component = new ParsingComponents(reference, {});
+  component.imply("meridiem", Meridiem.PM);
+  component.imply("hour", implyHour);
+  component.addTag("casualReference/evening");
+  return component;
+}
+function midnight(reference) {
+  const component = new ParsingComponents(reference, {});
+  const targetDate = (0, import_dayjs8.default)(reference.instant);
+  if (targetDate.hour() > 2) {
+    implyTheNextDay(component, targetDate);
+  }
+  component.assign("hour", 0);
+  component.imply("minute", 0);
+  component.imply("second", 0);
+  component.imply("millisecond", 0);
+  component.addTag("casualReference/midnight");
+  return component;
+}
+function morning(reference, implyHour = 6) {
+  const component = new ParsingComponents(reference, {});
+  component.imply("meridiem", Meridiem.AM);
+  component.imply("hour", implyHour);
+  component.imply("minute", 0);
+  component.imply("second", 0);
+  component.imply("millisecond", 0);
+  component.addTag("casualReference/morning");
+  return component;
+}
+function afternoon(reference, implyHour = 15) {
+  const component = new ParsingComponents(reference, {});
+  component.imply("meridiem", Meridiem.PM);
+  component.imply("hour", implyHour);
+  component.imply("minute", 0);
+  component.imply("second", 0);
+  component.imply("millisecond", 0);
+  component.addTag("casualReference/afternoon");
+  return component;
+}
+function noon(reference) {
+  const component = new ParsingComponents(reference, {});
+  component.imply("meridiem", Meridiem.AM);
+  component.imply("hour", 12);
+  component.imply("minute", 0);
+  component.imply("second", 0);
+  component.imply("millisecond", 0);
+  component.addTag("casualReference/noon");
+  return component;
+}
+
+// node_modules/chrono-node/dist/esm/locales/en/parsers/ENCasualDateParser.js
+var PATTERN9 = /(now|today|tonight|tomorrow|tmr|tmrw|yesterday|last\s*night)(?=\W|$)/i;
+var ENCasualDateParser = class extends AbstractParserWithWordBoundaryChecking {
+  innerPattern(context) {
+    return PATTERN9;
+  }
+  innerExtract(context, match2) {
+    let targetDate = (0, import_dayjs10.default)(context.refDate);
+    const lowerText = match2[0].toLowerCase();
+    let component = context.createParsingComponents();
+    switch (lowerText) {
+      case "now":
+        component = now(context.reference);
+        break;
+      case "today":
+        component = today(context.reference);
+        break;
+      case "yesterday":
+        component = yesterday(context.reference);
+        break;
+      case "tomorrow":
+      case "tmr":
+      case "tmrw":
+        component = tomorrow(context.reference);
+        break;
+      case "tonight":
+        component = tonight(context.reference);
+        break;
+      default:
+        if (lowerText.match(/last\s*night/)) {
+          if (targetDate.hour() > 6) {
+            targetDate = targetDate.add(-1, "day");
+          }
+          assignSimilarDate(component, targetDate);
+          component.imply("hour", 0);
+        }
+        break;
+    }
+    component.addTag("parser/ENCasualDateParser");
+    return component;
+  }
+};
+
+// node_modules/chrono-node/dist/esm/locales/en/parsers/ENCasualTimeParser.js
+var PATTERN10 = /(?:this)?\s{0,3}(morning|afternoon|evening|night|midnight|midday|noon)(?=\W|$)/i;
+var ENCasualTimeParser = class extends AbstractParserWithWordBoundaryChecking {
+  innerPattern() {
+    return PATTERN10;
+  }
+  innerExtract(context, match2) {
+    let component = null;
+    switch (match2[1].toLowerCase()) {
+      case "afternoon":
+        component = afternoon(context.reference);
+        break;
+      case "evening":
+      case "night":
+        component = evening(context.reference);
+        break;
+      case "midnight":
+        component = midnight(context.reference);
+        break;
+      case "morning":
+        component = morning(context.reference);
+        break;
+      case "noon":
+      case "midday":
+        component = noon(context.reference);
+        break;
+    }
+    if (component) {
+      component.addTag("parser/ENCasualTimeParser");
+    }
+    return component;
+  }
+};
+
+// node_modules/chrono-node/dist/esm/common/calculation/weekdays.js
+function createParsingComponentsAtWeekday(reference, weekday, modifier) {
+  const refDate = reference.getDateWithAdjustedTimezone();
+  const daysToWeekday = getDaysToWeekday(refDate, weekday, modifier);
+  let components = new ParsingComponents(reference);
+  components = addImpliedTimeUnits(components, { "day": daysToWeekday });
+  components.assign("weekday", weekday);
+  return components;
+}
+function getDaysToWeekday(refDate, weekday, modifier) {
+  const refWeekday = refDate.getDay();
+  switch (modifier) {
+    case "this":
+      return getDaysForwardToWeekday(refDate, weekday);
+    case "last":
+      return getBackwardDaysToWeekday(refDate, weekday);
+    case "next":
+      if (refWeekday == Weekday.SUNDAY) {
+        return weekday == Weekday.SUNDAY ? 7 : weekday;
+      }
+      if (refWeekday == Weekday.SATURDAY) {
+        if (weekday == Weekday.SATURDAY)
+          return 7;
+        if (weekday == Weekday.SUNDAY)
+          return 8;
+        return 1 + weekday;
+      }
+      if (weekday < refWeekday && weekday != Weekday.SUNDAY) {
+        return getDaysForwardToWeekday(refDate, weekday);
+      } else {
+        return getDaysForwardToWeekday(refDate, weekday) + 7;
+      }
+  }
+  return getDaysToWeekdayClosest(refDate, weekday);
+}
+function getDaysToWeekdayClosest(refDate, weekday) {
+  const backward = getBackwardDaysToWeekday(refDate, weekday);
+  const forward = getDaysForwardToWeekday(refDate, weekday);
+  return forward < -backward ? forward : backward;
+}
+function getDaysForwardToWeekday(refDate, weekday) {
+  const refWeekday = refDate.getDay();
+  let forwardCount = weekday - refWeekday;
+  if (forwardCount < 0) {
+    forwardCount += 7;
+  }
+  return forwardCount;
+}
+function getBackwardDaysToWeekday(refDate, weekday) {
+  const refWeekday = refDate.getDay();
+  let backwardCount = weekday - refWeekday;
+  if (backwardCount >= 0) {
+    backwardCount -= 7;
+  }
+  return backwardCount;
+}
+
+// node_modules/chrono-node/dist/esm/locales/en/parsers/ENWeekdayParser.js
+var PATTERN11 = new RegExp(`(?:(?:\\,|\\(|\\\uFF08)\\s*)?(?:on\\s*?)?(?:(this|last|past|next)\\s*)?(${matchAnyPattern(WEEKDAY_DICTIONARY)})(?:\\s*(?:\\,|\\)|\\\uFF09))?(?:\\s*(this|last|past|next)\\s*week)?(?=\\W|$)`, "i");
+var PREFIX_GROUP2 = 1;
+var WEEKDAY_GROUP = 2;
+var POSTFIX_GROUP = 3;
+var ENWeekdayParser = class extends AbstractParserWithWordBoundaryChecking {
+  innerPattern() {
+    return PATTERN11;
+  }
+  innerExtract(context, match2) {
+    const dayOfWeek = match2[WEEKDAY_GROUP].toLowerCase();
+    const weekday = WEEKDAY_DICTIONARY[dayOfWeek];
+    const prefix5 = match2[PREFIX_GROUP2];
+    const postfix = match2[POSTFIX_GROUP];
+    let modifierWord = prefix5 || postfix;
+    modifierWord = modifierWord || "";
+    modifierWord = modifierWord.toLowerCase();
+    let modifier = null;
+    if (modifierWord == "last" || modifierWord == "past") {
+      modifier = "last";
+    } else if (modifierWord == "next") {
+      modifier = "next";
+    } else if (modifierWord == "this") {
+      modifier = "this";
+    }
+    return createParsingComponentsAtWeekday(context.reference, weekday, modifier);
+  }
+};
+
+// node_modules/chrono-node/dist/esm/locales/en/parsers/ENRelativeDateFormatParser.js
+var import_dayjs12 = __toESM(require_dayjs_min(), 1);
+var PATTERN12 = new RegExp(`(this|last|past|next|after\\s*this)\\s*(${matchAnyPattern(TIME_UNIT_DICTIONARY)})(?=\\s*)(?=\\W|$)`, "i");
+var MODIFIER_WORD_GROUP = 1;
+var RELATIVE_WORD_GROUP = 2;
+var ENRelativeDateFormatParser = class extends AbstractParserWithWordBoundaryChecking {
+  innerPattern() {
+    return PATTERN12;
+  }
+  innerExtract(context, match2) {
+    const modifier = match2[MODIFIER_WORD_GROUP].toLowerCase();
+    const unitWord = match2[RELATIVE_WORD_GROUP].toLowerCase();
+    const timeunit = TIME_UNIT_DICTIONARY[unitWord];
+    if (modifier == "next" || modifier.startsWith("after")) {
+      const timeUnits = {};
+      timeUnits[timeunit] = 1;
+      return ParsingComponents.createRelativeFromReference(context.reference, timeUnits);
+    }
+    if (modifier == "last" || modifier == "past") {
+      const timeUnits = {};
+      timeUnits[timeunit] = -1;
+      return ParsingComponents.createRelativeFromReference(context.reference, timeUnits);
+    }
+    const components = context.createParsingComponents();
+    let date = (0, import_dayjs12.default)(context.reference.instant);
+    if (unitWord.match(/week/i)) {
+      date = date.add(-date.get("d"), "d");
+      components.imply("day", date.date());
+      components.imply("month", date.month() + 1);
+      components.imply("year", date.year());
+    } else if (unitWord.match(/month/i)) {
+      date = date.add(-date.date() + 1, "d");
+      components.imply("day", date.date());
+      components.assign("year", date.year());
+      components.assign("month", date.month() + 1);
+    } else if (unitWord.match(/year/i)) {
+      date = date.add(-date.date() + 1, "d");
+      date = date.add(-date.month(), "month");
+      components.imply("day", date.date());
+      components.imply("month", date.month() + 1);
+      components.assign("year", date.year());
+    }
+    return components;
+  }
+};
+
+// node_modules/chrono-node/dist/esm/common/parsers/SlashDateFormatParser.js
+var PATTERN13 = new RegExp("([^\\d]|^)([0-3]{0,1}[0-9]{1})[\\/\\.\\-]([0-3]{0,1}[0-9]{1})(?:[\\/\\.\\-]([0-9]{4}|[0-9]{2}))?(\\W|$)", "i");
+var OPENING_GROUP = 1;
+var ENDING_GROUP = 5;
+var FIRST_NUMBERS_GROUP = 2;
+var SECOND_NUMBERS_GROUP = 3;
+var YEAR_GROUP5 = 4;
+var SlashDateFormatParser = class {
+  constructor(littleEndian) {
+    this.groupNumberMonth = littleEndian ? SECOND_NUMBERS_GROUP : FIRST_NUMBERS_GROUP;
+    this.groupNumberDay = littleEndian ? FIRST_NUMBERS_GROUP : SECOND_NUMBERS_GROUP;
+  }
+  pattern() {
+    return PATTERN13;
+  }
+  extract(context, match2) {
+    if (match2[OPENING_GROUP].length == 0 && match2.index > 0 && match2.index < context.text.length) {
+      const previousChar = context.text[match2.index - 1];
+      if (previousChar >= "0" && previousChar <= "9") {
+        return;
+      }
+    }
+    const index4 = match2.index + match2[OPENING_GROUP].length;
+    const text = match2[0].substr(match2[OPENING_GROUP].length, match2[0].length - match2[OPENING_GROUP].length - match2[ENDING_GROUP].length);
+    if (text.match(/^\d\.\d$/) || text.match(/^\d\.\d{1,2}\.\d{1,2}\s*$/)) {
+      return;
+    }
+    if (!match2[YEAR_GROUP5] && match2[0].indexOf("/") < 0) {
+      return;
+    }
+    const result = context.createParsingResult(index4, text);
+    let month2 = parseInt(match2[this.groupNumberMonth]);
+    let day = parseInt(match2[this.groupNumberDay]);
+    if (month2 < 1 || month2 > 12) {
+      if (month2 > 12) {
+        if (day >= 1 && day <= 12 && month2 <= 31) {
+          [day, month2] = [month2, day];
+        } else {
+          return null;
+        }
+      }
+    }
+    if (day < 1 || day > 31) {
+      return null;
+    }
+    result.start.assign("day", day);
+    result.start.assign("month", month2);
+    if (match2[YEAR_GROUP5]) {
+      const rawYearNumber = parseInt(match2[YEAR_GROUP5]);
+      const year = findMostLikelyADYear(rawYearNumber);
+      result.start.assign("year", year);
+    } else {
+      const year = findYearClosestToRef(context.refDate, day, month2);
+      result.start.imply("year", year);
+    }
+    return result;
+  }
+};
+
+// node_modules/chrono-node/dist/esm/locales/en/parsers/ENTimeUnitCasualRelativeFormatParser.js
+var PATTERN14 = new RegExp(`(this|last|past|next|after|\\+|-)\\s*(${TIME_UNITS_PATTERN})(?=\\W|$)`, "i");
+var PATTERN_NO_ABBR = new RegExp(`(this|last|past|next|after|\\+|-)\\s*(${TIME_UNITS_NO_ABBR_PATTERN})(?=\\W|$)`, "i");
+var ENTimeUnitCasualRelativeFormatParser = class extends AbstractParserWithWordBoundaryChecking {
+  constructor(allowAbbreviations = true) {
+    super();
+    this.allowAbbreviations = allowAbbreviations;
+  }
+  innerPattern() {
+    return this.allowAbbreviations ? PATTERN14 : PATTERN_NO_ABBR;
+  }
+  innerExtract(context, match2) {
+    const prefix5 = match2[1].toLowerCase();
+    let timeUnits = parseTimeUnits(match2[2]);
+    switch (prefix5) {
+      case "last":
+      case "past":
+      case "-":
+        timeUnits = reverseTimeUnits(timeUnits);
+        break;
+    }
+    return ParsingComponents.createRelativeFromReference(context.reference, timeUnits);
+  }
+};
+
+// node_modules/chrono-node/dist/esm/locales/en/refiners/ENMergeRelativeAfterDateRefiner.js
+function IsPositiveFollowingReference(result) {
+  return result.text.match(/^[+-]/i) != null;
+}
+function IsNegativeFollowingReference(result) {
+  return result.text.match(/^-/i) != null;
+}
+var ENMergeRelativeAfterDateRefiner = class extends MergingRefiner {
+  shouldMergeResults(textBetween, currentResult, nextResult) {
+    if (!textBetween.match(/^\s*$/i)) {
+      return false;
+    }
+    return IsPositiveFollowingReference(nextResult) || IsNegativeFollowingReference(nextResult);
+  }
+  mergeResults(textBetween, currentResult, nextResult, context) {
+    let timeUnits = parseTimeUnits(nextResult.text);
+    if (IsNegativeFollowingReference(nextResult)) {
+      timeUnits = reverseTimeUnits(timeUnits);
+    }
+    const components = ParsingComponents.createRelativeFromReference(new ReferenceWithTimezone(currentResult.start.date()), timeUnits);
+    return new ParsingResult(currentResult.reference, currentResult.index, `${currentResult.text}${textBetween}${nextResult.text}`, components);
+  }
+};
+
+// node_modules/chrono-node/dist/esm/locales/en/refiners/ENMergeRelativeFollowByDateRefiner.js
+function hasImpliedEarlierReferenceDate(result) {
+  return result.text.match(/\s+(before|from)$/i) != null;
+}
+function hasImpliedLaterReferenceDate(result) {
+  return result.text.match(/\s+(after|since)$/i) != null;
+}
+var ENMergeRelativeFollowByDateRefiner = class extends MergingRefiner {
+  patternBetween() {
+    return /^\s*$/i;
+  }
+  shouldMergeResults(textBetween, currentResult, nextResult) {
+    if (!textBetween.match(this.patternBetween())) {
+      return false;
+    }
+    if (!hasImpliedEarlierReferenceDate(currentResult) && !hasImpliedLaterReferenceDate(currentResult)) {
+      return false;
+    }
+    return !!nextResult.start.get("day") && !!nextResult.start.get("month") && !!nextResult.start.get("year");
+  }
+  mergeResults(textBetween, currentResult, nextResult) {
+    let timeUnits = parseTimeUnits(currentResult.text);
+    if (hasImpliedEarlierReferenceDate(currentResult)) {
+      timeUnits = reverseTimeUnits(timeUnits);
+    }
+    const components = ParsingComponents.createRelativeFromReference(new ReferenceWithTimezone(nextResult.start.date()), timeUnits);
+    return new ParsingResult(nextResult.reference, currentResult.index, `${currentResult.text}${textBetween}${nextResult.text}`, components);
+  }
+};
+
+// node_modules/chrono-node/dist/esm/locales/en/configuration.js
+var ENDefaultConfiguration = class {
+  createCasualConfiguration(littleEndian = false) {
+    const option = this.createConfiguration(false, littleEndian);
+    option.parsers.push(new ENCasualDateParser());
+    option.parsers.push(new ENCasualTimeParser());
+    option.parsers.push(new ENMonthNameParser());
+    option.parsers.push(new ENRelativeDateFormatParser());
+    option.parsers.push(new ENTimeUnitCasualRelativeFormatParser());
+    return option;
+  }
+  createConfiguration(strictMode = true, littleEndian = false) {
+    const options2 = includeCommonConfiguration({
+      parsers: [
+        new SlashDateFormatParser(littleEndian),
+        new ENTimeUnitWithinFormatParser(strictMode),
+        new ENMonthNameLittleEndianParser(),
+        new ENMonthNameMiddleEndianParser(littleEndian),
+        new ENWeekdayParser(),
+        new ENCasualYearMonthDayParser(),
+        new ENSlashMonthFormatParser(),
+        new ENTimeExpressionParser(strictMode),
+        new ENTimeUnitAgoFormatParser(strictMode),
+        new ENTimeUnitLaterFormatParser(strictMode)
+      ],
+      refiners: [new ENMergeDateTimeRefiner()]
+    }, strictMode);
+    options2.refiners.unshift(new ENMergeRelativeFollowByDateRefiner());
+    options2.refiners.unshift(new ENMergeRelativeAfterDateRefiner());
+    options2.refiners.unshift(new OverlapRemovalRefiner());
+    options2.refiners.push(new ENMergeDateTimeRefiner());
+    options2.refiners.push(new ENMergeDateRangeRefiner());
+    return options2;
+  }
+};
+
+// node_modules/chrono-node/dist/esm/chrono.js
+var Chrono = class {
+  constructor(configuration2) {
+    this.defaultConfig = new ENDefaultConfiguration();
+    configuration2 = configuration2 || this.defaultConfig.createCasualConfiguration();
+    this.parsers = [...configuration2.parsers];
+    this.refiners = [...configuration2.refiners];
+  }
+  clone() {
+    return new Chrono({
+      parsers: [...this.parsers],
+      refiners: [...this.refiners]
     });
   }
-  if ("header" in document2 && document2.header) {
-    document2.header.map((header) => {
-      RecusiveGetToken(header, tokens);
-    });
+  parseDate(text, referenceDate, option) {
+    const results = this.parse(text, referenceDate, option);
+    return results.length > 0 ? results[0].start.date() : null;
   }
-  if ("items" in document2 && document2.items) {
-    document2.items.map((item) => {
-      RecusiveGetToken(item, tokens);
+  parse(text, referenceDate, option) {
+    const context = new ParsingContext(text, referenceDate, option);
+    let results = [];
+    this.parsers.forEach((parser2) => {
+      const parsedResults = Chrono.executeParser(context, parser2);
+      results = results.concat(parsedResults);
     });
+    results.sort((a4, b2) => {
+      return a4.index - b2.index;
+    });
+    this.refiners.forEach(function(refiner) {
+      results = refiner.refine(context, results);
+    });
+    return results;
   }
+  static executeParser(context, parser2) {
+    const results = [];
+    const pattern = parser2.pattern(context);
+    const originalText = context.text;
+    let remainingText = context.text;
+    let match2 = pattern.exec(remainingText);
+    while (match2) {
+      const index4 = match2.index + originalText.length - remainingText.length;
+      match2.index = index4;
+      const result = parser2.extract(context, match2);
+      if (!result) {
+        remainingText = originalText.substring(match2.index + 1);
+        match2 = pattern.exec(remainingText);
+        continue;
+      }
+      let parsedResult = null;
+      if (result instanceof ParsingResult) {
+        parsedResult = result;
+      } else if (result instanceof ParsingComponents) {
+        parsedResult = context.createParsingResult(match2.index, match2[0]);
+        parsedResult.start = result;
+      } else {
+        parsedResult = context.createParsingResult(match2.index, match2[0], result);
+      }
+      const parsedIndex = parsedResult.index;
+      const parsedText = parsedResult.text;
+      context.debug(() => console.log(`${parser2.constructor.name} extracted (at index=${parsedIndex}) '${parsedText}'`));
+      results.push(parsedResult);
+      remainingText = originalText.substring(parsedIndex + parsedText.length);
+      match2 = pattern.exec(remainingText);
+    }
+    return results;
+  }
+};
+var ParsingContext = class {
+  constructor(text, refDate, option) {
+    this.text = text;
+    this.reference = new ReferenceWithTimezone(refDate);
+    this.option = option != null ? option : {};
+    this.refDate = this.reference.instant;
+  }
+  createParsingComponents(components) {
+    if (components instanceof ParsingComponents) {
+      return components;
+    }
+    return new ParsingComponents(this.reference, components);
+  }
+  createParsingResult(index4, textOrEndIndex, startComponents, endComponents) {
+    const text = typeof textOrEndIndex === "string" ? textOrEndIndex : this.text.substring(index4, textOrEndIndex);
+    const start2 = startComponents ? this.createParsingComponents(startComponents) : null;
+    const end2 = endComponents ? this.createParsingComponents(endComponents) : null;
+    return new ParsingResult(this.reference, index4, text, start2, end2);
+  }
+  debug(block2) {
+    if (this.option.debug) {
+      if (this.option.debug instanceof Function) {
+        this.option.debug(block2);
+      } else {
+        const handler = this.option.debug;
+        handler.debug(block2);
+      }
+    }
+  }
+};
+
+// node_modules/chrono-node/dist/esm/locales/en/index.js
+var configuration = new ENDefaultConfiguration();
+var casual = new Chrono(configuration.createCasualConfiguration(false));
+var strict = new Chrono(configuration.createConfiguration(true, false));
+var GB = new Chrono(configuration.createCasualConfiguration(true));
+
+// node_modules/chrono-node/dist/esm/index.js
+var casual2 = casual;
+
+// src/setupCustomChrono.ts
+var BCEpattern = [
+  /\b(\d{4})\s+B\.?C\.?E?\.?\b/i,
+  /\b(\d{4})\s+Before\s+\w{1,2}\s+Christ\b/i,
+  /\b(\d{4})\s+Before\s+\w{1,2}\s+Common\s+Era\b/i,
+  /\bB\.?C\.?E?\.?:?\s+(\d{4})\b/i,
+  /\bBefore\s+\w{1,2}\s+Christ\s+(\d{4})\b/i,
+  /\bBefore\s+\w{1,2}\s+Common\s+Era\s+(\d{4})\b/i
+];
+var ADpattern = [
+  /\b(\d{4})\s+A\.?D\.?E?\.?\b/i,
+  /\b(\d{4})\s+Anno\s+Domini\b/i,
+  /\bA\.?D\.?E?\.?:?\s+(\d{4})\b/i,
+  /\bAnno\s+Domini\s+(\d{4})\b/i
+];
+async function setupCustomChrono() {
+  const customChrono = casual2.clone();
+  customChrono.parsers.push({
+    pattern: () => {
+      return /\b(in|at|on|from|to|year)\s+(\d{4})\b/i;
+    },
+    extract: (context, match2) => {
+      return {
+        day: 1,
+        month: 1,
+        year: parseInt(match2[2])
+      };
+    }
+  });
+  customChrono.parsers.push({
+    pattern: () => {
+      return /\b(\d{4})[\/,-](\d{1,2})[\/,-](\d{1,2})\b/i;
+    },
+    extract: (context, match2) => {
+      return {
+        day: parseInt(match2[3]),
+        month: parseInt(match2[2]),
+        year: parseInt(match2[1])
+      };
+    }
+  });
+  customChrono.parsers.push({
+    pattern: () => {
+      return /\b(\d{1,2})[\/,-](\d{1,2})[\/,-](\d{4})\b/i;
+    },
+    extract: (context, match2) => {
+      return {
+        day: parseInt(match2[2]),
+        month: parseInt(match2[1]),
+        year: parseInt(match2[3])
+      };
+    }
+  });
+  customChrono.parsers.push({
+    pattern: () => {
+      return /\b(\d{1,2})\s+(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+(\d{4})\b/i;
+    },
+    extract: (context, match2) => {
+      return {
+        day: parseInt(match2[1]),
+        month: new Date(Date.parse(match2[2] + " 1, 2000")).getMonth() + 1,
+        year: parseInt(match2[3])
+      };
+    }
+  });
+  customChrono.parsers.push({
+    pattern: () => {
+      return /\b(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+(\d{1,2})\s+(\d{4})\b/i;
+    },
+    extract: (context, match2) => {
+      return {
+        day: parseInt(match2[2]),
+        month: new Date(Date.parse(match2[1] + " 1, 2000")).getMonth() + 1,
+        year: parseInt(match2[3])
+      };
+    }
+  });
+  customChrono.parsers.push({
+    pattern: () => {
+      return /\b(\d{4})[\/,-](\d{1,2})\b/i;
+    },
+    extract: (context, match2) => {
+      return {
+        day: 1,
+        month: parseInt(match2[2]),
+        year: parseInt(match2[1])
+      };
+    }
+  });
+  customChrono.parsers.push({
+    pattern: () => {
+      return /\b(\d{1,2})[\/,-](\d{4})\b/i;
+    },
+    extract: (context, match2) => {
+      return {
+        day: 1,
+        month: parseInt(match2[1]),
+        year: parseInt(match2[2])
+      };
+    }
+  });
+  customChrono.parsers.push({
+    pattern: () => {
+      return /\b(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+(\d{4})\b/i;
+    },
+    extract: (context, match2) => {
+      return {
+        day: 1,
+        month: new Date(Date.parse(match2[1] + " 1, 2000")).getMonth() + 1,
+        year: parseInt(match2[2])
+      };
+    }
+  });
+  BCEpattern.forEach((pattern) => {
+    customChrono.parsers.push({
+      pattern: () => {
+        return pattern;
+      },
+      extract: (context, match2) => {
+        return {
+          year: -parseInt(match2[1])
+        };
+      }
+    });
+  });
+  ADpattern.forEach((pattern) => {
+    customChrono.parsers.push({
+      pattern: () => {
+        return pattern;
+      },
+      extract: (context, match2) => {
+        return {
+          year: parseInt(match2[1])
+        };
+      }
+    });
+  });
+  return customChrono;
+}
+
+// src/parseUserTimeRangeQuery.ts
+var import_obsidian = require("obsidian");
+async function parseUserTimeRangeQuery(historicaQueryInputArray) {
+  const chrono = await setupCustomChrono();
+  let parseTimeArray = [];
+  historicaQueryInputArray.map((timeInput) => {
+    let start2 = null;
+    let end2 = null;
+    if (!timeInput.start && !timeInput.end) {
+      new import_obsidian.Notice("Your query is not valid, please check your query");
+      return [];
+    }
+    if (timeInput.start) {
+      const startParsingResult = chrono.parse(timeInput.start);
+      if (startParsingResult) {
+        start2 = {
+          dateString: startParsingResult[0].date().toString(),
+          unixTime: startParsingResult[0].date().getTime() / 1e3
+        };
+      }
+    }
+    if (timeInput.end) {
+      const endParsingResult = chrono.parse(timeInput.end);
+      if (endParsingResult) {
+        end2 = {
+          dateString: endParsingResult[0].date().toString(),
+          unixTime: endParsingResult[0].date().getTime() / 1e3
+        };
+      }
+    }
+    parseTimeArray.push({
+      start: start2,
+      end: end2
+    });
+  });
+  return parseTimeArray;
 }
 
 // src/GetTimelineDataFromDocumentArray.ts
@@ -25789,14 +27521,15 @@ function extractDataToParseResult(parsingResult, isShowSummaryTitle, userfulInfo
     }
     startData = {
       importantInformation: summaryTitle,
-      dateString: parseText,
-      date: start2.date().toString(),
+      stringThatParseAsDate: parseText,
+      dateString: start2.date().toString(),
+      dateStringCompact: start2.date().toDateString(),
       unixTime: start2.date().getTime() / 1e3,
       sentence: text.replace(parseText, `<historica-mark>${parseText}</historica-mark>`)
     };
   }
   if (parsingResult.end) {
-    const start2 = parsingResult.end;
+    const end2 = parsingResult.end;
     const parseText = parsingResult.text;
     if (isShowSummaryTitle) {
       summaryTitle = extractStringBaseOnTag(userfulInformationPatternTag, compromiseNLP, text);
@@ -25805,23 +27538,40 @@ function extractDataToParseResult(parsingResult, isShowSummaryTitle, userfulInfo
     }
     endData = {
       importantInformation: summaryTitle,
-      dateString: parseText,
-      date: start2.date().toString(),
-      unixTime: start2.date().getTime() / 1e3,
+      stringThatParseAsDate: parseText,
+      dateString: end2.date().toString(),
+      dateStringCompact: end2.date().toDateString(),
+      unixTime: end2.date().getTime() / 1e3,
       sentence: text.replace(parseText, `<historica-mark>${parseText}</historica-mark>`)
     };
   }
   return [startData, endData];
 }
-async function GetTimelineDataFromDocumentArrayWithChrono(documents, customChrono, compromiseNLP, userfulInformationPatternTag, isShowSummaryTitle) {
+async function GetTimelineDataFromDocumentArrayWithChrono(tokens, customChrono, compromiseNLP, userfulInformationPatternTag, isShowSummaryTitle, query, pintime) {
   let timelineData = [];
-  documents == null ? void 0 : documents.forEach(({ text }) => {
-    const parseResults = customChrono.parse(text);
+  let documents = [];
+  tokens == null ? void 0 : tokens.forEach((token) => {
+    if ("text" in token) {
+      documents.push({
+        raw: token.raw,
+        text: token.text,
+        type: token.type
+      });
+    }
+  });
+  documents == null ? void 0 : documents.forEach((doc) => {
+    let parseResults;
+    if (pintime) {
+      const referenceTime = customChrono.parse(pintime);
+      parseResults = customChrono.parse(doc.raw, referenceTime[0].start.date());
+    } else {
+      parseResults = customChrono.parse(doc.raw);
+    }
     if (!parseResults || parseResults.length === 0) {
       return;
     }
     parseResults.forEach((parseResult) => {
-      const [startData, endData] = extractDataToParseResult(parseResult, isShowSummaryTitle, userfulInformationPatternTag, compromiseNLP, text);
+      const [startData, endData] = extractDataToParseResult(parseResult, isShowSummaryTitle, userfulInformationPatternTag, compromiseNLP, doc.raw);
       if (startData) {
         timelineData.push(startData);
       }
@@ -25830,22 +27580,49 @@ async function GetTimelineDataFromDocumentArrayWithChrono(documents, customChron
       }
     });
   });
-  const sortTimelineData = timelineData.sort((a4, b2) => {
+  timelineData.sort((a4, b2) => {
     return a4.unixTime - b2.unixTime;
   });
-  return sortTimelineData;
+  let filterTimelineData = [];
+  let parsedUserQueryArray = await parseUserTimeRangeQuery(query);
+  if (parsedUserQueryArray.length === 0) {
+    return timelineData;
+  }
+  parsedUserQueryArray.map((parsedUserQuery) => {
+    timelineData.map((timelineEntry) => {
+      if (parsedUserQuery.start && parsedUserQuery.end) {
+        if (timelineEntry.unixTime >= parsedUserQuery.start.unixTime && timelineEntry.unixTime <= parsedUserQuery.end.unixTime) {
+          filterTimelineData.push(timelineEntry);
+        }
+      } else if (parsedUserQuery.start) {
+        if (timelineEntry.unixTime >= parsedUserQuery.start.unixTime) {
+          filterTimelineData.push(timelineEntry);
+        }
+      } else if (parsedUserQuery.end) {
+        if (timelineEntry.unixTime <= parsedUserQuery.end.unixTime) {
+          filterTimelineData.push(timelineEntry);
+        }
+      }
+    });
+  });
+  filterTimelineData.sort((a4, b2) => {
+    return a4.unixTime - b2.unixTime;
+  });
+  return filterTimelineData;
 }
 
 // main.ts
 var import_toml = __toESM(require_toml());
 
 // src/FormatSentencesWithMarkElement.ts
-function FormatSentencesWithMarkElement(sen, el) {
+function FormatSentencesWithMarkElement(sen, el, isUsingSmartTheme) {
   const regex = /(<historica-mark>.*<\/historica-mark>)/g;
   const parts = sen.split(regex);
+  const historicaMarkClass = isUsingSmartTheme ? "historica-mark-smart-theme" : "historica-mark";
   for (let i5 = 0; i5 < parts.length; i5++) {
     if (regex.test(parts[i5])) {
       el.createEl("historica-mark", {
+        cls: historicaMarkClass,
         text: parts[i5].replace(/<historica-mark>/g, "").replace(/<\/historica-mark>/g, "")
       });
     } else {
@@ -25857,10 +27634,10 @@ function FormatSentencesWithMarkElement(sen, el) {
 }
 
 // src/renderTimelineEntry.ts
-var import_obsidian3 = require("obsidian");
+var import_obsidian4 = require("obsidian");
 
 // src/SearchResultModal.ts
-var import_obsidian = require("obsidian");
+var import_obsidian2 = require("obsidian");
 function createFileContentArray(searchResult, fileContent) {
   let fileContentArray = [];
   for (let i5 = 0; i5 < searchResult.matches.length; i5++) {
@@ -25884,7 +27661,7 @@ async function HistoricaTimelineElementClickListener(thisModal, file, lineConten
   thisModal.close();
   let leaf = thisModal.thisPlugin.app.workspace.getLeaf(false);
   const fileNeedToBeOpen = thisModal.thisPlugin.app.vault.getAbstractFileByPath(file.path);
-  if (fileNeedToBeOpen instanceof import_obsidian.TFile) {
+  if (fileNeedToBeOpen instanceof import_obsidian2.TFile) {
     await leaf.openFile(fileNeedToBeOpen);
     await leaf.setViewState({
       type: "markdown",
@@ -25910,41 +27687,50 @@ async function HistoricaTimelineElementClickListener(thisModal, file, lineConten
     view.editor.scrollTo(0, index4);
   }
 }
-var HistoricaSearchResultModal = class extends import_obsidian.Modal {
-  constructor(app, query, thisPlugin) {
+var HistoricaSearchResultModal = class extends import_obsidian2.Modal {
+  constructor(app, query, thisPlugin, isUsingSmartTheme) {
     super(app);
     this.query = query;
     this.thisPlugin = thisPlugin;
+    this.isUsingSmartTheme = isUsingSmartTheme;
   }
   async onOpen() {
     const { contentEl } = this;
-    const historicaSearchResultModalEl = contentEl.createEl("div", {
-      cls: "historica-search-result-modal"
+    let historicaSearchResultModalEl;
+    const historicaSearchResultModalClass = this.isUsingSmartTheme ? "historica-search-result-modal-smart-theme" : "historica-search-result-modal";
+    const historicaSearchFileNameContainerClass = this.isUsingSmartTheme ? "historica-search-filename-container-smart-theme" : "historica-search-filename-container";
+    const historicaSearchFileNameClass = this.isUsingSmartTheme ? "historica-search-filename-smart-theme" : "historica-search-filename";
+    const historicaSearchResultContainerClass = this.isUsingSmartTheme ? "historica-search-result-container-smart-theme" : "historica-search-result-container";
+    const historicaSearchResultElementClass = this.isUsingSmartTheme ? "historica-search-result-element-smart-theme" : "historica-search-result-element";
+    historicaSearchResultModalEl = contentEl.createEl("div", {
+      cls: historicaSearchResultModalClass
     });
-    const searchFunction = (0, import_obsidian.prepareSimpleSearch)(this.query);
+    const searchFunction = (0, import_obsidian2.prepareSimpleSearch)(this.query);
     const files = this.app.vault.getMarkdownFiles();
     for (const file of files) {
       let fileContent = await this.app.vault.read(file);
       const searchResult = searchFunction(fileContent);
       if (searchResult && searchResult.matches.length > 0) {
+        let historicaSearchResultElementContainer;
         const historicaSearchFileNameContainer = historicaSearchResultModalEl.createEl("div", {
-          cls: "historica-search-filename-container"
+          cls: historicaSearchFileNameContainerClass
         });
-        const historicaSearchResultElementContainer = historicaSearchResultModalEl.createEl("div", {
-          cls: "historica-search-result-container"
+        historicaSearchResultElementContainer = historicaSearchResultModalEl.createEl("div", {
+          cls: historicaSearchResultContainerClass
         });
         historicaSearchFileNameContainer.createEl("h2", {
           text: file.name,
-          cls: "historica-search-filename"
+          cls: historicaSearchFileNameClass
         });
         let fileContentArray = createFileContentArray(searchResult, fileContent);
         fileContent = fileContentArray.join("");
         fileContent.split("\n").forEach((line, index4) => {
           if (line.includes("historica-mark")) {
-            const historicaSearchResultElement = historicaSearchResultElementContainer.createEl("div", {
-              cls: "historica-search-result-element"
+            let historicaSearchResultElement;
+            historicaSearchResultElement = historicaSearchResultElementContainer.createEl("div", {
+              cls: historicaSearchResultElementClass
             });
-            FormatSentencesWithMarkElement(line, historicaSearchResultElement);
+            FormatSentencesWithMarkElement(line, historicaSearchResultElement, this.isUsingSmartTheme);
             historicaSearchResultElement.addEventListener(
               "click",
               async () => await HistoricaTimelineElementClickListener(this, file, line, index4)
@@ -25960,7 +27746,7 @@ var HistoricaSearchResultModal = class extends import_obsidian.Modal {
 };
 
 // src/TimelineActionModal.ts
-var import_obsidian2 = require("obsidian");
+var import_obsidian3 = require("obsidian");
 
 // node_modules/html-to-image/es/util.js
 function resolveUrl(url, baseUrl) {
@@ -35681,52 +37467,106 @@ async function convertImageToPdf(imageData) {
 }
 
 // src/TimelineActionModal.ts
-var TimelineActionModal = class extends import_obsidian2.Modal {
-  constructor(app, targetEl, thisPlugin) {
+var import_json_2_csv = __toESM(require_converter());
+var TimelineActionModal = class extends import_obsidian3.Modal {
+  constructor(app, targetEl, thisPlugin, timelineData, isUsingSMartTheme) {
     super(app);
     this.targetEl = targetEl;
     this.thisPlugin = thisPlugin;
+    this.timelineData = timelineData;
+    this.isUsingSmartTheme = isUsingSMartTheme;
   }
   onOpen() {
     super.onOpen();
     const { contentEl } = this;
+    const historicaTimelineActionModalClass = this.isUsingSmartTheme ? "historica-timeline-action-modal-smart-theme" : "historica-timeline-action-modal";
     const actionModalEl = contentEl.createEl("div", {
-      cls: "historica-timeline-action-modal"
+      cls: historicaTimelineActionModalClass
     });
+    const setting = this.thisPlugin.settings;
+    const actionButtonClass = this.isUsingSmartTheme ? "historica-timeline-action-button-smart-theme" : "historica-timeline-action-button";
     actionModalEl.createEl("div", {
       text: "Export as image (clipboard)",
-      cls: "historica-timeline-action-button"
+      cls: actionButtonClass
     }).addEventListener("click", async () => {
       const blob = await toBlob(this.targetEl);
       if (blob) {
         const item = new ClipboardItem({ [blob.type]: blob });
         await navigator.clipboard.write([item]);
       }
-      new import_obsidian2.Notice("Successfully copied to clipboard");
+      new import_obsidian3.Notice("Successfully copied to clipboard");
       this.close();
     });
     actionModalEl.createEl("div", {
       text: "Export as image (PNG)",
-      cls: "historica-timeline-action-button"
+      cls: actionButtonClass
     }).addEventListener("click", async () => {
       const image = await convertHTMLToImageData(this.targetEl);
       const link2 = document.createElement("a");
       link2.href = image;
       link2.download = "historica-timeline.png";
       link2.click();
-      new import_obsidian2.Notice("Successfully download image");
+      new import_obsidian3.Notice("Successfully download image");
       this.close();
     });
     actionModalEl.createEl("div", {
       text: "Export as pdf",
-      cls: "historica-timeline-action-button"
+      cls: actionButtonClass
     }).addEventListener("click", async () => {
       const imageData = await convertHTMLToImageData(this.targetEl);
       const image = new Image();
       image.src = imageData;
       const pdf = await convertImageToPdf(imageData);
       pdf.save("historica-timeline.pdf");
-      new import_obsidian2.Notice("Successfully download pdf");
+      new import_obsidian3.Notice("Successfully download pdf");
+      this.close();
+    });
+    actionModalEl.createEl("div", {
+      text: "Export as json",
+      cls: actionButtonClass
+    }).addEventListener("click", async () => {
+      const data = JSON.stringify(this.timelineData, null, 4);
+      const blob = new Blob([data], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const link2 = document.createElement("a");
+      link2.href = url;
+      link2.download = "historica-timeline.json";
+      link2.click();
+      URL.revokeObjectURL(url);
+      new import_obsidian3.Notice("Successfully download json");
+      this.close();
+    });
+    actionModalEl.createEl("div", {
+      text: "Export as csv",
+      cls: actionButtonClass
+    }).addEventListener("click", async () => {
+      const csv = await (0, import_json_2_csv.json2csv)(this.timelineData);
+      const blob = new Blob([csv], { type: "text/csv" });
+      const url = URL.createObjectURL(blob);
+      const link2 = document.createElement("a");
+      link2.href = url;
+      link2.download = "historica-timeline.csv";
+      link2.click();
+      URL.revokeObjectURL(url);
+      new import_obsidian3.Notice("Successfully download csv");
+      this.close();
+    });
+    actionModalEl.createEl("div", {
+      text: "Copy as json",
+      cls: actionButtonClass
+    }).addEventListener("click", async () => {
+      const data = JSON.stringify(this.timelineData, null, 4);
+      await navigator.clipboard.writeText(data);
+      new import_obsidian3.Notice("Successfully copied to clipboard");
+      this.close();
+    });
+    actionModalEl.createEl("div", {
+      text: "Copy as csv",
+      cls: actionButtonClass
+    }).addEventListener("click", async () => {
+      const csv = (0, import_json_2_csv.json2csv)(this.timelineData);
+      await navigator.clipboard.writeText(csv);
+      new import_obsidian3.Notice("Successfully copied to clipboard");
       this.close();
     });
   }
@@ -35832,68 +37672,108 @@ function isMobile(param) {
 }
 
 // src/renderTimelineEntry.ts
-async function renderTimelineEntry(currentPlugin, timelineData, style, el) {
+async function renderTimelineEntry(currentPlugin, timelineData, blockConfig, el) {
+  const settings = await currentPlugin.loadData();
+  const isShowRelativeTime = blockConfig.implicit_time !== void 0 ? blockConfig.implicit_time : settings.showRelativeTime;
+  const isUsingSmartTheme = blockConfig.smart_theme !== void 0 ? blockConfig.smart_theme : settings.usingSmartTheme;
+  const style = blockConfig.style !== void 0 ? blockConfig.style : settings.defaultStyle;
   if (style === 1) {
+    const historicaEntryClass = isUsingSmartTheme ? "historica-entry-1-smart-theme group" : "historica-entry-1 group";
+    const historicaVerticalLineClass = isUsingSmartTheme ? "historica-vertical-line-1-smart-theme" : "historica-vertical-line-1";
+    const historicaTimeClass = isUsingSmartTheme ? "historica-time-1-smart-theme" : "historica-time-1";
+    const historicaTitleClass = isUsingSmartTheme ? "historica-title-1-smart-theme" : "historica-title-1";
+    const historicaContentClass = isUsingSmartTheme ? "historica-content-1-smart-theme" : "historica-content-1";
+    const historicaContainerClass = isUsingSmartTheme ? "historica-container-1-smart-theme" : "historica-container-1";
     const timelineEl = el.createEl("div", {
-      cls: "historica-container-1"
+      cls: historicaContainerClass
     });
     if (!isMobile().any) {
       timelineEl.addEventListener("contextmenu", async (e3) => {
         e3.preventDefault();
-        new TimelineActionModal(currentPlugin.app, timelineEl, currentPlugin).open();
+        new TimelineActionModal(currentPlugin.app, timelineEl, currentPlugin, timelineData, isUsingSmartTheme).open();
       });
     }
     timelineData.map((entry) => {
       const timelineEntryEl = timelineEl.createEl("div", {
-        cls: "historica-entry-1 group"
+        cls: historicaEntryClass
       });
-      const verticalLine = timelineEntryEl.createEl("div", { cls: "historica-vertical-line-1" });
-      verticalLine.createEl("time", { cls: "historica-time-1", text: entry.dateString });
-      verticalLine.createEl("div", { cls: "historica-title-1", text: entry.importantInformation });
-      const historicaContent = timelineEntryEl.createEl("div", { cls: "historica-content-1" });
+      const verticalLine = timelineEntryEl.createEl("div", { cls: historicaVerticalLineClass });
+      if (isShowRelativeTime) {
+        verticalLine.createEl("time", { cls: historicaTimeClass, text: entry.stringThatParseAsDate });
+      } else {
+        verticalLine.createEl("time", { cls: historicaTimeClass, text: entry.dateStringCompact });
+      }
+      verticalLine.createEl("div", { cls: historicaTitleClass, text: entry.importantInformation });
+      const historicaContent = timelineEntryEl.createEl("div", { cls: historicaContentClass });
       historicaContent.addEventListener("click", async () => {
-        new HistoricaSearchResultModal(currentPlugin.app, entry.dateString, currentPlugin).open();
+        new HistoricaSearchResultModal(currentPlugin.app, entry.stringThatParseAsDate, currentPlugin, isUsingSmartTheme).open();
       });
-      FormatSentencesWithMarkElement(entry.sentence, historicaContent);
+      FormatSentencesWithMarkElement(entry.sentence, historicaContent, isUsingSmartTheme);
     });
   } else if (style === 2) {
+    let historicaCardTimeClass, historicaCardClass, historicaCardContainerClass, historicaCardTitleClass, historicaContainerClass, historicaTimelineIconClass, historicaTimelineItemClass, historicaCardContentClass;
+    if (isUsingSmartTheme) {
+      historicaContainerClass = "historica-container-2-smart-theme";
+      historicaTimelineItemClass = "historica-item-2-smart-theme group";
+      historicaTimelineIconClass = "historica-icon-2-smart-theme";
+      historicaCardContainerClass = "historica-card-container-2-smart-theme";
+      historicaCardClass = "historica-card-2-smart-theme";
+      historicaCardTitleClass = "historica-card-title-2-smart-theme";
+      historicaCardTimeClass = "historica-card-time-2-smart-theme";
+      historicaCardContentClass = "historica-card-content-2-smart-theme";
+    } else {
+      historicaContainerClass = "historica-container-2";
+      historicaTimelineItemClass = "historica-item-2 group";
+      historicaTimelineIconClass = "historica-icon-2";
+      historicaCardContainerClass = "historica-card-container-2";
+      historicaCardClass = "historica-card-2";
+      historicaCardTitleClass = "historica-card-title-2";
+      historicaCardTimeClass = "historica-card-time-2";
+      historicaCardContentClass = "historica-card-content-2";
+    }
     const timelineContainer = el.createEl("div", {
-      cls: "historica-container-2"
+      cls: historicaContainerClass
     });
     if (!isMobile().any) {
       timelineContainer.addEventListener("contextmenu", async (e3) => {
         e3.preventDefault();
-        new TimelineActionModal(currentPlugin.app, timelineContainer, currentPlugin).open();
+        new TimelineActionModal(
+          currentPlugin.app,
+          timelineContainer,
+          currentPlugin,
+          timelineData,
+          isUsingSmartTheme
+        ).open();
       });
     }
     timelineData.map((entry) => {
       const timelineItem = timelineContainer.createEl("div", {
-        cls: "historica-item-2 group"
+        cls: historicaTimelineItemClass
       });
       const timelineIcon = timelineItem.createEl("div", {
-        cls: "historica-icon-2"
+        cls: historicaTimelineIconClass
       });
       const timelineCardContainer = timelineItem.createEl("div", {
-        cls: "historica-card-container-2"
+        cls: historicaCardContainerClass
       });
-      (0, import_obsidian3.setIcon)(timelineIcon, "shell");
+      (0, import_obsidian4.setIcon)(timelineIcon, "shell");
       const timelineCard = timelineCardContainer.createEl("div", {
-        cls: "historica-card-2"
+        cls: historicaCardClass
       });
-      const timelineCardTitle = timelineCard.createEl("div", {
-        cls: "historica-card-title-2",
+      timelineCard.createEl("div", {
+        cls: historicaCardTitleClass,
         text: entry.importantInformation
       });
-      const timelineCardTime = timelineCard.createEl("div", {
-        cls: "historica-card-time-2",
-        text: entry.dateString
+      timelineCard.createEl("div", {
+        cls: historicaCardTimeClass,
+        text: entry.stringThatParseAsDate
       });
       const timelineCardContent = timelineCardContainer.createEl("div", {
-        cls: "historica-card-content-2"
+        cls: historicaCardContentClass
       });
-      FormatSentencesWithMarkElement(entry.sentence, timelineCardContent);
+      FormatSentencesWithMarkElement(entry.sentence, timelineCardContent, isUsingSmartTheme);
       timelineCardContent.addEventListener("click", async () => {
-        new HistoricaSearchResultModal(currentPlugin.app, entry.dateString, currentPlugin).open();
+        new HistoricaSearchResultModal(currentPlugin.app, entry.stringThatParseAsDate, currentPlugin, isUsingSmartTheme).open();
       });
     });
   }
@@ -39686,7 +41566,7 @@ var getIndex = function(doc, obj) {
   });
   return { starts, ends };
 };
-var html2 = function(obj) {
+var html = function(obj) {
   let { starts, ends } = getIndex(this, obj);
   let out2 = "";
   this.docs.forEach((terms) => {
@@ -39705,7 +41585,7 @@ var html2 = function(obj) {
   });
   return out2;
 };
-var html_default = { html: html2 };
+var html_default = { html };
 
 // node_modules/compromise/src/1-one/output/api/_text.js
 var trimEnd = /[,:;)\]*.?~!\u0022\uFF02\u201D\u2019\u00BB\u203A\u2032\u2033\u2034\u301E\u00B4—-]+$/;
@@ -42420,7 +44300,7 @@ var units_default = [
 ];
 
 // node_modules/compromise/src/1-one/tokenize/model/lexicon.js
-var list2 = [
+var list = [
   [misc_default],
   [units_default, "Unit"],
   [nouns_default, "Noun"],
@@ -42431,7 +44311,7 @@ var list2 = [
 ];
 var abbreviations = {};
 var lexicon2 = {};
-list2.forEach((a4) => {
+list.forEach((a4) => {
   a4[0].forEach((w2) => {
     abbreviations[w2] = true;
     lexicon2[w2] = "Abbreviation";
@@ -51618,7 +53498,7 @@ var findNouns = function(doc) {
 var find_default = findNouns;
 
 // node_modules/compromise/src/3-three/nouns/api/isSubordinate.js
-var list3 = [
+var list2 = [
   "after",
   "although",
   "as if",
@@ -51663,8 +53543,8 @@ var isSubordinate = function(m6) {
   if (!leadIn.found) {
     return false;
   }
-  for (let i5 = 0; i5 < list3.length; i5 += 1) {
-    if (m6.has(list3[i5])) {
+  for (let i5 = 0; i5 < list2.length; i5 += 1) {
+    if (m6.has(list2[i5])) {
       return true;
     }
   }
@@ -53956,17 +55836,17 @@ var verbForms = {
     ["^#Infinitive$", []]
   ]
 };
-var list4 = [];
+var list3 = [];
 Object.keys(verbForms).map((k3) => {
   verbForms[k3].forEach((a4) => {
-    list4.push({
+    list3.push({
       name: k3,
       match: a4[0],
       data: getData(a4[1])
     });
   });
 });
-var forms_default = list4;
+var forms_default = list3;
 
 // node_modules/compromise/src/3-three/verbs/api/parse/grammar/index.js
 var cleanUp2 = function(vb3, res) {
@@ -55322,2707 +57202,6 @@ two_default.plugin(plugin_default28);
 two_default.plugin(plugin_default29);
 var three_default = two_default;
 
-// node_modules/chrono-node/dist/esm/results.js
-var import_quarterOfYear = __toESM(require_quarterOfYear(), 1);
-var import_dayjs2 = __toESM(require_dayjs_min(), 1);
-
-// node_modules/chrono-node/dist/esm/types.js
-var Meridiem;
-(function(Meridiem2) {
-  Meridiem2[Meridiem2["AM"] = 0] = "AM";
-  Meridiem2[Meridiem2["PM"] = 1] = "PM";
-})(Meridiem || (Meridiem = {}));
-var Weekday;
-(function(Weekday2) {
-  Weekday2[Weekday2["SUNDAY"] = 0] = "SUNDAY";
-  Weekday2[Weekday2["MONDAY"] = 1] = "MONDAY";
-  Weekday2[Weekday2["TUESDAY"] = 2] = "TUESDAY";
-  Weekday2[Weekday2["WEDNESDAY"] = 3] = "WEDNESDAY";
-  Weekday2[Weekday2["THURSDAY"] = 4] = "THURSDAY";
-  Weekday2[Weekday2["FRIDAY"] = 5] = "FRIDAY";
-  Weekday2[Weekday2["SATURDAY"] = 6] = "SATURDAY";
-})(Weekday || (Weekday = {}));
-var Month;
-(function(Month2) {
-  Month2[Month2["JANUARY"] = 1] = "JANUARY";
-  Month2[Month2["FEBRUARY"] = 2] = "FEBRUARY";
-  Month2[Month2["MARCH"] = 3] = "MARCH";
-  Month2[Month2["APRIL"] = 4] = "APRIL";
-  Month2[Month2["MAY"] = 5] = "MAY";
-  Month2[Month2["JUNE"] = 6] = "JUNE";
-  Month2[Month2["JULY"] = 7] = "JULY";
-  Month2[Month2["AUGUST"] = 8] = "AUGUST";
-  Month2[Month2["SEPTEMBER"] = 9] = "SEPTEMBER";
-  Month2[Month2["OCTOBER"] = 10] = "OCTOBER";
-  Month2[Month2["NOVEMBER"] = 11] = "NOVEMBER";
-  Month2[Month2["DECEMBER"] = 12] = "DECEMBER";
-})(Month || (Month = {}));
-
-// node_modules/chrono-node/dist/esm/utils/dayjs.js
-function implyTheNextDay(component, targetDayJs) {
-  targetDayJs = targetDayJs.add(1, "day");
-  implySimilarDate(component, targetDayJs);
-  implySimilarTime(component, targetDayJs);
-}
-function assignSimilarDate(component, targetDayJs) {
-  component.assign("day", targetDayJs.date());
-  component.assign("month", targetDayJs.month() + 1);
-  component.assign("year", targetDayJs.year());
-}
-function assignSimilarTime(component, targetDayJs) {
-  component.assign("hour", targetDayJs.hour());
-  component.assign("minute", targetDayJs.minute());
-  component.assign("second", targetDayJs.second());
-  component.assign("millisecond", targetDayJs.millisecond());
-  if (component.get("hour") < 12) {
-    component.assign("meridiem", Meridiem.AM);
-  } else {
-    component.assign("meridiem", Meridiem.PM);
-  }
-}
-function implySimilarDate(component, targetDayJs) {
-  component.imply("day", targetDayJs.date());
-  component.imply("month", targetDayJs.month() + 1);
-  component.imply("year", targetDayJs.year());
-}
-function implySimilarTime(component, targetDayJs) {
-  component.imply("hour", targetDayJs.hour());
-  component.imply("minute", targetDayJs.minute());
-  component.imply("second", targetDayJs.second());
-  component.imply("millisecond", targetDayJs.millisecond());
-}
-
-// node_modules/chrono-node/dist/esm/timezone.js
-var import_dayjs = __toESM(require_dayjs_min(), 1);
-var TIMEZONE_ABBR_MAP = {
-  ACDT: 630,
-  ACST: 570,
-  ADT: -180,
-  AEDT: 660,
-  AEST: 600,
-  AFT: 270,
-  AKDT: -480,
-  AKST: -540,
-  ALMT: 360,
-  AMST: -180,
-  AMT: -240,
-  ANAST: 720,
-  ANAT: 720,
-  AQTT: 300,
-  ART: -180,
-  AST: -240,
-  AWDT: 540,
-  AWST: 480,
-  AZOST: 0,
-  AZOT: -60,
-  AZST: 300,
-  AZT: 240,
-  BNT: 480,
-  BOT: -240,
-  BRST: -120,
-  BRT: -180,
-  BST: 60,
-  BTT: 360,
-  CAST: 480,
-  CAT: 120,
-  CCT: 390,
-  CDT: -300,
-  CEST: 120,
-  CET: {
-    timezoneOffsetDuringDst: 2 * 60,
-    timezoneOffsetNonDst: 60,
-    dstStart: (year) => getLastWeekdayOfMonth(year, Month.MARCH, Weekday.SUNDAY, 2),
-    dstEnd: (year) => getLastWeekdayOfMonth(year, Month.OCTOBER, Weekday.SUNDAY, 3)
-  },
-  CHADT: 825,
-  CHAST: 765,
-  CKT: -600,
-  CLST: -180,
-  CLT: -240,
-  COT: -300,
-  CST: -360,
-  CT: {
-    timezoneOffsetDuringDst: -5 * 60,
-    timezoneOffsetNonDst: -6 * 60,
-    dstStart: (year) => getNthWeekdayOfMonth(year, Month.MARCH, Weekday.SUNDAY, 2, 2),
-    dstEnd: (year) => getNthWeekdayOfMonth(year, Month.NOVEMBER, Weekday.SUNDAY, 1, 2)
-  },
-  CVT: -60,
-  CXT: 420,
-  ChST: 600,
-  DAVT: 420,
-  EASST: -300,
-  EAST: -360,
-  EAT: 180,
-  ECT: -300,
-  EDT: -240,
-  EEST: 180,
-  EET: 120,
-  EGST: 0,
-  EGT: -60,
-  EST: -300,
-  ET: {
-    timezoneOffsetDuringDst: -4 * 60,
-    timezoneOffsetNonDst: -5 * 60,
-    dstStart: (year) => getNthWeekdayOfMonth(year, Month.MARCH, Weekday.SUNDAY, 2, 2),
-    dstEnd: (year) => getNthWeekdayOfMonth(year, Month.NOVEMBER, Weekday.SUNDAY, 1, 2)
-  },
-  FJST: 780,
-  FJT: 720,
-  FKST: -180,
-  FKT: -240,
-  FNT: -120,
-  GALT: -360,
-  GAMT: -540,
-  GET: 240,
-  GFT: -180,
-  GILT: 720,
-  GMT: 0,
-  GST: 240,
-  GYT: -240,
-  HAA: -180,
-  HAC: -300,
-  HADT: -540,
-  HAE: -240,
-  HAP: -420,
-  HAR: -360,
-  HAST: -600,
-  HAT: -90,
-  HAY: -480,
-  HKT: 480,
-  HLV: -210,
-  HNA: -240,
-  HNC: -360,
-  HNE: -300,
-  HNP: -480,
-  HNR: -420,
-  HNT: -150,
-  HNY: -540,
-  HOVT: 420,
-  ICT: 420,
-  IDT: 180,
-  IOT: 360,
-  IRDT: 270,
-  IRKST: 540,
-  IRKT: 540,
-  IRST: 210,
-  IST: 330,
-  JST: 540,
-  KGT: 360,
-  KRAST: 480,
-  KRAT: 480,
-  KST: 540,
-  KUYT: 240,
-  LHDT: 660,
-  LHST: 630,
-  LINT: 840,
-  MAGST: 720,
-  MAGT: 720,
-  MART: -510,
-  MAWT: 300,
-  MDT: -360,
-  MESZ: 120,
-  MEZ: 60,
-  MHT: 720,
-  MMT: 390,
-  MSD: 240,
-  MSK: 180,
-  MST: -420,
-  MT: {
-    timezoneOffsetDuringDst: -6 * 60,
-    timezoneOffsetNonDst: -7 * 60,
-    dstStart: (year) => getNthWeekdayOfMonth(year, Month.MARCH, Weekday.SUNDAY, 2, 2),
-    dstEnd: (year) => getNthWeekdayOfMonth(year, Month.NOVEMBER, Weekday.SUNDAY, 1, 2)
-  },
-  MUT: 240,
-  MVT: 300,
-  MYT: 480,
-  NCT: 660,
-  NDT: -90,
-  NFT: 690,
-  NOVST: 420,
-  NOVT: 360,
-  NPT: 345,
-  NST: -150,
-  NUT: -660,
-  NZDT: 780,
-  NZST: 720,
-  OMSST: 420,
-  OMST: 420,
-  PDT: -420,
-  PET: -300,
-  PETST: 720,
-  PETT: 720,
-  PGT: 600,
-  PHOT: 780,
-  PHT: 480,
-  PKT: 300,
-  PMDT: -120,
-  PMST: -180,
-  PONT: 660,
-  PST: -480,
-  PT: {
-    timezoneOffsetDuringDst: -7 * 60,
-    timezoneOffsetNonDst: -8 * 60,
-    dstStart: (year) => getNthWeekdayOfMonth(year, Month.MARCH, Weekday.SUNDAY, 2, 2),
-    dstEnd: (year) => getNthWeekdayOfMonth(year, Month.NOVEMBER, Weekday.SUNDAY, 1, 2)
-  },
-  PWT: 540,
-  PYST: -180,
-  PYT: -240,
-  RET: 240,
-  SAMT: 240,
-  SAST: 120,
-  SBT: 660,
-  SCT: 240,
-  SGT: 480,
-  SRT: -180,
-  SST: -660,
-  TAHT: -600,
-  TFT: 300,
-  TJT: 300,
-  TKT: 780,
-  TLT: 540,
-  TMT: 300,
-  TVT: 720,
-  ULAT: 480,
-  UTC: 0,
-  UYST: -120,
-  UYT: -180,
-  UZT: 300,
-  VET: -210,
-  VLAST: 660,
-  VLAT: 660,
-  VUT: 660,
-  WAST: 120,
-  WAT: 60,
-  WEST: 60,
-  WESZ: 60,
-  WET: 0,
-  WEZ: 0,
-  WFT: 720,
-  WGST: -120,
-  WGT: -180,
-  WIB: 420,
-  WIT: 540,
-  WITA: 480,
-  WST: 780,
-  WT: 0,
-  YAKST: 600,
-  YAKT: 600,
-  YAPT: 600,
-  YEKST: 360,
-  YEKT: 360
-};
-function getNthWeekdayOfMonth(year, month2, weekday, n5, hour = 0) {
-  let dayOfMonth = 0;
-  let i5 = 0;
-  while (i5 < n5) {
-    dayOfMonth++;
-    const date = new Date(year, month2 - 1, dayOfMonth);
-    if (date.getDay() === weekday)
-      i5++;
-  }
-  return new Date(year, month2 - 1, dayOfMonth, hour);
-}
-function getLastWeekdayOfMonth(year, month2, weekday, hour = 0) {
-  const oneIndexedWeekday = weekday === 0 ? 7 : weekday;
-  const date = new Date(year, month2 - 1 + 1, 1, 12);
-  const firstWeekdayNextMonth = date.getDay() === 0 ? 7 : date.getDay();
-  let dayDiff;
-  if (firstWeekdayNextMonth === oneIndexedWeekday)
-    dayDiff = 7;
-  else if (firstWeekdayNextMonth < oneIndexedWeekday)
-    dayDiff = 7 + firstWeekdayNextMonth - oneIndexedWeekday;
-  else
-    dayDiff = firstWeekdayNextMonth - oneIndexedWeekday;
-  date.setDate(date.getDate() - dayDiff);
-  return new Date(year, month2 - 1, date.getDate(), hour);
-}
-function toTimezoneOffset(timezoneInput, date, timezoneOverrides = {}) {
-  var _a2;
-  if (timezoneInput == null) {
-    return null;
-  }
-  if (typeof timezoneInput === "number") {
-    return timezoneInput;
-  }
-  const matchedTimezone = (_a2 = timezoneOverrides[timezoneInput]) != null ? _a2 : TIMEZONE_ABBR_MAP[timezoneInput];
-  if (matchedTimezone == null) {
-    return null;
-  }
-  if (typeof matchedTimezone == "number") {
-    return matchedTimezone;
-  }
-  if (date == null) {
-    return null;
-  }
-  if ((0, import_dayjs.default)(date).isAfter(matchedTimezone.dstStart(date.getFullYear())) && !(0, import_dayjs.default)(date).isAfter(matchedTimezone.dstEnd(date.getFullYear()))) {
-    return matchedTimezone.timezoneOffsetDuringDst;
-  }
-  return matchedTimezone.timezoneOffsetNonDst;
-}
-
-// node_modules/chrono-node/dist/esm/results.js
-import_dayjs2.default.extend(import_quarterOfYear.default);
-var ReferenceWithTimezone = class {
-  constructor(input) {
-    var _a2;
-    input = input != null ? input : new Date();
-    if (input instanceof Date) {
-      this.instant = input;
-    } else {
-      this.instant = (_a2 = input.instant) != null ? _a2 : new Date();
-      this.timezoneOffset = toTimezoneOffset(input.timezone, this.instant);
-    }
-  }
-  getDateWithAdjustedTimezone() {
-    return new Date(this.instant.getTime() + this.getSystemTimezoneAdjustmentMinute(this.instant) * 6e4);
-  }
-  getSystemTimezoneAdjustmentMinute(date, overrideTimezoneOffset) {
-    var _a2;
-    if (!date || date.getTime() < 0) {
-      date = new Date();
-    }
-    const currentTimezoneOffset = -date.getTimezoneOffset();
-    const targetTimezoneOffset = (_a2 = overrideTimezoneOffset != null ? overrideTimezoneOffset : this.timezoneOffset) != null ? _a2 : currentTimezoneOffset;
-    return currentTimezoneOffset - targetTimezoneOffset;
-  }
-};
-var ParsingComponents = class {
-  constructor(reference, knownComponents) {
-    this._tags = /* @__PURE__ */ new Set();
-    this.reference = reference;
-    this.knownValues = {};
-    this.impliedValues = {};
-    if (knownComponents) {
-      for (const key in knownComponents) {
-        this.knownValues[key] = knownComponents[key];
-      }
-    }
-    const refDayJs = (0, import_dayjs2.default)(reference.instant);
-    this.imply("day", refDayJs.date());
-    this.imply("month", refDayJs.month() + 1);
-    this.imply("year", refDayJs.year());
-    this.imply("hour", 12);
-    this.imply("minute", 0);
-    this.imply("second", 0);
-    this.imply("millisecond", 0);
-  }
-  get(component) {
-    if (component in this.knownValues) {
-      return this.knownValues[component];
-    }
-    if (component in this.impliedValues) {
-      return this.impliedValues[component];
-    }
-    return null;
-  }
-  isCertain(component) {
-    return component in this.knownValues;
-  }
-  getCertainComponents() {
-    return Object.keys(this.knownValues);
-  }
-  imply(component, value) {
-    if (component in this.knownValues) {
-      return this;
-    }
-    this.impliedValues[component] = value;
-    return this;
-  }
-  assign(component, value) {
-    this.knownValues[component] = value;
-    delete this.impliedValues[component];
-    return this;
-  }
-  delete(component) {
-    delete this.knownValues[component];
-    delete this.impliedValues[component];
-  }
-  clone() {
-    const component = new ParsingComponents(this.reference);
-    component.knownValues = {};
-    component.impliedValues = {};
-    for (const key in this.knownValues) {
-      component.knownValues[key] = this.knownValues[key];
-    }
-    for (const key in this.impliedValues) {
-      component.impliedValues[key] = this.impliedValues[key];
-    }
-    return component;
-  }
-  isOnlyDate() {
-    return !this.isCertain("hour") && !this.isCertain("minute") && !this.isCertain("second");
-  }
-  isOnlyTime() {
-    return !this.isCertain("weekday") && !this.isCertain("day") && !this.isCertain("month");
-  }
-  isOnlyWeekdayComponent() {
-    return this.isCertain("weekday") && !this.isCertain("day") && !this.isCertain("month");
-  }
-  isDateWithUnknownYear() {
-    return this.isCertain("month") && !this.isCertain("year");
-  }
-  isValidDate() {
-    const date = this.dateWithoutTimezoneAdjustment();
-    if (date.getFullYear() !== this.get("year"))
-      return false;
-    if (date.getMonth() !== this.get("month") - 1)
-      return false;
-    if (date.getDate() !== this.get("day"))
-      return false;
-    if (this.get("hour") != null && date.getHours() != this.get("hour"))
-      return false;
-    if (this.get("minute") != null && date.getMinutes() != this.get("minute"))
-      return false;
-    return true;
-  }
-  toString() {
-    return `[ParsingComponents {
-            tags: ${JSON.stringify(Array.from(this._tags).sort())}, 
-            knownValues: ${JSON.stringify(this.knownValues)}, 
-            impliedValues: ${JSON.stringify(this.impliedValues)}}, 
-            reference: ${JSON.stringify(this.reference)}]`;
-  }
-  dayjs() {
-    return (0, import_dayjs2.default)(this.date());
-  }
-  date() {
-    const date = this.dateWithoutTimezoneAdjustment();
-    const timezoneAdjustment = this.reference.getSystemTimezoneAdjustmentMinute(date, this.get("timezoneOffset"));
-    return new Date(date.getTime() + timezoneAdjustment * 6e4);
-  }
-  addTag(tag2) {
-    this._tags.add(tag2);
-    return this;
-  }
-  addTags(tags) {
-    for (const tag2 of tags) {
-      this._tags.add(tag2);
-    }
-    return this;
-  }
-  tags() {
-    return new Set(this._tags);
-  }
-  dateWithoutTimezoneAdjustment() {
-    const date = new Date(this.get("year"), this.get("month") - 1, this.get("day"), this.get("hour"), this.get("minute"), this.get("second"), this.get("millisecond"));
-    date.setFullYear(this.get("year"));
-    return date;
-  }
-  static createRelativeFromReference(reference, fragments) {
-    let date = (0, import_dayjs2.default)(reference.instant);
-    for (const key in fragments) {
-      date = date.add(fragments[key], key);
-    }
-    const components = new ParsingComponents(reference);
-    if (fragments["hour"] || fragments["minute"] || fragments["second"]) {
-      assignSimilarTime(components, date);
-      assignSimilarDate(components, date);
-      if (reference.timezoneOffset !== null) {
-        components.assign("timezoneOffset", -reference.instant.getTimezoneOffset());
-      }
-    } else {
-      implySimilarTime(components, date);
-      if (reference.timezoneOffset !== null) {
-        components.imply("timezoneOffset", -reference.instant.getTimezoneOffset());
-      }
-      if (fragments["d"]) {
-        components.assign("day", date.date());
-        components.assign("month", date.month() + 1);
-        components.assign("year", date.year());
-      } else {
-        if (fragments["week"]) {
-          components.imply("weekday", date.day());
-        }
-        components.imply("day", date.date());
-        if (fragments["month"]) {
-          components.assign("month", date.month() + 1);
-          components.assign("year", date.year());
-        } else {
-          components.imply("month", date.month() + 1);
-          if (fragments["year"]) {
-            components.assign("year", date.year());
-          } else {
-            components.imply("year", date.year());
-          }
-        }
-      }
-    }
-    return components;
-  }
-};
-var ParsingResult = class {
-  constructor(reference, index4, text, start2, end2) {
-    this.reference = reference;
-    this.refDate = reference.instant;
-    this.index = index4;
-    this.text = text;
-    this.start = start2 || new ParsingComponents(reference);
-    this.end = end2;
-  }
-  clone() {
-    const result = new ParsingResult(this.reference, this.index, this.text);
-    result.start = this.start ? this.start.clone() : null;
-    result.end = this.end ? this.end.clone() : null;
-    return result;
-  }
-  date() {
-    return this.start.date();
-  }
-  tags() {
-    const combinedTags = new Set(this.start.tags());
-    if (this.end) {
-      for (const tag2 of this.end.tags()) {
-        combinedTags.add(tag2);
-      }
-    }
-    return combinedTags;
-  }
-  toString() {
-    const tags = Array.from(this.tags()).sort();
-    return `[ParsingResult {index: ${this.index}, text: '${this.text}', tags: ${JSON.stringify(tags)} ...}]`;
-  }
-};
-
-// node_modules/chrono-node/dist/esm/utils/pattern.js
-function repeatedTimeunitPattern(prefix5, singleTimeunitPattern, connectorPattern = "\\s{0,5},?\\s{0,5}") {
-  const singleTimeunitPatternNoCapture = singleTimeunitPattern.replace(/\((?!\?)/g, "(?:");
-  return `${prefix5}${singleTimeunitPatternNoCapture}(?:${connectorPattern}${singleTimeunitPatternNoCapture}){0,10}`;
-}
-function extractTerms(dictionary) {
-  let keys;
-  if (dictionary instanceof Array) {
-    keys = [...dictionary];
-  } else if (dictionary instanceof Map) {
-    keys = Array.from(dictionary.keys());
-  } else {
-    keys = Object.keys(dictionary);
-  }
-  return keys;
-}
-function matchAnyPattern(dictionary) {
-  const joinedTerms = extractTerms(dictionary).sort((a4, b2) => b2.length - a4.length).join("|").replace(/\./g, "\\.");
-  return `(?:${joinedTerms})`;
-}
-
-// node_modules/chrono-node/dist/esm/calculation/years.js
-var import_dayjs4 = __toESM(require_dayjs_min(), 1);
-function findMostLikelyADYear(yearNumber) {
-  if (yearNumber < 100) {
-    if (yearNumber > 50) {
-      yearNumber = yearNumber + 1900;
-    } else {
-      yearNumber = yearNumber + 2e3;
-    }
-  }
-  return yearNumber;
-}
-function findYearClosestToRef(refDate, day, month2) {
-  const refMoment = (0, import_dayjs4.default)(refDate);
-  let dateMoment = refMoment;
-  dateMoment = dateMoment.month(month2 - 1);
-  dateMoment = dateMoment.date(day);
-  dateMoment = dateMoment.year(refMoment.year());
-  const nextYear = dateMoment.add(1, "y");
-  const lastYear = dateMoment.add(-1, "y");
-  if (Math.abs(nextYear.diff(refMoment)) < Math.abs(dateMoment.diff(refMoment))) {
-    dateMoment = nextYear;
-  } else if (Math.abs(lastYear.diff(refMoment)) < Math.abs(dateMoment.diff(refMoment))) {
-    dateMoment = lastYear;
-  }
-  return dateMoment.year();
-}
-
-// node_modules/chrono-node/dist/esm/locales/en/constants.js
-var WEEKDAY_DICTIONARY = {
-  sunday: 0,
-  sun: 0,
-  "sun.": 0,
-  monday: 1,
-  mon: 1,
-  "mon.": 1,
-  tuesday: 2,
-  tue: 2,
-  "tue.": 2,
-  wednesday: 3,
-  wed: 3,
-  "wed.": 3,
-  thursday: 4,
-  thurs: 4,
-  "thurs.": 4,
-  thur: 4,
-  "thur.": 4,
-  thu: 4,
-  "thu.": 4,
-  friday: 5,
-  fri: 5,
-  "fri.": 5,
-  saturday: 6,
-  sat: 6,
-  "sat.": 6
-};
-var FULL_MONTH_NAME_DICTIONARY = {
-  january: 1,
-  february: 2,
-  march: 3,
-  april: 4,
-  may: 5,
-  june: 6,
-  july: 7,
-  august: 8,
-  september: 9,
-  october: 10,
-  november: 11,
-  december: 12
-};
-var MONTH_DICTIONARY = {
-  ...FULL_MONTH_NAME_DICTIONARY,
-  jan: 1,
-  "jan.": 1,
-  feb: 2,
-  "feb.": 2,
-  mar: 3,
-  "mar.": 3,
-  apr: 4,
-  "apr.": 4,
-  jun: 6,
-  "jun.": 6,
-  jul: 7,
-  "jul.": 7,
-  aug: 8,
-  "aug.": 8,
-  sep: 9,
-  "sep.": 9,
-  sept: 9,
-  "sept.": 9,
-  oct: 10,
-  "oct.": 10,
-  nov: 11,
-  "nov.": 11,
-  dec: 12,
-  "dec.": 12
-};
-var INTEGER_WORD_DICTIONARY = {
-  one: 1,
-  two: 2,
-  three: 3,
-  four: 4,
-  five: 5,
-  six: 6,
-  seven: 7,
-  eight: 8,
-  nine: 9,
-  ten: 10,
-  eleven: 11,
-  twelve: 12
-};
-var ORDINAL_WORD_DICTIONARY = {
-  first: 1,
-  second: 2,
-  third: 3,
-  fourth: 4,
-  fifth: 5,
-  sixth: 6,
-  seventh: 7,
-  eighth: 8,
-  ninth: 9,
-  tenth: 10,
-  eleventh: 11,
-  twelfth: 12,
-  thirteenth: 13,
-  fourteenth: 14,
-  fifteenth: 15,
-  sixteenth: 16,
-  seventeenth: 17,
-  eighteenth: 18,
-  nineteenth: 19,
-  twentieth: 20,
-  "twenty first": 21,
-  "twenty-first": 21,
-  "twenty second": 22,
-  "twenty-second": 22,
-  "twenty third": 23,
-  "twenty-third": 23,
-  "twenty fourth": 24,
-  "twenty-fourth": 24,
-  "twenty fifth": 25,
-  "twenty-fifth": 25,
-  "twenty sixth": 26,
-  "twenty-sixth": 26,
-  "twenty seventh": 27,
-  "twenty-seventh": 27,
-  "twenty eighth": 28,
-  "twenty-eighth": 28,
-  "twenty ninth": 29,
-  "twenty-ninth": 29,
-  "thirtieth": 30,
-  "thirty first": 31,
-  "thirty-first": 31
-};
-var TIME_UNIT_DICTIONARY_NO_ABBR = {
-  second: "second",
-  seconds: "second",
-  minute: "minute",
-  minutes: "minute",
-  hour: "hour",
-  hours: "hour",
-  day: "d",
-  days: "d",
-  week: "week",
-  weeks: "week",
-  month: "month",
-  months: "month",
-  quarter: "quarter",
-  quarters: "quarter",
-  year: "year",
-  years: "year"
-};
-var TIME_UNIT_DICTIONARY = {
-  s: "second",
-  sec: "second",
-  second: "second",
-  seconds: "second",
-  m: "minute",
-  min: "minute",
-  mins: "minute",
-  minute: "minute",
-  minutes: "minute",
-  h: "hour",
-  hr: "hour",
-  hrs: "hour",
-  hour: "hour",
-  hours: "hour",
-  d: "d",
-  day: "d",
-  days: "d",
-  w: "w",
-  week: "week",
-  weeks: "week",
-  mo: "month",
-  mon: "month",
-  mos: "month",
-  month: "month",
-  months: "month",
-  qtr: "quarter",
-  quarter: "quarter",
-  quarters: "quarter",
-  y: "year",
-  yr: "year",
-  year: "year",
-  years: "year",
-  ...TIME_UNIT_DICTIONARY_NO_ABBR
-};
-var NUMBER_PATTERN = `(?:${matchAnyPattern(INTEGER_WORD_DICTIONARY)}|[0-9]+|[0-9]+\\.[0-9]+|half(?:\\s{0,2}an?)?|an?\\b(?:\\s{0,2}few)?|few|several|the|a?\\s{0,2}couple\\s{0,2}(?:of)?)`;
-function parseNumberPattern(match2) {
-  const num = match2.toLowerCase();
-  if (INTEGER_WORD_DICTIONARY[num] !== void 0) {
-    return INTEGER_WORD_DICTIONARY[num];
-  } else if (num === "a" || num === "an" || num == "the") {
-    return 1;
-  } else if (num.match(/few/)) {
-    return 3;
-  } else if (num.match(/half/)) {
-    return 0.5;
-  } else if (num.match(/couple/)) {
-    return 2;
-  } else if (num.match(/several/)) {
-    return 7;
-  }
-  return parseFloat(num);
-}
-var ORDINAL_NUMBER_PATTERN = `(?:${matchAnyPattern(ORDINAL_WORD_DICTIONARY)}|[0-9]{1,2}(?:st|nd|rd|th)?)`;
-function parseOrdinalNumberPattern(match2) {
-  let num = match2.toLowerCase();
-  if (ORDINAL_WORD_DICTIONARY[num] !== void 0) {
-    return ORDINAL_WORD_DICTIONARY[num];
-  }
-  num = num.replace(/(?:st|nd|rd|th)$/i, "");
-  return parseInt(num);
-}
-var YEAR_PATTERN = `(?:[1-9][0-9]{0,3}\\s{0,2}(?:BE|AD|BC|BCE|CE)|[1-2][0-9]{3}|[5-9][0-9]|2[0-5])`;
-function parseYear(match2) {
-  if (/BE/i.test(match2)) {
-    match2 = match2.replace(/BE/i, "");
-    return parseInt(match2) - 543;
-  }
-  if (/BCE?/i.test(match2)) {
-    match2 = match2.replace(/BCE?/i, "");
-    return -parseInt(match2);
-  }
-  if (/(AD|CE)/i.test(match2)) {
-    match2 = match2.replace(/(AD|CE)/i, "");
-    return parseInt(match2);
-  }
-  const rawYearNumber = parseInt(match2);
-  return findMostLikelyADYear(rawYearNumber);
-}
-var SINGLE_TIME_UNIT_PATTERN = `(${NUMBER_PATTERN})\\s{0,3}(${matchAnyPattern(TIME_UNIT_DICTIONARY)})`;
-var SINGLE_TIME_UNIT_REGEX = new RegExp(SINGLE_TIME_UNIT_PATTERN, "i");
-var SINGLE_TIME_UNIT_NO_ABBR_PATTERN = `(${NUMBER_PATTERN})\\s{0,3}(${matchAnyPattern(TIME_UNIT_DICTIONARY_NO_ABBR)})`;
-var TIME_UNIT_CONNECTOR_PATTERN = `\\s{0,5},?(?:\\s*and)?\\s{0,5}`;
-var TIME_UNITS_PATTERN = repeatedTimeunitPattern(`(?:(?:about|around)\\s{0,3})?`, SINGLE_TIME_UNIT_PATTERN, TIME_UNIT_CONNECTOR_PATTERN);
-var TIME_UNITS_NO_ABBR_PATTERN = repeatedTimeunitPattern(`(?:(?:about|around)\\s{0,3})?`, SINGLE_TIME_UNIT_NO_ABBR_PATTERN, TIME_UNIT_CONNECTOR_PATTERN);
-function parseTimeUnits(timeunitText) {
-  const fragments = {};
-  let remainingText = timeunitText;
-  let match2 = SINGLE_TIME_UNIT_REGEX.exec(remainingText);
-  while (match2) {
-    collectDateTimeFragment(fragments, match2);
-    remainingText = remainingText.substring(match2[0].length).trim();
-    match2 = SINGLE_TIME_UNIT_REGEX.exec(remainingText);
-  }
-  return fragments;
-}
-function collectDateTimeFragment(fragments, match2) {
-  const num = parseNumberPattern(match2[1]);
-  const unit = TIME_UNIT_DICTIONARY[match2[2].toLowerCase()];
-  fragments[unit] = num;
-}
-
-// node_modules/chrono-node/dist/esm/common/parsers/AbstractParserWithWordBoundary.js
-var AbstractParserWithWordBoundaryChecking = class {
-  constructor() {
-    this.cachedInnerPattern = null;
-    this.cachedPattern = null;
-  }
-  innerPatternHasChange(context, currentInnerPattern) {
-    return this.innerPattern(context) !== currentInnerPattern;
-  }
-  patternLeftBoundary() {
-    return `(\\W|^)`;
-  }
-  pattern(context) {
-    if (this.cachedInnerPattern) {
-      if (!this.innerPatternHasChange(context, this.cachedInnerPattern)) {
-        return this.cachedPattern;
-      }
-    }
-    this.cachedInnerPattern = this.innerPattern(context);
-    this.cachedPattern = new RegExp(`${this.patternLeftBoundary()}${this.cachedInnerPattern.source}`, this.cachedInnerPattern.flags);
-    return this.cachedPattern;
-  }
-  extract(context, match2) {
-    var _a2;
-    const header = (_a2 = match2[1]) != null ? _a2 : "";
-    match2.index = match2.index + header.length;
-    match2[0] = match2[0].substring(header.length);
-    for (let i5 = 2; i5 < match2.length; i5++) {
-      match2[i5 - 1] = match2[i5];
-    }
-    return this.innerExtract(context, match2);
-  }
-};
-
-// node_modules/chrono-node/dist/esm/locales/en/parsers/ENTimeUnitWithinFormatParser.js
-var PATTERN_WITH_OPTIONAL_PREFIX = new RegExp(`(?:(?:within|in|for)\\s*)?(?:(?:about|around|roughly|approximately|just)\\s*(?:~\\s*)?)?(${TIME_UNITS_PATTERN})(?=\\W|$)`, "i");
-var PATTERN_WITH_PREFIX = new RegExp(`(?:within|in|for)\\s*(?:(?:about|around|roughly|approximately|just)\\s*(?:~\\s*)?)?(${TIME_UNITS_PATTERN})(?=\\W|$)`, "i");
-var PATTERN_WITH_PREFIX_STRICT = new RegExp(`(?:within|in|for)\\s*(?:(?:about|around|roughly|approximately|just)\\s*(?:~\\s*)?)?(${TIME_UNITS_NO_ABBR_PATTERN})(?=\\W|$)`, "i");
-var ENTimeUnitWithinFormatParser = class extends AbstractParserWithWordBoundaryChecking {
-  constructor(strictMode) {
-    super();
-    this.strictMode = strictMode;
-  }
-  innerPattern(context) {
-    if (this.strictMode) {
-      return PATTERN_WITH_PREFIX_STRICT;
-    }
-    return context.option.forwardDate ? PATTERN_WITH_OPTIONAL_PREFIX : PATTERN_WITH_PREFIX;
-  }
-  innerExtract(context, match2) {
-    if (match2[0].match(/^for\s*the\s*\w+/)) {
-      return null;
-    }
-    const timeUnits = parseTimeUnits(match2[1]);
-    return ParsingComponents.createRelativeFromReference(context.reference, timeUnits);
-  }
-};
-
-// node_modules/chrono-node/dist/esm/locales/en/parsers/ENMonthNameLittleEndianParser.js
-var PATTERN = new RegExp(`(?:on\\s{0,3})?(${ORDINAL_NUMBER_PATTERN})(?:\\s{0,3}(?:to|\\-|\\\u2013|until|through|till)?\\s{0,3}(${ORDINAL_NUMBER_PATTERN}))?(?:-|/|\\s{0,3}(?:of)?\\s{0,3})(${matchAnyPattern(MONTH_DICTIONARY)})(?:(?:-|/|,?\\s{0,3})(${YEAR_PATTERN}(?![^\\s]\\d)))?(?=\\W|$)`, "i");
-var DATE_GROUP = 1;
-var DATE_TO_GROUP = 2;
-var MONTH_NAME_GROUP = 3;
-var YEAR_GROUP = 4;
-var ENMonthNameLittleEndianParser = class extends AbstractParserWithWordBoundaryChecking {
-  innerPattern() {
-    return PATTERN;
-  }
-  innerExtract(context, match2) {
-    const result = context.createParsingResult(match2.index, match2[0]);
-    const month2 = MONTH_DICTIONARY[match2[MONTH_NAME_GROUP].toLowerCase()];
-    const day = parseOrdinalNumberPattern(match2[DATE_GROUP]);
-    if (day > 31) {
-      match2.index = match2.index + match2[DATE_GROUP].length;
-      return null;
-    }
-    result.start.assign("month", month2);
-    result.start.assign("day", day);
-    if (match2[YEAR_GROUP]) {
-      const yearNumber = parseYear(match2[YEAR_GROUP]);
-      result.start.assign("year", yearNumber);
-    } else {
-      const year = findYearClosestToRef(context.refDate, day, month2);
-      result.start.imply("year", year);
-    }
-    if (match2[DATE_TO_GROUP]) {
-      const endDate = parseOrdinalNumberPattern(match2[DATE_TO_GROUP]);
-      result.end = result.start.clone();
-      result.end.assign("day", endDate);
-    }
-    return result;
-  }
-};
-
-// node_modules/chrono-node/dist/esm/locales/en/parsers/ENMonthNameMiddleEndianParser.js
-var PATTERN2 = new RegExp(`(${matchAnyPattern(MONTH_DICTIONARY)})(?:-|/|\\s*,?\\s*)(${ORDINAL_NUMBER_PATTERN})(?!\\s*(?:am|pm))\\s*(?:(?:to|\\-)\\s*(${ORDINAL_NUMBER_PATTERN})\\s*)?(?:(?:-|/|\\s*,\\s*|\\s+)(${YEAR_PATTERN}))?(?=\\W|$)(?!\\:\\d)`, "i");
-var MONTH_NAME_GROUP2 = 1;
-var DATE_GROUP2 = 2;
-var DATE_TO_GROUP2 = 3;
-var YEAR_GROUP2 = 4;
-var ENMonthNameMiddleEndianParser = class extends AbstractParserWithWordBoundaryChecking {
-  constructor(shouldSkipYearLikeDate) {
-    super();
-    this.shouldSkipYearLikeDate = shouldSkipYearLikeDate;
-  }
-  innerPattern() {
-    return PATTERN2;
-  }
-  innerExtract(context, match2) {
-    const month2 = MONTH_DICTIONARY[match2[MONTH_NAME_GROUP2].toLowerCase()];
-    const day = parseOrdinalNumberPattern(match2[DATE_GROUP2]);
-    if (day > 31) {
-      return null;
-    }
-    if (this.shouldSkipYearLikeDate) {
-      if (!match2[DATE_TO_GROUP2] && !match2[YEAR_GROUP2] && match2[DATE_GROUP2].match(/^2[0-5]$/)) {
-        return null;
-      }
-    }
-    const components = context.createParsingComponents({
-      day,
-      month: month2
-    }).addTag("parser/ENMonthNameMiddleEndianParser");
-    if (match2[YEAR_GROUP2]) {
-      const year = parseYear(match2[YEAR_GROUP2]);
-      components.assign("year", year);
-    } else {
-      const year = findYearClosestToRef(context.refDate, day, month2);
-      components.imply("year", year);
-    }
-    if (!match2[DATE_TO_GROUP2]) {
-      return components;
-    }
-    const endDate = parseOrdinalNumberPattern(match2[DATE_TO_GROUP2]);
-    const result = context.createParsingResult(match2.index, match2[0]);
-    result.start = components;
-    result.end = components.clone();
-    result.end.assign("day", endDate);
-    return result;
-  }
-};
-
-// node_modules/chrono-node/dist/esm/locales/en/parsers/ENMonthNameParser.js
-var PATTERN3 = new RegExp(`((?:in)\\s*)?(${matchAnyPattern(MONTH_DICTIONARY)})\\s*(?:[,-]?\\s*(${YEAR_PATTERN})?)?(?=[^\\s\\w]|\\s+[^0-9]|\\s+$|$)`, "i");
-var PREFIX_GROUP = 1;
-var MONTH_NAME_GROUP3 = 2;
-var YEAR_GROUP3 = 3;
-var ENMonthNameParser = class extends AbstractParserWithWordBoundaryChecking {
-  innerPattern() {
-    return PATTERN3;
-  }
-  innerExtract(context, match2) {
-    const monthName = match2[MONTH_NAME_GROUP3].toLowerCase();
-    if (match2[0].length <= 3 && !FULL_MONTH_NAME_DICTIONARY[monthName]) {
-      return null;
-    }
-    const result = context.createParsingResult(match2.index + (match2[PREFIX_GROUP] || "").length, match2.index + match2[0].length);
-    result.start.imply("day", 1);
-    result.start.addTag("parser/ENMonthNameParser");
-    const month2 = MONTH_DICTIONARY[monthName];
-    result.start.assign("month", month2);
-    if (match2[YEAR_GROUP3]) {
-      const year = parseYear(match2[YEAR_GROUP3]);
-      result.start.assign("year", year);
-    } else {
-      const year = findYearClosestToRef(context.refDate, 1, month2);
-      result.start.imply("year", year);
-    }
-    return result;
-  }
-};
-
-// node_modules/chrono-node/dist/esm/locales/en/parsers/ENCasualYearMonthDayParser.js
-var PATTERN4 = new RegExp(`([0-9]{4})[\\.\\/\\s](?:(${matchAnyPattern(MONTH_DICTIONARY)})|([0-9]{1,2}))[\\.\\/\\s]([0-9]{1,2})(?=\\W|$)`, "i");
-var YEAR_NUMBER_GROUP = 1;
-var MONTH_NAME_GROUP4 = 2;
-var MONTH_NUMBER_GROUP = 3;
-var DATE_NUMBER_GROUP = 4;
-var ENCasualYearMonthDayParser = class extends AbstractParserWithWordBoundaryChecking {
-  innerPattern() {
-    return PATTERN4;
-  }
-  innerExtract(context, match2) {
-    const month2 = match2[MONTH_NUMBER_GROUP] ? parseInt(match2[MONTH_NUMBER_GROUP]) : MONTH_DICTIONARY[match2[MONTH_NAME_GROUP4].toLowerCase()];
-    if (month2 < 1 || month2 > 12) {
-      return null;
-    }
-    const year = parseInt(match2[YEAR_NUMBER_GROUP]);
-    const day = parseInt(match2[DATE_NUMBER_GROUP]);
-    return {
-      day,
-      month: month2,
-      year
-    };
-  }
-};
-
-// node_modules/chrono-node/dist/esm/locales/en/parsers/ENSlashMonthFormatParser.js
-var PATTERN5 = new RegExp("([0-9]|0[1-9]|1[012])/([0-9]{4})", "i");
-var MONTH_GROUP = 1;
-var YEAR_GROUP4 = 2;
-var ENSlashMonthFormatParser = class extends AbstractParserWithWordBoundaryChecking {
-  innerPattern() {
-    return PATTERN5;
-  }
-  innerExtract(context, match2) {
-    const year = parseInt(match2[YEAR_GROUP4]);
-    const month2 = parseInt(match2[MONTH_GROUP]);
-    return context.createParsingComponents().imply("day", 1).assign("month", month2).assign("year", year);
-  }
-};
-
-// node_modules/chrono-node/dist/esm/common/parsers/AbstractTimeExpressionParser.js
-function primaryTimePattern(leftBoundary, primaryPrefix, primarySuffix, flags) {
-  return new RegExp(`${leftBoundary}${primaryPrefix}(\\d{1,4})(?:(?:\\.|:|\uFF1A)(\\d{1,2})(?:(?::|\uFF1A)(\\d{2})(?:\\.(\\d{1,6}))?)?)?(?:\\s*(a\\.m\\.|p\\.m\\.|am?|pm?))?${primarySuffix}`, flags);
-}
-function followingTimePatten(followingPhase, followingSuffix) {
-  return new RegExp(`^(${followingPhase})(\\d{1,4})(?:(?:\\.|\\:|\\\uFF1A)(\\d{1,2})(?:(?:\\.|\\:|\\\uFF1A)(\\d{1,2})(?:\\.(\\d{1,6}))?)?)?(?:\\s*(a\\.m\\.|p\\.m\\.|am?|pm?))?${followingSuffix}`, "i");
-}
-var HOUR_GROUP = 2;
-var MINUTE_GROUP = 3;
-var SECOND_GROUP = 4;
-var MILLI_SECOND_GROUP = 5;
-var AM_PM_HOUR_GROUP = 6;
-var AbstractTimeExpressionParser = class {
-  constructor(strictMode = false) {
-    this.cachedPrimaryPrefix = null;
-    this.cachedPrimarySuffix = null;
-    this.cachedPrimaryTimePattern = null;
-    this.cachedFollowingPhase = null;
-    this.cachedFollowingSuffix = null;
-    this.cachedFollowingTimePatten = null;
-    this.strictMode = strictMode;
-  }
-  patternFlags() {
-    return "i";
-  }
-  primaryPatternLeftBoundary() {
-    return `(^|\\s|T|\\b)`;
-  }
-  primarySuffix() {
-    return `(?!/)(?=\\W|$)`;
-  }
-  followingSuffix() {
-    return `(?!/)(?=\\W|$)`;
-  }
-  pattern(context) {
-    return this.getPrimaryTimePatternThroughCache();
-  }
-  extract(context, match2) {
-    const startComponents = this.extractPrimaryTimeComponents(context, match2);
-    if (!startComponents) {
-      match2.index += match2[0].length;
-      return null;
-    }
-    const index4 = match2.index + match2[1].length;
-    const text = match2[0].substring(match2[1].length);
-    const result = context.createParsingResult(index4, text, startComponents);
-    match2.index += match2[0].length;
-    const remainingText = context.text.substring(match2.index);
-    const followingPattern = this.getFollowingTimePatternThroughCache();
-    const followingMatch = followingPattern.exec(remainingText);
-    if (text.match(/^\d{3,4}/) && followingMatch && followingMatch[0].match(/^\s*([+-])\s*\d{2,4}$/)) {
-      return null;
-    }
-    if (!followingMatch || followingMatch[0].match(/^\s*([+-])\s*\d{3,4}$/)) {
-      return this.checkAndReturnWithoutFollowingPattern(result);
-    }
-    result.end = this.extractFollowingTimeComponents(context, followingMatch, result);
-    if (result.end) {
-      result.text += followingMatch[0];
-    }
-    return this.checkAndReturnWithFollowingPattern(result);
-  }
-  extractPrimaryTimeComponents(context, match2, strict2 = false) {
-    const components = context.createParsingComponents();
-    let minute = 0;
-    let meridiem = null;
-    let hour = parseInt(match2[HOUR_GROUP]);
-    if (hour > 100) {
-      if (this.strictMode || match2[MINUTE_GROUP] != null) {
-        return null;
-      }
-      minute = hour % 100;
-      hour = Math.floor(hour / 100);
-    }
-    if (hour > 24) {
-      return null;
-    }
-    if (match2[MINUTE_GROUP] != null) {
-      if (match2[MINUTE_GROUP].length == 1 && !match2[AM_PM_HOUR_GROUP]) {
-        return null;
-      }
-      minute = parseInt(match2[MINUTE_GROUP]);
-    }
-    if (minute >= 60) {
-      return null;
-    }
-    if (hour > 12) {
-      meridiem = Meridiem.PM;
-    }
-    if (match2[AM_PM_HOUR_GROUP] != null) {
-      if (hour > 12)
-        return null;
-      const ampm = match2[AM_PM_HOUR_GROUP][0].toLowerCase();
-      if (ampm == "a") {
-        meridiem = Meridiem.AM;
-        if (hour == 12) {
-          hour = 0;
-        }
-      }
-      if (ampm == "p") {
-        meridiem = Meridiem.PM;
-        if (hour != 12) {
-          hour += 12;
-        }
-      }
-    }
-    components.assign("hour", hour);
-    components.assign("minute", minute);
-    if (meridiem !== null) {
-      components.assign("meridiem", meridiem);
-    } else {
-      if (hour < 12) {
-        components.imply("meridiem", Meridiem.AM);
-      } else {
-        components.imply("meridiem", Meridiem.PM);
-      }
-    }
-    if (match2[MILLI_SECOND_GROUP] != null) {
-      const millisecond = parseInt(match2[MILLI_SECOND_GROUP].substring(0, 3));
-      if (millisecond >= 1e3)
-        return null;
-      components.assign("millisecond", millisecond);
-    }
-    if (match2[SECOND_GROUP] != null) {
-      const second = parseInt(match2[SECOND_GROUP]);
-      if (second >= 60)
-        return null;
-      components.assign("second", second);
-    }
-    return components;
-  }
-  extractFollowingTimeComponents(context, match2, result) {
-    const components = context.createParsingComponents();
-    if (match2[MILLI_SECOND_GROUP] != null) {
-      const millisecond = parseInt(match2[MILLI_SECOND_GROUP].substring(0, 3));
-      if (millisecond >= 1e3)
-        return null;
-      components.assign("millisecond", millisecond);
-    }
-    if (match2[SECOND_GROUP] != null) {
-      const second = parseInt(match2[SECOND_GROUP]);
-      if (second >= 60)
-        return null;
-      components.assign("second", second);
-    }
-    let hour = parseInt(match2[HOUR_GROUP]);
-    let minute = 0;
-    let meridiem = -1;
-    if (match2[MINUTE_GROUP] != null) {
-      minute = parseInt(match2[MINUTE_GROUP]);
-    } else if (hour > 100) {
-      minute = hour % 100;
-      hour = Math.floor(hour / 100);
-    }
-    if (minute >= 60 || hour > 24) {
-      return null;
-    }
-    if (hour >= 12) {
-      meridiem = Meridiem.PM;
-    }
-    if (match2[AM_PM_HOUR_GROUP] != null) {
-      if (hour > 12) {
-        return null;
-      }
-      const ampm = match2[AM_PM_HOUR_GROUP][0].toLowerCase();
-      if (ampm == "a") {
-        meridiem = Meridiem.AM;
-        if (hour == 12) {
-          hour = 0;
-          if (!components.isCertain("day")) {
-            components.imply("day", components.get("day") + 1);
-          }
-        }
-      }
-      if (ampm == "p") {
-        meridiem = Meridiem.PM;
-        if (hour != 12)
-          hour += 12;
-      }
-      if (!result.start.isCertain("meridiem")) {
-        if (meridiem == Meridiem.AM) {
-          result.start.imply("meridiem", Meridiem.AM);
-          if (result.start.get("hour") == 12) {
-            result.start.assign("hour", 0);
-          }
-        } else {
-          result.start.imply("meridiem", Meridiem.PM);
-          if (result.start.get("hour") != 12) {
-            result.start.assign("hour", result.start.get("hour") + 12);
-          }
-        }
-      }
-    }
-    components.assign("hour", hour);
-    components.assign("minute", minute);
-    if (meridiem >= 0) {
-      components.assign("meridiem", meridiem);
-    } else {
-      const startAtPM = result.start.isCertain("meridiem") && result.start.get("hour") > 12;
-      if (startAtPM) {
-        if (result.start.get("hour") - 12 > hour) {
-          components.imply("meridiem", Meridiem.AM);
-        } else if (hour <= 12) {
-          components.assign("hour", hour + 12);
-          components.assign("meridiem", Meridiem.PM);
-        }
-      } else if (hour > 12) {
-        components.imply("meridiem", Meridiem.PM);
-      } else if (hour <= 12) {
-        components.imply("meridiem", Meridiem.AM);
-      }
-    }
-    if (components.date().getTime() < result.start.date().getTime()) {
-      components.imply("day", components.get("day") + 1);
-    }
-    return components;
-  }
-  checkAndReturnWithoutFollowingPattern(result) {
-    if (result.text.match(/^\d$/)) {
-      return null;
-    }
-    if (result.text.match(/^\d\d\d+$/)) {
-      return null;
-    }
-    if (result.text.match(/\d[apAP]$/)) {
-      return null;
-    }
-    const endingWithNumbers = result.text.match(/[^\d:.](\d[\d.]+)$/);
-    if (endingWithNumbers) {
-      const endingNumbers = endingWithNumbers[1];
-      if (this.strictMode) {
-        return null;
-      }
-      if (endingNumbers.includes(".") && !endingNumbers.match(/\d(\.\d{2})+$/)) {
-        return null;
-      }
-      const endingNumberVal = parseInt(endingNumbers);
-      if (endingNumberVal > 24) {
-        return null;
-      }
-    }
-    return result;
-  }
-  checkAndReturnWithFollowingPattern(result) {
-    if (result.text.match(/^\d+-\d+$/)) {
-      return null;
-    }
-    const endingWithNumbers = result.text.match(/[^\d:.](\d[\d.]+)\s*-\s*(\d[\d.]+)$/);
-    if (endingWithNumbers) {
-      if (this.strictMode) {
-        return null;
-      }
-      const startingNumbers = endingWithNumbers[1];
-      const endingNumbers = endingWithNumbers[2];
-      if (endingNumbers.includes(".") && !endingNumbers.match(/\d(\.\d{2})+$/)) {
-        return null;
-      }
-      const endingNumberVal = parseInt(endingNumbers);
-      const startingNumberVal = parseInt(startingNumbers);
-      if (endingNumberVal > 24 || startingNumberVal > 24) {
-        return null;
-      }
-    }
-    return result;
-  }
-  getPrimaryTimePatternThroughCache() {
-    const primaryPrefix = this.primaryPrefix();
-    const primarySuffix = this.primarySuffix();
-    if (this.cachedPrimaryPrefix === primaryPrefix && this.cachedPrimarySuffix === primarySuffix) {
-      return this.cachedPrimaryTimePattern;
-    }
-    this.cachedPrimaryTimePattern = primaryTimePattern(this.primaryPatternLeftBoundary(), primaryPrefix, primarySuffix, this.patternFlags());
-    this.cachedPrimaryPrefix = primaryPrefix;
-    this.cachedPrimarySuffix = primarySuffix;
-    return this.cachedPrimaryTimePattern;
-  }
-  getFollowingTimePatternThroughCache() {
-    const followingPhase = this.followingPhase();
-    const followingSuffix = this.followingSuffix();
-    if (this.cachedFollowingPhase === followingPhase && this.cachedFollowingSuffix === followingSuffix) {
-      return this.cachedFollowingTimePatten;
-    }
-    this.cachedFollowingTimePatten = followingTimePatten(followingPhase, followingSuffix);
-    this.cachedFollowingPhase = followingPhase;
-    this.cachedFollowingSuffix = followingSuffix;
-    return this.cachedFollowingTimePatten;
-  }
-};
-
-// node_modules/chrono-node/dist/esm/locales/en/parsers/ENTimeExpressionParser.js
-var ENTimeExpressionParser = class extends AbstractTimeExpressionParser {
-  constructor(strictMode) {
-    super(strictMode);
-  }
-  followingPhase() {
-    return "\\s*(?:\\-|\\\u2013|\\~|\\\u301C|to|until|through|till|\\?)\\s*";
-  }
-  primaryPrefix() {
-    return "(?:(?:at|from)\\s*)??";
-  }
-  primarySuffix() {
-    return "(?:\\s*(?:o\\W*clock|at\\s*night|in\\s*the\\s*(?:morning|afternoon)))?(?!/)(?=\\W|$)";
-  }
-  extractPrimaryTimeComponents(context, match2) {
-    const components = super.extractPrimaryTimeComponents(context, match2);
-    if (!components) {
-      return components;
-    }
-    if (match2[0].endsWith("night")) {
-      const hour = components.get("hour");
-      if (hour >= 6 && hour < 12) {
-        components.assign("hour", components.get("hour") + 12);
-        components.assign("meridiem", Meridiem.PM);
-      } else if (hour < 6) {
-        components.assign("meridiem", Meridiem.AM);
-      }
-    }
-    if (match2[0].endsWith("afternoon")) {
-      components.assign("meridiem", Meridiem.PM);
-      const hour = components.get("hour");
-      if (hour >= 0 && hour <= 6) {
-        components.assign("hour", components.get("hour") + 12);
-      }
-    }
-    if (match2[0].endsWith("morning")) {
-      components.assign("meridiem", Meridiem.AM);
-      const hour = components.get("hour");
-      if (hour < 12) {
-        components.assign("hour", components.get("hour"));
-      }
-    }
-    return components.addTag("parser/ENTimeExpressionParser");
-  }
-};
-
-// node_modules/chrono-node/dist/esm/utils/timeunits.js
-function reverseTimeUnits(timeUnits) {
-  const reversed = {};
-  for (const key in timeUnits) {
-    reversed[key] = -timeUnits[key];
-  }
-  return reversed;
-}
-function addImpliedTimeUnits(components, timeUnits) {
-  const output = components.clone();
-  let date = components.dayjs();
-  for (const key in timeUnits) {
-    date = date.add(timeUnits[key], key);
-  }
-  if ("day" in timeUnits || "d" in timeUnits || "week" in timeUnits || "month" in timeUnits || "year" in timeUnits) {
-    output.imply("day", date.date());
-    output.imply("month", date.month() + 1);
-    output.imply("year", date.year());
-  }
-  if ("second" in timeUnits || "minute" in timeUnits || "hour" in timeUnits) {
-    output.imply("second", date.second());
-    output.imply("minute", date.minute());
-    output.imply("hour", date.hour());
-  }
-  return output;
-}
-
-// node_modules/chrono-node/dist/esm/locales/en/parsers/ENTimeUnitAgoFormatParser.js
-var PATTERN6 = new RegExp(`(${TIME_UNITS_PATTERN})\\s{0,5}(?:ago|before|earlier)(?=\\W|$)`, "i");
-var STRICT_PATTERN = new RegExp(`(${TIME_UNITS_NO_ABBR_PATTERN})\\s{0,5}(?:ago|before|earlier)(?=\\W|$)`, "i");
-var ENTimeUnitAgoFormatParser = class extends AbstractParserWithWordBoundaryChecking {
-  constructor(strictMode) {
-    super();
-    this.strictMode = strictMode;
-  }
-  innerPattern() {
-    return this.strictMode ? STRICT_PATTERN : PATTERN6;
-  }
-  innerExtract(context, match2) {
-    const timeUnits = parseTimeUnits(match2[1]);
-    const outputTimeUnits = reverseTimeUnits(timeUnits);
-    return ParsingComponents.createRelativeFromReference(context.reference, outputTimeUnits);
-  }
-};
-
-// node_modules/chrono-node/dist/esm/locales/en/parsers/ENTimeUnitLaterFormatParser.js
-var PATTERN7 = new RegExp(`(${TIME_UNITS_PATTERN})\\s{0,5}(?:later|after|from now|henceforth|forward|out)(?=(?:\\W|$))`, "i");
-var STRICT_PATTERN2 = new RegExp(`(${TIME_UNITS_NO_ABBR_PATTERN})\\s{0,5}(later|after|from now)(?=\\W|$)`, "i");
-var GROUP_NUM_TIMEUNITS = 1;
-var ENTimeUnitLaterFormatParser = class extends AbstractParserWithWordBoundaryChecking {
-  constructor(strictMode) {
-    super();
-    this.strictMode = strictMode;
-  }
-  innerPattern() {
-    return this.strictMode ? STRICT_PATTERN2 : PATTERN7;
-  }
-  innerExtract(context, match2) {
-    const fragments = parseTimeUnits(match2[GROUP_NUM_TIMEUNITS]);
-    return ParsingComponents.createRelativeFromReference(context.reference, fragments);
-  }
-};
-
-// node_modules/chrono-node/dist/esm/common/abstractRefiners.js
-var Filter = class {
-  refine(context, results) {
-    return results.filter((r3) => this.isValid(context, r3));
-  }
-};
-var MergingRefiner = class {
-  refine(context, results) {
-    if (results.length < 2) {
-      return results;
-    }
-    const mergedResults = [];
-    let curResult = results[0];
-    let nextResult = null;
-    for (let i5 = 1; i5 < results.length; i5++) {
-      nextResult = results[i5];
-      const textBetween = context.text.substring(curResult.index + curResult.text.length, nextResult.index);
-      if (!this.shouldMergeResults(textBetween, curResult, nextResult, context)) {
-        mergedResults.push(curResult);
-        curResult = nextResult;
-      } else {
-        const left = curResult;
-        const right = nextResult;
-        const mergedResult = this.mergeResults(textBetween, left, right, context);
-        context.debug(() => {
-          console.log(`${this.constructor.name} merged ${left} and ${right} into ${mergedResult}`);
-        });
-        curResult = mergedResult;
-      }
-    }
-    if (curResult != null) {
-      mergedResults.push(curResult);
-    }
-    return mergedResults;
-  }
-};
-
-// node_modules/chrono-node/dist/esm/common/refiners/AbstractMergeDateRangeRefiner.js
-var AbstractMergeDateRangeRefiner = class extends MergingRefiner {
-  shouldMergeResults(textBetween, currentResult, nextResult) {
-    return !currentResult.end && !nextResult.end && textBetween.match(this.patternBetween()) != null;
-  }
-  mergeResults(textBetween, fromResult, toResult) {
-    if (!fromResult.start.isOnlyWeekdayComponent() && !toResult.start.isOnlyWeekdayComponent()) {
-      toResult.start.getCertainComponents().forEach((key) => {
-        if (!fromResult.start.isCertain(key)) {
-          fromResult.start.imply(key, toResult.start.get(key));
-        }
-      });
-      fromResult.start.getCertainComponents().forEach((key) => {
-        if (!toResult.start.isCertain(key)) {
-          toResult.start.imply(key, fromResult.start.get(key));
-        }
-      });
-    }
-    if (fromResult.start.date().getTime() > toResult.start.date().getTime()) {
-      let fromMoment = fromResult.start.dayjs();
-      let toMoment = toResult.start.dayjs();
-      if (toResult.start.isOnlyWeekdayComponent() && toMoment.add(7, "days").isAfter(fromMoment)) {
-        toMoment = toMoment.add(7, "days");
-        toResult.start.imply("day", toMoment.date());
-        toResult.start.imply("month", toMoment.month() + 1);
-        toResult.start.imply("year", toMoment.year());
-      } else if (fromResult.start.isOnlyWeekdayComponent() && fromMoment.add(-7, "days").isBefore(toMoment)) {
-        fromMoment = fromMoment.add(-7, "days");
-        fromResult.start.imply("day", fromMoment.date());
-        fromResult.start.imply("month", fromMoment.month() + 1);
-        fromResult.start.imply("year", fromMoment.year());
-      } else if (toResult.start.isDateWithUnknownYear() && toMoment.add(1, "years").isAfter(fromMoment)) {
-        toMoment = toMoment.add(1, "years");
-        toResult.start.imply("year", toMoment.year());
-      } else if (fromResult.start.isDateWithUnknownYear() && fromMoment.add(-1, "years").isBefore(toMoment)) {
-        fromMoment = fromMoment.add(-1, "years");
-        fromResult.start.imply("year", fromMoment.year());
-      } else {
-        [toResult, fromResult] = [fromResult, toResult];
-      }
-    }
-    const result = fromResult.clone();
-    result.start = fromResult.start;
-    result.end = toResult.start;
-    result.index = Math.min(fromResult.index, toResult.index);
-    if (fromResult.index < toResult.index) {
-      result.text = fromResult.text + textBetween + toResult.text;
-    } else {
-      result.text = toResult.text + textBetween + fromResult.text;
-    }
-    return result;
-  }
-};
-
-// node_modules/chrono-node/dist/esm/locales/en/refiners/ENMergeDateRangeRefiner.js
-var ENMergeDateRangeRefiner = class extends AbstractMergeDateRangeRefiner {
-  patternBetween() {
-    return /^\s*(to|-|–|until|through|till)\s*$/i;
-  }
-};
-
-// node_modules/chrono-node/dist/esm/calculation/mergingCalculation.js
-function mergeDateTimeResult(dateResult, timeResult) {
-  const result = dateResult.clone();
-  const beginDate = dateResult.start;
-  const beginTime = timeResult.start;
-  result.start = mergeDateTimeComponent(beginDate, beginTime);
-  if (dateResult.end != null || timeResult.end != null) {
-    const endDate = dateResult.end == null ? dateResult.start : dateResult.end;
-    const endTime = timeResult.end == null ? timeResult.start : timeResult.end;
-    const endDateTime = mergeDateTimeComponent(endDate, endTime);
-    if (dateResult.end == null && endDateTime.date().getTime() < result.start.date().getTime()) {
-      const nextDayJs = endDateTime.dayjs().add(1, "day");
-      if (endDateTime.isCertain("day")) {
-        assignSimilarDate(endDateTime, nextDayJs);
-      } else {
-        implySimilarDate(endDateTime, nextDayJs);
-      }
-    }
-    result.end = endDateTime;
-  }
-  return result;
-}
-function mergeDateTimeComponent(dateComponent, timeComponent) {
-  const dateTimeComponent = dateComponent.clone();
-  if (timeComponent.isCertain("hour")) {
-    dateTimeComponent.assign("hour", timeComponent.get("hour"));
-    dateTimeComponent.assign("minute", timeComponent.get("minute"));
-    if (timeComponent.isCertain("second")) {
-      dateTimeComponent.assign("second", timeComponent.get("second"));
-      if (timeComponent.isCertain("millisecond")) {
-        dateTimeComponent.assign("millisecond", timeComponent.get("millisecond"));
-      } else {
-        dateTimeComponent.imply("millisecond", timeComponent.get("millisecond"));
-      }
-    } else {
-      dateTimeComponent.imply("second", timeComponent.get("second"));
-      dateTimeComponent.imply("millisecond", timeComponent.get("millisecond"));
-    }
-  } else {
-    dateTimeComponent.imply("hour", timeComponent.get("hour"));
-    dateTimeComponent.imply("minute", timeComponent.get("minute"));
-    dateTimeComponent.imply("second", timeComponent.get("second"));
-    dateTimeComponent.imply("millisecond", timeComponent.get("millisecond"));
-  }
-  if (timeComponent.isCertain("timezoneOffset")) {
-    dateTimeComponent.assign("timezoneOffset", timeComponent.get("timezoneOffset"));
-  }
-  if (timeComponent.isCertain("meridiem")) {
-    dateTimeComponent.assign("meridiem", timeComponent.get("meridiem"));
-  } else if (timeComponent.get("meridiem") != null && dateTimeComponent.get("meridiem") == null) {
-    dateTimeComponent.imply("meridiem", timeComponent.get("meridiem"));
-  }
-  if (dateTimeComponent.get("meridiem") == Meridiem.PM && dateTimeComponent.get("hour") < 12) {
-    if (timeComponent.isCertain("hour")) {
-      dateTimeComponent.assign("hour", dateTimeComponent.get("hour") + 12);
-    } else {
-      dateTimeComponent.imply("hour", dateTimeComponent.get("hour") + 12);
-    }
-  }
-  dateTimeComponent.addTags(dateComponent.tags());
-  dateTimeComponent.addTags(timeComponent.tags());
-  return dateTimeComponent;
-}
-
-// node_modules/chrono-node/dist/esm/common/refiners/AbstractMergeDateTimeRefiner.js
-var AbstractMergeDateTimeRefiner = class extends MergingRefiner {
-  shouldMergeResults(textBetween, currentResult, nextResult) {
-    return (currentResult.start.isOnlyDate() && nextResult.start.isOnlyTime() || nextResult.start.isOnlyDate() && currentResult.start.isOnlyTime()) && textBetween.match(this.patternBetween()) != null;
-  }
-  mergeResults(textBetween, currentResult, nextResult) {
-    const result = currentResult.start.isOnlyDate() ? mergeDateTimeResult(currentResult, nextResult) : mergeDateTimeResult(nextResult, currentResult);
-    result.index = currentResult.index;
-    result.text = currentResult.text + textBetween + nextResult.text;
-    return result;
-  }
-};
-
-// node_modules/chrono-node/dist/esm/locales/en/refiners/ENMergeDateTimeRefiner.js
-var ENMergeDateTimeRefiner = class extends AbstractMergeDateTimeRefiner {
-  patternBetween() {
-    return new RegExp("^\\s*(T|at|after|before|on|of|,|-)?\\s*$");
-  }
-};
-
-// node_modules/chrono-node/dist/esm/common/refiners/ExtractTimezoneAbbrRefiner.js
-var TIMEZONE_NAME_PATTERN = new RegExp("^\\s*,?\\s*\\(?([A-Z]{2,4})\\)?(?=\\W|$)", "i");
-var ExtractTimezoneAbbrRefiner = class {
-  constructor(timezoneOverrides) {
-    this.timezoneOverrides = timezoneOverrides;
-  }
-  refine(context, results) {
-    var _a2;
-    const timezoneOverrides = (_a2 = context.option.timezones) != null ? _a2 : {};
-    results.forEach((result) => {
-      var _a3, _b2;
-      const suffix = context.text.substring(result.index + result.text.length);
-      const match2 = TIMEZONE_NAME_PATTERN.exec(suffix);
-      if (!match2) {
-        return;
-      }
-      const timezoneAbbr = match2[1].toUpperCase();
-      const refDate = (_b2 = (_a3 = result.start.date()) != null ? _a3 : result.refDate) != null ? _b2 : new Date();
-      const tzOverrides = { ...this.timezoneOverrides, ...timezoneOverrides };
-      const extractedTimezoneOffset = toTimezoneOffset(timezoneAbbr, refDate, tzOverrides);
-      if (extractedTimezoneOffset == null) {
-        return;
-      }
-      context.debug(() => {
-        console.log(`Extracting timezone: '${timezoneAbbr}' into: ${extractedTimezoneOffset} for: ${result.start}`);
-      });
-      const currentTimezoneOffset = result.start.get("timezoneOffset");
-      if (currentTimezoneOffset !== null && extractedTimezoneOffset != currentTimezoneOffset) {
-        if (result.start.isCertain("timezoneOffset")) {
-          return;
-        }
-        if (timezoneAbbr != match2[1]) {
-          return;
-        }
-      }
-      if (result.start.isOnlyDate()) {
-        if (timezoneAbbr != match2[1]) {
-          return;
-        }
-      }
-      result.text += match2[0];
-      if (!result.start.isCertain("timezoneOffset")) {
-        result.start.assign("timezoneOffset", extractedTimezoneOffset);
-      }
-      if (result.end != null && !result.end.isCertain("timezoneOffset")) {
-        result.end.assign("timezoneOffset", extractedTimezoneOffset);
-      }
-    });
-    return results;
-  }
-};
-
-// node_modules/chrono-node/dist/esm/common/refiners/ExtractTimezoneOffsetRefiner.js
-var TIMEZONE_OFFSET_PATTERN = new RegExp("^\\s*(?:\\(?(?:GMT|UTC)\\s?)?([+-])(\\d{1,2})(?::?(\\d{2}))?\\)?", "i");
-var TIMEZONE_OFFSET_SIGN_GROUP = 1;
-var TIMEZONE_OFFSET_HOUR_OFFSET_GROUP = 2;
-var TIMEZONE_OFFSET_MINUTE_OFFSET_GROUP = 3;
-var ExtractTimezoneOffsetRefiner = class {
-  refine(context, results) {
-    results.forEach(function(result) {
-      if (result.start.isCertain("timezoneOffset")) {
-        return;
-      }
-      const suffix = context.text.substring(result.index + result.text.length);
-      const match2 = TIMEZONE_OFFSET_PATTERN.exec(suffix);
-      if (!match2) {
-        return;
-      }
-      context.debug(() => {
-        console.log(`Extracting timezone: '${match2[0]}' into : ${result}`);
-      });
-      const hourOffset = parseInt(match2[TIMEZONE_OFFSET_HOUR_OFFSET_GROUP]);
-      const minuteOffset = parseInt(match2[TIMEZONE_OFFSET_MINUTE_OFFSET_GROUP] || "0");
-      let timezoneOffset = hourOffset * 60 + minuteOffset;
-      if (timezoneOffset > 14 * 60) {
-        return;
-      }
-      if (match2[TIMEZONE_OFFSET_SIGN_GROUP] === "-") {
-        timezoneOffset = -timezoneOffset;
-      }
-      if (result.end != null) {
-        result.end.assign("timezoneOffset", timezoneOffset);
-      }
-      result.start.assign("timezoneOffset", timezoneOffset);
-      result.text += match2[0];
-    });
-    return results;
-  }
-};
-
-// node_modules/chrono-node/dist/esm/common/refiners/OverlapRemovalRefiner.js
-var OverlapRemovalRefiner = class {
-  refine(context, results) {
-    if (results.length < 2) {
-      return results;
-    }
-    const filteredResults = [];
-    let prevResult = results[0];
-    for (let i5 = 1; i5 < results.length; i5++) {
-      const result = results[i5];
-      if (result.index >= prevResult.index + prevResult.text.length) {
-        filteredResults.push(prevResult);
-        prevResult = result;
-        continue;
-      }
-      let kept = null;
-      let removed = null;
-      if (result.text.length > prevResult.text.length) {
-        kept = result;
-        removed = prevResult;
-      } else {
-        kept = prevResult;
-        removed = result;
-      }
-      context.debug(() => {
-        console.log(`${this.constructor.name} remove ${removed} by ${kept}`);
-      });
-      prevResult = kept;
-    }
-    if (prevResult != null) {
-      filteredResults.push(prevResult);
-    }
-    return filteredResults;
-  }
-};
-
-// node_modules/chrono-node/dist/esm/common/refiners/ForwardDateRefiner.js
-var import_dayjs6 = __toESM(require_dayjs_min(), 1);
-var ForwardDateRefiner = class {
-  refine(context, results) {
-    if (!context.option.forwardDate) {
-      return results;
-    }
-    results.forEach(function(result) {
-      let refMoment = (0, import_dayjs6.default)(context.refDate);
-      if (result.start.isOnlyTime() && refMoment.isAfter(result.start.dayjs())) {
-        refMoment = refMoment.add(1, "day");
-        implySimilarDate(result.start, refMoment);
-        if (result.end && result.end.isOnlyTime()) {
-          implySimilarDate(result.end, refMoment);
-          if (result.start.dayjs().isAfter(result.end.dayjs())) {
-            refMoment = refMoment.add(1, "day");
-            implySimilarDate(result.end, refMoment);
-          }
-        }
-      }
-      if (result.start.isOnlyWeekdayComponent() && refMoment.isAfter(result.start.dayjs())) {
-        if (refMoment.day() >= result.start.get("weekday")) {
-          refMoment = refMoment.day(result.start.get("weekday") + 7);
-        } else {
-          refMoment = refMoment.day(result.start.get("weekday"));
-        }
-        result.start.imply("day", refMoment.date());
-        result.start.imply("month", refMoment.month() + 1);
-        result.start.imply("year", refMoment.year());
-        context.debug(() => {
-          console.log(`Forward weekly adjusted for ${result} (${result.start})`);
-        });
-        if (result.end && result.end.isOnlyWeekdayComponent()) {
-          if (refMoment.day() > result.end.get("weekday")) {
-            refMoment = refMoment.day(result.end.get("weekday") + 7);
-          } else {
-            refMoment = refMoment.day(result.end.get("weekday"));
-          }
-          result.end.imply("day", refMoment.date());
-          result.end.imply("month", refMoment.month() + 1);
-          result.end.imply("year", refMoment.year());
-          context.debug(() => {
-            console.log(`Forward weekly adjusted for ${result} (${result.end})`);
-          });
-        }
-      }
-      if (result.start.isDateWithUnknownYear() && refMoment.isAfter(result.start.dayjs())) {
-        for (let i5 = 0; i5 < 3 && refMoment.isAfter(result.start.dayjs()); i5++) {
-          result.start.imply("year", result.start.get("year") + 1);
-          context.debug(() => {
-            console.log(`Forward yearly adjusted for ${result} (${result.start})`);
-          });
-          if (result.end && !result.end.isCertain("year")) {
-            result.end.imply("year", result.end.get("year") + 1);
-            context.debug(() => {
-              console.log(`Forward yearly adjusted for ${result} (${result.end})`);
-            });
-          }
-        }
-      }
-    });
-    return results;
-  }
-};
-
-// node_modules/chrono-node/dist/esm/common/refiners/UnlikelyFormatFilter.js
-var UnlikelyFormatFilter = class extends Filter {
-  constructor(strictMode) {
-    super();
-    this.strictMode = strictMode;
-  }
-  isValid(context, result) {
-    if (result.text.replace(" ", "").match(/^\d*(\.\d*)?$/)) {
-      context.debug(() => {
-        console.log(`Removing unlikely result '${result.text}'`);
-      });
-      return false;
-    }
-    if (!result.start.isValidDate()) {
-      context.debug(() => {
-        console.log(`Removing invalid result: ${result} (${result.start})`);
-      });
-      return false;
-    }
-    if (result.end && !result.end.isValidDate()) {
-      context.debug(() => {
-        console.log(`Removing invalid result: ${result} (${result.end})`);
-      });
-      return false;
-    }
-    if (this.strictMode) {
-      return this.isStrictModeValid(context, result);
-    }
-    return true;
-  }
-  isStrictModeValid(context, result) {
-    if (result.start.isOnlyWeekdayComponent()) {
-      context.debug(() => {
-        console.log(`(Strict) Removing weekday only component: ${result} (${result.end})`);
-      });
-      return false;
-    }
-    if (result.start.isOnlyTime() && (!result.start.isCertain("hour") || !result.start.isCertain("minute"))) {
-      context.debug(() => {
-        console.log(`(Strict) Removing uncertain time component: ${result} (${result.end})`);
-      });
-      return false;
-    }
-    return true;
-  }
-};
-
-// node_modules/chrono-node/dist/esm/common/parsers/ISOFormatParser.js
-var PATTERN8 = new RegExp("([0-9]{4})\\-([0-9]{1,2})\\-([0-9]{1,2})(?:T([0-9]{1,2}):([0-9]{1,2})(?::([0-9]{1,2})(?:\\.(\\d{1,4}))?)?(?:Z|([+-]\\d{2}):?(\\d{2})?)?)?(?=\\W|$)", "i");
-var YEAR_NUMBER_GROUP2 = 1;
-var MONTH_NUMBER_GROUP2 = 2;
-var DATE_NUMBER_GROUP2 = 3;
-var HOUR_NUMBER_GROUP = 4;
-var MINUTE_NUMBER_GROUP = 5;
-var SECOND_NUMBER_GROUP = 6;
-var MILLISECOND_NUMBER_GROUP = 7;
-var TZD_HOUR_OFFSET_GROUP = 8;
-var TZD_MINUTE_OFFSET_GROUP = 9;
-var ISOFormatParser = class extends AbstractParserWithWordBoundaryChecking {
-  innerPattern() {
-    return PATTERN8;
-  }
-  innerExtract(context, match2) {
-    const components = {};
-    components["year"] = parseInt(match2[YEAR_NUMBER_GROUP2]);
-    components["month"] = parseInt(match2[MONTH_NUMBER_GROUP2]);
-    components["day"] = parseInt(match2[DATE_NUMBER_GROUP2]);
-    if (match2[HOUR_NUMBER_GROUP] != null) {
-      components["hour"] = parseInt(match2[HOUR_NUMBER_GROUP]);
-      components["minute"] = parseInt(match2[MINUTE_NUMBER_GROUP]);
-      if (match2[SECOND_NUMBER_GROUP] != null) {
-        components["second"] = parseInt(match2[SECOND_NUMBER_GROUP]);
-      }
-      if (match2[MILLISECOND_NUMBER_GROUP] != null) {
-        components["millisecond"] = parseInt(match2[MILLISECOND_NUMBER_GROUP]);
-      }
-      if (match2[TZD_HOUR_OFFSET_GROUP] == null) {
-        components["timezoneOffset"] = 0;
-      } else {
-        const hourOffset = parseInt(match2[TZD_HOUR_OFFSET_GROUP]);
-        let minuteOffset = 0;
-        if (match2[TZD_MINUTE_OFFSET_GROUP] != null) {
-          minuteOffset = parseInt(match2[TZD_MINUTE_OFFSET_GROUP]);
-        }
-        let offset2 = hourOffset * 60;
-        if (offset2 < 0) {
-          offset2 -= minuteOffset;
-        } else {
-          offset2 += minuteOffset;
-        }
-        components["timezoneOffset"] = offset2;
-      }
-    }
-    return components;
-  }
-};
-
-// node_modules/chrono-node/dist/esm/common/refiners/MergeWeekdayComponentRefiner.js
-var MergeWeekdayComponentRefiner = class extends MergingRefiner {
-  mergeResults(textBetween, currentResult, nextResult) {
-    const newResult = nextResult.clone();
-    newResult.index = currentResult.index;
-    newResult.text = currentResult.text + textBetween + newResult.text;
-    newResult.start.assign("weekday", currentResult.start.get("weekday"));
-    if (newResult.end) {
-      newResult.end.assign("weekday", currentResult.start.get("weekday"));
-    }
-    return newResult;
-  }
-  shouldMergeResults(textBetween, currentResult, nextResult) {
-    const weekdayThenNormalDate = currentResult.start.isOnlyWeekdayComponent() && !currentResult.start.isCertain("hour") && nextResult.start.isCertain("day");
-    return weekdayThenNormalDate && textBetween.match(/^,?\s*$/) != null;
-  }
-};
-
-// node_modules/chrono-node/dist/esm/configurations.js
-function includeCommonConfiguration(configuration2, strictMode = false) {
-  configuration2.parsers.unshift(new ISOFormatParser());
-  configuration2.refiners.unshift(new MergeWeekdayComponentRefiner());
-  configuration2.refiners.unshift(new ExtractTimezoneOffsetRefiner());
-  configuration2.refiners.unshift(new OverlapRemovalRefiner());
-  configuration2.refiners.push(new ExtractTimezoneAbbrRefiner());
-  configuration2.refiners.push(new OverlapRemovalRefiner());
-  configuration2.refiners.push(new ForwardDateRefiner());
-  configuration2.refiners.push(new UnlikelyFormatFilter(strictMode));
-  return configuration2;
-}
-
-// node_modules/chrono-node/dist/esm/locales/en/parsers/ENCasualDateParser.js
-var import_dayjs10 = __toESM(require_dayjs_min(), 1);
-
-// node_modules/chrono-node/dist/esm/common/casualReferences.js
-var import_dayjs8 = __toESM(require_dayjs_min(), 1);
-function now(reference) {
-  const targetDate = (0, import_dayjs8.default)(reference.instant);
-  const component = new ParsingComponents(reference, {});
-  assignSimilarDate(component, targetDate);
-  assignSimilarTime(component, targetDate);
-  if (reference.timezoneOffset !== null) {
-    component.assign("timezoneOffset", targetDate.utcOffset());
-  }
-  component.addTag("casualReference/now");
-  return component;
-}
-function today(reference) {
-  const targetDate = (0, import_dayjs8.default)(reference.instant);
-  const component = new ParsingComponents(reference, {});
-  assignSimilarDate(component, targetDate);
-  implySimilarTime(component, targetDate);
-  component.addTag("casualReference/today");
-  return component;
-}
-function yesterday(reference) {
-  return theDayBefore(reference, 1).addTag("casualReference/yesterday");
-}
-function theDayBefore(reference, numDay) {
-  return theDayAfter(reference, -numDay);
-}
-function tomorrow(reference) {
-  return theDayAfter(reference, 1).addTag("casualReference/tomorrow");
-}
-function theDayAfter(reference, nDays) {
-  let targetDate = (0, import_dayjs8.default)(reference.instant);
-  const component = new ParsingComponents(reference, {});
-  targetDate = targetDate.add(nDays, "day");
-  assignSimilarDate(component, targetDate);
-  implySimilarTime(component, targetDate);
-  return component;
-}
-function tonight(reference, implyHour = 22) {
-  const targetDate = (0, import_dayjs8.default)(reference.instant);
-  const component = new ParsingComponents(reference, {});
-  assignSimilarDate(component, targetDate);
-  component.imply("hour", implyHour);
-  component.imply("meridiem", Meridiem.PM);
-  component.addTag("casualReference/tonight");
-  return component;
-}
-function evening(reference, implyHour = 20) {
-  const component = new ParsingComponents(reference, {});
-  component.imply("meridiem", Meridiem.PM);
-  component.imply("hour", implyHour);
-  component.addTag("casualReference/evening");
-  return component;
-}
-function midnight(reference) {
-  const component = new ParsingComponents(reference, {});
-  const targetDate = (0, import_dayjs8.default)(reference.instant);
-  if (targetDate.hour() > 2) {
-    implyTheNextDay(component, targetDate);
-  }
-  component.assign("hour", 0);
-  component.imply("minute", 0);
-  component.imply("second", 0);
-  component.imply("millisecond", 0);
-  component.addTag("casualReference/midnight");
-  return component;
-}
-function morning(reference, implyHour = 6) {
-  const component = new ParsingComponents(reference, {});
-  component.imply("meridiem", Meridiem.AM);
-  component.imply("hour", implyHour);
-  component.imply("minute", 0);
-  component.imply("second", 0);
-  component.imply("millisecond", 0);
-  component.addTag("casualReference/morning");
-  return component;
-}
-function afternoon(reference, implyHour = 15) {
-  const component = new ParsingComponents(reference, {});
-  component.imply("meridiem", Meridiem.PM);
-  component.imply("hour", implyHour);
-  component.imply("minute", 0);
-  component.imply("second", 0);
-  component.imply("millisecond", 0);
-  component.addTag("casualReference/afternoon");
-  return component;
-}
-function noon(reference) {
-  const component = new ParsingComponents(reference, {});
-  component.imply("meridiem", Meridiem.AM);
-  component.imply("hour", 12);
-  component.imply("minute", 0);
-  component.imply("second", 0);
-  component.imply("millisecond", 0);
-  component.addTag("casualReference/noon");
-  return component;
-}
-
-// node_modules/chrono-node/dist/esm/locales/en/parsers/ENCasualDateParser.js
-var PATTERN9 = /(now|today|tonight|tomorrow|tmr|tmrw|yesterday|last\s*night)(?=\W|$)/i;
-var ENCasualDateParser = class extends AbstractParserWithWordBoundaryChecking {
-  innerPattern(context) {
-    return PATTERN9;
-  }
-  innerExtract(context, match2) {
-    let targetDate = (0, import_dayjs10.default)(context.refDate);
-    const lowerText = match2[0].toLowerCase();
-    let component = context.createParsingComponents();
-    switch (lowerText) {
-      case "now":
-        component = now(context.reference);
-        break;
-      case "today":
-        component = today(context.reference);
-        break;
-      case "yesterday":
-        component = yesterday(context.reference);
-        break;
-      case "tomorrow":
-      case "tmr":
-      case "tmrw":
-        component = tomorrow(context.reference);
-        break;
-      case "tonight":
-        component = tonight(context.reference);
-        break;
-      default:
-        if (lowerText.match(/last\s*night/)) {
-          if (targetDate.hour() > 6) {
-            targetDate = targetDate.add(-1, "day");
-          }
-          assignSimilarDate(component, targetDate);
-          component.imply("hour", 0);
-        }
-        break;
-    }
-    component.addTag("parser/ENCasualDateParser");
-    return component;
-  }
-};
-
-// node_modules/chrono-node/dist/esm/locales/en/parsers/ENCasualTimeParser.js
-var PATTERN10 = /(?:this)?\s{0,3}(morning|afternoon|evening|night|midnight|midday|noon)(?=\W|$)/i;
-var ENCasualTimeParser = class extends AbstractParserWithWordBoundaryChecking {
-  innerPattern() {
-    return PATTERN10;
-  }
-  innerExtract(context, match2) {
-    let component = null;
-    switch (match2[1].toLowerCase()) {
-      case "afternoon":
-        component = afternoon(context.reference);
-        break;
-      case "evening":
-      case "night":
-        component = evening(context.reference);
-        break;
-      case "midnight":
-        component = midnight(context.reference);
-        break;
-      case "morning":
-        component = morning(context.reference);
-        break;
-      case "noon":
-      case "midday":
-        component = noon(context.reference);
-        break;
-    }
-    if (component) {
-      component.addTag("parser/ENCasualTimeParser");
-    }
-    return component;
-  }
-};
-
-// node_modules/chrono-node/dist/esm/common/calculation/weekdays.js
-function createParsingComponentsAtWeekday(reference, weekday, modifier) {
-  const refDate = reference.getDateWithAdjustedTimezone();
-  const daysToWeekday = getDaysToWeekday(refDate, weekday, modifier);
-  let components = new ParsingComponents(reference);
-  components = addImpliedTimeUnits(components, { "day": daysToWeekday });
-  components.assign("weekday", weekday);
-  return components;
-}
-function getDaysToWeekday(refDate, weekday, modifier) {
-  const refWeekday = refDate.getDay();
-  switch (modifier) {
-    case "this":
-      return getDaysForwardToWeekday(refDate, weekday);
-    case "last":
-      return getBackwardDaysToWeekday(refDate, weekday);
-    case "next":
-      if (refWeekday == Weekday.SUNDAY) {
-        return weekday == Weekday.SUNDAY ? 7 : weekday;
-      }
-      if (refWeekday == Weekday.SATURDAY) {
-        if (weekday == Weekday.SATURDAY)
-          return 7;
-        if (weekday == Weekday.SUNDAY)
-          return 8;
-        return 1 + weekday;
-      }
-      if (weekday < refWeekday && weekday != Weekday.SUNDAY) {
-        return getDaysForwardToWeekday(refDate, weekday);
-      } else {
-        return getDaysForwardToWeekday(refDate, weekday) + 7;
-      }
-  }
-  return getDaysToWeekdayClosest(refDate, weekday);
-}
-function getDaysToWeekdayClosest(refDate, weekday) {
-  const backward = getBackwardDaysToWeekday(refDate, weekday);
-  const forward = getDaysForwardToWeekday(refDate, weekday);
-  return forward < -backward ? forward : backward;
-}
-function getDaysForwardToWeekday(refDate, weekday) {
-  const refWeekday = refDate.getDay();
-  let forwardCount = weekday - refWeekday;
-  if (forwardCount < 0) {
-    forwardCount += 7;
-  }
-  return forwardCount;
-}
-function getBackwardDaysToWeekday(refDate, weekday) {
-  const refWeekday = refDate.getDay();
-  let backwardCount = weekday - refWeekday;
-  if (backwardCount >= 0) {
-    backwardCount -= 7;
-  }
-  return backwardCount;
-}
-
-// node_modules/chrono-node/dist/esm/locales/en/parsers/ENWeekdayParser.js
-var PATTERN11 = new RegExp(`(?:(?:\\,|\\(|\\\uFF08)\\s*)?(?:on\\s*?)?(?:(this|last|past|next)\\s*)?(${matchAnyPattern(WEEKDAY_DICTIONARY)})(?:\\s*(?:\\,|\\)|\\\uFF09))?(?:\\s*(this|last|past|next)\\s*week)?(?=\\W|$)`, "i");
-var PREFIX_GROUP2 = 1;
-var WEEKDAY_GROUP = 2;
-var POSTFIX_GROUP = 3;
-var ENWeekdayParser = class extends AbstractParserWithWordBoundaryChecking {
-  innerPattern() {
-    return PATTERN11;
-  }
-  innerExtract(context, match2) {
-    const dayOfWeek = match2[WEEKDAY_GROUP].toLowerCase();
-    const weekday = WEEKDAY_DICTIONARY[dayOfWeek];
-    const prefix5 = match2[PREFIX_GROUP2];
-    const postfix = match2[POSTFIX_GROUP];
-    let modifierWord = prefix5 || postfix;
-    modifierWord = modifierWord || "";
-    modifierWord = modifierWord.toLowerCase();
-    let modifier = null;
-    if (modifierWord == "last" || modifierWord == "past") {
-      modifier = "last";
-    } else if (modifierWord == "next") {
-      modifier = "next";
-    } else if (modifierWord == "this") {
-      modifier = "this";
-    }
-    return createParsingComponentsAtWeekday(context.reference, weekday, modifier);
-  }
-};
-
-// node_modules/chrono-node/dist/esm/locales/en/parsers/ENRelativeDateFormatParser.js
-var import_dayjs12 = __toESM(require_dayjs_min(), 1);
-var PATTERN12 = new RegExp(`(this|last|past|next|after\\s*this)\\s*(${matchAnyPattern(TIME_UNIT_DICTIONARY)})(?=\\s*)(?=\\W|$)`, "i");
-var MODIFIER_WORD_GROUP = 1;
-var RELATIVE_WORD_GROUP = 2;
-var ENRelativeDateFormatParser = class extends AbstractParserWithWordBoundaryChecking {
-  innerPattern() {
-    return PATTERN12;
-  }
-  innerExtract(context, match2) {
-    const modifier = match2[MODIFIER_WORD_GROUP].toLowerCase();
-    const unitWord = match2[RELATIVE_WORD_GROUP].toLowerCase();
-    const timeunit = TIME_UNIT_DICTIONARY[unitWord];
-    if (modifier == "next" || modifier.startsWith("after")) {
-      const timeUnits = {};
-      timeUnits[timeunit] = 1;
-      return ParsingComponents.createRelativeFromReference(context.reference, timeUnits);
-    }
-    if (modifier == "last" || modifier == "past") {
-      const timeUnits = {};
-      timeUnits[timeunit] = -1;
-      return ParsingComponents.createRelativeFromReference(context.reference, timeUnits);
-    }
-    const components = context.createParsingComponents();
-    let date = (0, import_dayjs12.default)(context.reference.instant);
-    if (unitWord.match(/week/i)) {
-      date = date.add(-date.get("d"), "d");
-      components.imply("day", date.date());
-      components.imply("month", date.month() + 1);
-      components.imply("year", date.year());
-    } else if (unitWord.match(/month/i)) {
-      date = date.add(-date.date() + 1, "d");
-      components.imply("day", date.date());
-      components.assign("year", date.year());
-      components.assign("month", date.month() + 1);
-    } else if (unitWord.match(/year/i)) {
-      date = date.add(-date.date() + 1, "d");
-      date = date.add(-date.month(), "month");
-      components.imply("day", date.date());
-      components.imply("month", date.month() + 1);
-      components.assign("year", date.year());
-    }
-    return components;
-  }
-};
-
-// node_modules/chrono-node/dist/esm/common/parsers/SlashDateFormatParser.js
-var PATTERN13 = new RegExp("([^\\d]|^)([0-3]{0,1}[0-9]{1})[\\/\\.\\-]([0-3]{0,1}[0-9]{1})(?:[\\/\\.\\-]([0-9]{4}|[0-9]{2}))?(\\W|$)", "i");
-var OPENING_GROUP = 1;
-var ENDING_GROUP = 5;
-var FIRST_NUMBERS_GROUP = 2;
-var SECOND_NUMBERS_GROUP = 3;
-var YEAR_GROUP5 = 4;
-var SlashDateFormatParser = class {
-  constructor(littleEndian) {
-    this.groupNumberMonth = littleEndian ? SECOND_NUMBERS_GROUP : FIRST_NUMBERS_GROUP;
-    this.groupNumberDay = littleEndian ? FIRST_NUMBERS_GROUP : SECOND_NUMBERS_GROUP;
-  }
-  pattern() {
-    return PATTERN13;
-  }
-  extract(context, match2) {
-    if (match2[OPENING_GROUP].length == 0 && match2.index > 0 && match2.index < context.text.length) {
-      const previousChar = context.text[match2.index - 1];
-      if (previousChar >= "0" && previousChar <= "9") {
-        return;
-      }
-    }
-    const index4 = match2.index + match2[OPENING_GROUP].length;
-    const text = match2[0].substr(match2[OPENING_GROUP].length, match2[0].length - match2[OPENING_GROUP].length - match2[ENDING_GROUP].length);
-    if (text.match(/^\d\.\d$/) || text.match(/^\d\.\d{1,2}\.\d{1,2}\s*$/)) {
-      return;
-    }
-    if (!match2[YEAR_GROUP5] && match2[0].indexOf("/") < 0) {
-      return;
-    }
-    const result = context.createParsingResult(index4, text);
-    let month2 = parseInt(match2[this.groupNumberMonth]);
-    let day = parseInt(match2[this.groupNumberDay]);
-    if (month2 < 1 || month2 > 12) {
-      if (month2 > 12) {
-        if (day >= 1 && day <= 12 && month2 <= 31) {
-          [day, month2] = [month2, day];
-        } else {
-          return null;
-        }
-      }
-    }
-    if (day < 1 || day > 31) {
-      return null;
-    }
-    result.start.assign("day", day);
-    result.start.assign("month", month2);
-    if (match2[YEAR_GROUP5]) {
-      const rawYearNumber = parseInt(match2[YEAR_GROUP5]);
-      const year = findMostLikelyADYear(rawYearNumber);
-      result.start.assign("year", year);
-    } else {
-      const year = findYearClosestToRef(context.refDate, day, month2);
-      result.start.imply("year", year);
-    }
-    return result;
-  }
-};
-
-// node_modules/chrono-node/dist/esm/locales/en/parsers/ENTimeUnitCasualRelativeFormatParser.js
-var PATTERN14 = new RegExp(`(this|last|past|next|after|\\+|-)\\s*(${TIME_UNITS_PATTERN})(?=\\W|$)`, "i");
-var PATTERN_NO_ABBR = new RegExp(`(this|last|past|next|after|\\+|-)\\s*(${TIME_UNITS_NO_ABBR_PATTERN})(?=\\W|$)`, "i");
-var ENTimeUnitCasualRelativeFormatParser = class extends AbstractParserWithWordBoundaryChecking {
-  constructor(allowAbbreviations = true) {
-    super();
-    this.allowAbbreviations = allowAbbreviations;
-  }
-  innerPattern() {
-    return this.allowAbbreviations ? PATTERN14 : PATTERN_NO_ABBR;
-  }
-  innerExtract(context, match2) {
-    const prefix5 = match2[1].toLowerCase();
-    let timeUnits = parseTimeUnits(match2[2]);
-    switch (prefix5) {
-      case "last":
-      case "past":
-      case "-":
-        timeUnits = reverseTimeUnits(timeUnits);
-        break;
-    }
-    return ParsingComponents.createRelativeFromReference(context.reference, timeUnits);
-  }
-};
-
-// node_modules/chrono-node/dist/esm/locales/en/refiners/ENMergeRelativeAfterDateRefiner.js
-function IsPositiveFollowingReference(result) {
-  return result.text.match(/^[+-]/i) != null;
-}
-function IsNegativeFollowingReference(result) {
-  return result.text.match(/^-/i) != null;
-}
-var ENMergeRelativeAfterDateRefiner = class extends MergingRefiner {
-  shouldMergeResults(textBetween, currentResult, nextResult) {
-    if (!textBetween.match(/^\s*$/i)) {
-      return false;
-    }
-    return IsPositiveFollowingReference(nextResult) || IsNegativeFollowingReference(nextResult);
-  }
-  mergeResults(textBetween, currentResult, nextResult, context) {
-    let timeUnits = parseTimeUnits(nextResult.text);
-    if (IsNegativeFollowingReference(nextResult)) {
-      timeUnits = reverseTimeUnits(timeUnits);
-    }
-    const components = ParsingComponents.createRelativeFromReference(new ReferenceWithTimezone(currentResult.start.date()), timeUnits);
-    return new ParsingResult(currentResult.reference, currentResult.index, `${currentResult.text}${textBetween}${nextResult.text}`, components);
-  }
-};
-
-// node_modules/chrono-node/dist/esm/locales/en/refiners/ENMergeRelativeFollowByDateRefiner.js
-function hasImpliedEarlierReferenceDate(result) {
-  return result.text.match(/\s+(before|from)$/i) != null;
-}
-function hasImpliedLaterReferenceDate(result) {
-  return result.text.match(/\s+(after|since)$/i) != null;
-}
-var ENMergeRelativeFollowByDateRefiner = class extends MergingRefiner {
-  patternBetween() {
-    return /^\s*$/i;
-  }
-  shouldMergeResults(textBetween, currentResult, nextResult) {
-    if (!textBetween.match(this.patternBetween())) {
-      return false;
-    }
-    if (!hasImpliedEarlierReferenceDate(currentResult) && !hasImpliedLaterReferenceDate(currentResult)) {
-      return false;
-    }
-    return !!nextResult.start.get("day") && !!nextResult.start.get("month") && !!nextResult.start.get("year");
-  }
-  mergeResults(textBetween, currentResult, nextResult) {
-    let timeUnits = parseTimeUnits(currentResult.text);
-    if (hasImpliedEarlierReferenceDate(currentResult)) {
-      timeUnits = reverseTimeUnits(timeUnits);
-    }
-    const components = ParsingComponents.createRelativeFromReference(new ReferenceWithTimezone(nextResult.start.date()), timeUnits);
-    return new ParsingResult(nextResult.reference, currentResult.index, `${currentResult.text}${textBetween}${nextResult.text}`, components);
-  }
-};
-
-// node_modules/chrono-node/dist/esm/locales/en/configuration.js
-var ENDefaultConfiguration = class {
-  createCasualConfiguration(littleEndian = false) {
-    const option = this.createConfiguration(false, littleEndian);
-    option.parsers.push(new ENCasualDateParser());
-    option.parsers.push(new ENCasualTimeParser());
-    option.parsers.push(new ENMonthNameParser());
-    option.parsers.push(new ENRelativeDateFormatParser());
-    option.parsers.push(new ENTimeUnitCasualRelativeFormatParser());
-    return option;
-  }
-  createConfiguration(strictMode = true, littleEndian = false) {
-    const options2 = includeCommonConfiguration({
-      parsers: [
-        new SlashDateFormatParser(littleEndian),
-        new ENTimeUnitWithinFormatParser(strictMode),
-        new ENMonthNameLittleEndianParser(),
-        new ENMonthNameMiddleEndianParser(littleEndian),
-        new ENWeekdayParser(),
-        new ENCasualYearMonthDayParser(),
-        new ENSlashMonthFormatParser(),
-        new ENTimeExpressionParser(strictMode),
-        new ENTimeUnitAgoFormatParser(strictMode),
-        new ENTimeUnitLaterFormatParser(strictMode)
-      ],
-      refiners: [new ENMergeDateTimeRefiner()]
-    }, strictMode);
-    options2.refiners.unshift(new ENMergeRelativeFollowByDateRefiner());
-    options2.refiners.unshift(new ENMergeRelativeAfterDateRefiner());
-    options2.refiners.unshift(new OverlapRemovalRefiner());
-    options2.refiners.push(new ENMergeDateTimeRefiner());
-    options2.refiners.push(new ENMergeDateRangeRefiner());
-    return options2;
-  }
-};
-
-// node_modules/chrono-node/dist/esm/chrono.js
-var Chrono = class {
-  constructor(configuration2) {
-    this.defaultConfig = new ENDefaultConfiguration();
-    configuration2 = configuration2 || this.defaultConfig.createCasualConfiguration();
-    this.parsers = [...configuration2.parsers];
-    this.refiners = [...configuration2.refiners];
-  }
-  clone() {
-    return new Chrono({
-      parsers: [...this.parsers],
-      refiners: [...this.refiners]
-    });
-  }
-  parseDate(text, referenceDate, option) {
-    const results = this.parse(text, referenceDate, option);
-    return results.length > 0 ? results[0].start.date() : null;
-  }
-  parse(text, referenceDate, option) {
-    const context = new ParsingContext(text, referenceDate, option);
-    let results = [];
-    this.parsers.forEach((parser2) => {
-      const parsedResults = Chrono.executeParser(context, parser2);
-      results = results.concat(parsedResults);
-    });
-    results.sort((a4, b2) => {
-      return a4.index - b2.index;
-    });
-    this.refiners.forEach(function(refiner) {
-      results = refiner.refine(context, results);
-    });
-    return results;
-  }
-  static executeParser(context, parser2) {
-    const results = [];
-    const pattern = parser2.pattern(context);
-    const originalText = context.text;
-    let remainingText = context.text;
-    let match2 = pattern.exec(remainingText);
-    while (match2) {
-      const index4 = match2.index + originalText.length - remainingText.length;
-      match2.index = index4;
-      const result = parser2.extract(context, match2);
-      if (!result) {
-        remainingText = originalText.substring(match2.index + 1);
-        match2 = pattern.exec(remainingText);
-        continue;
-      }
-      let parsedResult = null;
-      if (result instanceof ParsingResult) {
-        parsedResult = result;
-      } else if (result instanceof ParsingComponents) {
-        parsedResult = context.createParsingResult(match2.index, match2[0]);
-        parsedResult.start = result;
-      } else {
-        parsedResult = context.createParsingResult(match2.index, match2[0], result);
-      }
-      const parsedIndex = parsedResult.index;
-      const parsedText = parsedResult.text;
-      context.debug(() => console.log(`${parser2.constructor.name} extracted (at index=${parsedIndex}) '${parsedText}'`));
-      results.push(parsedResult);
-      remainingText = originalText.substring(parsedIndex + parsedText.length);
-      match2 = pattern.exec(remainingText);
-    }
-    return results;
-  }
-};
-var ParsingContext = class {
-  constructor(text, refDate, option) {
-    this.text = text;
-    this.reference = new ReferenceWithTimezone(refDate);
-    this.option = option != null ? option : {};
-    this.refDate = this.reference.instant;
-  }
-  createParsingComponents(components) {
-    if (components instanceof ParsingComponents) {
-      return components;
-    }
-    return new ParsingComponents(this.reference, components);
-  }
-  createParsingResult(index4, textOrEndIndex, startComponents, endComponents) {
-    const text = typeof textOrEndIndex === "string" ? textOrEndIndex : this.text.substring(index4, textOrEndIndex);
-    const start2 = startComponents ? this.createParsingComponents(startComponents) : null;
-    const end2 = endComponents ? this.createParsingComponents(endComponents) : null;
-    return new ParsingResult(this.reference, index4, text, start2, end2);
-  }
-  debug(block2) {
-    if (this.option.debug) {
-      if (this.option.debug instanceof Function) {
-        this.option.debug(block2);
-      } else {
-        const handler = this.option.debug;
-        handler.debug(block2);
-      }
-    }
-  }
-};
-
-// node_modules/chrono-node/dist/esm/locales/en/index.js
-var configuration = new ENDefaultConfiguration();
-var casual = new Chrono(configuration.createCasualConfiguration(false));
-var strict = new Chrono(configuration.createConfiguration(true, false));
-var GB = new Chrono(configuration.createCasualConfiguration(true));
-
-// node_modules/chrono-node/dist/esm/index.js
-var casual2 = casual;
-
-// src/setupCustomChrono.ts
-var BCEpattern = [
-  /\b(\d{4})\s+B\.?C\.?E?\.?\b/i,
-  /\b(\d{4})\s+Before\s+\w{1,2}\s+Christ\b/i,
-  /\b(\d{4})\s+Before\s+\w{1,2}\s+Common\s+Era\b/i,
-  /\bB\.?C\.?E?\.?:?\s+(\d{4})\b/i,
-  /\bBefore\s+\w{1,2}\s+Christ\s+(\d{4})\b/i,
-  /\bBefore\s+\w{1,2}\s+Common\s+Era\s+(\d{4})\b/i
-];
-var ADpattern = [
-  /\b(\d{4})\s+A\.?D\.?E?\.?\b/i,
-  /\b(\d{4})\s+Anno\s+Domini\b/i,
-  /\bA\.?D\.?E?\.?:?\s+(\d{4})\b/i,
-  /\bAnno\s+Domini\s+(\d{4})\b/i
-];
-async function setupCustomChrono() {
-  const customChrono = casual2.clone();
-  customChrono.parsers.push({
-    pattern: () => {
-      return /\b(in|at|on|from|to|year)\s+(\d{4})\b/i;
-    },
-    extract: (context, match2) => {
-      return {
-        day: 1,
-        month: 1,
-        year: parseInt(match2[2])
-      };
-    }
-  });
-  customChrono.parsers.push({
-    pattern: () => {
-      return /\b(\d{4})[\/,-](\d{1,2})[\/,-](\d{1,2})\b/i;
-    },
-    extract: (context, match2) => {
-      return {
-        day: parseInt(match2[3]),
-        month: parseInt(match2[2]),
-        year: parseInt(match2[1])
-      };
-    }
-  });
-  customChrono.parsers.push({
-    pattern: () => {
-      return /\b(\d{1,2})[\/,-](\d{1,2})[\/,-](\d{4})\b/i;
-    },
-    extract: (context, match2) => {
-      return {
-        day: parseInt(match2[2]),
-        month: parseInt(match2[1]),
-        year: parseInt(match2[3])
-      };
-    }
-  });
-  customChrono.parsers.push({
-    pattern: () => {
-      return /\b(\d{1,2})\s+(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+(\d{4})\b/i;
-    },
-    extract: (context, match2) => {
-      return {
-        day: parseInt(match2[1]),
-        month: new Date(Date.parse(match2[2] + " 1, 2000")).getMonth() + 1,
-        year: parseInt(match2[3])
-      };
-    }
-  });
-  customChrono.parsers.push({
-    pattern: () => {
-      return /\b(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+(\d{1,2})\s+(\d{4})\b/i;
-    },
-    extract: (context, match2) => {
-      return {
-        day: parseInt(match2[2]),
-        month: new Date(Date.parse(match2[1] + " 1, 2000")).getMonth() + 1,
-        year: parseInt(match2[3])
-      };
-    }
-  });
-  customChrono.parsers.push({
-    pattern: () => {
-      return /\b(\d{4})[\/,-](\d{1,2})\b/i;
-    },
-    extract: (context, match2) => {
-      return {
-        day: 1,
-        month: parseInt(match2[2]),
-        year: parseInt(match2[1])
-      };
-    }
-  });
-  customChrono.parsers.push({
-    pattern: () => {
-      return /\b(\d{1,2})[\/,-](\d{4})\b/i;
-    },
-    extract: (context, match2) => {
-      return {
-        day: 1,
-        month: parseInt(match2[1]),
-        year: parseInt(match2[2])
-      };
-    }
-  });
-  customChrono.parsers.push({
-    pattern: () => {
-      return /\b(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+(\d{4})\b/i;
-    },
-    extract: (context, match2) => {
-      return {
-        day: 1,
-        month: new Date(Date.parse(match2[1] + " 1, 2000")).getMonth() + 1,
-        year: parseInt(match2[2])
-      };
-    }
-  });
-  BCEpattern.forEach((pattern) => {
-    customChrono.parsers.push({
-      pattern: () => {
-        return pattern;
-      },
-      extract: (context, match2) => {
-        return {
-          year: -parseInt(match2[1])
-        };
-      }
-    });
-  });
-  ADpattern.forEach((pattern) => {
-    customChrono.parsers.push({
-      pattern: () => {
-        return pattern;
-      },
-      extract: (context, match2) => {
-        return {
-          year: parseInt(match2[1])
-        };
-      }
-    });
-  });
-  return customChrono;
-}
-
 // corpus.json
 var corpus_default = [
   "#Pronoun #Verb #Determiner #Adjective #Value #Pronoun",
@@ -58150,45 +57329,2105 @@ var corpus_default = [
 // main.ts
 var import_codemirror = __toESM(require_codemirror());
 var import_historica = __toESM(require_historica());
-var DEFAULT_SETTINGS = {
-  latestFile: "",
-  showUseFulInformation: false,
-  defaultStyle: "1"
+
+// src/historicaSettingTab.ts
+var import_obsidian5 = require("obsidian");
+var HistoricaSettingTab = class extends import_obsidian5.PluginSettingTab {
+  constructor(app, plugin5) {
+    super(app, plugin5);
+    this.plugin = plugin5;
+  }
+  display() {
+    const { containerEl } = this;
+    containerEl.empty();
+    const settings = this.plugin.settings;
+    new import_obsidian5.Setting(containerEl).setName("Default Style").setDesc("Choose the default style for the timeline").addDropdown((dropdown) => {
+      dropdown.addOption("1", "Style 1");
+      dropdown.addOption("2", "Style 2");
+      dropdown.setValue(settings.defaultStyle);
+      dropdown.onChange(async (value) => {
+        settings.defaultStyle = value;
+        await this.plugin.saveSettings();
+      });
+    });
+    new import_obsidian5.Setting(containerEl).setName("Show Summary Title").setDesc("Show short title in the timeline, turn it off if you think it is not smart enough, and this will make this plugin run at fastest speed").addToggle((toggle) => {
+      toggle.setValue(settings.showUseFulInformation);
+      toggle.onChange(async (value) => {
+        settings.showUseFulInformation = value;
+        await this.plugin.saveSettings();
+      });
+    });
+    new import_obsidian5.Setting(containerEl).setName("Implicit date showing in the time entry").setDesc("Example, your current date as 2024/Mar/20,a string like '2 day ago' will be show explicit as '2024/Mar/18' if you turn this option off").addToggle((toggle) => {
+      toggle.setValue(settings.showRelativeTime);
+      toggle.onChange(async (value) => {
+        settings.showRelativeTime = value;
+        await this.plugin.saveSettings();
+      });
+    });
+    new import_obsidian5.Setting(containerEl).setName("Smart theme").setDesc("Theme that dynamic change base on your current obsidian  theme, turn it off if you want to using classic theme of Historica - Legend Larva").addToggle((toggle) => {
+      toggle.setValue(settings.usingSmartTheme);
+      toggle.onChange(async (value) => {
+        settings.usingSmartTheme = value;
+        await this.plugin.saveSettings();
+      });
+    });
+  }
 };
-async function getCurrentFile(currentPlugin) {
-  let currentFile = currentPlugin.app.workspace.getActiveFile();
-  if (currentFile instanceof import_obsidian4.TFile) {
+
+// node_modules/marked/lib/marked.esm.js
+function _getDefaults() {
+  return {
+    async: false,
+    breaks: false,
+    extensions: null,
+    gfm: true,
+    hooks: null,
+    pedantic: false,
+    renderer: null,
+    silent: false,
+    tokenizer: null,
+    walkTokens: null
+  };
+}
+var _defaults = _getDefaults();
+function changeDefaults(newDefaults) {
+  _defaults = newDefaults;
+}
+var escapeTest = /[&<>"']/;
+var escapeReplace = new RegExp(escapeTest.source, "g");
+var escapeTestNoEncode = /[<>"']|&(?!(#\d{1,7}|#[Xx][a-fA-F0-9]{1,6}|\w+);)/;
+var escapeReplaceNoEncode = new RegExp(escapeTestNoEncode.source, "g");
+var escapeReplacements = {
+  "&": "&amp;",
+  "<": "&lt;",
+  ">": "&gt;",
+  '"': "&quot;",
+  "'": "&#39;"
+};
+var getEscapeReplacement = (ch) => escapeReplacements[ch];
+function escape$1(html3, encode) {
+  if (encode) {
+    if (escapeTest.test(html3)) {
+      return html3.replace(escapeReplace, getEscapeReplacement);
+    }
   } else {
-    let data = await currentPlugin.loadData();
-    if (data.latestFile) {
-      const currentFileAbstract = currentPlugin.app.vault.getAbstractFileByPath(data.latestFile);
-      if (currentFileAbstract instanceof import_obsidian4.TFile) {
-        currentFile = currentFileAbstract;
+    if (escapeTestNoEncode.test(html3)) {
+      return html3.replace(escapeReplaceNoEncode, getEscapeReplacement);
+    }
+  }
+  return html3;
+}
+var unescapeTest = /&(#(?:\d+)|(?:#x[0-9A-Fa-f]+)|(?:\w+));?/ig;
+function unescape2(html3) {
+  return html3.replace(unescapeTest, (_4, n5) => {
+    n5 = n5.toLowerCase();
+    if (n5 === "colon")
+      return ":";
+    if (n5.charAt(0) === "#") {
+      return n5.charAt(1) === "x" ? String.fromCharCode(parseInt(n5.substring(2), 16)) : String.fromCharCode(+n5.substring(1));
+    }
+    return "";
+  });
+}
+var caret = /(^|[^\[])\^/g;
+function edit(regex, opt) {
+  let source = typeof regex === "string" ? regex : regex.source;
+  opt = opt || "";
+  const obj = {
+    replace: (name, val) => {
+      let valSource = typeof val === "string" ? val : val.source;
+      valSource = valSource.replace(caret, "$1");
+      source = source.replace(name, valSource);
+      return obj;
+    },
+    getRegex: () => {
+      return new RegExp(source, opt);
+    }
+  };
+  return obj;
+}
+function cleanUrl(href) {
+  try {
+    href = encodeURI(href).replace(/%25/g, "%");
+  } catch (e3) {
+    return null;
+  }
+  return href;
+}
+var noopTest = { exec: () => null };
+function splitCells(tableRow, count) {
+  const row = tableRow.replace(/\|/g, (match2, offset2, str) => {
+    let escaped = false;
+    let curr = offset2;
+    while (--curr >= 0 && str[curr] === "\\")
+      escaped = !escaped;
+    if (escaped) {
+      return "|";
+    } else {
+      return " |";
+    }
+  }), cells = row.split(/ \|/);
+  let i5 = 0;
+  if (!cells[0].trim()) {
+    cells.shift();
+  }
+  if (cells.length > 0 && !cells[cells.length - 1].trim()) {
+    cells.pop();
+  }
+  if (count) {
+    if (cells.length > count) {
+      cells.splice(count);
+    } else {
+      while (cells.length < count)
+        cells.push("");
+    }
+  }
+  for (; i5 < cells.length; i5++) {
+    cells[i5] = cells[i5].trim().replace(/\\\|/g, "|");
+  }
+  return cells;
+}
+function rtrim(str, c5, invert) {
+  const l4 = str.length;
+  if (l4 === 0) {
+    return "";
+  }
+  let suffLen = 0;
+  while (suffLen < l4) {
+    const currChar = str.charAt(l4 - suffLen - 1);
+    if (currChar === c5 && !invert) {
+      suffLen++;
+    } else if (currChar !== c5 && invert) {
+      suffLen++;
+    } else {
+      break;
+    }
+  }
+  return str.slice(0, l4 - suffLen);
+}
+function findClosingBracket(str, b2) {
+  if (str.indexOf(b2[1]) === -1) {
+    return -1;
+  }
+  let level = 0;
+  for (let i5 = 0; i5 < str.length; i5++) {
+    if (str[i5] === "\\") {
+      i5++;
+    } else if (str[i5] === b2[0]) {
+      level++;
+    } else if (str[i5] === b2[1]) {
+      level--;
+      if (level < 0) {
+        return i5;
       }
     }
   }
-  return currentFile;
+  return -1;
 }
-async function writeLatestFileToData(currentPlugin, file) {
-  let settings = await currentPlugin.loadData();
-  if (!settings) {
-    settings = {
-      latestFile: file.path,
-      showUseFulInformation: true,
-      defaultStyle: "1"
+function outputLink(cap, link2, raw, lexer2) {
+  const href = link2.href;
+  const title = link2.title ? escape$1(link2.title) : null;
+  const text = cap[1].replace(/\\([\[\]])/g, "$1");
+  if (cap[0].charAt(0) !== "!") {
+    lexer2.state.inLink = true;
+    const token = {
+      type: "link",
+      raw,
+      href,
+      title,
+      text,
+      tokens: lexer2.inlineTokens(text)
+    };
+    lexer2.state.inLink = false;
+    return token;
+  }
+  return {
+    type: "image",
+    raw,
+    href,
+    title,
+    text: escape$1(text)
+  };
+}
+function indentCodeCompensation(raw, text) {
+  const matchIndentToCode = raw.match(/^(\s+)(?:```)/);
+  if (matchIndentToCode === null) {
+    return text;
+  }
+  const indentToCode = matchIndentToCode[1];
+  return text.split("\n").map((node2) => {
+    const matchIndentInNode = node2.match(/^\s+/);
+    if (matchIndentInNode === null) {
+      return node2;
+    }
+    const [indentInNode] = matchIndentInNode;
+    if (indentInNode.length >= indentToCode.length) {
+      return node2.slice(indentToCode.length);
+    }
+    return node2;
+  }).join("\n");
+}
+var _Tokenizer = class {
+  // set by the lexer
+  constructor(options2) {
+    __publicField(this, "options");
+    __publicField(this, "rules");
+    // set by the lexer
+    __publicField(this, "lexer");
+    this.options = options2 || _defaults;
+  }
+  space(src) {
+    const cap = this.rules.block.newline.exec(src);
+    if (cap && cap[0].length > 0) {
+      return {
+        type: "space",
+        raw: cap[0]
+      };
+    }
+  }
+  code(src) {
+    const cap = this.rules.block.code.exec(src);
+    if (cap) {
+      const text = cap[0].replace(/^ {1,4}/gm, "");
+      return {
+        type: "code",
+        raw: cap[0],
+        codeBlockStyle: "indented",
+        text: !this.options.pedantic ? rtrim(text, "\n") : text
+      };
+    }
+  }
+  fences(src) {
+    const cap = this.rules.block.fences.exec(src);
+    if (cap) {
+      const raw = cap[0];
+      const text = indentCodeCompensation(raw, cap[3] || "");
+      return {
+        type: "code",
+        raw,
+        lang: cap[2] ? cap[2].trim().replace(this.rules.inline.anyPunctuation, "$1") : cap[2],
+        text
+      };
+    }
+  }
+  heading(src) {
+    const cap = this.rules.block.heading.exec(src);
+    if (cap) {
+      let text = cap[2].trim();
+      if (/#$/.test(text)) {
+        const trimmed = rtrim(text, "#");
+        if (this.options.pedantic) {
+          text = trimmed.trim();
+        } else if (!trimmed || / $/.test(trimmed)) {
+          text = trimmed.trim();
+        }
+      }
+      return {
+        type: "heading",
+        raw: cap[0],
+        depth: cap[1].length,
+        text,
+        tokens: this.lexer.inline(text)
+      };
+    }
+  }
+  hr(src) {
+    const cap = this.rules.block.hr.exec(src);
+    if (cap) {
+      return {
+        type: "hr",
+        raw: cap[0]
+      };
+    }
+  }
+  blockquote(src) {
+    const cap = this.rules.block.blockquote.exec(src);
+    if (cap) {
+      const text = rtrim(cap[0].replace(/^ *>[ \t]?/gm, ""), "\n");
+      const top = this.lexer.state.top;
+      this.lexer.state.top = true;
+      const tokens = this.lexer.blockTokens(text);
+      this.lexer.state.top = top;
+      return {
+        type: "blockquote",
+        raw: cap[0],
+        tokens,
+        text
+      };
+    }
+  }
+  list(src) {
+    let cap = this.rules.block.list.exec(src);
+    if (cap) {
+      let bull = cap[1].trim();
+      const isordered = bull.length > 1;
+      const list5 = {
+        type: "list",
+        raw: "",
+        ordered: isordered,
+        start: isordered ? +bull.slice(0, -1) : "",
+        loose: false,
+        items: []
+      };
+      bull = isordered ? `\\d{1,9}\\${bull.slice(-1)}` : `\\${bull}`;
+      if (this.options.pedantic) {
+        bull = isordered ? bull : "[*+-]";
+      }
+      const itemRegex = new RegExp(`^( {0,3}${bull})((?:[	 ][^\\n]*)?(?:\\n|$))`);
+      let raw = "";
+      let itemContents = "";
+      let endsWithBlankLine = false;
+      while (src) {
+        let endEarly = false;
+        if (!(cap = itemRegex.exec(src))) {
+          break;
+        }
+        if (this.rules.block.hr.test(src)) {
+          break;
+        }
+        raw = cap[0];
+        src = src.substring(raw.length);
+        let line = cap[2].split("\n", 1)[0].replace(/^\t+/, (t5) => " ".repeat(3 * t5.length));
+        let nextLine = src.split("\n", 1)[0];
+        let indent = 0;
+        if (this.options.pedantic) {
+          indent = 2;
+          itemContents = line.trimStart();
+        } else {
+          indent = cap[2].search(/[^ ]/);
+          indent = indent > 4 ? 1 : indent;
+          itemContents = line.slice(indent);
+          indent += cap[1].length;
+        }
+        let blankLine = false;
+        if (!line && /^ *$/.test(nextLine)) {
+          raw += nextLine + "\n";
+          src = src.substring(nextLine.length + 1);
+          endEarly = true;
+        }
+        if (!endEarly) {
+          const nextBulletRegex = new RegExp(`^ {0,${Math.min(3, indent - 1)}}(?:[*+-]|\\d{1,9}[.)])((?:[ 	][^\\n]*)?(?:\\n|$))`);
+          const hrRegex = new RegExp(`^ {0,${Math.min(3, indent - 1)}}((?:- *){3,}|(?:_ *){3,}|(?:\\* *){3,})(?:\\n+|$)`);
+          const fencesBeginRegex = new RegExp(`^ {0,${Math.min(3, indent - 1)}}(?:\`\`\`|~~~)`);
+          const headingBeginRegex = new RegExp(`^ {0,${Math.min(3, indent - 1)}}#`);
+          while (src) {
+            const rawLine = src.split("\n", 1)[0];
+            nextLine = rawLine;
+            if (this.options.pedantic) {
+              nextLine = nextLine.replace(/^ {1,4}(?=( {4})*[^ ])/g, "  ");
+            }
+            if (fencesBeginRegex.test(nextLine)) {
+              break;
+            }
+            if (headingBeginRegex.test(nextLine)) {
+              break;
+            }
+            if (nextBulletRegex.test(nextLine)) {
+              break;
+            }
+            if (hrRegex.test(src)) {
+              break;
+            }
+            if (nextLine.search(/[^ ]/) >= indent || !nextLine.trim()) {
+              itemContents += "\n" + nextLine.slice(indent);
+            } else {
+              if (blankLine) {
+                break;
+              }
+              if (line.search(/[^ ]/) >= 4) {
+                break;
+              }
+              if (fencesBeginRegex.test(line)) {
+                break;
+              }
+              if (headingBeginRegex.test(line)) {
+                break;
+              }
+              if (hrRegex.test(line)) {
+                break;
+              }
+              itemContents += "\n" + nextLine;
+            }
+            if (!blankLine && !nextLine.trim()) {
+              blankLine = true;
+            }
+            raw += rawLine + "\n";
+            src = src.substring(rawLine.length + 1);
+            line = nextLine.slice(indent);
+          }
+        }
+        if (!list5.loose) {
+          if (endsWithBlankLine) {
+            list5.loose = true;
+          } else if (/\n *\n *$/.test(raw)) {
+            endsWithBlankLine = true;
+          }
+        }
+        let istask = null;
+        let ischecked;
+        if (this.options.gfm) {
+          istask = /^\[[ xX]\] /.exec(itemContents);
+          if (istask) {
+            ischecked = istask[0] !== "[ ] ";
+            itemContents = itemContents.replace(/^\[[ xX]\] +/, "");
+          }
+        }
+        list5.items.push({
+          type: "list_item",
+          raw,
+          task: !!istask,
+          checked: ischecked,
+          loose: false,
+          text: itemContents,
+          tokens: []
+        });
+        list5.raw += raw;
+      }
+      list5.items[list5.items.length - 1].raw = raw.trimEnd();
+      list5.items[list5.items.length - 1].text = itemContents.trimEnd();
+      list5.raw = list5.raw.trimEnd();
+      for (let i5 = 0; i5 < list5.items.length; i5++) {
+        this.lexer.state.top = false;
+        list5.items[i5].tokens = this.lexer.blockTokens(list5.items[i5].text, []);
+        if (!list5.loose) {
+          const spacers = list5.items[i5].tokens.filter((t5) => t5.type === "space");
+          const hasMultipleLineBreaks = spacers.length > 0 && spacers.some((t5) => /\n.*\n/.test(t5.raw));
+          list5.loose = hasMultipleLineBreaks;
+        }
+      }
+      if (list5.loose) {
+        for (let i5 = 0; i5 < list5.items.length; i5++) {
+          list5.items[i5].loose = true;
+        }
+      }
+      return list5;
+    }
+  }
+  html(src) {
+    const cap = this.rules.block.html.exec(src);
+    if (cap) {
+      const token = {
+        type: "html",
+        block: true,
+        raw: cap[0],
+        pre: cap[1] === "pre" || cap[1] === "script" || cap[1] === "style",
+        text: cap[0]
+      };
+      return token;
+    }
+  }
+  def(src) {
+    const cap = this.rules.block.def.exec(src);
+    if (cap) {
+      const tag2 = cap[1].toLowerCase().replace(/\s+/g, " ");
+      const href = cap[2] ? cap[2].replace(/^<(.*)>$/, "$1").replace(this.rules.inline.anyPunctuation, "$1") : "";
+      const title = cap[3] ? cap[3].substring(1, cap[3].length - 1).replace(this.rules.inline.anyPunctuation, "$1") : cap[3];
+      return {
+        type: "def",
+        tag: tag2,
+        raw: cap[0],
+        href,
+        title
+      };
+    }
+  }
+  table(src) {
+    const cap = this.rules.block.table.exec(src);
+    if (!cap) {
+      return;
+    }
+    if (!/[:|]/.test(cap[2])) {
+      return;
+    }
+    const headers = splitCells(cap[1]);
+    const aligns = cap[2].replace(/^\||\| *$/g, "").split("|");
+    const rows = cap[3] && cap[3].trim() ? cap[3].replace(/\n[ \t]*$/, "").split("\n") : [];
+    const item = {
+      type: "table",
+      raw: cap[0],
+      header: [],
+      align: [],
+      rows: []
+    };
+    if (headers.length !== aligns.length) {
+      return;
+    }
+    for (const align of aligns) {
+      if (/^ *-+: *$/.test(align)) {
+        item.align.push("right");
+      } else if (/^ *:-+: *$/.test(align)) {
+        item.align.push("center");
+      } else if (/^ *:-+ *$/.test(align)) {
+        item.align.push("left");
+      } else {
+        item.align.push(null);
+      }
+    }
+    for (const header of headers) {
+      item.header.push({
+        text: header,
+        tokens: this.lexer.inline(header)
+      });
+    }
+    for (const row of rows) {
+      item.rows.push(splitCells(row, item.header.length).map((cell) => {
+        return {
+          text: cell,
+          tokens: this.lexer.inline(cell)
+        };
+      }));
+    }
+    return item;
+  }
+  lheading(src) {
+    const cap = this.rules.block.lheading.exec(src);
+    if (cap) {
+      return {
+        type: "heading",
+        raw: cap[0],
+        depth: cap[2].charAt(0) === "=" ? 1 : 2,
+        text: cap[1],
+        tokens: this.lexer.inline(cap[1])
+      };
+    }
+  }
+  paragraph(src) {
+    const cap = this.rules.block.paragraph.exec(src);
+    if (cap) {
+      const text = cap[1].charAt(cap[1].length - 1) === "\n" ? cap[1].slice(0, -1) : cap[1];
+      return {
+        type: "paragraph",
+        raw: cap[0],
+        text,
+        tokens: this.lexer.inline(text)
+      };
+    }
+  }
+  text(src) {
+    const cap = this.rules.block.text.exec(src);
+    if (cap) {
+      return {
+        type: "text",
+        raw: cap[0],
+        text: cap[0],
+        tokens: this.lexer.inline(cap[0])
+      };
+    }
+  }
+  escape(src) {
+    const cap = this.rules.inline.escape.exec(src);
+    if (cap) {
+      return {
+        type: "escape",
+        raw: cap[0],
+        text: escape$1(cap[1])
+      };
+    }
+  }
+  tag(src) {
+    const cap = this.rules.inline.tag.exec(src);
+    if (cap) {
+      if (!this.lexer.state.inLink && /^<a /i.test(cap[0])) {
+        this.lexer.state.inLink = true;
+      } else if (this.lexer.state.inLink && /^<\/a>/i.test(cap[0])) {
+        this.lexer.state.inLink = false;
+      }
+      if (!this.lexer.state.inRawBlock && /^<(pre|code|kbd|script)(\s|>)/i.test(cap[0])) {
+        this.lexer.state.inRawBlock = true;
+      } else if (this.lexer.state.inRawBlock && /^<\/(pre|code|kbd|script)(\s|>)/i.test(cap[0])) {
+        this.lexer.state.inRawBlock = false;
+      }
+      return {
+        type: "html",
+        raw: cap[0],
+        inLink: this.lexer.state.inLink,
+        inRawBlock: this.lexer.state.inRawBlock,
+        block: false,
+        text: cap[0]
+      };
+    }
+  }
+  link(src) {
+    const cap = this.rules.inline.link.exec(src);
+    if (cap) {
+      const trimmedUrl = cap[2].trim();
+      if (!this.options.pedantic && /^</.test(trimmedUrl)) {
+        if (!/>$/.test(trimmedUrl)) {
+          return;
+        }
+        const rtrimSlash = rtrim(trimmedUrl.slice(0, -1), "\\");
+        if ((trimmedUrl.length - rtrimSlash.length) % 2 === 0) {
+          return;
+        }
+      } else {
+        const lastParenIndex = findClosingBracket(cap[2], "()");
+        if (lastParenIndex > -1) {
+          const start2 = cap[0].indexOf("!") === 0 ? 5 : 4;
+          const linkLen = start2 + cap[1].length + lastParenIndex;
+          cap[2] = cap[2].substring(0, lastParenIndex);
+          cap[0] = cap[0].substring(0, linkLen).trim();
+          cap[3] = "";
+        }
+      }
+      let href = cap[2];
+      let title = "";
+      if (this.options.pedantic) {
+        const link2 = /^([^'"]*[^\s])\s+(['"])(.*)\2/.exec(href);
+        if (link2) {
+          href = link2[1];
+          title = link2[3];
+        }
+      } else {
+        title = cap[3] ? cap[3].slice(1, -1) : "";
+      }
+      href = href.trim();
+      if (/^</.test(href)) {
+        if (this.options.pedantic && !/>$/.test(trimmedUrl)) {
+          href = href.slice(1);
+        } else {
+          href = href.slice(1, -1);
+        }
+      }
+      return outputLink(cap, {
+        href: href ? href.replace(this.rules.inline.anyPunctuation, "$1") : href,
+        title: title ? title.replace(this.rules.inline.anyPunctuation, "$1") : title
+      }, cap[0], this.lexer);
+    }
+  }
+  reflink(src, links) {
+    let cap;
+    if ((cap = this.rules.inline.reflink.exec(src)) || (cap = this.rules.inline.nolink.exec(src))) {
+      const linkString = (cap[2] || cap[1]).replace(/\s+/g, " ");
+      const link2 = links[linkString.toLowerCase()];
+      if (!link2) {
+        const text = cap[0].charAt(0);
+        return {
+          type: "text",
+          raw: text,
+          text
+        };
+      }
+      return outputLink(cap, link2, cap[0], this.lexer);
+    }
+  }
+  emStrong(src, maskedSrc, prevChar = "") {
+    let match2 = this.rules.inline.emStrongLDelim.exec(src);
+    if (!match2)
+      return;
+    if (match2[3] && prevChar.match(/[\p{L}\p{N}]/u))
+      return;
+    const nextChar = match2[1] || match2[2] || "";
+    if (!nextChar || !prevChar || this.rules.inline.punctuation.exec(prevChar)) {
+      const lLength = [...match2[0]].length - 1;
+      let rDelim, rLength, delimTotal = lLength, midDelimTotal = 0;
+      const endReg = match2[0][0] === "*" ? this.rules.inline.emStrongRDelimAst : this.rules.inline.emStrongRDelimUnd;
+      endReg.lastIndex = 0;
+      maskedSrc = maskedSrc.slice(-1 * src.length + lLength);
+      while ((match2 = endReg.exec(maskedSrc)) != null) {
+        rDelim = match2[1] || match2[2] || match2[3] || match2[4] || match2[5] || match2[6];
+        if (!rDelim)
+          continue;
+        rLength = [...rDelim].length;
+        if (match2[3] || match2[4]) {
+          delimTotal += rLength;
+          continue;
+        } else if (match2[5] || match2[6]) {
+          if (lLength % 3 && !((lLength + rLength) % 3)) {
+            midDelimTotal += rLength;
+            continue;
+          }
+        }
+        delimTotal -= rLength;
+        if (delimTotal > 0)
+          continue;
+        rLength = Math.min(rLength, rLength + delimTotal + midDelimTotal);
+        const lastCharLength = [...match2[0]][0].length;
+        const raw = src.slice(0, lLength + match2.index + lastCharLength + rLength);
+        if (Math.min(lLength, rLength) % 2) {
+          const text2 = raw.slice(1, -1);
+          return {
+            type: "em",
+            raw,
+            text: text2,
+            tokens: this.lexer.inlineTokens(text2)
+          };
+        }
+        const text = raw.slice(2, -2);
+        return {
+          type: "strong",
+          raw,
+          text,
+          tokens: this.lexer.inlineTokens(text)
+        };
+      }
+    }
+  }
+  codespan(src) {
+    const cap = this.rules.inline.code.exec(src);
+    if (cap) {
+      let text = cap[2].replace(/\n/g, " ");
+      const hasNonSpaceChars = /[^ ]/.test(text);
+      const hasSpaceCharsOnBothEnds = /^ /.test(text) && / $/.test(text);
+      if (hasNonSpaceChars && hasSpaceCharsOnBothEnds) {
+        text = text.substring(1, text.length - 1);
+      }
+      text = escape$1(text, true);
+      return {
+        type: "codespan",
+        raw: cap[0],
+        text
+      };
+    }
+  }
+  br(src) {
+    const cap = this.rules.inline.br.exec(src);
+    if (cap) {
+      return {
+        type: "br",
+        raw: cap[0]
+      };
+    }
+  }
+  del(src) {
+    const cap = this.rules.inline.del.exec(src);
+    if (cap) {
+      return {
+        type: "del",
+        raw: cap[0],
+        text: cap[2],
+        tokens: this.lexer.inlineTokens(cap[2])
+      };
+    }
+  }
+  autolink(src) {
+    const cap = this.rules.inline.autolink.exec(src);
+    if (cap) {
+      let text, href;
+      if (cap[2] === "@") {
+        text = escape$1(cap[1]);
+        href = "mailto:" + text;
+      } else {
+        text = escape$1(cap[1]);
+        href = text;
+      }
+      return {
+        type: "link",
+        raw: cap[0],
+        text,
+        href,
+        tokens: [
+          {
+            type: "text",
+            raw: text,
+            text
+          }
+        ]
+      };
+    }
+  }
+  url(src) {
+    var _a2, _b2;
+    let cap;
+    if (cap = this.rules.inline.url.exec(src)) {
+      let text, href;
+      if (cap[2] === "@") {
+        text = escape$1(cap[0]);
+        href = "mailto:" + text;
+      } else {
+        let prevCapZero;
+        do {
+          prevCapZero = cap[0];
+          cap[0] = (_b2 = (_a2 = this.rules.inline._backpedal.exec(cap[0])) == null ? void 0 : _a2[0]) != null ? _b2 : "";
+        } while (prevCapZero !== cap[0]);
+        text = escape$1(cap[0]);
+        if (cap[1] === "www.") {
+          href = "http://" + cap[0];
+        } else {
+          href = cap[0];
+        }
+      }
+      return {
+        type: "link",
+        raw: cap[0],
+        text,
+        href,
+        tokens: [
+          {
+            type: "text",
+            raw: text,
+            text
+          }
+        ]
+      };
+    }
+  }
+  inlineText(src) {
+    const cap = this.rules.inline.text.exec(src);
+    if (cap) {
+      let text;
+      if (this.lexer.state.inRawBlock) {
+        text = cap[0];
+      } else {
+        text = escape$1(cap[0]);
+      }
+      return {
+        type: "text",
+        raw: cap[0],
+        text
+      };
+    }
+  }
+};
+var newline = /^(?: *(?:\n|$))+/;
+var blockCode = /^( {4}[^\n]+(?:\n(?: *(?:\n|$))*)?)+/;
+var fences = /^ {0,3}(`{3,}(?=[^`\n]*(?:\n|$))|~{3,})([^\n]*)(?:\n|$)(?:|([\s\S]*?)(?:\n|$))(?: {0,3}\1[~`]* *(?=\n|$)|$)/;
+var hr = /^ {0,3}((?:-[\t ]*){3,}|(?:_[ \t]*){3,}|(?:\*[ \t]*){3,})(?:\n+|$)/;
+var heading = /^ {0,3}(#{1,6})(?=\s|$)(.*)(?:\n+|$)/;
+var bullet = /(?:[*+-]|\d{1,9}[.)])/;
+var lheading = edit(/^(?!bull )((?:.|\n(?!\s*?\n|bull ))+?)\n {0,3}(=+|-+) *(?:\n+|$)/).replace(/bull/g, bullet).getRegex();
+var _paragraph = /^([^\n]+(?:\n(?!hr|heading|lheading|blockquote|fences|list|html|table| +\n)[^\n]+)*)/;
+var blockText = /^[^\n]+/;
+var _blockLabel = /(?!\s*\])(?:\\.|[^\[\]\\])+/;
+var def = edit(/^ {0,3}\[(label)\]: *(?:\n *)?([^<\s][^\s]*|<.*?>)(?:(?: +(?:\n *)?| *\n *)(title))? *(?:\n+|$)/).replace("label", _blockLabel).replace("title", /(?:"(?:\\"?|[^"\\])*"|'[^'\n]*(?:\n[^'\n]+)*\n?'|\([^()]*\))/).getRegex();
+var list4 = edit(/^( {0,3}bull)([ \t][^\n]+?)?(?:\n|$)/).replace(/bull/g, bullet).getRegex();
+var _tag = "address|article|aside|base|basefont|blockquote|body|caption|center|col|colgroup|dd|details|dialog|dir|div|dl|dt|fieldset|figcaption|figure|footer|form|frame|frameset|h[1-6]|head|header|hr|html|iframe|legend|li|link|main|menu|menuitem|meta|nav|noframes|ol|optgroup|option|p|param|search|section|summary|table|tbody|td|tfoot|th|thead|title|tr|track|ul";
+var _comment = /<!--(?:-?>|[\s\S]*?(?:-->|$))/;
+var html2 = edit("^ {0,3}(?:<(script|pre|style|textarea)[\\s>][\\s\\S]*?(?:</\\1>[^\\n]*\\n+|$)|comment[^\\n]*(\\n+|$)|<\\?[\\s\\S]*?(?:\\?>\\n*|$)|<![A-Z][\\s\\S]*?(?:>\\n*|$)|<!\\[CDATA\\[[\\s\\S]*?(?:\\]\\]>\\n*|$)|</?(tag)(?: +|\\n|/?>)[\\s\\S]*?(?:(?:\\n *)+\\n|$)|<(?!script|pre|style|textarea)([a-z][\\w-]*)(?:attribute)*? */?>(?=[ \\t]*(?:\\n|$))[\\s\\S]*?(?:(?:\\n *)+\\n|$)|</(?!script|pre|style|textarea)[a-z][\\w-]*\\s*>(?=[ \\t]*(?:\\n|$))[\\s\\S]*?(?:(?:\\n *)+\\n|$))", "i").replace("comment", _comment).replace("tag", _tag).replace("attribute", / +[a-zA-Z:_][\w.:-]*(?: *= *"[^"\n]*"| *= *'[^'\n]*'| *= *[^\s"'=<>`]+)?/).getRegex();
+var paragraph = edit(_paragraph).replace("hr", hr).replace("heading", " {0,3}#{1,6}(?:\\s|$)").replace("|lheading", "").replace("|table", "").replace("blockquote", " {0,3}>").replace("fences", " {0,3}(?:`{3,}(?=[^`\\n]*\\n)|~{3,})[^\\n]*\\n").replace("list", " {0,3}(?:[*+-]|1[.)]) ").replace("html", "</?(?:tag)(?: +|\\n|/?>)|<(?:script|pre|style|textarea|!--)").replace("tag", _tag).getRegex();
+var blockquote = edit(/^( {0,3}> ?(paragraph|[^\n]*)(?:\n|$))+/).replace("paragraph", paragraph).getRegex();
+var blockNormal = {
+  blockquote,
+  code: blockCode,
+  def,
+  fences,
+  heading,
+  hr,
+  html: html2,
+  lheading,
+  list: list4,
+  newline,
+  paragraph,
+  table: noopTest,
+  text: blockText
+};
+var gfmTable = edit("^ *([^\\n ].*)\\n {0,3}((?:\\| *)?:?-+:? *(?:\\| *:?-+:? *)*(?:\\| *)?)(?:\\n((?:(?! *\\n|hr|heading|blockquote|code|fences|list|html).*(?:\\n|$))*)\\n*|$)").replace("hr", hr).replace("heading", " {0,3}#{1,6}(?:\\s|$)").replace("blockquote", " {0,3}>").replace("code", " {4}[^\\n]").replace("fences", " {0,3}(?:`{3,}(?=[^`\\n]*\\n)|~{3,})[^\\n]*\\n").replace("list", " {0,3}(?:[*+-]|1[.)]) ").replace("html", "</?(?:tag)(?: +|\\n|/?>)|<(?:script|pre|style|textarea|!--)").replace("tag", _tag).getRegex();
+var blockGfm = {
+  ...blockNormal,
+  table: gfmTable,
+  paragraph: edit(_paragraph).replace("hr", hr).replace("heading", " {0,3}#{1,6}(?:\\s|$)").replace("|lheading", "").replace("table", gfmTable).replace("blockquote", " {0,3}>").replace("fences", " {0,3}(?:`{3,}(?=[^`\\n]*\\n)|~{3,})[^\\n]*\\n").replace("list", " {0,3}(?:[*+-]|1[.)]) ").replace("html", "</?(?:tag)(?: +|\\n|/?>)|<(?:script|pre|style|textarea|!--)").replace("tag", _tag).getRegex()
+};
+var blockPedantic = {
+  ...blockNormal,
+  html: edit(`^ *(?:comment *(?:\\n|\\s*$)|<(tag)[\\s\\S]+?</\\1> *(?:\\n{2,}|\\s*$)|<tag(?:"[^"]*"|'[^']*'|\\s[^'"/>\\s]*)*?/?> *(?:\\n{2,}|\\s*$))`).replace("comment", _comment).replace(/tag/g, "(?!(?:a|em|strong|small|s|cite|q|dfn|abbr|data|time|code|var|samp|kbd|sub|sup|i|b|u|mark|ruby|rt|rp|bdi|bdo|span|br|wbr|ins|del|img)\\b)\\w+(?!:|[^\\w\\s@]*@)\\b").getRegex(),
+  def: /^ *\[([^\]]+)\]: *<?([^\s>]+)>?(?: +(["(][^\n]+[")]))? *(?:\n+|$)/,
+  heading: /^(#{1,6})(.*)(?:\n+|$)/,
+  fences: noopTest,
+  // fences not supported
+  lheading: /^(.+?)\n {0,3}(=+|-+) *(?:\n+|$)/,
+  paragraph: edit(_paragraph).replace("hr", hr).replace("heading", " *#{1,6} *[^\n]").replace("lheading", lheading).replace("|table", "").replace("blockquote", " {0,3}>").replace("|fences", "").replace("|list", "").replace("|html", "").replace("|tag", "").getRegex()
+};
+var escape = /^\\([!"#$%&'()*+,\-./:;<=>?@\[\]\\^_`{|}~])/;
+var inlineCode = /^(`+)([^`]|[^`][\s\S]*?[^`])\1(?!`)/;
+var br = /^( {2,}|\\)\n(?!\s*$)/;
+var inlineText = /^(`+|[^`])(?:(?= {2,}\n)|[\s\S]*?(?:(?=[\\<!\[`*_]|\b_|$)|[^ ](?= {2,}\n)))/;
+var _punctuation = "\\p{P}\\p{S}";
+var punctuation = edit(/^((?![*_])[\spunctuation])/, "u").replace(/punctuation/g, _punctuation).getRegex();
+var blockSkip = /\[[^[\]]*?\]\([^\(\)]*?\)|`[^`]*?`|<[^<>]*?>/g;
+var emStrongLDelim = edit(/^(?:\*+(?:((?!\*)[punct])|[^\s*]))|^_+(?:((?!_)[punct])|([^\s_]))/, "u").replace(/punct/g, _punctuation).getRegex();
+var emStrongRDelimAst = edit("^[^_*]*?__[^_*]*?\\*[^_*]*?(?=__)|[^*]+(?=[^*])|(?!\\*)[punct](\\*+)(?=[\\s]|$)|[^punct\\s](\\*+)(?!\\*)(?=[punct\\s]|$)|(?!\\*)[punct\\s](\\*+)(?=[^punct\\s])|[\\s](\\*+)(?!\\*)(?=[punct])|(?!\\*)[punct](\\*+)(?!\\*)(?=[punct])|[^punct\\s](\\*+)(?=[^punct\\s])", "gu").replace(/punct/g, _punctuation).getRegex();
+var emStrongRDelimUnd = edit("^[^_*]*?\\*\\*[^_*]*?_[^_*]*?(?=\\*\\*)|[^_]+(?=[^_])|(?!_)[punct](_+)(?=[\\s]|$)|[^punct\\s](_+)(?!_)(?=[punct\\s]|$)|(?!_)[punct\\s](_+)(?=[^punct\\s])|[\\s](_+)(?!_)(?=[punct])|(?!_)[punct](_+)(?!_)(?=[punct])", "gu").replace(/punct/g, _punctuation).getRegex();
+var anyPunctuation = edit(/\\([punct])/, "gu").replace(/punct/g, _punctuation).getRegex();
+var autolink = edit(/^<(scheme:[^\s\x00-\x1f<>]*|email)>/).replace("scheme", /[a-zA-Z][a-zA-Z0-9+.-]{1,31}/).replace("email", /[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+(@)[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+(?![-_])/).getRegex();
+var _inlineComment = edit(_comment).replace("(?:-->|$)", "-->").getRegex();
+var tag = edit("^comment|^</[a-zA-Z][\\w:-]*\\s*>|^<[a-zA-Z][\\w-]*(?:attribute)*?\\s*/?>|^<\\?[\\s\\S]*?\\?>|^<![a-zA-Z]+\\s[\\s\\S]*?>|^<!\\[CDATA\\[[\\s\\S]*?\\]\\]>").replace("comment", _inlineComment).replace("attribute", /\s+[a-zA-Z:_][\w.:-]*(?:\s*=\s*"[^"]*"|\s*=\s*'[^']*'|\s*=\s*[^\s"'=<>`]+)?/).getRegex();
+var _inlineLabel = /(?:\[(?:\\.|[^\[\]\\])*\]|\\.|`[^`]*`|[^\[\]\\`])*?/;
+var link = edit(/^!?\[(label)\]\(\s*(href)(?:\s+(title))?\s*\)/).replace("label", _inlineLabel).replace("href", /<(?:\\.|[^\n<>\\])+>|[^\s\x00-\x1f]*/).replace("title", /"(?:\\"?|[^"\\])*"|'(?:\\'?|[^'\\])*'|\((?:\\\)?|[^)\\])*\)/).getRegex();
+var reflink = edit(/^!?\[(label)\]\[(ref)\]/).replace("label", _inlineLabel).replace("ref", _blockLabel).getRegex();
+var nolink = edit(/^!?\[(ref)\](?:\[\])?/).replace("ref", _blockLabel).getRegex();
+var reflinkSearch = edit("reflink|nolink(?!\\()", "g").replace("reflink", reflink).replace("nolink", nolink).getRegex();
+var inlineNormal = {
+  _backpedal: noopTest,
+  // only used for GFM url
+  anyPunctuation,
+  autolink,
+  blockSkip,
+  br,
+  code: inlineCode,
+  del: noopTest,
+  emStrongLDelim,
+  emStrongRDelimAst,
+  emStrongRDelimUnd,
+  escape,
+  link,
+  nolink,
+  punctuation,
+  reflink,
+  reflinkSearch,
+  tag,
+  text: inlineText,
+  url: noopTest
+};
+var inlinePedantic = {
+  ...inlineNormal,
+  link: edit(/^!?\[(label)\]\((.*?)\)/).replace("label", _inlineLabel).getRegex(),
+  reflink: edit(/^!?\[(label)\]\s*\[([^\]]*)\]/).replace("label", _inlineLabel).getRegex()
+};
+var inlineGfm = {
+  ...inlineNormal,
+  escape: edit(escape).replace("])", "~|])").getRegex(),
+  url: edit(/^((?:ftp|https?):\/\/|www\.)(?:[a-zA-Z0-9\-]+\.?)+[^\s<]*|^email/, "i").replace("email", /[A-Za-z0-9._+-]+(@)[a-zA-Z0-9-_]+(?:\.[a-zA-Z0-9-_]*[a-zA-Z0-9])+(?![-_])/).getRegex(),
+  _backpedal: /(?:[^?!.,:;*_'"~()&]+|\([^)]*\)|&(?![a-zA-Z0-9]+;$)|[?!.,:;*_'"~)]+(?!$))+/,
+  del: /^(~~?)(?=[^\s~])([\s\S]*?[^\s~])\1(?=[^~]|$)/,
+  text: /^([`~]+|[^`~])(?:(?= {2,}\n)|(?=[a-zA-Z0-9.!#$%&'*+\/=?_`{\|}~-]+@)|[\s\S]*?(?:(?=[\\<!\[`*~_]|\b_|https?:\/\/|ftp:\/\/|www\.|$)|[^ ](?= {2,}\n)|[^a-zA-Z0-9.!#$%&'*+\/=?_`{\|}~-](?=[a-zA-Z0-9.!#$%&'*+\/=?_`{\|}~-]+@)))/
+};
+var inlineBreaks = {
+  ...inlineGfm,
+  br: edit(br).replace("{2,}", "*").getRegex(),
+  text: edit(inlineGfm.text).replace("\\b_", "\\b_| {2,}\\n").replace(/\{2,\}/g, "*").getRegex()
+};
+var block = {
+  normal: blockNormal,
+  gfm: blockGfm,
+  pedantic: blockPedantic
+};
+var inline = {
+  normal: inlineNormal,
+  gfm: inlineGfm,
+  breaks: inlineBreaks,
+  pedantic: inlinePedantic
+};
+var _Lexer = class {
+  constructor(options2) {
+    __publicField(this, "tokens");
+    __publicField(this, "options");
+    __publicField(this, "state");
+    __publicField(this, "tokenizer");
+    __publicField(this, "inlineQueue");
+    this.tokens = [];
+    this.tokens.links = /* @__PURE__ */ Object.create(null);
+    this.options = options2 || _defaults;
+    this.options.tokenizer = this.options.tokenizer || new _Tokenizer();
+    this.tokenizer = this.options.tokenizer;
+    this.tokenizer.options = this.options;
+    this.tokenizer.lexer = this;
+    this.inlineQueue = [];
+    this.state = {
+      inLink: false,
+      inRawBlock: false,
+      top: true
+    };
+    const rules2 = {
+      block: block.normal,
+      inline: inline.normal
+    };
+    if (this.options.pedantic) {
+      rules2.block = block.pedantic;
+      rules2.inline = inline.pedantic;
+    } else if (this.options.gfm) {
+      rules2.block = block.gfm;
+      if (this.options.breaks) {
+        rules2.inline = inline.breaks;
+      } else {
+        rules2.inline = inline.gfm;
+      }
+    }
+    this.tokenizer.rules = rules2;
+  }
+  /**
+   * Expose Rules
+   */
+  static get rules() {
+    return {
+      block,
+      inline
     };
   }
-  settings.latestFile = file.path;
-  await currentPlugin.saveData(settings);
+  /**
+   * Static Lex Method
+   */
+  static lex(src, options2) {
+    const lexer2 = new _Lexer(options2);
+    return lexer2.lex(src);
+  }
+  /**
+   * Static Lex Inline Method
+   */
+  static lexInline(src, options2) {
+    const lexer2 = new _Lexer(options2);
+    return lexer2.inlineTokens(src);
+  }
+  /**
+   * Preprocessing
+   */
+  lex(src) {
+    src = src.replace(/\r\n|\r/g, "\n");
+    this.blockTokens(src, this.tokens);
+    for (let i5 = 0; i5 < this.inlineQueue.length; i5++) {
+      const next = this.inlineQueue[i5];
+      this.inlineTokens(next.src, next.tokens);
+    }
+    this.inlineQueue = [];
+    return this.tokens;
+  }
+  blockTokens(src, tokens = []) {
+    if (this.options.pedantic) {
+      src = src.replace(/\t/g, "    ").replace(/^ +$/gm, "");
+    } else {
+      src = src.replace(/^( *)(\t+)/gm, (_4, leading, tabs) => {
+        return leading + "    ".repeat(tabs.length);
+      });
+    }
+    let token;
+    let lastToken;
+    let cutSrc;
+    let lastParagraphClipped;
+    while (src) {
+      if (this.options.extensions && this.options.extensions.block && this.options.extensions.block.some((extTokenizer) => {
+        if (token = extTokenizer.call({ lexer: this }, src, tokens)) {
+          src = src.substring(token.raw.length);
+          tokens.push(token);
+          return true;
+        }
+        return false;
+      })) {
+        continue;
+      }
+      if (token = this.tokenizer.space(src)) {
+        src = src.substring(token.raw.length);
+        if (token.raw.length === 1 && tokens.length > 0) {
+          tokens[tokens.length - 1].raw += "\n";
+        } else {
+          tokens.push(token);
+        }
+        continue;
+      }
+      if (token = this.tokenizer.code(src)) {
+        src = src.substring(token.raw.length);
+        lastToken = tokens[tokens.length - 1];
+        if (lastToken && (lastToken.type === "paragraph" || lastToken.type === "text")) {
+          lastToken.raw += "\n" + token.raw;
+          lastToken.text += "\n" + token.text;
+          this.inlineQueue[this.inlineQueue.length - 1].src = lastToken.text;
+        } else {
+          tokens.push(token);
+        }
+        continue;
+      }
+      if (token = this.tokenizer.fences(src)) {
+        src = src.substring(token.raw.length);
+        tokens.push(token);
+        continue;
+      }
+      if (token = this.tokenizer.heading(src)) {
+        src = src.substring(token.raw.length);
+        tokens.push(token);
+        continue;
+      }
+      if (token = this.tokenizer.hr(src)) {
+        src = src.substring(token.raw.length);
+        tokens.push(token);
+        continue;
+      }
+      if (token = this.tokenizer.blockquote(src)) {
+        src = src.substring(token.raw.length);
+        tokens.push(token);
+        continue;
+      }
+      if (token = this.tokenizer.list(src)) {
+        src = src.substring(token.raw.length);
+        tokens.push(token);
+        continue;
+      }
+      if (token = this.tokenizer.html(src)) {
+        src = src.substring(token.raw.length);
+        tokens.push(token);
+        continue;
+      }
+      if (token = this.tokenizer.def(src)) {
+        src = src.substring(token.raw.length);
+        lastToken = tokens[tokens.length - 1];
+        if (lastToken && (lastToken.type === "paragraph" || lastToken.type === "text")) {
+          lastToken.raw += "\n" + token.raw;
+          lastToken.text += "\n" + token.raw;
+          this.inlineQueue[this.inlineQueue.length - 1].src = lastToken.text;
+        } else if (!this.tokens.links[token.tag]) {
+          this.tokens.links[token.tag] = {
+            href: token.href,
+            title: token.title
+          };
+        }
+        continue;
+      }
+      if (token = this.tokenizer.table(src)) {
+        src = src.substring(token.raw.length);
+        tokens.push(token);
+        continue;
+      }
+      if (token = this.tokenizer.lheading(src)) {
+        src = src.substring(token.raw.length);
+        tokens.push(token);
+        continue;
+      }
+      cutSrc = src;
+      if (this.options.extensions && this.options.extensions.startBlock) {
+        let startIndex = Infinity;
+        const tempSrc = src.slice(1);
+        let tempStart;
+        this.options.extensions.startBlock.forEach((getStartIndex) => {
+          tempStart = getStartIndex.call({ lexer: this }, tempSrc);
+          if (typeof tempStart === "number" && tempStart >= 0) {
+            startIndex = Math.min(startIndex, tempStart);
+          }
+        });
+        if (startIndex < Infinity && startIndex >= 0) {
+          cutSrc = src.substring(0, startIndex + 1);
+        }
+      }
+      if (this.state.top && (token = this.tokenizer.paragraph(cutSrc))) {
+        lastToken = tokens[tokens.length - 1];
+        if (lastParagraphClipped && lastToken.type === "paragraph") {
+          lastToken.raw += "\n" + token.raw;
+          lastToken.text += "\n" + token.text;
+          this.inlineQueue.pop();
+          this.inlineQueue[this.inlineQueue.length - 1].src = lastToken.text;
+        } else {
+          tokens.push(token);
+        }
+        lastParagraphClipped = cutSrc.length !== src.length;
+        src = src.substring(token.raw.length);
+        continue;
+      }
+      if (token = this.tokenizer.text(src)) {
+        src = src.substring(token.raw.length);
+        lastToken = tokens[tokens.length - 1];
+        if (lastToken && lastToken.type === "text") {
+          lastToken.raw += "\n" + token.raw;
+          lastToken.text += "\n" + token.text;
+          this.inlineQueue.pop();
+          this.inlineQueue[this.inlineQueue.length - 1].src = lastToken.text;
+        } else {
+          tokens.push(token);
+        }
+        continue;
+      }
+      if (src) {
+        const errMsg = "Infinite loop on byte: " + src.charCodeAt(0);
+        if (this.options.silent) {
+          console.error(errMsg);
+          break;
+        } else {
+          throw new Error(errMsg);
+        }
+      }
+    }
+    this.state.top = true;
+    return tokens;
+  }
+  inline(src, tokens = []) {
+    this.inlineQueue.push({ src, tokens });
+    return tokens;
+  }
+  /**
+   * Lexing/Compiling
+   */
+  inlineTokens(src, tokens = []) {
+    let token, lastToken, cutSrc;
+    let maskedSrc = src;
+    let match2;
+    let keepPrevChar, prevChar;
+    if (this.tokens.links) {
+      const links = Object.keys(this.tokens.links);
+      if (links.length > 0) {
+        while ((match2 = this.tokenizer.rules.inline.reflinkSearch.exec(maskedSrc)) != null) {
+          if (links.includes(match2[0].slice(match2[0].lastIndexOf("[") + 1, -1))) {
+            maskedSrc = maskedSrc.slice(0, match2.index) + "[" + "a".repeat(match2[0].length - 2) + "]" + maskedSrc.slice(this.tokenizer.rules.inline.reflinkSearch.lastIndex);
+          }
+        }
+      }
+    }
+    while ((match2 = this.tokenizer.rules.inline.blockSkip.exec(maskedSrc)) != null) {
+      maskedSrc = maskedSrc.slice(0, match2.index) + "[" + "a".repeat(match2[0].length - 2) + "]" + maskedSrc.slice(this.tokenizer.rules.inline.blockSkip.lastIndex);
+    }
+    while ((match2 = this.tokenizer.rules.inline.anyPunctuation.exec(maskedSrc)) != null) {
+      maskedSrc = maskedSrc.slice(0, match2.index) + "++" + maskedSrc.slice(this.tokenizer.rules.inline.anyPunctuation.lastIndex);
+    }
+    while (src) {
+      if (!keepPrevChar) {
+        prevChar = "";
+      }
+      keepPrevChar = false;
+      if (this.options.extensions && this.options.extensions.inline && this.options.extensions.inline.some((extTokenizer) => {
+        if (token = extTokenizer.call({ lexer: this }, src, tokens)) {
+          src = src.substring(token.raw.length);
+          tokens.push(token);
+          return true;
+        }
+        return false;
+      })) {
+        continue;
+      }
+      if (token = this.tokenizer.escape(src)) {
+        src = src.substring(token.raw.length);
+        tokens.push(token);
+        continue;
+      }
+      if (token = this.tokenizer.tag(src)) {
+        src = src.substring(token.raw.length);
+        lastToken = tokens[tokens.length - 1];
+        if (lastToken && token.type === "text" && lastToken.type === "text") {
+          lastToken.raw += token.raw;
+          lastToken.text += token.text;
+        } else {
+          tokens.push(token);
+        }
+        continue;
+      }
+      if (token = this.tokenizer.link(src)) {
+        src = src.substring(token.raw.length);
+        tokens.push(token);
+        continue;
+      }
+      if (token = this.tokenizer.reflink(src, this.tokens.links)) {
+        src = src.substring(token.raw.length);
+        lastToken = tokens[tokens.length - 1];
+        if (lastToken && token.type === "text" && lastToken.type === "text") {
+          lastToken.raw += token.raw;
+          lastToken.text += token.text;
+        } else {
+          tokens.push(token);
+        }
+        continue;
+      }
+      if (token = this.tokenizer.emStrong(src, maskedSrc, prevChar)) {
+        src = src.substring(token.raw.length);
+        tokens.push(token);
+        continue;
+      }
+      if (token = this.tokenizer.codespan(src)) {
+        src = src.substring(token.raw.length);
+        tokens.push(token);
+        continue;
+      }
+      if (token = this.tokenizer.br(src)) {
+        src = src.substring(token.raw.length);
+        tokens.push(token);
+        continue;
+      }
+      if (token = this.tokenizer.del(src)) {
+        src = src.substring(token.raw.length);
+        tokens.push(token);
+        continue;
+      }
+      if (token = this.tokenizer.autolink(src)) {
+        src = src.substring(token.raw.length);
+        tokens.push(token);
+        continue;
+      }
+      if (!this.state.inLink && (token = this.tokenizer.url(src))) {
+        src = src.substring(token.raw.length);
+        tokens.push(token);
+        continue;
+      }
+      cutSrc = src;
+      if (this.options.extensions && this.options.extensions.startInline) {
+        let startIndex = Infinity;
+        const tempSrc = src.slice(1);
+        let tempStart;
+        this.options.extensions.startInline.forEach((getStartIndex) => {
+          tempStart = getStartIndex.call({ lexer: this }, tempSrc);
+          if (typeof tempStart === "number" && tempStart >= 0) {
+            startIndex = Math.min(startIndex, tempStart);
+          }
+        });
+        if (startIndex < Infinity && startIndex >= 0) {
+          cutSrc = src.substring(0, startIndex + 1);
+        }
+      }
+      if (token = this.tokenizer.inlineText(cutSrc)) {
+        src = src.substring(token.raw.length);
+        if (token.raw.slice(-1) !== "_") {
+          prevChar = token.raw.slice(-1);
+        }
+        keepPrevChar = true;
+        lastToken = tokens[tokens.length - 1];
+        if (lastToken && lastToken.type === "text") {
+          lastToken.raw += token.raw;
+          lastToken.text += token.text;
+        } else {
+          tokens.push(token);
+        }
+        continue;
+      }
+      if (src) {
+        const errMsg = "Infinite loop on byte: " + src.charCodeAt(0);
+        if (this.options.silent) {
+          console.error(errMsg);
+          break;
+        } else {
+          throw new Error(errMsg);
+        }
+      }
+    }
+    return tokens;
+  }
+};
+var _Renderer = class {
+  constructor(options2) {
+    __publicField(this, "options");
+    this.options = options2 || _defaults;
+  }
+  code(code, infostring, escaped) {
+    var _a2;
+    const lang = (_a2 = (infostring || "").match(/^\S*/)) == null ? void 0 : _a2[0];
+    code = code.replace(/\n$/, "") + "\n";
+    if (!lang) {
+      return "<pre><code>" + (escaped ? code : escape$1(code, true)) + "</code></pre>\n";
+    }
+    return '<pre><code class="language-' + escape$1(lang) + '">' + (escaped ? code : escape$1(code, true)) + "</code></pre>\n";
+  }
+  blockquote(quote) {
+    return `<blockquote>
+${quote}</blockquote>
+`;
+  }
+  html(html3, block2) {
+    return html3;
+  }
+  heading(text, level, raw) {
+    return `<h${level}>${text}</h${level}>
+`;
+  }
+  hr() {
+    return "<hr>\n";
+  }
+  list(body, ordered, start2) {
+    const type = ordered ? "ol" : "ul";
+    const startatt = ordered && start2 !== 1 ? ' start="' + start2 + '"' : "";
+    return "<" + type + startatt + ">\n" + body + "</" + type + ">\n";
+  }
+  listitem(text, task, checked) {
+    return `<li>${text}</li>
+`;
+  }
+  checkbox(checked) {
+    return "<input " + (checked ? 'checked="" ' : "") + 'disabled="" type="checkbox">';
+  }
+  paragraph(text) {
+    return `<p>${text}</p>
+`;
+  }
+  table(header, body) {
+    if (body)
+      body = `<tbody>${body}</tbody>`;
+    return "<table>\n<thead>\n" + header + "</thead>\n" + body + "</table>\n";
+  }
+  tablerow(content) {
+    return `<tr>
+${content}</tr>
+`;
+  }
+  tablecell(content, flags) {
+    const type = flags.header ? "th" : "td";
+    const tag2 = flags.align ? `<${type} align="${flags.align}">` : `<${type}>`;
+    return tag2 + content + `</${type}>
+`;
+  }
+  /**
+   * span level renderer
+   */
+  strong(text) {
+    return `<strong>${text}</strong>`;
+  }
+  em(text) {
+    return `<em>${text}</em>`;
+  }
+  codespan(text) {
+    return `<code>${text}</code>`;
+  }
+  br() {
+    return "<br>";
+  }
+  del(text) {
+    return `<del>${text}</del>`;
+  }
+  link(href, title, text) {
+    const cleanHref = cleanUrl(href);
+    if (cleanHref === null) {
+      return text;
+    }
+    href = cleanHref;
+    let out2 = '<a href="' + href + '"';
+    if (title) {
+      out2 += ' title="' + title + '"';
+    }
+    out2 += ">" + text + "</a>";
+    return out2;
+  }
+  image(href, title, text) {
+    const cleanHref = cleanUrl(href);
+    if (cleanHref === null) {
+      return text;
+    }
+    href = cleanHref;
+    let out2 = `<img src="${href}" alt="${text}"`;
+    if (title) {
+      out2 += ` title="${title}"`;
+    }
+    out2 += ">";
+    return out2;
+  }
+  text(text) {
+    return text;
+  }
+};
+var _TextRenderer = class {
+  // no need for block level renderers
+  strong(text) {
+    return text;
+  }
+  em(text) {
+    return text;
+  }
+  codespan(text) {
+    return text;
+  }
+  del(text) {
+    return text;
+  }
+  html(text) {
+    return text;
+  }
+  text(text) {
+    return text;
+  }
+  link(href, title, text) {
+    return "" + text;
+  }
+  image(href, title, text) {
+    return "" + text;
+  }
+  br() {
+    return "";
+  }
+};
+var _Parser = class {
+  constructor(options2) {
+    __publicField(this, "options");
+    __publicField(this, "renderer");
+    __publicField(this, "textRenderer");
+    this.options = options2 || _defaults;
+    this.options.renderer = this.options.renderer || new _Renderer();
+    this.renderer = this.options.renderer;
+    this.renderer.options = this.options;
+    this.textRenderer = new _TextRenderer();
+  }
+  /**
+   * Static Parse Method
+   */
+  static parse(tokens, options2) {
+    const parser2 = new _Parser(options2);
+    return parser2.parse(tokens);
+  }
+  /**
+   * Static Parse Inline Method
+   */
+  static parseInline(tokens, options2) {
+    const parser2 = new _Parser(options2);
+    return parser2.parseInline(tokens);
+  }
+  /**
+   * Parse Loop
+   */
+  parse(tokens, top = true) {
+    let out2 = "";
+    for (let i5 = 0; i5 < tokens.length; i5++) {
+      const token = tokens[i5];
+      if (this.options.extensions && this.options.extensions.renderers && this.options.extensions.renderers[token.type]) {
+        const genericToken = token;
+        const ret = this.options.extensions.renderers[genericToken.type].call({ parser: this }, genericToken);
+        if (ret !== false || !["space", "hr", "heading", "code", "table", "blockquote", "list", "html", "paragraph", "text"].includes(genericToken.type)) {
+          out2 += ret || "";
+          continue;
+        }
+      }
+      switch (token.type) {
+        case "space": {
+          continue;
+        }
+        case "hr": {
+          out2 += this.renderer.hr();
+          continue;
+        }
+        case "heading": {
+          const headingToken = token;
+          out2 += this.renderer.heading(this.parseInline(headingToken.tokens), headingToken.depth, unescape2(this.parseInline(headingToken.tokens, this.textRenderer)));
+          continue;
+        }
+        case "code": {
+          const codeToken = token;
+          out2 += this.renderer.code(codeToken.text, codeToken.lang, !!codeToken.escaped);
+          continue;
+        }
+        case "table": {
+          const tableToken = token;
+          let header = "";
+          let cell = "";
+          for (let j3 = 0; j3 < tableToken.header.length; j3++) {
+            cell += this.renderer.tablecell(this.parseInline(tableToken.header[j3].tokens), { header: true, align: tableToken.align[j3] });
+          }
+          header += this.renderer.tablerow(cell);
+          let body = "";
+          for (let j3 = 0; j3 < tableToken.rows.length; j3++) {
+            const row = tableToken.rows[j3];
+            cell = "";
+            for (let k3 = 0; k3 < row.length; k3++) {
+              cell += this.renderer.tablecell(this.parseInline(row[k3].tokens), { header: false, align: tableToken.align[k3] });
+            }
+            body += this.renderer.tablerow(cell);
+          }
+          out2 += this.renderer.table(header, body);
+          continue;
+        }
+        case "blockquote": {
+          const blockquoteToken = token;
+          const body = this.parse(blockquoteToken.tokens);
+          out2 += this.renderer.blockquote(body);
+          continue;
+        }
+        case "list": {
+          const listToken = token;
+          const ordered = listToken.ordered;
+          const start2 = listToken.start;
+          const loose = listToken.loose;
+          let body = "";
+          for (let j3 = 0; j3 < listToken.items.length; j3++) {
+            const item = listToken.items[j3];
+            const checked = item.checked;
+            const task = item.task;
+            let itemBody = "";
+            if (item.task) {
+              const checkbox = this.renderer.checkbox(!!checked);
+              if (loose) {
+                if (item.tokens.length > 0 && item.tokens[0].type === "paragraph") {
+                  item.tokens[0].text = checkbox + " " + item.tokens[0].text;
+                  if (item.tokens[0].tokens && item.tokens[0].tokens.length > 0 && item.tokens[0].tokens[0].type === "text") {
+                    item.tokens[0].tokens[0].text = checkbox + " " + item.tokens[0].tokens[0].text;
+                  }
+                } else {
+                  item.tokens.unshift({
+                    type: "text",
+                    text: checkbox + " "
+                  });
+                }
+              } else {
+                itemBody += checkbox + " ";
+              }
+            }
+            itemBody += this.parse(item.tokens, loose);
+            body += this.renderer.listitem(itemBody, task, !!checked);
+          }
+          out2 += this.renderer.list(body, ordered, start2);
+          continue;
+        }
+        case "html": {
+          const htmlToken = token;
+          out2 += this.renderer.html(htmlToken.text, htmlToken.block);
+          continue;
+        }
+        case "paragraph": {
+          const paragraphToken = token;
+          out2 += this.renderer.paragraph(this.parseInline(paragraphToken.tokens));
+          continue;
+        }
+        case "text": {
+          let textToken = token;
+          let body = textToken.tokens ? this.parseInline(textToken.tokens) : textToken.text;
+          while (i5 + 1 < tokens.length && tokens[i5 + 1].type === "text") {
+            textToken = tokens[++i5];
+            body += "\n" + (textToken.tokens ? this.parseInline(textToken.tokens) : textToken.text);
+          }
+          out2 += top ? this.renderer.paragraph(body) : body;
+          continue;
+        }
+        default: {
+          const errMsg = 'Token with "' + token.type + '" type was not found.';
+          if (this.options.silent) {
+            console.error(errMsg);
+            return "";
+          } else {
+            throw new Error(errMsg);
+          }
+        }
+      }
+    }
+    return out2;
+  }
+  /**
+   * Parse Inline Tokens
+   */
+  parseInline(tokens, renderer) {
+    renderer = renderer || this.renderer;
+    let out2 = "";
+    for (let i5 = 0; i5 < tokens.length; i5++) {
+      const token = tokens[i5];
+      if (this.options.extensions && this.options.extensions.renderers && this.options.extensions.renderers[token.type]) {
+        const ret = this.options.extensions.renderers[token.type].call({ parser: this }, token);
+        if (ret !== false || !["escape", "html", "link", "image", "strong", "em", "codespan", "br", "del", "text"].includes(token.type)) {
+          out2 += ret || "";
+          continue;
+        }
+      }
+      switch (token.type) {
+        case "escape": {
+          const escapeToken = token;
+          out2 += renderer.text(escapeToken.text);
+          break;
+        }
+        case "html": {
+          const tagToken = token;
+          out2 += renderer.html(tagToken.text);
+          break;
+        }
+        case "link": {
+          const linkToken = token;
+          out2 += renderer.link(linkToken.href, linkToken.title, this.parseInline(linkToken.tokens, renderer));
+          break;
+        }
+        case "image": {
+          const imageToken = token;
+          out2 += renderer.image(imageToken.href, imageToken.title, imageToken.text);
+          break;
+        }
+        case "strong": {
+          const strongToken = token;
+          out2 += renderer.strong(this.parseInline(strongToken.tokens, renderer));
+          break;
+        }
+        case "em": {
+          const emToken = token;
+          out2 += renderer.em(this.parseInline(emToken.tokens, renderer));
+          break;
+        }
+        case "codespan": {
+          const codespanToken = token;
+          out2 += renderer.codespan(codespanToken.text);
+          break;
+        }
+        case "br": {
+          out2 += renderer.br();
+          break;
+        }
+        case "del": {
+          const delToken = token;
+          out2 += renderer.del(this.parseInline(delToken.tokens, renderer));
+          break;
+        }
+        case "text": {
+          const textToken = token;
+          out2 += renderer.text(textToken.text);
+          break;
+        }
+        default: {
+          const errMsg = 'Token with "' + token.type + '" type was not found.';
+          if (this.options.silent) {
+            console.error(errMsg);
+            return "";
+          } else {
+            throw new Error(errMsg);
+          }
+        }
+      }
+    }
+    return out2;
+  }
+};
+var _Hooks = class {
+  constructor(options2) {
+    __publicField(this, "options");
+    this.options = options2 || _defaults;
+  }
+  /**
+   * Process markdown before marked
+   */
+  preprocess(markdown) {
+    return markdown;
+  }
+  /**
+   * Process HTML after marked is finished
+   */
+  postprocess(html3) {
+    return html3;
+  }
+  /**
+   * Process all tokens before walk tokens
+   */
+  processAllTokens(tokens) {
+    return tokens;
+  }
+};
+__publicField(_Hooks, "passThroughHooks", /* @__PURE__ */ new Set([
+  "preprocess",
+  "postprocess",
+  "processAllTokens"
+]));
+var _parseMarkdown, parseMarkdown_fn, _onError, onError_fn;
+var Marked = class {
+  constructor(...args) {
+    __privateAdd(this, _parseMarkdown);
+    __privateAdd(this, _onError);
+    __publicField(this, "defaults", _getDefaults());
+    __publicField(this, "options", this.setOptions);
+    __publicField(this, "parse", __privateMethod(this, _parseMarkdown, parseMarkdown_fn).call(this, _Lexer.lex, _Parser.parse));
+    __publicField(this, "parseInline", __privateMethod(this, _parseMarkdown, parseMarkdown_fn).call(this, _Lexer.lexInline, _Parser.parseInline));
+    __publicField(this, "Parser", _Parser);
+    __publicField(this, "Renderer", _Renderer);
+    __publicField(this, "TextRenderer", _TextRenderer);
+    __publicField(this, "Lexer", _Lexer);
+    __publicField(this, "Tokenizer", _Tokenizer);
+    __publicField(this, "Hooks", _Hooks);
+    this.use(...args);
+  }
+  /**
+   * Run callback for every token
+   */
+  walkTokens(tokens, callback) {
+    var _a2, _b2;
+    let values = [];
+    for (const token of tokens) {
+      values = values.concat(callback.call(this, token));
+      switch (token.type) {
+        case "table": {
+          const tableToken = token;
+          for (const cell of tableToken.header) {
+            values = values.concat(this.walkTokens(cell.tokens, callback));
+          }
+          for (const row of tableToken.rows) {
+            for (const cell of row) {
+              values = values.concat(this.walkTokens(cell.tokens, callback));
+            }
+          }
+          break;
+        }
+        case "list": {
+          const listToken = token;
+          values = values.concat(this.walkTokens(listToken.items, callback));
+          break;
+        }
+        default: {
+          const genericToken = token;
+          if ((_b2 = (_a2 = this.defaults.extensions) == null ? void 0 : _a2.childTokens) == null ? void 0 : _b2[genericToken.type]) {
+            this.defaults.extensions.childTokens[genericToken.type].forEach((childTokens) => {
+              const tokens2 = genericToken[childTokens].flat(Infinity);
+              values = values.concat(this.walkTokens(tokens2, callback));
+            });
+          } else if (genericToken.tokens) {
+            values = values.concat(this.walkTokens(genericToken.tokens, callback));
+          }
+        }
+      }
+    }
+    return values;
+  }
+  use(...args) {
+    const extensions = this.defaults.extensions || { renderers: {}, childTokens: {} };
+    args.forEach((pack) => {
+      const opts2 = { ...pack };
+      opts2.async = this.defaults.async || opts2.async || false;
+      if (pack.extensions) {
+        pack.extensions.forEach((ext) => {
+          if (!ext.name) {
+            throw new Error("extension name required");
+          }
+          if ("renderer" in ext) {
+            const prevRenderer = extensions.renderers[ext.name];
+            if (prevRenderer) {
+              extensions.renderers[ext.name] = function(...args2) {
+                let ret = ext.renderer.apply(this, args2);
+                if (ret === false) {
+                  ret = prevRenderer.apply(this, args2);
+                }
+                return ret;
+              };
+            } else {
+              extensions.renderers[ext.name] = ext.renderer;
+            }
+          }
+          if ("tokenizer" in ext) {
+            if (!ext.level || ext.level !== "block" && ext.level !== "inline") {
+              throw new Error("extension level must be 'block' or 'inline'");
+            }
+            const extLevel = extensions[ext.level];
+            if (extLevel) {
+              extLevel.unshift(ext.tokenizer);
+            } else {
+              extensions[ext.level] = [ext.tokenizer];
+            }
+            if (ext.start) {
+              if (ext.level === "block") {
+                if (extensions.startBlock) {
+                  extensions.startBlock.push(ext.start);
+                } else {
+                  extensions.startBlock = [ext.start];
+                }
+              } else if (ext.level === "inline") {
+                if (extensions.startInline) {
+                  extensions.startInline.push(ext.start);
+                } else {
+                  extensions.startInline = [ext.start];
+                }
+              }
+            }
+          }
+          if ("childTokens" in ext && ext.childTokens) {
+            extensions.childTokens[ext.name] = ext.childTokens;
+          }
+        });
+        opts2.extensions = extensions;
+      }
+      if (pack.renderer) {
+        const renderer = this.defaults.renderer || new _Renderer(this.defaults);
+        for (const prop in pack.renderer) {
+          if (!(prop in renderer)) {
+            throw new Error(`renderer '${prop}' does not exist`);
+          }
+          if (prop === "options") {
+            continue;
+          }
+          const rendererProp = prop;
+          const rendererFunc = pack.renderer[rendererProp];
+          const prevRenderer = renderer[rendererProp];
+          renderer[rendererProp] = (...args2) => {
+            let ret = rendererFunc.apply(renderer, args2);
+            if (ret === false) {
+              ret = prevRenderer.apply(renderer, args2);
+            }
+            return ret || "";
+          };
+        }
+        opts2.renderer = renderer;
+      }
+      if (pack.tokenizer) {
+        const tokenizer = this.defaults.tokenizer || new _Tokenizer(this.defaults);
+        for (const prop in pack.tokenizer) {
+          if (!(prop in tokenizer)) {
+            throw new Error(`tokenizer '${prop}' does not exist`);
+          }
+          if (["options", "rules", "lexer"].includes(prop)) {
+            continue;
+          }
+          const tokenizerProp = prop;
+          const tokenizerFunc = pack.tokenizer[tokenizerProp];
+          const prevTokenizer = tokenizer[tokenizerProp];
+          tokenizer[tokenizerProp] = (...args2) => {
+            let ret = tokenizerFunc.apply(tokenizer, args2);
+            if (ret === false) {
+              ret = prevTokenizer.apply(tokenizer, args2);
+            }
+            return ret;
+          };
+        }
+        opts2.tokenizer = tokenizer;
+      }
+      if (pack.hooks) {
+        const hooks2 = this.defaults.hooks || new _Hooks();
+        for (const prop in pack.hooks) {
+          if (!(prop in hooks2)) {
+            throw new Error(`hook '${prop}' does not exist`);
+          }
+          if (prop === "options") {
+            continue;
+          }
+          const hooksProp = prop;
+          const hooksFunc = pack.hooks[hooksProp];
+          const prevHook = hooks2[hooksProp];
+          if (_Hooks.passThroughHooks.has(prop)) {
+            hooks2[hooksProp] = (arg) => {
+              if (this.defaults.async) {
+                return Promise.resolve(hooksFunc.call(hooks2, arg)).then((ret2) => {
+                  return prevHook.call(hooks2, ret2);
+                });
+              }
+              const ret = hooksFunc.call(hooks2, arg);
+              return prevHook.call(hooks2, ret);
+            };
+          } else {
+            hooks2[hooksProp] = (...args2) => {
+              let ret = hooksFunc.apply(hooks2, args2);
+              if (ret === false) {
+                ret = prevHook.apply(hooks2, args2);
+              }
+              return ret;
+            };
+          }
+        }
+        opts2.hooks = hooks2;
+      }
+      if (pack.walkTokens) {
+        const walkTokens2 = this.defaults.walkTokens;
+        const packWalktokens = pack.walkTokens;
+        opts2.walkTokens = function(token) {
+          let values = [];
+          values.push(packWalktokens.call(this, token));
+          if (walkTokens2) {
+            values = values.concat(walkTokens2.call(this, token));
+          }
+          return values;
+        };
+      }
+      this.defaults = { ...this.defaults, ...opts2 };
+    });
+    return this;
+  }
+  setOptions(opt) {
+    this.defaults = { ...this.defaults, ...opt };
+    return this;
+  }
+  lexer(src, options2) {
+    return _Lexer.lex(src, options2 != null ? options2 : this.defaults);
+  }
+  parser(tokens, options2) {
+    return _Parser.parse(tokens, options2 != null ? options2 : this.defaults);
+  }
+};
+_parseMarkdown = new WeakSet();
+parseMarkdown_fn = function(lexer2, parser2) {
+  return (src, options2) => {
+    const origOpt = { ...options2 };
+    const opt = { ...this.defaults, ...origOpt };
+    if (this.defaults.async === true && origOpt.async === false) {
+      if (!opt.silent) {
+        console.warn("marked(): The async option was set to true by an extension. The async: false option sent to parse will be ignored.");
+      }
+      opt.async = true;
+    }
+    const throwError = __privateMethod(this, _onError, onError_fn).call(this, !!opt.silent, !!opt.async);
+    if (typeof src === "undefined" || src === null) {
+      return throwError(new Error("marked(): input parameter is undefined or null"));
+    }
+    if (typeof src !== "string") {
+      return throwError(new Error("marked(): input parameter is of type " + Object.prototype.toString.call(src) + ", string expected"));
+    }
+    if (opt.hooks) {
+      opt.hooks.options = opt;
+    }
+    if (opt.async) {
+      return Promise.resolve(opt.hooks ? opt.hooks.preprocess(src) : src).then((src2) => lexer2(src2, opt)).then((tokens) => opt.hooks ? opt.hooks.processAllTokens(tokens) : tokens).then((tokens) => opt.walkTokens ? Promise.all(this.walkTokens(tokens, opt.walkTokens)).then(() => tokens) : tokens).then((tokens) => parser2(tokens, opt)).then((html3) => opt.hooks ? opt.hooks.postprocess(html3) : html3).catch(throwError);
+    }
+    try {
+      if (opt.hooks) {
+        src = opt.hooks.preprocess(src);
+      }
+      let tokens = lexer2(src, opt);
+      if (opt.hooks) {
+        tokens = opt.hooks.processAllTokens(tokens);
+      }
+      if (opt.walkTokens) {
+        this.walkTokens(tokens, opt.walkTokens);
+      }
+      let html3 = parser2(tokens, opt);
+      if (opt.hooks) {
+        html3 = opt.hooks.postprocess(html3);
+      }
+      return html3;
+    } catch (e3) {
+      return throwError(e3);
+    }
+  };
+};
+_onError = new WeakSet();
+onError_fn = function(silent, async) {
+  return (e3) => {
+    e3.message += "\nPlease report this to https://github.com/markedjs/marked.";
+    if (silent) {
+      const msg = "<p>An error occurred:</p><pre>" + escape$1(e3.message + "", true) + "</pre>";
+      if (async) {
+        return Promise.resolve(msg);
+      }
+      return msg;
+    }
+    if (async) {
+      return Promise.reject(e3);
+    }
+    throw e3;
+  };
+};
+var markedInstance = new Marked();
+function marked(src, opt) {
+  return markedInstance.parse(src, opt);
 }
+marked.options = marked.setOptions = function(options2) {
+  markedInstance.setOptions(options2);
+  marked.defaults = markedInstance.defaults;
+  changeDefaults(marked.defaults);
+  return marked;
+};
+marked.getDefaults = _getDefaults;
+marked.defaults = _defaults;
+marked.use = function(...args) {
+  markedInstance.use(...args);
+  marked.defaults = markedInstance.defaults;
+  changeDefaults(marked.defaults);
+  return marked;
+};
+marked.walkTokens = function(tokens, callback) {
+  return markedInstance.walkTokens(tokens, callback);
+};
+marked.parseInline = markedInstance.parseInline;
+marked.Parser = _Parser;
+marked.parser = _Parser.parse;
+marked.Renderer = _Renderer;
+marked.TextRenderer = _TextRenderer;
+marked.Lexer = _Lexer;
+marked.lexer = _Lexer.lex;
+marked.Tokenizer = _Tokenizer;
+marked.Hooks = _Hooks;
+marked.parse = marked;
+var options = marked.options;
+var setOptions = marked.setOptions;
+var use = marked.use;
+var walkTokens = marked.walkTokens;
+var parseInline = marked.parseInline;
+var parser = _Parser.parse;
+var lexer = _Lexer.lex;
+
+// src/RecusiveGetToken.ts
+function RecusiveGetToken(document2, tokens) {
+  if ("type" in document2 && document2.type === "text") {
+    tokens.push(document2);
+  }
+  if ("tokens" in document2 && document2.tokens) {
+    document2.tokens.map((t5) => {
+      RecusiveGetToken(t5, tokens);
+    });
+  }
+  if ("rows" in document2 && document2.rows) {
+    document2.rows.map((row) => {
+      row.map((cell) => {
+        RecusiveGetToken(cell, tokens);
+      });
+    });
+  }
+  if ("header" in document2 && document2.header) {
+    document2.header.map((header) => {
+      RecusiveGetToken(header, tokens);
+    });
+  }
+  if ("items" in document2 && document2.items) {
+    document2.items.map((item) => {
+      RecusiveGetToken(item, tokens);
+    });
+  }
+}
+
+// src/parseTFileAndUpdateDocuments.ts
 async function parseTFileAndUpdateDocuments(currentPlugin, file, documents) {
   if (!file) {
     return;
   }
   const fileContent = await currentPlugin.app.vault.read(file);
   function filterHTMLAndEmphasis(text) {
-    const stripHTML = text.replace(/<\/?("[^"]*"|'[^']*'|[^>])*(>|$)/g, ""), stripEm1 = stripHTML.replace(/\*{1,3}(.*?)\*{1,3}/g, "$1"), stripEm2 = stripEm1.replace(/_{1,3}(.*?)_{1,3}/g, "$1"), stripStrike = stripEm2.replace(/~{1,2}(.*?)~{1,2}/g, "$1"), stripImage = stripStrike.replace(/!\[(.*?)]\((.*?)\)/g, "$2").replace(/!\[\[(.*?\.(png|jpeg|jpg|gif))]]/g, "$1");
-    return stripImage;
+    const stripHTML = text.replace(/<\/?("[^"]*"|'[^']*'|[^>])*(>|$)/g, ""), stripEm1 = stripHTML.replace(/\*{1,3}(.*?)\*{1,3}/g, "$1"), stripEm2 = stripEm1.replace(/_{1,3}(.*?)_{1,3}/g, "$1"), stripStrike = stripEm2.replace(/~{1,2}(.*?)~{1,2}/g, "$1"), stripLink = stripStrike.replace(/!?\[(.*?)]\((.*?)\)/g, "").replace(/!?\[\[(.*?)]]/g, "");
+    return stripLink;
   }
   const fileContentStripHTML = filterHTMLAndEmphasis(fileContent);
   const lexerResult = marked.lexer(fileContentStripHTML);
@@ -58196,8 +59435,94 @@ async function parseTFileAndUpdateDocuments(currentPlugin, file, documents) {
     RecusiveGetToken(token, documents);
   });
 }
-var HISTORICA_VIEW_TYPE = "historica-note-location";
-var HistoricaPlugin = class extends import_obsidian4.Plugin {
+
+// src/writeLatestFileToData.ts
+async function writeLatestFileToData(currentPlugin, file) {
+  let settings = await currentPlugin.loadData();
+  if (!settings) {
+    settings = {
+      latestFile: file.path,
+      showUseFulInformation: false,
+      defaultStyle: "1",
+      showRelativeTime: false,
+      usingSmartTheme: true
+    };
+  }
+  settings.latestFile = file.path;
+  await currentPlugin.saveData(settings);
+}
+
+// src/verifyBlockConfig.ts
+var import_obsidian6 = require("obsidian");
+async function verifyBlockConfig(blockConfig, thisPlugin) {
+  if (![1, 2].includes(blockConfig.style) || !blockConfig.style) {
+    blockConfig.style = parseInt(thisPlugin.settings.defaultStyle);
+  }
+  if (!blockConfig.include_files) {
+    blockConfig.include_files = [];
+  }
+  let query = [];
+  if (!blockConfig.query) {
+    query = [];
+  } else if (Object.keys(blockConfig.query).length === 0) {
+    query = [];
+  } else if (Object.keys(blockConfig.query).length >= 0) {
+    const keys = Object.keys(blockConfig.query);
+    keys.map((key) => {
+      if (!blockConfig.query[key].start && !typeof blockConfig.query[key].start === "string") {
+        new import_obsidian6.Notice(`Your query is not valid, please check your query at ${key}`);
+      }
+      if (blockConfig.query[key].end && !typeof blockConfig.query[key].start === "string") {
+        new import_obsidian6.Notice(`Your query is not valid, please check your query at ${key}`);
+      }
+      query.push({
+        // @ts-ignore
+        start: blockConfig.query[key].start,
+        // @ts-ignore
+        end: blockConfig.query[key].end
+      });
+    });
+  } else if (!Array.isArray(blockConfig.query)) {
+    query = [blockConfig.query];
+  } else if (Array.isArray(blockConfig.query) && blockConfig.query[0].start) {
+    query = blockConfig.query;
+  } else {
+    query = [];
+    new import_obsidian6.Notice("Your query is not valid, please check your query");
+  }
+  blockConfig.query = query;
+  if (!blockConfig.pin_time || blockConfig.pin_time && blockConfig.pin_time.trim() === "") {
+    blockConfig.pin_time = "now";
+  }
+  return blockConfig;
+}
+
+// src/getCurrentFile.ts
+var import_obsidian7 = require("obsidian");
+async function getCurrentFile(currentPlugin) {
+  let currentFile = currentPlugin.app.workspace.getActiveFile();
+  if (currentFile instanceof import_obsidian7.TFile) {
+  } else {
+    let data = await currentPlugin.loadData();
+    if (data.latestFile) {
+      const currentFileAbstract = currentPlugin.app.vault.getAbstractFileByPath(data.latestFile);
+      if (currentFileAbstract instanceof import_obsidian7.TFile) {
+        currentFile = currentFileAbstract;
+      }
+    }
+  }
+  return currentFile;
+}
+
+// main.ts
+var DEFAULT_SETTINGS = {
+  latestFile: "",
+  showUseFulInformation: false,
+  defaultStyle: "2",
+  showRelativeTime: true,
+  usingSmartTheme: false
+};
+var HistoricaPlugin = class extends import_obsidian8.Plugin {
   constructor() {
     super(...arguments);
     this.modesToKeep = ["hypermd", "markdown", "null", "xml"];
@@ -58207,7 +59532,6 @@ var HistoricaPlugin = class extends import_obsidian4.Plugin {
   }
   async onload() {
     await this.loadSettings();
-    this.app.workspace.iterateCodeMirrors((cm) => console.log(cm));
     this.app.workspace.onLayoutReady(() => {
       this.refreshLeaves();
     });
@@ -58215,46 +59539,42 @@ var HistoricaPlugin = class extends import_obsidian4.Plugin {
     const currentPlugin = this;
     this.registerMarkdownCodeBlockProcessor("historica", async (source, el, ctx) => {
       let blockConfig = (0, import_toml.parse)(source);
-      if (Object.keys(blockConfig).length === 0) {
-        const defaultStyle = this.settings.defaultStyle;
-        blockConfig = {
-          style: parseInt(defaultStyle),
-          include_files: []
-          // exclude_files: []
-        };
-      }
-      if (![1, 2].includes(blockConfig.style) || !blockConfig.style) {
-        blockConfig.style = parseInt(this.settings.defaultStyle);
-      }
-      if (!blockConfig.include_files) {
-        blockConfig.include_files = [];
-      }
-      let documentArray = [];
-      if (blockConfig.include_files.length === 0) {
+      blockConfig = await verifyBlockConfig(blockConfig, currentPlugin);
+      let tokensWithTypeText = [];
+      if (blockConfig.include_files === "all") {
+        const allFiles = this.app.vault.getMarkdownFiles();
+        for (const file of allFiles) {
+          await parseTFileAndUpdateDocuments(currentPlugin, file, tokensWithTypeText);
+        }
+      } else if (blockConfig.include_files.length === 0) {
         let currentFile = await getCurrentFile(currentPlugin);
         await writeLatestFileToData(currentPlugin, currentFile);
-        await parseTFileAndUpdateDocuments(currentPlugin, currentFile, documentArray);
-      }
-      if (blockConfig.include_files.length > 0) {
+        await parseTFileAndUpdateDocuments(currentPlugin, currentFile, tokensWithTypeText);
+      } else if (blockConfig.include_files !== "all" && blockConfig.include_files.length > 0) {
         for (const file of blockConfig.include_files) {
           const currentFile = this.app.vault.getAbstractFileByPath(file);
-          if (currentFile instanceof import_obsidian4.TFile) {
-            await parseTFileAndUpdateDocuments(currentPlugin, currentFile, documentArray);
+          if (currentFile instanceof import_obsidian8.TFile) {
+            await parseTFileAndUpdateDocuments(currentPlugin, currentFile, tokensWithTypeText);
           }
         }
+      } else {
+        new import_obsidian8.Notice("No file to include, check your config, include_files may be empty, list of file name or simply use 'all' to include all files in the vault");
       }
-      documentArray = documentArray.filter((token) => {
+      tokensWithTypeText = tokensWithTypeText.filter((token) => {
         return "tokens" in token ? token.tokens === void 0 : true;
       });
       let timelineData = await GetTimelineDataFromDocumentArrayWithChrono(
-        documentArray,
+        tokensWithTypeText,
         customChrono,
         three_default,
         corpus_default,
-        this.settings.showUseFulInformation
+        this.settings.showUseFulInformation,
+        // @ts-ignore
+        blockConfig.query,
+        blockConfig.pin_time
       );
-      const style = blockConfig.style || 1;
-      await renderTimelineEntry(currentPlugin, timelineData, style, el);
+      const style = blockConfig.style ? blockConfig.style : parseInt(this.settings.defaultStyle);
+      await renderTimelineEntry(currentPlugin, timelineData, blockConfig, el);
       await writeLatestFileToData(currentPlugin, await getCurrentFile(currentPlugin));
     });
     this.addSettingTab(new HistoricaSettingTab(this.app, this));
@@ -58274,33 +59594,6 @@ var HistoricaPlugin = class extends import_obsidian4.Plugin {
   }
   async saveSettings() {
     await this.saveData(this.settings);
-  }
-};
-var HistoricaSettingTab = class extends import_obsidian4.PluginSettingTab {
-  constructor(app, plugin5) {
-    super(app, plugin5);
-    this.plugin = plugin5;
-  }
-  display() {
-    const { containerEl } = this;
-    containerEl.empty();
-    const settings = this.plugin.settings;
-    new import_obsidian4.Setting(containerEl).setName("Default Style").setDesc("Choose the default style for the timeline").addDropdown((dropdown) => {
-      dropdown.addOption("1", "Style 1");
-      dropdown.addOption("2", "Style 2");
-      dropdown.setValue(settings.defaultStyle);
-      dropdown.onChange(async (value) => {
-        settings.defaultStyle = value;
-        await this.plugin.saveSettings();
-      });
-    });
-    new import_obsidian4.Setting(containerEl).setName("Show Summary Title").setDesc("Show short title in the timeline, turn it off if you think it is not smart enough, and this will make this plugin run at fastest speed").addToggle((toggle) => {
-      toggle.setValue(settings.showUseFulInformation);
-      toggle.onChange(async (value) => {
-        settings.showUseFulInformation = value;
-        await this.plugin.saveSettings();
-      });
-    });
   }
 };
 /*! Bundled license information:
@@ -58344,6 +59637,13 @@ svg-pathdata/lib/SVGPathData.module.js:
   OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
   PERFORMANCE OF THIS SOFTWARE.
   ***************************************************************************** *)
+
+doc-path/lib/path.js:
+  (**
+   * @license MIT
+   * doc-path <https://github.com/mrodrig/doc-path>
+   * Copyright (c) 2015-present, Michael Rodrigues.
+   *)
 
 jspdf/dist/jspdf.es.min.js:
   (** @license

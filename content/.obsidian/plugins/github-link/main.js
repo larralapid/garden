@@ -157,83 +157,46 @@ var AuthModal = class extends import_obsidian.Modal {
   }
 };
 
-// src/util.ts
-function verboseFactory(logLevel) {
-  const log = (message, level) => {
-    if (level <= logLevel) {
+// src/logger.ts
+var Logger = class {
+  constructor() {
+    this.logLevel = 0 /* Error */;
+  }
+  log(message, level) {
+    let _message;
+    if (typeof message === "string") {
+      _message = `GitHub Link: ${message}`;
+    } else {
+      _message = message;
+    }
+    if (level <= this.logLevel) {
       switch (level) {
         case 0 /* Error */:
-          console.error(message);
+          console.error(_message);
           break;
         case 1 /* Warn */:
-          console.warn(message);
+          console.warn(_message);
           break;
         case 2 /* Info */:
-          console.info(message);
+          console.info(_message);
           break;
         case 3 /* Debug */:
-          console.debug(message);
+          console.debug(_message);
           break;
       }
     }
-  };
-  return {
-    log,
-    error: (message) => log(message, 0 /* Error */),
-    warn: (message) => log(message, 1 /* Warn */),
-    info: (message) => log(message, 2 /* Info */),
-    debug: (message) => log(message, 3 /* Debug */)
-  };
-}
-function titleCase(value) {
-  const words = value.split(/[-_]/);
-  return words.map((w) => {
-    var _a;
-    return ((_a = w.charAt(0)) == null ? void 0 : _a.toUpperCase()) + w.slice(1);
-  }).join(" ");
-}
-function sanitizeObject(params, usableFieldMap) {
-  const usableFields = Object.entries(usableFieldMap).filter(([_, value]) => value).map(([key, _]) => key);
-  const result = {};
-  for (const field of usableFields) {
-    if (params[field] !== void 0) {
-      result[field] = params[field];
-    }
   }
-  return result;
-}
-function getProp(value, prop) {
-  var _a;
-  if (!prop.includes(".")) {
-    return (_a = value[prop]) != null ? _a : null;
+  error(message) {
+    this.log(message, 0 /* Error */);
   }
-  const parts = prop.split(".");
-  let val = value;
-  for (const part of parts) {
-    try {
-      val = val[part];
-    } catch (err) {
-      return null;
-    }
+  warn(message) {
+    this.log(message, 1 /* Warn */);
   }
-  return val != null ? val : null;
-}
-var n = "numeric";
-var DateFormat = {
-  DATE_SHORT: new Intl.DateTimeFormat(void 0, {
-    year: n,
-    month: n,
-    day: n
-  })
-};
-var RequestError = class {
-  constructor(originalError) {
-    this.originalError = originalError;
-    this.name = originalError.name;
-    this.stack = originalError.stack;
-    this.message = originalError.message;
-    this.headers = originalError.headers;
-    this.status = originalError.status;
+  info(message) {
+    this.log(message, 2 /* Info */);
+  }
+  debug(message) {
+    this.log(message, 3 /* Debug */);
   }
 };
 
@@ -583,7 +546,7 @@ var Deprecation = class extends Error {
 var import_once = __toESM(require_once());
 var logOnceCode = (0, import_once.default)((deprecation) => console.warn(deprecation));
 var logOnceHeaders = (0, import_once.default)((deprecation) => console.warn(deprecation));
-var RequestError2 = class extends Error {
+var RequestError = class extends Error {
   constructor(message, statusCode, options) {
     super(message);
     if (Error.captureStackTrace) {
@@ -696,7 +659,7 @@ function fetchWrapper(requestOptions) {
       if (status < 400) {
         return;
       }
-      throw new RequestError2(response.statusText, status, {
+      throw new RequestError(response.statusText, status, {
         response: {
           url,
           status,
@@ -707,7 +670,7 @@ function fetchWrapper(requestOptions) {
       });
     }
     if (status === 304) {
-      throw new RequestError2("Not modified", status, {
+      throw new RequestError("Not modified", status, {
         response: {
           url,
           status,
@@ -719,7 +682,7 @@ function fetchWrapper(requestOptions) {
     }
     if (status >= 400) {
       const data = await getResponseData(response);
-      const error = new RequestError2(toErrorMessage(data), status, {
+      const error = new RequestError(toErrorMessage(data), status, {
         response: {
           url,
           status,
@@ -739,7 +702,7 @@ function fetchWrapper(requestOptions) {
       data
     };
   }).catch((error) => {
-    if (error instanceof RequestError2)
+    if (error instanceof RequestError)
       throw error;
     else if (error.name === "AbortError")
       throw error;
@@ -751,7 +714,7 @@ function fetchWrapper(requestOptions) {
         message = error.cause;
       }
     }
-    throw new RequestError2(message, 500, {
+    throw new RequestError(message, 500, {
       request: requestOptions
     });
   });
@@ -827,7 +790,7 @@ async function oauthRequest(request2, route, parameters) {
   };
   const response = await request2(route, withOAuthParameters);
   if ("error" in response.data) {
-    const error = new RequestError2(
+    const error = new RequestError(
       `${response.data.error_description} (${response.data.error}, ${response.data.error_uri})`,
       400,
       {
@@ -1101,7 +1064,11 @@ var DEFAULT_SETTINGS = {
   accounts: [],
   defaultPageSize: 10,
   logLevel: 0 /* Error */,
-  tagTooltips: false
+  tagTooltips: false,
+  cacheIntervalSeconds: 60,
+  maxCacheAgeHours: 120,
+  minRequestSeconds: 60,
+  cache: null
 };
 var GithubLinkPluginSettingsTab = class extends import_obsidian3.PluginSettingTab {
   constructor(app, plugin) {
@@ -1190,10 +1157,12 @@ var GithubLinkPluginSettingsTab = class extends import_obsidian3.PluginSettingTa
         });
       });
       new import_obsidian3.Setting(accountContainer).addButton((button) => {
+        button.setButtonText("Save account");
         button.setTooltip("Save account");
         button.setIcon("save");
         button.onClick(async () => {
-          if (!this.newAccount || !this.newAccount.name || !this.newAccount.token) {
+          var _a;
+          if (!((_a = this.newAccount) == null ? void 0 : _a.name) || !this.newAccount.token) {
             return;
           }
           PluginSettings.accounts.unshift(this.newAccount);
@@ -1252,6 +1221,7 @@ var GithubLinkPluginSettingsTab = class extends import_obsidian3.PluginSettingTa
         });
       });
     }
+    containerEl.createEl("h2", { text: "Other settings" });
     new import_obsidian3.Setting(containerEl).setName("Default result size").setDesc("The maximum number of results that will be included in a table unless specified otherwise.").addExtraButton((button) => {
       button.setIcon("rotate-ccw");
       button.setTooltip("Restore default");
@@ -1261,10 +1231,14 @@ var GithubLinkPluginSettingsTab = class extends import_obsidian3.PluginSettingTa
         this.display();
       });
     }).addSlider((slider) => {
+      var _a;
+      const displayValue = createSpan({ text: PluginSettings.defaultPageSize.toString() });
+      (_a = slider.sliderEl.parentElement) == null ? void 0 : _a.prepend(displayValue);
       slider.setLimits(0, 30, 1);
-      slider.setValue(PluginSettings.defaultPageSize);
       slider.setDynamicTooltip();
+      slider.setValue(PluginSettings.defaultPageSize);
       slider.onChange((value) => {
+        displayValue.setText(value.toString());
         PluginSettings.defaultPageSize = value;
         this.saveSettings();
       });
@@ -1274,6 +1248,87 @@ var GithubLinkPluginSettingsTab = class extends import_obsidian3.PluginSettingTa
       toggle.onChange((value) => {
         PluginSettings.tagTooltips = value;
         this.saveSettings();
+      });
+    });
+    containerEl.createEl("h3", { text: "Cache settings" });
+    new import_obsidian3.Setting(containerEl).setClass("github-link-sub-setting").setName("Cache save interval (seconds)").setDesc(
+      "If it has been updated, cache will be saved to disk after this number of seconds while Obsidian is open."
+    ).addExtraButton((button) => {
+      button.setIcon("rotate-ccw");
+      button.setTooltip("Restore default");
+      button.onClick(async () => {
+        PluginSettings.cacheIntervalSeconds = DEFAULT_SETTINGS.cacheIntervalSeconds;
+        await this.saveSettings();
+        this.plugin.setCacheInterval();
+        this.display();
+      });
+    }).addSlider((slider) => {
+      var _a;
+      const displayValue = createSpan({ text: PluginSettings.cacheIntervalSeconds.toString() });
+      (_a = slider.sliderEl.parentElement) == null ? void 0 : _a.prepend(displayValue);
+      slider.setValue(PluginSettings.cacheIntervalSeconds);
+      slider.setLimits(10, 1200, 10);
+      slider.setDynamicTooltip();
+      slider.onChange(async (value) => {
+        PluginSettings.cacheIntervalSeconds = value;
+        displayValue.setText(value.toString());
+        await this.saveSettings();
+        this.plugin.setCacheInterval();
+      });
+    });
+    new import_obsidian3.Setting(containerEl).setClass("github-link-sub-setting").setName("Max cache age (hours)").setDesc("Upon Obsidian startup, cache entries older than this many hours will be removed.").addExtraButton((button) => {
+      button.setIcon("rotate-ccw");
+      button.setTooltip("Restore default");
+      button.onClick(async () => {
+        PluginSettings.maxCacheAgeHours = DEFAULT_SETTINGS.maxCacheAgeHours;
+        await this.saveSettings();
+        this.plugin.setCacheInterval();
+        this.display();
+      });
+    }).addSlider((slider) => {
+      var _a;
+      const displayValue = createSpan({ text: PluginSettings.maxCacheAgeHours.toString() });
+      (_a = slider.sliderEl.parentElement) == null ? void 0 : _a.prepend(displayValue);
+      slider.setValue(PluginSettings.maxCacheAgeHours);
+      slider.setLimits(0, 170, 10);
+      slider.setDynamicTooltip();
+      slider.onChange(async (value) => {
+        PluginSettings.maxCacheAgeHours = value;
+        displayValue.setText(value.toString());
+        await this.saveSettings();
+      });
+    });
+    new import_obsidian3.Setting(containerEl).setClass("github-link-sub-setting").setName("Minimum time between same request (seconds)").setDesc(
+      "If a request is made within this time frame for a value that is already cached, the cached value will be used without checking if it has changed."
+    ).addExtraButton((button) => {
+      button.setIcon("rotate-ccw");
+      button.setTooltip("Restore default");
+      button.onClick(async () => {
+        PluginSettings.minRequestSeconds = DEFAULT_SETTINGS.minRequestSeconds;
+        await this.saveSettings();
+        this.display();
+      });
+    }).addSlider((slider) => {
+      var _a;
+      const displayValue = createSpan({ text: PluginSettings.minRequestSeconds.toString() });
+      (_a = slider.sliderEl.parentElement) == null ? void 0 : _a.prepend(displayValue);
+      slider.setValue(PluginSettings.minRequestSeconds);
+      slider.setLimits(10, 1200, 10);
+      slider.setDynamicTooltip();
+      slider.onChange(async (value) => {
+        PluginSettings.minRequestSeconds = value;
+        displayValue.setText(value.toString());
+        await this.saveSettings();
+      });
+    });
+    new import_obsidian3.Setting(containerEl).setClass("github-link-sub-setting").setName("Clear cache").setDesc("Seeing strange cache behavior? Clicking this will delete all cached responses.").addButton((button) => {
+      button.setIcon("trash");
+      button.setButtonText("Clear cache");
+      button.onClick(async () => {
+        const itemsDeleted = getCache().clean(/* @__PURE__ */ new Date());
+        PluginSettings.cache = null;
+        await this.saveSettings();
+        new import_obsidian3.Notice(`Removed ${itemsDeleted} stored items from GitHub Link cache.`, 3e3);
       });
     });
     new import_obsidian3.Setting(containerEl).setName("Log level").setDesc("Enable debug logging.").addExtraButton((button) => {
@@ -1337,91 +1392,536 @@ function getPRStatus(pr) {
   }
 }
 
-// src/github/api.ts
-var import_obsidian4 = require("obsidian");
-var baseApi = "https://api.github.com";
-function addParams(href, params) {
-  const url = new URL(href);
-  for (const [key, value] of Object.entries(params)) {
-    url.searchParams.set(key, `${value}`);
+// src/util.ts
+function titleCase(value) {
+  const words = value.split(/[-_]/);
+  return words.map((w) => {
+    var _a;
+    return ((_a = w.charAt(0)) == null ? void 0 : _a.toUpperCase()) + w.slice(1);
+  }).join(" ");
+}
+function sanitizeObject(params, usableFieldMap) {
+  const usableFields = Object.entries(usableFieldMap).filter(([_, value]) => value).map(([key, _]) => key);
+  const result = {};
+  for (const field of usableFields) {
+    if (params[field] !== void 0) {
+      result[field] = params[field];
+    }
   }
-  return url.toString();
+  return result;
 }
-async function githubRequest(config, token) {
-  if (!config.headers) {
-    config.headers = {};
+function getProp(value, prop) {
+  var _a;
+  if (!prop.includes(".")) {
+    return (_a = value[prop]) != null ? _a : null;
   }
-  config.headers.Accept = "application/vnd.github+json";
-  config.headers["X-GitHub-Api-Version"] = "2022-11-28";
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
+  const parts = prop.split(".");
+  let val = value;
+  for (const part of parts) {
+    try {
+      val = val[part];
+    } catch (err) {
+      return null;
+    }
   }
-  try {
-    const response = await (0, import_obsidian4.requestUrl)(config);
-    return response;
-  } catch (err) {
-    throw new RequestError(err);
+  return val != null ? val : null;
+}
+var n = "numeric";
+var DateFormat = {
+  DATE_SHORT: new Intl.DateTimeFormat(void 0, {
+    year: n,
+    month: n,
+    day: n
+  })
+};
+function promiseWithResolvers() {
+  let resolve;
+  let reject;
+  const promise = new Promise((res, rej) => {
+    resolve = res;
+    reject = rej;
+  });
+  return { resolve, reject, promise };
+}
+function isSuccessResponse(code) {
+  return code >= 200 && code <= 208;
+}
+var RequestError2 = class {
+  constructor(originalError) {
+    this.originalError = originalError;
+    this.name = originalError.name;
+    this.stack = originalError.stack;
+    this.message = originalError.message;
+    this.headers = originalError.headers;
+    this.status = originalError.status;
   }
-}
-async function getIssue(org, repo, issue, token) {
-  const result = await githubRequest({ url: `${baseApi}/repos/${org}/${repo}/issues/${issue}` }, token);
-  return result.json;
-}
-async function listIssuesForToken(params = {}, token) {
-  const url = addParams(`${baseApi}/issues`, params);
-  const result = await githubRequest({ url }, token);
-  return result.json;
-}
-async function listIssuesForRepo(org, repo, params = {}, token) {
-  const url = addParams(`${baseApi}/repos/${org}/${repo}/issues`, params);
-  const result = await githubRequest({ url }, token);
-  return result.json;
-}
-async function getPullRequest(org, repo, pr, token) {
-  const result = await githubRequest(
-    {
-      url: `${baseApi}/repos/${org}/${repo}/pulls/${pr}`
-    },
-    token
-  );
-  return result.json;
-}
-async function listPullRequestsForRepo(org, repo, params = {}, token) {
-  const url = addParams(`${baseApi}/repos/${org}/${repo}/pulls`, params);
-  const result = await githubRequest({ url }, token);
-  return result.json;
-}
-async function getCode(org, repo, path, branch, token) {
-  const result = await githubRequest(
-    {
-      url: `${baseApi}/repos/${org}/${repo}/contents/${path}?ref=${branch}`
-    },
-    token
-  );
-  return result.json;
-}
-async function searchRepos(query, token) {
-  const result = await githubRequest({ url: `${baseApi}/search/repositories?q=${encodeURIComponent(query)}` }, token);
-  return result.json;
-}
-async function searchIssues(params, token) {
-  const url = addParams(`${baseApi}/search/issues`, params);
-  const result = await githubRequest({ url }, token);
-  return result.json;
-}
-var api = {
-  getIssue,
-  listIssuesForToken,
-  listIssuesForRepo,
-  getPullRequest,
-  listPullRequestsForRepo,
-  getCode,
-  searchIssues,
-  searchRepos
 };
 
+// src/github/api.ts
+var import_obsidian4 = require("obsidian");
+
+// node_modules/queue/index.js
+var has = Object.prototype.hasOwnProperty;
+var QueueEvent = class extends Event {
+  constructor(name, detail) {
+    super(name);
+    this.detail = detail;
+  }
+};
+var Queue = class extends EventTarget {
+  constructor(options = {}) {
+    super();
+    const { concurrency = Infinity, timeout = 0, autostart = false, results = null } = options;
+    this.concurrency = concurrency;
+    this.timeout = timeout;
+    this.autostart = autostart;
+    this.results = results;
+    this.pending = 0;
+    this.session = 0;
+    this.running = false;
+    this.jobs = [];
+    this.timers = [];
+    this.addEventListener("error", this._errorHandler);
+  }
+  _errorHandler(evt) {
+    this.end(evt.detail.error);
+  }
+  pop() {
+    return this.jobs.pop();
+  }
+  shift() {
+    return this.jobs.shift();
+  }
+  indexOf(searchElement, fromIndex) {
+    return this.jobs.indexOf(searchElement, fromIndex);
+  }
+  lastIndexOf(searchElement, fromIndex) {
+    if (fromIndex !== void 0)
+      return this.jobs.lastIndexOf(searchElement, fromIndex);
+    return this.jobs.lastIndexOf(searchElement);
+  }
+  slice(start, end) {
+    this.jobs = this.jobs.slice(start, end);
+    return this;
+  }
+  reverse() {
+    this.jobs.reverse();
+    return this;
+  }
+  push(...workers) {
+    const methodResult = this.jobs.push(...workers);
+    if (this.autostart)
+      this._start();
+    return methodResult;
+  }
+  unshift(...workers) {
+    const methodResult = this.jobs.unshift(...workers);
+    if (this.autostart)
+      this._start();
+    return methodResult;
+  }
+  splice(start, deleteCount, ...workers) {
+    this.jobs.splice(start, deleteCount, ...workers);
+    if (this.autostart)
+      this._start();
+    return this;
+  }
+  get length() {
+    return this.pending + this.jobs.length;
+  }
+  start(callback) {
+    if (this.running)
+      throw new Error("already started");
+    let awaiter;
+    if (callback) {
+      this._addCallbackToEndEvent(callback);
+    } else {
+      awaiter = this._createPromiseToEndEvent();
+    }
+    this._start();
+    return awaiter;
+  }
+  _start() {
+    this.running = true;
+    if (this.pending >= this.concurrency) {
+      return;
+    }
+    if (this.jobs.length === 0) {
+      if (this.pending === 0) {
+        this.done();
+      }
+      return;
+    }
+    const job = this.jobs.shift();
+    const session = this.session;
+    const timeout = job !== void 0 && has.call(job, "timeout") ? job.timeout : this.timeout;
+    let once2 = true;
+    let timeoutId = null;
+    let didTimeout = false;
+    let resultIndex = null;
+    const next = (error, ...result) => {
+      if (once2 && this.session === session) {
+        once2 = false;
+        this.pending--;
+        if (timeoutId !== null) {
+          this.timers = this.timers.filter((tID) => tID !== timeoutId);
+          clearTimeout(timeoutId);
+        }
+        if (error) {
+          this.dispatchEvent(new QueueEvent("error", { error, job }));
+        } else if (!didTimeout) {
+          if (resultIndex !== null && this.results !== null) {
+            this.results[resultIndex] = [...result];
+          }
+          this.dispatchEvent(new QueueEvent("success", { result: [...result], job }));
+        }
+        if (this.session === session) {
+          if (this.pending === 0 && this.jobs.length === 0) {
+            this.done();
+          } else if (this.running) {
+            this._start();
+          }
+        }
+      }
+    };
+    if (timeout) {
+      timeoutId = setTimeout(() => {
+        didTimeout = true;
+        this.dispatchEvent(new QueueEvent("timeout", { next, job }));
+        next();
+      }, timeout);
+      this.timers.push(timeoutId);
+    }
+    if (this.results != null) {
+      resultIndex = this.results.length;
+      this.results[resultIndex] = null;
+    }
+    this.pending++;
+    this.dispatchEvent(new QueueEvent("start", { job }));
+    job.promise = job(next);
+    if (job.promise !== void 0 && typeof job.promise.then === "function") {
+      job.promise.then(function(result) {
+        return next(void 0, result);
+      }).catch(function(err) {
+        return next(err || true);
+      });
+    }
+    if (this.running && this.jobs.length > 0) {
+      this._start();
+    }
+  }
+  stop() {
+    this.running = false;
+  }
+  end(error) {
+    this.clearTimers();
+    this.jobs.length = 0;
+    this.pending = 0;
+    this.done(error);
+  }
+  clearTimers() {
+    this.timers.forEach((timer) => {
+      clearTimeout(timer);
+    });
+    this.timers = [];
+  }
+  _addCallbackToEndEvent(cb) {
+    const onend = (evt) => {
+      this.removeEventListener("end", onend);
+      cb(evt.detail.error, this.results);
+    };
+    this.addEventListener("end", onend);
+  }
+  _createPromiseToEndEvent() {
+    return new Promise((resolve, reject) => {
+      this._addCallbackToEndEvent((error, results) => {
+        if (error)
+          reject(error);
+        else
+          resolve(results);
+      });
+    });
+  }
+  done(error) {
+    this.session++;
+    this.running = false;
+    this.dispatchEvent(new QueueEvent("end", { error }));
+  }
+};
+
+// src/github/api.ts
+var _GitHubApi = class _GitHubApi {
+  async queueRequest(config, token) {
+    if (getCache().get(config)) {
+      return this.githubRequest(config, token);
+    }
+    const { resolve, promise } = promiseWithResolvers();
+    _GitHubApi.q.push(() => {
+      return this.githubRequest(config, token).then((result) => {
+        resolve(result);
+      });
+    });
+    return promise;
+  }
+  async getIssue(org, repo, issue, token) {
+    const result = await this.queueRequest({ url: `${_GitHubApi.baseApi}/repos/${org}/${repo}/issues/${issue}` }, token);
+    return result.json;
+  }
+  async listIssuesForToken(params, token) {
+    const url = this.addParams(`${_GitHubApi.baseApi}/issues`, params);
+    const result = await this.queueRequest({ url }, token);
+    return result.json;
+  }
+  async listIssuesForRepo(org, repo, params = {}, token) {
+    const url = this.addParams(`${_GitHubApi.baseApi}/repos/${org}/${repo}/issues`, params);
+    const result = await this.queueRequest({ url }, token);
+    return result.json;
+  }
+  async getPullRequest(org, repo, pr, token) {
+    const result = await this.queueRequest(
+      {
+        url: `${_GitHubApi.baseApi}/repos/${org}/${repo}/pulls/${pr}`
+      },
+      token
+    );
+    return result.json;
+  }
+  async listPullRequestsForRepo(org, repo, params = {}, token) {
+    const url = this.addParams(`${_GitHubApi.baseApi}/repos/${org}/${repo}/pulls`, params);
+    const result = await this.queueRequest({ url }, token);
+    return result.json;
+  }
+  async getCode(org, repo, path, branch, token) {
+    const result = await this.queueRequest(
+      {
+        url: `${_GitHubApi.baseApi}/repos/${org}/${repo}/contents/${path}?ref=${branch}`
+      },
+      token
+    );
+    return result.json;
+  }
+  async searchIssues(params, token) {
+    const url = this.addParams(`${_GitHubApi.baseApi}/search/issues`, params);
+    const result = await this.githubRequest({ url }, token);
+    return result.json;
+  }
+  async githubRequest(_config, token, skipCache = false) {
+    if (_GitHubApi.rateLimitReset !== null && _GitHubApi.rateLimitReset > /* @__PURE__ */ new Date()) {
+      logger.warn(
+        `GitHub rate limit exceeded. No more requests will be made until ${_GitHubApi.rateLimitReset.toLocaleTimeString()}`
+      );
+      throw new Error("GitHub rate limit exceeded.");
+    } else if (_GitHubApi.rateLimitReset !== null) {
+      _GitHubApi.rateLimitReset = null;
+    }
+    const config = this.initHeaders(_config, token);
+    const cachedValue = getCache().get(config);
+    if (this.cachedRequestIsRecent(cachedValue, skipCache)) {
+      logger.debug(`Request was too recent. Returning cached value for: ${cachedValue == null ? void 0 : cachedValue.request.url}`);
+      logger.debug(cachedValue == null ? void 0 : cachedValue.response);
+      return cachedValue.response;
+    }
+    this.setCacheHeaders(config, cachedValue);
+    try {
+      logger.debug(`Request: ${config.url}`);
+      logger.debug(config);
+      const response = await (0, import_obsidian4.requestUrl)(config);
+      logger.debug(`Response (${config.url}):`);
+      logger.debug(response);
+      if ((cachedValue == null ? void 0 : cachedValue.response) && response.status === 304) {
+        getCache().update(config);
+        return cachedValue.response;
+      } else if (isSuccessResponse(response.status)) {
+        getCache().set(config, response);
+      }
+      const retryAfterSeconds = parseInt(response.headers["retry-after"]);
+      const rateLimitRemaining = parseInt(response.headers["x-ratelimit-remaining"]);
+      const rateLimitResetSeconds = parseInt(response.headers["x-ratelimit-reset"]);
+      if (!isNaN(retryAfterSeconds)) {
+        logger.warn(`Got retry-after header with value ${retryAfterSeconds}`);
+        await sleep(retryAfterSeconds * 1e3);
+        return this.githubRequest(config, token);
+      } else if (!isNaN(rateLimitRemaining) && rateLimitRemaining === 0 && !isNaN(rateLimitResetSeconds)) {
+        _GitHubApi.rateLimitReset = new Date(rateLimitResetSeconds * 1e3);
+        let message = `GitHub rate limit exceeded. No more requests will be made until after ${_GitHubApi.rateLimitReset.toLocaleTimeString()}`;
+        if (!token) {
+          message += " Consider adding an authentication token for a significantly higher rate limit.";
+        }
+        new import_obsidian4.Notice(message);
+      } else if (!isNaN(rateLimitRemaining) && rateLimitRemaining <= 5) {
+        logger.warn("GitHub rate limit approaching.");
+      }
+      return response;
+    } catch (err) {
+      throw new RequestError2(err);
+    }
+  }
+  /**
+   * Ensure headers object is initialized and common headers are added
+   */
+  initHeaders(config, token) {
+    if (!config.headers) {
+      config.headers = {};
+    }
+    config.headers.Accept = "application/vnd.github+json";
+    config.headers["X-GitHub-Api-Version"] = "2022-11-28";
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  }
+  /**
+   * Add available cache headers
+   */
+  setCacheHeaders(config, cachedValue) {
+    if (cachedValue == null ? void 0 : cachedValue.etag) {
+      config.headers["if-none-match"] = cachedValue.etag;
+    }
+    if (cachedValue == null ? void 0 : cachedValue.lastModified) {
+      config.headers["if-modified-since"] = cachedValue.lastModified;
+    }
+  }
+  addParams(href, params) {
+    const url = new URL(href);
+    for (const [key, value] of Object.entries(params)) {
+      url.searchParams.set(key, `${value}`);
+    }
+    return url.toString();
+  }
+  /**
+   * Returns true if we can skip calling the API due to request age
+   */
+  cachedRequestIsRecent(cachedValue, skipCache) {
+    if (skipCache || !cachedValue) {
+      return false;
+    }
+    const minCacheAge = new Date((/* @__PURE__ */ new Date()).getTime() - PluginSettings.minRequestSeconds * 1e3);
+    return cachedValue.retrieved > minCacheAge;
+  }
+};
+_GitHubApi.baseApi = "https://api.github.com";
+_GitHubApi.rateLimitReset = null;
+_GitHubApi.q = new Queue({ autostart: true, concurrency: 1 });
+var GitHubApi = _GitHubApi;
+
 // src/github/cache.ts
-var CacheEntry = class {
+var CacheEntry = class _CacheEntry {
+  constructor(request2, response, retrieved, etag, lastModified) {
+    this.request = request2;
+    this.response = response;
+    this.retrieved = retrieved;
+    this.etag = etag;
+    this.lastModified = lastModified;
+  }
+  static fromJSON(json) {
+    let result = null;
+    try {
+      const parsed = JSON.parse(json);
+      result = new _CacheEntry(
+        parsed.request,
+        parsed.response,
+        new Date(parsed.retrieved),
+        parsed.etag,
+        parsed.lastModified
+      );
+    } catch (err) {
+      logger.error("Failure reconstructing cache!");
+      logger.error(err);
+    }
+    return result;
+  }
+  toJSON() {
+    const params = {
+      request: this.request,
+      response: this.response,
+      retrieved: this.retrieved.getTime(),
+      etag: this.etag,
+      lastModified: this.lastModified
+    };
+    return JSON.stringify(params);
+  }
+};
+var RequestCache = class {
+  constructor(storedCache) {
+    this.cacheUpdated = false;
+    this.entries = {};
+    if (storedCache) {
+      try {
+        for (const entryString of storedCache) {
+          const entry = CacheEntry.fromJSON(entryString);
+          if (!entry) {
+            return;
+          }
+          this.entries[this.getCacheKey(entry.request)] = entry;
+        }
+      } catch (err) {
+        logger.warn("Could not read stored cache data, cache will be cleared.");
+        logger.warn(err);
+      }
+    }
+  }
+  get(request2) {
+    var _a;
+    return (_a = this.entries[this.getCacheKey(request2)]) != null ? _a : null;
+  }
+  set(request2, response) {
+    var _a, _b;
+    if (!isSuccessResponse(response.status)) {
+      logger.warn(`Attempted to cache a non-successful request: ${request2.url}`);
+      return;
+    }
+    const etag = (_a = response.headers.etag) != null ? _a : null;
+    const lastModified = (_b = response.headers["last-modified"]) != null ? _b : null;
+    const _request = { url: request2.url, body: request2.body };
+    const _response = { json: response.json, status: response.status };
+    const entry = new CacheEntry(
+      _request,
+      _response,
+      /* @__PURE__ */ new Date(),
+      etag,
+      lastModified
+    );
+    this.entries[this.getCacheKey(request2)] = entry;
+    this.cacheUpdated = true;
+  }
+  remove(request2) {
+    if (typeof request2 === "string") {
+      delete this.entries[request2];
+    } else {
+      delete this.entries[this.getCacheKey(request2)];
+    }
+    this.cacheUpdated = true;
+  }
+  clean(maxAge) {
+    let entriesDeleted = 0;
+    for (const [k, v] of Object.entries(this.entries)) {
+      if (v.retrieved < maxAge) {
+        delete this.entries[k];
+        entriesDeleted += 1;
+      }
+    }
+    return entriesDeleted;
+  }
+  update(request2) {
+    let entry = null;
+    if (typeof request2 === "string") {
+      entry = this.entries[request2];
+    } else {
+      entry = this.entries[this.getCacheKey(request2)];
+    }
+    if (entry) {
+      entry.retrieved = /* @__PURE__ */ new Date();
+    }
+    this.cacheUpdated = true;
+  }
+  toJSON() {
+    return Object.values(this.entries).map((e) => e.toJSON());
+  }
+  getCacheKey(request2) {
+    return request2.url;
+  }
+};
+var OldCacheEntry = class {
   constructor(value, created = /* @__PURE__ */ new Date(), ttl = 20) {
     this.value = value;
     this.created = created;
@@ -1432,13 +1932,13 @@ var CacheEntry = class {
     return (/* @__PURE__ */ new Date()).getTime() > expiry;
   }
 };
-var QueryCache = class {
+var OldQueryCache = class {
   constructor() {
     this.issueCache = {};
     this.repoCache = {};
   }
 };
-var RepoCache = class {
+var OldRepoCache = class {
   constructor() {
     this.issueCache = {};
     this.issueListForRepoCache = {};
@@ -1446,24 +1946,24 @@ var RepoCache = class {
     this.pullListForRepoCache = {};
   }
 };
-var OrgCache = class {
+var OldOrgCache = class {
   constructor() {
     this.repos = {};
     this.issueList = {};
   }
 };
-var Cache = class {
+var OldCache = class {
   constructor() {
     this.generic = {};
     this.orgs = {};
-    this.queries = new QueryCache();
+    this.queries = new OldQueryCache();
   }
   getGeneric(url) {
     var _a;
     return this.getCacheValue((_a = this.generic[url]) != null ? _a : null);
   }
   setGeneric(url, value) {
-    this.generic[url] = new CacheEntry(value);
+    this.generic[url] = new OldCacheEntry(value);
   }
   getIssue(org, repo, issue) {
     var _a;
@@ -1472,13 +1972,13 @@ var Cache = class {
   }
   setIssue(org, repo, issue) {
     const issueCache = this.getRepoCache(org, repo).issueCache;
-    const existingCache = issueCache[issue.id];
+    const existingCache = issueCache[issue.number];
     if (existingCache) {
       const now = /* @__PURE__ */ new Date();
       existingCache.created = now;
       existingCache.value = issue;
     } else {
-      issueCache[issue.id] = new CacheEntry(issue);
+      issueCache[issue.number] = new OldCacheEntry(issue);
     }
   }
   getIssueList(org, params) {
@@ -1488,7 +1988,7 @@ var Cache = class {
   }
   setIssueList(org, params, value) {
     const orgCache = this.getOrgCache(org);
-    orgCache.issueList[JSON.stringify(params)] = new CacheEntry(value);
+    orgCache.issueList[JSON.stringify(params)] = new OldCacheEntry(value);
   }
   getIssueListForRepo(org, repo, params) {
     var _a;
@@ -1497,7 +1997,7 @@ var Cache = class {
   }
   setIssueListForRepo(org, repo, params, value) {
     const repoCache = this.getRepoCache(org, repo);
-    repoCache.issueListForRepoCache[JSON.stringify(params)] = new CacheEntry(value);
+    repoCache.issueListForRepoCache[JSON.stringify(params)] = new OldCacheEntry(value);
   }
   getPullRequest(org, repo, pullRequest) {
     var _a;
@@ -1511,17 +2011,17 @@ var Cache = class {
   }
   setPullListForRepo(org, repo, params, value) {
     const repoCache = this.getRepoCache(org, repo);
-    repoCache.pullListForRepoCache[JSON.stringify(params)] = new CacheEntry(value);
+    repoCache.pullListForRepoCache[JSON.stringify(params)] = new OldCacheEntry(value);
   }
   setPullRequest(org, repo, pullRequest) {
     const pullCache = this.getRepoCache(org, repo).pullCache;
-    const existingCache = pullCache[pullRequest.id];
+    const existingCache = pullCache[pullRequest.number];
     if (existingCache) {
       const now = /* @__PURE__ */ new Date();
       existingCache.created = now;
       existingCache.value = pullRequest;
     } else {
-      pullCache[pullRequest.id] = new CacheEntry(pullRequest);
+      pullCache[pullRequest.number] = new OldCacheEntry(pullRequest);
     }
   }
   getIssueQuery(query) {
@@ -1529,19 +2029,19 @@ var Cache = class {
     return this.getCacheValue((_a = this.queries.issueCache[query]) != null ? _a : null);
   }
   setIssueQuery(query, result) {
-    this.queries.issueCache[query] = new CacheEntry(result);
+    this.queries.issueCache[query] = new OldCacheEntry(result);
   }
   getRepoQuery(query) {
     var _a;
     return this.getCacheValue((_a = this.queries.repoCache[query]) != null ? _a : null);
   }
   setRepoQuery(query, result) {
-    this.queries.repoCache[query] = new CacheEntry(result);
+    this.queries.repoCache[query] = new OldCacheEntry(result);
   }
   getOrgCache(org) {
     let orgCache = this.orgs[org];
     if (!orgCache) {
-      orgCache = this.orgs[org] = new OrgCache();
+      orgCache = this.orgs[org] = new OldOrgCache();
     }
     return orgCache;
   }
@@ -1549,7 +2049,7 @@ var Cache = class {
     const orgCache = this.getOrgCache(org);
     let repoCache = orgCache.repos[repo];
     if (!repoCache) {
-      repoCache = orgCache.repos[repo] = new RepoCache();
+      repoCache = orgCache.repos[repo] = new OldRepoCache();
     }
     return repoCache;
   }
@@ -1563,7 +2063,9 @@ var Cache = class {
 };
 
 // src/github/github.ts
-var cache = new Cache();
+var cache = new OldCache();
+var tokenMatchRegex = /repo:(.+)\//;
+var api = new GitHubApi();
 function getAccount(org) {
   var _a;
   const account = (_a = PluginSettings.accounts.find((acc) => acc.orgs.some((savedOrg) => savedOrg === org))) != null ? _a : PluginSettings.accounts.find((acc) => acc.id === PluginSettings.defaultAccount);
@@ -1572,27 +2074,21 @@ function getAccount(org) {
 function getToken(org, query) {
   let _org = org;
   if (!org && query) {
-    const match = query.match(/repo:(.+)\//);
-    if (match && match[0] !== null) {
-      _org = match[1];
+    const match = tokenMatchRegex.exec(query);
+    if ((match == null ? void 0 : match[0]) !== null) {
+      _org = match == null ? void 0 : match[1];
     }
   }
   const account = getAccount(_org);
   return account == null ? void 0 : account.token;
 }
-async function getIssue2(org, repo, issue) {
-  const cachedValue = cache.getIssue(org, repo, issue);
-  if (cachedValue) {
-    return Promise.resolve(cachedValue);
-  }
-  const response = await api.getIssue(org, repo, issue, getToken(org));
-  cache.setIssue(org, repo, response);
-  return response;
+function getIssue(org, repo, issue) {
+  return api.getIssue(org, repo, issue, getToken(org));
 }
-async function getMyIssues(params, org, skipCache = false) {
+function getMyIssues(params, org, skipCache = false) {
   const account = getAccount(org);
-  if (!account || !account.token) {
-    return [];
+  if (!(account == null ? void 0 : account.token)) {
+    return Promise.resolve([]);
   }
   const _params = sanitizeObject(params, {
     assignee: false,
@@ -1614,15 +2110,9 @@ async function getMyIssues(params, org, skipCache = false) {
   if (Array.isArray(_params.labels)) {
     _params.labels = _params.labels.join(",");
   }
-  const cachedValue = cache.getIssueList(account.name, _params);
-  if (cachedValue && !skipCache) {
-    return Promise.resolve(cachedValue);
-  }
-  const response = await api.listIssuesForToken(_params, account.token);
-  cache.setIssueList(account.name, _params, response);
-  return response;
+  return api.listIssuesForToken(_params, account.token);
 }
-async function getIssuesForRepo(params, org, repo, skipCache = false) {
+function getIssuesForRepo(params, org, repo, skipCache = false) {
   const _params = sanitizeObject(params, {
     assignee: true,
     creator: true,
@@ -1643,24 +2133,12 @@ async function getIssuesForRepo(params, org, repo, skipCache = false) {
   if (Array.isArray(_params.labels)) {
     _params.labels = _params.labels.join(",");
   }
-  const cachedValue = cache.getIssueListForRepo(org, repo, _params);
-  if (cachedValue && !skipCache) {
-    return Promise.resolve(cachedValue);
-  }
-  const response = await api.listIssuesForRepo(org, repo, _params, getToken(org));
-  cache.setIssueListForRepo(org, repo, _params, response);
-  return response;
+  return api.listIssuesForRepo(org, repo, _params, getToken(org));
 }
-async function getPullRequest2(org, repo, pullRequest) {
-  const cachedValue = cache.getPullRequest(org, repo, pullRequest);
-  if (cachedValue) {
-    return Promise.resolve(cachedValue);
-  }
-  const response = await api.getPullRequest(org, repo, pullRequest, getToken(org));
-  cache.setPullRequest(org, repo, response);
-  return response;
+function getPullRequest(org, repo, pullRequest) {
+  return api.getPullRequest(org, repo, pullRequest, getToken(org));
 }
-async function getPullRequestsForRepo(params, org, repo, skipCache = false) {
+function getPullRequestsForRepo(params, org, repo) {
   const _params = sanitizeObject(params, {
     org: false,
     repo: false,
@@ -1673,15 +2151,9 @@ async function getPullRequestsForRepo(params, org, repo, skipCache = false) {
     state: true
   });
   setPageSize(_params);
-  const cachedValue = cache.getPullListForRepo(org, repo, _params);
-  if (cachedValue && !skipCache) {
-    return Promise.resolve(cachedValue);
-  }
-  const response = await api.listPullRequestsForRepo(org, repo, _params, getToken(org));
-  cache.setPullListForRepo(org, repo, _params, response);
-  return response;
+  return api.listPullRequestsForRepo(org, repo, _params, getToken(org));
 }
-async function searchIssues2(params, query, org, skipCache = false) {
+async function searchIssues(params, query, org, skipCache = false) {
   const _params = sanitizeObject(params, {
     q: false,
     baseUrl: false,
@@ -1705,22 +2177,19 @@ async function searchIssues2(params, query, org, skipCache = false) {
 }
 async function getPRForIssue(timelineUrl, org) {
   var _a, _b, _c;
-  let response = cache.getGeneric(timelineUrl);
-  if (response === null) {
-    try {
-      response = (await githubRequest({ url: timelineUrl }, getToken(org))).json;
-    } catch (err) {
-      if (err instanceof RequestError && err.status === 404) {
-        return null;
-      } else {
-        throw err;
-      }
+  let response = null;
+  try {
+    response = (await api.queueRequest({ url: timelineUrl }, getToken(org))).json;
+  } catch (err) {
+    if (err instanceof RequestError2 && err.status === 404) {
+      return null;
+    } else {
+      throw err;
     }
   }
   if (!response) {
     return null;
   }
-  cache.setGeneric(timelineUrl, response);
   const crossRefEvent = response.find((_evt) => {
     var _a2, _b2, _c2;
     const evt = _evt;
@@ -1742,45 +2211,36 @@ function parseUrl2(urlString) {
   const url = new URL(urlString);
   const parsedUrl = { url: urlString, host: url.hostname };
   const urlParts = url.pathname.split("/");
-  if (urlParts.length >= 4) {
+  if (urlParts.length > 4) {
+    const issueNumber = parseInt(urlParts[4], 10);
     switch (urlParts[3].toLowerCase()) {
       case "issues":
-        if (urlParts[4]) {
-          const issueNumber = parseInt(urlParts[4], 10);
-          if (!isNaN(issueNumber)) {
-            parsedUrl.issue = issueNumber;
-          }
+        if (!isNaN(issueNumber)) {
+          parsedUrl.issue = issueNumber;
         }
         break;
       case "pull":
-        if (urlParts[4]) {
-          const prNumber = parseInt(urlParts[4], 10);
-          if (!isNaN(prNumber)) {
-            parsedUrl.pr = prNumber;
-          }
+        if (!isNaN(issueNumber)) {
+          parsedUrl.pr = issueNumber;
         }
         break;
       case "blob":
         parsedUrl.code = {};
-        if (urlParts[4]) {
-          parsedUrl.code.branch = urlParts[4];
-        }
+        parsedUrl.code.branch = urlParts[4];
         if (urlParts[5]) {
           const pathParts = urlParts.slice(5);
           parsedUrl.code.path = pathParts.join("/");
         }
         break;
       case "commit":
-        if (urlParts[4]) {
-          parsedUrl.commit = urlParts.slice(4).join("/");
-        }
+        parsedUrl.commit = urlParts.slice(4).join("/");
         break;
     }
   }
-  if (urlParts.length >= 3) {
+  if (urlParts.length > 2) {
     parsedUrl.repo = urlParts[2];
   }
-  if (urlParts.length >= 2) {
+  if (urlParts.length > 1) {
     parsedUrl.org = urlParts[1];
   }
   return parsedUrl;
@@ -1829,7 +2289,7 @@ function setIssueIcon(icon, status) {
 }
 
 // src/inline/inline.ts
-async function createTag(href) {
+function createTag(href) {
   const parsedUrl = parseUrl2(href);
   const container = createEl("a", { cls: "github-link-inline", href });
   const icon = createTagSection(container).createSpan({
@@ -1849,30 +2309,32 @@ async function createTag(href) {
   }
   if (parsedUrl.repo && parsedUrl.org) {
     if (parsedUrl.issue !== void 0) {
-      const issue = await getIssue2(parsedUrl.org, parsedUrl.repo, parsedUrl.issue);
-      Logger.debug("Rendering tag for issue:");
-      Logger.debug(issue);
-      if (issue.title) {
-        const status = getIssueStatus(issue);
-        setIssueIcon(icon, status);
-        createTagSection(container).createSpan({
-          cls: "github-link-inline-issue-title",
-          text: issue.title
-        });
-      }
+      setIssueIcon(icon, "open" /* Open */);
+      const issueContainer = createTagSection(container).createSpan({
+        cls: "github-link-inline-issue-title",
+        text: `${parsedUrl.issue}`
+      });
+      getIssue(parsedUrl.org, parsedUrl.repo, parsedUrl.issue).then((issue) => {
+        if (issue.title) {
+          const status = getIssueStatus(issue);
+          setIssueIcon(icon, status);
+          issueContainer.setText(issue.title);
+        }
+      });
     }
     if (parsedUrl.pr !== void 0) {
-      const pull = await getPullRequest2(parsedUrl.org, parsedUrl.repo, parsedUrl.pr);
-      Logger.debug("Rendering tag for pull request:");
-      Logger.debug(pull);
-      if (pull.title) {
-        const status = getPRStatus(pull);
-        setPRIcon(icon, status);
-        createTagSection(container).createSpan({
-          cls: "github-link-inline-pr-title",
-          text: pull.title
-        });
-      }
+      setPRIcon(icon, "open" /* Open */);
+      const prContainer = createTagSection(container).createSpan({
+        cls: "github-link-inline-pr-title",
+        text: `${parsedUrl.pr}`
+      });
+      getPullRequest(parsedUrl.org, parsedUrl.repo, parsedUrl.pr).then((pr) => {
+        if (pr.title) {
+          const status = getPRStatus(pr);
+          setPRIcon(icon, status);
+          prContainer.setText(pr.title);
+        }
+      });
     }
   }
   return container;
@@ -1884,7 +2346,7 @@ async function InlineRenderer(el) {
   const githubLinks = el.querySelectorAll(`a.external-link[href^="https://github.com"]`);
   for (const anchor of Array.from(githubLinks)) {
     if (anchor.href === anchor.innerText) {
-      const container = await createTag(anchor.href);
+      const container = createTag(anchor.href);
       anchor.replaceWith(container);
     }
   }
@@ -2006,7 +2468,7 @@ var IssueColumns = {
       if (!pullRequestUrl) {
         return;
       }
-      const tag = await createTag(pullRequestUrl);
+      const tag = createTag(pullRequestUrl);
       el.appendChild(tag);
     }
   }
@@ -2037,7 +2499,7 @@ var ALL_COLUMNS = {
   ["issue" /* Issue */]: IssueColumns,
   ["repo" /* Repo */]: RepoColumns
 };
-async function renderTable(params, result, el, renderFn) {
+async function renderTable(params, result, el, renderFn, externalLink) {
   var _a, _b;
   el.empty();
   const tableWrapper = el.createDiv({ cls: "github-link-table-wrapper" });
@@ -2045,6 +2507,13 @@ async function renderTable(params, result, el, renderFn) {
   const table = tableScrollWrapper.createEl("table", { cls: "github-link-table" });
   if (params.refresh) {
     const refresh = tableWrapper.createDiv({ cls: "github-link-table-refresh" });
+    if (externalLink) {
+      refresh.createEl("a", {
+        cls: "github-link-table-refresh-external-link",
+        text: "View on GitHub",
+        href: externalLink
+      });
+    }
     const refreshButton = refresh.createEl("button", {
       cls: "clickable-icon",
       attr: { "aria-label": "Refresh Results" }
@@ -2092,10 +2561,12 @@ async function QueryProcessor(source, el, _ctx) {
   }
   const renderFn = async (element, skipCache = false) => {
     let response = void 0;
+    let externalLink;
     if (isTableQueryParams(params)) {
       if (params.queryType === "issue" /* Issue */ || params.queryType === "pull-request" /* PullRequest */) {
         const queryParams = params;
-        response = await searchIssues2(params, params.query, queryParams.org, skipCache);
+        response = await searchIssues(params, params.query, queryParams.org, skipCache);
+        externalLink = `https://github.com/search?q=${encodeURIComponent(params.query)}`;
       }
     } else if (isTableParams(params)) {
       if (params.queryType === "issue" /* Issue */) {
@@ -2108,12 +2579,12 @@ async function QueryProcessor(source, el, _ctx) {
       } else if (params.queryType === "pull-request" /* PullRequest */) {
         const pullParams = params;
         if (pullParams.org && pullParams.repo) {
-          response = await getPullRequestsForRepo(pullParams, pullParams.org, pullParams.repo, skipCache);
+          response = await getPullRequestsForRepo(pullParams, pullParams.org, pullParams.repo);
         }
       }
     }
     if (response) {
-      renderTable(params, response, element, renderFn);
+      renderTable(params, response, element, renderFn, externalLink);
     }
   };
   await renderFn(el);
@@ -2128,13 +2599,8 @@ var InlineTagWidget = class extends import_view.WidgetType {
     this.href = href;
     this.error = false;
     this.container = createSpan();
-    createTag(href).then((tag) => {
-      this.container.appendChild(tag);
-    }).catch((err) => {
-      console.error(err);
-      this.error = true;
-      dispatch();
-    });
+    const tag = createTag(href);
+    this.container.appendChild(tag);
   }
   eq(widget) {
     return widget.href === this.href;
@@ -2147,7 +2613,7 @@ function createInlineViewPlugin(_plugin) {
   class InlineViewPluginValue {
     constructor(view) {
       this.match = new import_view.MatchDecorator({
-        regexp: /(https:\/\/)?github\.com[\S]+/g,
+        regexp: /(https:\/\/)?github\.com\S+/g,
         decorate: (add, from, to, match, view) => {
           const shouldRender = this.shouldRender(view, from, to, match);
           if (shouldRender) {
@@ -2227,15 +2693,46 @@ function createInlineViewPlugin(_plugin) {
 
 // src/plugin.ts
 var PluginSettings = { ...DEFAULT_SETTINGS };
-var Logger = verboseFactory(0 /* Error */);
+var logger = new Logger();
+var cache2;
+function getCache() {
+  return cache2;
+}
 var GithubLinkPlugin = class extends import_obsidian10.Plugin {
   async onload() {
-    PluginSettings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData());
-    Logger = verboseFactory(PluginSettings.logLevel);
+    Object.assign(PluginSettings, await this.loadData());
+    logger.logLevel = PluginSettings.logLevel;
+    cache2 = new RequestCache(PluginSettings.cache);
+    const maxAge = new Date((/* @__PURE__ */ new Date()).getTime() - PluginSettings.maxCacheAgeHours * 60 * 60 * 1e3);
+    const entriesDeleted = cache2.clean(maxAge);
+    if (entriesDeleted > 0) {
+      PluginSettings.cache = cache2.toJSON();
+      await this.saveData(PluginSettings);
+      logger.info(`Cleaned ${entriesDeleted} entries from request cache.`);
+    }
     this.addSettingTab(new GithubLinkPluginSettingsTab(this.app, this));
     this.registerMarkdownPostProcessor(InlineRenderer);
     this.registerEditorExtension(createInlineViewPlugin(this));
     this.registerMarkdownCodeBlockProcessor("github-query", QueryProcessor);
+    this.setCacheInterval();
+  }
+  /**
+   * Save cache at regular interval
+   */
+  setCacheInterval() {
+    window.clearInterval(this.cacheInterval);
+    this.cacheInterval = this.registerInterval(
+      window.setInterval(async () => {
+        var _a;
+        logger.debug("Checking if cache needs a save.");
+        if (cache2.cacheUpdated) {
+          PluginSettings.cache = cache2.toJSON();
+          await this.saveData(PluginSettings);
+          cache2.cacheUpdated = false;
+          logger.info(`Saved request cache with ${(_a = PluginSettings.cache) == null ? void 0 : _a.length} items.`);
+        }
+      }, PluginSettings.cacheIntervalSeconds * 1e3)
+    );
   }
 };
 

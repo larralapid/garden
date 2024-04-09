@@ -5,10 +5,10 @@ id: 0cy5kxskfaf2oy3run40pqq
 title: somastack
 desc: ""
 created: 2024-03-12 02:32:42 AM
-updated: 2024-04-04 03:14:59 PM
+updated: 2024-04-09 05:38:10 PM
 ---
 - "enablers of digital workflow transformation"
-- [[ServiceNow]] areas of expertise
+- [[notes/ServiceNow]] areas of expertise
 	- [[ITSM]]
 		- Request management 
 		- Service Catalog 

@@ -7009,7 +7009,7 @@ function buildQueryString(query) {
   return parts.join("&");
 }
 
-// node_modules/@aws-sdk/fetch-http-handler/dist-es/request-timeout.js
+// node_modules/@smithy/fetch-http-handler/dist-es/request-timeout.js
 function requestTimeout(timeoutInMs = 0) {
   return new Promise((resolve, reject) => {
     if (timeoutInMs) {
@@ -7117,19 +7117,6 @@ function buildQueryString2(query) {
   return parts.join("&");
 }
 
-// node_modules/@smithy/fetch-http-handler/dist-es/request-timeout.js
-function requestTimeout2(timeoutInMs = 0) {
-  return new Promise((resolve, reject) => {
-    if (timeoutInMs) {
-      setTimeout(() => {
-        const timeoutError = new Error(`Request did not complete within ${timeoutInMs} ms`);
-        timeoutError.name = "TimeoutError";
-        reject(timeoutError);
-      }, timeoutInMs);
-    }
-  });
-}
-
 // node_modules/@smithy/fetch-http-handler/dist-es/fetch-http-handler.js
 var keepAliveSupport = {
   supported: Boolean(typeof Request !== "undefined" && "keepalive" in new Request("https://[::1]"))
@@ -7209,7 +7196,7 @@ var FetchHttpHandler = class {
           })
         };
       }),
-      requestTimeout2(requestTimeoutInMs)
+      requestTimeout(requestTimeoutInMs)
     ];
     if (abortSignal) {
       raceOfPromises.push(new Promise((resolve, reject) => {
@@ -11321,6 +11308,19 @@ var isReadableStream = (body) => typeof ReadableStream === "function" && body in
 // node_modules/@aws-sdk/eventstream-serde-browser/dist-es/provider.js
 var eventStreamSerdeProvider = (options) => new EventStreamMarshaller2(options);
 
+// node_modules/@aws-sdk/fetch-http-handler/dist-es/request-timeout.js
+function requestTimeout2(timeoutInMs = 0) {
+  return new Promise((resolve, reject) => {
+    if (timeoutInMs) {
+      setTimeout(() => {
+        const timeoutError = new Error(`Request did not complete within ${timeoutInMs} ms`);
+        timeoutError.name = "TimeoutError";
+        reject(timeoutError);
+      }, timeoutInMs);
+    }
+  });
+}
+
 // node_modules/@aws-sdk/fetch-http-handler/dist-es/fetch-http-handler.js
 var FetchHttpHandler2 = class {
   constructor(options) {
@@ -11387,7 +11387,7 @@ var FetchHttpHandler2 = class {
           })
         };
       }),
-      requestTimeout(requestTimeoutInMs)
+      requestTimeout2(requestTimeoutInMs)
     ];
     if (abortSignal) {
       raceOfPromises.push(new Promise((resolve, reject) => {
@@ -12237,7 +12237,7 @@ var S3UploaderPlugin = class extends import_obsidian.Plugin {
     }
   }
   async pasteHandler(ev, editor) {
-    var _a, _b, _c;
+    var _a, _b, _c, _d, _e, _f, _g;
     if (ev.defaultPrevented) {
       return;
     }
@@ -12245,104 +12245,75 @@ var S3UploaderPlugin = class extends import_obsidian.Plugin {
     if (!noteFile || !noteFile.name)
       return;
     const fm = (_a = this.app.metadataCache.getFileCache(noteFile)) == null ? void 0 : _a.frontmatter;
-    const fmUploadOnDrag = fm && fm.uploadOnDrag;
-    const fmLocalUpload = fm && fm.localUpload;
-    const fmUploadFolder = fm ? fm.localUploadFolder : null;
-    const fmUploadVideo = fm && fm.uploadVideo;
-    const fmUploadAudio = fm && fm.uploadAudio;
-    const fmUploadPdf = fm && fm.uploadPdf;
-    const localUpload = fmLocalUpload ? fmLocalUpload : this.settings.localUpload;
-    const uploadVideo = fmUploadVideo ? fmUploadVideo : this.settings.uploadVideo;
-    const uploadAudio = fmUploadAudio ? fmUploadAudio : this.settings.uploadAudio;
-    const uploadPdf = fmUploadPdf ? fmUploadPdf : this.settings.uploadPdf;
-    let file = null;
+    const localUpload = (_b = fm == null ? void 0 : fm.localUpload) != null ? _b : this.settings.localUpload;
+    const uploadVideo = (_c = fm == null ? void 0 : fm.uploadVideo) != null ? _c : this.settings.uploadVideo;
+    const uploadAudio = (_d = fm == null ? void 0 : fm.uploadAudio) != null ? _d : this.settings.uploadAudio;
+    const uploadPdf = (_e = fm == null ? void 0 : fm.uploadPdf) != null ? _e : this.settings.uploadPdf;
+    let files = [];
     switch (ev.type) {
       case "paste":
-        file = (_b = ev.clipboardData) == null ? void 0 : _b.files[0];
+        files = Array.from(((_f = ev.clipboardData) == null ? void 0 : _f.files) || []);
         break;
       case "drop":
-        if (!this.settings.uploadOnDrag && !fmUploadOnDrag) {
+        if (!this.settings.uploadOnDrag && !(fm && fm.uploadOnDrag)) {
           return;
         }
-        file = (_c = ev.dataTransfer) == null ? void 0 : _c.files[0];
+        files = Array.from(((_g = ev.dataTransfer) == null ? void 0 : _g.files) || []);
+        break;
     }
-    const imageType = /image.*/;
-    const videoType = /video.*/;
-    const audioType = /audio.*/;
-    const pdfType = /application\/pdf/;
-    let thisType = "";
-    if ((file == null ? void 0 : file.type.match(videoType)) && uploadVideo) {
-      thisType = "video";
-    } else if ((file == null ? void 0 : file.type.match(audioType)) && uploadAudio) {
-      thisType = "audio";
-    } else if ((file == null ? void 0 : file.type.match(pdfType)) && uploadPdf) {
-      thisType = "pdf";
-    } else if (file == null ? void 0 : file.type.match(imageType)) {
-      thisType = "image";
-    }
-    if (thisType && file) {
+    if (files.length > 0) {
       ev.preventDefault();
-      const buf = await file.arrayBuffer();
-      const digest = crypto2.createHash("md5").update(new Uint8Array(buf)).digest("hex");
-      const contentType = file == null ? void 0 : file.type;
-      const newFileName = digest + "." + file.name.slice(((file == null ? void 0 : file.name.lastIndexOf(".")) - 1 >>> 0) + 2);
-      const pastePlaceText = `![uploading...](${newFileName})
+      const uploads = files.map(async (file) => {
+        var _a2;
+        let thisType = "";
+        if (file.type.match(/video.*/) && uploadVideo) {
+          thisType = "video";
+        } else if (file.type.match(/audio.*/) && uploadAudio) {
+          thisType = "audio";
+        } else if (file.type.match(/application\/pdf/) && uploadPdf) {
+          thisType = "pdf";
+        } else if (file.type.match(/image.*/)) {
+          thisType = "image";
+        } else if (file.type.match(/presentation.*/) || file.type.match(/powerpoint.*/)) {
+          thisType = "ppt";
+        }
+        if (!thisType)
+          return;
+        const buf = await file.arrayBuffer();
+        const digest = crypto2.createHash("md5").update(new Uint8Array(buf)).digest("hex");
+        const newFileName = `${digest}.${file.name.split(".").pop()}`;
+        const placeholder = `![uploading...](${newFileName})
 `;
-      editor.replaceSelection(pastePlaceText);
-      let folder = fmUploadFolder ? fmUploadFolder : this.settings.folder;
-      const currentDate = new Date();
-      const year = currentDate.getFullYear();
-      const month = currentDate.getMonth() + 1;
-      const day = currentDate.getDate();
-      folder = folder.replace("${year}", year);
-      folder = folder.replace("${month}", month);
-      folder = folder.replace("${day}", day);
-      const key = folder ? folder + "/" + newFileName : newFileName;
-      if (!localUpload) {
-        this.s3.send(new PutObjectCommand({
-          Bucket: this.settings.bucket,
-          Key: key,
-          Body: new Uint8Array(await file.arrayBuffer()),
-          ContentType: contentType ? contentType : void 0
-        })).then((res) => {
-          const url = this.settings.imageUrlPath + key;
-          let imgMarkdownText = "";
-          try {
-            imgMarkdownText = wrapFileDependingOnType(url, thisType, "");
-          } catch (error) {
-            this.replaceText(editor, pastePlaceText, "");
-            throw error;
+        editor.replaceSelection(placeholder);
+        let folder = (_a2 = fm == null ? void 0 : fm.folder) != null ? _a2 : this.settings.localUploadFolder;
+        const currentDate = new Date();
+        folder = folder.replace("${year}", currentDate.getFullYear().toString()).replace("${month}", String(currentDate.getMonth() + 1).padStart(2, "0")).replace("${day}", String(currentDate.getDate()).padStart(2, "0"));
+        const key = folder ? `${folder}/${newFileName}` : newFileName;
+        try {
+          let url;
+          if (!localUpload) {
+            await this.s3.send(new PutObjectCommand({
+              Bucket: this.settings.bucket,
+              Key: key,
+              Body: new Uint8Array(buf),
+              ContentType: file.type
+            }));
+            url = this.settings.imageUrlPath + key;
+          } else {
+            await this.app.vault.adapter.writeBinary(key, new Uint8Array(buf));
+            url = this.app.vault.adapter instanceof import_obsidian.FileSystemAdapter ? this.app.vault.adapter.getFilePath(key) : key;
           }
-          this.replaceText(editor, pastePlaceText, imgMarkdownText);
-          new import_obsidian.Notice(`Image uploaded to S3 bucket: ${this.settings.bucket}`);
-        }).catch((err) => {
-          console.error(err);
-          new import_obsidian.Notice(`Error uploading image to S3 bucket ${this.settings.bucket}: ` + err.message);
-        });
-      } else {
-        const localUploadFolder = fmUploadFolder ? fmUploadFolder : this.settings.localUploadFolder;
-        const localUploadPath = localUploadFolder ? localUploadFolder + "/" + newFileName : newFileName;
-        await this.app.vault.adapter.mkdir(localUploadFolder);
-        this.app.vault.adapter.writeBinary(localUploadPath, buf).then(() => {
-          let basePath = "";
-          const adapter = this.app.vault.adapter;
-          if (adapter instanceof import_obsidian.FileSystemAdapter) {
-            basePath = adapter.getBasePath();
-          }
-          let imgMarkdownText = "";
-          try {
-            imgMarkdownText = wrapFileDependingOnType(localUploadPath, thisType, basePath);
-          } catch (error) {
-            this.replaceText(editor, pastePlaceText, "");
-            throw error;
-          }
-          this.replaceText(editor, pastePlaceText, imgMarkdownText);
-          new import_obsidian.Notice(`Image uploaded to ${localUploadFolder} folder`);
-        }).catch((err) => {
-          console.log(err);
-          new import_obsidian.Notice(`Error uploading image to ${localUploadFolder} folder: ` + err.message);
-        });
-      }
+          const imgMarkdownText = wrapFileDependingOnType(url, thisType, "");
+          this.replaceText(editor, placeholder, imgMarkdownText);
+        } catch (error) {
+          console.error(error);
+          this.replaceText(editor, placeholder, `Error uploading file: ${error.message}
+`);
+        }
+      });
+      await Promise.all(uploads).then(() => {
+        new import_obsidian.Notice("All files processed.");
+      });
     }
   }
   async onload() {
@@ -12538,8 +12509,13 @@ var wrapFileDependingOnType = (location, type, localBase) => {
       throw new Error("PDFs cannot be embedded in local mode");
     }
     return `<iframe frameborder=0 border=0 width=100% height=800
-	src="https://docs.google.com/viewer?url=${location}?raw=true">
-</iframe>`;
+		src="https://docs.google.com/viewer?embedded=true&url=${location}?raw=true">
+		</iframe>`;
+  } else if (type === "ppt") {
+    return `<iframe
+	    src='https://view.officeapps.live.com/op/embed.aspx?src=${location}' 
+	    width='100%' height='600px' frameborder='0'>
+	  </iframe>`;
   } else {
     throw new Error("Unknown file type");
   }

@@ -100,6 +100,7 @@
   "showFullTagName": false,
   "maxItemCount": 30,
   "renderSiblings": true,
+  "applyPowerFilter": false,
   "baseNodeStyle": {
     "prefix": "",
     "backgroundColor": "#00000066",
@@ -228,7 +229,16 @@
   "navigationHistory": [
     "index.md",
     "changelog.md",
-    "Excalidraw/ExcaliBrain Snapshot - index.excalidraw.md"
+    "Excalidraw/ExcaliBrain Snapshot - index.excalidraw.md",
+    "notes/Untitled.md",
+    "notes/\"life\" life.md",
+    "notes/2023.md",
+    "dotfiles",
+    "notes/20240405141527.md",
+    "notes/20240405140813.md",
+    "notes/20240404144829.md",
+    "notes/SOW Types.md",
+    "notes/internet finds/Consulting Fees How To Price Your Expertise In The Market.md"
   ],
   "allowOntologySuggester": true,
   "ontologySuggesterParentTrigger": "::p",

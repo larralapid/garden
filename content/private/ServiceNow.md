@@ -16,7 +16,7 @@ sctask
 assignee of sctask 
 	sc_task
 
-variables can show up on incident if the incident is submitted via record producer [[ServiceNow]]
+variables can show up on incident if the incident is submitted via record producer [[private/ServiceNow]]
 
 #snippet https://apprissdev.service-now.com/login.do?sysparm_user_name=systableread&sysparm_user_password=11111111&sys_action=sysverb_login
 

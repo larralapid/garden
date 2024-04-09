@@ -146,9 +146,9 @@ var require_core = __commonJS({
              *     var instance = MyType.create();
              */
             create: function() {
-              var instance = this.extend();
-              instance.init.apply(instance, arguments);
-              return instance;
+              var instance4 = this.extend();
+              instance4.init.apply(instance4, arguments);
+              return instance4;
             },
             /**
              * Initializes a newly created object.
@@ -6588,18 +6588,16 @@ var require_crypto_js = __commonJS({
 // src/main.ts
 var main_exports = {};
 __export(main_exports, {
-  PLUGIN_VERSION: () => PLUGIN_VERSION,
-  default: () => gamification2,
-  hoursUntilMinutesPassed: () => hoursUntilMinutesPassed,
-  isMinutesPassed: () => isMinutesPassed
+  default: () => gamification
 });
 module.exports = __toCommonJS(main_exports);
-var import_obsidian6 = require("obsidian");
+var import_obsidian12 = require("obsidian");
 
 // src/settings.ts
 var import_obsidian = require("obsidian");
 
 // src/constants.ts
+var PLUGIN_VERSION = "0.0.90";
 var pointsNoteMajurity = 100;
 var pointsMajurity = 10;
 var pointsForDailyChallenge = 500;
@@ -6612,33 +6610,37 @@ var secretKey = "2ZU^12y#QmNB5$yEin5^";
 var debugLogs = false;
 var avatarInitContent = `# Avatar
 
-|           |         | 
-| --------- | ------- |
-| **Level**  | **1** |
-| Points | 0    |
-^levelAndPoints
-\`\`\`chart
-type: bar
-labels: [Expririence]
-series:
-  - title: points reached
-    data: [0]
-  - title: points to earn to level up
-    data: [1000]
-xMin: 0
-xMax: 1000
-tension: 0.2
-width: 40%
-labelColors: false
-fill: false
-beginAtZero: false
-bestFit: false
-bestFitTitle: undefined
-bestFitNumber: 0
-stacked: true
-indexAxis: y
-xTitle: "progress"
-legend: false
+
+\`\`\`gamification-avatar
+image: 
+description: |-2
+  |           |         | 
+  | --------- | ------- |
+  | **Level**  | **1** |
+  | Points | 0    |
+  ^levelAndPoints
+  \`\`\`chart
+  type: bar
+  labels: [Expririence]
+  series:
+    - title: points reached
+      data: [0]
+    - title: points to earn to level up
+      data: [1000]
+  xMin: 0
+  xMax: 1000
+  tension: 0.2
+  width: 40%
+  labelColors: false
+  fill: false
+  beginAtZero: false
+  bestFit: false
+  bestFitTitle: undefined
+  bestFitNumber: 0
+  stacked: true
+  indexAxis: y
+  xTitle: "progress"
+  legend: false
 \`\`\`
 
 |                  |       |
@@ -6933,11 +6935,15 @@ var defaultSettings = {
   delayLoadTime: "U2FsdGVkX19TLndonGY4Y8vHuZFfLJ5gZ2t/CLprh0o=",
   timeShowNotice: "U2FsdGVkX190u8cOsylOs1cQ8MeZFq+i+Wv4ox6qq0k=",
   receivedBadges: "U2FsdGVkX1/skTUHmzuMYD86hDA/uF1kElPVYm04ijQ=",
-  showNewVersionNotification: "U2FsdGVkX1+7lWe/h95uqzgl27JBGW2iki7sBwk44YQ="
+  showNewVersionNotification: "U2FsdGVkX1+7lWe/h95uqzgl27JBGW2iki7sBwk44YQ=",
+  autoRateOnChange: "U2FsdGVkX1/KT5I5txOiZ+r6Aa1F5RuE5b4eqpaZAqQ=",
+  autoRateOnChangeDelayTime: "U2FsdGVkX1/RiGtHePLD9og+g+w+DL31vVK02vCSkQQ=",
+  previousRelease: "U2FsdGVkX1+z55uCXdMxdGtgg5oBmTGQPDroIP0PDIk=",
+  showReleaseNotes: "U2FsdGVkX1+7lWe/h95uqzgl27JBGW2iki7sBwk44YQ="
 };
 var GamificationPluginSettings = class extends import_obsidian.PluginSettingTab {
-  constructor(app, plugin) {
-    super(app, plugin);
+  constructor(app2, plugin) {
+    super(app2, plugin);
     this.plugin = plugin;
     let settings = Object.assign({}, defaultSettings);
   }
@@ -6953,15 +6959,15 @@ var GamificationPluginSettings = class extends import_obsidian.PluginSettingTab 
         this.plugin.saveData(this.plugin.settings);
       })
     );
-    new import_obsidian.Setting(containerEl).setName("#tags to ignore").setDesc('Enter tags without # and separate with ", ".\nInclude nested tags.').addText((text) => text.setPlaceholder("Enter your tag1, tag2/subtag, \u2026").setValue(decryptString(this.plugin.settings.tagsExclude)).onChange(async (value) => {
+    new import_obsidian.Setting(containerEl).setName("#tags to ignore").setDesc('Enter tags without # and separate with ", ".\nInclude nested tags.').addText((text2) => text2.setPlaceholder("Enter your tag1, tag2/subtag, \u2026").setValue(decryptString(this.plugin.settings.tagsExclude)).onChange(async (value) => {
       this.plugin.settings.tagsExclude = encryptString(value);
       await this.plugin.saveSettings();
     }));
-    new import_obsidian.Setting(containerEl).setName("Folder to ignore").setDesc('Enter folder whichs content shall be ignored. Separate with ", ".').addText((text) => text.setPlaceholder("Enter your folder1, folder2, \u2026").setValue(decryptString(this.plugin.settings.folderExclude)).onChange(async (value) => {
+    new import_obsidian.Setting(containerEl).setName("Folder to ignore").setDesc('Enter folder whichs content shall be ignored. Separate with ", ".').addText((text2) => text2.setPlaceholder("Enter your folder1, folder2, \u2026").setValue(decryptString(this.plugin.settings.folderExclude)).onChange(async (value) => {
       this.plugin.settings.folderExclude = encryptString(value);
       await this.plugin.saveSettings();
     }));
-    new import_obsidian.Setting(containerEl).setName("Profile page name").setDesc("You can change here the name of your profile page if you like.").addText((text) => text.setPlaceholder("name").setValue(decryptString(this.plugin.settings.avatarPageName)).onChange(async (value) => {
+    new import_obsidian.Setting(containerEl).setName("Profile page name").setDesc("You can change here the name of your profile page if you like.").addText((text2) => text2.setPlaceholder("name").setValue(decryptString(this.plugin.settings.avatarPageName)).onChange(async (value) => {
       this.plugin.settings.avatarPageName = encryptString(value);
       await this.plugin.saveSettings();
     }));
@@ -6972,21 +6978,37 @@ var GamificationPluginSettings = class extends import_obsidian.PluginSettingTab 
         this.plugin.saveData(this.plugin.settings);
       })
     );
-    new import_obsidian.Setting(containerEl).setName("Delay load settings at startup").setDesc("Enter in seconds to delay the load time. e.g. when GIT pull is performed before and settings get merge conflicts. Without GIT usage, keep it to 0.").addText((text) => text.setPlaceholder("0").setValue(decryptNumber(this.plugin.settings.delayLoadTime).toString()).onChange(async (value) => {
+    new import_obsidian.Setting(containerEl).setName("enable auto rate after change").setDesc("you can enable here an automatic trigger to rate a note when changed/created").addToggle(
+      (toggle) => toggle.setValue(decryptBoolean(this.plugin.settings.autoRateOnChange)).onChange((value) => {
+        this.plugin.settings.autoRateOnChange = encryptBoolean(value);
+        this.plugin.saveData(this.plugin.settings);
+      })
+    );
+    new import_obsidian.Setting(containerEl).setName("Wait time for automatic note rating").setDesc("Enter in seconds how long to wait after a change before automatical note ratting will be done").addText((text2) => text2.setPlaceholder("5").setValue(decryptNumber(this.plugin.settings.autoRateOnChangeDelayTime).toString()).onChange(async (value) => {
+      this.plugin.settings.autoRateOnChangeDelayTime = encryptNumber(parseInt(value));
+      await this.plugin.saveSettings();
+    }));
+    new import_obsidian.Setting(containerEl).setName("Delay load settings at startup").setDesc("Enter in seconds to delay the load time. e.g. when GIT pull is performed before and settings get merge conflicts. Without GIT usage, keep it to 0.").addText((text2) => text2.setPlaceholder("0").setValue(decryptNumber(this.plugin.settings.delayLoadTime).toString()).onChange(async (value) => {
       this.plugin.settings.delayLoadTime = encryptNumber(parseInt(value));
       await this.plugin.saveSettings();
     }));
-    new import_obsidian.Setting(containerEl).setName("Time how long notices are shown").setDesc("Enter in seconds. 4 seconds or more is a good value").addText((text) => text.setPlaceholder("4").setValue(decryptNumber(this.plugin.settings.timeShowNotice).toString()).onChange(async (value) => {
+    new import_obsidian.Setting(containerEl).setName("Time how long notices are shown").setDesc("Enter in seconds. 4 seconds or more is a good value").addText((text2) => text2.setPlaceholder("4").setValue(decryptNumber(this.plugin.settings.timeShowNotice).toString()).onChange(async (value) => {
       this.plugin.settings.timeShowNotice = encryptNumber(parseInt(value));
       await this.plugin.saveSettings();
     }));
-    new import_obsidian.Setting(containerEl).setName("Progressive Summarization").setDesc("You can change which formatting you use for Layer 2 and 3.").addText((text) => text.setPlaceholder("Layer 2 is usually **").setValue(decryptString(this.plugin.settings.progressiveSumLayer2)).onChange(async (value) => {
+    new import_obsidian.Setting(containerEl).setName("Progressive Summarization").setDesc("You can change which formatting you use for Layer 2 and 3.").addText((text2) => text2.setPlaceholder("Layer 2 is usually **").setValue(decryptString(this.plugin.settings.progressiveSumLayer2)).onChange(async (value) => {
       this.plugin.settings.progressiveSumLayer2 = encryptString(value);
       await this.plugin.saveSettings();
-    })).addText((text) => text.setPlaceholder("Layer 3 is usually ==").setValue(decryptString(this.plugin.settings.progressiveSumLayer3)).onChange(async (value) => {
+    })).addText((text2) => text2.setPlaceholder("Layer 3 is usually ==").setValue(decryptString(this.plugin.settings.progressiveSumLayer3)).onChange(async (value) => {
       this.plugin.settings.progressiveSumLayer3 = encryptString(value);
       await this.plugin.saveSettings();
     }));
+    new import_obsidian.Setting(containerEl).setName("Display release notes after update").setDesc("`Toggle ON`: Display release notes each time you update the plugin\n`Toggle OFF`: Silent mode. You can still read release notes on [GitHub](https://github.com/saertna/obsidian-gamified-pkm)").addToggle(
+      (toggle) => toggle.setValue(decryptBoolean(this.plugin.settings.showReleaseNotes)).onChange((value) => {
+        this.plugin.settings.showReleaseNotes = encryptBoolean(value);
+        this.plugin.saveData(this.plugin.settings);
+      })
+    );
     const coffeeDiv = containerEl.createDiv("coffee");
     coffeeDiv.addClass("ex-coffee-div");
     const coffeeLink = coffeeDiv.createEl("a", {
@@ -8828,16 +8850,17 @@ function countCharactersInActiveFile(content, filename) {
 function count_inlinks(file) {
   const { app: { metadataCache: { resolvedLinks } } } = this;
   const { path: path2 } = file;
-  console.log("Resolved Links Data:", resolvedLinks);
+  if (debugLogs)
+    console.log("Resolved Links Data:", resolvedLinks);
   const sumInlinks = Object.values(resolvedLinks).map((val) => {
     var _a;
     return (_a = val[path2]) != null ? _a : 0;
   }).reduce((left, right) => left + right, 0);
   return sumInlinks;
 }
-var getFileCountMap = async (app, excludeTag, excludeFolder) => {
+var getFileCountMap = async (app2, excludeTag, excludeFolder) => {
   try {
-    const { vault } = app;
+    const { vault } = app2;
     let excludedSubstrings = [];
     if (excludeTag == void 0) {
       excludedSubstrings = [];
@@ -8857,7 +8880,7 @@ var getFileCountMap = async (app, excludeTag, excludeFolder) => {
       const fileName = file.basename;
       const currentCount = fileCountMap.get(fileName) || 0;
       fileCountMap.set(fileName, currentCount + 1);
-      const fileContents = await app.vault.read(file);
+      const fileContents = await app2.vault.read(file);
       if (!excludedSubstrings.some((substring) => fileContents.includes(substring)) && !excludedFolders.some((folder) => file.path.includes(folder))) {
         const fileName2 = file.basename;
         const currentCount2 = fileCountMap.get(fileName2) || 0;
@@ -8870,9 +8893,9 @@ var getFileCountMap = async (app, excludeTag, excludeFolder) => {
     return null;
   }
 };
-var getFileMap = async (app, excludeTag, excludeFolder) => {
+var getFileMap = async (app2, excludeTag, excludeFolder) => {
   try {
-    const { vault } = app;
+    const { vault } = app2;
     let excludedSubstrings = [];
     if (excludeTag == void 0) {
       excludedSubstrings = [];
@@ -8889,7 +8912,7 @@ var getFileMap = async (app, excludeTag, excludeFolder) => {
     const fileArray = [];
     const files = await vault.getMarkdownFiles();
     for (const file of files) {
-      const fileContents = await app.vault.read(file);
+      const fileContents = await app2.vault.read(file);
       if ((!excludedSubstrings.some((substring) => fileContents.includes(substring)) || excludeTag.length === 0) && !excludedFolders.some((folder) => file.path.includes(folder))) {
         fileArray.push(file);
       }
@@ -8933,29 +8956,6 @@ function getBadgeForInitLevel(level) {
     }
   }
   return badgeNamesInit[index];
-}
-function getBadgeDetails(badgeNameString) {
-  "R\xFCckgabe der Badge details wenn der Badge name \xFCbergeben wird.";
-  let index = null;
-  let badgeFound = { name: "", description: "", level: "" };
-  for (let i2 = 0; i2 < badgeNames.length; i2++) {
-    if (badgeNameString == badgeNames[i2].name) {
-      index = i2;
-    }
-  }
-  if (index != null) {
-    badgeFound = badgeNames[index];
-  } else if (index == null) {
-    for (let i2 = 0; i2 < badgeNamesInit.length; i2++) {
-      if (badgeNameString == badgeNamesInit[i2].name) {
-        index = i2;
-      }
-    }
-    if (index != null) {
-      badgeFound = badgeNamesInit[index];
-    }
-  }
-  return badgeFound;
 }
 function getBadge(badgeName) {
   const targetBadge = badges.find((badge) => badge.name === badgeName);
@@ -9353,6 +9353,58 @@ var randomPointNotices = [
   "Stellar! [X] points just for you!",
   "Well deserved! [X] points earned!"
 ];
+var boosterFactorMessage = [
+  "Boom! You just hit a new Boosterfactor milestone! High five, booster pro!",
+  "Boosting it up! High five for reaching that Boosterfactor benchmark!",
+  "Way to amplify your game! High five for hitting that Boosterfactor goal!",
+  "You're turbocharging your progress! High five for achieving that Boosterfactor milestone!",
+  "Bam! Another Boosterfactor milestone smashed! High five, booster champion!",
+  "You're on turbo mode! High five for maximizing your Boosterfactor!",
+  "High five alert! You just boosted your way to a new milestone!",
+  "You're officially a booster master! High five for your unstoppable Boosterfactor streak!",
+  "Nailed it! High five for reaching another Boosterfactor milestone!",
+  "Woo hoo! High five for leveling up your Boosterfactor game!",
+  "On a boost spree! High five for maximizing your Boosterfactor!",
+  "High fives all around for reaching that Boosterfactor milestone!",
+  "Look at you go! High five for turbocharging your Boosterfactor!",
+  "You're making waves with your Boosterfactor! High five for the milestone!",
+  "High five incoming! You're a Boosterfactor maestro!",
+  "Keep 'em coming! High five for reaching another Boosterfactor milestone!",
+  "Bravo! High five for your stellar Boosterfactor progress!",
+  "High fives galore for hitting that Boosterfactor milestone!",
+  "You're unstoppable! High five for your Boosterfactor mayhem!",
+  "Kaboom! High five for blowing past that Boosterfactor milestone!",
+  "Way to hustle with your Boosterfactor! High five, booster hustler!",
+  "High five vibes for boosting your way to that milestone!",
+  "Bringing the heat with your Boosterfactor! High five for the milestone heatwave!",
+  "You're a Boosterfactor machine! High five, keep it up!",
+  "High fives incoming! You're a Boosterfactor mastermind!",
+  "Boosting like a boss! High five, booster superstar!",
+  "Look out, world! High five for your Boosterfactor domination!",
+  "High fives on repeat! You're a Boosterfactor magician!",
+  "Impressive stuff! High five for your Boosterfactor magic!",
+  "You're unstoppable! High five for your Boosterfactor momentum!",
+  "Keep the boost alive! High five for your Boosterfactor mojo!",
+  "High fives are in order! You're a Boosterfactor ninja!",
+  "Mission accomplished! High five for reaching that Boosterfactor milestone!",
+  "You're on a boost roll! High five for your Boosterfactor rampage!",
+  "High five alert! You're a Boosterfactor rockstar!",
+  "Two thumbs up! High five for your Boosterfactor success!",
+  "You're boosting it! High five for your Boosterfactor spree!",
+  "High fives incoming! You're a Boosterfactor sensation!",
+  "You're a Boosterfactor superhero! High five, booster caped crusader!",
+  "High five vibes! You're a Boosterfactor sensation!",
+  "You're a Boosterfactor legend! High five, oh mighty booster!",
+  "High fives all around! You're a Boosterfactor superstar!",
+  "You're a Boosterfactor champion! High five, boost conqueror!",
+  "High five incoming! You're a Boosterfactor warrior!",
+  "You're on fire with your Boosterfactor! High five for the victory!",
+  "You're a Boosterfactor guru! High five, wise booster!",
+  "High five vibes! You're a Boosterfactor wizard!",
+  "You're a Boosterfactor icon! High five, illustrious booster!",
+  "High five alert! You're a Boosterfactor prodigy!",
+  "You're unstoppable! High five for your Boosterfactor triumph!"
+];
 function getRandomMessageWeeklyChallenge(points) {
   const randomIndex = Math.floor(Math.random() * messagesWeeklyChallenge.length);
   const message = messagesWeeklyChallenge[randomIndex];
@@ -9368,13 +9420,17 @@ function getRandomMessagePoints(points) {
   const message = randomPointNotices[randomIndex];
   return message.replace("[X]", points.toString());
 }
+function getRandomMessageBoosterFactor() {
+  const randomIndex = Math.floor(Math.random() * boosterFactorMessage.length);
+  return boosterFactorMessage[randomIndex];
+}
 
 // src/ModalInformationbox.ts
 var import_obsidian2 = require("obsidian");
 var ModalInformationbox = class extends import_obsidian2.Modal {
   // Store the text to be displayed
-  constructor(app, displayText) {
-    super(app);
+  constructor(app2, displayText) {
+    super(app2);
     this.displayText = displayText;
   }
   onOpen() {
@@ -9388,21 +9444,141 @@ var ModalInformationbox = class extends import_obsidian2.Modal {
 };
 
 // src/ModalBooster.ts
-var import_obsidian4 = require("obsidian");
+var import_obsidian5 = require("obsidian");
 
 // src/MultiSelectModal.ts
+var import_obsidian4 = require("obsidian");
+
+// src/Utils.ts
 var import_obsidian3 = require("obsidian");
-var MultiSelectModal = class extends import_obsidian3.Modal {
-  constructor(app, items, buttonText, gamificationInstance) {
-    super(app);
+var versionUpdateChecked = false;
+var checkGamifiedPkmVersion = async (app2) => {
+  if (versionUpdateChecked) {
+    return;
+  }
+  versionUpdateChecked = true;
+  try {
+    const gitAPIrequest = async () => {
+      return JSON.parse(
+        await (0, import_obsidian3.request)({
+          url: `https://api.github.com/repos/saertna/obsidian-gamified-pkm/releases?per_page=5&page=1`
+        })
+      );
+    };
+    const latestVersion = (await gitAPIrequest()).map((el) => {
+      return {
+        version: el.tag_name,
+        published: new Date(el.published_at)
+      };
+    }).filter((el) => el.version.match(/^\d+\.\d+\.\d+$/)).sort((el1, el2) => el2.published - el1.published)[0].version;
+    if (isVersionNewerThanOther(latestVersion, PLUGIN_VERSION)) {
+      new import_obsidian3.Notice(
+        `A newer version of Gamificate your PKM is available in Community Plugins.
+
+You are using ${PLUGIN_VERSION}.
+
+The latest is ${latestVersion}`
+      );
+    }
+  } catch (e2) {
+    console.error({ where: "Utils/checkGamifiedPkmVersion", error: e2 });
+  }
+  setTimeout(() => versionUpdateChecked = false, 288e5);
+};
+var isVersionNewerThanOther = (version, otherVersion) => {
+  const v = version.match(/(\d*)\.(\d*)\.(\d*)/);
+  const o = otherVersion.match(/(\d*)\.(\d*)\.(\d*)/);
+  return Boolean(
+    v && v.length === 4 && o && o.length === 4 && !(isNaN(parseInt(v[1])) || isNaN(parseInt(v[2])) || isNaN(parseInt(v[3]))) && !(isNaN(parseInt(o[1])) || isNaN(parseInt(o[2])) || isNaN(parseInt(o[3]))) && (parseInt(v[1]) > parseInt(o[1]) || parseInt(v[1]) >= parseInt(o[1]) && parseInt(v[2]) > parseInt(o[2]) || parseInt(v[1]) >= parseInt(o[1]) && parseInt(v[2]) >= parseInt(o[2]) && parseInt(v[3]) > parseInt(o[3]))
+  );
+};
+function hoursUntilMinutesPassed(inputDate, minutesToPass) {
+  const currentTime = window.moment();
+  const targetTime = inputDate.clone().add(minutesToPass, "minutes");
+  if (targetTime.isAfter(currentTime)) {
+    const hoursRemaining = targetTime.diff(currentTime, "hours");
+    return hoursRemaining;
+  } else {
+    return 0;
+  }
+}
+function isMinutesPassed(inputDate, minutesPassed) {
+  const minutesAgo = window.moment().subtract(minutesPassed, "minutes");
+  return inputDate.isSameOrBefore(minutesAgo);
+}
+function concatenateStrings(arr) {
+  if (arr.length === 1) {
+    return arr[0];
+  } else {
+    const frequencyMap = {};
+    arr.forEach((item) => {
+      if (frequencyMap[item]) {
+        frequencyMap[item]++;
+      } else {
+        frequencyMap[item] = 1;
+      }
+    });
+    const resultArray = [];
+    for (const [key, value] of Object.entries(frequencyMap)) {
+      if (value === 1) {
+        resultArray.push(key);
+      } else {
+        resultArray.push(`${value} x ${key}`);
+      }
+    }
+    return resultArray.join(", ");
+  }
+}
+function isSameDay(inputDate) {
+  const currentDate = window.moment();
+  return currentDate.isSame(inputDate, "day");
+}
+function isOneDayBefore(inputDate) {
+  const oneDayBeforeCurrent = window.moment().subtract(1, "day");
+  return inputDate.isSame(oneDayBeforeCurrent, "day");
+}
+function rateDirectionForStatusPoints(ratingCurrent, ratingNew) {
+  let ratingFaktor;
+  if (parseInt(ratingCurrent, 10) < ratingNew) {
+    ratingFaktor = ratingNew - parseInt(ratingCurrent, 10);
+  } else {
+    ratingFaktor = 0;
+  }
+  return ratingFaktor;
+}
+function parseBadgeCSV2Dict(csvString) {
+  const badgeDict = {};
+  const rows = csvString.split("##");
+  for (const row of rows) {
+    const [badgeName, dateReceived, level] = row.split(",");
+    if (badgeName && dateReceived && level) {
+      badgeDict[badgeName] = { date: dateReceived, level };
+    }
+  }
+  return badgeDict;
+}
+function getBoosterRunTimeFromVarName(boosterVarName) {
+  for (const element2 of boosterRecipes) {
+    if (element2.varname === boosterVarName) {
+      return element2.boosterRunTime;
+    }
+  }
+  return 0;
+}
+
+// src/MultiSelectModal.ts
+var MultiSelectModal = class extends import_obsidian4.Modal {
+  constructor(app2, items, buttonText, mediator) {
+    super(app2);
     this.selectedItems = [];
     this.remainingStock = {};
+    //private readonly gamificationInstance: gamification;
     this.boosters = {};
     this.useBooster = false;
     this.remainingBoosterStock = {};
     this.items = items;
     this.buttonText = buttonText;
-    this.gamificationInstance = gamificationInstance;
+    this.mediator = mediator;
   }
   onOpen() {
     const { contentEl } = this;
@@ -9432,8 +9608,8 @@ var MultiSelectModal = class extends import_obsidian3.Modal {
     if (debugLogs)
       console.debug(`boosterAvailableForUse: ${item}`);
     let found = false;
-    listOfUseableBoostersToBeShown.forEach((element) => {
-      if (item == element) {
+    listOfUseableBoostersToBeShown.forEach((element2) => {
+      if (item == element2) {
         if (!found) {
           found = true;
         }
@@ -9456,31 +9632,31 @@ var MultiSelectModal = class extends import_obsidian3.Modal {
     if (debugLogs)
       console.debug(`increment "${increment}" new value ${stock}`);
     this.remainingStock[increment] = stock;
-    this.gamificationInstance.setSettingNumber(this.getIngerementVarNameFromName(increment) || "", stock);
+    this.mediator.setSettingNumber(this.getIngerementVarNameFromName(increment) || "", stock);
   }
   updateBoosterStock(booster, stockIncrease) {
     this.boosters[booster] += stockIncrease;
   }
   decrementBooster(booster, stockIncrease) {
     const stock = this.boosters[booster];
-    const boosterLastUsedDate = this.gamificationInstance.getSettingString(this.getBoosterDateFromName(booster));
+    const boosterLastUsedDate = this.mediator.getSettingString(this.getBoosterDateFromName(booster));
     if (typeof boosterLastUsedDate === "string" && boosterLastUsedDate !== null) {
       const momentDate = window.moment(boosterLastUsedDate, "YYYY-MM-DD HH:mm:ss");
       if (stock > 0 && isMinutesPassed(momentDate, this.getBoosterCooldownFromName(booster))) {
         this.boosters[booster] -= stockIncrease;
-        this.gamificationInstance.setSettingNumber(this.getBoosterVarNameFromName(booster), this.boosters[booster]);
-        this.gamificationInstance.setSettingBoolean(this.getBoosterSwitchFromName(booster), true);
-        this.gamificationInstance.setSettingString(this.getBoosterDateFromName(booster), window.moment().format("YYYY-MM-DD HH:mm:ss"));
-        const boosterOverallUse = this.gamificationInstance.getSettingNumber("boosterUseCount");
+        this.mediator.setSettingNumber(this.getBoosterVarNameFromName(booster), this.boosters[booster]);
+        this.mediator.setSettingBoolean(this.getBoosterSwitchFromName(booster), true);
+        this.mediator.setSettingString(this.getBoosterDateFromName(booster), window.moment().format("YYYY-MM-DD HH:mm:ss"));
+        const boosterOverallUse = this.mediator.getSettingNumber("boosterUseCount");
         if (typeof boosterOverallUse === "number" && boosterOverallUse !== null) {
-          this.gamificationInstance.setSettingNumber("boosterUseCount", boosterOverallUse + 1);
+          this.mediator.setSettingNumber("boosterUseCount", boosterOverallUse + 1);
         } else {
           if (debugLogs)
             console.debug(`decrementBooster: "boosterUseCount" could not got read.`);
         }
-        const boosterUse = this.gamificationInstance.getSettingNumber(this.getBoosterUseFromName(booster));
+        const boosterUse = this.mediator.getSettingNumber(this.getBoosterUseFromName(booster));
         if (typeof boosterUse === "number" && boosterUse !== null) {
-          this.gamificationInstance.setSettingNumber(this.getBoosterUseFromName(booster), boosterUse + 1);
+          this.mediator.setSettingNumber(this.getBoosterUseFromName(booster), boosterUse + 1);
         } else {
           if (debugLogs)
             console.debug(`decrementBooster: "${this.getBoosterUseFromName(booster)}" could not got read.`);
@@ -9492,36 +9668,36 @@ var MultiSelectModal = class extends import_obsidian3.Modal {
     }
   }
   readBoostersStock() {
-    if (this.gamificationInstance) {
+    if (this.mediator) {
       this.boosters = {
-        "Temporal Tweaker": this.gamificationInstance.getSettingNumber("temporalTweaker"),
-        "Perpetual Progress": this.gamificationInstance.getSettingNumber("perpetualProgress"),
-        "Strategic Synapses": this.gamificationInstance.getSettingNumber("strategicSynapses"),
-        "Accelerated Acquisition": this.gamificationInstance.getSettingNumber("acceleratedAcquisition"),
-        "Linkers Lode": this.gamificationInstance.getSettingNumber("linkersLode"),
-        "Effortless Expansion": this.gamificationInstance.getSettingNumber("effortlessExpansion"),
-        "Recursive Reflection": this.gamificationInstance.getSettingNumber("recursiveReflection"),
-        "Synaptic Surge": this.gamificationInstance.getSettingNumber("synapticSurge"),
-        "Inspiration Infusion": this.gamificationInstance.getSettingNumber("inspirationInfusion"),
-        "Title Titan": this.gamificationInstance.getSettingNumber("titleTitan"),
-        "Precision Prism": this.gamificationInstance.getSettingNumber("precisionPrism"),
-        "Hyperlink Harmony": this.gamificationInstance.getSettingNumber("hyperlinkHarmony"),
-        "Ephemeral Euphoria": this.gamificationInstance.getSettingNumber("ephemeralEuphoria"),
+        "Temporal Tweaker": this.mediator.getSettingNumber("temporalTweaker"),
+        "Perpetual Progress": this.mediator.getSettingNumber("perpetualProgress"),
+        "Strategic Synapses": this.mediator.getSettingNumber("strategicSynapses"),
+        "Accelerated Acquisition": this.mediator.getSettingNumber("acceleratedAcquisition"),
+        "Linkers Lode": this.mediator.getSettingNumber("linkersLode"),
+        "Effortless Expansion": this.mediator.getSettingNumber("effortlessExpansion"),
+        "Recursive Reflection": this.mediator.getSettingNumber("recursiveReflection"),
+        "Synaptic Surge": this.mediator.getSettingNumber("synapticSurge"),
+        "Inspiration Infusion": this.mediator.getSettingNumber("inspirationInfusion"),
+        "Title Titan": this.mediator.getSettingNumber("titleTitan"),
+        "Precision Prism": this.mediator.getSettingNumber("precisionPrism"),
+        "Hyperlink Harmony": this.mediator.getSettingNumber("hyperlinkHarmony"),
+        "Ephemeral Euphoria": this.mediator.getSettingNumber("ephemeralEuphoria"),
         "Fortune Infusion": 1
       };
     }
   }
   readIngrementStock() {
-    if (this.gamificationInstance) {
+    if (this.mediator) {
       this.remainingStock = {
-        "Nexus Node": this.gamificationInstance.getSettingNumber("nexusNode"),
-        "Connection Crystal": this.gamificationInstance.getSettingNumber("connectionCrystal"),
-        "Mastery Scroll": this.gamificationInstance.getSettingNumber("masteryScroll"),
-        "Insight Prism": this.gamificationInstance.getSettingNumber("insightPrism"),
-        "Reflective Essence": this.gamificationInstance.getSettingNumber("reflectiveEssence"),
-        "Amplification Crystal": this.gamificationInstance.getSettingNumber("amplificationCrystal"),
-        "Creative Catalyst": this.gamificationInstance.getSettingNumber("creativeCatalyst"),
-        "Precision Lens": this.gamificationInstance.getSettingNumber("precisionLens")
+        "Nexus Node": this.mediator.getSettingNumber("nexusNode"),
+        "Connection Crystal": this.mediator.getSettingNumber("connectionCrystal"),
+        "Mastery Scroll": this.mediator.getSettingNumber("masteryScroll"),
+        "Insight Prism": this.mediator.getSettingNumber("insightPrism"),
+        "Reflective Essence": this.mediator.getSettingNumber("reflectiveEssence"),
+        "Amplification Crystal": this.mediator.getSettingNumber("amplificationCrystal"),
+        "Creative Catalyst": this.mediator.getSettingNumber("creativeCatalyst"),
+        "Precision Lens": this.mediator.getSettingNumber("precisionLens")
       };
     }
   }
@@ -9548,8 +9724,8 @@ var MultiSelectModal = class extends import_obsidian3.Modal {
         container.appendChild(itemContainer);
       }
     });
-    listOfUseableIngredientsToBeShown.forEach((element) => {
-      const increment = this.getIngerementFromName(element);
+    listOfUseableIngredientsToBeShown.forEach((element2) => {
+      const increment = this.getIngerementFromName(element2);
       const shortName = increment.shortName;
       const remainingStock = this.remainingStock[increment.name] || 0;
       const stockDiv = stockInfo.createEl("div");
@@ -9568,7 +9744,7 @@ var MultiSelectModal = class extends import_obsidian3.Modal {
     const stock = this.boosters[labelText];
     const label = container.createEl("div", { cls: `${labelText.replace(" ", "-")}` });
     const useButton = container.createEl("button");
-    const momentDate = this.gamificationInstance.getSettingString(this.getBoosterDateFromName(labelText));
+    const momentDate = this.mediator.getSettingString(this.getBoosterDateFromName(labelText));
     if (isMinutesPassed(window.moment(momentDate, "YYYY-MM-DD HH:mm:ss"), this.getBoosterCooldownFromName(labelText)) == false) {
       if (debugLogs)
         console.debug(`Booster ${labelText} is still in cooldown for ${window.moment(momentDate, "YYYY-MM-DD HH:mm:ss"), this.getBoosterCooldownFromName(labelText) / 60} hours`);
@@ -9630,29 +9806,29 @@ var MultiSelectModal = class extends import_obsidian3.Modal {
     if (labelText == "Fortune Infusion") {
       if (debugLogs)
         console.debug(`acquireIngredients();`);
-      this.gamificationInstance.acquireIngredients(1, 1, 10);
+      this.mediator.acquireIngredients(1, 1, 10);
     } else if (labelText == "Temporal Tweaker") {
     } else if (labelText == "Perpetual Progress") {
-      this.gamificationInstance.setSettingBoolean("boosterFactorPerpetualProgress", true);
+      this.mediator.setSettingBoolean("boosterFactorPerpetualProgress", true);
     } else if (labelText == "Strategic Synapses") {
-      this.gamificationInstance.setSettingBoolean("boosterFactorStrategicSynapses", true);
+      this.mediator.setSettingBoolean("boosterFactorStrategicSynapses", true);
     } else if (labelText == "Accelerated Acquisition") {
     } else if (labelText == "Linkers Lode") {
-      this.gamificationInstance.setSettingBoolean("boosterFactorLinkersLode", true);
+      this.mediator.setSettingBoolean("boosterFactorLinkersLode", true);
     } else if (labelText == "Effortless Expansion") {
     } else if (labelText == "Recursive Reflection") {
-      this.gamificationInstance.setSettingBoolean("boosterFactorRecursiveReflection", true);
+      this.mediator.setSettingBoolean("boosterFactorRecursiveReflection", true);
     } else if (labelText == "Synaptic Surge") {
-      this.gamificationInstance.setSettingBoolean("boosterFactorSynapticSurge", true);
+      this.mediator.setSettingBoolean("boosterFactorSynapticSurge", true);
     } else if (labelText == "Inspiration Infusion") {
     } else if (labelText == "Title Titan") {
-      this.gamificationInstance.setSettingBoolean("boosterFactorTitleTitan", true);
+      this.mediator.setSettingBoolean("boosterFactorTitleTitan", true);
     } else if (labelText == "Precision Prism") {
-      this.gamificationInstance.setSettingBoolean("boosterFactorPrecisionPrism", true);
+      this.mediator.setSettingBoolean("boosterFactorPrecisionPrism", true);
     } else if (labelText == "Hyperlink Harmony") {
-      this.gamificationInstance.setSettingBoolean("boosterFactorHyperlinkHarmony", true);
+      this.mediator.setSettingBoolean("boosterFactorHyperlinkHarmony", true);
     } else if (labelText == "Ephemeral Euphoria") {
-      this.gamificationInstance.setSettingBoolean("boosterFactorEphemeralEuphoria", true);
+      this.mediator.setSettingBoolean("boosterFactorEphemeralEuphoria", true);
     }
     this.decrementBooster(labelText, 1);
   }
@@ -9665,7 +9841,7 @@ var MultiSelectModal = class extends import_obsidian3.Modal {
     }
     const buttonUse = this.containerEl.querySelector(`#use-button-${labelText.replace(" ", "-")}`);
     if (buttonUse !== null) {
-      const momentDate = window.moment(this.gamificationInstance.getSettingString(this.getBoosterDateFromName(labelText)), "YYYY-MM-DD HH:mm:ss");
+      const momentDate = window.moment(this.mediator.getSettingString(this.getBoosterDateFromName(labelText)), "YYYY-MM-DD HH:mm:ss");
       if (isMinutesPassed(momentDate, this.getBoosterCooldownFromName(labelText)) == false) {
         buttonUse.setText(`cooldown ${hoursUntilMinutesPassed(momentDate, this.getBoosterCooldownFromName(labelText))} hours`);
         buttonUse.onclick = () => {
@@ -9722,8 +9898,8 @@ var MultiSelectModal = class extends import_obsidian3.Modal {
     const stockInfo = this.containerEl.querySelector(".stock-info");
     if (stockInfo) {
       stockInfo.empty();
-      listOfUseableIngredientsToBeShown.forEach((element) => {
-        const increment = this.getIngerementFromName(element);
+      listOfUseableIngredientsToBeShown.forEach((element2) => {
+        const increment = this.getIngerementFromName(element2);
         const shortName = increment.shortName;
         const remainingStock = this.remainingStock[increment.name] || 0;
         const stockDiv = stockInfo.createEl("div", { text: `${shortName} [${remainingStock}]` });
@@ -9735,7 +9911,7 @@ var MultiSelectModal = class extends import_obsidian3.Modal {
     if (selectedItems.name == "Ephemeral Euphoria") {
       if (this.check1000IngredientsAvailableAndBurn()) {
         this.updateBoosterStock(selectedItems.name, 1);
-        this.gamificationInstance.setSettingNumber(this.getBoosterVarNameFromName(selectedItems.name), this.boosters[selectedItems.name]);
+        this.mediator.setSettingNumber(this.getBoosterVarNameFromName(selectedItems.name), this.boosters[selectedItems.name]);
         if (debugLogs)
           console.debug(`craft booster ${selectedItems.name}`);
       } else {
@@ -9749,7 +9925,7 @@ var MultiSelectModal = class extends import_obsidian3.Modal {
         if (debugLogs)
           console.debug(`craft booster ${selectedItems.name}`);
         this.updateBoosterStock(selectedItems.name, 1);
-        this.gamificationInstance.setSettingNumber(this.getBoosterVarNameFromName(selectedItems.name), this.boosters[selectedItems.name]);
+        this.mediator.setSettingNumber(this.getBoosterVarNameFromName(selectedItems.name), this.boosters[selectedItems.name]);
         this.useIngrediments(selectedItems);
         this.updateStockInformation();
       } else {
@@ -9760,89 +9936,89 @@ var MultiSelectModal = class extends import_obsidian3.Modal {
     }
   }
   getIngerementNameFromShortName(shortName) {
-    for (const element of elements) {
-      if (element.shortName === shortName) {
-        return element.name;
+    for (const element2 of elements) {
+      if (element2.shortName === shortName) {
+        return element2.name;
       }
     }
     return null;
   }
   getIngerementShortNameFromName(name) {
-    for (const element of elements) {
-      if (element.name === name) {
-        return element.shortName;
+    for (const element2 of elements) {
+      if (element2.name === name) {
+        return element2.shortName;
       }
     }
     return null;
   }
   getIngerementFromName(name) {
-    for (const element of elements) {
-      if (element.name === name) {
-        return element;
+    for (const element2 of elements) {
+      if (element2.name === name) {
+        return element2;
       }
     }
     return { shortName: "", name: "", varName: "" };
   }
   getIngerementVarNameFromShortName(shortName) {
-    for (const element of elements) {
-      if (element.shortName === shortName) {
-        return element.varName;
+    for (const element2 of elements) {
+      if (element2.shortName === shortName) {
+        return element2.varName;
       }
     }
     return null;
   }
   getIngerementVarNameFromName(name) {
-    for (const element of elements) {
-      if (element.name === name) {
-        return element.varName;
+    for (const element2 of elements) {
+      if (element2.name === name) {
+        return element2.varName;
       }
     }
     return null;
   }
   getBoosterVarNameFromName(boosterName) {
-    for (const element of boosterRecipes) {
-      if (element.name === boosterName) {
-        return element.varname;
+    for (const element2 of boosterRecipes) {
+      if (element2.name === boosterName) {
+        return element2.varname;
       }
     }
     return "";
   }
   getBoosterInforFromFromName(boosterName) {
-    for (const element of boosterRecipes) {
-      if (element.name === boosterName) {
-        return element.description;
+    for (const element2 of boosterRecipes) {
+      if (element2.name === boosterName) {
+        return element2.description;
       }
     }
     return "";
   }
   getBoosterSwitchFromName(boosterName) {
-    for (const element of boosterRecipes) {
-      if (element.name === boosterName) {
-        return element.boosterSwitch;
+    for (const element2 of boosterRecipes) {
+      if (element2.name === boosterName) {
+        return element2.boosterSwitch;
       }
     }
     return "";
   }
   getBoosterDateFromName(boosterName) {
-    for (const element of boosterRecipes) {
-      if (element.name === boosterName) {
-        return element.boosterDate;
+    for (const element2 of boosterRecipes) {
+      if (element2.name === boosterName) {
+        return element2.boosterDate;
       }
     }
     return "";
   }
   getBoosterCooldownFromName(boosterName) {
-    for (const element of boosterRecipes) {
-      if (element.name === boosterName) {
-        return element.boosterCooldown;
+    for (const element2 of boosterRecipes) {
+      if (element2.name === boosterName) {
+        return element2.boosterCooldown;
       }
     }
     return 0;
   }
   getBoosterUseFromName(boosterName) {
-    for (const element of boosterRecipes) {
-      if (element.name === boosterName) {
-        return element.boosterUseCountName;
+    for (const element2 of boosterRecipes) {
+      if (element2.name === boosterName) {
+        return element2.boosterUseCountName;
       }
     }
     return "";
@@ -9850,12 +10026,17 @@ var MultiSelectModal = class extends import_obsidian3.Modal {
 };
 
 // src/ModalBooster.ts
-var ModalBooster = class extends import_obsidian4.Modal {
-  constructor(app, displayText, gamificationInstance) {
-    super(app);
+var ModalBooster = class extends import_obsidian5.Modal {
+  constructor(app2, displayText, gamificationInstance) {
+    super(app2);
     this.displayText = displayText;
     this.gamificationInstance = gamificationInstance;
   }
+  // constructor(app: App, displayText: string, mediator: GamificationMediator) {
+  // 	super(app);
+  // 	this.displayText = displayText;
+  // 	this.mediator = mediator;
+  // }
   onOpen() {
     const { contentEl } = this;
     contentEl.setText(this.displayText);
@@ -9883,58 +10064,1524 @@ var ModalBooster = class extends import_obsidian4.Modal {
   }
 };
 
-// src/Utils.ts
-var import_obsidian5 = require("obsidian");
-var versionUpdateChecked = false;
-var checkGamifiedPkmVersion = async (app) => {
-  if (versionUpdateChecked) {
+// src/ReleaseNotes.ts
+var import_obsidian6 = require("obsidian");
+
+// src/Messages.ts
+var FIRST_TIME = `
+Imagine transforming your knowledge management into an adventure where every step forward is a celebration. Introducing the Obsidian Gamification Plugin \u2013 a tool designed to harness the motivating power of game techniques and apply it to our pursuit of knowledge.
+
+This plugin reimagines the way we interact with our knowledge base. By integrating game-like elements, it offers rewards for your progress, nurtures consistency, and makes the journey of learning a truly motivating experience. From achieving milestones to conquering challenges that shape your learning path, this plugin adds a layer of excitement to your knowledge management process.
+
+Thank you & Enjoy!
+`;
+var RELEASE_NOTES = {
+  Intro: `After each update you'll be prompted with the release notes. You can disable this in plugin settings.
+
+I develop this plugin as a hobby, spending my free time doing this. If you find it valuable, then please say THANK YOU or...
+
+<div class="ex-coffee-div"><a href="https://ko-fi.com/andreastrebing"><img src="https://cdn.ko-fi.com/cdn/kofi3.png?v=3" height=45></a></div>
+`,
+  "0.0.90": `
+## New
+- added an avatar picture field (contribution goes to the obsidian-avatar plugin from froehlichA). When creating the avatar page it will be there. Bellow the code how to exchange in existing profile pages.
+
+<div class="excalidraw-videoWrapper"><div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/BOc5jzh_WtM?si=861K3FNrfAu0jJNI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div></div>
+
+Replace the first table and bar graph with this and you get the new layout. (don't worry, the data will update with the next received poits):
+\`\`\`
+\`\`\`gamification-avatar
+image: 
+description: |-2
+    |           |         |
+    | --------- | ------- |
+  | **Level**  | **0** |
+  | Points | 0    |
+  ^levelAndPoints
+  \`\`\`chart
+  type: bar
+  labels: [Expririence]
+  series:
+    - title: points reached
+      data: [0]
+    - title: points to earn to level up
+      data: [1000]
+  xMin: 0
+  xMax: 1000
+  tension: 0.2
+  width: 70%
+  labelColors: false
+  fill: false
+  beginAtZero: false
+  bestFit: false
+  bestFitTitle: undefined
+  bestFitNumber: 0
+  stacked: true
+  indexAxis: y
+  xTitle: "progress"
+  legend: false
+\`\`\`
+
+`,
+  "0.0.89": `
+## New
+- Introduction to Release Note showcase
+- Added automatic triggering of rate, can be enabled in settings
+- booster factor is not going below a multiple of 5. Means, whenever you reach a multiple of 5, it's a secured milestone.
+- inform about booster factor milestone achievement`,
+  "0.0.88": `
+## Changed 
+- Support more levels, up to 200, and fix incorrect calculations
+- Make layer 2 and layer 3 in 'progressive summarization' score more accurate`,
+  "0.0.87": `
+## New 
+- check for new available version`,
+  "0.0.86": `
+## New 
+- support for mobile devices`,
+  "0.0.85": `
+## New 
+- Store received Badges for recover possibility`,
+  "0.0.84": `
+## Improved 
+- Formating booster board by`,
+  "0.0.8": `
+## Start 
+- First Release for the gamified personal knowledge management in Obsidian!`
+};
+
+// src/ReleaseNotes.ts
+var ReleaseNotes = class extends import_obsidian6.Modal {
+  constructor(app2, plugin, version) {
+    super(app2);
+    this.plugin = plugin;
+    this.version = version;
+  }
+  onOpen() {
+    var _a;
+    this.containerEl.classList.add("gamified-pkm-release");
+    if (this.version == "0.0.0") {
+      this.titleEl.setText(`Welcome to the Gamified PKM`);
+    } else {
+      this.titleEl.setText(`Welcome to the Gamified PKM ${(_a = this.version) != null ? _a : ""}`);
+    }
+    this.createForm();
+  }
+  async onClose() {
+    this.contentEl.empty();
+    await this.plugin.loadSettings();
+    this.plugin.setSettingString("previousRelease", PLUGIN_VERSION);
+  }
+  async createForm() {
+    let prevRelease = this.plugin.getSettingString("previousRelease");
+    prevRelease = this.version === prevRelease ? "0.0.0" : prevRelease;
+    const message = this.version === "0.0.0" ? FIRST_TIME : Object.keys(RELEASE_NOTES).filter((key) => key === "Intro" || isVersionNewerThanOther(key, prevRelease)).map((key) => `${key === "Intro" ? "" : `# ${key}
+`}${RELEASE_NOTES[key]}`).slice(0, 10).join("\n\n---\n");
+    await import_obsidian6.MarkdownRenderer.renderMarkdown(
+      message,
+      this.contentEl,
+      "",
+      this.plugin
+    );
+    this.contentEl.createEl("p", { text: "" }, (el) => {
+      el.style.textAlign = "right";
+      const bOk = el.createEl("button", { text: "Close" });
+      bOk.onclick = () => this.close();
+    });
+  }
+};
+
+// src/avatar/renderCodeBlockProcessor.ts
+var import_obsidian7 = require("obsidian");
+function renderCodeBlockProcessor(component, props, stateProvider) {
+  return (source, containerEl, ctx) => {
+    const node = containerEl.createEl("div");
+    const svelteComponent = new component({
+      target: containerEl,
+      props: {
+        ...props,
+        ...stateProvider == null ? void 0 : stateProvider(props, source, node, ctx),
+        ctx
+      }
+    });
+    class UnloadSvelteComponent extends import_obsidian7.MarkdownRenderChild {
+      onunload() {
+        svelteComponent.$destroy();
+      }
+    }
+    ctx.addChild(new UnloadSvelteComponent(node));
+  };
+}
+
+// node_modules/svelte/internal/index.mjs
+function noop() {
+}
+function assign(tar, src) {
+  for (const k2 in src)
+    tar[k2] = src[k2];
+  return tar;
+}
+function run(fn) {
+  return fn();
+}
+function blank_object() {
+  return /* @__PURE__ */ Object.create(null);
+}
+function run_all(fns) {
+  fns.forEach(run);
+}
+function is_function(thing) {
+  return typeof thing === "function";
+}
+function safe_not_equal(a3, b2) {
+  return a3 != a3 ? b2 == b2 : a3 !== b2 || (a3 && typeof a3 === "object" || typeof a3 === "function");
+}
+var src_url_equal_anchor;
+function src_url_equal(element_src, url) {
+  if (!src_url_equal_anchor) {
+    src_url_equal_anchor = document.createElement("a");
+  }
+  src_url_equal_anchor.href = url;
+  return element_src === src_url_equal_anchor.href;
+}
+function is_empty(obj) {
+  return Object.keys(obj).length === 0;
+}
+function create_slot(definition, ctx, $$scope, fn) {
+  if (definition) {
+    const slot_ctx = get_slot_context(definition, ctx, $$scope, fn);
+    return definition[0](slot_ctx);
+  }
+}
+function get_slot_context(definition, ctx, $$scope, fn) {
+  return definition[1] && fn ? assign($$scope.ctx.slice(), definition[1](fn(ctx))) : $$scope.ctx;
+}
+function get_slot_changes(definition, $$scope, dirty, fn) {
+  if (definition[2] && fn) {
+    const lets = definition[2](fn(dirty));
+    if ($$scope.dirty === void 0) {
+      return lets;
+    }
+    if (typeof lets === "object") {
+      const merged = [];
+      const len = Math.max($$scope.dirty.length, lets.length);
+      for (let i2 = 0; i2 < len; i2 += 1) {
+        merged[i2] = $$scope.dirty[i2] | lets[i2];
+      }
+      return merged;
+    }
+    return $$scope.dirty | lets;
+  }
+  return $$scope.dirty;
+}
+function update_slot_base(slot, slot_definition, ctx, $$scope, slot_changes, get_slot_context_fn) {
+  if (slot_changes) {
+    const slot_context = get_slot_context(slot_definition, ctx, $$scope, get_slot_context_fn);
+    slot.p(slot_context, slot_changes);
+  }
+}
+function get_all_dirty_from_scope($$scope) {
+  if ($$scope.ctx.length > 32) {
+    const dirty = [];
+    const length = $$scope.ctx.length / 32;
+    for (let i2 = 0; i2 < length; i2++) {
+      dirty[i2] = -1;
+    }
+    return dirty;
+  }
+  return -1;
+}
+function exclude_internal_props(props) {
+  const result = {};
+  for (const k2 in props)
+    if (k2[0] !== "$")
+      result[k2] = props[k2];
+  return result;
+}
+var globals = typeof window !== "undefined" ? window : typeof globalThis !== "undefined" ? globalThis : global;
+var ResizeObserverSingleton = class {
+  constructor(options) {
+    this.options = options;
+    this._listeners = "WeakMap" in globals ? /* @__PURE__ */ new WeakMap() : void 0;
+  }
+  observe(element2, listener) {
+    this._listeners.set(element2, listener);
+    this._getObserver().observe(element2, this.options);
+    return () => {
+      this._listeners.delete(element2);
+      this._observer.unobserve(element2);
+    };
+  }
+  _getObserver() {
+    var _a;
+    return (_a = this._observer) !== null && _a !== void 0 ? _a : this._observer = new ResizeObserver((entries) => {
+      var _a2;
+      for (const entry of entries) {
+        ResizeObserverSingleton.entries.set(entry.target, entry);
+        (_a2 = this._listeners.get(entry.target)) === null || _a2 === void 0 ? void 0 : _a2(entry);
+      }
+    });
+  }
+};
+ResizeObserverSingleton.entries = "WeakMap" in globals ? /* @__PURE__ */ new WeakMap() : void 0;
+var is_hydrating = false;
+function start_hydrating() {
+  is_hydrating = true;
+}
+function end_hydrating() {
+  is_hydrating = false;
+}
+function append(target, node) {
+  target.appendChild(node);
+}
+function append_styles(target, style_sheet_id, styles) {
+  const append_styles_to = get_root_for_style(target);
+  if (!append_styles_to.getElementById(style_sheet_id)) {
+    const style = element("style");
+    style.id = style_sheet_id;
+    style.textContent = styles;
+    append_stylesheet(append_styles_to, style);
+  }
+}
+function get_root_for_style(node) {
+  if (!node)
+    return document;
+  const root = node.getRootNode ? node.getRootNode() : node.ownerDocument;
+  if (root && root.host) {
+    return root;
+  }
+  return node.ownerDocument;
+}
+function append_stylesheet(node, style) {
+  append(node.head || node, style);
+  return style.sheet;
+}
+function insert(target, node, anchor) {
+  target.insertBefore(node, anchor || null);
+}
+function detach(node) {
+  if (node.parentNode) {
+    node.parentNode.removeChild(node);
+  }
+}
+function element(name) {
+  return document.createElement(name);
+}
+function text(data) {
+  return document.createTextNode(data);
+}
+function space() {
+  return text(" ");
+}
+function listen(node, event, handler, options) {
+  node.addEventListener(event, handler, options);
+  return () => node.removeEventListener(event, handler, options);
+}
+function attr(node, attribute, value) {
+  if (value == null)
+    node.removeAttribute(attribute);
+  else if (node.getAttribute(attribute) !== value)
+    node.setAttribute(attribute, value);
+}
+var always_set_through_set_attribute = ["width", "height"];
+function set_attributes(node, attributes) {
+  const descriptors = Object.getOwnPropertyDescriptors(node.__proto__);
+  for (const key in attributes) {
+    if (attributes[key] == null) {
+      node.removeAttribute(key);
+    } else if (key === "style") {
+      node.style.cssText = attributes[key];
+    } else if (key === "__value") {
+      node.value = node[key] = attributes[key];
+    } else if (descriptors[key] && descriptors[key].set && always_set_through_set_attribute.indexOf(key) === -1) {
+      node[key] = attributes[key];
+    } else {
+      attr(node, key, attributes[key]);
+    }
+  }
+}
+function children(element2) {
+  return Array.from(element2.childNodes);
+}
+function set_input_value(input, value) {
+  input.value = value == null ? "" : value;
+}
+function toggle_class(element2, name, toggle) {
+  element2.classList[toggle ? "add" : "remove"](name);
+}
+var current_component;
+function set_current_component(component) {
+  current_component = component;
+}
+function get_current_component() {
+  if (!current_component)
+    throw new Error("Function called outside component initialization");
+  return current_component;
+}
+function onMount(fn) {
+  get_current_component().$$.on_mount.push(fn);
+}
+function bubble(component, event) {
+  const callbacks = component.$$.callbacks[event.type];
+  if (callbacks) {
+    callbacks.slice().forEach((fn) => fn.call(this, event));
+  }
+}
+var dirty_components = [];
+var binding_callbacks = [];
+var render_callbacks = [];
+var flush_callbacks = [];
+var resolved_promise = /* @__PURE__ */ Promise.resolve();
+var update_scheduled = false;
+function schedule_update() {
+  if (!update_scheduled) {
+    update_scheduled = true;
+    resolved_promise.then(flush);
+  }
+}
+function add_render_callback(fn) {
+  render_callbacks.push(fn);
+}
+var seen_callbacks = /* @__PURE__ */ new Set();
+var flushidx = 0;
+function flush() {
+  if (flushidx !== 0) {
     return;
   }
-  versionUpdateChecked = true;
-  try {
-    const gitAPIrequest = async () => {
-      return JSON.parse(
-        await (0, import_obsidian5.request)({
-          url: `https://api.github.com/repos/saertna/obsidian-gamified-pkm/releases?per_page=5&page=1`
-        })
-      );
-    };
-    const latestVersion = (await gitAPIrequest()).map((el) => {
-      return {
-        version: el.tag_name,
-        published: new Date(el.published_at)
-      };
-    }).filter((el) => el.version.match(/^\d+\.\d+\.\d+$/)).sort((el1, el2) => el2.published - el1.published)[0].version;
-    if (isVersionNewerThanOther(latestVersion, PLUGIN_VERSION)) {
-      new import_obsidian5.Notice(
-        `A newer version of Gamificate your PKM is available in Community Plugins.
-
-You are using ${PLUGIN_VERSION}.
-
-The latest is ${latestVersion}`
-      );
+  const saved_component = current_component;
+  do {
+    try {
+      while (flushidx < dirty_components.length) {
+        const component = dirty_components[flushidx];
+        flushidx++;
+        set_current_component(component);
+        update(component.$$);
+      }
+    } catch (e2) {
+      dirty_components.length = 0;
+      flushidx = 0;
+      throw e2;
     }
-  } catch (e2) {
-    console.error({ where: "Utils/checkGamifiedPkmVersion", error: e2 });
+    set_current_component(null);
+    dirty_components.length = 0;
+    flushidx = 0;
+    while (binding_callbacks.length)
+      binding_callbacks.pop()();
+    for (let i2 = 0; i2 < render_callbacks.length; i2 += 1) {
+      const callback = render_callbacks[i2];
+      if (!seen_callbacks.has(callback)) {
+        seen_callbacks.add(callback);
+        callback();
+      }
+    }
+    render_callbacks.length = 0;
+  } while (dirty_components.length);
+  while (flush_callbacks.length) {
+    flush_callbacks.pop()();
   }
-  setTimeout(() => versionUpdateChecked = false, 288e5);
+  update_scheduled = false;
+  seen_callbacks.clear();
+  set_current_component(saved_component);
+}
+function update($$) {
+  if ($$.fragment !== null) {
+    $$.update();
+    run_all($$.before_update);
+    const dirty = $$.dirty;
+    $$.dirty = [-1];
+    $$.fragment && $$.fragment.p($$.ctx, dirty);
+    $$.after_update.forEach(add_render_callback);
+  }
+}
+function flush_render_callbacks(fns) {
+  const filtered = [];
+  const targets = [];
+  render_callbacks.forEach((c2) => fns.indexOf(c2) === -1 ? filtered.push(c2) : targets.push(c2));
+  targets.forEach((c2) => c2());
+  render_callbacks = filtered;
+}
+var outroing = /* @__PURE__ */ new Set();
+var outros;
+function group_outros() {
+  outros = {
+    r: 0,
+    c: [],
+    p: outros
+    // parent group
+  };
+}
+function check_outros() {
+  if (!outros.r) {
+    run_all(outros.c);
+  }
+  outros = outros.p;
+}
+function transition_in(block, local) {
+  if (block && block.i) {
+    outroing.delete(block);
+    block.i(local);
+  }
+}
+function transition_out(block, local, detach2, callback) {
+  if (block && block.o) {
+    if (outroing.has(block))
+      return;
+    outroing.add(block);
+    outros.c.push(() => {
+      outroing.delete(block);
+      if (callback) {
+        if (detach2)
+          block.d(1);
+        callback();
+      }
+    });
+    block.o(local);
+  } else if (callback) {
+    callback();
+  }
+}
+function get_spread_update(levels, updates) {
+  const update2 = {};
+  const to_null_out = {};
+  const accounted_for = { $$scope: 1 };
+  let i2 = levels.length;
+  while (i2--) {
+    const o = levels[i2];
+    const n = updates[i2];
+    if (n) {
+      for (const key in o) {
+        if (!(key in n))
+          to_null_out[key] = 1;
+      }
+      for (const key in n) {
+        if (!accounted_for[key]) {
+          update2[key] = n[key];
+          accounted_for[key] = 1;
+        }
+      }
+      levels[i2] = n;
+    } else {
+      for (const key in o) {
+        accounted_for[key] = 1;
+      }
+    }
+  }
+  for (const key in to_null_out) {
+    if (!(key in update2))
+      update2[key] = void 0;
+  }
+  return update2;
+}
+var _boolean_attributes = [
+  "allowfullscreen",
+  "allowpaymentrequest",
+  "async",
+  "autofocus",
+  "autoplay",
+  "checked",
+  "controls",
+  "default",
+  "defer",
+  "disabled",
+  "formnovalidate",
+  "hidden",
+  "inert",
+  "ismap",
+  "loop",
+  "multiple",
+  "muted",
+  "nomodule",
+  "novalidate",
+  "open",
+  "playsinline",
+  "readonly",
+  "required",
+  "reversed",
+  "selected"
+];
+var boolean_attributes = /* @__PURE__ */ new Set([..._boolean_attributes]);
+function create_component(block) {
+  block && block.c();
+}
+function mount_component(component, target, anchor, customElement) {
+  const { fragment, after_update } = component.$$;
+  fragment && fragment.m(target, anchor);
+  if (!customElement) {
+    add_render_callback(() => {
+      const new_on_destroy = component.$$.on_mount.map(run).filter(is_function);
+      if (component.$$.on_destroy) {
+        component.$$.on_destroy.push(...new_on_destroy);
+      } else {
+        run_all(new_on_destroy);
+      }
+      component.$$.on_mount = [];
+    });
+  }
+  after_update.forEach(add_render_callback);
+}
+function destroy_component(component, detaching) {
+  const $$ = component.$$;
+  if ($$.fragment !== null) {
+    flush_render_callbacks($$.after_update);
+    run_all($$.on_destroy);
+    $$.fragment && $$.fragment.d(detaching);
+    $$.on_destroy = $$.fragment = null;
+    $$.ctx = [];
+  }
+}
+function make_dirty(component, i2) {
+  if (component.$$.dirty[0] === -1) {
+    dirty_components.push(component);
+    schedule_update();
+    component.$$.dirty.fill(0);
+  }
+  component.$$.dirty[i2 / 31 | 0] |= 1 << i2 % 31;
+}
+function init(component, options, instance4, create_fragment4, not_equal, props, append_styles2, dirty = [-1]) {
+  const parent_component = current_component;
+  set_current_component(component);
+  const $$ = component.$$ = {
+    fragment: null,
+    ctx: [],
+    // state
+    props,
+    update: noop,
+    not_equal,
+    bound: blank_object(),
+    // lifecycle
+    on_mount: [],
+    on_destroy: [],
+    on_disconnect: [],
+    before_update: [],
+    after_update: [],
+    context: new Map(options.context || (parent_component ? parent_component.$$.context : [])),
+    // everything else
+    callbacks: blank_object(),
+    dirty,
+    skip_bound: false,
+    root: options.target || parent_component.$$.root
+  };
+  append_styles2 && append_styles2($$.root);
+  let ready = false;
+  $$.ctx = instance4 ? instance4(component, options.props || {}, (i2, ret, ...rest) => {
+    const value = rest.length ? rest[0] : ret;
+    if ($$.ctx && not_equal($$.ctx[i2], $$.ctx[i2] = value)) {
+      if (!$$.skip_bound && $$.bound[i2])
+        $$.bound[i2](value);
+      if (ready)
+        make_dirty(component, i2);
+    }
+    return ret;
+  }) : [];
+  $$.update();
+  ready = true;
+  run_all($$.before_update);
+  $$.fragment = create_fragment4 ? create_fragment4($$.ctx) : false;
+  if (options.target) {
+    if (options.hydrate) {
+      start_hydrating();
+      const nodes = children(options.target);
+      $$.fragment && $$.fragment.l(nodes);
+      nodes.forEach(detach);
+    } else {
+      $$.fragment && $$.fragment.c();
+    }
+    if (options.intro)
+      transition_in(component.$$.fragment);
+    mount_component(component, options.target, options.anchor, options.customElement);
+    end_hydrating();
+    flush();
+  }
+  set_current_component(parent_component);
+}
+var SvelteElement;
+if (typeof HTMLElement === "function") {
+  SvelteElement = class extends HTMLElement {
+    constructor() {
+      super();
+      this.attachShadow({ mode: "open" });
+    }
+    connectedCallback() {
+      const { on_mount } = this.$$;
+      this.$$.on_disconnect = on_mount.map(run).filter(is_function);
+      for (const key in this.$$.slotted) {
+        this.appendChild(this.$$.slotted[key]);
+      }
+    }
+    attributeChangedCallback(attr2, _oldValue, newValue) {
+      this[attr2] = newValue;
+    }
+    disconnectedCallback() {
+      run_all(this.$$.on_disconnect);
+    }
+    $destroy() {
+      destroy_component(this, 1);
+      this.$destroy = noop;
+    }
+    $on(type, callback) {
+      if (!is_function(callback)) {
+        return noop;
+      }
+      const callbacks = this.$$.callbacks[type] || (this.$$.callbacks[type] = []);
+      callbacks.push(callback);
+      return () => {
+        const index = callbacks.indexOf(callback);
+        if (index !== -1)
+          callbacks.splice(index, 1);
+      };
+    }
+    $set($$props) {
+      if (this.$$set && !is_empty($$props)) {
+        this.$$.skip_bound = true;
+        this.$$set($$props);
+        this.$$.skip_bound = false;
+      }
+    }
+  };
+}
+var SvelteComponent = class {
+  $destroy() {
+    destroy_component(this, 1);
+    this.$destroy = noop;
+  }
+  $on(type, callback) {
+    if (!is_function(callback)) {
+      return noop;
+    }
+    const callbacks = this.$$.callbacks[type] || (this.$$.callbacks[type] = []);
+    callbacks.push(callback);
+    return () => {
+      const index = callbacks.indexOf(callback);
+      if (index !== -1)
+        callbacks.splice(index, 1);
+    };
+  }
+  $set($$props) {
+    if (this.$$set && !is_empty($$props)) {
+      this.$$.skip_bound = true;
+      this.$$set($$props);
+      this.$$.skip_bound = false;
+    }
+  }
 };
-var isVersionNewerThanOther = (version, otherVersion) => {
-  const v = version.match(/(\d*)\.(\d*)\.(\d*)/);
-  const o = otherVersion.match(/(\d*)\.(\d*)\.(\d*)/);
-  return Boolean(
-    v && v.length === 4 && o && o.length === 4 && !(isNaN(parseInt(v[1])) || isNaN(parseInt(v[2])) || isNaN(parseInt(v[3]))) && !(isNaN(parseInt(o[1])) || isNaN(parseInt(o[2])) || isNaN(parseInt(o[3]))) && (parseInt(v[1]) > parseInt(o[1]) || parseInt(v[1]) >= parseInt(o[1]) && parseInt(v[2]) > parseInt(o[2]) || parseInt(v[1]) >= parseInt(o[1]) && parseInt(v[2]) >= parseInt(o[2]) && parseInt(v[3]) > parseInt(o[3]))
+
+// src/avatar/AvatarView.svelte
+var import_obsidian10 = require("obsidian");
+
+// src/avatar/Fab.svelte
+function add_css(target) {
+  append_styles(target, "svelte-gtyq37", ".fab.svelte-gtyq37{position:absolute;bottom:1em;right:1em;padding:var(--size-2-2) var(--size-2-3)}");
+}
+function create_fragment(ctx) {
+  let button;
+  let current;
+  let mounted;
+  let dispose;
+  const default_slot_template = (
+    /*#slots*/
+    ctx[2].default
   );
+  const default_slot = create_slot(
+    default_slot_template,
+    ctx,
+    /*$$scope*/
+    ctx[1],
+    null
+  );
+  let button_levels = [
+    { class: "fab" },
+    /*$$props*/
+    ctx[0]
+  ];
+  let button_data = {};
+  for (let i2 = 0; i2 < button_levels.length; i2 += 1) {
+    button_data = assign(button_data, button_levels[i2]);
+  }
+  return {
+    c() {
+      button = element("button");
+      if (default_slot)
+        default_slot.c();
+      set_attributes(button, button_data);
+      toggle_class(button, "svelte-gtyq37", true);
+    },
+    m(target, anchor) {
+      insert(target, button, anchor);
+      if (default_slot) {
+        default_slot.m(button, null);
+      }
+      if (button.autofocus)
+        button.focus();
+      current = true;
+      if (!mounted) {
+        dispose = listen(
+          button,
+          "click",
+          /*click_handler*/
+          ctx[3]
+        );
+        mounted = true;
+      }
+    },
+    p(ctx2, [dirty]) {
+      if (default_slot) {
+        if (default_slot.p && (!current || dirty & /*$$scope*/
+        2)) {
+          update_slot_base(
+            default_slot,
+            default_slot_template,
+            ctx2,
+            /*$$scope*/
+            ctx2[1],
+            !current ? get_all_dirty_from_scope(
+              /*$$scope*/
+              ctx2[1]
+            ) : get_slot_changes(
+              default_slot_template,
+              /*$$scope*/
+              ctx2[1],
+              dirty,
+              null
+            ),
+            null
+          );
+        }
+      }
+      set_attributes(button, button_data = get_spread_update(button_levels, [{ class: "fab" }, dirty & /*$$props*/
+      1 && /*$$props*/
+      ctx2[0]]));
+      toggle_class(button, "svelte-gtyq37", true);
+    },
+    i(local) {
+      if (current)
+        return;
+      transition_in(default_slot, local);
+      current = true;
+    },
+    o(local) {
+      transition_out(default_slot, local);
+      current = false;
+    },
+    d(detaching) {
+      if (detaching)
+        detach(button);
+      if (default_slot)
+        default_slot.d(detaching);
+      mounted = false;
+      dispose();
+    }
+  };
+}
+function instance($$self, $$props, $$invalidate) {
+  let { $$slots: slots = {}, $$scope } = $$props;
+  function click_handler(event) {
+    bubble.call(this, $$self, event);
+  }
+  $$self.$$set = ($$new_props) => {
+    $$invalidate(0, $$props = assign(assign({}, $$props), exclude_internal_props($$new_props)));
+    if ("$$scope" in $$new_props)
+      $$invalidate(1, $$scope = $$new_props.$$scope);
+  };
+  $$props = exclude_internal_props($$props);
+  return [$$props, $$scope, slots, click_handler];
+}
+var Fab = class extends SvelteComponent {
+  constructor(options) {
+    super();
+    init(this, options, instance, create_fragment, safe_not_equal, {}, add_css);
+  }
 };
+var Fab_default = Fab;
+
+// src/avatar/ObsidianIcon.svelte
+var import_obsidian8 = require("obsidian");
+function create_fragment2(ctx) {
+  let span;
+  return {
+    c() {
+      span = element("span");
+    },
+    m(target, anchor) {
+      insert(target, span, anchor);
+      ctx[2](span);
+    },
+    p: noop,
+    i: noop,
+    o: noop,
+    d(detaching) {
+      if (detaching)
+        detach(span);
+      ctx[2](null);
+    }
+  };
+}
+function instance2($$self, $$props, $$invalidate) {
+  let { id } = $$props;
+  let el;
+  function span_binding($$value) {
+    binding_callbacks[$$value ? "unshift" : "push"](() => {
+      el = $$value;
+      $$invalidate(0, el);
+    });
+  }
+  $$self.$$set = ($$props2) => {
+    if ("id" in $$props2)
+      $$invalidate(1, id = $$props2.id);
+  };
+  $$self.$$.update = () => {
+    if ($$self.$$.dirty & /*el, id*/
+    3) {
+      $:
+        if (el && id)
+          (0, import_obsidian8.setIcon)(el, id);
+    }
+  };
+  return [el, id, span_binding];
+}
+var ObsidianIcon = class extends SvelteComponent {
+  constructor(options) {
+    super();
+    init(this, options, instance2, create_fragment2, safe_not_equal, { id: 1 });
+  }
+};
+var ObsidianIcon_default = ObsidianIcon;
+
+// src/avatar/SelectImageModal.ts
+var import_obsidian9 = require("obsidian");
+var SelectImageModal = class extends import_obsidian9.SuggestModal {
+  constructor(app2, onSelect) {
+    super(app2);
+    this.onSelect = onSelect;
+    this.setPlaceholder("Select image / Paste URL...");
+    this.setInstructions([
+      { command: "\u2191\u2193", purpose: "to navigate" },
+      { command: "\u21B5", purpose: "to select" }
+    ]);
+  }
+  getSuggestions(query) {
+    const search = (0, import_obsidian9.prepareFuzzySearch)(query);
+    const files = this.app.vault.getFiles().filter((f) => ["jpg", "jpeg", "png", "gif", "svg", "webp"].includes(f.extension)).map((f) => ({ title: f.name, path: f.path }));
+    const searchResults = files.map((f) => {
+      var _a;
+      const result = search(f.title);
+      return {
+        title: (result == null ? void 0 : result.matches) ? fuzzyStrToFragment(f.title, result == null ? void 0 : result.matches) : strToFragment(f.title),
+        path: f.path,
+        score: (_a = result == null ? void 0 : result.score) != null ? _a : 1
+      };
+    }).filter((f) => f.score < 1).sort((a3, b2) => Math.abs(a3.score) - Math.abs(b2.score));
+    if (query.startsWith("http://") || query.startsWith("https://")) {
+      const shortenedQuery = query.substring(0, 30) + (query.length >= 30 ? "..." : "");
+      return [
+        ...searchResults,
+        { title: strToFragment(shortenedQuery), desc: "Use URL", path: query }
+      ];
+    } else {
+      return searchResults;
+    }
+  }
+  renderSuggestion(item, el) {
+    el.createEl("span", { text: item.title });
+    el.createEl("small", { text: item.desc, cls: "avatar-plugin--float-right" });
+  }
+  onChooseSuggestion(item, evt) {
+    this.onSelect((0, import_obsidian9.normalizePath)(item.path));
+  }
+};
+function strToFragment(str) {
+  const fragment = new DocumentFragment();
+  fragment.createEl("span", { text: str });
+  return fragment;
+}
+function fuzzyStrToFragment(str, matches) {
+  const fragment = new DocumentFragment();
+  const highlightedIndices = [];
+  for (const match2 of matches) {
+    for (let i2 = match2[0]; i2 < match2[1]; i2++) {
+      highlightedIndices.push(i2);
+    }
+  }
+  for (let i2 = 0; i2 < str.length; i2++) {
+    const char = str[i2];
+    if (highlightedIndices.includes(i2)) {
+      fragment.createEl("span", { text: char, cls: "suggestion-highlight" });
+    } else {
+      fragment.createEl("span", { text: char });
+    }
+  }
+  return fragment;
+}
+
+// src/avatar/AvatarView.svelte
+function add_css2(target) {
+  append_styles(target, "svelte-okpkt8", ".flex.svelte-okpkt8{display:flex;gap:1.4em;flex-wrap:wrap;justify-content:center}@media(min-width: 992px){.flex.svelte-okpkt8{flex-wrap:nowrap}}.relative.svelte-okpkt8{position:relative}.avatar.svelte-okpkt8{flex:0 0 auto;width:240px;height:240px;object-fit:cover;border-radius:6px}.description.svelte-okpkt8{flex:1 1 auto;word-break:break-word;padding:6px;border-radius:6px}.textarea.svelte-okpkt8{width:100%;height:100%;resize:none}.with-placeholder.svelte-okpkt8:empty:before{content:attr(data-placeholder);color:var(--text-faint);font-style:italic}");
+}
+function create_if_block_1(ctx) {
+  let fab;
+  let current;
+  fab = new Fab_default({
+    props: {
+      $$slots: { default: [create_default_slot_1] },
+      $$scope: { ctx }
+    }
+  });
+  return {
+    c() {
+      create_component(fab.$$.fragment);
+    },
+    m(target, anchor) {
+      mount_component(fab, target, anchor);
+      current = true;
+    },
+    i(local) {
+      if (current)
+        return;
+      transition_in(fab.$$.fragment, local);
+      current = true;
+    },
+    o(local) {
+      transition_out(fab.$$.fragment, local);
+      current = false;
+    },
+    d(detaching) {
+      destroy_component(fab, detaching);
+    }
+  };
+}
+function create_default_slot_1(ctx) {
+  let obsidianicon;
+  let current;
+  obsidianicon = new ObsidianIcon_default({ props: { id: "edit" } });
+  return {
+    c() {
+      create_component(obsidianicon.$$.fragment);
+    },
+    m(target, anchor) {
+      mount_component(obsidianicon, target, anchor);
+      current = true;
+    },
+    p: noop,
+    i(local) {
+      if (current)
+        return;
+      transition_in(obsidianicon.$$.fragment, local);
+      current = true;
+    },
+    o(local) {
+      transition_out(obsidianicon.$$.fragment, local);
+      current = false;
+    },
+    d(detaching) {
+      destroy_component(obsidianicon, detaching);
+    }
+  };
+}
+function create_if_block(ctx) {
+  let fab;
+  let current;
+  fab = new Fab_default({
+    props: {
+      $$slots: { default: [create_default_slot] },
+      $$scope: { ctx }
+    }
+  });
+  fab.$on(
+    "click",
+    /*updateDescription*/
+    ctx[7]
+  );
+  return {
+    c() {
+      create_component(fab.$$.fragment);
+    },
+    m(target, anchor) {
+      mount_component(fab, target, anchor);
+      current = true;
+    },
+    p(ctx2, dirty) {
+      const fab_changes = {};
+      if (dirty & /*$$scope*/
+      33554432) {
+        fab_changes.$$scope = { dirty, ctx: ctx2 };
+      }
+      fab.$set(fab_changes);
+    },
+    i(local) {
+      if (current)
+        return;
+      transition_in(fab.$$.fragment, local);
+      current = true;
+    },
+    o(local) {
+      transition_out(fab.$$.fragment, local);
+      current = false;
+    },
+    d(detaching) {
+      destroy_component(fab, detaching);
+    }
+  };
+}
+function create_default_slot(ctx) {
+  let obsidianicon;
+  let current;
+  obsidianicon = new ObsidianIcon_default({ props: { id: "save" } });
+  return {
+    c() {
+      create_component(obsidianicon.$$.fragment);
+    },
+    m(target, anchor) {
+      mount_component(obsidianicon, target, anchor);
+      current = true;
+    },
+    p: noop,
+    i(local) {
+      if (current)
+        return;
+      transition_in(obsidianicon.$$.fragment, local);
+      current = true;
+    },
+    o(local) {
+      transition_out(obsidianicon.$$.fragment, local);
+      current = false;
+    },
+    d(detaching) {
+      destroy_component(obsidianicon, detaching);
+    }
+  };
+}
+function create_fragment3(ctx) {
+  let div2;
+  let div0;
+  let img;
+  let img_src_value;
+  let t0;
+  let t1;
+  let div1;
+  let textarea;
+  let textarea_hidden_value;
+  let t2;
+  let span;
+  let t3;
+  let current;
+  let mounted;
+  let dispose;
+  let if_block0 = (
+    /*inSourceMode*/
+    ctx[5] && /*hoverOnImage*/
+    ctx[2] && create_if_block_1(ctx)
+  );
+  let if_block1 = (
+    /*editMode*/
+    ctx[3] && create_if_block(ctx)
+  );
+  return {
+    c() {
+      var _a, _b;
+      div2 = element("div");
+      div0 = element("div");
+      img = element("img");
+      t0 = space();
+      if (if_block0)
+        if_block0.c();
+      t1 = space();
+      div1 = element("div");
+      textarea = element("textarea");
+      t2 = space();
+      span = element("span");
+      t3 = space();
+      if (if_block1)
+        if_block1.c();
+      attr(img, "class", "avatar svelte-okpkt8");
+      attr(img, "alt", "Avatar");
+      if (!src_url_equal(img.src, img_src_value = /*normalizeImgPath*/
+      (_b = ctx[9](
+        /*state*/
+        (_a = ctx[0]) == null ? void 0 : _a.image
+      )) != null ? _b : (
+        /*fallbackImage*/
+        ctx[6]
+      )))
+        attr(img, "src", img_src_value);
+      attr(div0, "class", "avatar relative svelte-okpkt8");
+      attr(textarea, "class", "textarea svelte-okpkt8");
+      textarea.hidden = textarea_hidden_value = !/*editMode*/
+      ctx[3];
+      attr(textarea, "placeholder", "");
+      attr(span, "class", "avatar-plugin--md-preview with-placeholder svelte-okpkt8");
+      span.hidden = /*editMode*/
+      ctx[3];
+      attr(span, "data-placeholder", "");
+      attr(div1, "class", "description svelte-okpkt8");
+      attr(div2, "class", "flex svelte-okpkt8");
+    },
+    m(target, anchor) {
+      insert(target, div2, anchor);
+      append(div2, div0);
+      append(div0, img);
+      append(div0, t0);
+      if (if_block0)
+        if_block0.m(div0, null);
+      append(div2, t1);
+      append(div2, div1);
+      append(div1, textarea);
+      ctx[19](textarea);
+      set_input_value(
+        textarea,
+        /*state*/
+        ctx[0].description
+      );
+      append(div1, t2);
+      append(div1, span);
+      ctx[21](span);
+      append(div1, t3);
+      if (if_block1)
+        if_block1.m(div1, null);
+      current = true;
+      if (!mounted) {
+        dispose = [
+          listen(
+            div0,
+            "click",
+            /*updateImage*/
+            ctx[8]
+          ),
+          listen(
+            div0,
+            "mouseenter",
+            /*mouseenter_handler*/
+            ctx[17]
+          ),
+          listen(
+            div0,
+            "mouseleave",
+            /*mouseleave_handler*/
+            ctx[18]
+          ),
+          listen(
+            div0,
+            "keydown",
+            /*handleKeyDown*/
+            ctx[10]
+          ),
+          listen(
+            textarea,
+            "input",
+            /*textarea_input_handler*/
+            ctx[20]
+          )
+        ];
+        mounted = true;
+      }
+    },
+    p(ctx2, [dirty]) {
+      var _a, _b;
+      if (!current || dirty & /*state, fallbackImage*/
+      65 && !src_url_equal(img.src, img_src_value = /*normalizeImgPath*/
+      (_b = ctx2[9](
+        /*state*/
+        (_a = ctx2[0]) == null ? void 0 : _a.image
+      )) != null ? _b : (
+        /*fallbackImage*/
+        ctx2[6]
+      ))) {
+        attr(img, "src", img_src_value);
+      }
+      if (
+        /*inSourceMode*/
+        ctx2[5] && /*hoverOnImage*/
+        ctx2[2]
+      ) {
+        if (if_block0) {
+          if (dirty & /*inSourceMode, hoverOnImage*/
+          36) {
+            transition_in(if_block0, 1);
+          }
+        } else {
+          if_block0 = create_if_block_1(ctx2);
+          if_block0.c();
+          transition_in(if_block0, 1);
+          if_block0.m(div0, null);
+        }
+      } else if (if_block0) {
+        group_outros();
+        transition_out(if_block0, 1, 1, () => {
+          if_block0 = null;
+        });
+        check_outros();
+      }
+      if (!current || dirty & /*editMode*/
+      8 && textarea_hidden_value !== (textarea_hidden_value = !/*editMode*/
+      ctx2[3])) {
+        textarea.hidden = textarea_hidden_value;
+      }
+      if (dirty & /*state*/
+      1) {
+        set_input_value(
+          textarea,
+          /*state*/
+          ctx2[0].description
+        );
+      }
+      if (!current || dirty & /*editMode*/
+      8) {
+        span.hidden = /*editMode*/
+        ctx2[3];
+      }
+      if (
+        /*editMode*/
+        ctx2[3]
+      ) {
+        if (if_block1) {
+          if_block1.p(ctx2, dirty);
+          if (dirty & /*editMode*/
+          8) {
+            transition_in(if_block1, 1);
+          }
+        } else {
+          if_block1 = create_if_block(ctx2);
+          if_block1.c();
+          transition_in(if_block1, 1);
+          if_block1.m(div1, null);
+        }
+      } else if (if_block1) {
+        group_outros();
+        transition_out(if_block1, 1, 1, () => {
+          if_block1 = null;
+        });
+        check_outros();
+      }
+    },
+    i(local) {
+      if (current)
+        return;
+      transition_in(if_block0);
+      transition_in(if_block1);
+      current = true;
+    },
+    o(local) {
+      transition_out(if_block0);
+      transition_out(if_block1);
+      current = false;
+    },
+    d(detaching) {
+      if (detaching)
+        detach(div2);
+      if (if_block0)
+        if_block0.d();
+      ctx[19](null);
+      ctx[21](null);
+      if (if_block1)
+        if_block1.d();
+      mounted = false;
+      run_all(dispose);
+    }
+  };
+}
+function instance3($$self, $$props, $$invalidate) {
+  let fallbackImage;
+  var _a, _b;
+  let { app: app2 } = $$props;
+  let { plugin } = $$props;
+  let { ctx } = $$props;
+  let { state } = $$props;
+  let { setState } = $$props;
+  let initialDescription = state === null || state === void 0 ? void 0 : state.description;
+  let hoverOnImage = false;
+  let editMode = false;
+  let descriptionEditEl;
+  let descriptionPreviewEl;
+  let inSourceMode = false;
+  onMount(() => {
+    $$invalidate(5, inSourceMode = isSourceMode());
+    let x2 = app2.workspace.on("layout-change", () => {
+      $$invalidate(5, inSourceMode = isSourceMode());
+    });
+    return () => app2.workspace.offref(x2);
+  });
+  function isSourceMode() {
+    var _a2;
+    const view = app2.workspace.getActiveViewOfType(import_obsidian10.MarkdownView);
+    return ((_a2 = view === null || view === void 0 ? void 0 : view.getMode) === null || _a2 === void 0 ? void 0 : _a2.call(view)) === "source";
+  }
+  function enterEditMode() {
+    if (inSourceMode && !editMode) {
+      $$invalidate(3, editMode = true);
+      queueMicrotask(() => {
+        descriptionEditEl.focus();
+      });
+    }
+  }
+  function updateDescription(evt) {
+    $$invalidate(3, editMode = false);
+    initialDescription = state.description;
+    setState((fm) => {
+      fm.description = state.description;
+    });
+    evt.stopPropagation();
+  }
+  function updateImage() {
+    if (inSourceMode) {
+      new SelectImageModal(
+        app2,
+        (path2) => {
+          setState((fm) => {
+            fm.image = path2;
+          });
+        }
+      ).open();
+    }
+  }
+  function normalizeImgPath(src) {
+    const file = app2.vault.getAbstractFileByPath(src);
+    if (file && file instanceof import_obsidian10.TFile) {
+      return app2.vault.getResourcePath(file);
+    }
+    return src;
+  }
+  function handleKeyDown(event) {
+    if (event.key === "Enter" || event.key === "Spacebar" || event.key === " ") {
+      updateImage();
+    }
+  }
+  const mouseenter_handler = () => $$invalidate(2, hoverOnImage = true);
+  const mouseleave_handler = () => $$invalidate(2, hoverOnImage = false);
+  function textarea_binding($$value) {
+    binding_callbacks[$$value ? "unshift" : "push"](() => {
+      descriptionEditEl = $$value;
+      $$invalidate(4, descriptionEditEl);
+    });
+  }
+  function textarea_input_handler() {
+    state.description = this.value;
+    $$invalidate(0, state);
+  }
+  function span_binding($$value) {
+    binding_callbacks[$$value ? "unshift" : "push"](() => {
+      descriptionPreviewEl = $$value;
+      $$invalidate(1, descriptionPreviewEl), $$invalidate(12, plugin), $$invalidate(0, state), $$invalidate(13, ctx), $$invalidate(16, _b);
+    });
+  }
+  $$self.$$set = ($$props2) => {
+    if ("app" in $$props2)
+      $$invalidate(11, app2 = $$props2.app);
+    if ("plugin" in $$props2)
+      $$invalidate(12, plugin = $$props2.plugin);
+    if ("ctx" in $$props2)
+      $$invalidate(13, ctx = $$props2.ctx);
+    if ("state" in $$props2)
+      $$invalidate(0, state = $$props2.state);
+    if ("setState" in $$props2)
+      $$invalidate(14, setState = $$props2.setState);
+  };
+  $$self.$$.update = () => {
+    if ($$self.$$.dirty & /*ctx, _a*/
+    40960) {
+      $:
+        $$invalidate(6, fallbackImage = `https://ui-avatars.com/api/?name=${$$invalidate(15, _a = ctx === null || ctx === void 0 ? void 0 : ctx.sourcePath.split("/").at(-1)) !== null && _a !== void 0 ? _a : "::"}&size=240`);
+    }
+    if ($$self.$$.dirty & /*descriptionPreviewEl, plugin, state, ctx, _b*/
+    77827) {
+      $:
+        if (descriptionPreviewEl && plugin && state && (state === null || state === void 0 ? void 0 : state.description)) {
+          $$invalidate(1, descriptionPreviewEl.innerHTML = "", descriptionPreviewEl);
+          import_obsidian10.MarkdownRenderer.renderMarkdown(
+            state.description,
+            descriptionPreviewEl,
+            $$invalidate(16, _b = ctx === null || ctx === void 0 ? void 0 : ctx.sourcePath) !== null && _b !== void 0 ? _b : "",
+            plugin
+          );
+        }
+    }
+  };
+  return [
+    state,
+    descriptionPreviewEl,
+    hoverOnImage,
+    editMode,
+    descriptionEditEl,
+    inSourceMode,
+    fallbackImage,
+    updateDescription,
+    updateImage,
+    normalizeImgPath,
+    handleKeyDown,
+    app2,
+    plugin,
+    ctx,
+    setState,
+    _a,
+    _b,
+    mouseenter_handler,
+    mouseleave_handler,
+    textarea_binding,
+    textarea_input_handler,
+    span_binding
+  ];
+}
+var AvatarView = class extends SvelteComponent {
+  constructor(options) {
+    super();
+    init(
+      this,
+      options,
+      instance3,
+      create_fragment3,
+      safe_not_equal,
+      {
+        app: 11,
+        plugin: 12,
+        ctx: 13,
+        state: 0,
+        setState: 14
+      },
+      add_css2
+    );
+  }
+};
+var AvatarView_default = AvatarView;
+
+// src/avatar/stateProviders.ts
+var import_obsidian11 = require("obsidian");
+function withCodeblockState() {
+  return (props, source, node, ctx) => {
+    var _a;
+    let state = {};
+    try {
+      state = (_a = (0, import_obsidian11.parseYaml)(source)) != null ? _a : {};
+    } catch (_) {
+    }
+    const setState = (stateSetter) => {
+      var _a2, _b;
+      let newState = { ...state };
+      stateSetter(newState);
+      const newStateStr = (0, import_obsidian11.stringifyYaml)(newState);
+      const info = ctx.getSectionInfo(node);
+      if (info) {
+        (_b = (_a2 = app.workspace.activeEditor) == null ? void 0 : _a2.editor) == null ? void 0 : _b.replaceRange(
+          newStateStr + "```",
+          { line: info.lineStart + 1, ch: 0 },
+          { line: info.lineEnd, ch: 3 }
+        );
+      }
+    };
+    return {
+      state,
+      setState
+    };
+  };
+}
 
 // src/main.ts
 var pointsToReceived = 0;
-var PLUGIN_VERSION = "0.0.0";
-var gamification2 = class extends import_obsidian6.Plugin {
+var gamification = class extends import_obsidian12.Plugin {
   constructor() {
     super(...arguments);
     this.statusBarItem = this.addStatusBarItem();
     this.statusbarGamification = this.statusBarItem.createEl("span", { text: "" });
+    this.lastEditTimes = {};
+    this.editTimers = {};
   }
   getSettingString(key) {
     const decryptedValue = this.settings[key] !== void 0 ? this.settings[key].toString() : "";
@@ -9954,9 +11601,11 @@ var gamification2 = class extends import_obsidian6.Plugin {
   }
   setBadgeSave(newBadge, date, level) {
     const currentBadgeString = this.getSettingString("receivedBadges");
-    console.log(`currentBadgeString: ${currentBadgeString}`);
+    if (debugLogs)
+      console.log(`currentBadgeString: ${currentBadgeString}`);
     const newBadgeString = currentBadgeString + newBadge.name + "," + date + "," + level + "##";
-    console.log(`newBadgeString: ${newBadgeString}`);
+    if (debugLogs)
+      console.log(`newBadgeString: ${newBadgeString}`);
     this.setSettingString("receivedBadges", newBadgeString);
     this.saveSettings();
   }
@@ -9970,7 +11619,6 @@ var gamification2 = class extends import_obsidian6.Plugin {
   }
   async onload() {
     console.log("obsidian-pkm-gamification loaded!");
-    PLUGIN_VERSION = this.manifest.version;
     this.addSettingTab(new GamificationPluginSettings(this.app, this));
     await this.loadSettings();
     if (this.getSettingBoolean("showNewVersionNotification")) {
@@ -9984,12 +11632,47 @@ var gamification2 = class extends import_obsidian6.Plugin {
     }, this.getSettingNumber("delayLoadTime") * 1e3);
     this.timerInterval = 30 * 60 * 1e3;
     this.timerId = window.setInterval(this.resetDailyGoals.bind(this), this.timerInterval);
+    this.registerEvent(
+      this.app.workspace.on("editor-change", this.onEditorChanged.bind(this))
+    );
+    this.registerEvent(
+      this.app.vault.on("rename", this.onFileRenamed.bind(this))
+    );
+    let obsidianJustInstalled = false;
+    if (this.getSettingBoolean("showReleaseNotes")) {
+      if (debugLogs)
+        console.log(`show release note`);
+      if (debugLogs)
+        console.log(`current entry ${this.getSettingString("previousRelease")}`);
+      obsidianJustInstalled = this.getSettingString("previousRelease") === "0.0.0";
+      if (isVersionNewerThanOther(PLUGIN_VERSION, this.getSettingString("previousRelease"))) {
+        if (debugLogs)
+          console.log(`${PLUGIN_VERSION} newer than ${this.getSettingString("previousRelease")}`);
+        new ReleaseNotes(
+          this.app,
+          this,
+          obsidianJustInstalled ? "0.0.0" : PLUGIN_VERSION
+        ).open();
+      }
+    }
+    this.registerMarkdownCodeBlockProcessor("gamification-avatar", renderCodeBlockProcessor(
+      AvatarView_default,
+      { app: this.app, plugin: this },
+      withCodeblockState()
+    ));
+    this.registerCommands();
+  }
+  registerCommands() {
     if (this.getSettingBoolean("debug")) {
       this.addRibbonIcon("accessibility", "Crafting", async () => {
-        await this.checkForContinuouslyNoteCreation(180);
+        new ReleaseNotes(
+          this.app,
+          this,
+          //obsidianJustInstalled ? null :
+          PLUGIN_VERSION
+        ).open();
       });
       this.addRibbonIcon("chevrons-right", "boost", async () => {
-        await this.writeBadgeCSV(getBadgeDetails("Cerebral Maestro"), "24-01-03", "level 21");
       });
     }
     if (this.getSettingNumber("counterMajurityCalcInitial") >= 50) {
@@ -10038,7 +11721,7 @@ var gamification2 = class extends import_obsidian6.Plugin {
       id: "rate-note-maturity",
       name: "Rate note majurity",
       checkCallback: (checking) => {
-        const view = this.app.workspace.getActiveViewOfType(import_obsidian6.MarkdownView);
+        const view = this.app.workspace.getActiveViewOfType(import_obsidian12.MarkdownView);
         if (view) {
           if (!checking) {
             this.calculateNoteMajurity();
@@ -10052,7 +11735,7 @@ var gamification2 = class extends import_obsidian6.Plugin {
       id: "change-progressive-formatting",
       name: "Toggle progressive summarization formatting",
       checkCallback: (checking) => {
-        const view = this.app.workspace.getActiveViewOfType(import_obsidian6.MarkdownView);
+        const view = this.app.workspace.getActiveViewOfType(import_obsidian12.MarkdownView);
         if (view) {
           if (!checking) {
             replaceFormatStrings(this.getSettingString("progressiveSumLayer2"), this.getSettingString("progressiveSumLayer3"));
@@ -10062,6 +11745,50 @@ var gamification2 = class extends import_obsidian6.Plugin {
         return false;
       }
     });
+  }
+  async onEditorChanged() {
+    const activeView = this.app.workspace.getActiveViewOfType(import_obsidian12.MarkdownView);
+    if (!activeView)
+      return;
+    const activeFile = activeView.file;
+    if (!activeFile)
+      return;
+    const foldersToExclude = this.getSettingString("folderExclude");
+    const folderNames = foldersToExclude.split(",").map((folder) => folder.trim());
+    const isInExcludedFolder = folderNames.some((folderName) => activeFile.path.includes(folderName));
+    if (isInExcludedFolder)
+      return;
+    const currentTime = Date.now();
+    const fileLastModifiedTime = activeFile.stat.mtime || 0;
+    if (currentTime - fileLastModifiedTime < 900) {
+      return;
+    }
+    this.lastEditTimes[activeFile.path] = currentTime;
+    if (this.editTimers[activeFile.path]) {
+      clearTimeout(this.editTimers[activeFile.path]);
+    }
+    this.editTimers[activeFile.path] = setTimeout(() => {
+      if (this.lastEditTimes[activeFile.path] === currentTime) {
+        this.triggerAction(activeFile.path);
+      }
+    }, this.getSettingNumber("autoRateOnChangeDelayTime") * 1e3);
+  }
+  onFileRenamed(oldPath, newPath) {
+    console.log(`${newPath}`);
+    const foldersToExclude = this.getSettingString("folderExclude");
+    console.log(`foldersToExclude: ${foldersToExclude}`);
+    const folderNames = foldersToExclude.split(",").map((folder) => folder.trim() + "/");
+    const isInExcludedFolder = folderNames.some((folderName) => newPath.includes(folderName));
+    if (isInExcludedFolder) {
+      console.log(isInExcludedFolder);
+      return;
+    }
+    this.triggerAction(newPath);
+  }
+  triggerAction(filePath) {
+    if (this.getSettingBoolean("autoRateOnChange")) {
+      this.calculateNoteMajurity().then((r) => console.log(r));
+    }
   }
   async resetGame() {
     await this.removeKeysFromFrontmatter();
@@ -10087,7 +11814,7 @@ var gamification2 = class extends import_obsidian6.Plugin {
       for (const fileName of fileCountMap) {
         const file = fileName;
         const fileContents = await this.app.vault.read(file);
-        const activeView = this.app.workspace.getActiveViewOfType(import_obsidian6.MarkdownView);
+        const activeView = this.app.workspace.getActiveViewOfType(import_obsidian12.MarkdownView);
         if (activeView && activeView.file && activeView.file.path === file.path) {
           console.warn(`File ${file.path} is currently open. Skipping.`);
           continue;
@@ -10156,19 +11883,19 @@ var gamification2 = class extends import_obsidian6.Plugin {
         } catch (e2) {
           if ((e2 == null ? void 0 : e2.name) === "YAMLParseError") {
             const errorMessage = `Update majuritys failed Malformed frontamtter on this file : ${file.path} ${e2.message}`;
-            new import_obsidian6.Notice(errorMessage, this.getSettingNumber("timeShowNotice") * 1e3);
+            new import_obsidian12.Notice(errorMessage, this.getSettingNumber("timeShowNotice") * 1e3);
             console.error(errorMessage);
           }
         }
       }
       if (pointsReceived > 0) {
-        new import_obsidian6.Notice(`${pointsReceived} Points received`, this.getSettingNumber("timeShowNotice") * 1e3);
+        new import_obsidian12.Notice(`${pointsReceived} Points received`, this.getSettingNumber("timeShowNotice") * 1e3);
         if (debugLogs)
           console.debug(`${pointsReceived} Points received`);
       }
       setTimeout(async () => {
         const initBadge = getBadgeForInitLevel(this.getSettingNumber("statusLevel"));
-        new import_obsidian6.Notice(`You've earned the "${initBadge.name}" badge. ${initBadge.description}`, this.getSettingNumber("timeShowNotice") * 1e3 * 1.2);
+        new import_obsidian12.Notice(`You've earned the "${initBadge.name}" badge. ${initBadge.description}`, this.getSettingNumber("timeShowNotice") * 1e3 * 1.2);
         if (debugLogs)
           console.log(`You earned ${initBadge.name} - ${initBadge.description}`);
         await this.giveInitBadgeInProfile(this.getSettingString("avatarPageName"), initBadge);
@@ -10199,6 +11926,9 @@ You received an initialisation Booster aktiv for your first level ups. Game on!`
       clearInterval(this.timerId);
       this.timerId = null;
     }
+    for (const timerId in this.editTimers) {
+      clearTimeout(this.editTimers[timerId]);
+    }
   }
   async calculateNoteMajurity() {
     var _a, _b;
@@ -10207,7 +11937,7 @@ You received an initialisation Booster aktiv for your first level ups. Game on!`
       console.error("got no file, propably none is active");
     }
     let detectIfNoteIsFirstTimeRated = false;
-    const activeView = this.app.workspace.getActiveViewOfType(import_obsidian6.MarkdownView);
+    const activeView = this.app.workspace.getActiveViewOfType(import_obsidian12.MarkdownView);
     const fileContents = activeView == null ? void 0 : activeView.editor.getValue();
     const fileName = (_a = activeView == null ? void 0 : activeView.file) == null ? void 0 : _a.basename;
     if (fileName === null || fileName === void 0) {
@@ -10304,7 +12034,7 @@ You received an initialisation Booster aktiv for your first level ups. Game on!`
             }
             if (pointsReceived > 0) {
               const messagePoints = getRandomMessagePoints(pointsReceived);
-              new import_obsidian6.Notice(messagePoints, this.getSettingNumber("timeShowNotice") * 1e3);
+              new import_obsidian12.Notice(messagePoints, this.getSettingNumber("timeShowNotice") * 1e3);
               if (debugLogs)
                 console.debug(messagePoints);
             }
@@ -10314,11 +12044,11 @@ You received an initialisation Booster aktiv for your first level ups. Game on!`
       } catch (e2) {
         if ((e2 == null ? void 0 : e2.name) === "YAMLParseError") {
           const errorMessage = `Update majuritys failed Malformed frontamtter on this file : ${file.path} ${e2.message}`;
-          new import_obsidian6.Notice(errorMessage, this.getSettingNumber("timeShowNotice") * 1e3);
+          new import_obsidian12.Notice(errorMessage, this.getSettingNumber("timeShowNotice") * 1e3);
           console.error(errorMessage);
         }
       }
-      new import_obsidian6.Notice("note majurity updated!");
+      new import_obsidian12.Notice("note majurity updated!");
       if (debugLogs)
         console.debug("note majurity updated!");
       await this.updateStatusBar(this.statusbarGamification);
@@ -10332,12 +12062,13 @@ You received an initialisation Booster aktiv for your first level ups. Game on!`
   }
   async resetDailyGoals() {
     let reset = false;
+    await this.loadSettings();
     if (!isSameDay(window.moment(this.getSettingString("dailyNoteCreationDate"), "DD.MM.YYYY"))) {
       this.setSettingNumber("dailyNoteCreationTask", 0);
       this.setSettingString("dailyNoteCreationDate", window.moment().format("DD.MM.YYYY"));
       await this.saveSettings();
       if (debugLogs)
-        console.debug(`daily Challenge reseted`);
+        console.debug(`reset daily Challenge`);
       reset = true;
     }
     if (!isOneDayBefore(window.moment(this.getSettingString("weeklyNoteCreationDate"), "DD.MM.YYYY")) && !isSameDay(window.moment(this.getSettingString("weeklyNoteCreationDate"), "DD.MM.YYYY"))) {
@@ -10351,7 +12082,7 @@ You received an initialisation Booster aktiv for your first level ups. Game on!`
       await this.saveSettings();
       await this.updateStatusBar(this.statusbarGamification);
       if (debugLogs)
-        console.debug(`weekly Challenge reseted`);
+        console.debug(`reset weekly Challenge`);
       reset = true;
     }
     if (isOneDayBefore(window.moment(this.getSettingString("weeklyNoteCreationDate"), "DD.MM.YYYY")) && this.getSettingNumber("weeklyNoteCreationTask") == 7) {
@@ -10427,7 +12158,7 @@ You received an initialisation Booster aktiv for your first level ups. Game on!`
         const message = getRandomMessageTwoNoteChallenge(pointsForDailyChallenge * (this.getSettingNumber("badgeBoosterFactor") + this.getSettingNumber("streakbooster")));
         if (debugLogs)
           console.debug(`daily Challenge reached! ${newDailyNoteCreationTask}/2 created.`);
-        new import_obsidian6.Notice(message, this.getSettingNumber("timeShowNotice") * 1e3);
+        new import_obsidian12.Notice(message, this.getSettingNumber("timeShowNotice") * 1e3);
         if (debugLogs)
           console.debug(message);
       } else {
@@ -10489,7 +12220,7 @@ You received an initialisation Booster aktiv for your first level ups. Game on!`
       if (debugLogs)
         console.debug(`Weekly Challenge reached! ${newWeeklyNoteCreationTask}/7 created in a chain.`);
       const message = getRandomMessageWeeklyChallenge(pointsForWeeklyChallenge * (this.getSettingNumber("badgeBoosterFactor") + this.getSettingNumber("streakbooster")));
-      new import_obsidian6.Notice(message, this.getSettingNumber("timeShowNotice") * 1e3);
+      new import_obsidian12.Notice(message, this.getSettingNumber("timeShowNotice") * 1e3);
       if (debugLogs)
         console.debug(message);
     } else {
@@ -10587,17 +12318,30 @@ You received an initialisation Booster aktiv for your first level ups. Game on!`
     }
   }
   async increaseStreakbooster(increaseValue) {
-    let newBoosterFakfor = parseFloat((this.getSettingNumber("streakbooster") + increaseValue).toFixed(1));
-    if (newBoosterFakfor > 80) {
-      newBoosterFakfor = 80;
+    const oldBoosterFactor = this.getSettingNumber("streakbooster");
+    let newBoosterFactor = parseFloat((oldBoosterFactor + increaseValue).toFixed(1));
+    if (newBoosterFactor > 80) {
+      newBoosterFactor = 80;
+    }
+    const oldIntegerPart = Math.floor(oldBoosterFactor);
+    const newIntegerPart = Math.floor(newBoosterFactor);
+    if (oldBoosterFactor <= 80 && newBoosterFactor <= 80 && newBoosterFactor > oldBoosterFactor && newIntegerPart !== oldIntegerPart && newIntegerPart % 5 === 0) {
+      new import_obsidian12.Notice(getRandomMessageBoosterFactor(), this.getSettingNumber("timeShowNotice") * 1e3 * 1.2);
+      console.log(`${getRandomMessageBoosterFactor()} : ${newBoosterFactor}`);
     }
     if (debugLogs)
-      console.debug(`newBoosterFakfor: ${newBoosterFakfor}`);
-    this.setSettingNumber("streakbooster", newBoosterFakfor);
+      console.debug(`newBoosterFakfor: ${newBoosterFactor}`);
+    this.setSettingNumber("streakbooster", newBoosterFactor);
     this.setSettingBoolean("streakboosterDate", true);
   }
   async decreaseStreakbooster(decreaseValue) {
-    let newBoosterFakfor = parseFloat((this.getSettingNumber("streakbooster") - decreaseValue * streakboosterDecrease).toFixed(1));
+    const currentValue = this.getSettingNumber("streakbooster");
+    let newBoosterFakfor;
+    if (streakboosterDecrease >= currentValue % 5) {
+      newBoosterFakfor = Math.floor(currentValue / 5) * 5;
+    } else {
+      newBoosterFakfor = currentValue - (currentValue % 5 - streakboosterDecrease);
+    }
     this.setSettingNumber("streakbooster", newBoosterFakfor);
     if (newBoosterFakfor < 0) {
       newBoosterFakfor = 0;
@@ -10656,14 +12400,14 @@ You received an initialisation Booster aktiv for your first level ups. Game on!`
       let nextLevelAt = this.getSettingNumber("xpForNextLevel");
       let receiveBadge = false;
       if (this.getSettingNumber("statusLevel") < level.level) {
-        new import_obsidian6.Notice(`With ${newPoints} points, the current level is ${level.level}.`, this.getSettingNumber("timeShowNotice") * 1e3 * 1.2);
+        new import_obsidian12.Notice(`With ${newPoints} points, the current level is ${level.level}.`, this.getSettingNumber("timeShowNotice") * 1e3 * 1.2);
         receiveBadge = checkIfReceiveABadge(this.getSettingNumber("statusLevel"), level.level);
         this.setSettingNumber("statusLevel", level.level);
         nextLevelAt = level.pointsNext;
         this.setSettingNumber("xpForNextLevel", level.pointsNext);
       }
       const progressBarEnd = nextLevelAt - newPoints;
-      const newPointsString = "| **Level**  | **" + level.level + "** |\n| Points | " + newPoints + "    |\n^levelAndPoints\n```chart\ntype: bar\nlabels: [Expririence]\nseries:\n  - title: points reached\n    data: [" + newPoints + "]\n  - title: points to earn to level up\n    data: [" + progressBarEnd + "]\nxMin: " + level.points + "\nxMax: " + level.pointsNext + '\ntension: 0.2\nwidth: 40%\nlabelColors: false\nfill: false\nbeginAtZero: false\nbestFit: false\nbestFitTitle: undefined\nbestFitNumber: 0\nstacked: true\nindexAxis: y\nxTitle: "progress"\nlegend: false\n```';
+      const newPointsString = "  | **Level**  | **" + level.level + "** |\n  | Points | " + newPoints + "    |\n  ^levelAndPoints\n  ```chart\n  type: bar\n  labels: [Expririence]\n  series:\n    - title: points reached\n      data: [" + newPoints + "]\n    - title: points to earn to level up\n      data: [" + progressBarEnd + "]\n  xMin: " + level.points + "\n  xMax: " + level.pointsNext + '\n  tension: 0.2\n  width: 70%\n  labelColors: false\n  fill: false\n  beginAtZero: false\n  bestFit: false\n  bestFitTitle: undefined\n  bestFitNumber: 0\n  stacked: true\n  indexAxis: y\n  xTitle: "progress"\n  legend: false\n```';
       const dailyChallenge = "| **daily Notes** | *" + pointsForDailyChallenge * (this.getSettingNumber("badgeBoosterFactor") + this.getSettingNumber("streakbooster")) + "EP* | **" + this.getSettingNumber("dailyNoteCreationTask") + "/2**   |";
       const daysLeftInWeeklyChain = 7 - this.getSettingNumber("weeklyNoteCreationTask");
       let weeklyChallenge = "";
@@ -10892,7 +12636,7 @@ You received an initialisation Booster aktiv for your first level ups. Game on!`
     newLevel.then((result) => {
       if (result) {
         const badge = getBadgeForLevel(this.getSettingNumber("statusLevel"), false);
-        new import_obsidian6.Notice(`You've earned the "${badge.name}" badge. ${badge.description}`, this.getSettingNumber("timeShowNotice") * 1e3 * 1.2);
+        new import_obsidian12.Notice(`You've earned the "${badge.name}" badge. ${badge.description}`, this.getSettingNumber("timeShowNotice") * 1e3 * 1.2);
         if (debugLogs)
           console.debug(`You've earned the "${badge.name}" badge. ${badge.description}`);
         this.giveBadgeInProfile(this.getSettingString("avatarPageName"), badge);
@@ -10927,7 +12671,7 @@ You received an initialisation Booster aktiv for your first level ups. Game on!`
         } catch (e2) {
           if ((e2 == null ? void 0 : e2.name) === "YAMLParseError") {
             const errorMessage = `Update majuritys failed Malformed frontmatter ${e2.message}`;
-            new import_obsidian6.Notice(errorMessage, this.getSettingNumber("timeShowNotice") * 1e3);
+            new import_obsidian12.Notice(errorMessage, this.getSettingNumber("timeShowNotice") * 1e3);
             console.error(errorMessage);
           }
         }
@@ -11006,9 +12750,9 @@ You received an initialisation Booster aktiv for your first level ups. Game on!`
       }
       if (debugLogs)
         console.debug(`You earned: ${concatenateStrings(earnedIngredientToShow)}`);
-      new import_obsidian6.Notice(`You earned ${concatenateStrings(earnedIngredientToShow)}`, this.getSettingNumber("timeShowNotice") * 1e3);
+      new import_obsidian12.Notice(`You earned ${concatenateStrings(earnedIngredientToShow)}`, this.getSettingNumber("timeShowNotice") * 1e3);
     } else {
-      new import_obsidian6.Notice(`This time you didn't earn an ingredient.`, this.getSettingNumber("timeShowNotice") * 1e3);
+      new import_obsidian12.Notice(`This time you didn't earn an ingredient.`, this.getSettingNumber("timeShowNotice") * 1e3);
       if (debugLogs)
         console.debug("You did not earn an ingredient this time.");
     }
@@ -11022,62 +12766,9 @@ You received an initialisation Booster aktiv for your first level ups. Game on!`
     }
   }
 };
-function concatenateStrings(arr) {
-  if (arr.length === 1) {
-    return arr[0];
-  } else {
-    const frequencyMap = {};
-    arr.forEach((item) => {
-      if (frequencyMap[item]) {
-        frequencyMap[item]++;
-      } else {
-        frequencyMap[item] = 1;
-      }
-    });
-    const resultArray = [];
-    for (const [key, value] of Object.entries(frequencyMap)) {
-      if (value === 1) {
-        resultArray.push(key);
-      } else {
-        resultArray.push(`${value} x ${key}`);
-      }
-    }
-    return resultArray.join(", ");
-  }
-}
-function getBoosterRunTimeFromVarName(boosterVarName) {
-  for (const element of boosterRecipes) {
-    if (element.varname === boosterVarName) {
-      return element.boosterRunTime;
-    }
-  }
-  return 0;
-}
-function isSameDay(inputDate) {
-  const currentDate = window.moment();
-  return currentDate.isSame(inputDate, "day");
-}
-function isOneDayBefore(inputDate) {
-  const oneDayBeforeCurrent = window.moment().subtract(1, "day");
-  return inputDate.isSame(oneDayBeforeCurrent, "day");
-}
-function isMinutesPassed(inputDate, minutesPassed) {
-  const minutesAgo = window.moment().subtract(minutesPassed, "minutes");
-  return inputDate.isSameOrBefore(minutesAgo);
-}
-function hoursUntilMinutesPassed(inputDate, minutesToPass) {
-  const currentTime = window.moment();
-  const targetTime = inputDate.clone().add(minutesToPass, "minutes");
-  if (targetTime.isAfter(currentTime)) {
-    const hoursRemaining = targetTime.diff(currentTime, "hours");
-    return hoursRemaining;
-  } else {
-    return 0;
-  }
-}
-async function createAvatarFile(app, fileName) {
+async function createAvatarFile(app2, fileName) {
   const existingFile = this.app.vault.getAbstractFileByPath(`${fileName}.md`);
-  if (existingFile instanceof import_obsidian6.TFile) {
+  if (existingFile instanceof import_obsidian12.TFile) {
     if (debugLogs)
       console.debug(`File ${fileName}.md already exists`);
     return;
@@ -11085,7 +12776,7 @@ async function createAvatarFile(app, fileName) {
   await this.app.vault.create(`${fileName}.md`, avatarInitContent);
 }
 async function replaceFormatStrings(layer2, layer3) {
-  const activeView = this.app.workspace.getActiveViewOfType(import_obsidian6.MarkdownView);
+  const activeView = this.app.workspace.getActiveViewOfType(import_obsidian12.MarkdownView);
   if (!activeView) {
     console.error("No active Markdown view found.");
     return;
@@ -11101,26 +12792,6 @@ async function replaceFormatStrings(layer2, layer3) {
   replacedText = replacedText.replaceAll("\u20AC\u20AC\u20AC\u20AC", layer2);
   replacedText = replacedText.replaceAll("\xA7\xA7\xA7\xA7", layer3);
   editor.replaceSelection(replacedText);
-}
-function rateDirectionForStatusPoints(ratingCurrent, ratingNew) {
-  let ratingFaktor;
-  if (parseInt(ratingCurrent, 10) < ratingNew) {
-    ratingFaktor = ratingNew - parseInt(ratingCurrent, 10);
-  } else {
-    ratingFaktor = 0;
-  }
-  return ratingFaktor;
-}
-function parseBadgeCSV2Dict(csvString) {
-  const badgeDict = {};
-  const rows = csvString.split("##");
-  for (const row of rows) {
-    const [badgeName, dateReceived, level] = row.split(",");
-    if (badgeName && dateReceived && level) {
-      badgeDict[badgeName] = { date: dateReceived, level };
-    }
-  }
-  return badgeDict;
 }
 /*! Bundled license information:
 
