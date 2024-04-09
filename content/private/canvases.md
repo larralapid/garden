@@ -1,4 +1,0 @@
-# canvases
-```query
-file:.canvas
-```

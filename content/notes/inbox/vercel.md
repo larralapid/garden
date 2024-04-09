@@ -4,8 +4,8 @@ tags:
 id: 0ojwnrs5dp3k1e74pkarv9d
 title: vercel
 desc: ""
-updated: 2024-03-11
-created: 2024-03-11
+updated: 2024-04-09 06:53:16 PM
+created: 2024-03-12 02:32:42 AM
 ---
 - root directory can't be "./"
 - attempts
