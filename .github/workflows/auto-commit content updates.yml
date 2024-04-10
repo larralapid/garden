@@ -1,0 +1,49 @@
+name: Auto-Commit Changes
+
+on:
+  push:
+    branches:
+      - content
+
+jobs:
+  check-for-changes:
+    runs-on: self-hosted
+    outputs:
+      changes_detected: ${{ steps.filter.outputs.changes_detected }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          ref: content
+
+      - name: Check for changes
+        id: filter
+        run: |
+          git fetch
+          CHANGES=$(git diff --name-only origin/content..HEAD)
+          if [ -n "$CHANGES" ]; then
+            echo "::set-output name=changes_detected::true"
+          else
+            echo "::set-output name=changes_detected::false"
+          fi
+
+  commit-and-push:
+    runs-on: self-hosted
+    needs: check-for-changes
+    if: needs.check-for-changes.outputs.changes_detected == 'true'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Configure Git
+        run: |
+          git config --global user.email "larralapid@gmail.com"
+          git config --global user.name "larralapid"
+
+      - name: Commit changes
+        run: |
+          git add .
+          git commit -m "Auto-commit changes detected on content branch"
+          
+      - name: Push changes
+        run: git push origin content
