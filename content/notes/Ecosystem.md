@@ -2,7 +2,7 @@
 up: 
 title: ecosystem
 desc: my tool suite and how i do stuff
-updated: 2024-04-04 03:08:31 PM
+updated: 2024-04-12 10:55:34 PM
 created: 2024-03-12 12:55:18 AM
 tags:
   - nav-bar

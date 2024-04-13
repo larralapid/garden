@@ -20,13 +20,13 @@ native frontmatter properties
 	- yes
 
 # how i use it 
-![[20240313.052951PM]]
+![[notes/20240313.052951PM]]
 - [x] enable [[raindrop.io]] #plugin
 
 # sync process
 - obsidian sync 
 - .git in parent directory
-	- when updates are pushed, [[vercel]] deploys
+	- when updates are pushed, [[notes/vercel]] deploys
 
 # tried, didn't like
 - obsidian/git integration. can't remember why i ended up deactivating it. 

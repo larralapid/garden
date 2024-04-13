@@ -10,7 +10,7 @@ tags:
   - vscode
 up: "[[infra.apps]]"
 ---
-- tried in [[2023]], didn't stick
+- tried in [[notes/2023]], didn't stick
 - tried again in [[2024]] and i still don't love it especially for [[digital garden]]
 	- #instead will use obsidian with the git #plugin
 ### Updating Dendron for GitHub Pages Deployment
