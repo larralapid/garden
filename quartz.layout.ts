@@ -25,8 +25,11 @@ export const defaultContentPageLayout: PageLayout = {
     Component.Search(),
     //Component.DesktopOnly(Component.Spacer()),
     Component.DesktopOnly(Component.Explorer({
-      title: "nav", // title of the explorer component
-
+      title: "my brain", // title of the explorer component
+      filterFn: (node) => {
+        const omit = new Set(["assets", "canvas"])
+        return !omit.has(node.name.toLowerCase())
+      },
       folderClickBehavior: "link", // what happens when you click a folder ("link" to navigate to folder page on click or "collapse" to collapse folder on click)
       folderDefaultState: "collapsed", // default state of folders ("collapsed" or "open")
       useSavedState: true, // whether to use local storage to save "state" (which folders are opened) of explorer
