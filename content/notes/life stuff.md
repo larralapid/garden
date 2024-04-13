@@ -9,7 +9,7 @@ updated: 2024-04-09 07:29:16 PM
 ---
 # rules
 - from now on, fridays are for #dicking-around. 
-- ![[20240313.041541PM]]
+- ![[notes/20240313.041541PM]]
 
 # misc
 - [[drugs]]

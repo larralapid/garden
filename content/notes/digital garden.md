@@ -8,10 +8,10 @@ tags:
 draft: false
 up: "[[infra]]"
 ---
-- deployed with [[vercel]]
+- deployed with [[notes/vercel]]
 - larralapid.dev domain registered with [[wordpress]]
 - built w/ [[quartz]]
 
 ### Garden Tending Tasks
 - [ ] dataview objects don't render 
-      see [[20240409182749]]
+      see [[notes/20240409182749]]

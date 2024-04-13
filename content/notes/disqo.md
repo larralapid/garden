@@ -13,7 +13,7 @@ updated: 2024-04-09 06:49:59 PM
 	- automate "queue" playlist generation 
 		- i create my queue in advance. i'm always looking for new music. lately, i've felt that it's best to listen to music by alternating known songs and "first listen" songs in my listening queue. trust me, it makes sense. i'll explain later. 
 	- better music discovery 
-[[2024-02|February 2024]]
+[[notes/2024-02|February 2024]]
 - created new branch for backfilling scrobbles; issue 8 
 - decided not to reference the last.fm csv for processing retroactive scrobbles 
 - [Spotify stats](https://spotifystats.app/) processes json exported data from spotify 
