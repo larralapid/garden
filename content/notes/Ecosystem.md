@@ -2,7 +2,7 @@
 up: 
 title: ecosystem
 desc: my tool suite and how i do stuff
-updated: 2024-03-14 12:27:16 AM
+updated: 2024-04-12 10:55:34 PM
 created: 2024-03-12 12:55:18 AM
 tags:
   - nav-bar
@@ -16,6 +16,7 @@ sibling: "[[infra.apps]]"
 - [[noteplan]]
 - [[raycast]]
 - [[dotfiles]]
+- [[obsidian]]
 - devon
 	- devonsphere express 
 	- devonthink 3 pro

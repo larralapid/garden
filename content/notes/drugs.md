@@ -1,11 +1,11 @@
 ---
-up: '[["life" life]]'
+up: "[[life stuff]]"
 tags: 
 id: ra1myavv1pa16b9nptb74bo
 title: drugs
 desc: ""
 created: 2024-03-12 02:32:42 AM
-updated: 2024-03-14 12:17:54 AM
+updated: 2024-04-09 06:20:22 PM
 ---
 - dose.land 
 - rick simpson oil >>>>>>

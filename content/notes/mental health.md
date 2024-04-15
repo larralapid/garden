@@ -7,7 +7,7 @@ desc: ""
 created: 2024-03-11
 updated: 2024-03-11
 ---
-- [[2023]] thoughts
+- [[notes/2023]] thoughts
 - thinking about this ideal life eases my anxiety: 
 	- routine planning 
 	- sticking to the plan 

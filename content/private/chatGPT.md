@@ -1,2 +1,0 @@
-# chatGPT
-- [ ] plugin: smart connections
