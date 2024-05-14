@@ -1,9 +1,11 @@
 ---
 title: SOW Types
-up: 
-tags: 
+tags:
+  - consulting
+  - contracts
 created: 2024-04-04 02:51:27 PM
-updated: 2024-04-22 12:19:36 PM
+updated: 2024-05-14 03:40:05 PM
+related: "[[notes/somastack|somastack]]"
 ---
 - **Time and Materials (T&M)**: This type of contract involves billing the client for the actual work hours at a set hourly rate, as well as any additional materials or services used.
     

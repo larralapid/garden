@@ -1,11 +1,11 @@
 ---
-title:
 up: 
 tags: 
 created: 2023-11-29 08:23:46 PM
-updated: 2024-04-09 06:23:23 PM
+updated: 2024-05-14 03:11:49 PM
+title: agi
 ---
-# agi
+# Agi
 * agi to test with building [[TrialTrack]] demo 
 	- superAGI
 	- 19:47 looking at demogpt.streamlit.app

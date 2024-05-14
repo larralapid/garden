@@ -1,12 +1,13 @@
 ---
-title: 
+title: disqo
 up: 
 tags:
   - spotify
 created: 2024-03-14 12:08:00 AM
-updated: 2024-04-09 06:49:59 PM
+updated: 2024-05-14 03:33:32 PM
+aliases: [Summary, summary]
 ---
-# summary
+# Summary
 - a #dick-around project 
 - Integrates with [[spotify]]
 - Solving for 
