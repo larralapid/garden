@@ -1,18 +1,20 @@
 ---
 up: 
-title: ecosystem
+title: Ecosystem
 desc: my tool suite and how i do stuff
-updated: 2024-04-12 10:55:34 PM
+updated: 2024-05-14 03:20:56 PM
 created: 2024-03-12 12:55:18 AM
 tags:
   - nav-bar
 aliases:
+  - Hardware
+  - hardware
   - my setup
 sibling: "[[infra.apps]]"
 ---
-#### reference maps & standardization
+#### Reference Maps & Standardization
 - [[frontmatter attributes]]
-#### toolsuite
+#### Toolsuite
 - [[noteplan]]
 - [[raycast]]
 - [[dotfiles]]
@@ -55,7 +57,7 @@ NP --> MT(Manage Tasks)
 	V --> DG(Digital Garden)
 ```
 
-# hardware
+# Hardware
 - logitech lift vertical mouse
 
 ---
@@ -69,3 +71,21 @@ NP --> MT(Manage Tasks)
 				- ~~chrome extension environment~~ 
 			- ~~Research~~
 				- ~~use tab groups per project~~ 
+
+
+- using [[noteplan]] and [[obsidian]] in my Ecosystem flow
+	- what kind of stuff goes in which? 
+		- [[noteplan]] 
+			- activity log 
+			- decisions made 
+			- active projects 
+			- out of scope
+				- zettels and fleeting thoughts 
+				- consumption lists (reading list, to watch list)
+				- irrelevant research 
+	- [[obsidian]]
+		- research 
+		- zettels 
+		- incomplete thoughts 
+		- #til stuff 
+		- #dicking-around activity logs 

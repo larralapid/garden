@@ -1,11 +1,11 @@
 ---
-title: 
+title: dataview
 up: 
 tags: 
 created: 2024-04-04 11:47:16 AM
-updated: 2024-04-13 02:39:40 AM
+updated: 2024-05-14 03:42:08 PM
 ---
-## how to create a dataview table
+## How to Create a Dataview Table
 ![[Pasted image 20240404114933.png]]
 ```dataview
 TABLE 

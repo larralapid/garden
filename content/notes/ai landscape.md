@@ -1,11 +1,12 @@
 ---
-title:
+title: ai landscape
 up: 
 tags: 
 created: 2023-11-29 10:58:16 AM
-updated: 2024-04-04 02:29:47 PM
+updated: 2024-05-14 03:24:35 PM
+aliases: [Ai Landscape]
 ---
-# ai landscape
+# Ai Landscape
 - cohere
 - anthropic
 - inflection
@@ -71,3 +72,5 @@ updated: 2024-04-04 02:29:47 PM
 	- subdomain only, no custom url 
 	- no collaborators
 	- starts at 8/mo
+- [[superagi]]
+- [[demogpt]]

@@ -1,12 +1,13 @@
 ---
-title: 
+title: DB View on Catalog Variables
 up: 
 tags:
   - servicenow
   - service-catalog
 created: 2024-03-27 06:17:19 PM
-updated: 2024-04-09 05:36:46 PM
+updated: 2024-05-14 03:41:55 PM
 ---
+### How to Create a Database view in [[servicenow]] for [[service catalog]] Variables
 
 | table               | order | var prefix | where clause                    |
 | ------------------- | ----- | ---------- | ------------------------------- |
