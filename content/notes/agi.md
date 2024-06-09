@@ -2,8 +2,9 @@
 up: 
 tags: 
 created: 2023-11-29 08:23:46 PM
-updated: 2024-05-14 03:11:49 PM
+updated: 2024-05-30 03:06:41 PM
 title: agi
+aliases: [Agi]
 ---
 # Agi
 * agi to test with building [[TrialTrack]] demo 
