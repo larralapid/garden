@@ -1,0 +1,3 @@
+[submodule "obsidian-content"]
+	path = obsidian-content
+	url = https://github.com/larralapid/obsidian
