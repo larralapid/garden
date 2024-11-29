@@ -16,7 +16,7 @@ const config: QuartzConfig = {
     },
     locale: "en-US",
     baseUrl: "larralapid.dev",
-    ignorePatterns: ["private", "templates", ".obsidian", ".vscode", ".dendron"],
+    ignorePatterns: ["private", "templates", ".obsidian", ".vscode", ".dendron", "_settings"],
     defaultDateType: "created",
     theme: {
       cdnCaching: true,

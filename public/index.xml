@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+    <channel>
+      <title>🪴</title>
+      <link>https://larralapid.dev</link>
+      <description>Last 10 notes on 🪴</description>
+      <generator>Quartz -- quartz.jzhao.xyz</generator>
+      <item>
+    <title>true</title>
+    <link>https://larralapid.dev/notes/true</link>
+    <guid>https://larralapid.dev/notes/true</guid>
+    <description>20241129172218.</description>
+    <pubDate>Fri, 29 Nov 2024 22:22:18 GMT</pubDate>
+  </item><item>
+    <title>habits </title>
+    <link>https://larralapid.dev/notes/ecosystem.current-state</link>
+    <guid>https://larralapid.dev/notes/ecosystem.current-state</guid>
+    <description>what i’ve noticed i touch a lot #TODO add apps and tools and for each tool document why i use it, the data it contains, workflow purposes, etc what i have Not everything here I necessarily use all the time.</description>
+    <pubDate>Fri, 29 Nov 2024 21:45:38 GMT</pubDate>
+  </item><item>
+    <title>Archi – Open Source ArchiMate Modelling</title>
+    <link>https://larralapid.dev/raindrop/Archi-%E2%80%93-Open-Source-ArchiMate-Modelling</link>
+    <guid>https://larralapid.dev/raindrop/Archi-%E2%80%93-Open-Source-ArchiMate-Modelling</guid>
+    <description>Metadata Source:: https://www.archimatetool.com/ Title:: Archi – Open Source ArchiMate Modelling Highlights Notes.</description>
+    <pubDate>Fri, 29 Nov 2024 21:36:49 GMT</pubDate>
+  </item><item>
+    <title>Map of my personal data infrastructure  beepb00p</title>
+    <link>https://larralapid.dev/raindrop/Map-of-my-personal-data-infrastructure--beepb00p</link>
+    <guid>https://larralapid.dev/raindrop/Map-of-my-personal-data-infrastructure--beepb00p</guid>
+    <description>Metadata Source:: https://beepb00p.xyz/myinfra.html Tags::#Inspiration,#diagramming Title:: Map of my personal data infrastructure | beepb00p Highlights Notes.</description>
+    <pubDate>Fri, 29 Nov 2024 21:36:49 GMT</pubDate>
+  </item><item>
+    <title>Service Catalog overview - Support and Troubleshooting</title>
+    <link>https://larralapid.dev/raindrop/Service-Catalog-overview---Support-and-Troubleshooting</link>
+    <guid>https://larralapid.dev/raindrop/Service-Catalog-overview---Support-and-Troubleshooting</guid>
+    <description>Metadata Source:: https://support.servicenow.com/kb?id=kb_article_view&amp;amp;sysparm_article=KB0792353 Title:: Service Catalog overview - Support and Troubleshooting Highlights Notes.</description>
+    <pubDate>Fri, 29 Nov 2024 21:36:49 GMT</pubDate>
+  </item><item>
+    <title>ServiceNow &amp;39;schema&amp;39; and &amp;39;meta&amp;39; APIs, and why system integrations should use them</title>
+    <link>https://larralapid.dev/raindrop/ServiceNow--and-39;schema-and-39;-and--and-39;meta-and-39;-APIs,-and-why-system-integrations-should-use-them</link>
+    <guid>https://larralapid.dev/raindrop/ServiceNow--and-39;schema-and-39;-and--and-39;meta-and-39;-APIs,-and-why-system-integrations-should-use-them</guid>
+    <description>Metadata Source:: https://davidmac.pro/posts/2021-11-26-schema-meta-api/ Title:: ServiceNow ‘schema’ and ‘meta’ APIs, and why system integrations should use them Don’t use the ‘admin’ role because an integration wants to know about ServiceNow tables and fields, use the ‘schema’ and ‘meta’ APIs instead.</description>
+    <pubDate>Fri, 29 Nov 2024 21:36:49 GMT</pubDate>
+  </item><item>
+    <title>Myinfra</title>
+    <link>https://larralapid.dev/raindrop/Myinfra</link>
+    <guid>https://larralapid.dev/raindrop/Myinfra</guid>
+    <description>Metadata Source:: https://beepb00p.xyz/myinfra_files/myinfra.svg Tags::#Inspiration,#blog Title:: Myinfra null Highlights Notes.</description>
+    <pubDate>Fri, 29 Nov 2024 21:36:49 GMT</pubDate>
+  </item><item>
+    <title>Visual Site Mapper - Create a visual map of your site</title>
+    <link>https://larralapid.dev/raindrop/Visual-Site-Mapper---Create-a-visual-map-of-your-site</link>
+    <guid>https://larralapid.dev/raindrop/Visual-Site-Mapper---Create-a-visual-map-of-your-site</guid>
+    <description>Metadata Source:: http://www.visualsitemapper.com/ Title:: Visual Site Mapper - Create a visual map of your site Visual Site Mapper is a free service that can quickly show an interactive visual map of your site.</description>
+    <pubDate>Fri, 29 Nov 2024 21:36:49 GMT</pubDate>
+  </item><item>
+    <title>Programmable Search - All search engines</title>
+    <link>https://larralapid.dev/raindrop/Programmable-Search---All-search-engines</link>
+    <guid>https://larralapid.dev/raindrop/Programmable-Search---All-search-engines</guid>
+    <description>Metadata Source:: https://programmablesearchengine.google.com/controlpanel/all Title:: Programmable Search - All search engines Highlights Notes.</description>
+    <pubDate>Fri, 29 Nov 2024 21:36:49 GMT</pubDate>
+  </item><item>
+    <title>Rotten Library</title>
+    <link>https://larralapid.dev/raindrop/Rotten-Library</link>
+    <guid>https://larralapid.dev/raindrop/Rotten-Library</guid>
+    <description>Metadata Source:: https://gwern.net/doc/rotten.com/library/index.html Title:: Rotten Library Highlights Notes.</description>
+    <pubDate>Fri, 29 Nov 2024 21:36:49 GMT</pubDate>
+  </item>
+    </channel>
+  </rss>

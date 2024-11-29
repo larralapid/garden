@@ -1,0 +1,14 @@
+{
+	"nodes":[
+		{"id":"notes/Ecosystem.md","type":"file","file":"notes/ecosystem.md","x":0,"y":300,"width":500,"height":500,"color":"1"},
+		{"id":"notes/infra.apps.md","type":"file","file":"notes/evaluations.md","x":1000,"y":0,"width":500,"height":500},
+		{"id":"notes/jupyter.md","type":"file","file":"notes/jupyter.md","x":2000,"y":0,"width":500,"height":500},
+		{"id":"notes/alfred.md","type":"file","file":"notes/alfred.md","x":1000,"y":600,"width":500,"height":500}
+	],
+	"edges":[
+		{"id":"notes/Ecosystem.md-notes/infra.apps.md","fromNode":"notes/Ecosystem.md","fromSide":"right","toNode":"notes/infra.apps.md","toSide":"left"},
+		{"id":"notes/infra.apps.md-notes/jupyter.md","fromNode":"notes/infra.apps.md","fromSide":"right","toNode":"notes/jupyter.md","toSide":"left"},
+		{"id":"notes/Ecosystem.md-notes/alfred.md","fromNode":"notes/Ecosystem.md","fromSide":"right","toNode":"notes/alfred.md","toSide":"left"},
+		{"id":"notes/alfred.md-notes/infra.apps.md","fromNode":"notes/alfred.md","fromSide":"right","toNode":"notes/infra.apps.md","toSide":"left"}
+	]
+}
