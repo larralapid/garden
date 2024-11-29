@@ -1,0 +1,41 @@
+- [x] Roshi
+- [x] Stories
+- [x] FreshTech
+- [x] coursera
+- [x] Web Requests
+- [x] Mini Habits
+- [x] Chat Stack Search
+
+- [x] MixerBox WebSearch
+- [x] daigr.am
+- [x] WordCloud
+- [x] Skipit AI
+- [x] midpage 
+- [x] caselaw
+- [x] PuginAI
+- [x] highPerplexity
+- [x] ChatWithPDF
+- [x] Charts by Kesem AI
+- [x] Reminders
+- [x] DeployScript
+- [x] Email by Nylas
+- [x] CreditYelp
+- [x] Pluginpedia
+- [x] Bardeen
+- [x] JiggyBase
+- [x] Chat Stack Search
+- [x] AI Agents
+- [x] Mermaid Chart
+- [x] Algorithma
+- [x] TotalQuery Search
+- [x] OpenTools AI
+- [x] WikiDocs
+- [x] Decision Journal
+- [x] AI with Jira®
+- [x] HTTP Webhooks
+- [x] Draw
+- [x] daigr.am
+- [x] Noteable
+- [x] WebDev  
+- [x] Memory Bank
+- [x] Paxi AI

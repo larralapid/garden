@@ -1,0 +1,40 @@
+{
+  "version": "0.0.21",
+  "username": "Larra Lapid",
+  "isConnected": true,
+  "ribbonIcon": true,
+  "appendMode": true,
+  "collectionsFolders": false,
+  "onlyBookmarksWithHl": false,
+  "highlightsFolder": "raindrop",
+  "collectionGroups": true,
+  "autoSyncSuccessNotice": true,
+  "syncCollections": {
+    "0": {
+      "id": 0,
+      "title": "All bookmarks",
+      "sync": false
+    },
+    "50097017": {
+      "id": 50097017,
+      "title": "garden",
+      "sync": true,
+      "lastSyncDate": "2024-11-29T21:36:49.920Z"
+    },
+    "-1": {
+      "id": -1,
+      "title": "Unsorted",
+      "sync": false
+    },
+    "-99": {
+      "id": -99,
+      "title": "Trash",
+      "sync": false
+    }
+  },
+  "template": "{% if is_new_article %}\n# Metadata\n{% if link %}Source:: {{link}}{% endif %}\n{% if tags|length %}Tags:: #{{ tags | join(\", #\") }}{% endif %}\nTitle:: {{title}}\n---\n\n{% if excerpt %}{{excerpt}}{% endif %}\n\n## Highlights\n{% endif -%}{% for highlight in highlights %}\n{% if highlight.color == \"red\" -%}\n    {%- set callout = \"danger\" -%}\n{%- elif highlight.color == \"blue\" -%}\n    {%- set callout = \"info\" -%}\n{%- elif highlight.color == \"green\" -%}\n    {%- set callout = \"check\" -%}\n{%- else -%}\n    {%- set callout = \"quote\" -%}\n{%- endif -%}\n> [!{{callout}}]+ Updated on {{highlight.lastUpdate}}\n>\n> {{highlight.text.split(\"\\n\") | join(\"\\n>\")}}\n{% if highlight.note -%}> > {{highlight.note + \"\\n\"}}{%- endif %}\n\n{%- endfor -%}\n\n## Notes\n{{note}}",
+  "metadataTemplate": "",
+  "filenameTemplate": "{{title}}",
+  "autoSyncInterval": 0,
+  "autoescape": true
+}

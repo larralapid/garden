@@ -1,0 +1,17 @@
+- define test objectives
+	- outline the testing approach to be used 
+	- identify entry/exit criteria for each test level 
+	- required resources and estimated effort for testing 
+	- raci
+	- entry & exit criteria for starting and comopleting levels of testing 
+	- modules/features that should be tested 
+	- List of use case scenarios to be tested
+	- outline testing risks
+- considerations through out testing 
+	- meet the documented acceptance criteria 
+	- system components and business processes work end to end 
+	- stability and security of upgrade environment
+	- ensure correct data translation across business and integration w/ existing systems 
+	- ensure accuracy, completeness, and timelines of data throughout the system 
+	- secrutiy with respect to access to the system and data 
+	- data integrity 

@@ -1,0 +1,10 @@
+{
+  "saveWindowLocations": true,
+  "useCustomWindowName": true,
+  "customWindowName": "Second Window",
+  "windows": {
+    "full-flower": {
+      "hosts": {}
+    }
+  }
+}

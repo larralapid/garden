@@ -1,0 +1,72 @@
+**checkboxes indicate status for configurable workspace**
+
+- [x] home page
+	- [x] dashboard 
+		- [ ] reports 
+			- [ ] tickets created today (count)
+			- [ ] tickets closed today count 
+			- [ ] total oipoen tickets count 
+			- [x] assigned to me, list 
+			- [ ] unassigned tickets, list 
+- [ ] top header menu 
+	- [x] search 
+	- [x] notifications 
+	- [x] settings 
+		- [ ] show/hide ribon 
+		- [ ] side bar 
+		- [ ] wrap text 
+		- [ ] notifications 
+			- [ ] bnaners 
+			- [ ] badge count 
+- [ ] create new record 
+	- [ ] interaction 
+	- [x] court ops ticket 
+- [ ] Lists 
+	- [x] court ops tickets 
+	- [ ] Quality Control 
+	- [ ] Email Drafts 
+- [ ] form view of record 
+	- [x] court ops ticket 
+		- [ ] new record 
+			- [ ] workspace for view 
+				- [ ] fix new ws view
+					- [ ] displayed fields 
+					- [ ] layout 
+			- [ ] side panel utilities 
+				- [ ] templates 
+				- [ ] attachments 
+			- [ ] ui actions 
+				- [ ] save 
+				- [ ] log call 
+		- [ ] viewing existing record 
+			- [ ] top of form brief details 
+				- [ ] short description 
+				- [ ] state 
+			- [ ] ui actions
+				- [ ] compose email 
+				- [ ] log clal
+				- [ ] save 
+				- [ ] delete 
+			- [ ] related lists 
+				- [ ] interactions 
+					  OMG WE CAN USE WHAT WE HAVE TO TIE CFC TASKS TO COURT OPS TICKETS  
+				- [ ] court ops tickets 
+				- [ ] task slas 
+				- [ ] email log 
+			- [ ] additional panels 
+				- [ ] templates 
+				- [ ] attachments 
+				- [ ] activity log and compose worknots 
+	- [ ] interaction record 
+		- [ ] new 
+			- [ ] workspace form view 
+			- [ ] ui actions 
+				- [ ] save 
+				- [ ] create ticket, wtf does this do, is this oob 
+		- [ ] viewing existing 
+			- [ ] related records 
+				- [ ] related tasks 
+				- [ ] user's interactions
+					  why do we need this 
+				- [ ] users tasks 
+				      why do we need this 

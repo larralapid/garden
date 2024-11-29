@@ -1,0 +1,131 @@
+/*
+
+This CSS file will be included with your plugin, and
+available in the app when your plugin is enabled.
+
+If your plugin does not need CSS, delete this file.
+
+*/
+
+.assistant-container {
+  padding: 1rem;
+}
+
+.assistant-placeholder {
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.assistant-section {
+  margin-bottom: 1.5rem;
+}
+
+.assistant-section-header {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  color: var(--text-normal);
+  display: flex;
+  align-items: center;
+}
+
+.assistant-section-icon {
+  margin-right: 0.5rem;
+}
+
+.active-note-title {
+  font-size: 1.1rem;
+  color: var(--text-accent);
+  margin-bottom: 1rem;
+}
+
+.tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+.tag {
+  background: var(--background-secondary);
+  border-radius: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.9rem;
+  color: var(--text-normal);
+  cursor: pointer;
+}
+
+.tag:hover {
+  background: var(--interactive-accent);
+}
+
+.alias-container,
+.folder-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.alias,
+.folder {
+  font-size: 1rem;
+  color: var(--text-normal);
+}
+
+.add-alias-button,
+.move-note-button,
+.format-button,
+.assistant-view-button,
+.load-similar-files-button {
+  background: white;
+  color: var(--text-normal);
+  /* border: 1px solid var(--background-modifier-border); */
+  /* border-radius: 0.25rem; */
+  padding: 0.25rem 0.5rem;
+  cursor: pointer;
+}
+
+.add-alias-button:hover,
+.move-note-button:hover,
+.format-button:hover,
+.rename-alias-button:hover,
+.load-similar-files-button:hover {
+  background: var(--interactive-accent);
+  border-color: var(--interactive-accent);
+  color: white;
+}
+
+.files-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.file a {
+  color: var(--text-accent);
+  text-decoration: none;
+}
+
+.file a:hover {
+  text-decoration: underline;
+}
+
+.settings-cta-button {
+  margin-bottom: var(--size-4-4);
+}
+
+.skeleton-loader {
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}

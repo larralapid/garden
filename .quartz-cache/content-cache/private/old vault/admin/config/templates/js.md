@@ -1,0 +1,2 @@
+```js import * as React from 'react' // this allows for jsx --> const MyComponent = ()=>{return(<h1>hey</h1>)} // this is defining the component. function that returns jsx element --> export default MyComponent // exporting allows for it to be used elsewhere in my site
+```

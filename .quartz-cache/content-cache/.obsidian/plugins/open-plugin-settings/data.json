@@ -1,0 +1,14 @@
+{
+  "pluginCmdr": [
+    {
+      "id": "open-plugin-settings",
+      "name": "Open Plugin Settings",
+      "commandName": "Open Plugin Settings"
+    },
+    {
+      "id": "obsidian-local-rest-api",
+      "name": "Local REST API",
+      "commandName": "Local REST API"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "triggerSymbol": "@",
+  "limitLinkDirectories": [],
+  "includeSymbol": true,
+  "showAddNewNote": true,
+  "addNewNoteTemplateFile": "",
+  "addNewNoteDirectory": "",
+  "useCompatibilityMode": false,
+  "leavePopupOpenForXSpaces": 0,
+  "invalidCharacterRegex": "[[]^|#]",
+  "invalidCharacterRegexFlags": "i",
+  "removeAccents": true
+}
