@@ -29,7 +29,10 @@ jobs:
           git config submodule.obsidian.url https://${GH_TOKEN}@github.com/larralapid/obsidian.git
           git submodule sync
           echo "Token added to submodule configuration."
-
+      
+      - name: init submodules
+        run: |
+          git submodule update --init --force --depth=1
           
       - name: Copy Obsidian Content to Garden
         run: |
