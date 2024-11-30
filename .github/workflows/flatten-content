@@ -1,0 +1,30 @@
+name: Flatten Submodule and Push to Garden Repo
+
+on:
+  push:
+    branches:
+      - main  # Adjust this if you're using a different branch
+
+jobs:
+  flatten-submodule:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout main repo
+        uses: actions/checkout@v3
+
+      - name: Checkout submodule
+        run: git submodule update --init --recursive
+
+      - name: Flatten submodule content
+        run: |
+          rm -rf content
+          cp -r content/* ./
+
+      - name: Commit and push flattened content
+        run: |
+          git config --global user.name "Larra Lapid"
+          git config --global user.email "larralapid@gmail.com"
+          git add .
+          git commit -m "Flattened content from obsidian submodule"
+          git push origin main
