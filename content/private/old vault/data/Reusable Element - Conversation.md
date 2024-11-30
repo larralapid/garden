@@ -1,0 +1,2 @@
+- [ ] add input box 
+- [ ] add send button 

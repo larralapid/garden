@@ -1,0 +1,1 @@
+how to know whether something should be an interaction or an incident? 
