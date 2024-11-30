@@ -13,7 +13,7 @@ jobs:
       - name: Checkout Garden Repo with Submodule
         uses: actions/checkout@v3
         with:
-          submodules: true  # Ensure submodules are initialized and updated
+          submodules: false  # Ensure submodules are initialized and updated
 
       - name: Debug Check Current Directory
         run: pwd
