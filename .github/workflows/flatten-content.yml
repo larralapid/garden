@@ -18,9 +18,9 @@ jobs:
       - name: Copy Obsidian content to Garden
       env:
         GH_TOKEN: ${{ secrets.GH_TOKEN }}
-        run: |
-          rm -rf content  # Remove old content directory
-          git clone  git clone https://$GH_TOKEN@github.com/larralapid/obsidian.git content
+      run: |
+        rm -rf content  # Remove old content directory
+        git clone  git clone https://$GH_TOKEN@github.com/larralapid/obsidian.git content
 
       # Step 4: Commit and push the updated content to the Garden repo
       - name: Commit and push flattened content
