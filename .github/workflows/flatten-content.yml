@@ -23,7 +23,7 @@ jobs:
 
       - name: Commit and push flattened content
         run: |
-          git config --global user.name "Larra Lapid"
+          git config --global user.name "larralapid"
           git config --global user.email "larralapid@gmail.com"
           git add .
           git commit -m "Flattened content from obsidian submodule"
