@@ -1,0 +1,28 @@
+{
+	"folders": [
+		{
+			"path": "scratchpad"
+		},
+		{
+			"path": ".obsidian/snippets"
+		},
+		{
+			"path": ".obsidian/plugins/_obsidian-memos"
+		},
+		{
+			"path": ".obsidian/plugins/_sandbox"
+		},
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"files.autoSave": "onFocusChange",
+		"editor.insertSpaces": false,
+		"editor.wordWrap": "on",
+		"editor.bracketPairColorization.independentColorPoolPerBracketType": true,
+		"editor.formatOnSave": true,
+		"editor.formatOnSaveMode": "modificationsIfAvailable",
+		"python.testing.autoTestDiscoverOnSaveEnabled": false
+	}
+}
