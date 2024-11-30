@@ -1,3 +1,4 @@
+.DS_Store
 node_modules
 node_modules/.DS_Store
 node_modules/.package-lock.json
@@ -10803,3 +10804,4 @@ node_modules/wrap-ansi-cjs/index.js
 node_modules/wrap-ansi-cjs/license
 node_modules/wrap-ansi-cjs/package.json
 node_modules/wrap-ansi-cjs/readme.md
+.DS_Store
