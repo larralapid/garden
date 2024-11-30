@@ -27,7 +27,10 @@ jobs:
           rm -rf content
           echo "Cloning Obsidian repository..."
           git clone https://$GH_TOKEN@github.com/larralapid/obsidian.git
-          echo "Cloning completed."
+          echo "copying content to obsidian directory
+          cp -r obsidian/* content/
+          rm -rf obsidian
+          echo "cloning completed and content flattened"
 
       - name: Debug List Files After Clone
         run: ls -la
