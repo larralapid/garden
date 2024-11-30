@@ -6,20 +6,21 @@ on:
       - main  # Adjust this if you're using a different branch
 
 jobs:
-  flatten-submodule:
+  flatten-content:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout main repo
         uses: actions/checkout@v3
-
-      - name: Checkout submodule
-        run: git submodule update --init --recursive
+        with:
+          submodules: true
+          token: ${{ secrets.GH_TOKEN }}
 
       - name: Flatten submodule content
         run: |
-          rm -rf content
           cp -r content/* ./
+          rm -rf content
+         
 
       - name: Commit and push flattened content
         run: |
