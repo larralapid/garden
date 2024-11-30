@@ -1,41 +1,38 @@
-name: Flatten Submodule and Push to Garden Repo
+name: Flatten Content from Obsidian to Garden Repo
 
 on:
   push:
     branches:
-      - main  # Adjust this if you're using a different branch
+      - main  # Trigger when a push happens to the main branch in Obsidian
 
 jobs:
   flatten-content:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout main repo
+      # Step 1: Checkout the Garden repo (no submodule)
+      - name: Checkout Garden Repo
         uses: actions/checkout@v3
         with:
-          submodules: true
           token: ${{ secrets.GH_TOKEN }}
+          submodules: false  # Make sure no submodules are checked out
 
-      - name: Create temporary branch
+      # Step 2: Clone Obsidian repo (public or use SSH key for private)
+      - name: Clone Obsidian Repo
         run: |
-          git checkout -b temp-branch
-
-      - name: Flatten submodule content
+          git clone https://github.com/larralapid/obsidian.git content
+          
+      # Step 3: Overwrite content directory in Garden repo with Obsidian files
+      - name: Copy Obsidian content to Garden
         run: |
-          mkdir -p content
-          cp -r content-copy/* content
-          rm -rf content-copy
+          rm -rf content  # Remove old content directory
+          git clone https://github.com/larralapid/obsidian.git content  # Clone fresh Obsidian content
 
+      # Step 4: Commit and push the updated content to the Garden repo
       - name: Commit and push flattened content
         run: |
           git config --global user.name "larralapid"
           git config --global user.email "larralapid@gmail.com"
           git add .
-          git commit -m "Flattened content from obsidian submodule"
-          git push origin temp-branch
-
-      - name: Merge temporary branch into main
-        run: |
-          git checkout main
-          git merge temp-branch
-          git push origin main
+          git commit -m "Flattened content from Obsidian vault"
+          git push origin main  # Push to the main branch in the Garden repo
