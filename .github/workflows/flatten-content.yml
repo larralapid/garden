@@ -13,20 +13,14 @@ jobs:
       # Step 1: Checkout the Garden repo (no submodule)
       - name: Checkout Garden Repo
         uses: actions/checkout@v3
-        with:
-          token: ${{ secrets.GH_TOKEN }}
-          submodules: false  # Make sure no submodules are checked out
-
-      # Step 2: Clone Obsidian repo (public or use SSH key for private)
-      - name: Clone Obsidian Repo
-        run: |
-          git clone https://github.com/larralapid/obsidian.git content
-          
+     
       # Step 3: Overwrite content directory in Garden repo with Obsidian files
       - name: Copy Obsidian content to Garden
+      env:
+        GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
           rm -rf content  # Remove old content directory
-          git clone https://github.com/larralapid/obsidian.git content  # Clone fresh Obsidian content
+          git clone  git clone https://$GH_TOKEN@github.com/larralapid/obsidian.git content
 
       # Step 4: Commit and push the updated content to the Garden repo
       - name: Commit and push flattened content
