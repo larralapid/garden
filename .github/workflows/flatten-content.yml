@@ -26,7 +26,7 @@ jobs:
           echo "Removing old content directory..."
           rm -rf content
           echo "Cloning Obsidian repository..."
-          git clone https://$GH_TOKEN@github.com:larralapid/obsidian.git
+          git clone https://$GH_TOKEN@github.com/larralapid/obsidian.git
           echo "Cloning completed."
 
       - name: Debug List Files After Clone
