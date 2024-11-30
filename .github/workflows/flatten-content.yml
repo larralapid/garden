@@ -13,10 +13,10 @@ jobs:
       - name: Checkout Garden Repo
         uses: actions/checkout@v3
 
-      - name: Debug: Check current directory
+      - name: Debug Check current directory
         run: pwd
 
-      - name: Debug: List files in current directory
+      - name: Debug List files in current directory
         run: ls -la
 
       - name: Copy Obsidian content to Garden
