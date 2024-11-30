@@ -6,7 +6,7 @@ on:
       - main  # Adjust this if you're using a different branch
 
 jobs:
-  flatten-submodule:
+  flatten-content:
     runs-on: ubuntu-latest
 
     steps:
