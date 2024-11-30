@@ -18,8 +18,8 @@ jobs:
 
       - name: Flatten submodule content
         run: |
-          cp -r content/* ./
-          rm -rf content
+          cp -r content-copy/* ./content
+          rm -rf content-copy
          
 
       - name: Commit and push flattened content
