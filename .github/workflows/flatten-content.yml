@@ -16,7 +16,7 @@ jobs:
           submodules: true
           token: ${{ secrets.GH_TOKEN }}
 
-        - name: Create temporary branch
+      - name: Create temporary branch
         run: |
           git checkout -b temp-branch
 
