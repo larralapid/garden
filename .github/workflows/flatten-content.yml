@@ -3,30 +3,42 @@ name: Flatten Content from Obsidian to Garden Repo
 on:
   push:
     branches:
-      - main  # Trigger when a push happens to the main branch in the Garden repo
+      - main
 
 jobs:
   flatten-content:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout the Garden repo (no submodule)
       - name: Checkout Garden Repo
         uses: actions/checkout@v3
 
-      # Step 2: Overwrite content directory in Garden repo with Obsidian files
+      - name: Debug: Check current directory
+        run: pwd
+
+      - name: Debug: List files in current directory
+        run: ls -la
+
       - name: Copy Obsidian content to Garden
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
-          rm -rf content  # Remove old content directory
+          echo "Removing old content directory..."
+          rm -rf content
+          echo "Cloning Obsidian repository..."
           git clone https://$GH_TOKEN@github.com/larralapid/obsidian.git content
+          echo "Cloning completed."
 
-      # Step 3: Commit and push the updated content to the Garden repo
+      - name: Debug: List files after clone
+        run: ls -la
+
       - name: Commit and push flattened content
         run: |
           git config --global user.name "larralapid"
           git config --global user.email "larralapid@gmail.com"
           git add .
-          git commit -m "Flattened content from Obsidian vault"
-          git push origin main  # Push to the main branch in the Garden repo
+          if git diff-index --quiet HEAD --; then
+            echo "No changes to commit."
+          else
+            git commit -m "Flattened content from Obsidian vault"
+            git push origin main
