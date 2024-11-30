@@ -21,12 +21,15 @@ jobs:
       - name: Debug List Files in Current Directory
         run: ls -la
 
-      - name: add the token to .gitsubmodules
-        env: ${{ secrets.GH_TOKEN }}
+      - name: Add the Token to .gitmodules
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}  # Make the token available as an environment variable
         run: |
-          git config submodule.obsidian.url obsidian https://${GH_TOKEN}@github.com/larralapid/obsidian.git
+          echo "Configuring submodule URL with token..."
+          git config submodule.obsidian.url https://${GH_TOKEN}@github.com/larralapid/obsidian.git
           git submodule sync
-          echo "added ghtoken" 
+          echo "Token added to submodule configuration."
+
           
       - name: Copy Obsidian Content to Garden
         run: |
