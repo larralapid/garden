@@ -32,6 +32,8 @@ jobs:
       
       - name: init submodules
         run: |
+          git config --global user.name "larralapid"
+          git config --global user.email "larralapid@gmail.com"
           git submodule update --init --force --depth=1
           
       - name: Copy Obsidian Content to Garden
