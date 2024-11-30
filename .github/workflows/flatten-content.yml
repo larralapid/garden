@@ -10,8 +10,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Garden Repo
+      - name: Checkout Garden Repo with Submodule
         uses: actions/checkout@v3
+        with:
+          submodules: true  # Ensure submodules are initialized and updated
 
       - name: Debug Check Current Directory
         run: pwd
@@ -19,24 +21,19 @@ jobs:
       - name: Debug List Files in Current Directory
         run: ls -la
 
-      - name: Copy Obsidian content to Garden
-        env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+      - name: Copy Obsidian Content to Garden
         run: |
-          echo "Removing old content directory..."
-          rm -rf content
-          echo "Cloning Obsidian repository..."
-          git clone https://$GH_TOKEN@github.com/larralapid/obsidian.git
-          echo "copying content to obsidian directory"
-          mkdir content
-          cp -r obsidian/* content/
-          rm -rf obsidian
-          echo "cloning completed and content flattened"
+          echo "Ensuring content directory is fresh..."
+          rm -rf content  # Remove existing content directory if it exists
+          mkdir content   # Create a new content directory
+          echo "Copying files from submodule 'obsidian' to 'content'..."
+          cp -r obsidian/* content/  # Copy all files and directories from obsidian to content
+          echo "Submodule files successfully copied."
 
-      - name: Debug List Files After Clone
-        run: ls -la
+      - name: Debug List Files in Content Directory
+        run: ls -la content  # Verify the content directory is populated
 
-      - name: Commit and push flattened content
+      - name: Commit and Push Flattened Content
         run: |
           git config --global user.name "larralapid"
           git config --global user.email "larralapid@gmail.com"
