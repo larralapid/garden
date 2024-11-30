@@ -1,4 +1,0 @@
-backlog
-installed
-evaluating
-complete

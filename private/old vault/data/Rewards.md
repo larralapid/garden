@@ -1,4 +1,0 @@
-- Have a cup of tea
-- Watch an episode of favourite series {rare} {20}
-- Knit for 15 minutes {rare} 
-- Open the birthday present champagne bottle {legendary} {1}

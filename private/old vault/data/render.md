@@ -1,2 +1,0 @@
-has free tier 
-postgresql

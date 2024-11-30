@@ -1,2 +1,0 @@
-[[# getChoiceList()]]
-[returns:: ]

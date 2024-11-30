@@ -1,1 +1,0 @@
-updated AJAXEmailConnection script include (line 95).
